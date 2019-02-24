@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
 
     'autofixture',
+    'corsheaders',
 
     'django_celery_beat',
     'rest_framework',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -175,3 +177,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 CELERY_TIMEZONE = TIME_ZONE
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
