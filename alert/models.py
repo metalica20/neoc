@@ -19,6 +19,7 @@ class Alert(TimeStampedModal):
     source = models.CharField(max_length=255, choices=SOURCES, default=OTHERS)
     description = models.TextField()
     verified = models.BooleanField(default=False)
+    public = models.BooleanField(default=True)
     hazard = models.ForeignKey(
         Hazard,
         on_delete=models.SET_NULL,
@@ -27,6 +28,7 @@ class Alert(TimeStampedModal):
     expire_on = models.DateTimeField(null=True, blank=True, default=None)
     event = models.ForeignKey(
         Event,
+        related_name='alerts',
         on_delete=models.SET_NULL,
         default=None, null=True, blank=True
     )

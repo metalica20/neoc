@@ -1,7 +1,7 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import viewsets
 from django.db.models import Prefetch
+from rest_flex_fields import FlexFieldsModelViewSet
 from .serializers import IncidentSerializer
 from resources.models import Resource
 from resources.serializers import ResponseSerializer
@@ -13,12 +13,13 @@ from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.measure import D
 
 
-class IncidentViewSet(viewsets.ModelViewSet):
+class IncidentViewSet(FlexFieldsModelViewSet):
     serializer_class = IncidentSerializer
     filter_class = IncidentFilter
     search_fields = ('title', )
     queryset = Incident.objects.filter(verified=True)\
         .prefetch_related(Prefetch('loss', queryset=Loss.with_stat.all()))
+    permit_list_expands = ['event', 'hazard', 'wards']
 
     @action(detail=True, name='Incident Response')
     def response(self, request, pk=None, version=None):
