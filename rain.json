@@ -1,0 +1,7450 @@
+[
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS ",
+    "district": null,
+    "images": [
+      {
+        "id": 93,
+        "name": "a9f80a5643325e975bb0d761df3449ca",
+        "description": "",
+        "size": 251044,
+        "type": 0
+      },
+      {
+        "id": 93,
+        "name": "a9f80a5643325e975bb0d761df3449ca",
+        "description": "",
+        "size": 251044,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1515,
+    "longitude": 85.901199,
+    "latitude": 27.78763,
+    "stationIndex": "610",
+    "basin": "Koshi",
+    "id": 112,
+    "name": "Bahrabise"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 96,
+        "name": "6534428f7a234d7ce018b43e3ed9f7d0",
+        "description": "",
+        "size": 359345,
+        "type": 0
+      },
+      {
+        "id": 96,
+        "name": "6534428f7a234d7ce018b43e3ed9f7d0",
+        "description": "",
+        "size": 359345,
+        "type": 0
+      }
+    ],
+    "elevation": 1397,
+    "series_id": 1549,
+    "longitude": 86.2619,
+    "latitude": 27.7728,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 115,
+    "name": "Chankhu"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "Jumla",
+    "images": null,
+    "elevation": 2438,
+    "series_id": 3684,
+    "longitude": 82.15,
+    "latitude": 29.17,
+    "stationIndex": "326",
+    "basin": "Karnali",
+    "id": 239,
+    "name": "Dillichaur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 102,
+        "name": "96c77dc15bd90f0d7e03bd010db54e08",
+        "description": "",
+        "size": 336753,
+        "type": 0
+      },
+      {
+        "id": 102,
+        "name": "96c77dc15bd90f0d7e03bd010db54e08",
+        "description": "",
+        "size": 336753,
+        "type": 0
+      }
+    ],
+    "elevation": 1343,
+    "series_id": 1566,
+    "longitude": 86.21667,
+    "latitude": 27.84305,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 117,
+    "name": "Gongar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station with tipping bucket and temp/humidity sensor",
+    "district": null,
+    "images": [
+      {
+        "id": 111,
+        "name": "c2b23b76ad411856eeaed2cbbe3a83cc",
+        "description": "",
+        "size": 1729985,
+        "type": 0
+      },
+      {
+        "id": 111,
+        "name": "c2b23b76ad411856eeaed2cbbe3a83cc",
+        "description": "",
+        "size": 1729985,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 4227,
+    "longitude": 81.34188,
+    "latitude": 29.052831,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 154,
+    "name": "Achham"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate Station",
+    "district": "",
+    "images": [
+      {
+        "id": 64,
+        "name": "f862eb0a86589f1d32284ecb55c4b4c8",
+        "description": "",
+        "size": 95696,
+        "type": 0
+      },
+      {
+        "id": 64,
+        "name": "f862eb0a86589f1d32284ecb55c4b4c8",
+        "description": "",
+        "size": 95696,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1685,
+    "longitude": 83.98291,
+    "latitude": 28.4024683,
+    "stationIndex": "870",
+    "basin": "Narayani",
+    "id": 128,
+    "name": "Jyamirebari"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 30,
+        "name": "4eebb14a66e421081706a9a8a6c9114e",
+        "description": "",
+        "size": 127874,
+        "type": 0
+      },
+      {
+        "id": 30,
+        "name": "4eebb14a66e421081706a9a8a6c9114e",
+        "description": "",
+        "size": 127874,
+        "type": 0
+      }
+    ],
+    "elevation": 596.7,
+    "series_id": 1608,
+    "longitude": 82.25,
+    "latitude": 28.01666667,
+    "stationIndex": "531",
+    "basin": "Babai",
+    "id": 121,
+    "name": "Ambapur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station at Budhanilkantha",
+    "district": "",
+    "images": [
+      {
+        "id": 148,
+        "name": "1499a3a8b583ec33d981676fec0f422d",
+        "description": "",
+        "size": 1043919,
+        "type": 0
+      },
+      {
+        "id": 148,
+        "name": "1499a3a8b583ec33d981676fec0f422d",
+        "description": "",
+        "size": 1043919,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1017,
+    "longitude": 85.357778,
+    "latitude": 27.780278,
+    "stationIndex": "1071",
+    "basin": "Bagmati",
+    "id": 58,
+    "name": "BudhanilKantha"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station with WXT520",
+    "district": null,
+    "images": [
+      {
+        "id": 79,
+        "name": "7258912b461279030f4b994219c25334",
+        "description": "",
+        "size": 109973,
+        "type": 0
+      },
+      {
+        "id": 79,
+        "name": "7258912b461279030f4b994219c25334",
+        "description": "",
+        "size": 109973,
+        "type": 0
+      }
+    ],
+    "elevation": 1153,
+    "series_id": 1440,
+    "longitude": 87.3459,
+    "latitude": 26.9833,
+    "stationIndex": "789",
+    "basin": "Koshi",
+    "id": 103,
+    "name": "Dhankuta"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic weather station",
+    "district": null,
+    "images": [
+      {
+        "id": 26,
+        "name": "9d073322fda51d5a7eed47f7451570a3",
+        "description": "",
+        "size": 127343,
+        "type": 0
+      },
+      {
+        "id": 26,
+        "name": "9d073322fda51d5a7eed47f7451570a3",
+        "description": "",
+        "size": 127343,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1592,
+    "longitude": 82.484167,
+    "latitude": 28.037222,
+    "stationIndex": "515",
+    "basin": "Babai",
+    "id": 118,
+    "name": "Ghorahi"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Precipitation Station",
+    "district": null,
+    "images": [
+      {
+        "id": 90,
+        "name": "0d0145c14795230926942c0ef2fec4b6",
+        "description": "",
+        "size": 67384,
+        "type": 0
+      },
+      {
+        "id": 90,
+        "name": "0d0145c14795230926942c0ef2fec4b6",
+        "description": "",
+        "size": 67384,
+        "type": 0
+      }
+    ],
+    "elevation": 1950,
+    "series_id": 1494,
+    "longitude": 86.2333333,
+    "latitude": 27.6333333,
+    "stationIndex": "1103",
+    "basin": "Koshi",
+    "id": 109,
+    "name": "Jiri"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate Station",
+    "district": null,
+    "images": [
+      {
+        "id": 40,
+        "name": "658b6d60522c7821f9f3225088737622",
+        "description": "",
+        "size": 321466,
+        "type": 0
+      },
+      {
+        "id": 40,
+        "name": "658b6d60522c7821f9f3225088737622",
+        "description": "",
+        "size": 321466,
+        "type": 0
+      }
+    ],
+    "elevation": 1270,
+    "series_id": 1624,
+    "longitude": 82.63333333,
+    "latitude": 28.3,
+    "stationIndex": "504",
+    "basin": "West Rapti",
+    "id": 123,
+    "name": "Libang Gaon"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station with tipping bucket and temp/humidity sensor",
+    "district": "",
+    "images": null,
+    "elevation": 2300,
+    "series_id": 2025,
+    "longitude": 82.209,
+    "latitude": 29,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 143,
+    "name": "Pahada Mulsan"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 27,
+        "name": "d0b4b918bf6053ad71a3d6b7c9a0d97e",
+        "description": "",
+        "size": 340518,
+        "type": 0
+      },
+      {
+        "id": 27,
+        "name": "d0b4b918bf6053ad71a3d6b7c9a0d97e",
+        "description": "",
+        "size": 340518,
+        "type": 0
+      }
+    ],
+    "elevation": 457,
+    "series_id": 1573,
+    "longitude": 82.61667,
+    "latitude": 27.96667,
+    "stationIndex": "533",
+    "basin": "Babai",
+    "id": 119,
+    "name": "Ratmata"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": [
+      {
+        "id": 59,
+        "name": "0f1652378a3618a574bce0342416aba2",
+        "description": "",
+        "size": 319001,
+        "type": 0
+      },
+      {
+        "id": 59,
+        "name": "0f1652378a3618a574bce0342416aba2",
+        "description": "",
+        "size": 319001,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1003,
+    "longitude": 85.946667,
+    "latitude": 27.266667,
+    "stationIndex": "1107",
+    "basin": "Bagmati",
+    "id": 56,
+    "name": "SindhuliGadi"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 41,
+        "name": "0b038bb4d53c529efc73a6e045574353",
+        "description": "",
+        "size": 381453,
+        "type": 0
+      },
+      {
+        "id": 41,
+        "name": "0b038bb4d53c529efc73a6e045574353",
+        "description": "",
+        "size": 381453,
+        "type": 0
+      }
+    ],
+    "elevation": 1828,
+    "series_id": 1632,
+    "longitude": 82.5,
+    "latitude": 28.18333333,
+    "stationIndex": "527",
+    "basin": "West Rapti",
+    "id": 124,
+    "name": "Sulichour"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS",
+    "district": "",
+    "images": [
+      {
+        "id": 78,
+        "name": "d0006bcadaa060b196a390f30d40d8dd",
+        "description": "",
+        "size": 252882,
+        "type": 0
+      },
+      {
+        "id": 78,
+        "name": "d0006bcadaa060b196a390f30d40d8dd",
+        "description": "",
+        "size": 252882,
+        "type": 0
+      }
+    ],
+    "elevation": 203,
+    "series_id": 1438,
+    "longitude": 87.3173,
+    "latitude": 26.929,
+    "stationIndex": "690",
+    "basin": "Koshi",
+    "id": 102,
+    "name": "Tamor at Mulghat (Rainfall)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS and Tipping Bucket",
+    "district": "",
+    "images": [
+      {
+        "id": 5,
+        "name": "6af9474d5603069ed9c66df2f55753a2",
+        "description": "",
+        "size": 271616,
+        "type": 0
+      },
+      {
+        "id": 5,
+        "name": "6af9474d5603069ed9c66df2f55753a2",
+        "description": "",
+        "size": 271616,
+        "type": 0
+      }
+    ],
+    "elevation": 227,
+    "series_id": 1247,
+    "longitude": 81.208,
+    "latitude": 29.15,
+    "stationIndex": "256.5",
+    "basin": "Karnali",
+    "id": 79,
+    "name": "Budiganga at Chitreghat"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station at Samaijighat with RLS",
+    "district": "",
+    "images": [
+      {
+        "id": 11,
+        "name": "24cbbfa0b59c9ff33174453501237642",
+        "description": "",
+        "size": 212691,
+        "type": 0
+      },
+      {
+        "id": 11,
+        "name": "24cbbfa0b59c9ff33174453501237642",
+        "description": "",
+        "size": 212691,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 659,
+    "longitude": 81.6667,
+    "latitude": 28.5167,
+    "stationIndex": "269.5",
+    "basin": "Karnali",
+    "id": 30,
+    "name": "Bheri at Samijighat"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station installed by Nalsingad Hydropower",
+    "district": "",
+    "images": null,
+    "elevation": 1914,
+    "series_id": 1997,
+    "longitude": 82.2994,
+    "latitude": 28.9322,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 139,
+    "name": "Gharti Gaon"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station",
+    "district": "Sindhuli",
+    "images": [
+      {
+        "id": 123,
+        "name": "446cf206df75907ad621c5100bebaf78",
+        "description": "",
+        "size": 2566964,
+        "type": 0
+      },
+      {
+        "id": 123,
+        "name": "446cf206df75907ad621c5100bebaf78",
+        "description": "",
+        "size": 2566964,
+        "type": 0
+      }
+    ],
+    "elevation": 794,
+    "series_id": 1097,
+    "longitude": 86.25,
+    "latitude": 27.07,
+    "stationIndex": "1213",
+    "basin": "Kamala",
+    "id": 68,
+    "name": "Jinakhu"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS",
+    "district": "",
+    "images": [
+      {
+        "id": 8,
+        "name": "15c99d6b744d04229376af5306d41c93",
+        "description": "",
+        "size": 308292,
+        "type": 0
+      },
+      {
+        "id": 8,
+        "name": "15c99d6b744d04229376af5306d41c93",
+        "description": "",
+        "size": 308292,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1343,
+    "longitude": 81.6,
+    "latitude": 28.78,
+    "stationIndex": "241",
+    "basin": "Karnali",
+    "id": 87,
+    "name": "Lohare Khola at Tallo Dungeshwor"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with Radar Level sensor",
+    "district": "",
+    "images": [
+      {
+        "id": 87,
+        "name": "605b4aa669f9a44e698afdfcf0fd3219",
+        "description": "",
+        "size": 115963,
+        "type": 0
+      },
+      {
+        "id": 87,
+        "name": "605b4aa669f9a44e698afdfcf0fd3219",
+        "description": "",
+        "size": 115963,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 2120,
+    "longitude": 87.189561,
+    "latitude": 27.311719,
+    "stationIndex": "604.5",
+    "basin": "Koshi",
+    "id": 107,
+    "name": "Arun at Turkeghat"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station with Tipping Bucket and Temp/Humidity Sensor",
+    "district": null,
+    "images": [
+      {
+        "id": 34,
+        "name": "533cb3592586bf4ba07f1bbbde285f7a",
+        "description": "",
+        "size": 128653,
+        "type": 0
+      },
+      {
+        "id": 34,
+        "name": "533cb3592586bf4ba07f1bbbde285f7a",
+        "description": "",
+        "size": 128653,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 909,
+    "longitude": 82.851667,
+    "latitude": 28.103333,
+    "stationIndex": "505",
+    "basin": "West Rapti",
+    "id": 47,
+    "name": "Bijuwartar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station",
+    "district": null,
+    "images": [
+      {
+        "id": 62,
+        "name": "264b445b39d4448fa8b46e2506531a79",
+        "description": "",
+        "size": 113110,
+        "type": 0
+      },
+      {
+        "id": 62,
+        "name": "264b445b39d4448fa8b46e2506531a79",
+        "description": "",
+        "size": 113110,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1670,
+    "longitude": 84,
+    "latitude": 28.333333,
+    "stationIndex": "842",
+    "basin": "Narayani",
+    "id": 127,
+    "name": "Ghalekharkha"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate Station",
+    "district": null,
+    "images": [
+      {
+        "id": 13,
+        "name": "66123abcc8441cc85d117a0369c948cc",
+        "description": "",
+        "size": 255880,
+        "type": 0
+      },
+      {
+        "id": 13,
+        "name": "66123abcc8441cc85d117a0369c948cc",
+        "description": "",
+        "size": 255880,
+        "type": 0
+      }
+    ],
+    "elevation": 1402,
+    "series_id": 1350,
+    "longitude": 81.71667,
+    "latitude": 28.85,
+    "stationIndex": "402",
+    "basin": "Karnali",
+    "id": 88,
+    "name": "Dailekh"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate Station",
+    "district": null,
+    "images": null,
+    "elevation": 1231,
+    "series_id": 1964,
+    "longitude": 82.2,
+    "latitude": 28.7,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 136,
+    "name": "Jajarkot"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 71,
+        "name": "9038df0c9c0d54e1741001700d85a7ca",
+        "description": "",
+        "size": 555261,
+        "type": 0
+      },
+      {
+        "id": 71,
+        "name": "9038df0c9c0d54e1741001700d85a7ca",
+        "description": "",
+        "size": 555261,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1072,
+    "longitude": 85.353056,
+    "latitude": 27.577778,
+    "stationIndex": "1075",
+    "basin": "Bagmati",
+    "id": 65,
+    "name": "Lele"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 31,
+        "name": "2350f886f7b04391f30ad531c44974a8",
+        "description": "",
+        "size": 134775,
+        "type": 0
+      },
+      {
+        "id": 31,
+        "name": "2350f886f7b04391f30ad531c44974a8",
+        "description": "",
+        "size": 134775,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1615,
+    "longitude": 82.15,
+    "latitude": 28.18333333,
+    "stationIndex": "529",
+    "basin": "Babai",
+    "id": 122,
+    "name": "Padampur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate Station",
+    "district": null,
+    "images": [
+      {
+        "id": 24,
+        "name": "fee9b92ea8613c82096ed91588fa951e",
+        "description": "",
+        "size": 357022,
+        "type": 0
+      },
+      {
+        "id": 24,
+        "name": "fee9b92ea8613c82096ed91588fa951e",
+        "description": "",
+        "size": 357022,
+        "type": 0
+      }
+    ],
+    "elevation": 1457,
+    "series_id": 1426,
+    "longitude": 82.16666667,
+    "latitude": 28.38333333,
+    "stationIndex": "511",
+    "basin": "Babai",
+    "id": 99,
+    "name": "Salyan Bazar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 21,
+        "name": "0a9b799d67a324a471a34f050ac2c63e",
+        "description": "",
+        "size": 265386,
+        "type": 0
+      },
+      {
+        "id": 21,
+        "name": "0a9b799d67a324a471a34f050ac2c63e",
+        "description": "",
+        "size": 265386,
+        "type": 0
+      }
+    ],
+    "elevation": 200,
+    "series_id": 1305,
+    "longitude": 81.35,
+    "latitude": 28.38333,
+    "stationIndex": "417",
+    "basin": "Babai",
+    "id": 84,
+    "name": "Ranijaruwa"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 4154,
+    "longitude": 87.9025,
+    "latitude": 26.8133,
+    "stationIndex": "",
+    "basin": "Kankai",
+    "id": 267,
+    "name": "Soktim Tea State"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with Bubbler sensor, established at Busti approximately 1.5 KM u/s of Charikot Jiri Road-Bridge",
+    "district": "Dolakha",
+    "images": [
+      {
+        "id": 82,
+        "name": "f0e5a7b8085b97d7a4ea4c30d171a6e7",
+        "description": "",
+        "size": 176148,
+        "type": 0
+      },
+      {
+        "id": 82,
+        "name": "f0e5a7b8085b97d7a4ea4c30d171a6e7",
+        "description": "",
+        "size": 176148,
+        "type": 0
+      }
+    ],
+    "elevation": 772,
+    "series_id": 1599,
+    "longitude": 86.0846,
+    "latitude": 27.6361,
+    "stationIndex": "647",
+    "basin": "Koshi",
+    "id": 106,
+    "name": "Tamakoshi at Busti"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 81,
+        "name": "fc803c154708011337e1be3b72bcebd1",
+        "description": "",
+        "size": 189820,
+        "type": 0
+      },
+      {
+        "id": 81,
+        "name": "fc803c154708011337e1be3b72bcebd1",
+        "description": "",
+        "size": 189820,
+        "type": 0
+      }
+    ],
+    "elevation": 394,
+    "series_id": 1473,
+    "longitude": 87.1972,
+    "latitude": 27.31861,
+    "stationIndex": "1321",
+    "basin": "Koshi",
+    "id": 105,
+    "name": "Tumlingtar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station",
+    "district": "",
+    "images": null,
+    "elevation": 1646,
+    "series_id": 1981,
+    "longitude": 82.2934,
+    "latitude": 28.8801,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 138,
+    "name": "Danda Gaon"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Besishahar(Khudi)",
+    "district": "",
+    "images": [
+      {
+        "id": 46,
+        "name": "44979b7f37fa206b38d0016492512c2c",
+        "description": "",
+        "size": 268414,
+        "type": 0
+      },
+      {
+        "id": 46,
+        "name": "44979b7f37fa206b38d0016492512c2c",
+        "description": "",
+        "size": 268414,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 693,
+    "longitude": 84.383056,
+    "latitude": 28.233056,
+    "stationIndex": "",
+    "basin": "Narayani",
+    "id": 36,
+    "name": "Besishahar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": null,
+    "elevation": 1391,
+    "series_id": 4163,
+    "longitude": 87.8204,
+    "latitude": 26.8793,
+    "stationIndex": "",
+    "basin": "Kankai",
+    "id": 268,
+    "name": "Jeetpur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Chitti",
+    "district": "",
+    "images": [
+      {
+        "id": 43,
+        "name": "04a741613d16d87569665ef58c3f9fc9",
+        "description": "",
+        "size": 287310,
+        "type": 0
+      },
+      {
+        "id": 43,
+        "name": "04a741613d16d87569665ef58c3f9fc9",
+        "description": "",
+        "size": 287310,
+        "type": 0
+      }
+    ],
+    "elevation": 1080,
+    "series_id": 470,
+    "longitude": 84.43742,
+    "latitude": 28.205577,
+    "stationIndex": "",
+    "basin": "Narayani",
+    "id": 25,
+    "name": "Chitti-Lamjung"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with bubbler sensor",
+    "district": "",
+    "images": [
+      {
+        "id": 45,
+        "name": "657dfb3409f773df39ba01bd07259790",
+        "description": "",
+        "size": 190562,
+        "type": 0
+      },
+      {
+        "id": 45,
+        "name": "657dfb3409f773df39ba01bd07259790",
+        "description": "",
+        "size": 190562,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 660,
+    "longitude": 84.41,
+    "latitude": 27.95,
+    "stationIndex": "439.7",
+    "basin": "Narayani",
+    "id": 31,
+    "name": "Marsyangdi at Bimalnagar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "climate station",
+    "district": "Surkhet",
+    "images": null,
+    "elevation": null,
+    "series_id": 3793,
+    "longitude": 81.624,
+    "latitude": 28.602,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 247,
+    "name": "RSKT MET"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with Bubbler",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 2058,
+    "longitude": 82.2666,
+    "latitude": 28.683,
+    "stationIndex": "265",
+    "basin": "Karnali",
+    "id": 145,
+    "name": "Thulo Bheri at Rimna"
+  },
+  {
+    "status": "N/A",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "1"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "3"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "6"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "12"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "24"
+      }
+    ],
+    "district": null,
+    "description": "Surkhet_Airport",
+    "images": null,
+    "series_id": null,
+    "elevation": null,
+    "longitude": 81.63527778,
+    "latitude": 28.587925,
+    "stationIndex": null,
+    "basin": "MFD Web Camera",
+    "id": 253,
+    "name": "Surkhet"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Agromet Station",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 4376,
+    "longitude": 81.505,
+    "latitude": 28.712,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 278,
+    "name": "Kunathari"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "rainfall station",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 4493,
+    "longitude": 80.73,
+    "latitude": 28.97,
+    "stationIndex": "",
+    "basin": "Mahakali",
+    "id": 285,
+    "name": "Nigali Bhaktapur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 33,
+        "name": "66ec2d6b599794876c3dd902ca96a618",
+        "description": "",
+        "size": 320672,
+        "type": 0
+      },
+      {
+        "id": 33,
+        "name": "66ec2d6b599794876c3dd902ca96a618",
+        "description": "",
+        "size": 320672,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 871,
+    "longitude": 82.803056,
+    "latitude": 27.876389,
+    "stationIndex": "350",
+    "basin": "West Rapti",
+    "id": 45,
+    "name": "Bagasoti"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": null,
+    "elevation": 420,
+    "series_id": 2017,
+    "longitude": 87.98611111,
+    "latitude": 26.76777778,
+    "stationIndex": "",
+    "basin": "Biring",
+    "id": 141,
+    "name": "Barphalyang, Illam"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 50,
+        "name": "01198fd15ad230cc5a367230437a94dc",
+        "description": "",
+        "size": 211886,
+        "type": 0
+      },
+      {
+        "id": 50,
+        "name": "01198fd15ad230cc5a367230437a94dc",
+        "description": "",
+        "size": 211886,
+        "type": 0
+      }
+    ],
+    "elevation": 171,
+    "series_id": 1262,
+    "longitude": 84.3037,
+    "latitude": 27.4232,
+    "stationIndex": "",
+    "basin": "Narayani",
+    "id": 80,
+    "name": "Charchhare"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station supported by Mercy Corps",
+    "district": null,
+    "images": null,
+    "elevation": 1876,
+    "series_id": 2102,
+    "longitude": 80.6008,
+    "latitude": 29.1638,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 153,
+    "name": "Doti"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 53,
+        "name": "8db52ad3f2b34fa2ff61e1557acc7b12",
+        "description": "",
+        "size": 309065,
+        "type": 0
+      },
+      {
+        "id": 53,
+        "name": "8db52ad3f2b34fa2ff61e1557acc7b12",
+        "description": "",
+        "size": 309065,
+        "type": 0
+      }
+    ],
+    "elevation": 227,
+    "series_id": 1288,
+    "longitude": 84.4509,
+    "latitude": 27.4174,
+    "stationIndex": "",
+    "basin": "Narayani",
+    "id": 82,
+    "name": "Govindabasti"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 70,
+        "name": "d99f498ddba80f3ea91ba5567853d0eb",
+        "description": "",
+        "size": 444453,
+        "type": 0
+      },
+      {
+        "id": 70,
+        "name": "d99f498ddba80f3ea91ba5567853d0eb",
+        "description": "",
+        "size": 444453,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1201,
+    "longitude": 85.326111,
+    "latitude": 27.692778,
+    "stationIndex": "1030.5",
+    "basin": "Bagmati",
+    "id": 63,
+    "name": "Nagpokhari (DHM Office)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": [
+      {
+        "id": 97,
+        "name": "a631fbc6af9060b524b0d24ea81ad7e6",
+        "description": "",
+        "size": 355515,
+        "type": 0
+      },
+      {
+        "id": 97,
+        "name": "a631fbc6af9060b524b0d24ea81ad7e6",
+        "description": "",
+        "size": 355515,
+        "type": 0
+      }
+    ],
+    "elevation": 1987,
+    "series_id": 1561,
+    "longitude": 86.20528,
+    "latitude": 27.905278,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 116,
+    "name": "Lamabagar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 158,
+        "name": "cc5d475df664a1769d580cd566a14aa9",
+        "description": "",
+        "size": 1356737,
+        "type": 0
+      },
+      {
+        "id": 158,
+        "name": "cc5d475df664a1769d580cd566a14aa9",
+        "description": "",
+        "size": 1356737,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1359,
+    "longitude": 81.1122,
+    "latitude": 28.435601,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 90,
+    "name": "Rajapur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS and Tipping Bucket",
+    "district": "",
+    "images": [
+      {
+        "id": 1,
+        "name": "9b8c9398c7cc022352e11843fcf99fa0",
+        "description": "",
+        "size": 2440483,
+        "type": 0
+      },
+      {
+        "id": 1,
+        "name": "9b8c9398c7cc022352e11843fcf99fa0",
+        "description": "",
+        "size": 2440483,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1119,
+    "longitude": 85.499,
+    "latitude": 27.575,
+    "stationIndex": "640",
+    "basin": "Koshi",
+    "id": 69,
+    "name": "Rosi Khola at Panauti"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": null,
+    "elevation": null,
+    "series_id": 1538,
+    "longitude": 86.193569,
+    "latitude": 27.756831,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 114,
+    "name": "Singati"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with Bubbler sensor",
+    "district": null,
+    "images": [
+      {
+        "id": 80,
+        "name": "ab74dbef534d99acac7039d62201f7e7",
+        "description": "",
+        "size": 299639,
+        "type": 0
+      },
+      {
+        "id": 80,
+        "name": "ab74dbef534d99acac7039d62201f7e7",
+        "description": "",
+        "size": 299639,
+        "type": 0
+      }
+    ],
+    "elevation": 514,
+    "series_id": 1452,
+    "longitude": 85.7487,
+    "latitude": 27.5537,
+    "stationIndex": "630",
+    "basin": "Koshi",
+    "id": 104,
+    "name": "Sunkoshi at Pachuwarghat"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 23,
+        "name": "00966d6f183670f36706824cc0f2629d",
+        "description": "",
+        "size": 127231,
+        "type": 0
+      },
+      {
+        "id": 23,
+        "name": "00966d6f183670f36706824cc0f2629d",
+        "description": "",
+        "size": 127231,
+        "type": 0
+      }
+    ],
+    "elevation": 1337,
+    "series_id": 1419,
+    "longitude": 82.26666667,
+    "latitude": 28.48333333,
+    "stationIndex": "519",
+    "basin": "Babai",
+    "id": 98,
+    "name": "Tharmare"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": [
+      {
+        "id": 153,
+        "name": "b5534502ca25c4f29da94eeca25b750d",
+        "description": "",
+        "size": 6493650,
+        "type": 0
+      },
+      {
+        "id": 153,
+        "name": "b5534502ca25c4f29da94eeca25b750d",
+        "description": "",
+        "size": 6493650,
+        "type": 0
+      }
+    ],
+    "elevation": 1417,
+    "series_id": 1164,
+    "longitude": 86.16,
+    "latitude": 27.18,
+    "stationIndex": "1108",
+    "basin": "Kamala",
+    "id": 74,
+    "name": "Bahun Tiplung"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Chautara",
+    "district": "",
+    "images": [
+      {
+        "id": 72,
+        "name": "6e2c928ec3611375e1814778fb5006cf",
+        "description": "",
+        "size": 303665,
+        "type": 0
+      },
+      {
+        "id": 72,
+        "name": "6e2c928ec3611375e1814778fb5006cf",
+        "description": "",
+        "size": 303665,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 410,
+    "longitude": 85.71,
+    "latitude": 27.78,
+    "stationIndex": "1009",
+    "basin": "Koshi",
+    "id": 3,
+    "name": "Chautara"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Guranshe",
+    "district": "",
+    "images": [
+      {
+        "id": 16,
+        "name": "e0d8748c568cff06525a625f24e5942e",
+        "description": "",
+        "size": 307728,
+        "type": 0
+      },
+      {
+        "id": 16,
+        "name": "e0d8748c568cff06525a625f24e5942e",
+        "description": "",
+        "size": 307728,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 703,
+    "longitude": 81.628892,
+    "latitude": 28.693529,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 37,
+    "name": "Surkhet at Guranshe"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station",
+    "district": "",
+    "images": [
+      {
+        "id": 44,
+        "name": "b9ddb390197b1d7dfd3193b3f88c0b86",
+        "description": "",
+        "size": 239266,
+        "type": 0
+      },
+      {
+        "id": 44,
+        "name": "b9ddb390197b1d7dfd3193b3f88c0b86",
+        "description": "",
+        "size": 239266,
+        "type": 0
+      }
+    ],
+    "elevation": 147,
+    "series_id": 506,
+    "longitude": 84.3431,
+    "latitude": 27.4578,
+    "stationIndex": "9323",
+    "basin": "Narayani",
+    "id": 27,
+    "name": "Kalyanpur"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Mai Pokhari",
+    "district": "",
+    "images": [
+      {
+        "id": 109,
+        "name": "b2dcbbcd18d13debf88eb9348d0500a4",
+        "description": "",
+        "size": 323971,
+        "type": 0
+      },
+      {
+        "id": 109,
+        "name": "b2dcbbcd18d13debf88eb9348d0500a4",
+        "description": "",
+        "size": 323971,
+        "type": 0
+      }
+    ],
+    "elevation": 2119,
+    "series_id": 873,
+    "longitude": 87.92863,
+    "latitude": 27.00523,
+    "stationIndex": "",
+    "basin": "Kankai",
+    "id": 46,
+    "name": "Mai Pokhari"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS",
+    "district": "Chitwan",
+    "images": null,
+    "elevation": null,
+    "series_id": 4138,
+    "longitude": 84.43,
+    "latitude": 27.71,
+    "stationIndex": "450",
+    "basin": "Narayani",
+    "id": 265,
+    "name": "Narayani at Devghat"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station with tipping bucket and temp/humidity sensor",
+    "district": "",
+    "images": null,
+    "elevation": 1880,
+    "series_id": 2037,
+    "longitude": 82.24,
+    "latitude": 28.935,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 144,
+    "name": "Rami Danda"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with RLS",
+    "district": "",
+    "images": [
+      {
+        "id": 92,
+        "name": "c120b52b14e81ab33c9006a4dc6bd5b2",
+        "description": "",
+        "size": 178568,
+        "type": 0
+      },
+      {
+        "id": 92,
+        "name": "c120b52b14e81ab33c9006a4dc6bd5b2",
+        "description": "",
+        "size": 178568,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1505,
+    "longitude": 87.15,
+    "latitude": 26.85,
+    "stationIndex": "695",
+    "basin": "Koshi",
+    "id": 111,
+    "name": "Saptakoshi at Chatara (old)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "Dhanusha",
+    "images": [
+      {
+        "id": 149,
+        "name": "662ab125eff3bf7a33641e1155752405",
+        "description": "",
+        "size": 5777914,
+        "type": 0
+      },
+      {
+        "id": 149,
+        "name": "662ab125eff3bf7a33641e1155752405",
+        "description": "",
+        "size": 5777914,
+        "type": 0
+      }
+    ],
+    "elevation": 457,
+    "series_id": 1148,
+    "longitude": 85.91,
+    "latitude": 27.03,
+    "stationIndex": "1110",
+    "basin": "Kamala",
+    "id": 71,
+    "name": "Tulsi"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS & Tipping Bucket",
+    "district": "",
+    "images": null,
+    "elevation": 511,
+    "series_id": 4400,
+    "longitude": 83.4669,
+    "latitude": 27.972,
+    "stationIndex": "",
+    "basin": "Narayani",
+    "id": 282,
+    "name": "Badigad at Rudrabeni"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with RLS and Tipping Bucket",
+    "district": "",
+    "images": [
+      {
+        "id": 57,
+        "name": "dafbc154af42b26bf7474449fe2f2dc5",
+        "description": "",
+        "size": 113004,
+        "type": 0
+      },
+      {
+        "id": 57,
+        "name": "dafbc154af42b26bf7474449fe2f2dc5",
+        "description": "",
+        "size": 113004,
+        "type": 0
+      }
+    ],
+    "elevation": 1255,
+    "series_id": 928,
+    "longitude": 85.293333,
+    "latitude": 27.632222,
+    "stationIndex": "550.05",
+    "basin": "Bagmati",
+    "id": 50,
+    "name": "Bagmati at Khokana"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Bijulikot Station Installed by Mission East",
+    "district": null,
+    "images": null,
+    "elevation": null,
+    "series_id": 2071,
+    "longitude": 86.21722,
+    "latitude": 27.4122,
+    "stationIndex": "",
+    "basin": "Mission East",
+    "id": 146,
+    "name": "Bijulikot (Ramechhap)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Rainfall Station at Karnali at Chisapani ",
+    "district": "",
+    "images": [
+      {
+        "id": 15,
+        "name": "970d3f30e71ea53285d401b527fbc80e",
+        "description": "",
+        "size": 462579,
+        "type": 0
+      },
+      {
+        "id": 15,
+        "name": "970d3f30e71ea53285d401b527fbc80e",
+        "description": "",
+        "size": 462579,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 684,
+    "longitude": 81.28483,
+    "latitude": 28.647092,
+    "stationIndex": "280",
+    "basin": "Karnali",
+    "id": 34,
+    "name": "Karnali at Chisapani (Rainfall)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate Station",
+    "district": null,
+    "images": [
+      {
+        "id": 22,
+        "name": "d9977dc5c2e31bcf368629b179840756",
+        "description": "",
+        "size": 300087,
+        "type": 0
+      },
+      {
+        "id": 22,
+        "name": "d9977dc5c2e31bcf368629b179840756",
+        "description": "",
+        "size": 300087,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1366,
+    "longitude": 81.350556,
+    "latitude": 28.203333,
+    "stationIndex": "408",
+    "basin": "Babai",
+    "id": 91,
+    "name": "Gularia"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 69,
+        "name": "a8024313fb0e0deac66c58dd41b1389b",
+        "description": "",
+        "size": 296481,
+        "type": 0
+      },
+      {
+        "id": 69,
+        "name": "a8024313fb0e0deac66c58dd41b1389b",
+        "description": "",
+        "size": 296481,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1046,
+    "longitude": 85.44,
+    "latitude": 26.968056,
+    "stationIndex": "922",
+    "basin": "Bagmati",
+    "id": 61,
+    "name": "Garuda"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": null,
+    "images": [
+      {
+        "id": 39,
+        "name": "a9ff515a93f8fa2a3c8921a07acb36b8",
+        "description": "",
+        "size": 337977,
+        "type": 0
+      },
+      {
+        "id": 39,
+        "name": "a9ff515a93f8fa2a3c8921a07acb36b8",
+        "description": "",
+        "size": 337977,
+        "type": 0
+      }
+    ],
+    "elevation": 237.2,
+    "series_id": 1355,
+    "longitude": 82.536667,
+    "latitude": 27.870556,
+    "stationIndex": "537",
+    "basin": "West Rapti",
+    "id": 89,
+    "name": "Lamahi"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 32,
+        "name": "65bee19398149987d66cb687afea400e",
+        "description": "",
+        "size": 244060,
+        "type": 0
+      },
+      {
+        "id": 32,
+        "name": "65bee19398149987d66cb687afea400e",
+        "description": "",
+        "size": 244060,
+        "type": 0
+      }
+    ],
+    "elevation": 145.8,
+    "series_id": 678,
+    "longitude": 81.668056,
+    "latitude": 28.100278,
+    "stationIndex": "420",
+    "basin": "West Rapti",
+    "id": 33,
+    "name": "Nepalgunj"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 20,
+        "name": "7195b52a6c40663341e241d30701334c",
+        "description": "",
+        "size": 131000,
+        "type": 0
+      },
+      {
+        "id": 20,
+        "name": "7195b52a6c40663341e241d30701334c",
+        "description": "",
+        "size": 131000,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1051,
+    "longitude": 82.057778,
+    "latitude": 28.281944,
+    "stationIndex": "525",
+    "basin": "Babai",
+    "id": 62,
+    "name": "Rampur Kalimati"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "Siraha",
+    "images": [
+      {
+        "id": 151,
+        "name": "03f888b54a8922ba0340bb6f536a7a61",
+        "description": "",
+        "size": 7042005,
+        "type": 0
+      },
+      {
+        "id": 151,
+        "name": "03f888b54a8922ba0340bb6f536a7a61",
+        "description": "",
+        "size": 7042005,
+        "type": 0
+      }
+    ],
+    "elevation": 102,
+    "series_id": 1176,
+    "longitude": 86.21,
+    "latitude": 26.65,
+    "stationIndex": "1216",
+    "basin": "Kamala",
+    "id": 73,
+    "name": "Siraha"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 4,
+        "name": "7127567a1f3264c6d4e657358cf12cd7",
+        "description": "",
+        "size": 201072,
+        "type": 0
+      },
+      {
+        "id": 4,
+        "name": "7127567a1f3264c6d4e657358cf12cd7",
+        "description": "",
+        "size": 201072,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1065,
+    "longitude": 81.22175,
+    "latitude": 29.21091,
+    "stationIndex": "232",
+    "basin": "Karnali",
+    "id": 64,
+    "name": "Achham at Safebagar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 42,
+        "name": "723a853e7f6713b1378176e37724ac08",
+        "description": "",
+        "size": 312005,
+        "type": 0
+      },
+      {
+        "id": 42,
+        "name": "723a853e7f6713b1378176e37724ac08",
+        "description": "",
+        "size": 312005,
+        "type": 0
+      }
+    ],
+    "elevation": 1907,
+    "series_id": 1645,
+    "longitude": 82.63333333,
+    "latitude": 28.13333333,
+    "stationIndex": "530",
+    "basin": "West Rapti",
+    "id": 125,
+    "name": "Swargadwari"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station",
+    "district": null,
+    "images": [
+      {
+        "id": 54,
+        "name": "f5ef5a9f8fb4698a8108fe34b8a344fb",
+        "description": "",
+        "size": 292469,
+        "type": 0
+      },
+      {
+        "id": 54,
+        "name": "f5ef5a9f8fb4698a8108fe34b8a344fb",
+        "description": "",
+        "size": 292469,
+        "type": 0
+      }
+    ],
+    "elevation": 257,
+    "series_id": 1298,
+    "longitude": 84.579,
+    "latitude": 27.364,
+    "stationIndex": "",
+    "basin": "Narayani",
+    "id": 83,
+    "name": "Thori"
+  },
+  {
+    "status": "N/A",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "1"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "3"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "6"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "12"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "24"
+      }
+    ],
+    "district": "",
+    "description": "Hydrological Station with RLS & Temp/Humidity ( Tipping Bucket was not installed as the site was not suitable)",
+    "images": [
+      {
+        "id": 74,
+        "name": "6df5013201a66106aecf063e03e4af1e",
+        "description": "",
+        "size": 273480,
+        "type": 0
+      },
+      {
+        "id": 74,
+        "name": "6df5013201a66106aecf063e03e4af1e",
+        "description": "",
+        "size": 273480,
+        "type": 0
+      }
+    ],
+    "series_id": null,
+    "elevation": 725,
+    "longitude": 85.766,
+    "latitude": 27.8047,
+    "stationIndex": "620",
+    "basin": "Koshi",
+    "id": 11,
+    "name": "Balefi at Jalbire"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 156,
+        "name": "24886144f0289918ba42e7b4e9546db5",
+        "description": "",
+        "size": 4980054,
+        "type": 0
+      },
+      {
+        "id": 156,
+        "name": "24886144f0289918ba42e7b4e9546db5",
+        "description": "",
+        "size": 4980054,
+        "type": 0
+      }
+    ],
+    "elevation": 165,
+    "series_id": 1183,
+    "longitude": 86.16,
+    "latitude": 26.91,
+    "stationIndex": "1112",
+    "basin": "Kamala",
+    "id": 75,
+    "name": "Chisapani Bazar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station",
+    "district": "",
+    "images": [
+      {
+        "id": 113,
+        "name": "e1f98e97835c8eb3bb16d9532bef67ad",
+        "description": "",
+        "size": 362442,
+        "type": 0
+      },
+      {
+        "id": 113,
+        "name": "e1f98e97835c8eb3bb16d9532bef67ad",
+        "description": "",
+        "size": 362442,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 2147,
+    "longitude": 87.9231,
+    "latitude": 26.9095,
+    "stationIndex": "1407",
+    "basin": "Kankai",
+    "id": 155,
+    "name": "Illam Tea State"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Kanyam Tea State",
+    "district": "",
+    "images": [
+      {
+        "id": 108,
+        "name": "cdffeb61662d964d4688ec7fd9f40e88",
+        "description": "",
+        "size": 335522,
+        "type": 0
+      },
+      {
+        "id": 108,
+        "name": "cdffeb61662d964d4688ec7fd9f40e88",
+        "description": "",
+        "size": 335522,
+        "type": 0
+      }
+    ],
+    "elevation": 1573,
+    "series_id": 831,
+    "longitude": 88.078,
+    "latitude": 26.868,
+    "stationIndex": "1416",
+    "basin": "Kankai",
+    "id": 43,
+    "name": "Kanyam Tea State"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with Chart Recorder",
+    "district": "",
+    "images": [
+      {
+        "id": 36,
+        "name": "7eb497518da5b684207e257be48d4cf6",
+        "description": "",
+        "size": 347224,
+        "type": 0
+      },
+      {
+        "id": 36,
+        "name": "7eb497518da5b684207e257be48d4cf6",
+        "description": "",
+        "size": 347224,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 920,
+    "longitude": 82.798889,
+    "latitude": 28.076667,
+    "stationIndex": "330",
+    "basin": "West Rapti",
+    "id": 49,
+    "name": "Mari at Nayagaon"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 152,
+        "name": "4873896d2bbfb98401e8ea40b6384b3f",
+        "description": "",
+        "size": 6667099,
+        "type": 0
+      },
+      {
+        "id": 152,
+        "name": "4873896d2bbfb98401e8ea40b6384b3f",
+        "description": "",
+        "size": 6667099,
+        "type": 0
+      }
+    ],
+    "elevation": 1175,
+    "series_id": 1190,
+    "longitude": 86.540004,
+    "latitude": 26.912817,
+    "stationIndex": "1213",
+    "basin": "Kamala",
+    "id": 76,
+    "name": "Nepaltar"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Sermathang",
+    "district": "",
+    "images": [
+      {
+        "id": 77,
+        "name": "9da02566b775e93119bf2c15f1b33b0e",
+        "description": "",
+        "size": 310795,
+        "type": 0
+      },
+      {
+        "id": 77,
+        "name": "9da02566b775e93119bf2c15f1b33b0e",
+        "description": "",
+        "size": 310795,
+        "type": 0
+      }
+    ],
+    "elevation": 2528,
+    "series_id": 766,
+    "longitude": 85.6,
+    "latitude": 27.95,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 39,
+    "name": "Sermathang"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with RLS & Tipping Bucket",
+    "district": "Sindhuli",
+    "images": [
+      {
+        "id": 150,
+        "name": "074607860463fcb78e4de5f116b20cae",
+        "description": "",
+        "size": 7454230,
+        "type": 0
+      },
+      {
+        "id": 150,
+        "name": "074607860463fcb78e4de5f116b20cae",
+        "description": "",
+        "size": 7454230,
+        "type": 0
+      }
+    ],
+    "elevation": 314,
+    "series_id": 1137,
+    "longitude": 86.03,
+    "latitude": 27.07,
+    "stationIndex": "",
+    "basin": "Kamala",
+    "id": 70,
+    "name": "Kamala River at Ranibas"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with Bubbler",
+    "district": "",
+    "images": [
+      {
+        "id": 38,
+        "name": "e7915cb24212488485f17291b229837a",
+        "description": "",
+        "size": 128209,
+        "type": 0
+      },
+      {
+        "id": 38,
+        "name": "e7915cb24212488485f17291b229837a",
+        "description": "",
+        "size": 128209,
+        "type": 0
+      }
+    ],
+    "elevation": 199.19,
+    "series_id": 999,
+    "longitude": 82.093889,
+    "latitude": 28.0075,
+    "stationIndex": "375",
+    "basin": "West Rapti",
+    "id": 55,
+    "name": "West Rapti at Kusum"
+  },
+  {
+    "status": "N/A",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "1"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "3"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "6"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "12"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "24"
+      }
+    ],
+    "district": "",
+    "description": "Hydrological Station with RLS",
+    "images": null,
+    "series_id": null,
+    "elevation": null,
+    "longitude": 85.466667,
+    "latitude": 27.1,
+    "stationIndex": "589.5",
+    "basin": "Bagmati",
+    "id": 147,
+    "name": "Bagmati at Karmaiya (Padheradovan)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 25,
+        "name": "7cf74e97d53b835675e4471bd9a93ef8",
+        "description": "",
+        "size": 365798,
+        "type": 0
+      },
+      {
+        "id": 25,
+        "name": "7cf74e97d53b835675e4471bd9a93ef8",
+        "description": "",
+        "size": 365798,
+        "type": 0
+      }
+    ],
+    "elevation": 885,
+    "series_id": 1431,
+    "longitude": 82.28333333,
+    "latitude": 28.3,
+    "stationIndex": "512",
+    "basin": "Babai",
+    "id": 100,
+    "name": "Luwamjyula"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 4145,
+    "longitude": 84.99817,
+    "latitude": 27.43276,
+    "stationIndex": "460",
+    "basin": "Narayani",
+    "id": 266,
+    "name": "Rajaiya"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": [
+      {
+        "id": 101,
+        "name": "0ba4e1f9abab221b97a2a078afd9259f",
+        "description": "",
+        "size": 364372,
+        "type": 0
+      },
+      {
+        "id": 101,
+        "name": "0ba4e1f9abab221b97a2a078afd9259f",
+        "description": "",
+        "size": 364372,
+        "type": 0
+      }
+    ],
+    "elevation": 2088,
+    "series_id": 1858,
+    "longitude": 86.234444,
+    "latitude": 27.884167,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 130,
+    "name": "Rikhu_PS"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 68,
+        "name": "e7ced3c4e8a87876b2ab5dd887c46621",
+        "description": "",
+        "size": 390233,
+        "type": 0
+      },
+      {
+        "id": 68,
+        "name": "e7ced3c4e8a87876b2ab5dd887c46621",
+        "description": "",
+        "size": 390233,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1031,
+    "longitude": 85.905,
+    "latitude": 27.228056,
+    "stationIndex": "1107.5",
+    "basin": "Bagmati",
+    "id": 60,
+    "name": "SindhuliMadi"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 65,
+        "name": "ca75a4a6d06965e738afcf7e1cff2b39",
+        "description": "",
+        "size": 321904,
+        "type": 0
+      },
+      {
+        "id": 65,
+        "name": "ca75a4a6d06965e738afcf7e1cff2b39",
+        "description": "",
+        "size": 321904,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 1932,
+    "longitude": 85.419444,
+    "latitude": 27.7525,
+    "stationIndex": "1077",
+    "basin": "Bagmati",
+    "id": 57,
+    "name": "Sundarijal"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": null,
+    "images": [
+      {
+        "id": 58,
+        "name": "b7310e06d46308b6dbbd7685c8e2351c",
+        "description": "",
+        "size": 738353,
+        "type": 0
+      },
+      {
+        "id": 58,
+        "name": "b7310e06d46308b6dbbd7685c8e2351c",
+        "description": "",
+        "size": 738353,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 936,
+    "longitude": 85.2,
+    "latitude": 27.683333,
+    "stationIndex": "1015",
+    "basin": "Bagmati",
+    "id": 51,
+    "name": "Thankot"
+  },
+  {
+    "status": "N/A",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "1"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "3"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "6"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "12"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "24"
+      }
+    ],
+    "district": "",
+    "description": "LWRTU @ Bahrabise",
+    "images": [
+      {
+        "id": 95,
+        "name": "1fa9f7b4833192d038492298d9a42cc7",
+        "description": "",
+        "size": 181586,
+        "type": 0
+      },
+      {
+        "id": 95,
+        "name": "1fa9f7b4833192d038492298d9a42cc7",
+        "description": "",
+        "size": 181586,
+        "type": 0
+      }
+    ],
+    "series_id": null,
+    "elevation": null,
+    "longitude": 85.89776,
+    "latitude": 27.792524,
+    "stationIndex": "610",
+    "basin": "Koshi",
+    "id": 113,
+    "name": "Bhote Koshi at Bahrabise"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station at Chepang",
+    "district": "",
+    "images": [
+      {
+        "id": 19,
+        "name": "3b51f1cf4c50a08843aa2e4e83b9299f",
+        "description": "",
+        "size": 193197,
+        "type": 0
+      },
+      {
+        "id": 19,
+        "name": "3b51f1cf4c50a08843aa2e4e83b9299f",
+        "description": "",
+        "size": 193197,
+        "type": 0
+      }
+    ],
+    "elevation": 265,
+    "series_id": 650,
+    "longitude": 81.719444,
+    "latitude": 28.353056,
+    "stationIndex": "289.95",
+    "basin": "Babai",
+    "id": 29,
+    "name": "Babai at Chepang"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Climate station with tipping bucket and temp/humidity sensor",
+    "district": "",
+    "images": null,
+    "elevation": 2024,
+    "series_id": 2010,
+    "longitude": 82.25,
+    "latitude": 28.969,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 140,
+    "name": "Goath Gaon"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "climate station insalled by Sundar Nepal",
+    "district": "",
+    "images": [
+      {
+        "id": 165,
+        "name": "9dc3e7b8e6bdebfd246dd1a5a43767ba",
+        "description": "",
+        "size": 1784287,
+        "type": 0
+      },
+      {
+        "id": 165,
+        "name": "9dc3e7b8e6bdebfd246dd1a5a43767ba",
+        "description": "",
+        "size": 1784287,
+        "type": 0
+      }
+    ],
+    "elevation": 633,
+    "series_id": 3809,
+    "longitude": 81.729,
+    "latitude": 28.4208,
+    "stationIndex": "",
+    "basin": "Karnali",
+    "id": 248,
+    "name": "Kalidamar"
+  },
+  {
+    "status": "N/A",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "1"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "3"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "6"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "12"
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": "N/A",
+        "interval": "24"
+      }
+    ],
+    "district": "",
+    "description": "Automatic Weather Station",
+    "images": [
+      {
+        "id": 106,
+        "name": "3a53dcaacb4acf597586f8df954fa239",
+        "description": "",
+        "size": 226484,
+        "type": 0
+      },
+      {
+        "id": 106,
+        "name": "3a53dcaacb4acf597586f8df954fa239",
+        "description": "",
+        "size": 226484,
+        "type": 0
+      }
+    ],
+    "series_id": null,
+    "elevation": 2672,
+    "longitude": 86.72026,
+    "latitude": 27.69955,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 135,
+    "name": "Lukla (Chaurikharka)"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Rake",
+    "district": "",
+    "images": [
+      {
+        "id": 107,
+        "name": "ab512e6763fb3505cdfb64d23433413c",
+        "description": "",
+        "size": 161921,
+        "type": 0
+      },
+      {
+        "id": 107,
+        "name": "ab512e6763fb3505cdfb64d23433413c",
+        "description": "",
+        "size": 161921,
+        "type": 0
+      }
+    ],
+    "elevation": 2158,
+    "series_id": 829,
+    "longitude": 87.796,
+    "latitude": 27.027,
+    "stationIndex": "",
+    "basin": "Kankai",
+    "id": 42,
+    "name": "Rake"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Sankhu-AWS",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 3442,
+    "longitude": 85.466,
+    "latitude": 27.747,
+    "stationIndex": "",
+    "basin": "Bagmati",
+    "id": 222,
+    "name": "Sankhu-DHM "
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with RLS and Tipping bucket",
+    "district": "",
+    "images": [
+      {
+        "id": 154,
+        "name": "aa2577e77ecc1e1f9a7965b060ad1b89",
+        "description": "",
+        "size": 6292456,
+        "type": 0
+      },
+      {
+        "id": 154,
+        "name": "aa2577e77ecc1e1f9a7965b060ad1b89",
+        "description": "",
+        "size": 6292456,
+        "type": 0
+      },
+      {
+        "id": 155,
+        "name": "b6eb33325645291789599389ae4f2575",
+        "description": "",
+        "size": 7331375,
+        "type": 0
+      },
+      {
+        "id": 155,
+        "name": "b6eb33325645291789599389ae4f2575",
+        "description": "",
+        "size": 7331375,
+        "type": 0
+      }
+    ],
+    "elevation": 182,
+    "series_id": 1146,
+    "longitude": 86.221785,
+    "latitude": 26.895605,
+    "stationIndex": "",
+    "basin": "Kamala",
+    "id": 72,
+    "name": "Kamala River at Titriya"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "AWS at Melung",
+    "district": "",
+    "images": [
+      {
+        "id": 76,
+        "name": "ca08e719ed2d71dd284263724409310d",
+        "description": "",
+        "size": 812492,
+        "type": 0
+      },
+      {
+        "id": 76,
+        "name": "ca08e719ed2d71dd284263724409310d",
+        "description": "",
+        "size": 812492,
+        "type": 0
+      }
+    ],
+    "elevation": 503,
+    "series_id": 735,
+    "longitude": 86.03,
+    "latitude": 27.31,
+    "stationIndex": "",
+    "basin": "Koshi",
+    "id": 38,
+    "name": "Melung"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 4404,
+    "longitude": 85.516667,
+    "latitude": 27.7,
+    "stationIndex": "1043",
+    "basin": "Bagmati",
+    "id": 283,
+    "name": "Nagarkot"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological Station with RLS, Tipping Bucket and Temp/Humidity",
+    "district": "",
+    "images": [
+      {
+        "id": 3,
+        "name": "75f57ff25a2c8d308a20c0780beb7cf8",
+        "description": "",
+        "size": 513564,
+        "type": 0
+      },
+      {
+        "id": 3,
+        "name": "75f57ff25a2c8d308a20c0780beb7cf8",
+        "description": "",
+        "size": 513564,
+        "type": 0
+      }
+    ],
+    "elevation": null,
+    "series_id": 436,
+    "longitude": 85.535703,
+    "latitude": 28.010656,
+    "stationIndex": "627",
+    "basin": "Koshi",
+    "id": 9,
+    "name": "Melamchi at Nakote"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Automatic Weather Station with WXT520",
+    "district": "",
+    "images": [
+      {
+        "id": 89,
+        "name": "6865a491e5cae11fbe21b34a4fddd653",
+        "description": "",
+        "size": 93071,
+        "type": 0
+      },
+      {
+        "id": 89,
+        "name": "6865a491e5cae11fbe21b34a4fddd653",
+        "description": "",
+        "size": 93071,
+        "type": 0
+      }
+    ],
+    "elevation": 1725,
+    "series_id": 1482,
+    "longitude": 86.5042,
+    "latitude": 27.3082,
+    "stationIndex": "1206",
+    "basin": "Koshi",
+    "id": 108,
+    "name": "Okhaldhunga"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with RLS and Tipping bucket",
+    "district": "",
+    "images": [
+      {
+        "id": 51,
+        "name": "166b3a2b91cc182905968758aa28e8dc",
+        "description": "",
+        "size": 190412,
+        "type": 0
+      },
+      {
+        "id": 51,
+        "name": "166b3a2b91cc182905968758aa28e8dc",
+        "description": "",
+        "size": 190412,
+        "type": 0
+      },
+      {
+        "id": 52,
+        "name": "0b0ef881b0e6ba4a4ecc9b5693dcb593",
+        "description": "",
+        "size": 130892,
+        "type": 0
+      },
+      {
+        "id": 52,
+        "name": "0b0ef881b0e6ba4a4ecc9b5693dcb593",
+        "description": "",
+        "size": 130892,
+        "type": 0
+      }
+    ],
+    "elevation": 105,
+    "series_id": 1276,
+    "longitude": 84.2783,
+    "latitude": 27.5032,
+    "stationIndex": "475",
+    "basin": "Narayani",
+    "id": 81,
+    "name": "Riukhola at Bankatta"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall station at Tatopani",
+    "district": "Jumla",
+    "images": null,
+    "elevation": 2293,
+    "series_id": 3689,
+    "longitude": 82.05027,
+    "latitude": 29.233,
+    "stationIndex": "327",
+    "basin": "Karnali",
+    "id": 240,
+    "name": "Tatopani, Kalikot"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Hydrological station with Bubbler ",
+    "district": "",
+    "images": [
+      {
+        "id": 47,
+        "name": "ef45b3c50c3175ea4b22ec1cc0223f89",
+        "description": "",
+        "size": 350267,
+        "type": 0
+      },
+      {
+        "id": 47,
+        "name": "ef45b3c50c3175ea4b22ec1cc0223f89",
+        "description": "",
+        "size": 350267,
+        "type": 0
+      }
+    ],
+    "elevation": 227,
+    "series_id": 803,
+    "longitude": 83.58,
+    "latitude": 27.97,
+    "stationIndex": "415.1",
+    "basin": "Narayani",
+    "id": 41,
+    "name": "Aadhi Khola at Borlangpul"
+  },
+  {
+    "status": "BELOW WARNING LEVEL",
+    "averages": [
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 1
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 3
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 6
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 12
+      },
+      {
+        "status": {
+          "danger": false,
+          "warning": false
+        },
+        "value": null,
+        "interval": 24
+      }
+    ],
+    "description": "Rainfall Station",
+    "district": "",
+    "images": null,
+    "elevation": null,
+    "series_id": 4491,
+    "longitude": 80.589937,
+    "latitude": 29.002894,
+    "stationIndex": "",
+    "basin": "Mahakali",
+    "id": 284,
+    "name": "Kumaina at Sahajpur (Kailali)"
+  }
+]
