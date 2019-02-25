@@ -11,7 +11,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-
 from hazard.views import HazardViewSet
 from alert.views import AlertViewSet
 from incident.views import IncidentViewSet
@@ -26,6 +25,11 @@ from resources.views import ResourceViewSet
 from organization.views import (
     OrganizationViewSet,
     ProjectViewSet,
+)
+from loss.views import (
+    SimpleLossViewSet,
+    InfrastructureTypeViewSet,
+    LivestockTypeViewSet,
 )
 
 admin.site.site_header = 'BIPAD administration'
@@ -53,6 +57,12 @@ router.register(r'organization', OrganizationViewSet,
                 base_name='organization')
 router.register(r'project', ProjectViewSet,
                 base_name='project')
+router.register(r'loss', SimpleLossViewSet,
+                base_name='loss')
+router.register(r'infrastructure-type', InfrastructureTypeViewSet,
+                base_name='infrastructure_type')
+router.register(r'livestock-type', LivestockTypeViewSet,
+                base_name='livestock_type')
 
 API_VERSION = 'v1'
 
