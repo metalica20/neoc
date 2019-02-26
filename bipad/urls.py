@@ -38,6 +38,12 @@ from realtime.views import (
     RainViewSet,
 )
 
+from inventory.views import (
+    CategoryViewSet,
+    ItemViewSet,
+    InventoryViewSet,
+)
+
 admin.site.site_header = 'BIPAD administration'
 
 router = routers.DefaultRouter()
@@ -75,6 +81,12 @@ router.register(r'river', RiverViewSet,
                 base_name='river')
 router.register(r'rain', RainViewSet,
                 base_name='rain')
+router.register(r'inventory-category', CategoryViewSet,
+                base_name='inventory-category')
+router.register(r'inventory-item', ItemViewSet,
+                base_name='inventory-item')
+router.register(r'inventory', InventoryViewSet,
+                base_name='inventory')
 
 API_VERSION = 'v1'
 
