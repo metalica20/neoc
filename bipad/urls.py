@@ -32,6 +32,12 @@ from loss.views import (
     LivestockTypeViewSet,
 )
 
+from realtime.views import (
+    EarthquakeViewSet,
+    RiverViewSet,
+    RainViewSet,
+)
+
 admin.site.site_header = 'BIPAD administration'
 
 router = routers.DefaultRouter()
@@ -63,6 +69,12 @@ router.register(r'infrastructure-type', InfrastructureTypeViewSet,
                 base_name='infrastructure_type')
 router.register(r'livestock-type', LivestockTypeViewSet,
                 base_name='livestock_type')
+router.register(r'earthquake', EarthquakeViewSet,
+                base_name='earthquake')
+router.register(r'river', RiverViewSet,
+                base_name='river')
+router.register(r'rain', RainViewSet,
+                base_name='rain')
 
 API_VERSION = 'v1'
 
