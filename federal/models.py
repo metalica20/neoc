@@ -21,7 +21,7 @@ class District(models.Model):
 
 
 class Municipality(models.Model):
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=255)
     district = models.ForeignKey(
         District,
         related_name='municipalities',
@@ -44,4 +44,4 @@ class Ward(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return f'{str(self.municipality)}-{self.title}'
