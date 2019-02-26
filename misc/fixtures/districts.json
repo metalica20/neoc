@@ -1,0 +1,618 @@
+[
+  {
+    "model": "federal.district",
+    "pk": 1,
+    "fields": {
+      "title": "Taplejung",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 2,
+    "fields": {
+      "title": "Panchthar",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 3,
+    "fields": {
+      "title": "Ilam",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 4,
+    "fields": {
+      "title": "Jhapa",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 5,
+    "fields": {
+      "title": "Morang",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 6,
+    "fields": {
+      "title": "Sunsari",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 7,
+    "fields": {
+      "title": "Dhankuta",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 8,
+    "fields": {
+      "title": "Terhathum",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 9,
+    "fields": {
+      "title": "Bhojpur",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 10,
+    "fields": {
+      "title": "Shankhuwasabha",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 11,
+    "fields": {
+      "title": "Solukhumbu",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 12,
+    "fields": {
+      "title": "Khotang",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 13,
+    "fields": {
+      "title": "Okhaldhunga",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 14,
+    "fields": {
+      "title": "Udayapur",
+      "province": 1
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 15,
+    "fields": {
+      "title": "Siraha",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 16,
+    "fields": {
+      "title": "Saptari",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 17,
+    "fields": {
+      "title": "Dhanusha",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 18,
+    "fields": {
+      "title": "Mahottari",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 19,
+    "fields": {
+      "title": "Sarlahi",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 20,
+    "fields": {
+      "title": "Sindhuli",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 21,
+    "fields": {
+      "title": "Ramechhap",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 22,
+    "fields": {
+      "title": "Dolakha",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 23,
+    "fields": {
+      "title": "Rasuwa",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 24,
+    "fields": {
+      "title": "Sindhupalchowk",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 25,
+    "fields": {
+      "title": "Nuwakot",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 26,
+    "fields": {
+      "title": "Dhading",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 27,
+    "fields": {
+      "title": "Kathmandu",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 28,
+    "fields": {
+      "title": "Lalitpur",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 29,
+    "fields": {
+      "title": "Bhaktapur",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 30,
+    "fields": {
+      "title": "Kavrepalanchowk",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 31,
+    "fields": {
+      "title": "Makawanpur",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 32,
+    "fields": {
+      "title": "Rautahat",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 33,
+    "fields": {
+      "title": "Bara",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 34,
+    "fields": {
+      "title": "Parsa",
+      "province": 2
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 35,
+    "fields": {
+      "title": "Chitawan",
+      "province": 3
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 37,
+    "fields": {
+      "title": "Rupandehi",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 38,
+    "fields": {
+      "title": "Kapilbastu",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 39,
+    "fields": {
+      "title": "Palpa",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 40,
+    "fields": {
+      "title": "Arghakhanchi",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 41,
+    "fields": {
+      "title": "Gulmi",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 42,
+    "fields": {
+      "title": "Shyanja",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 43,
+    "fields": {
+      "title": "Tanahu",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 44,
+    "fields": {
+      "title": "Gorkha",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 45,
+    "fields": {
+      "title": "Lamjung",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 46,
+    "fields": {
+      "title": "Kaski",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 47,
+    "fields": {
+      "title": "Manang",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 48,
+    "fields": {
+      "title": "Mustang",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 49,
+    "fields": {
+      "title": "Myagdi",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 50,
+    "fields": {
+      "title": "Baglung",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 51,
+    "fields": {
+      "title": "Parbat",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 52,
+    "fields": {
+      "title": "Dang",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 53,
+    "fields": {
+      "title": "Pyuthan",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 54,
+    "fields": {
+      "title": "Rolpa",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 55,
+    "fields": {
+      "title": "Salyan",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 57,
+    "fields": {
+      "title": "Dolpa",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 58,
+    "fields": {
+      "title": "Mugu",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 59,
+    "fields": {
+      "title": "Humla",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 60,
+    "fields": {
+      "title": "Jumla",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 61,
+    "fields": {
+      "title": "Kalikot",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 62,
+    "fields": {
+      "title": "Jajarkot",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 63,
+    "fields": {
+      "title": "Dailekh",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 64,
+    "fields": {
+      "title": "Surkhet",
+      "province": 6
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 65,
+    "fields": {
+      "title": "Bardiya",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 66,
+    "fields": {
+      "title": "Banke",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 67,
+    "fields": {
+      "title": "Kailali",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 68,
+    "fields": {
+      "title": "Doti",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 69,
+    "fields": {
+      "title": "Achhaam",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 70,
+    "fields": {
+      "title": "Bajura",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 71,
+    "fields": {
+      "title": "Bajhang",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 72,
+    "fields": {
+      "title": "Darchula",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 73,
+    "fields": {
+      "title": "Baitadi",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 74,
+    "fields": {
+      "title": "Dadeldhura",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 75,
+    "fields": {
+      "title": "Kanchanpur",
+      "province": 7
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 481,
+    "fields": {
+      "title": "Nawalpur",
+      "province": 4
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 482,
+    "fields": {
+      "title": "Parasi",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 541,
+    "fields": {
+      "title": "Rukum East",
+      "province": 5
+    }
+  },
+  {
+    "model": "federal.district",
+    "pk": 542,
+    "fields": {
+      "title": "Rukum West",
+      "province": 6
+    }
+  }
+]

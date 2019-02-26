@@ -1,0 +1,51 @@
+[
+  {
+    "model": "federal.province",
+    "pk": 1,
+    "fields": {
+      "title": "Province 1"
+    }
+  },
+  {
+    "model": "federal.province",
+    "pk": 2,
+    "fields": {
+      "title": "Province 2"
+    }
+  },
+  {
+    "model": "federal.province",
+    "pk": 3,
+    "fields": {
+      "title": "Province 3"
+    }
+  },
+  {
+    "model": "federal.province",
+    "pk": 4,
+    "fields": {
+      "title": "Gandaki"
+    }
+  },
+  {
+    "model": "federal.province",
+    "pk": 5,
+    "fields": {
+      "title": "Province 5"
+    }
+  },
+  {
+    "model": "federal.province",
+    "pk": 6,
+    "fields": {
+      "title": "Karnali"
+    }
+  },
+  {
+    "model": "federal.province",
+    "pk": 7,
+    "fields": {
+      "title": "Sudurpashchim"
+    }
+  }
+]
