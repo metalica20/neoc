@@ -168,7 +168,7 @@ class Livestock(TimeStampedModal):
         null=True, blank=True, default=None
     )
     type = models.ForeignKey(
-        InfrastructureType,
+        LivestockType,
         related_name='livestocks',
         on_delete=models.PROTECT
     )
