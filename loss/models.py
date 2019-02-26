@@ -1,6 +1,26 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
-from bipad.models import TimeStampedModal
+from bipad.models import TimeStampedModal, DistinctSum
+from django.db.models import Q
+from django.db.models.functions import Coalesce
+
+
+class StatManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().annotate(
+            people_death_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='dead')
+            ), 0),
+            livestock_destroyed_count=Coalesce(DistinctSum(
+                'livestocks__count',
+                filter=Q(livestocks__status='destroyed')
+            ), 0),
+            infrastructure_destroyed_count=Coalesce(DistinctSum(
+                'infrastructures__count',
+                filter=Q(infrastructures__status='destroyed')
+            ), 0),
+        )
 
 
 class Loss(TimeStampedModal):
@@ -15,6 +35,9 @@ class Loss(TimeStampedModal):
         null=True, blank=True, default=None
     )
     detail = JSONField(null=True, blank=True, default=None)
+
+    objects = models.Manager()
+    with_stat = StatManager()
 
     class Meta:
         verbose_name_plural = "losses"
