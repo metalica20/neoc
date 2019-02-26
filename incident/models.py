@@ -62,7 +62,7 @@ class Incident(TimeStampedModal):
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
     )
-    loss = models.ForeignKey(
+    loss = models.OneToOneField(
         Loss,
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
