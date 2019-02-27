@@ -3,7 +3,8 @@ from rest_framework import renderers
 
 
 class GeoJSONRenderer(renderers.BaseRenderer):
-    media_type = 'application/vnd.geo+json'
+    # TODO: media type?
+    media_type = 'application/json'
     format = 'geojson'
     render_style = 'binary'
 
