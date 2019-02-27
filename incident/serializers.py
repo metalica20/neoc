@@ -6,4 +6,4 @@ class IncidentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Incident
-        exclude = ('modified_on', 'loss', 'wards')
+        exclude = ('modified_on',)
