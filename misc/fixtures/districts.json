@@ -75,7 +75,7 @@
     "model": "federal.district",
     "pk": 10,
     "fields": {
-      "title": "Shankhuwasabha",
+      "title": "Sankhuwasabha",
       "province": 1
     }
   },
@@ -131,7 +131,7 @@
     "model": "federal.district",
     "pk": 17,
     "fields": {
-      "title": "Dhanusha",
+      "title": "Dhanusa",
       "province": 2
     }
   },
@@ -187,7 +187,7 @@
     "model": "federal.district",
     "pk": 24,
     "fields": {
-      "title": "Sindhupalchowk",
+      "title": "Sindhupalchok",
       "province": 3
     }
   },
@@ -235,7 +235,7 @@
     "model": "federal.district",
     "pk": 30,
     "fields": {
-      "title": "Kavrepalanchowk",
+      "title": "Kavrepalanchok",
       "province": 3
     }
   },
@@ -243,7 +243,7 @@
     "model": "federal.district",
     "pk": 31,
     "fields": {
-      "title": "Makawanpur",
+      "title": "Makwanpur",
       "province": 3
     }
   },
@@ -275,7 +275,7 @@
     "model": "federal.district",
     "pk": 35,
     "fields": {
-      "title": "Chitawan",
+      "title": "Chitwan",
       "province": 3
     }
   },
@@ -323,7 +323,7 @@
     "model": "federal.district",
     "pk": 42,
     "fields": {
-      "title": "Shyanja",
+      "title": "Syangja",
       "province": 4
     }
   },
@@ -531,7 +531,7 @@
     "model": "federal.district",
     "pk": 69,
     "fields": {
-      "title": "Achhaam",
+      "title": "Achham",
       "province": 7
     }
   },

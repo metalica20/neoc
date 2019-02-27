@@ -1,7 +1,22 @@
-from django.utils import timezone
 from rest_framework import viewsets
-from .serializers import ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, WardSerializer
-from .models import Province, District, Municipality, Ward
+from .renderer import GeoJSONRenderer
+from rest_framework.renderers import (
+    JSONRenderer,
+    BrowsableAPIRenderer,
+)
+from .serializers import (
+    ProvinceSerializer,
+    DistrictSerializer,
+    DistrictGeoSerializer,
+    MunicipalitySerializer,
+    WardSerializer,
+)
+from .models import (
+    Province,
+    District,
+    Municipality,
+    Ward,
+)
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
@@ -12,9 +27,17 @@ class ProvinceViewSet(viewsets.ModelViewSet):
 
 class DistrictViewSet(viewsets.ModelViewSet):
     serializer_class = DistrictSerializer
+    renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
     filter_fields = ('province',)
     queryset = District.objects.all()
+
+    def get_serializer_class(self):
+        # TODO: fix me
+        format = self.request.query_params.get('format')
+        if format == 'geojson':
+            return DistrictGeoSerializer
+        return DistrictSerializer
 
 
 class MunicipalityViewSet(viewsets.ModelViewSet):

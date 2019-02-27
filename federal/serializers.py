@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from .models import Province, District, Municipality, Ward
 
 
@@ -9,7 +10,16 @@ class ProvinceSerializer(serializers.ModelSerializer):
 
 
 class DistrictSerializer(serializers.ModelSerializer):
+
     class Meta:
+        model = District
+        exclude = ('boundary',)
+
+
+class DistrictGeoSerializer(GeoFeatureModelSerializer):
+
+    class Meta:
+        geo_field = 'boundary'
         model = District
         fields = '__all__'
 
