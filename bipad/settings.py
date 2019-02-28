@@ -28,6 +28,9 @@ ALLOWED_HOSTS = [os.environ.get('SERVER_ALLOWED_HOST', '*')]
 INSTALLED_APPS = [
     'polymorphic',
 
+    'jet.dashboard',
+    'jet',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,22 +71,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bipad.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 WSGI_APPLICATION = 'bipad.wsgi.application'
 
@@ -187,8 +174,9 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "bipad/static"),
+]
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
@@ -204,3 +192,7 @@ CELERY_TIMEZONE = TIME_ZONE
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
+
+JET_DEFAULT_THEME = 'light-gray'
+JET_SIDE_MENU_COMPACT = True
+JET_INDEX_DASHBOARD = 'bipad.dashboard.IndexDashboard'

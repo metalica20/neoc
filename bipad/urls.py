@@ -98,6 +98,8 @@ def get_api_path(path):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    path('jet/', include('jet.urls', 'jet')),
     re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(),
             name='token_obtain_pair'),
     re_path(get_api_path(r'token/refresh/$'),
