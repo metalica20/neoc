@@ -20,7 +20,7 @@ class IncidentViewSet(viewsets.ModelViewSet):
     @action(detail=True, name='Incident Response')
     def response(self, request, pk=None, version=None):
         # TODO: dynmaic distance
-        distance = self.request.query_params.get('distance', 200)  # km
+        distance = self.request.query_params.get('distance', 10)  # km
         incident = self.get_object()
         resources = None
 

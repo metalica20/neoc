@@ -43,7 +43,7 @@ class Finance(Resource):
     cbs_code = models.IntegerField(null=True, blank=True, default=None)
     channel = models.CharField(max_length=25, choices=CHANNELS)
     population = models.PositiveIntegerField()
-    acces_points_count = models.PositiveIntegerField(default=1)
+    access_point_count = models.PositiveIntegerField(default=1)
 
 
 class Communication(Resource):
