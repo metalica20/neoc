@@ -16,6 +16,6 @@ class IncidentSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
     expandable_fields = {
         'event': (EventSerializer, {'source': 'event'}),
         'hazard': (HazardSerializer, {'source': 'hazard'}),
-        'wards': (WardSerializer, {'source': 'wards'}),
+        'wards': (WardSerializer, {'source': 'wards', 'many': True}),
         'loss': (SimpleLossSerializer, {'source': 'loss'}),
     }

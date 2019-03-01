@@ -1,7 +1,7 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db.models import Prefetch
-from rest_flex_fields import FlexFieldsModelViewSet
+from rest_flex_fields import FlexFieldsModelViewSet, is_expanded
 from .serializers import IncidentSerializer
 from resources.models import Resource
 from resources.serializers import ResponseSerializer
@@ -19,7 +19,16 @@ class IncidentViewSet(FlexFieldsModelViewSet):
     search_fields = ('title', )
     queryset = Incident.objects.filter(verified=True)\
         .prefetch_related(Prefetch('loss', queryset=Loss.with_stat.all()))
-    permit_list_expands = ['event', 'hazard', 'wards']
+    permit_list_expands = ['event', 'hazard', 'wards', 'loss']
+
+    def get_queryset(self):
+        queryset = Incident.objects.filter(verified=True)
+        if is_expanded(self.request, 'loss'):
+            queryset = queryset .prefetch_related(Prefetch(
+                'loss', queryset=Loss.with_stat.all())
+            )
+
+        return queryset
 
     @action(detail=True, name='Incident Response')
     def response(self, request, pk=None, version=None):
