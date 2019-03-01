@@ -37,13 +37,14 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         incident = self.get_object()
         resources = None
 
-        if incident.point:
+        location = incident.point or incident.polygon
+        if location:
             resources = Resource.objects.filter(
                 point__distance_lte=(
-                    incident.point, D(km=distance)
+                    location, D(km=distance)
                 ))\
                 .annotate(
-                    distance=Distance("point", incident.point)
+                    distance=Distance("point", location)
             ).order_by('distance')
 
         serializer = ResponseSerializer(resources, many=True)
