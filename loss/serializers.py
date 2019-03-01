@@ -1,3 +1,4 @@
+from rest_flex_fields.serializers import FlexFieldsSerializerMixin
 from rest_framework import serializers
 from .models import (
     Loss,
@@ -10,7 +11,7 @@ from .models import (
 )
 
 
-class SimpleLossSerializer(serializers.ModelSerializer):
+class SimpleLossSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     people_death_count = serializers.IntegerField(
         required=False, read_only=True
     )

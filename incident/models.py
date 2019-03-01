@@ -16,7 +16,6 @@ class IncidentSource(models.Model):
 
 
 class Incident(TimeStampedModal):
-
     ARTIFICIAL = 'artificial'
     NATURAL = 'natural'
 
