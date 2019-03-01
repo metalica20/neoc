@@ -113,9 +113,6 @@ class Family(TimeStampedModal):
         Loss, related_name='families', on_delete=models.CASCADE
     )
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name_plural = "families"
 
