@@ -35,7 +35,7 @@ class ResponseSerializer(serializers.ModelSerializer):
 
     def get_distance(self, obj):
         if obj.distance:
-            return int(obj.distance.m)
+            return int(obj.distance.m) or 0
         return None
 
     class Meta:

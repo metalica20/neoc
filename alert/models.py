@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.gis.db import models
 from bipad.models import TimeStampedModal
 
@@ -25,6 +26,7 @@ class Alert(TimeStampedModal):
         on_delete=models.SET_NULL,
         default=None, null=True, blank=True
     )
+    started_on = models.DateTimeField(blank=True, default=timezone.now)
     expire_on = models.DateTimeField(null=True, blank=True, default=None)
     event = models.ForeignKey(
         Event,

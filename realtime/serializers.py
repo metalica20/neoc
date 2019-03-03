@@ -22,4 +22,3 @@ class RainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rain
         exclude = ('station_series_id',)
-

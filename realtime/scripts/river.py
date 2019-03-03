@@ -1,6 +1,6 @@
+import requests
 from realtime.models import River
 from django.contrib.gis.geos import Point
-import requests
 
 
 def fetch_river():
@@ -8,13 +8,13 @@ def fetch_river():
     river_data = response.json()
     rivers = []
     for data in river_data:
-        water_level_datetime = None
+        water_level_on = None
         water_level_value = None
         point_value = None
 
         if data['waterLevel']:
-            water_level_value=data['waterLevel']['value']
-            water_level_datetime=data['waterLevel']['datetime']
+            water_level_value = data['waterLevel']['value']
+            water_level_on = data['waterLevel']['datetime']
 
         if data['longitude']:
             point_value = Point(float(data['longitude']), float(data['latitude']))
@@ -29,7 +29,7 @@ def fetch_river():
         try:
             danger_level_value = float(data['danger_level'])
         except TypeError:
-            danger_level_value= None
+            danger_level_value = None
         except ValueError:
             danger_level_value = None
 
@@ -38,8 +38,8 @@ def fetch_river():
             title=data['name'],
             basin=data['basin'],
             point=point_value,
-            water_level_value=water_level_value,
-            water_level_datetime=water_level_datetime,
+            water_level=water_level_value,
+            water_level_on=water_level_on,
             danger_level=danger_level_value,
             warning_level=warning_level_value,
             status=data['status'],
@@ -51,5 +51,3 @@ def fetch_river():
         rivers.append(river)
     River.objects.all().delete()
     River.objects.bulk_create(rivers)
-
-
