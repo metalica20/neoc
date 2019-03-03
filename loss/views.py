@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .serializers import (
-    SimpleLossSerializer,
+    LossSerializer,
     InfrastructureTypeSerializer,
     LivestockTypeSerializer
 )
@@ -11,8 +11,8 @@ from .models import (
 )
 
 
-class SimpleLossViewSet(viewsets.ModelViewSet):
-    serializer_class = SimpleLossSerializer
+class LossViewSet(viewsets.ModelViewSet):
+    serializer_class = LossSerializer
     queryset = Loss.with_stat.all()
 
 

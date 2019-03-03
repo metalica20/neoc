@@ -19,7 +19,16 @@ class IncidentViewSet(FlexFieldsModelViewSet):
     search_fields = ('title', )
     queryset = Incident.objects.filter(verified=True)\
         .prefetch_related(Prefetch('loss', queryset=Loss.with_stat.all()))
-    permit_list_expands = ['event', 'hazard', 'wards', 'loss']
+    permit_list_expands = [
+        'event',
+        'hazard',
+        'wards',
+        'loss',
+        'loss.peoples',
+        'loss.families',
+        'loss.livestocks',
+        'loss.infrastructures'
+    ]
 
     def get_queryset(self):
         queryset = Incident.objects.filter(verified=True)
