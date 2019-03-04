@@ -51,6 +51,7 @@ class Incident(TimeStampedModal):
     point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
     incident_on = models.DateTimeField(null=True, blank=True, default=None)
+    reported_on = models.DateTimeField(null=True, blank=True, default=None)
     event = models.ForeignKey(
         Event,
         on_delete=models.SET_NULL,

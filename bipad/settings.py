@@ -203,5 +203,10 @@ JET_INDEX_DASHBOARD = 'bipad.dashboard.IndexDashboard'
 SILKY_META = True
 SILKY_AUTHENTICATION = True
 SILKY_AUTHORISATION = True
+
+
+def SILKY_PERMISSIONS(user): return user.is_superuser
+
+
 SILKY_MAX_RESPONSE_BODY_SIZE = 1024*100  # bytes
 SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '0'))
