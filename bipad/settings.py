@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'autofixture',
     'corsheaders',
+    'silk',
 
     'django_celery_beat',
     'rest_framework',
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'silk.middleware.SilkyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -196,3 +198,10 @@ CORS_URLS_REGEX = r'^/api/.*$'
 JET_DEFAULT_THEME = 'light-gray'
 JET_SIDE_MENU_COMPACT = True
 JET_INDEX_DASHBOARD = 'bipad.dashboard.IndexDashboard'
+
+# DJANGO SILK
+SILKY_META = True
+SILKY_AUTHENTICATION = True
+SILKY_AUTHORISATION = True
+SILKY_MAX_RESPONSE_BODY_SIZE = 1024*100  # bytes
+SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '0'))
