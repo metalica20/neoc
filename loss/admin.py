@@ -3,6 +3,7 @@ from .models import (
     Loss,
     People,
     Family,
+    Livestock,
     Infrastructure,
     InfrastructureType,
     LivestockType,
@@ -24,9 +25,15 @@ class InfrastructureInline(admin.TabularInline):
     extra = 1
 
 
+class LivestockInline(admin.TabularInline):
+    model = Livestock
+    extra = 1
+
+
 @admin.register(Loss)
 class LossAdmin(admin.ModelAdmin):
-    inlines = (PeopleInline, FamilyInline, InfrastructureInline)
+    inlines = (PeopleInline, FamilyInline,
+               LivestockInline, InfrastructureInline)
 
 
 admin.site.register([InfrastructureType, LivestockType])

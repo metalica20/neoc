@@ -8,3 +8,8 @@ class TimeStampedModal(models.Model):
 
     class Meta:
         abstract = True
+
+
+class DistinctSum(models.Sum):
+    function = "SUM"
+    template = "%(function)s(DISTINCT %(expressions)s)"

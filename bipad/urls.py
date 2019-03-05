@@ -11,7 +11,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-
 from hazard.views import HazardViewSet
 from alert.views import AlertViewSet
 from incident.views import IncidentViewSet
@@ -26,6 +25,30 @@ from resources.views import ResourceViewSet
 from organization.views import (
     OrganizationViewSet,
     ProjectViewSet,
+)
+from loss.views import (
+    SimpleLossViewSet,
+    InfrastructureTypeViewSet,
+    LivestockTypeViewSet,
+)
+
+from realtime.views import (
+    EarthquakeViewSet,
+    RiverViewSet,
+    RainViewSet,
+)
+
+from inventory.views import (
+    CategoryViewSet,
+    ItemViewSet,
+    InventoryViewSet,
+)
+
+from risk_profile.views import (
+    HospitalViewSet,
+    SchoolViewSet,
+
+
 )
 
 admin.site.site_header = 'BIPAD administration'
@@ -53,6 +76,29 @@ router.register(r'organization', OrganizationViewSet,
                 base_name='organization')
 router.register(r'project', ProjectViewSet,
                 base_name='project')
+router.register(r'loss', SimpleLossViewSet,
+                base_name='loss')
+router.register(r'infrastructure-type', InfrastructureTypeViewSet,
+                base_name='infrastructure_type')
+router.register(r'livestock-type', LivestockTypeViewSet,
+                base_name='livestock_type')
+router.register(r'earthquake', EarthquakeViewSet,
+                base_name='earthquake')
+router.register(r'river', RiverViewSet,
+                base_name='river')
+router.register(r'rain', RainViewSet,
+                base_name='rain')
+router.register(r'inventory-category', CategoryViewSet,
+                base_name='inventory-category')
+router.register(r'inventory-item', ItemViewSet,
+                base_name='inventory-item')
+router.register(r'inventory', InventoryViewSet,
+                base_name='inventory')
+router.register(r'school', SchoolViewSet,
+                base_name='school')
+router.register(r'hospital', HospitalViewSet,
+                base_name='hospital')
+
 
 API_VERSION = 'v1'
 

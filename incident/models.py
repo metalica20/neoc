@@ -16,7 +16,6 @@ class IncidentSource(models.Model):
 
 
 class Incident(TimeStampedModal):
-
     ARTIFICIAL = 'artificial'
     NATURAL = 'natural'
 
@@ -62,7 +61,7 @@ class Incident(TimeStampedModal):
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
     )
-    loss = models.ForeignKey(
+    loss = models.OneToOneField(
         Loss,
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
@@ -71,7 +70,8 @@ class Incident(TimeStampedModal):
         Ward,
         related_name='incidents',
     )
-    street_address = models.CharField(max_length=255, null=True, blank=True, default=None)
+    street_address = models.CharField(
+        max_length=255, null=True, blank=True, default=None)
     detail = JSONField(null=True, blank=True, default=None)
 
     def __str__(self):
