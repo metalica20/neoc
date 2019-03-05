@@ -20,4 +20,4 @@ COPY . /code/
 RUN python3 -m pip install gunicorn --no-cache-dir
 RUN python3 -m pip install -r requirements.txt --no-cache-dir
 
-ENTRYPOINT /code/docker/docker-entrypoint.prod.sh
+ENTRYPOINT /code/docker/docker-entrypoint.local.sh

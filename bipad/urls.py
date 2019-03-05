@@ -44,6 +44,13 @@ from inventory.views import (
     InventoryViewSet,
 )
 
+from risk_profile.views import (
+    HospitalViewSet,
+    SchoolViewSet,
+
+
+)
+
 admin.site.site_header = 'BIPAD administration'
 
 router = routers.DefaultRouter()
@@ -87,6 +94,11 @@ router.register(r'inventory-item', ItemViewSet,
                 base_name='inventory-item')
 router.register(r'inventory', InventoryViewSet,
                 base_name='inventory')
+router.register(r'school', SchoolViewSet,
+                base_name='school')
+router.register(r'hospital', HospitalViewSet,
+                base_name='hospital')
+
 
 API_VERSION = 'v1'
 

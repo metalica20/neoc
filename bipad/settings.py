@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'resources',
     'inventory',
     'realtime',
+    'risk_profile'
 ]
 
 MIDDLEWARE = [
