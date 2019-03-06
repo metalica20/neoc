@@ -28,6 +28,7 @@ class LayerTable(models.Model):
     ('fire', 'Fire'),
     ('earthquake', 'Earthquake'),
     ('light', 'Lightening'),
+    ('lights', 'Lightenings'),
 )
 
 
