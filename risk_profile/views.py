@@ -17,7 +17,7 @@ class SchoolViewSet(viewsets.ModelViewSet):
     serializer_class=SchoolSerializer
     queryset=School.objects.all()
     print(GEOSGeometry('{ "type": "Point", "coordinates": [ 5.000000, 23.000000 ] }'))
-    a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
+    # a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
     # print(a.geom_type)
 
 class HospitalGeojsonViewSet(views.APIView):

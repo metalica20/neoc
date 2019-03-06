@@ -18,3 +18,25 @@ class School(models.Model):
     lat=models.CharField(max_length=250)
     long=models.CharField(max_length=250)
     location=models.PointField(null=True, blank=True, default=None)
+
+
+
+class LayerTable(models.Model):
+    CHOICES = (
+    ('flood', 'Flood'),
+    ('landslide', 'Landslide'),
+    ('fire', 'Fire'),
+    ('earthquake', 'Earthquake'),
+    ('light', 'Lightening'),
+)
+
+
+    layer_name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    layer_tbl=models.CharField(max_length=250,null=True, blank=True, default=None)
+    layer_icon=models.CharField(max_length=250,null=True, blank=True, default=None)
+    layer_cat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    isGeoserver=models.BooleanField(null=True, blank=True, default=True)
+    public=models.BooleanField(null=True, blank=True, default=True)
+    visibility_level=models.CharField(max_length=250,null=True, blank=True, default=None)
+    layer_type=models.CharField(max_length=250,null=True, blank=True, default=None)
+    hazard=models.CharField(max_length=35, choices=CHOICES)
