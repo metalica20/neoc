@@ -6,7 +6,7 @@ services:
     build: .
     env_file: .env
     ports:
-      - "8000:8000"
+      - "8004:8004"
     external_links:
      - redis
      - psql-11:db
