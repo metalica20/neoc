@@ -18,12 +18,15 @@ class SchoolViewSet(viewsets.ModelViewSet):
     queryset=School.objects.all()
     print(GEOSGeometry('{ "type": "Point", "coordinates": [ 5.000000, 23.000000 ] }'))
     a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
-    print(a.geom_type)
+    # print(a.geom_type)
 
 class HospitalGeojsonViewSet(views.APIView):
     permission_classes=(IsAuthenticated,)
     def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Hospital.objects.all(),geometry_field='location',fields=('name'))
+        json_d={}
+        serializers=serialize('geojson',Hospital.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
+        # print(serializers)
         hospitalgeojson=json.loads(serializers)
-
-        return Response(hospitalgeojson)
+        json_d['data']=hospitalgeojson
+        json_d['is_goeserver']=False
+        return Response(json_d)
