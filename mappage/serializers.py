@@ -1,12 +1,9 @@
 from rest_framework import serializers
 from risk_profile.models import Hospital
 
-class HospitalSerializer(serializers.ModelSerializer):
+class HospitalSerializer(serializers.Serializer):
 
     distance =serializers.SerializerMethodField()
-    class Meta:
-        model = Hospital
-        fields= '__all__'
-    
+    name= serializers.CharField(max_length=200)
     def get_distance(self,obj):
-        return str(obj.distance)
+        return float(''.join([x for x in str(obj.distance) if x!='m']).strip())
