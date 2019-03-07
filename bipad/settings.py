@@ -3,6 +3,8 @@ Django settings for bipad project.
 """
 
 import os
+from sentry_sdk.integrations.django import DjangoIntegration
+import sentry_sdk
 from psycopg2cffi import compat
 compat.register()
 
@@ -242,5 +244,11 @@ CACHES = {
         }
     }
 }
+
+# SENTRY
+sentry_sdk.init(
+    dsn=os.environ.get("DJANGO_SENTRY_DSN"),
+    integrations=[DjangoIntegration()]
+)
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBER_FIELDS', '1000'))
