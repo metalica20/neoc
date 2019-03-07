@@ -1,0 +1,313 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!--head start-->
+
+<head>
+    <!--meta tag start-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--title-->
+    <title>Bipad</title>
+    
+    <!-- faveicon start   -->
+    <link rel="icon" type="image/png" href="{% static 'mappage/images/favicon.png' %}" sizes="32x32">
+    
+    <!-- stylesheet start -->
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/customfonts.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin="" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
+    
+</head>
+<!--head end-->
+
+<body>
+    <!-- bipad start -->
+    <div class="bipadContent">
+
+        <!-- mapsection start -->
+        <div class="mapwrap">
+
+            <!-- logo start -->
+            <div class="bipad-logo">
+                <h1 class="logo"><a href="index.html">Bipad</a></h1>
+            </div>
+
+            <!-- map start -->
+            <div id="mapid"></div>
+
+            <!-- leftSidebar start -->
+            <div class="sidebar leftSidebar">
+                <div class="arrow arrow-left">
+                    <i class="humanitarian-icon-Previous-item"></i>
+                </div>
+                <div class="sidebarwrapper">
+                    <!-- sidebar start -->
+                    <div class="sidebar-widget">
+                        <div class="widget-title">
+                            <h4>Nepal</h4>
+                        </div>
+                        <ul class="list-content">
+                            <li><a href="#" target="">Total population</a><span>113456</span></li>
+                            <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
+                            <li><a href="#" target="">population density</a><span>4567789</span></li>
+                            <li><a href="#" target="">Poverty rate</a><span>57568569</span></li>
+                            <li><a href="#" target="">Population under poverty rate</a><span>5685698</span></li>
+                            <li><a href="#" target="">HD</a><span>45363</span></li>
+                            <li><a href="#" target="">GDP</a><span>769768</span></li>
+                            <li><a href="#" target="">Index</a><span>45363</span></li>
+                            <li><a href="#" target="">Per income</a><span>769768</span></li>
+                        </ul>
+                    </div>
+                    <!-- sidebar start -->
+                    <div class="sidebar-widget">
+                        <div class="widget-title">
+                            <h4>Key stats</h4>
+                        </div>
+                        <ul class="list-content">
+                            <li><a href="#" target="">Total population</a><span>113456</span></li>
+                            <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
+                            <li><a href="#" target="">population density</a><span>4567789</span></li>
+                            <li><a href="#" target="">Poverty rate</a><span>57568569</span></li>
+                            <li><a href="#" target="">Population under poverty rate</a><span>5685698</span></li>
+                            <li><a href="#" target="">HD</a><span>45363</span></li>
+                            <li><a href="#" target="">GDP</a><span>769768</span></li>
+                            <li><a href="#" target="">Index</a><span>45363</span></li>
+                            <li><a href="#" target="">Per income</a><span>769768</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- rightSidebar start -->
+            <div class=" sidebar rightSidebar">
+                <div class="arrow arrow-right">
+                        <i class="humanitarian-icon-Previous-item"></i>
+                    </div>
+                <div class="sidebarwrapper">
+                    <!-- sidebar start -->
+                    <div class="sidebar-widget filter-widget">
+                        <div class="widget-title filter-title">
+                            <h4>Filter</h4>
+                            <div class="filter-btn">
+                                <a href="#" class="apply-btn">apply</a>
+                                <a href="#" class="filter-btn">filter</a>
+                            </div>
+                        </div>
+                        <div class="filterSelect">
+                            <form>
+                                <div class="form-group">
+                                    <label>Admin level</label>
+                                    <select class="custom-select">
+                                        <option selected>Admin</option>
+                                        <option>abc</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                        <label>Admin level</label>
+                                        <select class="custom-select">
+                                            <option selected>Admin</option>
+                                            <option>abc</option>
+                                        </select>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- hazard-widget start -->
+                    <div class="sidebar-widget hazards-widget">
+                        <div class="widget-title">
+                            <h4>Hazards</h4>
+                        </div>
+                        <div class="iconwrap">
+                            <ul>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
+                                    <ul class="dropicons-list">
+                                        <span class="close-cion">x</span>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Heavy-rain"></i></span> Heavy rain</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Drought"></i></span>Draught</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Internally-displaced"></i></span>Displaced</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Snowfall"></i></span> snow fall</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Heatwave"></i></span>Heatwave</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- sidebar-widget start -->
+                    <div class="sidebar-widget hazards-widget">
+                        <div class="widget-title">
+                            <h4>Hazards</h4>
+                        </div>
+                        <div class="iconwrap">
+                            <ul>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> HDI</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund collect</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
+                                    <ul class="dropicons-list">
+                                        <span class="close-cion">x</span>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Heavy-rain"></i></span> Heavy rain</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Drought"></i></span>Draught</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Internally-displaced"></i></span>Displaced</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Snowfall"></i></span> snow fall</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Heatwave"></i></span>Heatwave</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- capacity-widget start -->
+                    <div class="sidebar-widget capacity-widget">
+                        <div class="widget-title">
+                            <h4>capacity & Branches</h4>
+                        </div>
+                        <ul class="list-content">
+                            <li>
+                                <div class="capacity-content">
+                                    <div class="capacity-icon">
+                                        <span><i class="humanitarian-icon-Building"></i></span>
+                                        Hospitality
+                                    </div>
+                                    <div class="capacity-tag">
+                                        <a href="#">Buildings</a>
+                                        <a href="#">Hospitality</a>
+                                        <a href="#">landslide</a>
+                                        <a href="#">glacier</a>
+                                        <a href="#">hilside</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="capacity-content">
+                                    <div class="capacity-icon">
+                                        <span><i class="humanitarian-icon-Helipad"></i></span>
+                                        Hospitality
+                                    </div>
+                                    <div class="capacity-tag">
+                                        <a href="#">Buildings</a>
+                                        <a href="#">Hospitality</a>
+                                        <a href="#">landslide</a>
+                                        <a href="#">glacier</a>
+                                        <a href="#">hilside</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="capacity-content">
+                                    <div class="capacity-icon">
+                                        <span><i class="humanitarian-icon-Building"></i></span>
+                                        Hospitality
+                                    </div>
+                                    <div class="capacity-tag">
+                                        <a href="#">Buildings</a>
+                                        <a href="#">Hospitality</a>
+                                        <a href="#">landslide</a>
+                                        <a href="#">glacier</a>
+                                        <a href="#">hilside</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="capacity-content">
+                                    <div class="capacity-icon">
+                                        <span><i class="humanitarian-icon-Building"></i></span>
+                                        Hospitality
+                                    </div>
+                                    <div class="capacity-tag">
+                                        <a href="#">Buildings</a>
+                                        <a href="#">Hospitality</a>
+                                        <a href="#">landslide</a>
+                                        <a href="#">glacier</a>
+                                        <a href="#">hilside</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- rightSidebar end -->
+        </div>
+        <!-- mapsection end -->
+    </div>
+    <!-- bipad end -->
+    
+   
+        
+    <!-- js library start -->
+    <script src="{% static 'mappage/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+   <script src="{% static 'mappage/js/map.js' %}"></script>
+    <script src="{% static 'mappage/js/script.js' %}"></script>
+    
+</body>
+
+</html>

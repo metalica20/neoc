@@ -13,7 +13,7 @@ from django.apps import apps
 import io
 from rest_framework.parsers import JSONParser
 from django.contrib.gis.measure import D
-
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -38,7 +38,13 @@ class HazardResourceViewSet(views.APIView):
         #Hazard_object = Hazard.objects.get(title=hazard_title)
         #Hresources = Hazard_object.hazardresources_set.all()
         api_json = {}
-        resource_array=['Hospital','School']
+        
+        if(hazard_title=='flood'):
+            resource_array=['Hospital','School']
+        elif (hazard_title=='landslide'):
+            resource_array=['MarketCenter']
+
+
         resource_object=[]
         print(distance_parm)
         for resource in resource_array:
@@ -56,3 +62,9 @@ class HazardResourceViewSet(views.APIView):
         
         return Response(api_json)
 
+
+
+# HTML View
+
+class MapPage(TemplateView):
+    template_name= 'mapPage.html'
