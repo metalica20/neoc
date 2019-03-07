@@ -120,15 +120,15 @@
                         </div>
                     </div>
                     <!-- hazard-widget start -->
-                    <div class="sidebar-widget hazards-widget">
+                    <div class="sidebar-widget hazards-widget">resource
                         <div class="widget-title">
                             <h4>Hazards</h4>
                         </div>
                         <div class="iconwrap">
                             <ul>
-                                {% for hazard in hazards %}
+                                {% for hazard in hazards|slice:":3" %}
                                 <li class='{{hazard.layer_tbl}}_activeclass'>
-                                    <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
+                                    <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}"><span><i class="{{hazard.layer_icon}}"></i></span> {{hazard.layer_name}}</a>
                                 </li>
 
                                 {% endfor %}
@@ -137,33 +137,12 @@
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Heavy-rain"></i></span> Heavy rain</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Drought"></i></span>Draught</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Internally-displaced"></i></span>Displaced</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Snowfall"></i></span> snow fall</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Heatwave"></i></span>Heatwave</a>
-                                        </li>
+                                        {% for hazard in hazards|slice:"3:" %}
+                                            <li class='{{hazard.layer_tbl}}_activeclass'>
+                                                <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}"><span><i class="{{hazard.layer_icon}}"></i></span> {{hazard.layer_name}}</a>
+                                            </li>
+
+                                     {% endfor %}
                                     </ul>
                                 </li>
                             </ul>
@@ -176,9 +155,9 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
-                               {% for vulnerability in vulnerabilities%}
+                               {% for vulnerability in vulnerabilities|slice:":3" %}
                                 <li class='{{vulnerability.layer_tbl}}_activeclass'>
-                                    <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="humanitarian-icon-Helipad"></i></span> {{vulnerability.layer_name}}</a>
+                                    <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
 
                                 {% endfor %}
@@ -187,33 +166,12 @@
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                        {% for vulnerability in vulnerabilities|slice:"3:" %}
+                                        <li class='{{vulnerability.layer_tbl}}_activeclass'>
+                                            <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                         </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Heavy-rain"></i></span> Heavy rain</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Drought"></i></span>Draught</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Internally-displaced"></i></span>Displaced</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Snowfall"></i></span> snow fall</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-class="CheckBox" value="{{exposure.layer_tbl}}"icon-Heatwave"></i></span>Heatwave</a>
-                                        </li>
+        
+                                        {% endfor %}
                                     </ul>
                                 </li>
                             </ul>
@@ -225,45 +183,28 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
-                                {% for exposure in exposures %}
+                                {% for exposure in exposures|slice:":3" %}
 
                                 
                                 <li class='{{exposure.layer_tbl}}_activeclass'>
-                                    <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}"><span><i class="humanitarian-icon-Helipad"></i></span> {{ exposure.layer_name}}</a>
+                                    <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}"><span><i class="{{exposure.layer_icon}}"></i></span> {{ exposure.layer_name}}</a>
                                 </li>
                                 
                                 {% endfor %}
+
+
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                        {% for exposure in exposures|slice:"3:" %}
+
+                                        <li class='{{exposure.layer_tbl}}_activeclass'>
+                                            <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}"><span><i class="{{exposure.layer_icon}}"></i></span> {{ exposure.layer_name}}</a>
                                         </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Heavy-rain"></i></span> Heavy rain</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Drought"></i></span>Draught</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Internally-displaced"></i></span>Displaced</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Snowfall"></i></span> snow fall</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Heatwave"></i></span>Heatwave</a>
-                                        </li>
+
+                                        {% endfor %}
+
                                     </ul>
                                 </li>
                             </ul>
@@ -280,7 +221,7 @@
                             <li class='{{resource.layer_tbl}}_activeclass'>
                                 <div class="capacity-content">
                                     <div class="capacity-icon CheckBox" value="{{resource.layer_tbl}}">
-                                        <span><i class="humanitarian-icon-Building"></i></span>
+                                        <span><i class="{{resource.layer_icon}}"></i></span>
                                         {{resource.layer_name}}
                                     </div>
                                     <div class="capacity-tag">
@@ -532,7 +473,7 @@ $.get('http://localhost:8000/risk_profile/layer',function(data){
                         });
 
                     }
-                }).addTo(map);
+                });
                 window[data.results[i]['layerName']].on('data:loaded', function (data) {
                     window[data.results[i]['layerName']].setStyle(function style_District_unique(oneDistrict) {
 						//console.log("asdfsfsad");
