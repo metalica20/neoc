@@ -65,11 +65,18 @@ class LayerTable(models.Model):
 
 )
 
+    Layercat = (
+    ('hazard', 'Hazard'),
+    ('vulnerability', 'Vulnerability'),
+    ('resource', 'Capacity & Resources'),
+    ('exposure', 'Exposure'),
+
+)
 
     layer_name=models.CharField(max_length=250,null=True, blank=True, default=None)
     layer_tbl=models.CharField(max_length=250,null=True, blank=True, default=None)
     layer_icon=models.CharField(max_length=250,null=True, blank=True, default=None)
-    layer_cat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    layer_cat=models.CharField(max_length=250,choices=Layercat,null=True, blank=True, default=None)
     isGeoserver=models.BooleanField(null=True, blank=True, default=True)
     public=models.BooleanField(null=True, blank=True, default=True)
     visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
