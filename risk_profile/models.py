@@ -20,6 +20,22 @@ class School(models.Model):
     location=models.PointField(null=True, blank=True, default=None)
 
 
+class MarketCenter(models.Model):
+    fid=models.CharField(max_length=250,null=True, blank=True, default=None)
+    name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    district=models.CharField(max_length=250,null=True, blank=True, default=None)
+    vdc=models.CharField(max_length=250,null=True, blank=True, default=None)
+    ward=models.CharField(max_length=250,null=True, blank=True, default=None)
+    wholesale=models.CharField(max_length=250,null=True, blank=True, default=None)
+    commodity=models.CharField(max_length=250,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
+
+
+
+
+
 
 class LayerTable(models.Model):
     CHOICES = (
