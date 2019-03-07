@@ -33,9 +33,30 @@ class MarketCenter(models.Model):
     location=models.PointField(null=True, blank=True, default=None)
 
 
+class Bank(models.Model):
+    name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
+
+class Airport(models.Model):
+    name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
+
+class Bridge(models.Model):
+    name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
 
 
-
+class Policestation(models.Model):
+    name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
 
 class LayerTable(models.Model):
     CHOICES = (

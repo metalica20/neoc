@@ -40,7 +40,7 @@ class MarketCenterGeojsonViewSet(views.APIView):
         MarketCentergeojson=json.loads(serializers)
         json_d['data']=MarketCentergeojson
         json_d['is_goeserver']=False
-        return Response(json_d)
+        return Response(MarketCentergeojson)
 
 
 class LayerViewset(viewsets.ModelViewSet):
