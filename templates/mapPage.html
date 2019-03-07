@@ -173,7 +173,58 @@
                     <!-- sidebar-widget start -->
                     <div class="sidebar-widget hazards-widget">
                         <div class="widget-title">
-                            <h4>Hazards</h4>
+                            <h4>Vulnerability</h4>
+                        </div>
+                        <div class="iconwrap">
+                            <ul>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> HDI</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund collect</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
+                                    <ul class="dropicons-list">
+                                        <span class="close-cion">x</span>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Heavy-rain"></i></span> Heavy rain</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Drought"></i></span>Draught</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Internally-displaced"></i></span>Displaced</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Snowfall"></i></span> snow fall</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span><i class="humanitarian-icon-Heatwave"></i></span>Heatwave</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget hazards-widget">
+                        <div class="widget-title">
+                            <h4>Exposure</h4>
                         </div>
                         <div class="iconwrap">
                             <ul>
@@ -225,7 +276,7 @@
                     <!-- capacity-widget start -->
                     <div class="sidebar-widget capacity-widget">
                         <div class="widget-title">
-                            <h4>capacity & Branches</h4>
+                            <h4>capacity & Resources</h4>
                         </div>
                         <ul class="list-content">
                             <li>
@@ -305,9 +356,292 @@
     <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
-   <script src="{% static 'mappage/js/map.js' %}"></script>
     <script src="{% static 'mappage/js/script.js' %}"></script>
+    <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
+    <script src="{% static 'mappage/js/proj4.js' %}"></script>
+    <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
+
+
+    
+
     
 </body>
+
+<script>
+
+$(document).ready(function(){
+
+
+map = L.map('mapid',{
+         zoomControl:false
+       }).setView([28.125822061163415,83.74714577739562], 7);
+      map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
+      // map.scrollWheelZoom.disable();
+      map.options.maxBounds;  // remove the maxBounds object from the map options
+      //map.options.minZoom = 9;
+
+      map.createPane("polygonsPane").style.zIndex = 620;;
+      map.createPane("baseLayerPane").style.zIndex = 250;;
+      map.createPane("wmsPane").style.zIndex = 450;;
+      map.createPane("linesPane").style.zIndex = 620;;
+      map.createPane("pointsPane").style.zIndex = 800;;
+
+      //map.options.minZoom = 14;
+      //console.log("adfasfsadfasfasdfasfdasdfsafasdfsafasfasfsafsa");
+      var accessToken = "pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw";
+ var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token='+accessToken, {
+       attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+      var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        pane:"baseLayerPane"
+      });
+
+      googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3'],
+        pane:"baseLayerPane"
+      });
+      googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3'],
+        pane:"baseLayerPane"
+      });
+      googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3'],
+        pane:"baseLayerPane"
+      });
+      googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3'],
+        pane:"baseLayerPane"
+      });
+      
+
+
+//console.log(wmsLayers_print.length);
+// $.each(wmsLayers_print, function (i) {
+//   var url = 'http://139.59.67.104:8080/geoserver/wms';
+//
+//         L.tileLayer.betterWms(url, {
+//           layers: wmsLayers_print[i].url,
+//           transparent: true,
+//           format: 'image/png'
+//         }).addTo(map);
+
+resources_layer=[
+  'airports',
+  'bridges',
+  'education',
+  'financial_institutions',
+  'health_facilities',
+  'hotels',
+  'market_centers',
+  'medical_point',
+  'police_stations',
+  'banks',
+  'places',
+  'cities',
+  'place_of_worship',
+]
+
+resources_icon=[
+  'humanitarian-icon-Airport',
+  'humanitarian-icon-Bridge',
+  'humanitarian-icon-Education',
+  'humanitarian-icon-Financing',
+  'humanitarian-icon-Hospital',
+  'humanitarian-icon-Hotel',
+  'humanitarian-icon-IDP-refugee-camp',
+  'humanitarian-icon-Medical-supply',
+  'humanitarian-icon-Police-station',
+  'humanitarian-icon-Cash-transfer',
+  'humanitarian-icon-Rural',
+  'humanitarian-icon-Building',
+  'humanitarian-icon-Hindu-temple',
+
+];
+
+vulnerability_layer=[
+    'district_risk_score',
+    //'district_risk_rank',
+    'district_hdi',
+    'district_remotness',
+    'district_specificity',
+    'district_maxm_facilities',
+    'district_median_facilities',
+];
+
+
+for(var i=0;i<resources_layer.length;i++){
+  var url = 'http://139.59.67.104:8080/geoserver/wms';
+
+        window[resources_layer[i]]=L.tileLayer.betterWms(url, {
+            layers: "neoc:"+resources_layer[i],
+            transparent: true,
+            format: 'image/png',
+            pane:"wmsPane"
+          });
+
+}
+
+for(var i=0;i<vulnerability_layer.length;i++){
+  var url = 'http://139.59.67.104:8080/geoserver/wms';
+
+        window[vulnerability_layer[i]]=L.tileLayer.betterWms(url, {
+            layers: "neoc:"+vulnerability_layer[i],
+            transparent: true,
+            format: 'image/png',
+            pane:"wmsPane"
+          });
+
+}
+
+
+  //var wmsLayer = L.tileLayer.wms('https://geonepal.info/geoserver/ows?', {
+// window[wmsLayers_print[i].name] = L.tileLayer.wms('http://139.59.67.104:8080/geoserver/ows?', {
+//   layers: wmsLayers_print[i].url,
+//   transparent: true,
+//   format: 'image/png'
+//
+// }).addTo(map);
+
+//});
+
+
+
+
+      //var none = "";
+      var baseLayers = {
+        "OpenStreetMap": osm,
+        "Google Streets": googleStreets,
+        "Google Hybrid": googleHybrid,
+        "Google Satellite": googleSat,
+        "Google Terrain": googleTerrain//,
+        //"None": none
+      };
+
+      //map.addLayer(googleStreets);
+      layerswitcher = L.control.layers(baseLayers, {}, {collapsed: false}).addTo(map);
+
+      // map.on("load",function(){
+      //   console.log("map loaded fully");
+      // });
+
+      // setTimeout(function(){
+      //     googleStreets.sendToBack();
+      //  }, 3000);
+
+
+    //map panes
+
+        //cat map end
+
+
+
+        info = L.control().setPosition('bottomleft');
+
+        info.onAdd = function (map) {
+              this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+
+              return this._div;
+          }
+
+          info.addTo(map);
+          //console.log($('.sidebarwrapper').css('display'));
+
+      $('.info.leaflet-control').css('margin-left','325px');
+      $(".arrow.arrow-left").on("click",function(){
+        console.log($('.sidebarwrapper').css('display'));
+        if($('.leftSidebar').hasClass("resize-sidebar")){
+
+          $('.info.leaflet-control').css('margin-left','10px');
+        }else{
+          //console.log($('.sidebarwrapper').css('display'));
+          $('.info.leaflet-control').css('margin-left','325px');
+        }
+      });
+
+
+
+
+        // request layer data
+        $(".CheckBox").on('click',function(){
+
+          layerName=$(this).attr('value');
+          console.log(layerName);
+          var layerClicked=window[layerName];
+          console.log(layerClicked);
+          if(map.hasLayer(layerClicked)){
+            console.log(layerClicked+" clicked");
+            map.removeLayer(layerClicked);
+            $("."+layerName+"_activeclass").removeClass("active");
+
+            $('#'+layerName+'_legend').remove();
+          }else{
+            console.log(layerClicked+" ntclicked");
+            map.addLayer(layerClicked);
+                $("."+layerName+"_activeclass").addClass("active");
+                info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="http://139.59.67.104:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&"/></div>';
+
+
+
+            //map.BringToFront();
+          }
+
+        });
+
+
+// method that we will use to update the control based on feature properties passed
+
+        //end
+
+
+        var filter = new L.Filter.GmlObjectID(1);  
+  
+  var filter1 = new L.Filter.EQ('a2', 'Basic');
+  
+  filter1.toGml();
+  console.log(filter1);
+  
+
+
+    var wfst = new L.WFST(
+		{
+		  url: 'http://139.59.67.104:8080/geoserver/ows',
+		  typeNS: 'Naxa',
+		  typeName: 'educatinal_institutions',
+		  crs: L.CRS.EPSG4326,
+		  geometryField: 'the_geom',
+		  filter: filter1,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
+		  style: {
+			color: 'blue',
+			weight: 2
+		  }
+		}
+	
+	).addTo(map).on('load', function (feature, layer) {
+		console.log(feature);
+		map.fitBounds(wfst.getBounds());    
+	});
+
+	
+	var popup = new L.Popup();
+	wfst.on('click', function(e){
+		console.log(e);
+	  popup
+		.setLatLng(e.latlng)
+		.setContent('You clicked on boundary layer at '+ e.latlng.toString())
+		.openOn(map);
+	});
+
+
+})
+
+
+
+
+</script>
 
 </html>
