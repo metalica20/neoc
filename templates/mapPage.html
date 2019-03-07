@@ -127,8 +127,8 @@
                         <div class="iconwrap">
                             <ul>
                                 {% for hazard in hazards %}
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
+                                <li class='{{hazard.layer_tbl}}_activeclass'>
+                                    <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
                                 </li>
 
                                 {% endfor %}
@@ -177,8 +177,8 @@
                         <div class="iconwrap">
                             <ul>
                                {% for vulnerability in vulnerabilities%}
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> {{vulnerability.layer_name}}</a>
+                                <li class='{{vulnerability.layer_tbl}}_activeclass'>
+                                    <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="humanitarian-icon-Helipad"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
 
                                 {% endfor %}
@@ -212,7 +212,7 @@
                                             <a href="#"><span><i class="humanitarian-icon-Water-source"></i></span>Water resouce</a>
                                         </li>
                                         <li>
-                                            <a href="#"><span><i class="humanitarian-icon-Heatwave"></i></span>Heatwave</a>
+                                            <a href="#"><span><i class="humanitarian-class="CheckBox" value="{{exposure.layer_tbl}}"icon-Heatwave"></i></span>Heatwave</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -228,8 +228,8 @@
                                 {% for exposure in exposures %}
 
                                 
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> {{ exposure.layer_name}}</a>
+                                <li class='{{exposure.layer_tbl}}_activeclass'>
+                                    <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}"><span><i class="humanitarian-icon-Helipad"></i></span> {{ exposure.layer_name}}</a>
                                 </li>
                                 
                                 {% endfor %}
@@ -275,11 +275,11 @@
                             <h4>capacity & Resources</h4>
                         </div>
                         <ul class="list-content">
-                            {% for resource in resources%}
+                            {% for resource in resources %}
                             
-                            <li>
+                            <li class='{{resource.layer_tbl}}_activeclass'>
                                 <div class="capacity-content">
-                                    <div class="capacity-icon">
+                                    <div class="capacity-icon CheckBox" value="{{resource.layer_tbl}}">
                                         <span><i class="humanitarian-icon-Building"></i></span>
                                         {{resource.layer_name}}
                                     </div>
@@ -317,6 +317,10 @@
     <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
     <script src="{% static 'mappage/js/proj4.js' %}"></script>
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
+<!--     <script src="{% static 'mappage/js/leaflet.ajax.min.js' %}"></script>
+ -->  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
 
 
     
@@ -430,30 +434,136 @@ vulnerability_layer=[
     'district_median_facilities',
 ];
 
+$.get("http://localhost:8000/risk_profile/Hospital",function(data){
+    console.log(data)
+})
 
-for(var i=0;i<resources_layer.length;i++){
-  var url = 'http://139.59.67.104:8080/geoserver/wms';
+$.get('http://localhost:8000/risk_profile/layer',function(data){
+    console.log("data",data);
+    
+    for(var i=0;i<data.results.length;i++){
 
-        window[resources_layer[i]]=L.tileLayer.betterWms(url, {
-            layers: "neoc:"+resources_layer[i],
-            transparent: true,
-            format: 'image/png',
-            pane:"wmsPane"
+        if( data.results[i]['isGeoserver']== true) {
+            var url = 'http://139.59.67.104:8080/geoserver/wms';
+
+            window[data.results[i]['layerName']]=L.tileLayer.betterWms(url, {
+                layers: "neoc:"+data.results[i]['layerName'],
+                transparent: true,
+                format: 'image/png',
+                pane:"wmsPane"
           });
 
+
+        }
+
+        else{
+            window[data.results[i]['layerName']] = new L.geoJson.ajax("http://localhost:8000/risk_profile/Hospital", {
+                
+                pointToLayer: function(feature,Latlng)
+                    {
+
+                   /*  if(marker_type=='icon'){
+
+                        //  console.log(style.icon);
+
+                        icons=L.icon({
+                        iconSize: [26, 33],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [2, -24],
+
+                        iconUrl:style.icon
+                        });
+                        var marker = L.marker(Latlng,{icon:icons});
+
+
+                    }
+                    else{ */
+
+
+
+                       
+                        var marker = L.circleMarker(Latlng);
+                        //for(data in style){
+
+                    /* } */
+
+
+
+                    //	}
+
+                    return marker;
+
+                    },
+
+                                
+                    onEachFeature: function (feature, layer) {
+                        
+						var popUpContent = "";
+                        popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
+                        console.log(feature);
+						for (data in layer.feature.properties) {
+                            
+                            //var dataspaced = underscoreToSpace(data);
+							//console.log(data);
+                            popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
+							//console.log(popUpContent);
+					   }
+                        popUpContent += '</table>';
+						//console.log(popUpContent);
+                        //layer.bindLabel(feature.properties['DISTRICT'], { 'noHide': true, id:"labelDiv" });
+
+                        
+
+                        layer.bindPopup(L.popup({
+                            closeOnClick: true,
+                            closeButton: true,
+                            keepInView: true,
+                            autoPan: true,
+                            maxHeight: 200,
+                            minWidth: 250
+                        }).setContent(popUpContent));
+
+                        layer.on("mouseover", function (e) {
+                                 e.target.setStyle({weight:2});
+                                 $("#labelDiv").html("<table class='popuptable'><tr><td><h5><b>Layer:</b> District</h5></td></tr><tr><td><h5><b>Name:</b> "+feature.properties['DISTRICT']+"</h5></td><tr></table>");
+                        }).on("mouseout", function(e){
+                                 e.target.setStyle({weight:1});
+                                 $("#labelDiv").html("");
+                        });
+
+                    }
+                }).addTo(map);
+                window[data.results[i]['layerName']].on('data:loaded', function (data) {
+                    window[data.results[i]['layerName']].setStyle(function style_District_unique(oneDistrict) {
+						//console.log("asdfsfsad");
+                        return {
+                            fillColor: randomColor(),
+                            weight: 1,
+                            opacity: 1,
+                            color: 'black',
+                            dashArray: '3',
+                            fillOpacity: 0.0
+                        };
+                    });
+                    
+                     
+                });
+
+
+
+
+
+
+        }
+         
 }
+    
 
-for(var i=0;i<vulnerability_layer.length;i++){
-  var url = 'http://139.59.67.104:8080/geoserver/wms';
+});
 
-        window[vulnerability_layer[i]]=L.tileLayer.betterWms(url, {
-            layers: "neoc:"+vulnerability_layer[i],
-            transparent: true,
-            format: 'image/png',
-            pane:"wmsPane"
-          });
 
-}
+
+
 
 
   //var wmsLayer = L.tileLayer.wms('https://geonepal.info/geoserver/ows?', {
@@ -528,7 +638,9 @@ for(var i=0;i<vulnerability_layer.length;i++){
 
           layerName=$(this).attr('value');
           console.log(layerName);
-          var layerClicked=window[layerName];
+          //var layerClicked=window[''+layerName];
+          var layerClicked=eval(layerName);
+          
           console.log(layerClicked);
           if(map.hasLayer(layerClicked)){
             console.log(layerClicked+" clicked");
