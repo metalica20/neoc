@@ -28,6 +28,7 @@
 
 <body>
     <!-- bipad start -->
+    
     <div class="bipadContent">
 
         <!-- mapsection start -->
@@ -125,15 +126,13 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
+                                {% for hazard in hazards %}
                                 <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                    <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
                                 </li>
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-House"></i></span>Earthquake</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Snow-avalanche"></i></span>Landslide</a>
-                                </li>
+
+                                {% endfor %}
+                                
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
@@ -177,15 +176,13 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
+                               {% for vulnerability in vulnerabilities%}
                                 <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> HDI</a>
+                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund collect</a>
-                                </li>
+
+                                {% endfor %}
+                               
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
@@ -228,15 +225,14 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
+                                {% for exposure in exposures %}
+
+                                
                                 <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> HDI</a>
+                                    <a href="#"><span><i class="humanitarian-icon-Helipad"></i></span> {{ exposure.layer_name}}</a>
                                 </li>
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span><i class="humanitarian-icon-Fund"></i></span>Fund collect</a>
-                                </li>
+                                
+                                {% endfor %}
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
@@ -279,11 +275,13 @@
                             <h4>capacity & Resources</h4>
                         </div>
                         <ul class="list-content">
+                            {% for resource in resources%}
+                            
                             <li>
                                 <div class="capacity-content">
                                     <div class="capacity-icon">
                                         <span><i class="humanitarian-icon-Building"></i></span>
-                                        Hospitality
+                                        {{resource.layer_name}}
                                     </div>
                                     <div class="capacity-tag">
                                         <a href="#">Buildings</a>
@@ -294,51 +292,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="capacity-content">
-                                    <div class="capacity-icon">
-                                        <span><i class="humanitarian-icon-Helipad"></i></span>
-                                        Hospitality
-                                    </div>
-                                    <div class="capacity-tag">
-                                        <a href="#">Buildings</a>
-                                        <a href="#">Hospitality</a>
-                                        <a href="#">landslide</a>
-                                        <a href="#">glacier</a>
-                                        <a href="#">hilside</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="capacity-content">
-                                    <div class="capacity-icon">
-                                        <span><i class="humanitarian-icon-Building"></i></span>
-                                        Hospitality
-                                    </div>
-                                    <div class="capacity-tag">
-                                        <a href="#">Buildings</a>
-                                        <a href="#">Hospitality</a>
-                                        <a href="#">landslide</a>
-                                        <a href="#">glacier</a>
-                                        <a href="#">hilside</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="capacity-content">
-                                    <div class="capacity-icon">
-                                        <span><i class="humanitarian-icon-Building"></i></span>
-                                        Hospitality
-                                    </div>
-                                    <div class="capacity-tag">
-                                        <a href="#">Buildings</a>
-                                        <a href="#">Hospitality</a>
-                                        <a href="#">landslide</a>
-                                        <a href="#">glacier</a>
-                                        <a href="#">hilside</a>
-                                    </div>
-                                </div>
-                            </li>
+
+                            {% endfor %}
+                            
+                            
                         </ul>
                     </div>
                 </div>

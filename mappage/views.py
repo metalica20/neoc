@@ -14,6 +14,9 @@ import io
 from rest_framework.parsers import JSONParser
 from django.contrib.gis.measure import D
 from django.views.generic import TemplateView
+from risk_profile.models import LayerTable
+
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -68,3 +71,13 @@ class HazardResourceViewSet(views.APIView):
 
 class MapPage(TemplateView):
     template_name= 'mapPage.html'
+    def get(self, request, *args, **kwargs):
+        hazard= LayerTable.objects.filter(layer_cat='hazard')
+        vul= LayerTable.objects.filter(layer_cat='vulnerability')
+        resource= LayerTable.objects.filter(layer_cat='resource')
+        exposure= LayerTable.objects.filter(layer_cat='exposure')
+
+
+
+
+        return render(request, 'mapPage.html', {'hazards': hazard,'resources':resource,'vulnerabilities':vul,'exposures':exposure})
