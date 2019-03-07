@@ -46,6 +46,24 @@ class LayerTable(models.Model):
     ('light', 'Lightening'),
     ('lights', 'Lightenings'),
 )
+    Visibility = (
+    ('national', 'National'),
+    ('local', 'Local Government'),
+
+)
+    Layertype = (
+    ('vector', 'Vector'),
+    ('raster', 'Raster'),
+
+)
+
+    Uploadtype = (
+    ('csv', 'Csv'),
+    ('shapefile', 'Shapefile'),
+    ('geojson', 'Geojson'),
+    ('geoserver', 'Geoserver'),
+
+)
 
 
     layer_name=models.CharField(max_length=250,null=True, blank=True, default=None)
@@ -54,6 +72,7 @@ class LayerTable(models.Model):
     layer_cat=models.CharField(max_length=250,null=True, blank=True, default=None)
     isGeoserver=models.BooleanField(null=True, blank=True, default=True)
     public=models.BooleanField(null=True, blank=True, default=True)
-    visibility_level=models.CharField(max_length=250,null=True, blank=True, default=None)
-    layer_type=models.CharField(max_length=250,null=True, blank=True, default=None)
-    hazard=models.CharField(max_length=35, choices=CHOICES)
+    visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
+    layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
+    hazard=models.CharField(max_length=35, choices=CHOICES,null=True, blank=True, default=None)
+    upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)

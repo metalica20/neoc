@@ -1,6 +1,6 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter
-from .serializers import HospitalSerializer,SchoolSerializer
+from .models import Hospital,School,MarketCenter,LayerTable
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -41,3 +41,8 @@ class MarketCenterGeojsonViewSet(views.APIView):
         json_d['data']=MarketCentergeojson
         json_d['is_goeserver']=False
         return Response(json_d)
+
+
+class LayerViewset(viewsets.ModelViewSet):
+    serializer_class=LayerTableSerializer
+    queryset=LayerTable.objects.all()
