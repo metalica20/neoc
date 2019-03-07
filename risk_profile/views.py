@@ -29,7 +29,7 @@ class HospitalGeojsonViewSet(views.APIView):
         hospitalgeojson=json.loads(serializers)
         json_d['data']=hospitalgeojson
         json_d['is_goeserver']=False
-        return Response(json_d)
+        return Response(hospitalgeojson)
 
 class MarketCenterGeojsonViewSet(views.APIView):
     permission_classes=(IsAuthenticated,)
