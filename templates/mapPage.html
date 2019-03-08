@@ -125,8 +125,8 @@
                             <h4>Hazards</h4>
                         </div>
                         <div class="iconwrap">
-                            <ul>
-                                {% for hazard in hazards|slice:":3" %}
+                            <ul->
+                                {% for hazard in hazards|slice:":2" %}
                                 <li class='{{hazard.layer_tbl}}_activeclass'>
                                     <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}"><span><i class="{{hazard.layer_icon}}"></i></span> {{hazard.layer_name}}</a>
                                 </li>
@@ -137,7 +137,7 @@
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
-                                        {% for hazard in hazards|slice:"3:" %}
+                                        {% for hazard in hazards|slice:"2:" %}
                                             <li class='{{hazard.layer_tbl}}_activeclass'>
                                                 <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}"><span><i class="{{hazard.layer_icon}}"></i></span> {{hazard.layer_name}}</a>
                                             </li>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
-                               {% for vulnerability in vulnerabilities|slice:":3" %}
+                               {% for vulnerability in vulnerabilities|slice:":2" %}
                                 <li class='{{vulnerability.layer_tbl}}_activeclass'>
                                     <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
@@ -166,7 +166,7 @@
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
-                                        {% for vulnerability in vulnerabilities|slice:"3:" %}
+                                        {% for vulnerability in vulnerabilities|slice:"2:" %}
                                         <li class='{{vulnerability.layer_tbl}}_activeclass'>
                                             <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                         </li>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
-                                {% for exposure in exposures|slice:":3" %}
+                                {% for exposure in exposures|slice:":2" %}
 
                                 
                                 <li class='{{exposure.layer_tbl}}_activeclass'>
@@ -197,7 +197,7 @@
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
-                                        {% for exposure in exposures|slice:"3:" %}
+                                        {% for exposure in exposures|slice:"2:" %}
 
                                         <li class='{{exposure.layer_tbl}}_activeclass'>
                                             <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}"><span><i class="{{exposure.layer_icon}}"></i></span> {{ exposure.layer_name}}</a>
@@ -270,13 +270,18 @@
 </body>
 
 <script>
+    
+var base_url= 'http://139.59.67.104:8004'
+var base_url = 'http://localhost:8000'
 
 $(document).ready(function(){
 
 
+    
+
 map = L.map('mapid',{
          zoomControl:false
-       }).setView([28.125822061163415,83.74714577739562], 7);
+       }).setView([28.410728397237914,84.4024658203125], 7);
       map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
       // map.scrollWheelZoom.disable();
       map.options.maxBounds;  // remove the maxBounds object from the map options
@@ -375,11 +380,9 @@ vulnerability_layer=[
     'district_median_facilities',
 ];
 
-$.get("http://localhost:8000/risk_profile/Hospital",function(data){
-    console.log(data)
-})
 
-$.get('http://localhost:8000/risk_profile/layer',function(data){
+
+$.get(base_url+'/risk_profile/layer',function(data){
     console.log("data",data);
     
     for(var i=0;i<data.results.length;i++){
@@ -398,11 +401,18 @@ $.get('http://localhost:8000/risk_profile/layer',function(data){
         }
 
         else{
-            window[data.results[i]['layerName']] = new L.geoJson.ajax("http://localhost:8000/risk_profile/Hospital", {
+            var layer_icon= data.results[i]['layerIcon']
+            window[data.results[i]['layerName']] = new L.geoJson.ajax(base_url+"/risk_profile/"+ data.results[i]['layerTbl'], {
                 
                 pointToLayer: function(feature,Latlng)
                     {
-
+                        
+                        var divicon = L.divIcon({
+                            className: layer_icon,
+                            //iconSize: [80, 30],
+                            //html: '<span class='humanitarian-icon-Rural'></span>'
+                        })
+                   
                    /*  if(marker_type=='icon'){
 
                         //  console.log(style.icon);
@@ -421,9 +431,10 @@ $.get('http://localhost:8000/risk_profile/layer',function(data){
                     else{ */
 
 
+                        var marker = L.marker(Latlng,{icon:divicon});
 
                        
-                        var marker = L.circleMarker(Latlng);
+                        //var marker = L.circleMarker(Latlng);
                         //for(data in style){
 
                     /* } */
@@ -631,9 +642,9 @@ $.get('http://localhost:8000/risk_profile/layer',function(data){
 		  }
 		}
 	
-	).addTo(map).on('load', function (feature, layer) {
+	).on('load', function (feature, layer) {
 		console.log(feature);
-		map.fitBounds(wfst.getBounds());    
+		//map.fitBounds(wfst.getBounds());    
 	});
 
 	

@@ -30,11 +30,11 @@ class HazardResourceViewSet(views.APIView):
         try:
             distance_parm= self.kwargs['distance']
         except:
-            distance_parm=3000
+            distance_parm=5000
         try: 
             count= int(self.kwargs['count'])
         except:
-            count=100
+            count=20
         
         user_location =GEOSGeometry('POINT({} {})'.format(longitude,latitude), srid=4326)
 
@@ -43,9 +43,14 @@ class HazardResourceViewSet(views.APIView):
         api_json = {}
         
         if(hazard_title=='flood'):
-            resource_array=['Hospital','School']
+            resource_array=['Hospital','School','Policestation','Bridge']
         elif (hazard_title=='landslide'):
-            resource_array=['MarketCenter']
+            resource_array=['Policestation','Hospital','School']
+        elif (hazard_title=='fire'):
+            resource_array=['Policestation','Hospital','School','MarketCenter']
+        elif (hazard_title=='earthquake'):
+            resource_array=['Policestation','Hospital','School']
+           
 
 
         resource_object=[]
