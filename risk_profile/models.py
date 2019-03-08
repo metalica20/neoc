@@ -122,8 +122,12 @@ class LayerTable(models.Model):
     public=models.BooleanField(null=True, blank=True, default=True)
     visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
-    input=models.CharField(max_length=35,null=True, blank=True, default=None)
+    sub_category=models.CharField(max_length=500,null=True, blank=True, default=None)
     upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
+
 
     def __str__(self):
         return self.layer_name
+
+    def list_string(self):
+        return sel.sub_category.split(',')    
