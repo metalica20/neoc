@@ -4,6 +4,14 @@ from .models import Alert
 
 
 class AlertFilter(django_filters.FilterSet):
+    started_on__gt = django_filters.IsoDateTimeFilter(
+        field_name='started_on',
+        lookup_expr='gte',
+    )
+    started_on__lt = django_filters.IsoDateTimeFilter(
+        field_name='started_on',
+        lookup_expr='lte',
+    )
     created_on__gt = django_filters.IsoDateTimeFilter(
         field_name='created_on',
         lookup_expr='gte',

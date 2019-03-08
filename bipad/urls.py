@@ -27,7 +27,7 @@ from organization.views import (
     ProjectViewSet,
 )
 from loss.views import (
-    SimpleLossViewSet,
+    LossViewSet,
     InfrastructureTypeViewSet,
     LivestockTypeViewSet,
 )
@@ -69,7 +69,7 @@ router.register(r'organization', OrganizationViewSet,
                 base_name='organization')
 router.register(r'project', ProjectViewSet,
                 base_name='project')
-router.register(r'loss', SimpleLossViewSet,
+router.register(r'loss', LossViewSet,
                 base_name='loss')
 router.register(r'infrastructure-type', InfrastructureTypeViewSet,
                 base_name='infrastructure_type')
@@ -100,6 +100,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
+    path('silk/', include('silk.urls', namespace='silk')),
     re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(),
             name='token_obtain_pair'),
     re_path(get_api_path(r'token/refresh/$'),

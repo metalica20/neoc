@@ -19,13 +19,37 @@ class IncidentViewSet(FlexFieldsModelViewSet):
     search_fields = ('title', )
     queryset = Incident.objects.filter(verified=True)\
         .prefetch_related(Prefetch('loss', queryset=Loss.with_stat.all()))
-    permit_list_expands = ['event', 'hazard', 'wards', 'loss']
+    permit_list_expands = [
+        'event',
+        'hazard',
+        'wards',
+        'loss',
+        'loss.peoples',
+        'loss.families',
+        'loss.livestocks',
+        'loss.infrastructures'
+    ]
 
     def get_queryset(self):
         queryset = Incident.objects.filter(verified=True)
+        loss_queryset = Loss.with_stat.all()
+        if is_expanded(self.request, 'event'):
+            queryset = queryset.select_related('event')
+        if is_expanded(self.request, 'hazard'):
+            queryset = queryset.select_related('hazard')
+        if is_expanded(self.request, 'wards'):
+            queryset = queryset.prefetch_related('wards')
+        if is_expanded(self.request, 'loss.peoples'):
+            loss_queryset = loss_queryset.prefetch_related('peoples')
+        if is_expanded(self.request, 'loss.families'):
+            loss_queryset = loss_queryset.prefetch_related('families')
+        if is_expanded(self.request, 'loss.livestocks'):
+            loss_queryset = loss_queryset.prefetch_related('livestocks')
+        if is_expanded(self.request, 'loss.infrastructures'):
+            loss_queryset = loss_queryset.prefetch_related('infrastructures')
         if is_expanded(self.request, 'loss'):
-            queryset = queryset .prefetch_related(Prefetch(
-                'loss', queryset=Loss.with_stat.all())
+            queryset = queryset.prefetch_related(Prefetch(
+                'loss', loss_queryset)
             )
 
         return queryset

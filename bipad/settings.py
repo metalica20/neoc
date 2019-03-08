@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'autofixture',
     'corsheaders',
+    'silk',
 
     'django_celery_beat',
     'rest_framework',
@@ -57,9 +58,11 @@ INSTALLED_APPS = [
     'resources',
     'inventory',
     'realtime',
+    'misc',
 ]
 
 MIDDLEWARE = [
+    'silk.middleware.SilkyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -71,6 +74,26 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bipad.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'bipad.wsgi.application'
 
@@ -138,27 +161,6 @@ REST_FRAMEWORK = {
 }
 
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
-                'django.template.context_processors.request',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -196,3 +198,15 @@ CORS_URLS_REGEX = r'^/api/.*$'
 JET_DEFAULT_THEME = 'light-gray'
 JET_SIDE_MENU_COMPACT = True
 JET_INDEX_DASHBOARD = 'bipad.dashboard.IndexDashboard'
+
+# DJANGO SILK
+SILKY_META = True
+SILKY_AUTHENTICATION = True
+SILKY_AUTHORISATION = True
+
+
+def SILKY_PERMISSIONS(user): return user.is_superuser
+
+
+SILKY_MAX_RESPONSE_BODY_SIZE = 1024*100  # bytes
+SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '0'))

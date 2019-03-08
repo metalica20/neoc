@@ -31,7 +31,8 @@ def fetch_incident():
             loss = Loss.objects.create()
 
         incident_type = map_incident_type(data['Incident Type'], meta_data)
-        title = get_address(float(data['Incident Latitude']), float(data['Incident Longitude']), incident_type)
+        title = get_address(float(data['Incident Latitude']), float(
+            data['Incident Longitude']), incident_type)
         hazards = Hazard.objects.values('id', 'title')
         for hazard in hazards:
             if hazard['title'] == incident_type:
@@ -52,6 +53,7 @@ def fetch_incident():
                 id=data['Incident ID'],
                 title=title,
                 incident_on=data['Incident Date'],
+                reported_on=data['Reported Datetime'],
                 loss=loss,
                 source_id=source,
                 point=point,
@@ -61,61 +63,61 @@ def fetch_incident():
         except:
             continue
 
-        if data['Death Male'] != '0':
+        if int(data['Death Male']) > 0:
             People.objects.create(
                 loss=loss,
                 status="dead",
                 gender="male",
                 count=data['Death Male']
             )
-        if data['Death Female'] != '0':
+        if int(data['Death Female']) > 0:
             People.objects.create(
                 loss=loss,
                 status="dead",
                 gender="female",
                 count=data['Death Female']
             )
-        if data['Death Unknown'] != '0':
+        if int(data['Death Unknown']) > 0:
             People.objects.create(
                 loss=loss,
                 status="dead",
                 count=data['Death Unknown']
             )
-        if data['Injured Male'] != '0':
+        if int(data['Injured Male']) > 0:
             People.objects.create(
                 loss=loss,
                 status="injured",
                 gender="male",
                 count=data['Injured Male']
             )
-        if data['Injured Female'] != '0':
+        if int(data['Injured Female']) > 0:
             People.objects.create(
                 loss=loss,
                 status="injured",
                 gender="female",
                 count=data['Injured Female']
             )
-        if data['Missing People'] != '0':
+        if int(data['Missing People']) > 0:
             People.objects.create(
                 loss=loss,
                 status="missing",
-                count=data['Injured Missing']
+                count=data['Missing People']
             )
 
-        if data['Affected Family'] != '0':
+        if int(data['Affected Family']) > 0:
             Family.objects.create(
                 loss=loss,
                 status="affected",
                 count=data['Affected Family']
             )
-        if data['Displaced Family'] != '0':
+        if int(data['Displaced Family']) > 0:
             Family.objects.create(
                 loss=loss,
                 status="relocated",
                 count=data['Displaced Family']
             )
 
-        if data['Animal Loss'] != '0':
+        if int(data['Animal Loss']) > 0:
             Livestock.objects.create(
                 loss=loss,
                 type_id='1',
@@ -123,14 +125,14 @@ def fetch_incident():
                 count=data['Animal Loss']
             )
 
-        if data['Complete damage (House)'] != '0':
+        if int(data['Complete damage (House)']) > 0:
             Infrastructure.objects.create(
                 loss=loss,
                 type_id='1',
                 status="destroyed",
                 count=data['Complete damage (House)']
             )
-        if data['Partial damage (House)'] != '0':
+        if int(data['Partial damage (House)']) > 0:
             Infrastructure.objects.create(
                 loss=loss,
                 type_id='1',
