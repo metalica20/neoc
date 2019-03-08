@@ -118,7 +118,11 @@ urlpatterns = [
             TokenVerifyView.as_view(), name='token_verify'),
     re_path(get_api_path(''), include(router.urls)),
     path('risk_profile/', include('risk_profile.urls')),
+    path('risk_profile/', include('mappage.urls')),
 ] + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
+) +static.static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
 )
