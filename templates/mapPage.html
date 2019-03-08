@@ -646,6 +646,53 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 		//map.fitBounds(wfst.getBounds());    
 	});
 
+///
+
+const wfstPointOptions = {
+    crs: L.CRS.EPSG4326,
+  showExisting: true,
+  geometryField: 'the_geom',
+  url: 'http://139.59.67.104:8080/geoserver/ows',
+  typeNS: 'Naxa',
+  typeName: 'educatinal_institutions',
+  filter: filter1,
+  //maxFeatures: 90,
+  opacity: 1,
+  style: function(layer) {
+    // you can use if statemt etc
+    return {
+      color: 'blue',
+      weight: 1
+    }
+  },
+};
+const wfstPoint = new L.WFST(wfstPointOptions, new L.Format.GeoJSON({
+  crs: L.CRS.EPSG4326,
+  pointToLayer(geoJsonPoint, latlng) {
+    /* const layer = new L.CircleMarker(latlng, {
+      radius: 10,
+    }); */
+     
+    var divicon = L.divIcon({
+                className: 'humanitarian-icon-Education',
+    });
+                           
+    var marker = L.marker(latlng,{icon:divicon});
+
+                       
+
+
+    return marker;
+  },
+}));
+wfstPoint.addTo(map);
+
+//
+
+
+
+
+
 	
 	var popup = new L.Popup();
 	wfst.on('click', function(e){

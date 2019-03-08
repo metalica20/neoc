@@ -8,4 +8,6 @@ class HospitalSerializer(serializers.Serializer):
     lat= serializers.CharField(max_length=200)
     long= serializers.CharField(max_length=200)
     def get_distance(self,obj):
-        return ''.join([x for x in str(obj.distance) if True]).strip()
+        a=float(''.join([x for x in str(obj.distance) if x != 'm']).strip())/1000
+
+        return str("{0:.3f}".format(a)) +'km'

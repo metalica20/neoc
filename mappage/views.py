@@ -56,7 +56,8 @@ class HazardResourceViewSet(views.APIView):
         resource_object=[]
         print(distance_parm)
         for resource in resource_array:
-            model_x= apps.get_model('risk_profile', resource)            
+            model_x= apps.get_model('risk_profile', resource)
+            print("model_x",model_x)            
             resource_queryset=model_x.objects \
             .filter(location__distance_lte=(user_location,D(km=distance_parm))) \
             .annotate(distance=Distance('location',user_location)) \
