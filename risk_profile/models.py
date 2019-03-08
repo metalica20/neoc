@@ -86,14 +86,7 @@ class Education(models.Model):
         return self.name
 
 class LayerTable(models.Model):
-    CHOICES = (
-    ('flood', 'Flood'),
-    ('landslide', 'Landslide'),
-    ('fire', 'Fire'),
-    ('earthquake', 'Earthquake'),
-    ('light', 'Lightening'),
-    ('lights', 'Lightenings'),
-)
+
     Visibility = (
     ('national', 'National'),
     ('local', 'Local Government'),
@@ -129,5 +122,8 @@ class LayerTable(models.Model):
     public=models.BooleanField(null=True, blank=True, default=True)
     visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
-    hazard=models.CharField(max_length=35, choices=CHOICES,null=True, blank=True, default=None)
+    input=models.CharField(max_length=35,null=True, blank=True, default=None)
     upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.layer_name
