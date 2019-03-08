@@ -130,4 +130,8 @@ class LayerTable(models.Model):
         return self.layer_name
 
     def list_string(self):
-        return sel.sub_category.split(',')    
+        try:
+            aa=  self.sub_category.split(',')
+        except:
+            aa=[] 
+        return aa   
