@@ -13,6 +13,8 @@ class Resource(PolymorphicModel):
         Ward,
         related_name='resources',
         on_delete=models.PROTECT,
+        null=True,
+        blank=True,
     )
 
     detail = JSONField(null=True, blank=True, default=None)
@@ -26,7 +28,9 @@ class Education(Resource):
 
 
 class Health(Resource):
-    bed_count = models.PositiveIntegerField()
+    bed_count = models.PositiveIntegerField(null=True, blank=True, default=None)
+    type = models.CharField(max_length=255,null=True, blank=True, default=None)
+    cbs_code = models.IntegerField(null=True, blank=True, default=None)
 
 
 class Finance(Resource):
