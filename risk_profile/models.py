@@ -13,6 +13,9 @@ class Hospital(models.Model):
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.name
+
 class School(models.Model):
     name=models.CharField(max_length=250)
     lat=models.CharField(max_length=250)
@@ -32,6 +35,9 @@ class MarketCenter(models.Model):
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.name
+
 
 class Bank(models.Model):
     name=models.CharField(max_length=250,null=True, blank=True, default=None)
@@ -39,17 +45,26 @@ class Bank(models.Model):
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.name
+
 class Airport(models.Model):
     name=models.CharField(max_length=250,null=True, blank=True, default=None)
     lat=models.CharField(max_length=250,null=True, blank=True, default=None)
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.name
+
 class Bridge(models.Model):
     name=models.CharField(max_length=250,null=True, blank=True, default=None)
     lat=models.CharField(max_length=250,null=True, blank=True, default=None)
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.name
 
 
 class Policestation(models.Model):
@@ -58,15 +73,20 @@ class Policestation(models.Model):
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.name
+
+class Education(models.Model):
+    name=models.CharField(max_length=550,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.name
+
 class LayerTable(models.Model):
-    CHOICES = (
-    ('flood', 'Flood'),
-    ('landslide', 'Landslide'),
-    ('fire', 'Fire'),
-    ('earthquake', 'Earthquake'),
-    ('light', 'Lightening'),
-    ('lights', 'Lightenings'),
-)
+
     Visibility = (
     ('national', 'National'),
     ('local', 'Local Government'),
@@ -102,5 +122,8 @@ class LayerTable(models.Model):
     public=models.BooleanField(null=True, blank=True, default=True)
     visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
-    hazard=models.CharField(max_length=35, choices=CHOICES,null=True, blank=True, default=None)
+    input=models.CharField(max_length=35,null=True, blank=True, default=None)
     upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.layer_name
