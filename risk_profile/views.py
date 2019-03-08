@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
@@ -42,6 +42,45 @@ class MarketCenterGeojsonViewSet(views.APIView):
         json_d['is_goeserver']=False
         return Response(MarketCentergeojson)
 
+# class AirportGeojsonViewSet(views.APIView):
+#     permission_classes=(IsAuthenticated,)
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('name'))
+#         # print(serializers)
+#         Airportgeojson=json.loads(serializers)
+#         return Response(Airportgeojson)
+
+class AirportGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('pk','name'))
+        # print(serializers)
+        Airportgeojson=json.loads(serializers)
+        return Response(Airportgeojson)
+
+class BridgeGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Bridge.objects.all(),geometry_field='location',fields=('pk','name'))
+        # print(serializers)
+        Bridgegeojson=json.loads(serializers)
+        return Response(Bridgegeojson)
+
+class PoliceGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Policestation.objects.all(),geometry_field='location',fields=('pk','name'))
+        # print(serializers)
+        Policestationgeojson=json.loads(serializers)
+        return Response(Policestationgeojson)
+
+class EducationGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Education.objects.all(),geometry_field='location',fields=('pk','name'))
+        # print(serializers)
+        Educationgeojson=json.loads(serializers)
+        return Response(Educationgeojson)
 
 class LayerViewset(viewsets.ModelViewSet):
     serializer_class=LayerTableSerializer
