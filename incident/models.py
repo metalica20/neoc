@@ -16,11 +16,11 @@ class IncidentSource(models.Model):
 
 
 class Incident(TimeStampedModal):
-    ARTIFICIAL = 'artificial'
+    NON_NATURAL = 'non_natural'
     NATURAL = 'natural'
 
     INDUCERS = (
-        (ARTIFICIAL, 'Artificial'),
+        (NON_NATURAL, 'Non Natural'),
         (NATURAL, 'Natural'),
     )
 
@@ -64,6 +64,7 @@ class Incident(TimeStampedModal):
     )
     loss = models.OneToOneField(
         Loss,
+        related_name='incident',
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
     )
