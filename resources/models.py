@@ -12,7 +12,7 @@ class Resource(PolymorphicModel):
     ward = models.ForeignKey(
         Ward,
         related_name='resources',
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,
     )
@@ -29,7 +29,7 @@ class Education(Resource):
 
 class Health(Resource):
     bed_count = models.PositiveIntegerField(null=True, blank=True, default=None)
-    type = models.CharField(max_length=255,null=True, blank=True, default=None)
+    type = models.CharField(max_length=255, null=True, blank=True, default=None)
     cbs_code = models.IntegerField(null=True, blank=True, default=None)
 
 

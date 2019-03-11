@@ -24,6 +24,7 @@ class District(models.Model):
 
 class Municipality(models.Model):
     title = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, null=True, blank=True, default=None)
     boundary = models.MultiPolygonField(null=True, blank=True, default=None)
     district = models.ForeignKey(
         District,
@@ -32,7 +33,7 @@ class Municipality(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return f'{self.title} {self.type}'
 
     class Meta:
         verbose_name_plural = "municipalities"

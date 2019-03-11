@@ -10,6 +10,7 @@ from .serializers import (
     DistrictGeoSerializer,
     MunicipalitySerializer,
     WardSerializer,
+    WardGeoSerializer,
 )
 from .models import (
     Province,
@@ -26,7 +27,6 @@ class ProvinceViewSet(FlexFieldsModelViewSet):
 
 
 class DistrictViewSet(FlexFieldsModelViewSet):
-    serializer_class = DistrictSerializer
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
     filter_fields = ('province',)
@@ -50,8 +50,19 @@ class MunicipalityViewSet(FlexFieldsModelViewSet):
 
 
 class WardViewSet(FlexFieldsModelViewSet):
-    serializer_class = WardSerializer
+    renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
-    filter_fields = ('municipality',)
+    filter_fields = (
+        'municipality',
+        'municipality__district',
+        'municipality__district__province',
+    )
     queryset = Ward.objects.all()
     permit_list_expands = ['municipality', 'district', 'province']
+
+    def get_serializer_class(self):
+        # TODO: fix me
+        format = self.request.query_params.get('format')
+        if format == 'geojson':
+            return WardGeoSerializer
+        return WardSerializer
