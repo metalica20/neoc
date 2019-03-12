@@ -41,3 +41,12 @@ class Rain(TimeStampedModal):
 
     def __str__(self):
         return self.title
+
+
+class Fire(TimeStampedModal):
+    scan = models.FloatField(null=True, blank=True, default=None)
+    event_on = models.DateTimeField()
+    point = models.PointField()
+    brightness = models.FloatField(null=True, blank=True, default=None)
+    confidence = models.FloatField(null=True, blank=True, default=None)
+    land_cover = models.CharField(max_length=255, null=True, blank=True, default=None)
