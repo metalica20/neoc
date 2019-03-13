@@ -275,7 +275,7 @@
     <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
     <script src="{% static 'mappage/js/proj4.js' %}"></script>
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
-<!--     <script src="{% static 'mappage/js/leaflet.ajax.min.js' %}"></script>
+ <!--     <script src="{% static 'mappage/js/leaflet.ajax.min.js' %}"></script>
  -->  
    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 
@@ -397,6 +397,7 @@ vulnerability_layer=[
     'district_median_facilities',
 ];
 
+var popup = new L.Popup({offset:[0,-20]});
 
 
 $.get(base_url+'/risk_profile/Layer',function(data){
@@ -405,10 +406,14 @@ $.get(base_url+'/risk_profile/Layer',function(data){
     for(var i=0;i<data.results.length;i++){
 
         if( data.results[i]['isGeoserver']== true) {
-            var url = 'http://139.59.67.104:8080/geoserver/wms';
+            var url = data.results[i]['geoserverUrl']
+            //'http://139.59.67.104:8080/geoserver/wms';
+
+           
+
 
             window[data.results[i]['layerName']]=L.tileLayer.betterWms(url, {
-                layers: "neoc:"+data.results[i]['layerName'],
+                layers:  data.results[i]['geoserverWorkspace']+ ':'+ data.results[i]['layerName'],
                 transparent: true,
                 format: 'image/png',
                 pane:"wmsPane"
@@ -538,10 +543,10 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                         }).setContent(popUpContent));
 
                         layer.on('mouseover',function(e){
-                            this.openPopup()
+                            //this.openPopup()
                         })
                         .on('mouseout',function(e){
-                            this.closePopup()
+                            //this.closePopup()
                         })
 
                         /* layer.on("mouseover", function (e) {
@@ -588,6 +593,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
     
 
 });
+
+
+
 
 
 
