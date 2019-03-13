@@ -6,6 +6,12 @@ from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
 from django.core.serializers import serialize
 import json
+from django.views.generic import TemplateView
+from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.gis.geos import Point
+from .forms import HospitalForm
+# import pandas as pd
 # Create your views here.
 
 class HospitalViewSet(viewsets.ModelViewSet):
@@ -85,3 +91,48 @@ class EducationGeojsonViewSet(views.APIView):
 class LayerViewset(viewsets.ModelViewSet):
     serializer_class=LayerTableSerializer
     queryset=LayerTable.objects.all()
+
+def Dashboard(request):
+    if "GET" == request.method:
+        return render(request, "dashboard.html")
+    try:
+        csv_file = request.FILES["csv_file"]
+        if not csv_file.name.endswith('.csv'):
+            messages.error(request,'File is not CSV type')
+            return render(request, "dashboard.html")
+
+        if csv_file.multiple_chunks():
+            messages.error(request,"Uploaded file is too big (%.2f MB)." % (csv_file.size/(1000*1000),))
+            return render(request, "dashboard.html")
+
+        file_data = csv_file.read().decode("utf-8")
+        lines = file_data.split("\n")
+        fields=Hospital._meta.get_fields()
+        print(lines[0])
+        # for field in fields:
+            # print(field.name)
+        for line in lines[1:]:
+            csv_colum = line.split(",")
+            # print(csv_colum)
+            data_dict = {}
+            i=0
+
+            for field in fields:
+
+                if(field.name!='id' and field.name!='location'):
+                    # print(field.name)
+                    # print(csv_colum[i])
+                    data_dict[field.name]=csv_colum[i]
+                    i=i+1
+                    # print('field.name')
+            data_dict['location']=Point(float(csv_colum[1]),float(csv_colum[0]))
+            print(data_dict)
+            # form = HospitalForm(data_dict)
+            # form.save()
+
+
+
+
+
+    except Exception as e:
+        pass
