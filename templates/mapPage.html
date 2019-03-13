@@ -22,6 +22,23 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin="" />
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
+
+    <style>
+
+.mypopup.leaflet-popup-content-wrapper{
+    background-color: red;
+    opacity: 0.9;
+}
+
+
+        .leaflet-popup-tip-container {
+    display: none
+}
+
+.leaflet-popup-tip{
+    display: none
+}
+    </style>
     
 </head>
 <!--head end-->
@@ -226,7 +243,7 @@
                                     </div>
                                     <div class="capacity-tag">
                                         {% for cat in resource.list_string %}
-                                            <a href="#" value='{{cat}}' class="subcat {{resource.layer_name}}_subcat">{{ cat }}</a>
+                                            <a href="#" value='{{cat}}' class="subcat {{resource.layer_name}}_subcat geoserver_{{resource.isGeoserver}}">{{ cat }}</a>
                                         
                                         {% endfor %}
                                         
@@ -287,11 +304,11 @@ map = L.map('mapid',{
       map.options.maxBounds;  // remove the maxBounds object from the map options
       //map.options.minZoom = 9;
 
-      map.createPane("polygonsPane").style.zIndex = 620;;
-      map.createPane("baseLayerPane").style.zIndex = 250;;
-      map.createPane("wmsPane").style.zIndex = 450;;
-      map.createPane("linesPane").style.zIndex = 620;;
-      map.createPane("pointsPane").style.zIndex = 800;;
+      map.createPane("polygonsPane").style.zIndex = 620;
+      map.createPane("baseLayerPane").style.zIndex = 250;
+      map.createPane("wmsPane").style.zIndex = 450;
+      map.createPane("linesPane").style.zIndex = 620;
+      map.createPane("pointsPane").style.zIndex = 800;
 
       //map.options.minZoom = 14;
       //console.log("adfasfsadfasfasdfasfdasdfsafasdfsafasfasfsafsa");
@@ -383,7 +400,8 @@ vulnerability_layer=[
 
 
 $.get(base_url+'/risk_profile/Layer',function(data){
-    
+    count = 0;
+    console.log(data.results.length);
     for(var i=0;i<data.results.length;i++){
 
         if( data.results[i]['isGeoserver']== true) {
@@ -400,40 +418,72 @@ $.get(base_url+'/risk_profile/Layer',function(data){
         }
 
         else{
-            var layer_icon= data.results[i]['layerIcon']
-            window[data.results[i]['layerName']] = new L.geoJson.ajax(base_url+"/risk_profile/"+ data.results[i]['layerTbl'], {
+            if(data.results[i]['subCategory'] == null){ 
+            }
+            else{
+                var sub_array = data.results[i]['subCategory'].split(",");
+                console.log(sub_array);
+                for(let i=0;i<sub_array.length;i++){
+                    window[sub_array[i].replace(' ','_')] = L.layerGroup();
+                    console.log("w",window[sub_array[i]])
+                }
+            }
+            layer_icon= data.results[i]['layerIcon']
+            //alert(layer_icon)
+
+            console.log("print data ",data);
+
+            var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
+            $.ajax({
+                url: url,
+                //data:{"layer_icon":layer_icon, "data":data,"i":i},
+                data1:data,
+                indexValue: i,
+                layer_icon: layer_icon,
+                success: function(response) {
+                    //var data = data;
+                    console.log(response);
+                    console.log("results",this.data1);
+                    console.log(this.layer_icon);
+                    var layer_icon1 = this.layer_icon;
+                    console.log(this.indexValue);
+                    
+                    //var geojson_data = JSON.parse(response);
+
+                
+            window[this.data1.results[this.indexValue]['layerName']] = new L.geoJson(response,
+            
+            {
+                //pane:"pointsPane",
                 
                 pointToLayer: function(feature,Latlng)
                     {
-                        
-                        var divicon = L.divIcon({
-                            className: layer_icon,
-                            //iconSize: [80, 30],
-                            //html: '<span class='humanitarian-icon-Rural'></span>'
-                        })
-                   
-                   /*  if(marker_type=='icon'){
-
-                        //  console.log(style.icon);
-
-                        icons=L.icon({
-                        iconSize: [26, 33],
-                        iconAnchor: [13, 27],
-                        popupAnchor:  [2, -24],
-
-                        iconUrl:style.icon
-                        });
-                        var marker = L.marker(Latlng,{icon:icons});
+                        console.log(count);
+                        console.log(layer_icon1)
+                        /* if( layer_icon != 'null'){ */
+                                        //alert(layer_icon)
 
 
-                    }
-                    else{ */
+                            var divicon = L.divIcon({
+                                className: layer_icon1
+                                //iconSize: [80, 30],
+                                //html: '<i class='+ "fill_icon" + '></i>'
+                            });
+                    
 
+                            var marker = L.marker(Latlng,{icon:divicon});
 
-                        var marker = L.marker(Latlng,{icon:divicon});
+                        //}
+
+                       /*  else{
+
+                            var marker = L.circleMarker(Latlng);
+
+                        } */
+                       
 
                        
-                        //var marker = L.circleMarker(Latlng);
+                        
                         //for(data in style){
 
                     /* } */
@@ -448,7 +498,20 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                                 
                     onEachFeature: function (feature, layer) {
-                        
+
+                        for(let i=0;i<sub_array.length;i++){
+                            if(sub_array[i]== feature.properties.type){
+                                
+                                layer.addTo(window[sub_array[i].replace(' ','_')])
+                                console.log('lg',window[sub_array[i].replace(' ','_')])
+                            }
+
+                        }
+
+                        console.log("feat",feature.properties.type)
+                        if(feature.properties.type != undefined){
+
+                        }
 						var popUpContent = "";
                         popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
                         console.log(feature);
@@ -466,39 +529,53 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                         
 
                         layer.bindPopup(L.popup({
-                            closeOnClick: true,
-                            closeButton: true,
+                            //closeOnClick: true,
+                            //closeButton: true,
                             keepInView: true,
                             autoPan: true,
                             maxHeight: 200,
                             minWidth: 250
                         }).setContent(popUpContent));
 
-                        layer.on("mouseover", function (e) {
+                        layer.on('mouseover',function(e){
+                            this.openPopup()
+                        })
+                        .on('mouseout',function(e){
+                            this.closePopup()
+                        })
+
+                        /* layer.on("mouseover", function (e) {
                                  e.target.setStyle({weight:2});
                                  $("#labelDiv").html("<table class='popuptable'><tr><td><h5><b>Layer:</b> District</h5></td></tr><tr><td><h5><b>Name:</b> "+feature.properties['DISTRICT']+"</h5></td><tr></table>");
                         }).on("mouseout", function(e){
                                  e.target.setStyle({weight:1});
                                  $("#labelDiv").html("");
-                        });
+                        }); */
 
                     }
                 });
-                window[data.results[i]['layerName']].on('data:loaded', function (data) {
-                    window[data.results[i]['layerName']].setStyle(function style_District_unique(oneDistrict) {
-						//console.log("asdfsfsad");
-                        return {
-                            fillColor: randomColor(),
-                            weight: 1,
-                            opacity: 1,
-                            color: 'black',
-                            dashArray: '3',
-                            fillOpacity: 0.0
-                        };
-                    });
+                // window[data.results[i]['layerName']].on('data:loaded', function (data) {
+                   
+                    
+                //     alert(layer_icon);
+
+                //     window[data.results[i]['layerName']].setStyle({
+                //             fillColor: 'blue',
+                //             weight: 1,
+                //             opacity: 1,
+                //             color: 'black',
+                //             dashArray: '3',
+                //             fillOpacity: 0.0
+                       
+                //     });
+
+                //     $('.fill_icon').attr('class',layer_icon);
                     
                      
-                });
+                // });
+
+            }
+            });
 
 
 
@@ -506,7 +583,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
         }
-         
+        count++; 
 }
     
 
@@ -622,7 +699,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
   
 
 
-    var wfst = new L.WFST(
+    /* var wfst = new L.WFST(
 		{
 		  url: 'http://139.59.67.104:8080/geoserver/ows',
 		  typeNS: 'Naxa',
@@ -639,7 +716,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 	).on('load', function (feature, layer) {
 		console.log(feature);
 		//map.fitBounds(wfst.getBounds());    
-	});
+	}); */
 
 ///
 
@@ -647,7 +724,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
 
-	
+	/* 
 	var popup = new L.Popup();
 	wfst.on('click', function(e){
 		console.log(e);
@@ -656,72 +733,84 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 		.setContent('You clicked on boundary layer at '+ e.latlng.toString())
 		.openOn(map);
 	});
-
+ */
 
 })
 
 
 $('.subcat').on('click',function(){
 
-    var filter_value= $(this).attr("value")
+    if($(this).hasClass('geoserver_False')){
+
+        let layer_name =$(this).attr("value").replace(" ","_");
+        console.log("layergrou", window[layer_name])
+        window[layer_name].addTo(map)
+        
+    }
+
+    else{
 
     
-    //var filter = new L.Filter.GmlObjectID(1);  
-  
-    var filter1 = new L.Filter.EQ('a2', filter_value);
-  
-  filter1.toGml();
-const wfstPointOptions = {
-    crs: L.CRS.EPSG4326,
-  showExisting: true,
-  geometryField: 'the_geom',
-  url: 'http://139.59.67.104:8080/geoserver/ows',
-  typeNS: 'Naxa',
-  typeName: 'educatinal_institutions',
-  filter: filter1,
-  //maxFeatures: 90,
-  opacity: 1,
-  style: function(layer) {
-    // you can use if statemt etc
-    return {
-      color: 'blue',
-      weight: 1
-    }
-  },
-};
 
-if(map.hasLayer(window[filter_value])){
-    map.removeLayer(window[filter_value])
-}
+                    var filter_value= $(this).attr("value")
 
-else{
+                    
+                    //var filter = new L.Filter.GmlObjectID(1);  
+                
+                    var filter1 = new L.Filter.EQ('a2', filter_value);
+                
+                filter1.toGml();
+                const wfstPointOptions = {
+                    crs: L.CRS.EPSG4326,
+                showExisting: true,
+                geometryField: 'the_geom',
+                url: 'http://139.59.67.104:8080/geoserver/ows',
+                typeNS: 'Naxa',
+                typeName: 'educatinal_institutions',
+                filter: filter1,
+                //maxFeatures: 90,
+                opacity: 1,
+                style: function(layer) {
+                    // you can use if statemt etc
+                    return {
+                    color: 'blue',
+                    weight: 1
+                    }
+                },
+                };
 
- window[filter_value] = new L.WFST(wfstPointOptions, new L.Format.GeoJSON({
-  crs: L.CRS.EPSG4326,
-  pointToLayer(geoJsonPoint, latlng) {
-    /* const layer = new L.CircleMarker(latlng, {
-      radius: 10,
-    }); */
-     
-    var divicon = L.divIcon({
-                className: 'humanitarian-icon-Education',
-    });
-                           
-    var marker = L.marker(latlng,{icon:divicon});
+                if(map.hasLayer(window[filter_value])){
+                    map.removeLayer(window[filter_value])
+                }
 
-                       
+                else{
+
+                window[filter_value] = new L.WFST(wfstPointOptions, new L.Format.GeoJSON({
+                crs: L.CRS.EPSG4326,
+                pointToLayer(geoJsonPoint, latlng) {
+                    /* const layer = new L.CircleMarker(latlng, {
+                    radius: 10,
+                    }); */
+                    
+                    var divicon = L.divIcon({
+                                className: 'humanitarian-icon-Education',
+                    });
+                                        
+                    var marker = L.marker(latlng,{icon:divicon});
+
+                                    
 
 
-    return marker;
-  },
-}));
+                    return marker;
+                },
+                }));
 
 
-window[filter_value].addTo(map);
+                window[filter_value].addTo(map);
 
-}
+                }
 //
-
+    }
 
 })
 

@@ -30,7 +30,7 @@ class HospitalGeojsonViewSet(views.APIView):
     permission_classes=(IsAuthenticated,)
     def get(self,request,*args,**kwargs):
         json_d={}
-        serializers=serialize('geojson',Hospital.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
+        serializers=serialize('geojson',Hospital.objects.all(),geometry_field='location',fields=('pk','fid','name','district','type'))
         # print(serializers)
         hospitalgeojson=json.loads(serializers)
         json_d['data']=hospitalgeojson
