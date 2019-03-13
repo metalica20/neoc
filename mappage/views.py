@@ -17,7 +17,6 @@ from django.views.generic import TemplateView
 from risk_profile.models import LayerTable
 
 from django.shortcuts import render
-
 # Create your views here.
 
 class HazardResourceViewSet(views.APIView):
@@ -82,6 +81,8 @@ class MapPage(TemplateView):
         vul= LayerTable.objects.filter(layer_cat='vulnerability')
         resource= LayerTable.objects.filter(layer_cat='resource')
         exposure= LayerTable.objects.filter(layer_cat='exposure')
+        
+
 
 
 
