@@ -24,25 +24,11 @@ class Incident(TimeStampedModal):
         (NATURAL, 'Natural'),
     )
 
-    MINOR = 'minor'
-    MAJOR = 'major'
-    CATASTROPHIC = 'catastrophic'
-
-    SEVERITY = (
-        (MINOR, 'Minor'),
-        (MAJOR, 'Major'),
-        (CATASTROPHIC, 'catastrophic'),
-    )
-
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True, default=None)
     cause = models.TextField(null=True, blank=True, default=None)
     inducer = models.CharField(
         max_length=25, choices=INDUCERS,
-        null=True, blank=True, default=None
-    )
-    severity = models.CharField(
-        max_length=25, choices=SEVERITY,
         null=True, blank=True, default=None
     )
     source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT)
@@ -70,6 +56,7 @@ class Incident(TimeStampedModal):
     )
     wards = models.ManyToManyField(
         Ward,
+        blank=True,
         related_name='incidents',
     )
     street_address = models.CharField(
@@ -78,3 +65,8 @@ class Incident(TimeStampedModal):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        permissions = [
+            ('can_verify', 'Can verify incident'),
+        ]

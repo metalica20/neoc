@@ -160,6 +160,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 1000,
+    'HTML_SELECT_CUTOFF': 20,
 }
 
 
@@ -197,7 +198,7 @@ CELERY_TIMEZONE = TIME_ZONE
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 
-JET_DEFAULT_THEME = 'light-gray'
+JET_DEFAULT_THEME = 'default'
 JET_SIDE_MENU_COMPACT = True
 JET_INDEX_DASHBOARD = 'bipad.dashboard.IndexDashboard'
 
@@ -218,6 +219,8 @@ SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '
 MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 6),
+        ("markerFitZoom", 12),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np'}}),
     ),
     "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
 }
