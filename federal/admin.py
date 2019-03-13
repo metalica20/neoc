@@ -7,4 +7,10 @@ from .models import (
 )
 from bipad.admin import GeoModelAdmin
 
-admin.site.register([Province, District, Municipality, Ward], GeoModelAdmin)
+
+@admin.register(Ward)
+class WardAdmin(GeoModelAdmin):
+    search_fields = Ward.autocomplete_search_fields()
+
+
+admin.site.register([Province, District, Municipality], GeoModelAdmin)

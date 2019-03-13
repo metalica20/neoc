@@ -15,6 +15,7 @@ from .models import (
 @admin.register(Resource)
 class ResourceAdmin(GeoPolymorphicParentModelAdmin):
     base_model = Resource
+    autocomplete_fields = ['ward']
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry)
 

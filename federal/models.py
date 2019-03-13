@@ -24,6 +24,7 @@ class District(models.Model):
 
 class Municipality(models.Model):
     title = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, null=True, blank=True, default=None)
     boundary = models.MultiPolygonField(null=True, blank=True, default=None)
     district = models.ForeignKey(
         District,
@@ -32,7 +33,7 @@ class Municipality(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return f"{self.title} {self.type or ''}".strip()
 
     class Meta:
         verbose_name_plural = "municipalities"
@@ -46,6 +47,10 @@ class Ward(models.Model):
         related_name='wards',
         on_delete=models.PROTECT,
     )
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'title', 'municipality__title', 'municipality__district__title'
 
     def __str__(self):
         return f'{str(self.municipality)}-{self.title}'

@@ -32,8 +32,12 @@ class LivestockInline(admin.TabularInline):
 
 @admin.register(Loss)
 class LossAdmin(admin.ModelAdmin):
+    exclude = ('detail',)
     inlines = (PeopleInline, FamilyInline,
                LivestockInline, InfrastructureInline)
+
+    def get_model_perms(self, request):
+        return {}
 
 
 admin.site.register([InfrastructureType, LivestockType])
