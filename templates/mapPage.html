@@ -412,8 +412,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
            
 
 
-            window[data.results[i]['layerName']]=L.tileLayer.betterWms(url, {
-                layers:  data.results[i]['geoserverWorkspace']+ ':'+ data.results[i]['layerName'],
+            window[data.results[i]['layerTbl']]=L.tileLayer.betterWms(url, {
+                layers:  data.results[i]['geoserverWorkspace']+ ':'+ data.results[i]['layerTbl'],
                 transparent: true,
                 format: 'image/png',
                 pane:"wmsPane"
@@ -456,7 +456,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                     //var geojson_data = JSON.parse(response);
 
                 
-            window[this.data1.results[this.indexValue]['layerName']] = new L.geoJson(response,
+            window[this.data1.results[this.indexValue]['layerTbl']] = new L.geoJson(response,
             
             {
                 //pane:"pointsPane",
