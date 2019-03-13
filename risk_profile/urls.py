@@ -9,5 +9,6 @@ urlpatterns = [
     path('Bridge',views.BridgeGeojsonViewSet.as_view(),name='bridgejson'),
     path('Policestation',views.PoliceGeojsonViewSet.as_view(),name='policejson'),
     path('Education',views.EducationGeojsonViewSet.as_view(),name='policejson'),
+    path('Dashboard',views.Dashboard,name='dashboard'),
     # path('hospital',views.LayerViewset.as_view({'get':'list'}),name='hospital'),
 ]
