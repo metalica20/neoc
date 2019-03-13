@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'inventory',
     'realtime',
     'misc',
+    'mapwidgets',
 ]
 
 MIDDLEWARE = [
@@ -210,3 +211,11 @@ def SILKY_PERMISSIONS(user): return user.is_superuser
 
 SILKY_MAX_RESPONSE_BODY_SIZE = 1024*100  # bytes
 SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '0'))
+
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 6),
+    ),
+    "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
+}
+
