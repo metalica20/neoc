@@ -8,15 +8,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!--title-->
     <title>Bipad</title>
-    
+
     <!-- faveicon start   -->
     <link rel="icon" type="image/png" href="{% static 'mappage/images/favicon.png' %}" sizes="32x32">
-    
+
     <!-- stylesheet start -->
-    
+
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/customfonts.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -39,13 +39,13 @@
     display: none
 }
     </style>
-    
+
 </head>
 <!--head end-->
 
 <body>
     <!-- bipad start -->
-    
+
     <div class="bipadContent">
 
         <!-- mapsection start -->
@@ -149,7 +149,7 @@
                                 </li>
 
                                 {% endfor %}
-                                
+
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
@@ -178,7 +178,7 @@
                                 </li>
 
                                 {% endfor %}
-                               
+
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                     <ul class="dropicons-list">
@@ -187,7 +187,7 @@
                                         <li class='{{vulnerability.layer_tbl}}_activeclass'>
                                             <a href="#" class="CheckBox" value="{{vulnerability.layer_tbl}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                         </li>
-        
+
                                         {% endfor %}
                                     </ul>
                                 </li>
@@ -202,11 +202,11 @@
                             <ul>
                                 {% for exposure in exposures|slice:":2" %}
 
-                                
+
                                 <li class='{{exposure.layer_tbl}}_activeclass'>
                                     <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}"><span><i class="{{exposure.layer_icon}}"></i></span> {{ exposure.layer_name}}</a>
                                 </li>
-                                
+
                                 {% endfor %}
 
 
@@ -234,7 +234,7 @@
                         </div>
                         <ul class="list-content">
                             {% for resource in resources %}
-                            
+
                             <li class='{{resource.layer_tbl}}_activeclass'>
                                 <div class="capacity-content">
                                     <div class="capacity-icon CheckBox" value="{{resource.layer_tbl}}">
@@ -244,16 +244,16 @@
                                     <div class="capacity-tag">
                                         {% for cat in resource.list_string %}
                                             <a href="#" value='{{cat}}' class="subcat {{resource.layer_name}}_subcat geoserver_{{resource.isGeoserver}}">{{ cat }}</a>
-                                        
+
                                         {% endfor %}
-                                        
+
                                     </div>
                                 </div>
                             </li>
 
                             {% endfor %}
-                            
-                            
+
+
                         </ul>
                     </div>
                 </div>
@@ -263,9 +263,9 @@
         <!-- mapsection end -->
     </div>
     <!-- bipad end -->
-    
-   
-        
+
+
+
     <!-- js library start -->
     <script src="{% static 'mappage/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script>
@@ -276,25 +276,25 @@
     <script src="{% static 'mappage/js/proj4.js' %}"></script>
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
  <!--     <script src="{% static 'mappage/js/leaflet.ajax.min.js' %}"></script>
- -->  
+ -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 
 
 
-    
 
-    
+
+
 </body>
 
 <script>
-    
+//
 var base_url= 'http://139.59.67.104:8004'
 //var base_url = 'http://localhost:8000'
 
 $(document).ready(function(){
 
 
-    
+
 
 map = L.map('mapid',{
          zoomControl:false
@@ -341,7 +341,7 @@ map = L.map('mapid',{
         subdomains:['mt0','mt1','mt2','mt3'],
         pane:"baseLayerPane"
       });
-      
+
 
 
 //console.log(wmsLayers_print.length);
@@ -402,14 +402,14 @@ var popup = new L.Popup({offset:[0,-20]});
 
 $.get(base_url+'/risk_profile/Layer',function(data){
     count = 0;
-    console.log(data.results.length);
+    // console.log(data.results.length);
     for(var i=0;i<data.results.length;i++){
 
         if( data.results[i]['isGeoserver']== true) {
             var url = data.results[i]['geoserverUrl']
             //'http://139.59.67.104:8080/geoserver/wms';
 
-           
+
 
 
             window[data.results[i]['layerTbl']]=L.tileLayer.betterWms(url, {
@@ -423,20 +423,22 @@ $.get(base_url+'/risk_profile/Layer',function(data){
         }
 
         else{
-            if(data.results[i]['subCategory'] == null){ 
+            if(data.results[i]['subCategory'] == null){
+              var sub_array=[];
             }
             else{
+            //  console.log(data.results[i]['subCategory']);
                 var sub_array = data.results[i]['subCategory'].split(",");
-                console.log(sub_array);
+                // console.log(sub_array);
                 for(let i=0;i<sub_array.length;i++){
                     window[sub_array[i].replace(' ','_')] = L.layerGroup();
-                    console.log("w",window[sub_array[i]])
+                    // console.log("w",window[sub_array[i]])
                 }
             }
             layer_icon= data.results[i]['layerIcon']
             //alert(layer_icon)
 
-            console.log("print data ",data);
+            // console.log("print data ",data);
 
             var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
             $.ajax({
@@ -447,22 +449,23 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                 layer_icon: layer_icon,
                 success: function(response) {
                     //var data = data;
-                    console.log(response);
-                    console.log("results",this.data1);
-                    console.log(this.layer_icon);
+                    //console.log(response);
+                    // console.log("results",this.data1);
+                    // console.log(this.layer_icon);
                     var layer_icon1 = this.layer_icon;
-                    console.log(this.indexValue);
-                    
+                    // console.log(this.indexValue);
+
                     //var geojson_data = JSON.parse(response);
+                    // console.log(this.data1.results[this.indexValue]);
 
             window[this.data1.results[this.indexValue]['layerTbl']] = new L.geoJson(response,
-            
+
             {
                 //pane:"pointsPane",
-                
+
                 pointToLayer: function(feature,Latlng)
                     {
-                        console.log(count);
+
                         console.log(layer_icon1)
                         /* if( layer_icon != 'null'){ */
                                         //alert(layer_icon)
@@ -473,7 +476,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                 //iconSize: [80, 30],
                                 //html: '<i class='+ "fill_icon" + '></i>'
                             });
-                    
+
 
                             var marker = L.marker(Latlng,{icon:divicon});
 
@@ -484,10 +487,10 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                             var marker = L.circleMarker(Latlng);
 
                         } */
-                       
 
-                       
-                        
+
+
+
                         //for(data in style){
 
                     /* } */
@@ -500,12 +503,12 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                     },
 
-                                
+
                     onEachFeature: function (feature, layer) {
 
                         for(let i=0;i<sub_array.length;i++){
                             if(sub_array[i]== feature.properties.type){
-                                
+
                                 layer.addTo(window[sub_array[i].replace(' ','_')])
                                 console.log('lg',window[sub_array[i].replace(' ','_')])
                             }
@@ -518,9 +521,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                         }
 						var popUpContent = "";
                         popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
-                        console.log(feature);
+                        // console.log(feature);
 						for (data in layer.feature.properties) {
-                            
+
                             //var dataspaced = underscoreToSpace(data);
 							//console.log(data);
                             popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + layer.feature.properties[data] + "</td>" + "</tr>";
@@ -530,7 +533,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 						//console.log(popUpContent);
                         //layer.bindLabel(feature.properties['DISTRICT'], { 'noHide': true, id:"labelDiv" });
 
-                        
+
 
                         layer.bindPopup(L.popup({
                             //closeOnClick: true,
@@ -559,8 +562,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                     }
                 });
                 // window[data.results[i]['layerName']].on('data:loaded', function (data) {
-                   
-                    
+
+
                 //     alert(layer_icon);
 
                 //     window[data.results[i]['layerName']].setStyle({
@@ -570,26 +573,26 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                 //             color: 'black',
                 //             dashArray: '3',
                 //             fillOpacity: 0.0
-                       
+
                 //     });
 
                 //     $('.fill_icon').attr('class',layer_icon);
-                    
-                     
+
+
                 // });
 
             }
             });
 
 
-
+            console.log(window[""+"Marketcenter"]);
 
 
 
         }
-        count++; 
+        count++;
 }
-    
+
 
 });
 
@@ -655,7 +658,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
       $('.info.leaflet-control').css('margin-left','325px');
       $(".arrow.arrow-left").on("click",function(){
-        console.log($('.sidebarwrapper').css('display'));
+        // console.log($('.sidebarwrapper').css('display'));
         if($('.leftSidebar').hasClass("resize-sidebar")){
 
           $('.info.leaflet-control').css('margin-left','10px');
@@ -672,19 +675,19 @@ $.get(base_url+'/risk_profile/Layer',function(data){
         $(".CheckBox").on('click',function(){
 
           layerName=$(this).attr('value');
-          console.log(layerName);
+          // console.log(layerName);
           //var layerClicked=window[''+layerName];
           var layerClicked=eval(layerName);
-          
-          console.log(layerClicked);
+
+          // console.log(layerClicked);
           if(map.hasLayer(layerClicked)){
-            console.log(layerClicked+" clicked");
+            // console.log(layerClicked+" clicked");
             map.removeLayer(layerClicked);
             $("."+layerName+"_activeclass").removeClass("active");
 
             $('#'+layerName+'_legend').remove();
           }else{
-            console.log(layerClicked+" ntclicked");
+            // console.log(layerClicked+" ntclicked");
             map.addLayer(layerClicked);
                 $("."+layerName+"_activeclass").addClass("active");
                 info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="http://139.59.67.104:8080/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&"/></div>';
@@ -702,8 +705,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
         //end
 
 
-       
-  
+
+
 
 
     /* var wfst = new L.WFST(
@@ -719,10 +722,10 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 			weight: 2
 		  }
 		}
-	
+
 	).on('load', function (feature, layer) {
 		console.log(feature);
-		//map.fitBounds(wfst.getBounds());    
+		//map.fitBounds(wfst.getBounds());
 	}); */
 
 ///
@@ -731,7 +734,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
 
-	/* 
+	/*
 	var popup = new L.Popup();
 	wfst.on('click', function(e){
 		console.log(e);
@@ -752,20 +755,20 @@ $('.subcat').on('click',function(){
         let layer_name =$(this).attr("value").replace(" ","_");
         console.log("layergrou", window[layer_name])
         window[layer_name].addTo(map)
-        
+
     }
 
     else{
 
-    
+
 
                     var filter_value= $(this).attr("value")
 
-                    
-                    //var filter = new L.Filter.GmlObjectID(1);  
-                
+
+                    //var filter = new L.Filter.GmlObjectID(1);
+
                     var filter1 = new L.Filter.EQ('a2', filter_value);
-                
+
                 filter1.toGml();
                 const wfstPointOptions = {
                     crs: L.CRS.EPSG4326,
@@ -798,14 +801,14 @@ $('.subcat').on('click',function(){
                     /* const layer = new L.CircleMarker(latlng, {
                     radius: 10,
                     }); */
-                    
+
                     var divicon = L.divIcon({
                                 className: 'humanitarian-icon-Education',
                     });
-                                        
+
                     var marker = L.marker(latlng,{icon:divicon});
 
-                                    
+
 
 
                     return marker;

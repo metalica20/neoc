@@ -14,6 +14,8 @@ RUN \
   openssl \
   gdal-dev \
   geos-dev \
+  jpeg-dev \
+  zlib-dev \
   proj4-dev
 
 COPY . /code/
