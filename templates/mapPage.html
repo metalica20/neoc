@@ -9,22 +9,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!--title-->
     <title>Bipad</title>
-    
+
     <!-- faveicon start   -->
     <link rel="icon" type="image/png" href="{% static 'mappage/images/favicon.png' %}" sizes="32x32">
-    
+
     <!-- stylesheet start -->
-    
+
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/customfonts.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/ionicons.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin="" />
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
-    
+
 </head>
 <!--head end-->
 
@@ -93,7 +93,7 @@
                             <li><a href="#" target="">Per income</a><span>769768</span></li>
                         </ul>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -185,7 +185,7 @@
                                 {% endfor %}
                                 <li>
                                     <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
-                                    
+
                                 </li>
                             </ul>
                             <!-- menu-list start -->
@@ -198,10 +198,10 @@
                                     </li>
 
                                     {% endfor %}
-                                    
+
                                 </ul>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!-- exposure-widget start -->
@@ -211,14 +211,14 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
-                                
+
                                 {% for vulnerability in vulnerabilities|slice:":2" %}
                                 <li class="active">
                                     <a  data-tab="glacier" data-toggle="tooltip" data-placement="bottom" title="Earthquake" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
 
                                 {% endfor %}
-                                
+
                                 <li>
                                     <a data-tab="earthquake" class="more-option" data-toggle="tooltip" data-placement="bottom" title="See more"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
                                 </li>
@@ -407,7 +407,7 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!-- hazard-widget start -->
@@ -425,11 +425,11 @@
                                     </li>
 
                                     {% endfor %}
-                                    
+
 
                                     <li>
                                         <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
-                                        
+
                                     </li>
                                 </ul>
                                 <div class="icon-submenu">
@@ -441,8 +441,8 @@
                                         </li>
 
                                         {% endfor %}
-                                        
-                                      
+
+
                                     </ul>
                                 </div>
                             </div>
@@ -468,8 +468,8 @@
                             </li>
                             {% endfor %}
 
-                           
-                            
+
+
                         </ul>
                     </div>
                 </div>
@@ -479,9 +479,9 @@
         <!-- mapsection end -->
     </div>
     <!-- bipad end -->
-    
-   
-        
+
+
+
     <!-- js library start -->
     <script src="{% static 'mappage/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'mappage/js/popper.min.js' %}"></script>
@@ -492,75 +492,6 @@
    <!-- <script src="{% static 'mappage/js/map.js' %}"></script> -->
     <script src="{% static 'mappage/js/script.js' %}"></script>
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
-<<<<<<< HEAD
- <!--     <script src="{% static 'mappage/js/leaflet.ajax.min.js' %}"></script>
- -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
-
-
-
-
-
-
-</body>
-
-<script>
-//
-//var base_url= 'http://139.59.67.104:8004'
-var base_url = 'http://localhost:8000'
-
-$(document).ready(function(){
-
-
-
-
-map = L.map('mapid',{
-         zoomControl:false
-       }).setView([28.410728397237914,84.4024658203125], 7);
-      map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
-      // map.scrollWheelZoom.disable();
-      map.options.maxBounds;  // remove the maxBounds object from the map options
-      //map.options.minZoom = 9;
-
-      map.createPane("polygonsPane").style.zIndex = 620;
-      map.createPane("baseLayerPane").style.zIndex = 250;
-      map.createPane("wmsPane").style.zIndex = 450;
-      map.createPane("linesPane").style.zIndex = 620;
-      map.createPane("pointsPane").style.zIndex = 800;
-
-      //map.options.minZoom = 14;
-      //console.log("adfasfsadfasfasdfasfdasdfsafasdfsafasfasfsafsa");
-      var accessToken = "pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw";
- var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token='+accessToken, {
-       attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-      var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-        pane:"baseLayerPane"
-      });
-
-      googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3'],
-        pane:"baseLayerPane"
-      });
-      googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3'],
-        pane:"baseLayerPane"
-      });
-      googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3'],
-        pane:"baseLayerPane"
-      });
-      googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3'],
-        pane:"baseLayerPane"
-      });
-=======
->>>>>>> f46636fdd73fe4bad7e1bad1002701f9d2610c1e
 
     <script>
             //
@@ -791,213 +722,6 @@ map = L.map('mapid',{
                     count++;
             }
             });
-<<<<<<< HEAD
-
-
-            console.log(window[""+"Marketcenter"]);
-
-
-
-        }
-        count++;
-}
-
-
-});
-
-
-
-
-
-
-
-
-
-  //var wmsLayer = L.tileLayer.wms('https://geonepal.info/geoserver/ows?', {
-// window[wmsLayers_print[i].name] = L.tileLayer.wms('http://139.59.67.104:8080/geoserver/ows?', {
-//   layers: wmsLayers_print[i].url,
-//   transparent: true,
-//   format: 'image/png'
-//
-// }).addTo(map);
-
-//});
-
-
-
-
-      //var none = "";
-      var baseLayers = {
-        "OpenStreetMap": osm,
-        "Google Streets": googleStreets,
-        "Google Hybrid": googleHybrid,
-        "Google Satellite": googleSat,
-        "Google Terrain": googleTerrain//,
-        //"None": none
-      };
-
-      //map.addLayer(googleStreets);
-      layerswitcher = L.control.layers(baseLayers, {}, {collapsed: false}).addTo(map);
-
-      // map.on("load",function(){
-      //   console.log("map loaded fully");
-      // });
-
-      // setTimeout(function(){
-      //     googleStreets.sendToBack();
-      //  }, 3000);
-
-
-    //map panes
-
-        //cat map end
-
-
-
-        info = L.control().setPosition('bottomleft');
-
-        info.onAdd = function (map) {
-              this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-
-              return this._div;
-          }
-
-          info.addTo(map);
-          //console.log($('.sidebarwrapper').css('display'));
-
-      $('.info.leaflet-control').css('margin-left','325px');
-      $(".arrow.arrow-left").on("click",function(){
-        // console.log($('.sidebarwrapper').css('display'));
-        if($('.leftSidebar').hasClass("resize-sidebar")){
-
-          $('.info.leaflet-control').css('margin-left','10px');
-        }else{
-          //console.log($('.sidebarwrapper').css('display'));
-          $('.info.leaflet-control').css('margin-left','325px');
-        }
-      });
-
-
-
-
-        // request layer data
-        $(".CheckBox").on('click',function(){
-
-          layerName=$(this).attr('value');
-          var geo_url= $(this).attr("data-url");
-          var geo_workspace =$(this).attr("data-workspace");
-          // console.log(layerName);
-          //var layerClicked=window[''+layerName];
-          var layerClicked=eval(layerName);
-
-          // console.log(layerClicked);
-          if(map.hasLayer(layerClicked)){
-            // console.log(layerClicked+" clicked");
-            map.removeLayer(layerClicked);
-            $("."+layerName+"_activeclass").removeClass("active");
-
-            $('#'+layerName+'_legend').remove();
-          }else{
-            // console.log(layerClicked+" ntclicked");
-            map.addLayer(layerClicked);
-                $("."+layerName+"_activeclass").addClass("active");
-                info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src='+ geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&"/></div>';
-
-
-
-            //map.BringToFront();
-          }
-
-        });
-
-
-// method that we will use to update the control based on feature properties passed
-
-        //end
-
-
-
-
-
-
-    /* var wfst = new L.WFST(
-		{
-		  url: 'http://139.59.67.104:8080/geoserver/ows',
-		  typeNS: 'Naxa',
-		  typeName: 'educatinal_institutions',
-		  crs: L.CRS.EPSG4326,
-		  geometryField: 'the_geom',
-		  filter: filter1,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
-		  style: {
-			color: 'blue',
-			weight: 2
-		  }
-		}
-
-	).on('load', function (feature, layer) {
-		console.log(feature);
-		//map.fitBounds(wfst.getBounds());
-	}); */
-
-///
-
-
-
-
-
-	/*
-	var popup = new L.Popup();
-	wfst.on('click', function(e){
-		console.log(e);
-	  popup
-		.setLatLng(e.latlng)
-		.setContent('You clicked on boundary layer at '+ e.latlng.toString())
-		.openOn(map);
-	});
- */
-
-})
-
-
-$('.subcat').on('click',function(){
-
-    if($(this).hasClass('geoserver_False')){
-
-        let layer_name =$(this).attr("value").replace(" ","_");
-        console.log("layergrou", window[layer_name])
-        window[layer_name].addTo(map)
-
-    }
-
-    else{
-
-
-
-                    var filter_value= $(this).attr("value")
-
-
-
-                    //var filter = new L.Filter.GmlObjectID(1);
-
-                    var filter1 = new L.Filter.EQ('a2', filter_value);
-
-                filter1.toGml();
-                const wfstPointOptions = {
-                    crs: L.CRS.EPSG4326,
-                showExisting: true,
-                geometryField: 'the_geom',
-                url: 'http://139.59.67.104:8080/geoserver/ows',
-                typeNS: 'Naxa',
-                typeName: 'educatinal_institutions',
-                filter: filter1,
-                //maxFeatures: 90,
-                opacity: 1,
-                style: function(layer) {
-                    // you can use if statemt etc
-                    return {
-                    color: 'blue',
-                    weight: 1
-=======
               //var wmsLayer = L.tileLayer.wms('https://geonepal.info/geoserver/ows?', {
             // window[wmsLayers_print[i].name] = L.tileLayer.wms('http://139.59.67.104:8080/geoserver/ows?', {
             //   layers: wmsLayers_print[i].url,
@@ -1016,13 +740,13 @@ $('.subcat').on('click',function(){
                     //"None": none
                   };
                   //map.addLayer(googleStreets);
-                  
-                  
+
+
                   //layerswitcher = L.control.layers(baseLayers, {}, {collapsed: false}).addTo(map);
-                  
-                  
-                  
-                  
+
+
+
+
                   // map.on("load",function(){
                   //   console.log("map loaded fully");
                   // });
@@ -1046,7 +770,6 @@ $('.subcat').on('click',function(){
                     }else{
                       //console.log($('.sidebarwrapper').css('display'));
                       $('.info.leaflet-control').css('margin-left','325px');
->>>>>>> f46636fdd73fe4bad7e1bad1002701f9d2610c1e
                     }
                   });
                     // request layer data
@@ -1110,7 +833,7 @@ $('.subcat').on('click',function(){
                 }
                 else{
                                 var filter_value= $(this).attr("value")
-                                
+
                                 //var filter = new L.Filter.GmlObjectID(1);
                                 var filter1 = new L.Filter.EQ('a2', filter_value);
                             filter1.toGml();
@@ -1156,7 +879,7 @@ $('.subcat').on('click',function(){
             })
             console.log("hello")
             </script>
-    
+
 </body>
 
 </html>
