@@ -1,46 +1,63 @@
-(function(jQuery) {
+(function($) {
     "use strict";
-    $(window).on('load', function() {
-        $('.load-popup').fadeIn(5000);
-    });
-    
     $(document).ready(function() {
+        $(".iconwrap .close-cion").on("click", function () {
+            $(this).closest('.icon-submenu').hide();
+        });
 
-        $(".iconwrap a.more-option").on("click", function (e) {
+        $(".sidebar .sidebarClose").on("click", function () {
+            $(this).closest(".sidebarwrapper").addClass("collapse-leftSidebar");
+            $(this).closest(".sidebar").find('.expand-icon').fadeIn(300);
+        });
+        
+
+        $(".sidebar .expand-icon").on("click", function () {
+            $(this).closest(".sidebar").find('.sidebarwrapper').removeClass("collapse-leftSidebar");
+            $(this).closest(".sidebar").find('.expand-icon').fadeOut(300);
+        });
+
+        $('.iconwrap a').on('click', function(e) {
             e.preventDefault();
-            $(this).parent().find("ul.dropicons-list").addClass("open", 1000);
+            var targetId = $(this).attr('data-tab');
+            $('#' + targetId).show(500);
+
+        });
+        
+        $('.submenu-list li.drop-list').prepend('<i class="ion ion ion-ios-add"></i>');
+        $('.submenu-list li.drop-list ul').hide();
+        $('.submenu-list li.drop-list i.ion-ios-add').on('click', function(){
+            $(this).siblings('.submenu-list li.drop-list ul').slideToggle(500);
+            $(this).toggleClass('list-open');
         });
 
-        $(".dropicons-list .close-cion").on("click", function () {
-            $(this).parent("ul.dropicons-list").removeClass("open", 1000);
+        
+
+        $('[data-toggle="tooltip"]').tooltip()
+
+
+        $(".leftSidebar .sidebarwrapper").slimScroll({
+            height: "calc(100vh - 68px)",
+            color: "#8c909a",
+            position: "right",
+            size: "2px",
+            alwaysVisible: !1,
+            borderRadius: "3px",
+            railBorderRadius: "0"
         });
 
-        $(".arrow-left").on("click", function () {
-            $(this).css({"transform":"rotate(180deg)"});
-            $(this).parent(".sidebar.leftSidebar").toggleClass('resize-sidebar');
-            $(this).parent(".sidebar.leftSidebar").find('.sidebarwrapper').toggle(300);
+        $(".rightSidebar .sidebarwrapper").slimScroll({
+            height: "100vh",
+            color: "#8c909a",
+            position: "right",
+            size: "2px",
+            alwaysVisible: !1,
+            borderRadius: "3px",
+            railBorderRadius: "0"
         });
-
-        $(".arrow-right").on("click", function () {
-            $(this).css({"transform":"rotate(180deg)"});
-            $(this).parent(".rightSidebar").toggleClass('resize-sidebar');
-            $(this).parent(".rightSidebar").find('.sidebarwrapper').toggle(300);
-        });
-
-        /*====================================
-        // menu-fix
-        ======================================*/
-
-        $(window).on('scroll', function() {
-            if ($(this).scrollTop() > 50) {
-                $('.site-header').addClass("affix", 500);
-            } else {
-                $('.site-header').removeClass("affix", 500);
-            }
-        });
-
         
         
     });
 })(jQuery);
 
+
+            

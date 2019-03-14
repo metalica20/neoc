@@ -1,13 +1,16 @@
 // COLOR
-$color-primary:#6b6b6b;
+$color-primary:rgba(0,0,0,.8);
 $color-white:#ffffff;
 $color-secondary:#ffab1e;
-$color-red:#FF0000;
+$color-red:#f04656;
 $color-bg:#f9fbfd;
-$color-blue:#1d90ff;
+$color-blue:#1080ff;
+$color-light:rgba(0,0,0,.8);
+$color-dark-blue:#1672c6;
 // font-family
-$font-family-normal:'Source Sans Pro', sans-serif;
-$font-family-medium:'Nunito', sans-serif;
+$sans:'Source Sans Pro', sans-serif;
+$oxygen:'Oxygen Mono', monospace;
+$asap:'Asap', sans-serif;
 //media query
 $desktop-middle:1580px;
 $desktop:1200px;

@@ -66,7 +66,8 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
           width: size.x,
           layers: this.wmsParams.layers,
           query_layers: this.wmsParams.layers,
-          info_format: 'text/html'
+          //info_format: 'text/html',
+          info_format: 'application/json'
         };
 
     params[params.version === '1.3.0' ? 'i' : 'x'] = point.x;
@@ -76,12 +77,29 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
   },
 
   showGetFeatureInfo: function (err, latlng, content) {
-    if (err) { console.log(err); return; } // do nothing if there's an error
+    /* if (err) { console.log(err); return; } */ // do nothing if there's an error
 
     // Otherwise show the content in a popup, or something.
+    console.log(content)
+
+
+    var popUpContent = "";
+                        popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
+						for (key in content.features[0].properties) {
+                            
+                            //var dataspaced = underscoreToSpace(data);
+							//console.log(data);
+                            popUpContent += "<tr>" + "<td>" + key + "</td>" + "<td>" + "  " + content.features[0].properties[key] + "</td>" + "</tr>";
+							//console.log(popUpContent);
+					   }
+                        popUpContent += '</table>';
+
+console.log("eeeeeee",popUpContent)
+
+
     L.popup({ maxWidth: 800})
       .setLatLng(latlng)
-      .setContent(content)
+      .setContent(popUpContent)
       .openOn(this._map);
   }
 });
