@@ -127,8 +127,11 @@ def Dashboard(request):
                     # print('field.name')
             data_dict['location']=Point(float(csv_colum[1]),float(csv_colum[0]))
             print(data_dict)
-            # form = HospitalForm(data_dict)
-            # form.save()
+            form = HospitalForm(data_dict)
+            form.save()
+
+        # count_update('Hospital')
+        # return render(request, "dashboard.html")
 
 
 
@@ -136,3 +139,8 @@ def Dashboard(request):
 
     except Exception as e:
         pass
+
+def count_update(modelname):
+
+    hospital_count = Hospital.objects.all().count()
+    LayerTable.objects.get(layer_tbl='Hospital').update(tbl_layer_count=hospital_count)

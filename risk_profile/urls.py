@@ -2,7 +2,7 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('Layer',views.LayerViewset.as_view({'get':'list'}),name='layer'),
+    path('layer',views.LayerViewset.as_view({'get':'list'}),name='Layer'),
     path('Hospital',views.HospitalGeojsonViewSet.as_view(),name='hospitaljson'),
     path('Marketcenter',views.MarketCenterGeojsonViewSet.as_view(),name='marketcenterjson'),
     path('Airport',views.AirportGeojsonViewSet.as_view(),name='airportjson'),
