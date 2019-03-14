@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'autofixture',
     'corsheaders',
     'silk',
+    'drf_yasg',
 
     'django_celery_beat',
     'rest_framework',
