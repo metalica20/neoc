@@ -7,11 +7,11 @@
 }
 
 @mixin animate {
-    transition: all ease-in-out .4s;
-    -webkit-transition: all ease-in-out .4s;
-    -ms-transition: all ease-in-out .4s;
-    -moz-transition: all ease-in-out .4s;
-    -o-transition: all ease-in-out .4s;
+    -webkit-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 
 @mixin radius50 {
@@ -308,4 +308,10 @@
         background-color:$color-blue;
         border-radius: 8px;
     }
+}
+@mixin  anim05{
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
