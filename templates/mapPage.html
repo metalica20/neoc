@@ -179,7 +179,7 @@
                         <div class="iconwrap">
                             <ul>
                                 {% for hazard in hazards|slice:":2" %}
-                                <li class="active">
+                                <li class='{{hazard.layer_tbl}}_activeclass'>
                                     <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
                                 </li>
                                 {% endfor %}
@@ -193,7 +193,7 @@
                                 <ul class="dropicons-list">
                                     <span class="close-cion">x</span>
                                     {% for hazard in hazards|slice:"2:" %}
-                                    <li class="active">
+                                    <li class='{{hazard.layer_tbl}}_activeclass'>
                                         <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="{{hazard.layer_icon}}"></i></span>  {{hazard.layer_name}}</a>
                                     </li>
 
@@ -213,7 +213,7 @@
                             <ul>
 
                                 {% for vulnerability in vulnerabilities|slice:":2" %}
-                                <li class="active">
+                                <li class='{{vulnerability.layer_tbl}}_activeclass'>
                                     <a  data-tab="glacier" data-toggle="tooltip" data-placement="bottom" title="Earthquake" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
 
@@ -401,7 +401,7 @@
                                 <ul class="dropicons-list">
                                     <span class="close-cion">x</span>
                                     {% for vulnerability in vulnerabilities|slice:"2:" %}
-                                    <li class="active">
+                                    <li class='{{vulnerability.layer_tbl}}_activeclass'>
                                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Earthquake" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span>  {{vulnerability.layer_name}}</a>
                                     </li>
                                     {% endfor %}
@@ -419,7 +419,7 @@
                                 <ul class="four-list">
 
                                         {% for exposure in exposures|slice:":2" %}
-                                    <li class="active">
+                                    <li class='{{exposure.layer_tbl}}_activeclass'>
                                             <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}" data-url="{{exposure.geoserver_url}}" data-workspace="{{exposure.geoserver_workspace}}"><span><i class="{{exposure.layer_icon}}"></i></span>{{ exposure.layer_name}}</a>
 
                                     </li>
@@ -436,7 +436,7 @@
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
                                         {% for exposure in exposures|slice:"2:" %}
-                                        <li class="active">
+                                        <li class='{{exposure.layer_tbl}}_activeclass'>
                                             <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
                                         </li>
 
@@ -452,7 +452,7 @@
                             <h5>capacity & Branches</h5>
                         <ul class="list-content">
                             {% for resource in resources %}
-                            <li class="active">
+                            <li class='{{resource.layer_tbl}}_activeclass'>
                                 <div class="capacity-content">
                                     <div class="capacity-icon CheckBox" value="{{resource.layer_tbl}}" data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}">
                                         <span><i class="{{resource.layer_icon}}"></i></span>
