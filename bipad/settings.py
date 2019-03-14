@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'silk',
     'drf_yasg',
     'colorfield',
+    'mapwidgets',
 
     'django_celery_beat',
     'rest_framework',
@@ -61,7 +62,6 @@ INSTALLED_APPS = [
     'inventory',
     'realtime',
     'misc',
-    'mapwidgets',
 ]
 
 MIDDLEWARE = [

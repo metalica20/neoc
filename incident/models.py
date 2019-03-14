@@ -72,3 +72,10 @@ class Incident(TimeStampedModal):
         permissions = [
             ('can_verify', 'Can verify incident'),
         ]
+
+
+class Document(TimeStampedModal):
+    incident = models.ForeignKey(
+        Incident, related_name='incident', on_delete=models.PROTECT)
+    title = models.CharField(max_length=255, blank=True, null=True, default=None)
+    file = models.FileField(verbose_name='files', blank=True,)
