@@ -145,6 +145,38 @@ button{
                         }
                     }
                 }
+                &.grid-widget{
+                    padding:10px;
+                    .facility-item{
+                        text-align: center;
+                        @include boxshadow;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                        a{
+                            font-family: $helvetica;
+                            .icon{
+                                width:40px;
+                                height: 40px;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                @include boxshadow;
+                                @include radius50;
+                                margin:0 auto;
+                                i{
+
+                                }
+                            }
+                            h5{
+                                font-family: $helvetica;
+                                font-size: 0.675rem;
+                                margin-top:10px;
+                                text-transform: capitalize;
+                            }
+                        }
+                    }
+                }
             }
             
         }
@@ -538,6 +570,71 @@ button{
             
         }
         
+    }
+    .data-sidebar{
+        position: absolute;
+        top: 58px;
+        left: 10px;
+        z-index: 999;
+        font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        opacity: 0;
+        @include anim05;
+        z-index: 1;
+        visibility: hidden;
+        .expand-icon{
+            display: none;
+            i{
+                width:30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                background-color: $color-white;
+                display: inline-block;
+            }
+        }
+        .sidebarwrapper{
+            background-color: $color-white;
+            width: calc(100vw - 354px) !important;
+            height: 100vh;
+            @include anim05;
+            .leftSidebar-header{
+                display: flex;
+                align-items: center;
+                flex-shrink: 0;
+                h4{
+                    flex-grow: 1;
+                    padding: 10px 12px 2px;
+                    color:$color-dark-blue;
+                    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                    font-size: 0.845rem;
+                    font-weight: 600;
+                }
+                button{
+                    flex-shrink: 0;
+                    font-size: 0.775rem;
+                    color:$color-light;
+                    cursor: pointer;
+                    i{
+                        font-weight: 600;
+                    }
+                }
+            }
+            .card-header{
+                background:none;
+                h5{
+                    font-family: $helvetica;
+                }
+            }
+            .acadamic-facility{
+                margin-top:30px;
+            }
+        }
+        &.open-dataSidebar{
+            opacity: 1;
+            z-index: 999;
+            visibility: visible;
+        }
     }
     @media screen and (max-width:991px){
         .sidebar{

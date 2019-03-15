@@ -15,6 +15,14 @@
             $(this).closest(".sidebar").find('.sidebarwrapper').removeClass("collapse-leftSidebar");
             $(this).closest(".sidebar").find('.expand-icon').fadeOut(300);
         });
+        $(".sidebar .dataShow").on("click", function () {
+            $(this).closest(".sidebar").hide();
+            $('.data-sidebar').addClass('open-dataSidebar');
+        });
+        $(".data-sidebar .dataShow, .data-sidebar .sidebarClose").on("click", function () {
+            $(".leftSidebar").show();
+            $('.data-sidebar').removeClass('open-dataSidebar');
+        });
 
         $('.iconwrap a').on('click', function(e) {
             e.preventDefault();
@@ -36,6 +44,15 @@
 
 
         $(".leftSidebar .sidebarwrapper").slimScroll({
+            height: "calc(100vh - 68px)",
+            color: "#8c909a",
+            position: "right",
+            size: "2px",
+            alwaysVisible: !1,
+            borderRadius: "3px",
+            railBorderRadius: "0"
+        });
+        $(".data-sidebar .sidebarwrapper .card").slimScroll({
             height: "calc(100vh - 68px)",
             color: "#8c909a",
             position: "right",
