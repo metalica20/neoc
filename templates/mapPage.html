@@ -59,6 +59,24 @@
                         <li><a href="#"><i class="ion ion-md-information-circle"></i><span>about us</span></a></li>
                     </ul>
                 </div>
+                <div class="buffer-icon">
+                    <span class="ion ion-logo-buffer"></span>
+                </div>
+            </div>
+
+             <!-- map layer list -->
+             <div class="buffer-list">
+                <div class="buffer-header">
+                    <h4>Maplayer</h4>
+                    <span><i class="ion ion-md-close"></i></span>
+                </div>
+                <ul>
+                    <li class="light"><a href="#">Light</a></li>
+                    <li class="street"><a href="#">street</a></li>
+                    <li class="outdoor"><a href="#">outdoor</a></li>
+                    <li class="satelite"><a href="#">satelite</a></li>
+                    <li class="road"><a href="#">Roads</a></li>
+                </ul>
             </div>
 
             <!-- leftSidebar start -->
@@ -188,27 +206,27 @@
                     <!-- vulnerability-widget start -->
                     <div class="sidebar-widget hazards-widget">
                         <div class="widget-title">
-                            <h5>hazard type</h5>
+                            <h5>hazards</h5>
                         </div>
                         <div class="iconwrap">
                             <ul>
                                 {% for hazard in hazards|slice:":2" %}
                                 <li class='{{hazard.layer_tbl}}_activeclass'>
-                                    <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
+                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{hazard.layer_name}}" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
                                 </li>
                                 {% endfor %}
                                 <li>
-                                    <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
+                                    <a data-tab="hazardtab" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
 
                                 </li>
                             </ul>
                             <!-- menu-list start -->
-                            <div class="icon-submenu">
+                            <div class="icon-submenu" id="hazardtab">
                                 <ul class="dropicons-list">
                                     <span class="close-cion">x</span>
                                     {% for hazard in hazards|slice:"2:" %}
                                     <li class='{{hazard.layer_tbl}}_activeclass'>
-                                        <a href="#" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="{{hazard.layer_icon}}"></i></span>  {{hazard.layer_name}}</a>
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{hazard.layer_name}}" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="{{hazard.layer_icon}}"></i></span>  {{hazard.layer_name}}</a>
                                     </li>
 
                                     {% endfor %}
@@ -228,7 +246,7 @@
 
                                 {% for vulnerability in vulnerabilities|slice:":2" %}
                                 <li class='{{vulnerability.layer_tbl}}_activeclass'>
-                                    <a  data-tab="glacier" data-toggle="tooltip" data-placement="bottom" title="Earthquake" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
+                                    <a  data-tab="glacier" data-toggle="tooltip" data-placement="bottom" title="{{vulnerability.layer_name}}" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span> {{vulnerability.layer_name}}</a>
                                 </li>
 
                                 {% endfor %}
@@ -416,7 +434,7 @@
                                     <span class="close-cion">x</span>
                                     {% for vulnerability in vulnerabilities|slice:"2:" %}
                                     <li class='{{vulnerability.layer_tbl}}_activeclass'>
-                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Earthquake" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span>  {{vulnerability.layer_name}}</a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{vulnerability.layer_name}}" class="CheckBox" value="{{vulnerability.layer_tbl}}" data-url="{{vulnerability.geoserver_url}}" data-workspace="{{vulnerability.geoserver_workspace}}"><span><i class="{{vulnerability.layer_icon}}"></i></span>  {{vulnerability.layer_name}}</a>
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -434,7 +452,7 @@
 
                                         {% for exposure in exposures|slice:":2" %}
                                     <li class='{{exposure.layer_tbl}}_activeclass'>
-                                            <a href="#" class="CheckBox" value="{{exposure.layer_tbl}}" data-url="{{exposure.geoserver_url}}" data-workspace="{{exposure.geoserver_workspace}}"><span><i class="{{exposure.layer_icon}}"></i></span>{{ exposure.layer_name}}</a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{exposure.layer_name}}" class="CheckBox" value="{{exposure.layer_tbl}}" data-url="{{exposure.geoserver_url}}" data-workspace="{{exposure.geoserver_workspace}}"><span><i class="{{exposure.layer_icon}}"></i></span>{{ exposure.layer_name}}</a>
 
                                     </li>
 
@@ -442,16 +460,16 @@
 
 
                                     <li>
-                                        <a href="#" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
+                                        <a data-tab="exposuretab" class="more-option"><span><i class="humanitarian-icon-More-options"></i></span>See more</a>
 
                                     </li>
                                 </ul>
-                                <div class="icon-submenu">
+                                <div class="icon-submenu" id="exposuretab" >
                                     <ul class="dropicons-list">
                                         <span class="close-cion">x</span>
                                         {% for exposure in exposures|slice:"2:" %}
                                         <li class='{{exposure.layer_tbl}}_activeclass'>
-                                            <a href="#"><span><i class="humanitarian-icon-Earthquake"></i></span> Earthquake</a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{exposure.layer_name}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{exposure.layer_name}}</a>
                                         </li>
 
                                         {% endfor %}
@@ -463,7 +481,7 @@
                         </div>
                     <!-- capacity-widget start -->
                     <div class="sidebar-widget capacity-widget">
-                            <h5>capacity & Branches</h5>
+                            <h5>capacity & resources</h5>
                         <ul class="list-content">
                             {% for resource in resources %}
                             <li class='{{resource.layer_tbl}}_activeclass'>
@@ -823,12 +841,15 @@
                     info = L.control().setPosition('bottomleft');
                     info.onAdd = function (map) {
                           this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+                          //this._div.innerHTML="<h1>legend</h1>"
+
                           return this._div;
                       }
                       info.addTo(map);
                       //console.log($('.sidebarwrapper').css('display'));
-                  $('.info.leaflet-control').css('margin-left','325px');
-                  $(".arrow.arrow-left").on("click",function(){
+                  //$('.info.leaflet-control').css('margin-right','700px');
+                  $(".leaflet-left").css('display','block')
+                  $(".ion ion-ios-arrow-up").on("click",function(){
                     // console.log($('.sidebarwrapper').css('display'));
                     if($('.leftSidebar').hasClass("resize-sidebar")){
                       $('.info.leaflet-control').css('margin-left','10px');
@@ -855,7 +876,10 @@
                         // console.log(layerClicked+" ntclicked");
                         map.addLayer(layerClicked);
                             $("."+layerName+"_activeclass").addClass("active");
-                            info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src='+ geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&"/></div>';
+                            let url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&';
+                            console.log(url)
+                            info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="'+url+'"/></div>';
+                       console.log(info._div.innerHTML)
                         //map.BringToFront();
                       }
                     });
