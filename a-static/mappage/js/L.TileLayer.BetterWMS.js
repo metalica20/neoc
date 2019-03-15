@@ -78,10 +78,21 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
   showGetFeatureInfo: function (err, latlng, content) {
     //if (err) { console.log(err); return; } // do nothing if there's an error
 
+    var popUpContent = "";
+                                    popUpContent += '<table style="width:100%;" id="District-popup" class="popuptable">';
+                                    // console.log(feature);
+                                    for (data in content) {
+                                        //var dataspaced = underscoreToSpace(data);
+                                        //console.log(data);
+                                        popUpContent += "<tr>" + "<td>" + data + "</td>" + "<td>" + "  " + content[data] + "</td>" + "</tr>";
+                                        //console.log(popUpContent);
+                                   }
+                                    popUpContent += '</table>';
+
     // Otherwise show the content in a popup, or something.
     L.popup({ maxWidth: 800})
       .setLatLng(latlng)
-      .setContent(content)
+      .setContent(popUpContent)
       .openOn(this._map);
   }
 });
