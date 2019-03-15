@@ -1,4 +1,6 @@
 from django.contrib.gis.db import models
+from django.apps import apps
+
 
 
 # Create your models here.
@@ -137,3 +139,15 @@ class LayerTable(models.Model):
         except:
             aa=[]
         return aa
+    def count_obj(self):
+        # layer_tbl = get_object_or_404(obj.layer_tbl)
+        try:
+            # print('hello')
+            return apps.get_model('risk_profile', self.layer_tbl).objects.all().count()
+            
+            # return  model_name.objects.all().count()
+            # return getattr(models, obj.layer_tbl).objects.all()
+        except Exception as e:
+            print('error',e)
+            return 0
+        # return layer_tbl.count()
