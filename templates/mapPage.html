@@ -88,7 +88,7 @@
                     <div class="leftSidebar-header">
                         <h4>Service</h4>
                         <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
-                        <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
+                        <button type="button" class="button sidebarClose arrow-open"><i class=" ion ion-ios-arrow-up"></i></button>
                     </div>
                     <!-- sidebar start -->
                     <div class="sidebar-widget grid-widget">
@@ -469,7 +469,7 @@
                                         <span class="close-cion">x</span>
                                         {% for exposure in exposures|slice:"2:" %}
                                         <li class='{{exposure.layer_tbl}}_activeclass'>
-                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{exposure.layer_name}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{exposure.layer_name}}</a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{exposure.layer_name}}" class="CheckBox" value="{{exposure.layer_tbl}}" data-url="{{exposure.geoserver_url}}" data-workspace="{{exposure.geoserver_workspace}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{exposure.layer_name}}</a>
                                         </li>
 
                                         {% endfor %}
@@ -849,15 +849,22 @@
                       //console.log($('.sidebarwrapper').css('display'));
                   //$('.info.leaflet-control').css('margin-right','700px');
                   $(".leaflet-left").css('display','block')
-                  $(".ion ion-ios-arrow-up").on("click",function(){
-                    // console.log($('.sidebarwrapper').css('display'));
-                    if($('.leftSidebar').hasClass("resize-sidebar")){
-                      $('.info.leaflet-control').css('margin-left','10px');
-                    }else{
-                      //console.log($('.sidebarwrapper').css('display'));
-                      $('.info.leaflet-control').css('margin-left','325px');
-                    }
+                  $('.info.leaflet-control').css('margin-left','400px');
+                  $(".sidebarClose").on("click",function(){
+                    
+                        $('.info.leaflet-control').css('margin-left','10px');
+                        
+                        
                   });
+
+                  $(".expand-icon").on("click",function(){
+                    $('.info.leaflet-control').css('margin-left','400px');
+
+                  
+                  })
+
+
+                        
                     // request layer data
                     $(".CheckBox").on('click',function(){
                       layerName=$(this).attr('value');
