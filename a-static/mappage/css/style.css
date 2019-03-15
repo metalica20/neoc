@@ -276,6 +276,44 @@ button {
 .mapwrap .sidebar .sidebarwrapper .sidebar-widget ul.list-content li:nth-child(2n) {
   background-color: #f9fbfd;
 }
+.mapwrap .sidebar .sidebarwrapper .sidebar-widget.grid-widget {
+  padding: 10px;
+}
+.mapwrap .sidebar .sidebarwrapper .sidebar-widget.grid-widget .facility-item {
+  text-align: center;
+  -webkit-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.mapwrap .sidebar .sidebarwrapper .sidebar-widget.grid-widget .facility-item a {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.mapwrap .sidebar .sidebarwrapper .sidebar-widget.grid-widget .facility-item a .icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  margin: 0 auto;
+}
+.mapwrap .sidebar .sidebarwrapper .sidebar-widget.grid-widget .facility-item a h5 {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 0.675rem;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
 .mapwrap .sidebar.rightSidebar {
   left: auto;
   right: 74px;
@@ -673,6 +711,77 @@ button {
 }
 .mapwrap .sidebar.rightSidebar .sidebarwrapper .sidebar-widget:first-child {
   padding-top: 0;
+}
+.mapwrap .data-sidebar {
+  position: absolute;
+  top: 58px;
+  left: 10px;
+  z-index: 999;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  opacity: 0;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  z-index: 1;
+  visibility: hidden;
+}
+.mapwrap .data-sidebar .expand-icon {
+  display: none;
+}
+.mapwrap .data-sidebar .expand-icon i {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #ffffff;
+  display: inline-block;
+}
+.mapwrap .data-sidebar .sidebarwrapper {
+  background-color: #ffffff;
+  width: calc(100vw - 354px) !important;
+  height: 100vh;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.mapwrap .data-sidebar .sidebarwrapper .leftSidebar-header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.mapwrap .data-sidebar .sidebarwrapper .leftSidebar-header h4 {
+  flex-grow: 1;
+  padding: 10px 12px 2px;
+  color: #1672c6;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: 0.845rem;
+  font-weight: 600;
+}
+.mapwrap .data-sidebar .sidebarwrapper .leftSidebar-header button {
+  flex-shrink: 0;
+  font-size: 0.775rem;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+.mapwrap .data-sidebar .sidebarwrapper .leftSidebar-header button i {
+  font-weight: 600;
+}
+.mapwrap .data-sidebar .sidebarwrapper .card-header {
+  background: none;
+}
+.mapwrap .data-sidebar .sidebarwrapper .card-header h5 {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.mapwrap .data-sidebar .sidebarwrapper .acadamic-facility {
+  margin-top: 30px;
+}
+.mapwrap .data-sidebar.open-dataSidebar {
+  opacity: 1;
+  z-index: 999;
+  visibility: visible;
 }
 @media screen and (max-width: 991px) {
   .mapwrap .sidebar {

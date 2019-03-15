@@ -21,9 +21,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/customfonts.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/ionicons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/c3.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin="" />
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
+    
 
 </head>
 <!--head end-->
@@ -66,22 +68,35 @@
                 </span>
                 <div class="sidebarwrapper">
                     <div class="leftSidebar-header">
-                        <h4>Incidents</h4>
-                        <button type="button" class="button tableShow"><i class=" ion ion-ios-expand"></i></button>
+                        <h4>Service</h4>
+                        <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
                         <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
                     </div>
                     <!-- sidebar start -->
+                    <div class="sidebar-widget grid-widget">
+                        <div class="row">
+                            
+                            {% for resource in resources %}
+                            <div class="col-xl-6">
+                                <div class="facility-item">
+                                    <a href="#">
+                                        <div class="icon">
+                                            <i class="{{resource.layer_icon}}"></i>
+                                        </div>
+                                        <span>{{resource.count_obj}}</span>
+                                        <h5>{{resource.layer_name}}</h5>
+                                    </a>
+                                </div>
+                            </div>    
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
                     <div class="sidebar-widget">
+                        <div class="leftSidebar-header">
+                            <h4>Incidents</h4>
+                        </div>
                         <ul class="list-content">
-                            <li><a href="#" target="">Total population</a><span>113456</span></li>
-                            <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
-                            <li><a href="#" target="">population density</a><span>4567789</span></li>
-                            <li><a href="#" target="">Poverty rate</a><span>57568569</span></li>
-                            <li><a href="#" target="">Population under poverty rate</a><span>5685698</span></li>
-                            <li><a href="#" target="">HD</a><span>45363</span></li>
-                            <li><a href="#" target="">GDP</a><span>769768</span></li>
-                            <li><a href="#" target="">Index</a><span>45363</span></li>
-                            <li><a href="#" target="">Per income</a><span>769768</span></li>
                             <li><a href="#" target="">Total population</a><span>113456</span></li>
                             <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
                             <li><a href="#" target="">population density</a><span>4567789</span></li>
@@ -93,7 +108,6 @@
                             <li><a href="#" target="">Per income</a><span>769768</span></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
 
@@ -475,6 +489,53 @@
                 </div>
             </div>
             <!-- rightSidebar end -->
+            <div class="data-sidebar">
+                <div class="sidebarwrapper">
+                    <div class="leftSidebar-header">
+                        <h4>Data visualization</h4>
+                        <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
+                        <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-header">
+                                    <h5>Health Facilities</h5>
+                                </div>
+                                <div class="health-facility">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="chart-pie" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="chart-bar-rotated" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="chart-bar" class="c3_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="acadamic-facility">
+                                <div class="card-header">
+                                        <h5>Acadamic Institutions</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="acadamic-spiline" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="chart-area-spline-sracked" class="c3_chart"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div id="lineGraph" class="c3_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- mapsection end -->
     </div>
@@ -492,6 +553,10 @@
    <!-- <script src="{% static 'mappage/js/map.js' %}"></script> -->
     <script src="{% static 'mappage/js/script.js' %}"></script>
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
+    <script src="{% static 'mappage/js/chart.js' %}"></script>
+    <script src="{% static 'mappage/js/d3.min.js' %}"></script>
+	<script src="{% static 'mappage/js/c3.js' %}"></script>
+  
 
     <script>
             //
