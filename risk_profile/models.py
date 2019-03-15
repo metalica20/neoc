@@ -50,6 +50,17 @@ class Bank(models.Model):
     def __str__(self):
         return self.name
 
+
+class Settlements(models.Model):
+    name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    type=models.CharField(max_length=250,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.name
+
 class Airport(models.Model):
     name=models.CharField(max_length=250,null=True, blank=True, default=None)
     lat=models.CharField(max_length=250,null=True, blank=True, default=None)
@@ -144,7 +155,7 @@ class LayerTable(models.Model):
         try:
             # print('hello')
             return apps.get_model('risk_profile', self.layer_tbl).objects.all().count()
-            
+
             # return  model_name.objects.all().count()
             # return getattr(models, obj.layer_tbl).objects.all()
         except Exception as e:

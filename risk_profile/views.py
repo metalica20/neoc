@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
@@ -91,6 +91,23 @@ class EducationGeojsonViewSet(views.APIView):
 class LayerViewset(viewsets.ModelViewSet):
     serializer_class=LayerTableSerializer
     queryset=LayerTable.objects.all()
+
+
+class BankGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Bank.objects.all(),geometry_field='location',fields=('pk','name'))
+        # print(serializers)
+        Bankgeojson=json.loads(serializers)
+        return Response(Bankgeojson)
+
+class SettlementsGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Settlements.objects.all(),geometry_field='location',fields=('pk','name'))
+        # print(serializers)
+        Settlementsgeojson=json.loads(serializers)
+        return Response(Settlementsgeojson)
 
 def Dashboard(request):
     if "GET" == request.method:

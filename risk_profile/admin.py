@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hospital,School,LayerTable,MarketCenter,Bank,Airport,Bridge,Policestation,Education
+from .models import Hospital,School,LayerTable,MarketCenter,Bank,Airport,Bridge,Policestation,Education,Settlements
 # Register your models here.
 admin.site.register(Hospital)
 # admin.site.register(School)
@@ -10,3 +10,4 @@ admin.site.register(Airport)
 admin.site.register(Bridge)
 admin.site.register(Policestation)
 admin.site.register(Education)
+admin.site.register(Settlements)
