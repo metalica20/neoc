@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'silk',
     'drf_yasg',
+    'colorfield',
 
     'django_celery_beat',
     'rest_framework',
