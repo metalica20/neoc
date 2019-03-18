@@ -53,11 +53,5 @@ class Ward(models.Model):
         on_delete=models.PROTECT,
     )
 
-    objects = WardManager()
-
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'title', 'municipality__title', 'municipality__district__title'
-
     def __str__(self):
         return f'{str(self.municipality)}-{self.title}'

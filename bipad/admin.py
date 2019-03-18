@@ -20,6 +20,7 @@ class GeoModelAdmin(admin.ModelAdmin):
     class Media:
         js = (
             'bipad/js/fix_map.js',
+            'https://code.jquery.com/jquery-3.3.1.min.js',
         )
 
 
@@ -27,11 +28,13 @@ class GeoPolymorphicParentModelAdmin(PolymorphicParentModelAdmin):
     formfield_overrides = {
         models.MultiPolygonField: {'widget': OSMWidget},
         models.PolygonField: {'widget': OSMWidget},
-        models.PointField: {'widget': GooglePointFieldWidget},
+        models.PointField: {'widget': OSMWidget},
     }
 
     class Media:
         js = (
             'bipad/js/fix_map.js',
+            'https://code.jquery.com/jquery-3.3.1.min.js',
         )
+
 
