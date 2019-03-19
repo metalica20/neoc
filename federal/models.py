@@ -39,6 +39,11 @@ class Municipality(models.Model):
         verbose_name_plural = "municipalities"
 
 
+class WardManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().select_related('municipality')
+
+
 class Ward(models.Model):
     title = models.CharField(max_length=25)
     boundary = models.MultiPolygonField(null=True, blank=True, default=None)
@@ -47,6 +52,8 @@ class Ward(models.Model):
         related_name='wards',
         on_delete=models.PROTECT,
     )
+
+    objects = WardManager()
 
     @staticmethod
     def autocomplete_search_fields():

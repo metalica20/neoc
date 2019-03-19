@@ -39,6 +39,14 @@ class Loss(TimeStampedModal):
     objects = models.Manager()
     with_stat = StatManager()
 
+    def __str__(self):
+        from incident.models import Incident
+        return str(Incident.objects.filter(loss=self).first())
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'incident__title',
+
     class Meta:
         verbose_name_plural = "losses"
 

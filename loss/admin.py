@@ -32,12 +32,13 @@ class LivestockInline(admin.TabularInline):
 
 @admin.register(Loss)
 class LossAdmin(admin.ModelAdmin):
+    search_fields = Loss.autocomplete_search_fields()
     exclude = ('detail',)
-    inlines = (PeopleInline, FamilyInline,
-               LivestockInline, InfrastructureInline)
+    inlines = (
+        PeopleInline,
+        FamilyInline,
+        LivestockInline,
+        InfrastructureInline
+    )
 
-    def get_model_perms(self, request):
-        return {}
-
-
-admin.site.register([InfrastructureType, LivestockType])
+    admin.site.register([InfrastructureType, LivestockType])

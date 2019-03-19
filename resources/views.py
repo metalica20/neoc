@@ -48,4 +48,4 @@ class ResourceViewSet(viewsets.ModelViewSet):
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend,
                        filters.SearchFilter, filters.OrderingFilter)
     filter_class = ResourceFilter
-    queryset = Resource.objects.non_polymorphic().all()
+    queryset = Resource.objects.non_polymorphic().select_related('polymorphic_ctype').all()
