@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin="" />
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/leaflet.draw.css' %}">
+
 
 </head>
 <!--head end-->
@@ -85,15 +86,36 @@
                     <i class="ion ion-ios-warning"></i>
                 </span>
                 <div class="sidebarwrapper">
-                    <div class="leftSidebar-header">
-                        <h4>Service</h4>
-                        <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
-                        <button type="button" class="button sidebarClose arrow-open"><i class=" ion ion-ios-arrow-up"></i></button>
-                    </div>
+
                     <!-- sidebar start -->
+                      <!-- <div class="sidebar-widget grid-widget">
+
+                            <h5>chart</h5>
+                            <div id="chart-container"></div>
+
+                      </div> -->
+
+                      <div class="sidebar-widget grid-widget" id="filtered_layer_list_container" style="display:none;">
+
+                        <div class="leftSidebar-header">
+                            <h4>Incidents</h4>
+                        </div>
+                        <ul class="list-content" id='filtered_layer_list'>
+
+                        </ul>
+
+                      </div>
+
+
+
                     <div class="sidebar-widget grid-widget">
+                      <div class="leftSidebar-header">
+                          <h4>Service</h4>
+                          <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
+                          <button type="button" class="button sidebarClose arrow-open"><i class=" ion ion-ios-arrow-up"></i></button>
+                      </div>
                         <div class="row">
-                            
+
                             {% for resource in resources %}
                             <div class="col-xl-6">
                                 <div class="facility-item">
@@ -105,10 +127,10 @@
                                         <h5>{{resource.layer_name}}</h5>
                                     </a>
                                 </div>
-                            </div>    
+                            </div>
                             {% endfor %}
                         </div>
-                        
+
                     </div>
                     <div class="sidebar-widget">
                         <div class="leftSidebar-header">
@@ -574,12 +596,23 @@
     <script src="{% static 'mappage/js/chart.js' %}"></script>
     <script src="{% static 'mappage/js/d3.min.js' %}"></script>
 	<script src="{% static 'mappage/js/c3.js' %}"></script>
-  
+	<script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
+	<script src="{% static 'mappage/js/proj4.js' %}"></script>
+	<script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
+  //chart-pie
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- FusionCharts -->
+    <script type="text/javascript" src="http://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- jQuery-FusionCharts -->
+    <script type="text/javascript" src="https://rawgit.com/fusioncharts/fusioncharts-jquery-plugin/develop/dist/fusioncharts.jqueryplugin.min.js"></script>
+    <!-- Fusion Theme -->
+    <script type="text/javascript" src="http://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+  //chart
 
     <script>
             //
-            var base_url= 'http://139.59.67.104:8004'
-            //var base_url = 'http://localhost:8000'
+            //var base_url= 'http://139.59.67.104:8004'
+            var base_url = 'http://localhost:8000'
             $(document).ready(function(){
             map = L.map('mapid',{
                      zoomControl:false
@@ -693,10 +726,11 @@
                         else{
                         //  console.log(data.results[i]['subCategory']);
                             var sub_array = data.results[i]['subCategory'].split(",");
-                            // console.log(sub_array);
+                             //console.log(sub_array);
                             for(let i=0;i<sub_array.length;i++){
+                                //console.log("w",window[sub_array[i]])
                                 window[sub_array[i].replace(' ','_')] = L.layerGroup();
-                                // console.log("w",window[sub_array[i]])
+                                //console.log("w",window[sub_array[i]])
                             }
                         }
                         layer_icon= data.results[i]['layerIcon']
@@ -711,7 +745,7 @@
                             layer_icon: layer_icon,
                             success: function(response) {
                                 //var data = data;
-                                //console.log(response);
+                              //  console.log(response);
                                 // console.log("results",this.data1);
                                 // console.log(this.layer_icon);
                                 var layer_icon1 = this.layer_icon;
@@ -723,7 +757,7 @@
                             //pane:"pointsPane",
                             pointToLayer: function(feature,Latlng)
                                 {
-                                    console.log(layer_icon1)
+                                  //  console.log(layer_icon1)
                                     /* if( layer_icon != 'null'){ */
                                                     //alert(layer_icon)
                                         var divicon = L.divIcon({
@@ -745,10 +779,10 @@
                                     for(let i=0;i<sub_array.length;i++){
                                         if(sub_array[i]== feature.properties.type){
                                             layer.addTo(window[sub_array[i].replace(' ','_')])
-                                            console.log('lg',window[sub_array[i].replace(' ','_')])
+                                        //    console.log('lg',window[sub_array[i].replace(' ','_')])
                                         }
                                     }
-                                    console.log("feat",feature.properties.type)
+                                    // console.log("feat",feature.properties.type)
                                     if(feature.properties.type != undefined){
                                     }
                                     var popUpContent = "";
@@ -800,7 +834,7 @@
                             // });
                         }
                         });
-                        console.log(window[""+"Marketcenter"]);
+
                     }
                     count++;
             }
@@ -851,20 +885,20 @@
                   $(".leaflet-left").css('display','block')
                   $('.info.leaflet-control').css('margin-left','400px');
                   $(".sidebarClose").on("click",function(){
-                    
+
                         $('.info.leaflet-control').css('margin-left','10px');
-                        
-                        
+
+
                   });
 
                   $(".expand-icon").on("click",function(){
                     $('.info.leaflet-control').css('margin-left','400px');
 
-                  
+
                   })
 
 
-                        
+                    visible_layers=[];
                     // request layer data
                     $(".CheckBox").on('click',function(){
                       layerName=$(this).attr('value');
@@ -873,22 +907,31 @@
                       // console.log(layerName);
                       //var layerClicked=window[''+layerName];
                       var layerClicked=eval(layerName);
-                      // console.log(layerClicked);
+                  //     console.log(layerClicked);
                       if(map.hasLayer(layerClicked)){
                         // console.log(layerClicked+" clicked");
                         map.removeLayer(layerClicked);
                         $("."+layerName+"_activeclass").removeClass("active");
                         $('#'+layerName+'_legend').remove();
+                        for(var i=0;i<visible_layers.length;i++){
+                          if(visible_layers[i].layerName==layerName){
+                            visible_layers.splice(i,1);
+                          }
+                        }
+
                       }else{
-                        // console.log(layerClicked+" ntclicked");
+
+                        //console.log(" ntclicked");
                         map.addLayer(layerClicked);
                             $("."+layerName+"_activeclass").addClass("active");
                             let url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&';
-                            console.log(url)
+                          //  console.log(url)
                             info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="'+url+'"/></div>';
-                       console.log(info._div.innerHTML)
+                       //console.log(info._div.innerHTML)
+                       visible_layers.push({"layerName":layerName,"url":geo_url,"workspace":geo_workspace})
                         //map.BringToFront();
                       }
+                    //  console.log(visible_layers);
                     });
             // method that we will use to update the control based on feature properties passed
                     //end
@@ -920,12 +963,21 @@
                     .openOn(map);
                 });
              */
-            })
+
             $('.subcat').on('click',function(){
                 if($(this).hasClass('geoserver_False')){
+
                     let layer_name =$(this).attr("value").replace(" ","_");
-                    console.log("layergrou", window[layer_name])
-                    window[layer_name].addTo(map)
+                    // console.log("layergrou", window[layer_name])
+                    if(map.hasLayer(window[layer_name])){
+                        // console.log('remove');
+                      map.removeLayer(window[layer_name]);
+                    }else{
+                        // console.log('add');
+                      map.addLayer(window[layer_name]);
+
+                    }
+                    // window[layer_name].addTo(map)
                 }
                 else{
                                 var filter_value= $(this).attr("value")
@@ -973,6 +1025,212 @@
             //
                 }
             })
+          function getLayersInsidePolygon(coords,visible_layers){
+            console.log("visible layers  ",visible_layers.length);
+            $('#filtered_layer_list').html('');
+            for(var i=0;i<visible_layers.length;i++){
+              //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
+                var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
+                //var filter4 = new L.Filter.Within('location', L.polygon([L.latLng(27.68307, 85.4635),L.latLng(27.7213, 85.4914),L.latLng(27.72418, 85.44831)]), L.CRS.EPSG4326);
+                 //filter3.toGml();
+
+                 //filter1.toGml();
+                 //console.log(b);
+
+
+
+                   window[visible_layers[i]['layerName']+"_filteredLayers"] = new L.WFST(
+                        {
+                          url: visible_layers[i]['url'],
+                          typeNS: visible_layers[i]['workspace'],
+                          typeName: visible_layers[i]['layerName'],
+                          crs: L.CRS.EPSG4326,
+                          geometryField: 'location',
+                          filter: filter3,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
+                          style: {
+                            color: 'blue',
+                            weight: 2
+                          }
+                        },
+                        new L.Format.GeoJSON({
+                          crs: L.CRS.EPSG4326,
+                          pointToLayer(geoJsonPoint, latlng) {
+                            const layer = new L.CircleMarker(latlng, {
+                              radius: 8,
+                            });
+                            return layer;
+                          },
+                        })
+
+                    ).addTo(map).on('load', function (feature, layer) {
+                        console.log(feature);
+                        //console.log(feature.target._layers[0].feature.properties);
+                        console.log(feature.target._layers);
+                        $.each(feature.target._layers, function (i) {
+                          console.log(feature.target._layers[i].feature.properties.name)
+
+                          var list_item='<li><a href="#" target="">'+feature.target._layers[i].feature.properties.name+'</a></li>';
+
+                          $('#filtered_layer_list').append(list_item);
+
+                        });
+                        $('#filtered_layer_list_container').css('display','block');
+                        //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
+                    });
+                map.removeLayer(window[visible_layers[i]['layerName']]);
+                $("."+visible_layers[i]['layerName']+"_activeclass").removeClass("active");
+                $('#'+visible_layers[i]['layerName']+'_legend').remove();
+
+            }
+
+
+
+        }
+
+            drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+
+            var drawControl = new L.Control.Draw({
+                  position:"bottomleft",
+                  draw: {
+
+                     // disable toolbar item by setting it to false
+                     polyline: false,
+                     circle: false, // Turns off this drawing tool
+                     rectangle: false,
+                     marker: false,
+                     },
+                     edit: {
+                              featureGroup: drawnItems
+                          }
+
+                  });
+
+            map.addControl(drawControl);
+
+            map.on('draw:created', function(e) {
+              var type = e.layerType,
+                layer = e.layer;
+              drawnItems.addLayer(layer);
+              layer.bindPopup("sadfdsa");
+              layer.on('click',function(){
+                console.log('delete clicked');
+                setTimeout(function(){
+
+                  if($.isEmptyObject(drawnItems._layers)){
+                      console.log($.isEmptyObject(drawnItems._layers));
+                        for(var i=0;i<visible_layers.length;i++){
+
+                          if(map.hasLayer(window[visible_layers[i]['layerName']+"_filteredLayers"])){
+
+                            map.removeLayer( window[visible_layers[i]['layerName']+"_filteredLayers"]);
+
+                          }
+
+                        }
+                        visible_layers=[];
+                        $('#filtered_layer_list').html('');
+                        $('#filtered_layer_list_container').css('display','none');
+                  }
+
+
+                }, 100);
+
+              });
+              console.log(e.layer.editing.latlngs[0][0]);
+              var coordinates=e.layer.editing.latlngs[0][0];
+              getLayersInsidePolygon(coordinates,visible_layers)
+            });
+        //
+        // $.isEmptyObject(drawnItems._layers);
+        // drawnItems.click(function(){
+        //   console.log('delete clicked');
+        // });
+
+            // map.on('click', function(){
+            // 	window.console.log('click');
+            // });
+            //
+            // map.on('touchstart', function(){
+            // 	window.console.log('touchstart');
+            // });
+
+
+
+          //  var filter1 = new L.Filter.EQ('name', 'Modi Bridge');
+            var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
+          //  var filter4 = new L.Filter.DWithin('the_geom', L.polygon([L.latLng(27.68307, 85.4635),L.latLng(27.7213, 85.4914),L.latLng(27.72418, 85.44831)]), L.CRS.EPSG4326, 0.01);
+             //filter3.toGml();
+
+
+             //console.log(b);
+
+
+
+               // var wfst = new L.WFST(
+               //      {
+               //        url: 'http://139.59.67.104:8080/geoserver/ows',
+               //        typeNS: 'neoc',
+               //        typeName: 'Bridge',
+               //        crs: L.CRS.EPSG4326,
+               //        geometryField: 'location',
+               //        filter: filter3,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
+               //        style: {
+               //          color: 'blue',
+               //          weight: 2
+               //        }
+               //      }
+               //
+               //  ).addTo(map).on('load', function (feature, layer) {
+               //    //  console.log(feature);
+               //      map.fitBounds(wfst.getBounds());
+               //  });
+
+
+              //chart start--
+
+              $("#chart-container").insertFusionCharts({
+       type: "pie2d",
+       width: "50%",
+       height: "50%",
+       dataFormat: "json",
+       dataSource: {
+      "chart": {
+        "caption": "Market Share of Web Servers",
+        "plottooltext": "<b>$percentValue</b> of web servers run on $label servers",
+        "showlegend": "1",
+        "showpercentvalues": "1",
+        "legendposition": "bottom",
+        "usedataplotcolorforlabels": "1",
+        "theme": "fusion"
+      },
+      "data": [
+        {
+          "label": "Apache",
+          "value": "32647479"
+        },
+        {
+          "label": "Microsoft",
+          "value": "22100932"
+        },
+        {
+          "label": "Zeus",
+          "value": "14376"
+        },
+        {
+          "label": "Other",
+          "value": "18674221"
+        }
+      ]
+    }
+    });
+              //chart end
+
+
+
+
+
+          })//document ready
             console.log("hello")
             </script>
 

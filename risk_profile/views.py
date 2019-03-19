@@ -141,11 +141,18 @@ def Dashboard(request):
                     # print(csv_colum[i])
                     data_dict[field.name]=csv_colum[i]
                     i=i+1
-                    # print('field.name')
+                    # print(csv_colum[1])
+
+            # print(float(csv_colum[1]))
+            # print(csv_colum[0])
+            # print(Point(float(csv_colum[1]),float(csv_colum[0])))
             data_dict['location']=Point(float(csv_colum[1]),float(csv_colum[0]))
-            print(data_dict)
+            # data_dict['location']=GEOSGeometry('POINT('float(csv_colum[1]) float(csv_colum[0])')')
+            print('CSV colm', csv_colum[1])
+            print('locationnn', data_dict['location'])
             form = HospitalForm(data_dict)
             form.save()
+
 
         # count_update('Hospital')
         # return render(request, "dashboard.html")

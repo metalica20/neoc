@@ -16,17 +16,17 @@ class Command(BaseCommand):
             reader = csv.reader(f, dialect='excel')
             # print(type(reader))
             for row in reader:
-                if(row[8]!='LONGITUDE'):
+                if(row[1]!='LONGITUDE'):
                     hospital = Hospital.objects.create(
-                        fid=row[0],
+                        fid=row[2],
                         name=row[3],
                         district=row[4],
                         vdc=row[5],
                         ward=row[6],
-                        type=row[10],
-                        lat=row[7],
-                        long=row[8],
-                        location=Point(float(row[8]),float(row[7]))
+                        type=row[7],
+                        lat=row[0],
+                        long=row[1],
+                        location=Point(float(row[1]),float(row[0]))
 
 
 
