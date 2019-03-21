@@ -1,10 +1,32 @@
-from django.db import models
+from django.contrib.gis.db import models
 from bipad.models import TimeStampedModal
+from django.utils.translation import ugettext_lazy as _
 
 
 class Event(TimeStampedModal):
-    title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True, default=None)
+    MINOR = 'minor'
+    MAJOR = 'major'
+    CATASTROPHIC = 'catastrophic'
+
+    SEVERITY = (
+        (MINOR, _('Minor')),
+        (MAJOR, _('Major')),
+        (CATASTROPHIC, _('Catastrophic')),
+    )
+
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    description = models.TextField(null=True, blank=True, default=None, verbose_name=_('Description'))
+    polygon = models.PolygonField(null=True, blank=True, default=None, verbose_name=_('Polygon'))
+
+    severity = models.CharField(
+        max_length=25, choices=SEVERITY,
+        null=True, blank=True, default=None,
+        verbose_name=_('Severity'),
+    )
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = _('Event')
+        verbose_name_plural = _('Events')

@@ -13,12 +13,16 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField()
+
     class Meta:
         model = Item
         fields = '__all__'
 
 
 class InventorySerializer(serializers.ModelSerializer):
+    item = ItemSerializer()
+
     class Meta:
         model = Inventory
-        fields = '__all__'
+        exclude = ('created_on', 'modified_on')

@@ -1,0 +1,16 @@
+[
+  {
+    "model": "loss.livestocktype",
+    "pk": "1",
+    "fields": {
+      "title": "Other"
+    }
+  },
+  {
+    "model": "loss.infrastructuretype",
+    "pk": "1",
+    "fields": {
+      "title": "Other"
+    }
+  }
+]

@@ -3,7 +3,8 @@ image: docker:stable
 variables:
   DOCKER_HOST: tcp://docker:2375/
   DOCKER_DRIVER: overlay2
-  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_SHA_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  CONTAINER_BRANCH_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
   COMPOSE_URL: https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)
 
@@ -22,8 +23,22 @@ before_script:
 build:
   stage: build
   script:
-    - docker build --pull -t $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker pull $CONTAINER_SHA_IMAGE
+      || docker pull $CONTAINER_BRANCH_IMAGE
+      || docker pull $CONTAINER_RELEASE_IMAGE
+      || echo "No cache found building from scratch"
+    - docker build --pull
+      --cache-from $CONTAINER_SHA_IMAGE
+      --cache-from $CONTAINER_BRANCH_IMAGE
+      --cache-from $CONTAINER_RELEASE_IMAGE
+      -t $CONTAINER_BRANCH_IMAGE
+      -t $CONTAINER_SHA_IMAGE .
+    - docker push $CONTAINER_SHA_IMAGE
+  only:
+    - tags
+    - develop
+    - staging
+    - merge_requests
 
 test:
   image:
@@ -33,6 +48,8 @@ test:
   - env > .env
   - docker-compose -f external_services.yml up -d
   - ln -s docker-compose.prod.yml docker-compose.yml
+  - docker pull $CONTAINER_SHA_IMAGE
+  - docker tag $CONTAINER_SHA_IMAGE $CONTAINER_RELEASE_IMAGE
   - docker-compose up -d
   - docker-compose exec -T server pip install coverage
   - docker-compose exec -T server coverage run --source=. manage.py test -v 2
@@ -42,14 +59,20 @@ test:
   artifacts:
     paths:
       - coverage
+  only:
+    - tags
+    - develop
+    - staging
+    - merge_requests
 
 release-image:
   stage: release
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker pull $CONTAINER_SHA_IMAGE
+    - docker tag $CONTAINER_SHA_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
   only:
+    - tags
     - develop
     - staging
 
@@ -71,4 +94,3 @@ deploy:
     - ./docker/deploy.sh
   only:
     - staging
-

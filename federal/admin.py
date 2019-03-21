@@ -7,4 +7,17 @@ from .models import (
 )
 from bipad.admin import GeoModelAdmin
 
-admin.site.register([Province, District, Municipality, Ward], GeoModelAdmin)
+
+@admin.register(Municipality)
+class MunicipalityAdmin(GeoModelAdmin):
+    list_display = ('title', 'district')
+
+
+@admin.register(District)
+class DistrictAdmin(GeoModelAdmin):
+    list_display = ('title', 'province')
+
+
+admin.site.register([Province, Ward], GeoModelAdmin)
+
+

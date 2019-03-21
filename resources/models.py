@@ -12,10 +12,16 @@ class Resource(PolymorphicModel):
     ward = models.ForeignKey(
         Ward,
         related_name='resources',
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )
 
     detail = JSONField(null=True, blank=True, default=None)
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'title',
 
     def __str__(self):
         return self.title
@@ -26,7 +32,9 @@ class Education(Resource):
 
 
 class Health(Resource):
-    bed_count = models.PositiveIntegerField()
+    bed_count = models.PositiveIntegerField(null=True, blank=True, default=None)
+    type = models.CharField(max_length=255, null=True, blank=True, default=None)
+    cbs_code = models.IntegerField(null=True, blank=True, default=None)
 
 
 class Finance(Resource):

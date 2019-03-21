@@ -1,0 +1,240 @@
+[
+  {
+    "pk": 1,
+    "model": "document.category",
+    "fields": {
+      "title": "All"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "document.category",
+    "fields": {
+      "title": "Publication"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "document.category",
+    "fields": {
+      "title": "News"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "document.category",
+    "fields": {
+      "title": "Notice"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "document.category",
+    "fields": {
+      "title": "Cabinet Decisions"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "document.category",
+    "fields": {
+      "title": "CNDRC Decisions"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "document.category",
+    "fields": {
+      "title": "DDRC Decisions"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "document.category",
+    "fields": {
+      "title": "Circulars"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "document.category",
+    "fields": {
+      "title": "Press Release"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "document.category",
+    "fields": {
+      "title": "Central Acts/Regulations"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "document.category",
+    "fields": {
+      "title": "Reports"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "document.category",
+    "fields": {
+      "title": "Central Policy"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "document.category",
+    "fields": {
+      "title": "Central Directive"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "document.category",
+    "fields": {
+      "title": "Central Framework"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "document.category",
+    "fields": {
+      "title": "Relief Distributed Till Now"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "document.category",
+    "fields": {
+      "title": "Strategic Plan"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "document.category",
+    "fields": {
+      "title": "ndrrpsap"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "document.category",
+    "fields": {
+      "title": "ndrrpsappu"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "document.category",
+    "fields": {
+      "title": "Simulation Exercise"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "document.category",
+    "fields": {
+      "title": "TWG Meeting Minutes"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "document.category",
+    "fields": {
+      "title": "NDRRPSAP Background Report"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "document.category",
+    "fields": {
+      "title": "NDRRPSAP Consultation Report"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "document.category",
+    "fields": {
+      "title": "Flood 2074"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "document.category",
+    "fields": {
+      "title": "Provincial Acts/Regulations"
+    }
+  },
+  {
+    "pk": 25,
+    "model": "document.category",
+    "fields": {
+      "title": "Local Acts/Regulations"
+    }
+  },
+  {
+    "pk": 26,
+    "model": "document.category",
+    "fields": {
+      "title": "Provincial Policy"
+    }
+  },
+  {
+    "pk": 27,
+    "model": "document.category",
+    "fields": {
+      "title": "Local Policy"
+    }
+  },
+  {
+    "pk": 28,
+    "model": "document.category",
+    "fields": {
+      "title": "Provincial Directive"
+    }
+  },
+  {
+    "pk": 29,
+    "model": "document.category",
+    "fields": {
+      "title": "Local Directive"
+    }
+  },
+  {
+    "pk": 30,
+    "model": "document.category",
+    "fields": {
+      "title": "Provincial Framework"
+    }
+  },
+  {
+    "pk": 31,
+    "model": "document.category",
+    "fields": {
+      "title": "Local Framework"
+    }
+  },
+  {
+    "pk": 32,
+    "model": "document.category",
+    "fields": {
+      "title": "TWG Final Reports"
+    }
+  },
+  {
+    "pk": 33,
+    "model": "document.category",
+    "fields": {
+      "title": "Drafts"
+    }
+  },
+  {
+    "pk": 34,
+    "model": "document.category",
+    "fields": {
+      "title": "NDRRMC"
+    }
+  }
+]

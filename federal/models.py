@@ -24,6 +24,7 @@ class District(models.Model):
 
 class Municipality(models.Model):
     title = models.CharField(max_length=255)
+    type = models.CharField(max_length=255, null=True, blank=True, default=None)
     boundary = models.MultiPolygonField(null=True, blank=True, default=None)
     district = models.ForeignKey(
         District,
@@ -32,10 +33,15 @@ class Municipality(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return f"{self.title} {self.type or ''}".strip()
 
     class Meta:
         verbose_name_plural = "municipalities"
+
+
+class WardManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().select_related('municipality')
 
 
 class Ward(models.Model):
@@ -46,6 +52,8 @@ class Ward(models.Model):
         related_name='wards',
         on_delete=models.PROTECT,
     )
+
+    objects = WardManager()
 
     def __str__(self):
         return f'{str(self.municipality)}-{self.title}'
