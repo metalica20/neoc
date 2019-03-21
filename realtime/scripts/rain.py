@@ -21,7 +21,6 @@ def fetch_rain():
             averages=data['averages'],
             status=data['status'],
             elevation=data['elevation'],
-            district=data['district'],
             description=data['description'],
             station_series_id=data['series_id'],
         )

@@ -28,6 +28,9 @@ ALLOWED_HOSTS = [os.environ.get('SERVER_ALLOWED_HOST', '*')]
 INSTALLED_APPS = [
     'polymorphic',
 
+    'jet.dashboard',
+    'jet',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +41,9 @@ INSTALLED_APPS = [
 
     'autofixture',
     'corsheaders',
+    'silk',
+    'drf_yasg',
+    'colorfield',
 
     'django_celery_beat',
     'rest_framework',
@@ -54,10 +60,15 @@ INSTALLED_APPS = [
     'resources',
     'inventory',
     'realtime',
+
     'risk_profile'
+    'misc',
+    'mapwidgets',
+
 ]
 
 MIDDLEWARE = [
+    'silk.middleware.SilkyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -73,13 +84,17 @@ ROOT_URLCONF = 'bipad.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -150,28 +165,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 1000,
+    'HTML_SELECT_CUTOFF': 20,
 }
-
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
-                'django.template.context_processors.request',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 
 # Internationalization
@@ -189,8 +184,9 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "bipad/static"),
+]
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
@@ -211,7 +207,32 @@ CELERY_TIMEZONE = TIME_ZONE
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
 
-try:
-    from .local_settings import *
-except Exception as e:
-    pass
+JET_DEFAULT_THEME = 'default'
+JET_SIDE_MENU_COMPACT = True
+JET_INDEX_DASHBOARD = 'bipad.dashboard.IndexDashboard'
+
+# DJANGO SILK
+SILKY_META = True
+SILKY_AUTHENTICATION = True
+SILKY_AUTHORISATION = True
+SILKY_MAX_RESPONSE_BODY_SIZE = 1024*100  # bytes
+SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '0'))
+
+
+def SILKY_PERMISSIONS(user): return user.is_superuser
+
+
+SILKY_MAX_RESPONSE_BODY_SIZE = 1024*100  # bytes
+SILKY_INTERCEPT_PERCENT = int(os.environ.get('DJANGO_SILKY_INTERCEPT_PERCENT', '0'))
+
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 6),
+        ("markerFitZoom", 12),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np'}}),
+    ),
+    "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
+}
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBER_FIELDS', '1000'))
+FEDERAL_CACHE_CONTROL_MAX_AGE = 60*60*24*7

@@ -6,11 +6,12 @@ WORKDIR /code
 
 RUN \
   apk add --no-cache \
+  musl-dev \
+  gcc \
+  postgresql-dev && \
+  apk add --no-cache \
   --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
   --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-  gcc \
-  musl-dev \
-  postgresql-dev \
   openssl \
   gdal-dev \
   geos-dev \

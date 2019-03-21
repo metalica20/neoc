@@ -1,5 +1,7 @@
 from django.contrib.gis import admin, forms
+from polymorphic.admin import PolymorphicParentModelAdmin
 from django.contrib.gis.db import models
+from mapwidgets.widgets import GooglePointFieldWidget
 
 
 class OSMWidget(forms.OSMWidget):
@@ -12,5 +14,24 @@ class GeoModelAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.MultiPolygonField: {'widget': OSMWidget},
         models.PolygonField: {'widget': OSMWidget},
-        models.PointField: {'widget': OSMWidget},
+        models.PointField: {'widget': GooglePointFieldWidget},
     }
+
+    class Media:
+        js = (
+            'bipad/js/fix_map.js',
+        )
+
+
+class GeoPolymorphicParentModelAdmin(PolymorphicParentModelAdmin):
+    formfield_overrides = {
+        models.MultiPolygonField: {'widget': OSMWidget},
+        models.PolygonField: {'widget': OSMWidget},
+        models.PointField: {'widget': GooglePointFieldWidget},
+    }
+
+    class Media:
+        js = (
+            'bipad/js/fix_map.js',
+        )
+

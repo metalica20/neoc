@@ -1,8 +1,8 @@
-from __future__ import absolute_import, unicode_literals
 from misc.scraper.seismology import scrape_earthquakes
 from realtime.scripts.rain import fetch_rain
 from realtime.scripts.river import fetch_river
 from celery import shared_task
+
 
 @shared_task
 def fetch_earthquake_data():

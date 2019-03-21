@@ -11,7 +11,47 @@ from .models import (
 )
 
 
-class SimpleLossSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+class LivestockTypeSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    class Meta:
+        model = LivestockType
+        fields = '__all__'
+
+
+class InfrastructureTypeSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    class Meta:
+        model = InfrastructureType
+        fields = '__all__'
+
+
+class PeopleSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    class Meta:
+        model = People
+        exclude = ('name', 'created_on', 'modified_on')  # TODO: discuss confidentiality
+
+
+class FamilySerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    class Meta:
+        model = Family
+        exclude = ('phone_number', 'created_on', 'modified_on')  # TODO: discuss confidentiality
+
+
+class InfrastructureSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    type = serializers.StringRelatedField()
+
+    class Meta:
+        model = Infrastructure
+        exclude = ('created_on', 'modified_on')
+
+
+class LivestockSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    type = serializers.StringRelatedField()
+
+    class Meta:
+        model = Livestock
+        fields = '__all__'
+
+
+class LossSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     people_death_count = serializers.IntegerField(
         required=False, read_only=True
     )
@@ -26,38 +66,9 @@ class SimpleLossSerializer(FlexFieldsSerializerMixin, serializers.ModelSerialize
         model = Loss
         exclude = ('detail',)
 
-
-class PeopleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = People
-        exclude = ('name',)
-
-
-class FamilySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Family
-        exclude = ('phone_number',)
-
-
-class InfrastructureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Infrastructure
-        fields = '__all__'
-
-
-class InfrastructureTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = InfrastructureType
-        fields = '__all__'
-
-
-class LivestockSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Livestock
-        fields = '__all__'
-
-
-class LivestockTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LivestockType
-        fields = '__all__'
+    expandable_fields = {
+        'peoples': (PeopleSerializer, {'source': 'peoples', 'many': True}),
+        'families': (FamilySerializer, {'source': 'families', 'many': True}),
+        'livestocks': (LivestockSerializer, {'source': 'livestocks', 'many': True}),
+        'infrastructures': (InfrastructureSerializer, {'source': 'infrastructures', 'many': True}),
+    }

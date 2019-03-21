@@ -11,6 +11,9 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
 from hazard.views import HazardViewSet
 from alert.views import AlertViewSet
 from incident.views import IncidentViewSet
@@ -27,7 +30,7 @@ from organization.views import (
     ProjectViewSet,
 )
 from loss.views import (
-    SimpleLossViewSet,
+    LossViewSet,
     InfrastructureTypeViewSet,
     LivestockTypeViewSet,
 )
@@ -52,6 +55,12 @@ from risk_profile.views import (
 )
 
 admin.site.site_header = 'BIPAD administration'
+schema_view = get_schema_view(
+    openapi.Info(
+        title="BIPAD API",
+        default_version='v1',
+    ),
+)
 
 router = routers.DefaultRouter()
 router.register(r'hazard', HazardViewSet,
@@ -76,7 +85,7 @@ router.register(r'organization', OrganizationViewSet,
                 base_name='organization')
 router.register(r'project', ProjectViewSet,
                 base_name='project')
-router.register(r'loss', SimpleLossViewSet,
+router.register(r'loss', LossViewSet,
                 base_name='loss')
 router.register(r'infrastructure-type', InfrastructureTypeViewSet,
                 base_name='infrastructure_type')
@@ -110,12 +119,19 @@ def get_api_path(path):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    path('jet/', include('jet.urls', 'jet')),
+    path('silk/', include('silk.urls', namespace='silk')),
     re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(),
             name='token_obtain_pair'),
     re_path(get_api_path(r'token/refresh/$'),
             TokenRefreshView.as_view(), name='token_refresh'),
     re_path(get_api_path(r'token/verify/$'),
             TokenVerifyView.as_view(), name='token_verify'),
+    re_path(r'^api(?P<format>\.json|\.yaml)$', schema_view.with_ui(
+        cache_timeout=0), name='schema-json'),
+    re_path(r'^api/$', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
     path('risk_profile/', include('risk_profile.urls')),
     path('risk_profile/', include('mappage.urls')),

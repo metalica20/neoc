@@ -1,5 +1,5 @@
 from django.contrib import admin
-from polymorphic.admin import PolymorphicParentModelAdmin
+from bipad.admin import GeoPolymorphicParentModelAdmin
 from .models import (
     Resource,
     Education,
@@ -13,8 +13,9 @@ from .models import (
 
 
 @admin.register(Resource)
-class ResourceAdmin(PolymorphicParentModelAdmin):
+class ResourceAdmin(GeoPolymorphicParentModelAdmin):
     base_model = Resource
+    autocomplete_fields = ['ward']
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry)
 

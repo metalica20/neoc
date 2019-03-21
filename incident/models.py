@@ -16,22 +16,12 @@ class IncidentSource(models.Model):
 
 
 class Incident(TimeStampedModal):
-    ARTIFICIAL = 'artificial'
+    NON_NATURAL = 'non_natural'
     NATURAL = 'natural'
 
     INDUCERS = (
-        (ARTIFICIAL, 'Artificial'),
+        (NON_NATURAL, 'Non Natural'),
         (NATURAL, 'Natural'),
-    )
-
-    MINOR = 'minor'
-    MAJOR = 'major'
-    CATASTROPHIC = 'catastrophic'
-
-    SEVERITY = (
-        (MINOR, 'Minor'),
-        (MAJOR, 'Major'),
-        (CATASTROPHIC, 'catastrophic'),
     )
 
     title = models.CharField(max_length=255)
@@ -41,16 +31,13 @@ class Incident(TimeStampedModal):
         max_length=25, choices=INDUCERS,
         null=True, blank=True, default=None
     )
-    severity = models.CharField(
-        max_length=25, choices=SEVERITY,
-        null=True, blank=True, default=None
-    )
     source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT)
     verified = models.BooleanField(default=False)
     # TODO: discuss polygon or multipolygon or simply geometry
     point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
     incident_on = models.DateTimeField(null=True, blank=True, default=None)
+    reported_on = models.DateTimeField(null=True, blank=True, default=None)
     event = models.ForeignKey(
         Event,
         on_delete=models.SET_NULL,
@@ -63,11 +50,13 @@ class Incident(TimeStampedModal):
     )
     loss = models.OneToOneField(
         Loss,
+        related_name='incident',
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
     )
     wards = models.ManyToManyField(
         Ward,
+        blank=True,
         related_name='incidents',
     )
     street_address = models.CharField(
@@ -76,3 +65,8 @@ class Incident(TimeStampedModal):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        permissions = [
+            ('can_verify', 'Can verify incident'),
+        ]

@@ -32,8 +32,13 @@ class LivestockInline(admin.TabularInline):
 
 @admin.register(Loss)
 class LossAdmin(admin.ModelAdmin):
-    inlines = (PeopleInline, FamilyInline,
-               LivestockInline, InfrastructureInline)
+    search_fields = Loss.autocomplete_search_fields()
+    exclude = ('detail',)
+    inlines = (
+        PeopleInline,
+        FamilyInline,
+        LivestockInline,
+        InfrastructureInline
+    )
 
-
-admin.site.register([InfrastructureType, LivestockType])
+    admin.site.register([InfrastructureType, LivestockType])

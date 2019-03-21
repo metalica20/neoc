@@ -12,6 +12,13 @@ class ProvinceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
 
 class DistrictGeoSerializer(GeoFeatureModelSerializer):
     class Meta:
+        geo_field = 'boundary'
+        model = District
+        fields = '__all__'
+
+
+class DistrictSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    class Meta:
         model = District
         exclude = ('boundary',)
 
@@ -20,17 +27,10 @@ class DistrictGeoSerializer(GeoFeatureModelSerializer):
     }
 
 
-class DistrictSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
-    class Meta:
-        geo_field = 'boundary'
-        model = District
-        fields = '__all__'
-
-
 class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     class Meta:
         model = Municipality
-        fields = '__all__'
+        exclude = ('boundary',)
 
     expandable_fields = {
         'district': (DistrictSerializer, {'source': 'district'}),
@@ -40,6 +40,19 @@ class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSeriali
 
 class WardSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     class Meta:
+        model = Ward
+        exclude = ('boundary',)
+
+    expandable_fields = {
+        'municipality': (MunicipalitySerializer, {'source': 'municipality'}),
+        'district': (DistrictSerializer, {'source': 'municipality.district'}),
+        'province': (ProvinceSerializer, {'source': 'municipality.district.province'}),
+    }
+
+
+class WardGeoSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        geo_field = 'boundary'
         model = Ward
         fields = '__all__'
 
