@@ -1,3 +1,6 @@
+from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control
 from .renderer import GeoJSONRenderer
 from rest_framework.renderers import (
     JSONRenderer,
@@ -25,6 +28,10 @@ class ProvinceViewSet(FlexFieldsModelViewSet):
     search_fields = ('title',)
     queryset = Province.objects.all()
 
+    @method_decorator(cache_control(public=True, max_age=settings.FEDERAL_CACHE_CONTROL_MAX_AGE))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
 
 class DistrictViewSet(FlexFieldsModelViewSet):
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
@@ -40,6 +47,10 @@ class DistrictViewSet(FlexFieldsModelViewSet):
             return DistrictGeoSerializer
         return DistrictSerializer
 
+    @method_decorator(cache_control(public=True, max_age=settings.FEDERAL_CACHE_CONTROL_MAX_AGE))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
 
 class MunicipalityViewSet(FlexFieldsModelViewSet):
     serializer_class = MunicipalitySerializer
@@ -47,6 +58,10 @@ class MunicipalityViewSet(FlexFieldsModelViewSet):
     filter_fields = ('district',)
     queryset = Municipality.objects.all()
     permit_list_expands = ['district', 'province']
+
+    @method_decorator(cache_control(public=True, max_age=settings.FEDERAL_CACHE_CONTROL_MAX_AGE))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
 class WardViewSet(FlexFieldsModelViewSet):
@@ -66,3 +81,7 @@ class WardViewSet(FlexFieldsModelViewSet):
         if format == 'geojson':
             return WardGeoSerializer
         return WardSerializer
+
+    @method_decorator(cache_control(public=True, max_age=settings.FEDERAL_CACHE_CONTROL_MAX_AGE))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
