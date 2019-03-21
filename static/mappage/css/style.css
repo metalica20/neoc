@@ -997,4 +997,9 @@ rect.disabled {
   text-align: center;
   list-style-type: none;
 }
+
+.leaflet-draw.leaflet-control {
+
+    margin-top: 58px;
+}
 /*# sourceMappingURL=style.css.map */

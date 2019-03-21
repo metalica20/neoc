@@ -232,6 +232,9 @@
                         </div>
                         <div class="iconwrap">
                             <ul>
+                              <li class='earthquake_risk_activeclass'>
+                                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="earthquake_risk" class="CheckBox" value="earthquake_risk" data-url="" data-workspace=""><span><i class="humanitarian-icon-Earthquake"></i></span>Earthquake Risk</a>
+                              </li>
                                 {% for hazard in hazards|slice:":2" %}
                                 <li class='{{hazard.layer_tbl}}_activeclass'>
                                     <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{hazard.layer_name}}" class="CheckBox" value="{{hazard.layer_tbl}}" data-url="{{hazard.geoserver_url}}" data-workspace="{{hazard.geoserver_workspace}}"><span><i class="humanitarian-icon-Earthquake"></i></span> {{hazard.layer_name}}</a>
@@ -252,6 +255,7 @@
                                     </li>
 
                                     {% endfor %}
+
 
                                 </ul>
                             </div>
@@ -701,6 +705,27 @@
                 'district_maxm_facilities',
                 'district_median_facilities',
             ];
+
+            //image layer
+
+         var earthquake_risk = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
+         // trick: expose name via options, used in events
+         name: 'Seismic Hazard PGA (g)',
+         overlay: true,
+         attribution: '',
+         legend: true,
+         printable: true,
+         zIndex:9996,
+         ext: '/media/ext/js/global-hazard.js',
+
+         maxZoom: 15,
+         minZoom: 2,
+     });
+
+     //end
+
+
+
             var popup = new L.Popup({offset:[0,-20]});
             $.get(base_url+'/risk_profile/Layer',function(data){
                 count = 0;
@@ -883,16 +908,16 @@
                       //console.log($('.sidebarwrapper').css('display'));
                   //$('.info.leaflet-control').css('margin-right','700px');
                   $(".leaflet-left").css('display','block')
-                  $('.info.leaflet-control').css('margin-left','400px');
+                  $('.leaflet-left').css('margin-left','380px');
                   $(".sidebarClose").on("click",function(){
 
-                        $('.info.leaflet-control').css('margin-left','10px');
+                        $('.leaflet-left').css('margin-left','35px');
 
 
                   });
 
                   $(".expand-icon").on("click",function(){
-                    $('.info.leaflet-control').css('margin-left','400px');
+                    $('.leaflet-left').css('display','none');
 
 
                   })
@@ -1141,7 +1166,7 @@
             map.addLayer(drawnItems);
 
             var drawControl = new L.Control.Draw({
-                  position:"bottomleft",
+                  position:"topleft",
                   draw: {
 
                      // disable toolbar item by setting it to false
