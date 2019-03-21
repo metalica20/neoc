@@ -1,6 +1,8 @@
 from rest_framework import viewsets,views
 from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements
-from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer
+from incident.models import Incident
+from resources.models import Resource
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -11,6 +13,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.gis.geos import Point
 from .forms import HospitalForm
+from hazard.models import Hazard, HazardResources
 # import pandas as pd
 # Create your views here.
 
@@ -20,8 +23,8 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
-    serializer_class=SchoolSerializer
-    queryset=School.objects.all()
+    serializer_class=IncidentSerializer
+    queryset=Resource.objects.select_related().all()
     # print(GEOSGeometry('{ "type": "Point", "coordinates": [ 5.000000, 23.000000 ] }'))
     # a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
     # print(a.geom_type)
@@ -168,3 +171,27 @@ def count_update(modelname):
 
     hospital_count = Hospital.objects.all().count()
     LayerTable.objects.get(layer_tbl='Hospital').update(tbl_layer_count=hospital_count)
+
+
+
+class IncidentApiView(viewsets.ModelViewSet):
+    serializer_class=IncidentSerializer
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        incident = request.GET['incident']
+
+        serializer = IncidentSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    # def get(self, request, *args, **kwargs):
+    #     incident = request.GET['incident']
+    #     i = Incident.objects.get(pk=incident)
+    #     hazard = Hazard.objects.get(id=i.hazard_id)
+    #     print(hazard)
+    #     # serializers=serialize('json',Incident.objects.get(pk=incident),fields=('pk','title'))
+    #     datajson=json.loads(i)
+    #
+    #     # serializers=serialize('json', HazardResources.objects.filter(hazard=hazard).select_related('resource'), fields=('resource', ))
+    #     # print(serializers)
+    #     # incidentjson=json.loads(serializers)
+    #     return Response(datajson)

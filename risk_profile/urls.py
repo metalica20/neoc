@@ -12,5 +12,6 @@ urlpatterns = [
     path('Bank',views.BankGeojsonViewSet.as_view(),name='bank'),
     path('Settlements',views.SettlementsGeojsonViewSet.as_view(),name='settlements'),
     path('Dashboard',views.Dashboard,name='dashboard'),
+    path('hazard-resource',views.SchoolViewSet.as_view({'get':'list'}),name='hazard-resources'),
     # path('hospital',views.LayerViewset.as_view({'get':'list'}),name='hospital'),
 ]
