@@ -8,6 +8,7 @@ django-cors-headers==2.4.0
 django-filter==2.1.0
 django-jet==1.0.8
 django-polymorphic==2.0.3
+django-rest-polymorphic==0.1.8
 django-map-widgets==0.2.2
 django-silk==3.0.1
 djangorestframework==3.9.1
