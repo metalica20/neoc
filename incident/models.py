@@ -40,11 +40,13 @@ class Incident(TimeStampedModal):
     reported_on = models.DateTimeField(null=True, blank=True, default=None)
     event = models.ForeignKey(
         Event,
+        related_name='incidents',
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
     )
     hazard = models.ForeignKey(
         Hazard,
+        related_name='incidents',
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
     )
