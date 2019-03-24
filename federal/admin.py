@@ -13,4 +13,14 @@ class WardAdmin(GeoModelAdmin):
     search_fields = Ward.autocomplete_search_fields()
 
 
-admin.site.register([Province, District, Municipality], GeoModelAdmin)
+@admin.register(Municipality)
+class MunicipalityAdmin(GeoModelAdmin):
+    list_display = ('title', 'district')
+
+
+@admin.register(District)
+class DistrictAdmin(GeoModelAdmin):
+    list_display = ('title', 'province')
+
+
+admin.site.register(Province, GeoModelAdmin)

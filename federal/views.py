@@ -10,9 +10,11 @@ from rest_framework.renderers import (
 from rest_flex_fields import FlexFieldsModelViewSet
 from .serializers import (
     ProvinceSerializer,
+    ProvinceGeoSerializer,
     DistrictSerializer,
     DistrictGeoSerializer,
     MunicipalitySerializer,
+    MunicipalityGeoSerializer,
     WardSerializer,
     WardGeoSerializer,
 )
@@ -25,9 +27,16 @@ from .models import (
 
 
 class ProvinceViewSet(FlexFieldsModelViewSet):
-    serializer_class = ProvinceSerializer
+    renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
     queryset = Province.objects.annotate(bbox=Extent('boundary')).all()
+
+    def get_serializer_class(self):
+        # TODO: fix me
+        format = self.request.query_params.get('format')
+        if format == 'geojson':
+            return ProvinceGeoSerializer
+        return ProvinceSerializer
 
     @method_decorator(cache_control(public=True, max_age=settings.FEDERAL_CACHE_CONTROL_MAX_AGE))
     def dispatch(self, request, *args, **kwargs):
@@ -54,11 +63,18 @@ class DistrictViewSet(FlexFieldsModelViewSet):
 
 
 class MunicipalityViewSet(FlexFieldsModelViewSet):
-    serializer_class = MunicipalitySerializer
+    renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
     filter_fields = ('district',)
     queryset = Municipality.objects.annotate(bbox=Extent('boundary')).all()
     permit_list_expands = ['district', 'province']
+
+    def get_serializer_class(self):
+        # TODO: fix me
+        format = self.request.query_params.get('format')
+        if format == 'geojson':
+            return MunicipalityGeoSerializer
+        return MunicipalitySerializer
 
     @method_decorator(cache_control(public=True, max_age=settings.FEDERAL_CACHE_CONTROL_MAX_AGE))
     def dispatch(self, request, *args, **kwargs):
@@ -67,7 +83,7 @@ class MunicipalityViewSet(FlexFieldsModelViewSet):
 
 class WardViewSet(FlexFieldsModelViewSet):
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
-    search_fields = ('title',)
+    search_fields = ('title', 'municipality__title')
     filter_fields = (
         'municipality',
         'municipality__district',

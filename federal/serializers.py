@@ -4,6 +4,13 @@ from rest_flex_fields.serializers import FlexFieldsSerializerMixin
 from .models import Province, District, Municipality, Ward
 
 
+class ProvinceGeoSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        geo_field = 'boundary'
+        model = Province
+        fields = '__all__'
+
+
 class ProvinceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     bbox = serializers.ListField(read_only=True)
 
@@ -29,6 +36,13 @@ class DistrictSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
     expandable_fields = {
         'province': (ProvinceSerializer, {'source': 'province'})
     }
+
+
+class MunicipalityGeoSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        geo_field = 'boundary'
+        model = Municipality
+        fields = '__all__'
 
 
 class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
