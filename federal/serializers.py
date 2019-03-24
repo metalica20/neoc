@@ -5,9 +5,11 @@ from .models import Province, District, Municipality, Ward
 
 
 class ProvinceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    bbox = serializers.ListField(read_only=True)
+
     class Meta:
         model = Province
-        fields = '__all__'
+        exclude = ('boundary',)
 
 
 class DistrictGeoSerializer(GeoFeatureModelSerializer):
@@ -18,6 +20,8 @@ class DistrictGeoSerializer(GeoFeatureModelSerializer):
 
 
 class DistrictSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    bbox = serializers.ListField(read_only=True)
+
     class Meta:
         model = District
         exclude = ('boundary',)
@@ -28,6 +32,8 @@ class DistrictSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
 
 
 class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    bbox = serializers.ListField(read_only=True)
+
     class Meta:
         model = Municipality
         exclude = ('boundary',)
@@ -39,6 +45,8 @@ class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSeriali
 
 
 class WardSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    bbox = serializers.ListField(read_only=True)
+
     class Meta:
         model = Ward
         exclude = ('boundary',)
