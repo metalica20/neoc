@@ -1,7 +1,12 @@
 from django.contrib.auth import get_permission_codename
 from django.contrib import admin
 from bipad.admin import GeoModelAdmin
-from .models import Incident
+from .models import Incident,Document
+
+
+class DocumentInline(admin.TabularInline):
+    model = Document
+    extra = 1
 
 
 @admin.register(Incident)
@@ -12,6 +17,7 @@ class IncidentAdmin(GeoModelAdmin):
     autocomplete_fields = ('wards',)
     exclude = ('detail',)
     actions = ("verify",)
+    inlines = (DocumentInline,)
 
     def verify(self, request, queryset):
         queryset.update(verified=True)
@@ -38,3 +44,6 @@ class IncidentAdmin(GeoModelAdmin):
         if request.user.groups.filter(name='Nepal Police').exists():
             return queryset.filter(source__name='nepal_police')
         return queryset
+
+
+admin.site.register(Document)
