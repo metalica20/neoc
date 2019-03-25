@@ -8,12 +8,26 @@ import os
 
 API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
+CURRENT_INCIDENT_URL = 'http://drrportal.gov.np/signageapi/data.php'
+ALL_INCIDENT_URL = 'http://drrportal.gov.np/signageapi/all.php'
+HISTORICAL_INCIDENT_URL = 'http://drrportal.gov.np/signageapi/all2010.php'
+META_URL = 'http://drrportal.gov.np/signageapi/meta.php'
 
-def fetch_incident():
+
+def fetch_incident(options):
     # fetch incident data from drr portal
 
-    response = requests.get('http://drrportal.gov.np/signageapi/data.php')
-    response_metadata = requests.get('http://drrportal.gov.np/signageapi/meta.php')
+    INCIDENT_URL = CURRENT_INCIDENT_URL
+    old = False
+
+    if(options['all']):
+        INCIDENT_URL = ALL_INCIDENT_URL
+    elif(options['historical']):
+        INCIDENT_URL = HISTORICAL_INCIDENT_URL
+        old = True
+
+    response = requests.get(INCIDENT_URL)
+    response_metadata = requests.get(META_URL)
 
     meta_data = response_metadata.json()
     incident_data = response.json()
@@ -21,6 +35,8 @@ def fetch_incident():
     for data in incident_data:
 
         if Incident.objects.filter(id=int(data['Incident ID'])).exists():
+            continue
+        if not data['Incident Latitude']:
             continue
 
         try:
@@ -54,11 +70,13 @@ def fetch_incident():
                 title=title,
                 incident_on=data['Incident Date'],
                 reported_on=data['Reported Datetime'],
+                street_address=data['Incident Place'],
                 loss=loss,
                 source_id=source,
                 point=point,
                 hazard_id=hazard_id,
                 verified=True,
+                old=old,
             )
         except:
             continue
