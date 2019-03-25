@@ -3,4 +3,6 @@ from bipad.admin import GeoModelAdmin
 from .models import Alert
 
 
-admin.site.register(Alert, GeoModelAdmin)
+@admin.register(Alert)
+class AlertAdmin(GeoModelAdmin):
+    exclude = ('wards',)

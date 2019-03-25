@@ -1,9 +1,11 @@
 from django.utils import timezone
 from django.contrib.gis.db import models
 from bipad.models import TimeStampedModal
-
 from hazard.models import Hazard
 from event.models import Event
+from federal.models import Ward
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Alert(TimeStampedModal):
@@ -33,6 +35,11 @@ class Alert(TimeStampedModal):
         related_name='alerts',
         on_delete=models.SET_NULL,
         default=None, null=True, blank=True
+    )
+    wards = models.ManyToManyField(
+        Ward,
+        blank=True,
+        related_name='alerts',
     )
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
     # TODO: discuss location
@@ -69,3 +76,10 @@ class Activity(TimeStampedModal):
         choices=STATUSES,
     )
     alert = models.ForeignKey(Alert, on_delete=models.CASCADE)
+
+
+@receiver(post_save, sender=Alert)
+def on_alert_save(sender, instance, **kwargs):
+    if instance.polygon:
+        wards = Ward.objects.filter(boundary__intersects=instance.polygon)
+        instance.wards.set(wards)
