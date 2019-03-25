@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'silk',
     'drf_yasg',
     'colorfield',
-    'mapwidgets',
 
     'django_celery_beat',
     'rest_framework',
     'rest_framework_gis',
     'django_filters',
+    'django_select2',
+    'mapwidgets',
+    'reversion',
 
     'alert',
     'hazard',
@@ -62,6 +64,7 @@ INSTALLED_APPS = [
     'inventory',
     'realtime',
     'misc',
+    'document',
 ]
 
 MIDDLEWARE = [
@@ -228,3 +231,4 @@ MAP_WIDGETS = {
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBER_FIELDS', '1000'))
 FEDERAL_CACHE_CONTROL_MAX_AGE = 60*60*24*7
+

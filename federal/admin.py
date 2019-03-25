@@ -8,10 +8,6 @@ from .models import (
 from bipad.admin import GeoModelAdmin
 
 
-@admin.register(Ward)
-class WardAdmin(GeoModelAdmin):
-    search_fields = Ward.autocomplete_search_fields()
-
 
 @admin.register(Municipality)
 class MunicipalityAdmin(GeoModelAdmin):
@@ -23,4 +19,6 @@ class DistrictAdmin(GeoModelAdmin):
     list_display = ('title', 'province')
 
 
-admin.site.register(Province, GeoModelAdmin)
+admin.site.register([Province, Ward], GeoModelAdmin)
+
+

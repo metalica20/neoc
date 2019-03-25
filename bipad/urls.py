@@ -106,6 +106,7 @@ def get_api_path(path):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin/', include('django_select2.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
