@@ -31,7 +31,7 @@ class Loss(TimeStampedModal):
     current Nepal Police and other data with finer details
     """
     description = models.TextField(null=True, blank=True, default=None)
-    estimated_loss = models.PositiveIntegerField(
+    estimated_loss = models.BigIntegerField(
         null=True, blank=True, default=None
     )
     detail = JSONField(null=True, blank=True, default=None)
@@ -101,10 +101,12 @@ class Family(TimeStampedModal):
 
     Can be single with count 1 or bulk
     """
+    AFFECTED = 'affected'
     RELOCATED = 'relocated'
     EVACUATED = 'evacuated'
 
     STATUS = (
+        (AFFECTED, 'Affected'),
         (RELOCATED, 'Relocated'),
         (EVACUATED, 'Evacuated'),
     )

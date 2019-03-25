@@ -11,7 +11,7 @@ class IncidentSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
 
     class Meta:
         model = Incident
-        exclude = ('modified_on',)
+        exclude = ('modified_on', 'old')
 
     expandable_fields = {
         'event': (EventSerializer, {'source': 'event'}),

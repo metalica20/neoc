@@ -63,6 +63,7 @@ class Incident(TimeStampedModal):
     )
     street_address = models.CharField(
         max_length=255, null=True, blank=True, default=None)
+    old = models.BooleanField(default=False, editable=False)
     detail = JSONField(null=True, blank=True, default=None)
 
     def __str__(self):
