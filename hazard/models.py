@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 class Hazard(models.Model):
     title = models.CharField(max_length=250, unique=True)
+    order = models.SmallIntegerField(default=None, null=True, blank=True)
     description = models.TextField(default=None, null=True, blank=True)
     icon = models.CharField(max_length=25, default=None, null=True, blank=True)
     color = ColorField(default=None, null=True, blank=True)
@@ -13,6 +14,9 @@ class Hazard(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ('order',)
 
 
 class HazardResources(models.Model):
