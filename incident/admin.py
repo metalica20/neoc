@@ -5,7 +5,7 @@ from bipad.admin import GeoModelAdmin
 from .models import Incident
 
 
-@admin.register(Incident)
+# @admin.register(Incident)
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')

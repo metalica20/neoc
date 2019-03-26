@@ -30,18 +30,18 @@ class ResourceSerializer(serializers.ModelSerializer):
 
 
 class IncidentSerializer(serializers.ModelSerializer):
-    resources = serializers.SerializerMethodField('get_hazard_resources')
+    #resources = serializers.SerializerMethodField('get_hazard_resources')
     class Meta:
-        model= Resource
-        fields = ('resources', )
+        model= HazardResources
+        fields = '__all__'
 
-    def get_hazard_resources(self, obj):
-        hazard_resource_queryset = Resource.objects.filter(polymorphic_ctype=obj.polymorphic_ctype)
-        liting = []
-        for item in hazard_resource_queryset:
-            liting.append(item.__class__)
-        # data = django.core.serializers.serialize('json', list(hazard_resource_queryset))
-        return list
+    # def get_hazard_resources(self, obj):
+    #     hazard_resource_queryset = Resource.objects.filter(polymorphic_ctype=obj.polymorphic_ctype)
+    #     liting = []
+    #     for item in hazard_resource_queryset:
+    #         liting.append(item.__class__)
+    #     # data = django.core.serializers.serialize('json', list(hazard_resource_queryset))
+    #     return list
 
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
@@ -51,9 +51,10 @@ class SchoolSerializer(serializers.ModelSerializer):
 class LayerTableSerializer(serializers.ModelSerializer):
     class Meta:
         model=LayerTable
-        fields = ('layer_name', 'layer_tbl', 'layer_tbl_count','layer_icon','layer_cat','isGeoserver','geoserver_url','geoserver_workspace','public','visibility_level','layer_type','sub_category','upload_type')
+        fields = ('layer_name', 'layer_tbl', 'layer_tbl_count','type','layer_icon','layer_cat','isGeoserver','geoserver_url','geoserver_workspace','public','visibility_level','layer_type','sub_category','upload_type')
 
     layer_tbl_count = serializers.SerializerMethodField('get_layer_table_count')
+    type = serializers.SerializerMethodField()
 
     def get_layer_table_count(self, obj):
         # layer_tbl = get_object_or_404(obj.layer_tbl)
@@ -66,3 +67,14 @@ class LayerTableSerializer(serializers.ModelSerializer):
             print('error',e)
             return 0
         # return layer_tbl.count()
+    def get_type(self,obj):
+        # layer_tbl = get_object_or_404(obj.layer_tbl)
+        try:
+            # print('hello')
+            return getattr(models, obj.layer_tbl).objects.values('type').distinct()
+
+            # return  model_name.objects.all().count()
+            # return getattr(models, obj.layer_tbl).objects.all()
+        except Exception as e:
+            print('error',e)
+            return 0

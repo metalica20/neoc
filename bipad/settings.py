@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'inventory',
     'realtime',
 
-    'risk_profile'
+    'risk_profile',
     'misc',
     'mapwidgets',
 

@@ -1,0 +1,639 @@
+﻿name,operator_type,opening_hours,phone_number,email_address,emergency_service,icu,nicu,operating_theatre,x_ray,ambulance_service,number_of_staff,number_of_Beds,Comments,type,lat,long
+Fishtail Hospital & Research Centre,private,,061-528999,hospitalfishtail@gmail.com,yes,yes,yes,yes,yes,yes,136,100,,hospital,83.9901561,28.22586129
+Manipal College of Medical Sciences,private,,"+977 - 61 - 440600, 440390, 440387",mcoms@manipal.edu.np,yes,yes,yes,,yes,yes,854,750,,hospital,83.99664599,28.23587014
+Fewa City Hospital,private,"mo-fr 8:00-17:00, sa 9:30-17:30, su 9:30-15:00",+977 1 532685;532686;538225,,yes,yes,yes,,yes,yes,225,100,,hospital,83.98177644,28.2069027
+Gandaki Medical College and Teaching Hospital,private,8:00-16:00,"061 538595, 538598",ceo@gmc.edu.np,yes,yes,yes,,yes,yes,822,606,,hospital,83.98760515,28.21094618
+Western Regional Hospital,government,,061-520066; 520067; 520461,wrhpokh@gmail.com,yes,yes,yes,yes,yes,no,691,350,,hospital,83.99752917,28.21269911
+Padhma Nursing Homes,private,,"+977 61 520159, 523048",padmanursing@gmail.com,yes,no,no,,,yes,83,50,,hospital,83.98655194,28.21958673
+Himalaya Eye Hospital,NGO,,"+977-(061)-461168, 460458, 463156",heh@ntc.net.np,yes,no,no,yes,no,no,100,51,,hospital,83.97743358,28.19037244
+CIWEC Hospital,private,24/7,"061-463082, 061-467053",pkradministrator@ciwec-clinic.com,yes,no,no,no,yes,yes,25,15,,hospital,83.95900282,28.20929863
+Lake City Hospital and Critical Care,private,24/7,61-533303;441000,info@lakecityhospital.org,yes,yes,yes,,yes,yes,15,25,,hospital,83.98374235,28.2208174
+Sparsh Aayurveda Hospital,private,,"061-531828, 061-533798",,yes,no,no,,yes,no,8,10,,hospital,83.98475823,28.21293865
+Regional Hospital,private,,+977 61 533231,regionalhospital0@gmail.com,yes,yes,yes,,yes,no,57,38,,hospital,83.97533253,28.21418703
+Family Homiopathy Hospital,private,,+977 61 432604,familyhospital@gmail.com,no,no,no,no,yes,no,10,10,,hospital,83.99313285,28.2051737
+Kaski Sewa Hospital and Research Center,private,,"061-528161, 528162",info@kaskisewahospital.com,yes,yes,yes,,yes,yes,124,100,,hospital,84.00073877,28.21316944
+Charak Memorial Hospital,private,8:00-18:00,061-532778,charak.memorial@gmail.com,yes,yes,yes,,yes,yes,100,,,hospital,83.9861013,28.2107833
+Chauthe Hospital and Research Centre,private,24/7,061 501140,,yes,no,no,,yes,no,28,15,,hospital,84.02346265,28.1923338
+Sahara Hospital,private,24/7,61-539858,hospital.simil@sahara.com,yes,yes,yes,,yes,yes,45,55,,hospital,83.983226,28.23143023
+Metro City Hospital,private,,061-526531,,yes,yes,yes,yes,yes,yes,,,,hospital,83.98160966,28.21184801
+AB Care and Rehabilitation Center,private,24/7,061-521580,abcarehabilitation@gmail.com,no,no,no,no,yes,no,17,15,,hospital,83.9826936,28.23846325
+BG Hospital and Research Center,private,,166 061 52111,bghospital2069@gmail.com,yes,no,no,,no,no,53,15,,hospital,84.00327316,28.21571634
+Kantipur Institute of Health Science,private,,"+977 61 530725, 061538364",kdhpkr@hotmail.com,no,no,no,,no,no,26,20,,hospital,83.98488283,28.21342118
+Sai Archana Hospital,private,,061-541587,,no,no,no,,yes,no,25,25,,hospital,83.99786374,28.21902096
+Aaragyodham Homiopathy Hospital,private,,"+977 61 432242, 430242, 9846068806",arogya2069@gmail.com,no,no,no,no,no,no,22,10,,hospital,83.99346105,28.2059256
+Pashchimanchal Community Hospital,community,,061-438888,pchospital2071@gmail.com,yes,yes,yes,,,yes,66,50,,hospital,83.98825691,28.20893057
+Parkland Hospital,private,24/7,061-431830/ 431930,parklandhospital@gmail.com,yes,yes,yes,yes,yes,yes,46,57,,hospital,84.00139522,28.20439145
+OM Hospital Dignostic and Research Centre,private,09:00-16:00,061-534566;534577;534007,omhos@cnet.wlink.com.np,yes,yes,no,yes,yes,yes,56,65,,hospital,83.98993912,28.22279786
+Hemja Hospital and Research Center,private,24/7,061-400055,,yes,no,no,,no,no,26,25,,hospital,83.93425549,28.27767739
+Maternity Child Friendship Hospital,government,10:00-17:00,061-440144,,yes,no,no,,yes,yes,53,25,,hospital,83.9816106,28.25825639
+Lekhnath Community Lions Hospital,community,24/7,"061 561366,9846114835",,,yes,no,,yes,yes,40,15,,hospital,84.07973878,28.16537235
+Green Pasture,NGO,,+977 61 430342,clinical.pmelo@kaski.nepal.inf.org,no,no,no,no,no,no,111,66,,hospital,83.98838702,28.19239565
+Kaski Model Hospital,private,,"+977 61 527542, 539803",modelhospital@yahoo.com,yes,yes,no,,yes,yes,66,37,,hospital,83.98673123,28.22139289
+Pokhara Hospital and Research Centre,private,,"061-521924, 528243",pkrhospital55@gmail.com,yes,yes,no,,yes,no,48,25,,hospital,83.99235185,28.20699503
+Spark B and D Hospital,private,,+977 61 521408,info@sparkhealth.com.np,no,no,no,no,no,no,23,15,,hospital,83.9833492,28.21199353
+Namaste Hospital and Research Center,private,,"+977 61 466438, 466439",namastehospital@gmail.com,yes,yes,no,,,yes,95,60,,hospital,83.97204095,28.19320573
+Lekhnath City Hospital,private,24/7,"061-411167, 061-411511",hrofkh@gmail.com,yes,yes,yes,,yes,no,25,25,,hospital,84.03649528,28.1841948
+Sishuwa Hospital,government,24/7,61560004,shishuwahospital@gmail.com,yes,no,no,,yes,yes,25,15,,hospital,84.0660882,28.1659898
+Annapurna Bal Tatha Mahila Hospital,private,24/7,061 501140,annapurnahealthfoundation@gmail.com,,yes,yes,,yes,no,28,15,,hospital,84.0059428,28.2031193
+Janapriya Hospital,private,24/7,061-534125,,yes,no,no,,yes,no,15,25,,hospital,83.9769179,28.2066295
+Nepal Family Planning Office,,"Su-Th 10:00-16:00, Fr 10:00-15:00",61520436,,,,,,,,,,,clinic,84.00196904,28.2096182
+Sardi Khola Polyclinic,,,,,,,,,,,,,,clinic,83.9877724,28.242155
+Tulsi Clinic,private,,,,,,,,,,,,,clinic,83.992993,28.20868083
+Pokhara Clinic,,,,,,,,,,,,,,clinic,83.99122653,28.22503073
+Pokhara Medical Hall,,,,,,,,,,,,,,clinic,83.9913059,28.22546988
+Medha Cardiac Care and Diagnostic Center,private,Su-Fr 07:00-19:00; Sa 07:00-10:00,61525237,medhacardiaccare@gmail.com,,,,,,,,,,clinic,83.98981028,28.21695678
+Yuni Chinese Acupuncture Centre,,,,,,,,,,,,,,clinic,83.9747593,28.21329662
+"Skin, STD and Laser Clinic",private,,061524532; 061534457,,,,,,,,,,,clinic,83.98481625,28.22541113
+Lion Hospital,,,+977 9847600356,,,,,,,,,,,clinic,83.97958123,28.22371223
+Pokhara Cancer Care Center,,,,,,,,,,,,,,clinic,83.97349383,28.20834182
+Prakriti Ayurbed Bhawan,,,,,,,,,,,,,,clinic,83.99022605,28.2229316
+Bibhuti Health Care,private,Su-Sa 7:00-20:00,"061-467188, 467190",,,,,,,,,,,clinic,83.97050328,28.19653993
+Sunrise Optical House,,7:30-17:00,9846719013,,,,,,,,,,,clinic,83.9834545,28.24334465
+The Child Specialist's Clinic,,"Su-Fr 07:00-09:30,14:30-19:30",061-534125,,,,,,,,,,,clinic,83.97709755,28.2067079
+Primary Health Care Clinic,,,,,,,,,,,,,,clinic,83.9565597,28.18638405
+Sapana Ayurbed Hospital,,,,,,,,,,,,,,clinic,83.99021135,28.22231832
+Medical,,,,,,,,,,,,,,clinic,83.99590053,28.1859728
+Annapurna Samudaika Swasthya Kendra,,,,,,,,,,,,,,clinic,84.04145196,28.14678471
+Lamgadi Saptayek Health Clinic,,,,,,,,,,,,,,clinic,84.08029955,28.1243073
+Doctor's Clinic,,"08:00-11:00,03:00-08:00",,,,,,,,,,,,clinic,83.9654401,28.2070547
+Ortho Clinic,,,,,,,,,,,,,,clinic,83.9835997,28.2107109
+Geno Doctors Centre,,,"061-534915, 534916",,,,,,,,,,,clinic,83.9839674,28.24343
+Ashish Medical Hall,,,,,,,,,,,,,,clinic,83.9858903,28.2335866
+Diabetic And Thyroid Upachar Kendra,,,,,,,,,,,,,,clinic,83.9859952,28.2149908
+Life Care Diagnostics,,,61521884,,,,,,,,,,,clinic,83.9860394,28.2150913
+Meri Prajanan Swasthya Sewa,,,"061-539880, 9856039984",,,,,,,,,,,clinic,83.9839636,28.2071158
+Pokhara Cancer Centre,private,,,,,,,,,,,,,clinic,83.9864291,28.2169157
+Pokhara Healthy Home care,,,,,,,,,,,,,,clinic,83.9864633,28.2171639
+Rejuwa Skin Care Clinic,,,,,,,,,,,,,,clinic,83.98647,28.2171799
+Skin And Laser Centre,,,,,,,,,,,,,,clinic,83.9866572,28.2179495
+Global Medical Hall,,,,,,,,,,,,,,clinic,83.9841069,28.2433483
+Pokhara Diabetes and Thyroid,,,061-523808,,,,,,,,,,,clinic,83.9868459,28.2115233
+Advanced Poly Clinic,,,,,,,,,,,,,,clinic,83.9853393,28.2137053
+Brighter Clinic,,,,,,,,,,,,,,clinic,83.987605,28.2397716
+International Medicare and Assistance Centre,,Mo-Su 07:30-21:00,,internationalmedicarepkr@gmail.com,,,,,,,,,,clinic,83.9649744,28.2110532
+Shrijana Medical Swastha Clinic,,7 AM-8 PM,,,,,,,yes,,,,,clinic,83.9727979,28.261071
+,,,,,,,,,,,,,,clinic,83.9838932,28.2138299
+Shardikhola Polyclinic,,,,,,,,,,,,,,clinic,83.9888073,28.2433386
+Gau Ghar Clinic,,,,,,,,,,,,,,clinic,83.953617,28.279375
+Begnas Health Clinic,,,9856066133,,,,,,,,,,,clinic,84.0884868,28.164566
+Kahukhola Poli Clinic,,,,,,,,,,,,,,clinic,84.0186275,28.2159314
+Pokhara Healthy Homes,,,,,,,,,,,,,,clinic,83.9886462,28.2434124
+Sahara International Fertilty Centre ,,,,,,,,,,,,,,clinic,83.9800511,28.2251233
+Nidan Aayurbed Clinic,,,,,,,,,,,,,,clinic,83.9822368,28.2319723
+Dun-sel Clinic,,,,,,,,,,,,,,clinic,83.9572236,28.2622624
+Aarogya Bhawan Health Care Home,,Morning 6:30 AM-9 AM Evening 5:30 PM-9 PM,061-440522,,,,,,,,,,,clinic,83.9701876,28.2627601
+Kathmandu Clinic Of Cosmetic Surgery,,,,,,,,,,,,,,clinic,83.9856961,28.2134644
+Mamata Polyclinic ,,,"061 561042,9856031011",,,,,,yes,,,,,clinic,84.0685261,28.1634077
+Siddartha Pathology Clinic,,,61530563,,,,,,,,,,,clinic,83.9860316,28.2182516
+Pancham Aayurbed Clinic,,,,,,,,,,,,,,clinic,83.9932173,28.2062034
+Jyoti Ankha Clinic and Chasma Pasal,,,,,,,,,,,,,,clinic,83.9885816,28.2424875
+Rupa Swasthya Clinic,,,,,,,,,,,,,,clinic,84.0575162,28.1630751
+Diwa Swastya Clinic,,,,,,,,,,,,,,clinic,84.0120821,28.2038818
+Pokhara Super Speciality Health Clinic,,,,,,,,,,,,,,clinic,83.9849047,28.2114775
+Magic Medico Concern,,Su-Fr 09:00-18:00,,,,,,,,,,,,clinic,83.9745301,28.2058021
+Lekhnath City Polyclinic,,,,,,,,,,,,,,clinic,84.0610401,28.1552198
+Padmashree Homeo Clinic,,,,,,,,,,,,,,clinic,83.986655,28.2179173
+Bastola Medical Hall,,,,,,,,,,,,,,clinic,83.936195,28.2783361
+Hemja Medical Hall,,,,,,,,,,,,,,clinic,83.8994362,28.2867923
+Ratna Medical Hall,,,,,,,,,,,,,,clinic,83.922282,28.283384
+Diamond Medical Hall,,,,,,,,,,,,,,clinic,83.9541775,28.2894808
+Gandaki Gastro Liver and Endoscopy Clinic,,8:00-17:00,061-521865,,,,,,,,,,,clinic,83.9858128,28.2141522
+Himalaya Polyclinic & Diagnostic Centre,,7:00- 20:30,,,,,,,,,,,,clinic,83.9797794,28.2246334
+Safal Skin Care & Laser Clinic,,,061-524932; 061-534497,,,,,,,,,,,clinic,83.9847768,28.225173
+Siddhartha Health Care ,,7:00- 19:00,,,,,,,,,,,,clinic,83.984602,28.2242783
+Manisona Health Care ,,,061-531725,,,,,,,,,,,clinic,83.9907215,28.2291974
+Healthy Home Fittness Clinic,,,"061-523258, 9851065764",,,,,,,,,,,clinic,83.9859525,28.2147654
+Kayakalpa Diet Clinic,,,,,,,,,,,,,,clinic,83.9881069,28.2214638
+Uniwue Medical Hall,,,,,,,,,,,,,,clinic,84.0824106,28.1326185
+Pratima Medical Hall,,,,,,,,,,,,,,clinic,84.0817762,28.1326516
+Kisor Kisori Maitri Youn Tatha Prajanan Swasthya Seba Clinic,,Su-Sa PH closed,,,,,,,,,,,,clinic,84.0297273,28.1338733
+Hemja Policlinic,,,,,,,,,,,,,,clinic,83.9362878,28.2776599
+Mata Manakamana Aayurveda Clinic,,,,,,,,,,,,,,clinic,83.9908726,28.219589
+Haribasu Neuro Ortho Physiotherapy Clinic,,,9867690641,,,,,,,,,,,clinic,83.9887643,28.2127539
+Gandaki Imaging & Diagnostic Center,,,"061-532963, 061-531847",,,,,,,,,,,clinic,83.991013,28.2230574
+Gastro Care,,,061-535560,,,,,,,,,,,clinic,83.9845036,28.20798
+Dipendra Medical Hall,,,,,,,,,,,,,,clinic,83.9833901,28.2323463
+Dolphin Dental Care,private,,061-533742,,,,,,,,,,,clinic,83.9846573,28.2116302
+Marie Stopes Nepal,,,061-550074,,,,,,,,,,,clinic,83.9836513,28.2106696
+United Reference Laboratory,private,6:30-19:00,061-520503,,,,,,,,,,,clinic,83.9847725,28.2111015
+Young Friendly Sex and Fertility Clinic,,13:00-15:00,,,,,,,,,,,,clinic,83.8891923,28.2390827
+Sahi Medical Hall,,,,,,,,,,,,,,clinic,84.0124914,28.214203
+Kuwan Medical,,,,,,,,,,,,,,clinic,84.0114765,28.2103676
+New Gandaki Pathology Service,,,,,,,,,,,,,,clinic,84.0025599,28.2169819
+Sai Ram Medical Hall,,,,,,,,,,,,,,clinic,83.9627109,28.2574297
+Lakecity Ayurved & Gandaki Physiotherapy Centre,,,,,,,,,,,,,,clinic,84.0593056,28.1627934
+Nagar Swasthya Kendra 15,government,Su-Fr10:00-16:00,061-431180,,,,,,,,,,,health_post,83.98676638,28.20027419
+Kalika Health Post,government,,9846041599,,,,,,,,,,,health_post,84.07558588,28.2134333
+Bharatpokhari Health Post,government,Su-Th 10:00-17:00 Fr 10:00-15:00,9856018926,,,,,,,,,,,health_post,84.02982992,28.13382495
+Nagar Swasthya Kendra 14,government,,9846947630,,,,,,,,,,,health_post,84.02288998,28.17821555
+Armala Prathamik Swastha Kendra,government,,,,,,,,,,,,,health_post,83.99414647,28.28846283
+Nagar Swasthya Kendra 5,government,,9846269960,,,,,,,,,,,health_post,83.97656275,28.21789445
+Arba Bijaya Health Post,government,,,,,,,,,,,,,health_post,84.03560673,28.2261526
+Valam Health Post,government,,,,,,,,,,,,,health_post,84.0093557,28.25445908
+Kristi Primary Health Post,government,"Su-Th 10:00-17:00, Fr 10:00-15:00","9843139379, 9856069563",,yes,,,,yes,,16,,,health_post,83.9521856,28.15975865
+Sarangkot Health Post,government,Su-Th 10:00-16:00; Fr10:00-13:00,061-692855,,,,,,,,,,,health_post,83.9420373,28.244972
+Bhadaure Health Post,,,,,,,,,,,,,,health_post,83.87312518,28.24584195
+Lekhnath Health Post,government,,,,,,,,,,,,,health_post,84.06905565,28.1936025
+Nagar Swasthya Kendra 30,governmnet,,9846771362,,,,,,,,,,,health_post,84.08582443,28.14178868
+Nagar Swasthya Kendra 32,government,,98463343374,,,,,,,,,,,health_post,84.09977355,28.1353197
+Bhadaure Health Post,government,,,,,,,,,,,,,health_post,83.83147463,28.23749685
+Nagar Swasthya Kendra 32,governmnet,,9846637737,,,,,,,,,,,health_post,84.10881045,28.11467258
+Nagar Swasthya Kendra 32,government,,9856061655,,,,,,,,,,,health_post,84.09593945,28.1135569
+Nirmal Pokhari Health Post,governmnet,,"9846040180, 9856011460",nirmalpokharihp@gmail.com,,,,,,,7,,,health_post,83.9972817,28.15281885
+Tallakot Health Post,government,,,,,,,,,,,,,health_post,83.95777945,28.30850663
+Majhthana Health Post,government,"Su-Th 10:00-17:00, Fr 10:00-15:00",9827160760,,,,,,,,,,,health_post,84.10458505,28.21177478
+Lamachour Health Post,government,,,,,,,,,,,,,health_post,83.9671867,28.2658385
+Nagar Swasthya Kendra 17,government,"Sa,PH 10:00-17:00 closed",,,,,,,,,,,,health_post,83.9675062,28.1912849
+Nagar Swasthya Kendra 1,government,,9846200726,,,,,,,,,,,health_post,83.9863205,28.2417117
+Nagar Swasthya Kendra 13,government,,9846463817,,,,,,,,,,,health_post,84.0117374,28.211809
+Kahun Health Post,,,,,,,,,,,,,,health_post,83.9996835,28.2219615
+Hemja Health Post,,,,,,,,,,,,,,health_post,83.9364776,28.2780901
+Kaskikot Health Post,government,,,,,,,,,,,,,health_post,83.907732,28.2660525
+Mauja Health Post,government,,9868372717,,,,,,,,,,,health_post,84.0445883,28.2718265
+Nagar Swasthya Kendra 19,government,,9856080333,,,,,,,,,,,health_post,83.9590048,28.3007403
+Rakhi Health Post,government,10:00-17:00,9847381283,,,,,,,,,,,health_post,84.0437177,28.2039992
+Nagar Sawsthya Kendra 31,,,,,,,,,,,6,,,health_post,84.1143714,28.1829199
+Chapakot Health Post,government,,,,,,,,,,,,,health_post,83.8892519,28.2391483
+Pokhara Health Post,government,,9841505252,,,,,,,,,,,health_post,83.9124544,28.2069858
+Nagar Swasthya Kendra 8,government,,9846913349,,,,,,,,,,,health_post,83.9811172,28.2109706
+Nagar Swasthya Kendra 33,government,,,,,,,,,,,,,health_post,84.07772,28.1237126
+Nagar Swasthya Kendra 31,government,,,,,,,,,,,,,health_post,84.1006047,28.1609845
+Begnas Health Post,government,,,,,,,,,,,,,health_post,84.0894037,28.1651581
+Kaskeli Pharmacy,,,,,,,,,,,,,,pharmacy,83.9182249,28.2658254
+Savi Medical Hall,,7:00-21:00,9846041458,,,,,,,,,,,pharmacy,83.9957086,28.19781555
+Paschimanchal Pathalogy Centre,,,"061-538460, 9856025919",,,,,,,,,,,pharmacy,83.9980773,28.2113074
+Swostika Referral Laboratory,,,061-541575,,,,,,,,,,,pharmacy,83.9982417,28.21136553
+Medicare Pharmacy,,,,,,,,,,,,,,pharmacy,83.99974048,28.2123299
+Khadka Medico Pharma,,,,,,,,,,,,,,pharmacy,83.99077235,28.22321635
+Kiran Homiyo Pharmacy,,,9804193027,,,,,,,,,,,pharmacy,83.99545624,28.20208504
+Rara Pharmacy,,,,,,,,,,,,,,pharmacy,83.98336715,28.276061
+Bisistha Pharmacy,,07:00-19:00,,,,,,,,,,,,pharmacy,83.98333075,28.2759938
+Majheripatan Medical,,,,,,,,,,,,,,pharmacy,84.0248577,28.1734683
+Shantinagar Pharmacy,,sunrise-sunset,,,,,,,,,,,,pharmacy,83.9726408,28.21368863
+Shulav Medical Hall,,Su-Sa 7:00-19:00,,,,,,,,,,,,pharmacy,84.02479228,28.18583965
+Janahit Pharmacy,,,,,,,,,,,,,,pharmacy,83.98470195,28.23066068
+Ruhani Pharmacy,,,,,,,,,,,,,,pharmacy,83.98495572,28.23149992
+Sagun Medical HAll,,6:00-20:00,,,,,,,,,,,,pharmacy,83.98457334,28.23100409
+Tejaswi Pharmacy,,,,,,,,,,,,,,pharmacy,84.0109263,28.20035143
+Aagan Pharmacy.,,,,,,,,,,,,,,pharmacy,83.9770273,28.25788905
+Kriti Ayurbedic Medi Sales,,,061-524754,,,,,,,,,,,pharmacy,83.98902483,28.22831205
+Shubham Krishna Ayurvedik Pasal,,,,,,,,,,,,,,pharmacy,83.98856833,28.22837495
+Bidhya Ayurbed Centre,,,,,,,,,,,,,,pharmacy,83.98847445,28.2284028
+Sumeru Ayurbedic Clinic,,,,,,,,,,,,,,pharmacy,83.98617735,28.22994045
+Shrada Ayurbed Pharm,,,,,,,,,,,,,,pharmacy,83.98900926,28.22804008
+Resham Ayurbedic and Ausadhi Pasal,,,,,,,,,,,,,,pharmacy,83.9883545,28.22848045
+Aana Medical Hall,,,,,,,,,,,,,,pharmacy,83.99041825,28.2232906
+Binayak Medico Pharma,,,,,,,,,,,,,,pharmacy,83.98945527,28.22137783
+Bhagwati Pharm,,,,,,,,,,,,,,pharmacy,83.98956258,28.2209732
+Bandana Medicine Distributors,,,,,,,,,,,,,,pharmacy,83.9892497,28.22104127
+Ram Medical Hall,,,,,,,,,,,,,,pharmacy,84.00045908,28.23056088
+Lama Chautara Pharmacy,,,,,,,,,,,,,,pharmacy,83.94896653,28.26918563
+Sajha Swastha Sewa,,,,,,,,,,,,,,pharmacy,83.99944138,28.21226965
+Nabin Pharmacy and Doctor's Clinic,,6:00-21:00,,,,,,,,,,,,pharmacy,84.08287565,28.133207
+Dadakonaak Pharmacy,,,,,,,,,,,,,,pharmacy,84.06781771,28.16512759
+Prajwala Pharmacy,,,,,,,,,,,,,,pharmacy,83.97188725,28.2608662
+Nabmo Buddha Pharmacy,,9:00 - 19:00,,,,,,,,,,,,pharmacy,83.98887655,28.22864503
+Shreena Pharmacy,,,9846279966,,,,,,,,,,,pharmacy,83.99947568,28.2122085
+Ayush Medical Hall,,07:00-19:00,9803737591,,,,,,,,,,,pharmacy,83.9940522,28.28879935
+Pratikshya Pharma,,,,,,,,,,,,,,pharmacy,83.9708922,28.2006536
+Shreyas Pharmacy,,,,,,,,,,,,,,pharmacy,83.9684625,28.205673
+Pharmacy,,,,,,,,,,,,,,pharmacy,83.9658547,28.2041255
+Medical,,,,,,,,,,,,,,pharmacy,84.0039992,28.1769902
+Biswas Medical Hall,,,,,,,,,,,,,,pharmacy,83.9743602,28.2166444
+Jana Kalyan Mediacal Hall,,,,,,,,,,,,,,pharmacy,83.9947621,28.2063566
+Chiraayu Medical,,,,,,,,,,,,,,pharmacy,83.9878743,28.2399008
+Kafle Medical,,,,,,,,,,,,,,pharmacy,83.987456,28.2396609
+Pokhreli Ayurvedic Medical,,,,,,,,,,,,,,pharmacy,83.9857987,28.2378926
+Shrensya Medical,,,,,,,,,,,,,,pharmacy,83.9860129,28.238353
+Dipu Pharmacy,,,,,,,,,,,,,,pharmacy,83.998047,28.2113993
+Pari Drug House,,,,,,,,,,,,,,pharmacy,83.9983693,28.2114818
+Prayogshala Lab,,,,,,,,,,,,,,pharmacy,83.9980113,28.2113933
+Rakshya Pharmacy,,,,,,,,,,,,,,pharmacy,83.9981253,28.2113943
+Sumi Pharmacy,,,061-522139,,,,,,,,,,,pharmacy,83.998273,28.2114351
+Yeti Med Corners,,,061-532533,,,,,,,,,,,pharmacy,83.9981557,28.2114002
+Aadhikhola Medical Hal,,,061-432558,,,,,,,,,,,pharmacy,83.9950805,28.2026441
+Birgha Pharmacy,,,"061-2298420, 9856029138",,,,,,,,,,,pharmacy,83.9946874,28.2056219
+Anish Medical Hall,,07:00-19:00,,,,,,,,,,,,pharmacy,83.9802008,28.2710071
+Saino Medical Hall,,,,,,,,,,,,,,pharmacy,83.9716058,28.2153924
+Shiwani Pharmacy,,,,,,,,,,,,,,pharmacy,83.9697742,28.2162373
+Aatish Medico Pharma,,,,,,,,,,,,,,pharmacy,83.9766361,28.2183747
+PCH pharmacy,,,,,,,,,,,,,,pharmacy,83.988354,28.2086308
+Ajay Pharmacy,,,,,,,,,,,,,,pharmacy,84.0593869,28.163169
+Life Pharmacy,,,,,,,,,,,,,,pharmacy,84.0682382,28.16359
+Rudra Medical Pharma,,,,,,,,,,,,,,pharmacy,84.0571996,28.1635681
+Balika Pharmacy and Dental Clinic,,,,,,,,,,,,,,pharmacy,83.9910548,28.2193191
+Panchanga Aayurveda Pharmacy,,,,,,,,,,,,,,pharmacy,83.9903981,28.2266448
+Kamala Medical Hall,,,,,,,,,,,,,,pharmacy,84.0141979,28.2077581
+Nirjin Medical Hall,,,,,,,,,,,,,,pharmacy,84.0096181,28.2086911
+Apollo Medical Hall,,,,,,,,,,,,,,pharmacy,83.9984829,28.2116612
+Machhepuchhre Herbal,,,,,,,,,,,,,,pharmacy,83.994778,28.2102215
+Nature Care Home,,,,,,,,,,,,,,pharmacy,83.9931234,28.2070723
+Aadaar Satkaar Pharmacy,,,,,,,,,,,,,,pharmacy,83.9944537,28.2060333
+Metrocity Hospital Pharmacy,,,,,,,,,,,,,,pharmacy,83.9815341,28.211771
+Bimal Ausadhi Pasal,,,,,,,,,,,,,,pharmacy,84.1093783,28.1357729
+Pame Doctor's Clinic,,,,,,,,,,,,,,pharmacy,83.9095519,28.2357566
+Gautam Aausadhi Pasal,,,,,,,,,,,,,,pharmacy,83.9085259,28.2362434
+Regional Hospital Pharmacy,,Sa-Su 00:00-24:00,,,,,,,,,,,,pharmacy,83.9754241,28.2141708
+Ramakanta Pharmacy,,,,,,,,,,,,,,pharmacy,83.9901472,28.227308
+Kaligandaki Medical Pharma,,,,,,,,,,,,,,pharmacy,83.9906191,28.2232738
+Srijan Median Sales,,,,,,,,,,,,,,pharmacy,83.9906466,28.223269
+Aayu Pharmacy,,,061-523376,,,,,,,,,,,pharmacy,83.9851261,28.2092575
+Subekshya Medical Hall,,,,,,,,,,,,,,pharmacy,83.9849104,28.2089731
+BL Pathology,,,,,,,,,,,,,,pharmacy,83.9903625,28.2233371
+Bishwash Medical Hall,,,,,,,,,,,,,,pharmacy,83.9904687,28.2233068
+Pokhara Pharmacy,,,,,,,,,,,,,,pharmacy,83.9903521,28.2233392
+SRL Ranbay Diagonstics,,,,,,,,,,,,,,pharmacy,83.9903155,28.2233449
+Syangja Medical Center,,,,,,,,,,,,,,pharmacy,83.9908875,28.2232097
+Bhattarai Clinic,,,,,,,,,,,,,,pharmacy,83.9772681,28.2211198
+Koirala Pharmacy,,,,,,,,,,,,,,pharmacy,84.0192482,28.2160918
+Shrestha Medical,,,,,,,,,,,,,,pharmacy,84.0187741,28.2161159
+Prasiddha Pharma,,,,,,,,,,,,,,pharmacy,84.0199821,28.2157736
+Dudhpokhari Pharmacy,,,,,,,,,,,,,,pharmacy,84.0290993,28.2171606
+Chowk Pharma,,,,mnr.p1994@gmail.com,,,,,,,,,,pharmacy,83.997417,28.234875
+Dhovan Pharma,,,,,,,,,,,,,,pharmacy,83.997609,28.2345965
+Sachin Pharma,,,,,,,,,,,,,,pharmacy,83.997663,28.2344715
+Shakar Pharma,,,,,,,,,,,,,,pharmacy,83.9974849,28.2347661
+Ram Medical Hall,,,,,,,,,,,,,,pharmacy,83.997384,28.2349463
+Yeusikaa Medical Hall,,Su-Sa 7:00-21:00,9856021418,,,,,,,,,,,pharmacy,84.0412216,28.1463195
+Indus Pharma (Medical Hall),,,,,,,,,,,,,,pharmacy,83.9905712,28.2238485
+Sewa Medical,,8:00-20:00,9819127404,,,,,,,,,,,pharmacy,83.9734631,28.1865956
+Sujan Medical Hall,,,,,,,,,,,,,,pharmacy,83.9706258,28.1920811
+Biraj Eye Clinic,,10:00-16:00,,,,,,,,,,,,pharmacy,83.9884903,28.2087376
+Siddheshor Medical Hall,,,984610593,,,,,,,,,,,pharmacy,83.9957113,28.201054
+Aaush Medical Hall,,,,,,,,,,,,,,pharmacy,83.9962342,28.1913528
+Parkland Hospital Pharmacy,,,,,,,,,,,,,,pharmacy,84.0012831,28.2045828
+Deep Jyoti Medical Hall,,,"9846513357, 061-550017",,,,,,,,,,,pharmacy,83.9855421,28.2092934
+Kafle Medical Hall,,,,,,,,,,,,,,pharmacy,83.987553,28.2397402
+Satish Farms and Medical Hall,,,,,,,,,,,,,,pharmacy,83.9849404,28.2306912
+Chhatra Medical Hall,,,,,,,,,,,,,,pharmacy,83.9776709,28.2208686
+Koirala Pharmacy,,,,,,,,,,,,,,pharmacy,83.9787498,28.2224054
+Diya Medical Hall,,,,,,,,,,,,,,pharmacy,83.9802324,28.2246033
+New Pokhara Pharmacy,,,,,,,,,,,,,,pharmacy,83.9948986,28.2188505
+Fewa City Hospital Pharmacy,private,24/7,,,,,,,,,,,,pharmacy,83.9813922,28.2066135
+Dip Jyoti Homiyo Pharmacy,,,9846197347,,,,,,,,,,,pharmacy,83.9953359,28.2031324
+Kiran Gurung Medical Hall,,,061-431798,,,,,,,,,,,pharmacy,83.9949257,28.2014204
+New Subharaj Medical Hall,,,061-430819,,,,,,,,,,,pharmacy,83.9950938,28.2012586
+Dudh Pokhari Pharmacy,,24/7,,,,,,,,,,,,pharmacy,83.9828741,28.2378202
+Brighter Pharmacy,,,,,,,,,,,,,,pharmacy,83.9867332,28.2113389
+Neha Ausadhi,,,,,,,,,,,,,,pharmacy,83.9864596,28.2104975
+Sabhagriya Medicare,,,,,,,,,,,,,,pharmacy,83.9846729,28.2109169
+Dhaulagiri Medical Hall,,8am-7pm,9846030213,,,,,,,,,,,pharmacy,83.9786172,28.1939983
+Sayapatri Medical Hall,,,"9846022676, 061-463596",,,,,,,,,,,pharmacy,83.9598114,28.2064503
+Goma Medical Hall,,,,,,,,,,,,,,pharmacy,83.9577889,28.2143234
+Milap Pharmacy,,,061-461684,,,,,,,,,,,pharmacy,83.9578112,28.2085264
+Pandey Medical Hall,,,,,,,,,,,,,,pharmacy,83.9594048,28.2135684
+Ramba Pharmacy,,,,,,,,,,,,,,pharmacy,83.9580844,28.2149353
+Smriti Medical,,,,,,,,,,,,,,pharmacy,83.9588405,28.2177983
+The Lake Pharmacy,,,,,,,,,,,,,,pharmacy,83.9574019,28.2118359
+Birauta Medical Pharma,,,,,,,,,,,,,,pharmacy,83.9703691,28.1917027
+Subha Prabhat Pharmacy,,Su-Sa 6:00-21:00,9856031841,,,,,,,,,,,pharmacy,83.971229,28.1922474
+Samata Pharmacy,,,,,,,,,,,,,,pharmacy,83.9751633,28.198545
+NIMS Pharmacy,,,"061-521076, 9856051488, 9846051488",,,,,,,,,,,pharmacy,83.9790654,28.2092964
+Aasirbad Medical Service,,,,,,,,,,,,,,pharmacy,83.9841685,28.2101024
+Nanita Pharmacy,,,,,,,,,,,,,,pharmacy,83.9795033,28.2098709
+Anmol Medical,,,061-522083,,,,,,,,,,,pharmacy,83.9914177,28.2210503
+Area Medical Hall,,,,,,,,,,,,,,pharmacy,83.9879588,28.240232
+Padhma Pharmacy,,,,,,,,,,,,,,pharmacy,83.9867133,28.2196661
+Panthi Pharmacy,,,,,,,,,,,,,,pharmacy,83.960556,28.2144786
+Everest Medico Pharma,,,,,,,,,,,,,,pharmacy,84.0012553,28.203055
+Rupa Pharmacy,,Su-Sa 07:00-19:00,9846029690/061-561377,,,,,,,,,,,pharmacy,84.0575008,28.1630407
+Barak Medical,,,,,,,,,,,,,,pharmacy,84.050169,28.1749342
+Bigya Pharmacy,,,9846027840,,,,,,,,,,,pharmacy,84.0148572,28.1986271
+Yekata Pharmacy,private,7:00-19:00,614113951,,,,,,,,,,,pharmacy,84.0305605,28.1902176
+Pokhara Medical Hall,,,,,,,,,,,,,,pharmacy,83.9913366,28.2251819
+Acharya Medical Hall,,7 AM-8 PM,"98,560,803,339,856,000,000",,,,,,,,,,,pharmacy,83.9720945,28.2616893
+Lamachaur Medical,,,,,,,,,,,,,,pharmacy,83.9718044,28.2608068
+Saru Medical,,,,,,,,,,,,,,pharmacy,83.9877394,28.2094651
+Trekking Medicine Pharmacy,,,,,,,,,,,,,,pharmacy,83.9582646,28.2115694
+Mersany Medical Hall,,,,,,,,,,,,,,pharmacy,83.9843652,28.2243562
+New Road Pharmacy,,,,pokharalikata@gmail.com,,,,,,,,,,pharmacy,83.9866445,28.2179347
+Lio Pharmacy,,,,,,,,,,,,,,pharmacy,83.9795082,28.2236734
+Geno Pharmacy,private,,,,,,,,,,,,,pharmacy,83.9836917,28.2435381
+Pharmacy Unit,,,,,,,,,,,,,,pharmacy,83.9887877,28.2433139
+Sunene Pradhan Medical Hall,,,,,,,,,,,,,,pharmacy,84.0015757,28.2044375
+Shanti Medical Hall,,,,,,,,,,,,,,pharmacy,83.9889774,28.2446259
+Laxmi Pharmacy,,5:00-17:00,9816193828,,,,,,,,,,,pharmacy,83.8743272,28.2465752
+Devi Medical Hall,,,9846053977,,,,,,,,,,,pharmacy,84.0432212,28.1846589
+Aausadhi Pasal,private,,98460232088,,,,,,,,,,,pharmacy,84.0372512,28.1846774
+Upakar Medical Hall,,7:00-20:00,9846142903,,,,,,,,,,,pharmacy,84.0456489,28.1801081
+Baral Medical Hall,,,,,,,,,,,,,,pharmacy,84.049895,28.1751217
+Sabyata Pharmacy,,,,,,,,,,,,,,pharmacy,83.9920885,28.2230896
+Amarsingh Pharmacy,,,,,,,,,,,,,,pharmacy,84.0006166,28.2052393
+Nidan Medical Hall,,,,,,,,,,,,,,pharmacy,84.0023765,28.2041358
+Aimee Pharmacy,,,,,,,,,,,,,,pharmacy,84.0014458,28.2045037
+Talbarahi Pharmacy,,24/7,061 528345,,,,,,,,,,,pharmacy,83.9899531,28.226066
+Nishchal Parmacy,,,,,,,,,,,,,,pharmacy,83.9892434,28.2451093
+Nawa Jiwan Darsan Pharmacy,,7 AM-7 PM,9815117820,,,,,,,,,,,pharmacy,83.986494,28.2477987
+Sardikhola Pharmacy,,,,,,,,,,,,,,pharmacy,83.9888125,28.2435143
+Multi Medical Hall,,,,,,,,,,,,,,pharmacy,83.9879476,28.2404042
+Daju Vai Pharmacy,,6:30-21:00,9843463608,,,,,,,,,,,pharmacy,83.9810982,28.2583445
+Siddhartha Homiyo Pharmacy,,,,,,,,,,,,,,pharmacy,83.9846081,28.2246902
+Sarathi Medical Hall,,,,,,,,,,,,,,pharmacy,83.9588184,28.2169194
+Raj Pharmacy,,8:00-19:00,9856010789,,,,,,,,,,,pharmacy,83.9715713,28.1920022
+Aarkid Pharmacy,,,,,,,,,,,,,,pharmacy,83.9730199,28.1926725
+Pahichan Medical,,7:00-18:00,9857033158,,,,,,,,,,,pharmacy,83.9537234,28.1911607
+Namrata Medical Hall,,8:00-19:00,,,,,,,,,,,,pharmacy,83.9597242,28.1889786
+Devi's Fall Medical Hall,,8:00-19:00,,,,,,,,,,,,pharmacy,83.9579833,28.1896542
+Mandip Pharmacy,,8:00-19:00,,,,,,,,,,,,pharmacy,83.9575994,28.1900001
+Dev Pharmacy,,Su-Fr 7:00-19:00,9856065535,,,,,,,,,,,pharmacy,83.9711934,28.19239
+Manish Medical Hall,,Sun-Sa 7:00-20:00,9847596614,,,,,,,,,,,pharmacy,83.9702233,28.1953652
+Fulbari Pharmacy,,Su-Sa 07:00-20:00,98560377066,,,,,,,,,,,pharmacy,83.9713454,28.2005868
+Medical Hall,,,,,,,,,,,,,,pharmacy,84.0095183,28.2135735
+Bhim Pharmacy,,,,,,,,,,,,,,pharmacy,84.0114223,28.2105642
+Kundhar Medical Hall,,,,,,,,,,,,,,pharmacy,84.0115345,28.2101069
+Uniqie Medical,,,,,,,,,,,,,,pharmacy,84.081675,28.1331883
+Medical Hall,,07:00-20:00,,,,,,,,,,,,pharmacy,84.06874,28.1643277
+Gagan Medical Hall,,,,,,,,,,,,,,pharmacy,84.0870735,28.1286607
+Dahal Clinic,,Su-Sa 7:00-21:00,"9856061871, 9846032113",,,,,,,,,,,pharmacy,84.0439529,28.1439306
+Jyoti Medical Hall,,Su-Sa 7:00-21:00,9846040160,,,,,,,,,,,pharmacy,84.0445127,28.1438219
+Balika Ausodhi Pasal,,,,,,,,,,,,,,pharmacy,84.1031907,28.1201504
+Swikriti Ayurved Medicine Pharma,private,Su-Fr 07:00-18:00,,,,,,,,,,,,pharmacy,83.9716736,28.201182
+Sharmila Medical Hall,,7 AM-7 PM,9846031332,,,,,,,,,,,pharmacy,83.9797221,28.2629677
+Omage Medical Hall,,,,,,,,,,,,,,pharmacy,83.9797376,28.2462581
+Shyama Pharmacy,,,,,,,,,,,,,,pharmacy,83.9875032,28.2411886
+Polite Medicine House,,6:00-20:00,061-541640,,,,,,,,,,,pharmacy,83.983551,28.2374025
+Darshan Pharmacy,,,,,,,,,,,,,,pharmacy,83.989239,28.2450035
+Arniko Pharmacy,,,,,,,,,,,,,,pharmacy,83.9872524,28.2417882
+Anurag Medical Pharma,,,,,,,,,,,,,,pharmacy,83.9776937,28.2560675
+Shivam Pharma,,7 AM-8 PM,9846044443,,,,,,,,,,,pharmacy,83.9863998,28.248011
+Saujanya Pharmacy,,,,,,,,,,,,,,pharmacy,83.9903756,28.2262289
+Kripa Ayuverdic Pharmacy,,,"9846109477, 061-535596",,,,,,,,,,,pharmacy,83.9906389,28.2263121
+Swecha Medicine,,,,,,,,,,,,,,pharmacy,83.9762051,28.1922773
+Emerge Medical Hall,,,,,,,,,,,,,,pharmacy,83.9844434,28.2280396
+Shulav Pharmacy,private,,,,,,,,,,,,,pharmacy,83.9845914,28.2252874
+Sahayog Medical Concern,,,,,,,,,,,,,,pharmacy,83.982336,28.2154873
+Shushan Pharmacy,,,,,,,,,,,,,,pharmacy,83.9856962,28.2348237
+Metrocity Pharmacy,,,,,,,,,,,,,,pharmacy,83.9811372,28.2118108
+Kaskeli Pharmacy,,,,,,,,,,,,,,pharmacy,83.9832479,28.2379898
+Polite Medicine House,,,,,,,,,,,,,,pharmacy,83.983565,28.2372718
+Janapriya Pharmacy,,,,,,,,,,,,,,pharmacy,83.9803986,28.2247188
+Aarjun Medical Hall,,,,,,,,,,,,,,pharmacy,83.9821938,28.2318358
+Padam Medical Hall,,,,,,,,,,,,,,pharmacy,83.9815427,28.2298011
+Medanta Ayurvedic Pharma,,,,,,,,,,,,,,pharmacy,83.9831221,28.2372228
+New Milijuli Pragati Farmacy,,,,,,,,,,,,,,pharmacy,84.0222735,28.1683662
+Aarambha Medico Pharma,,,,,,,,,,,,,,pharmacy,83.9902864,28.1941091
+Aviral Pharmacy,,Su-Sa 06:00-19:00,9856070181,,,,,,,,,,,pharmacy,84.026105,28.1731653
+Soniya Pharmacy,,7:00-8:00,9846032562,,,,,,,,,,,pharmacy,84.0650895,28.1500141
+Chetan Pharmacy,,,,,,,,,,,,,,pharmacy,84.0681544,28.1431962
+Acahrya Aaudhadi Pasal,,,,,,,,,,,,,,pharmacy,83.981769,28.2349818
+Nirdesh Pharmacy,,,,,,,,,,,,,,pharmacy,83.9981815,28.2114037
+Kajipokhari Pharma,,,,,,,,,,,,,,pharmacy,84.0026987,28.1971494
+Sagarmatha Pharmacy,,,,,,,,,,,,,,pharmacy,84.0105887,28.1970685
+Ashsok Medical Hall,,,,,,,,,,,,,,pharmacy,83.9911236,28.229647
+Janasathi Pharmacy,,,9846039823,,,,,,,,,,,pharmacy,83.9914448,28.2298797
+Ankita Pharmacy,,,,,,,,,,,,,,pharmacy,83.9968628,28.1875728
+Sworan Pharma,,8:00-19:30,9841813670,,,,,,,,,,,pharmacy,83.9968367,28.1879449
+Machhapuchre Pharmacy,,,,,,,,,,,,,,pharmacy,83.9961212,28.1943718
+Priti Medical Hall,,,,,,,,,,,,,,pharmacy,84.0233088,28.1916482
+Palungtar Pharmacy,,,,,,,,,,,,,,pharmacy,84.0302483,28.1905734
+Soschhya Pharmacy,,,"9856060202, 9846268265",,,,,,,,,,,pharmacy,84.0237553,28.1921443
+Sambridhi Pharmacy,,,,,,,,,,,,,,pharmacy,84.0524228,28.1721193
+Tal Chowk Pharmacy,,,"061 531666, 9846744422",,,,,,,,,,,pharmacy,84.0572876,28.1631866
+Sishuwa Aurbhed Ausadalaya,,,,,,,,,,,,,,pharmacy,84.0679528,28.1653242
+Abhaya Upachar Kendra,,,,,,,,,,,,,,pharmacy,84.067883,28.1638132
+Aashu Medical Hall,,,,,,,,,,,,,,pharmacy,84.0684178,28.1637526
+B and B Aurbhedic Upachar and Anusandhan Kendra,,,,,,,,,,,,,,pharmacy,84.056609,28.171741
+Nature Aayurbed Pharma,,,,,,,,,,,,,,pharmacy,83.9932146,28.2067227
+National Pharmacy,,,,,,,,,,,,,,pharmacy,83.9667651,28.206955
+Prime Pharmacy,,,,,,,,,,,,,,pharmacy,83.9638381,28.2045597
+Sahayatri Pharmacy,,,,,,,,,,,,,,pharmacy,83.9622449,28.2104799
+Bishal Medico Pharma,,,,,,,,,,,,,,pharmacy,83.960181,28.2121846
+Prichit Medical Hall,,,9846041494,,,,,,,,,,,pharmacy,83.9906066,28.2260998
+Arjun Medical Hall,,,,,,,,,,,,,,pharmacy,83.9823407,28.2323439
+Amar Ayurbedic Clinic,,,,,,,,,,,,,,pharmacy,83.9865665,28.2295205
+Ishwor Medical Hall,,,,,,,,,,,,,,pharmacy,83.9870875,28.2199009
+Pasture Pharmacy's,,,,,,,,,,,,,,pharmacy,83.9814219,28.2112612
+Jeewan Pharmacy,private,7:00-20:30,061-534755,,,,,,,,,,,pharmacy,83.9830898,28.2105711
+Sipora Medical Hall,,,,,,,,,,,,,,pharmacy,83.9862382,28.2095645
+Sancho Medical Pharma,,,,,,,,,,,,,,pharmacy,83.9762342,28.2127708
+Puspa Jyoti Pharmacy,,,,,,,,,,,,,,pharmacy,83.9837617,28.2106409
+Nadipur Medical Hall,,,,,,,,,,,,,,pharmacy,83.9897937,28.2355778
+Kafle Medical Hall,,,,,,,,,,,,,,pharmacy,84.0899625,28.1651198
+Ayurvedic Health Home,,,,sattva@ayurveda.com.np,,,,,,,,,,pharmacy,83.9610794,28.2166861
+Bisesh Pharmacy,,,,,,,,,,,,,,pharmacy,83.9831853,28.2315512
+Ayushree Ayurvedic Pharma,private,8:00-19:00,,,,,,,,,,,,pharmacy,84.0373546,28.1841641
+Laxmi Medical Pharma,private,06:00-20:00,,,,,,,,,,,,pharmacy,84.0383328,28.1833221
+Aagan Pharmacy,,Morning 6:00 AM-9 AM Evening 5:00 PM-9:00 PM,,,,,,,,,,,,pharmacy,83.9770118,28.2578768
+Sovit Medical Hall,,"8:00-10:00, 17:00-20:00",9846041599,,,,,,,,,,,pharmacy,83.9810541,28.2586263
+Ganesh Aayurveda Pharma,,,061-537773,,,,,,,,,,,pharmacy,83.9758271,28.2149714
+Lumbini Medical Hall,,,,,,,,,,,,,,pharmacy,83.9748049,28.2129063
+Nepali Medical Hall,,,,,,,,,,,,,,pharmacy,83.9756939,28.212588
+Mohan Medico Pharma,,,,,,,,,,,,,,pharmacy,83.9780226,28.222729
+Sujal Medical Hall,,7:30- 20:00,061-460312,,,,,,,,,,,pharmacy,83.9705712,28.1920465
+Sheruga Medico Pharma,,8:00-21:00,9856002341,,,,,,,,,,,pharmacy,83.9758833,28.1933642
+Shree Medical,,,,,,,,,,,,,,pharmacy,83.9192431,28.2654024
+Subedi Phramacy,,sun-sat 6-8,,,,,,,,,,,,pharmacy,83.9012597,28.2699646
+Mayor pharmacy,,7:00-20:00,9846855015,,,,,,,,,,,pharmacy,83.9674488,28.1912669
+Subechha Pharmacy,private,10:00-16:00,,,,,,,,,,,,pharmacy,83.9743128,28.2059044
+Bright Medical Hall,,,,,,,,,,,,,,pharmacy,83.9755172,28.1875143
+Pramis Pharmacy,,,,,,,,,,,,,,pharmacy,83.9748426,28.1850556
+Sifa Ayurvedic Ausadhyala,,,61460781,,,,,,,,,,,pharmacy,83.9642881,28.190171
+Aavash Ayurvedic Pharma,,8:00-20:00,"98,460,727,659,846,000,000",,,,,,,,,,,pharmacy,83.9681545,28.1911302
+Sahana Pharma,,7:00-20:00,98041123457,,,,,,,,,,,pharmacy,83.9705987,28.1911249
+Raj Vai Pharmacy,,8:00-19:00,9856018200,,,,,,,,,,,pharmacy,83.9724172,28.1921898
+National Pharmacy,,,,,,,,,,,,,,pharmacy,83.9767572,28.2249438
+Mankamana Pharmacy,,7:00-19:30,9846031270,,,,,,,,,,,pharmacy,83.9530537,28.1913057
+Suyogya Pharmacy,,,,,,,,,,,,,,pharmacy,83.9843124,28.2248361
+Regmi Medical Hall,,,,,,,,,,,,,,pharmacy,83.9707183,28.1840245
+Babina Pharmacy,,,"061-537193, 061-533193",,,,,,,,,,,pharmacy,83.9881959,28.2264309
+Ramlaxman Pharmacy,,,,,,,,,,,,,,pharmacy,83.9902203,28.2262819
+Aayush Pharmacy,,,,,,,,,,,,,,pharmacy,83.990362,28.2239039
+Sarita Aayurveda Aushhadhalaya,,,,,,,,,,,,,,pharmacy,83.9870882,28.2292634
+Arayan Pharmacy,,8:00-17:00,,,,,,,,,,,,pharmacy,83.9822817,28.197861
+Indra Pharma,,,061-520525,,,,,,,,,,,pharmacy,83.9881158,28.2287076
+Shining Medical Hall,,10:00 a.m. - 16:00 p.m.,,,,,,,,,,,,pharmacy,83.9892064,28.2287301
+Vidhya Aayurveda Pharmacy,,,061-521562,,,,,,,,,,,pharmacy,83.988553,28.2284088
+Shrestha Drug Concern,,,061-520755,,,,,,,,,,,pharmacy,83.9891385,28.2279906
+Subhatar Pharmacy,,,9846030440,,,,,,,,,,,pharmacy,83.985901,28.2176641
+Global Health Care,,,,,,,,,,,,,,pharmacy,83.9596599,28.2084004
+Managalam Pharmacy,,Su-Sa 7:00-20:00,,,,,,,,,,,,pharmacy,83.9704686,28.1964544
+Puja Medical Hall,,Su-Sa 7:00-20:00,98161970211,,,,,,,,,,,pharmacy,83.9750759,28.1975333
+Swekriti Pharmacy,,24 Hrs.,"615,607,449,846,591,000",,,,,,,,,,,pharmacy,84.0811855,28.148854
+Mount Annapurna Pharmacy,,,986155526,,,,,,,,,,,pharmacy,83.9724229,28.1930539
+Parajuli Medical,,Su-Sa 7:00-20:00,98460300587,,,,,,,,,,,pharmacy,83.9738857,28.1955139
+Dhirgau Medical Hall,,Su-Sa 07:00-20:00,061-4020237,,,,,,,,,,,pharmacy,83.9895223,28.1792795
+Pulchowk Medical Hall,,,,,,,,,,,,,,pharmacy,84.0572109,28.1455371
+Swornim Pharma Enterprises,,,061-520507,,,,,,,,,,,pharmacy,83.9902516,28.2237081
+Srijana Medi Sales,,,,,,,,,,,,,,pharmacy,83.9905795,28.2232858
+Arohan Kamana Medi Sales,,,,,,,,,,,,,,pharmacy,83.9900836,28.2222718
+Nava Trisana Surgical Suppliers,,,"9856036323, 9856026678",,,,,,,,,,,pharmacy,83.9898248,28.2219895
+Srijana Medical Distributors,,,"061-522633, 061-536650",,,,,,,,,,,pharmacy,83.9897763,28.2218965
+Mega Medicine Distributors,,,061-531870,,,,,,,,,,,pharmacy,83.9896226,28.2216072
+Sajjan Medical Hall,,,,,,,,,,,,,,pharmacy,83.9901249,28.2231408
+Om Pharmacy,,,,,,,,,,,,,,pharmacy,83.9900655,28.2228159
+Sudhan Pharmacy,,,"9804114219, 9860016559",,,,,,,,,,,pharmacy,84.0834814,28.1345279
+Nabin Pharmacy,,,9846056836,,,,,,,,,,,pharmacy,84.0827867,28.1330957
+Nidishan Medical Hall,,,,,,,,,,,,,,pharmacy,83.997001,28.2272312
+Medical Hall,,,,,,,,,,,,,,pharmacy,83.9980048,28.2271307
+Aafanta Pharmacy,,,9856033307,,,,,,,,,,,pharmacy,83.9993298,28.2296629
+Asia Medi Sales,,,061-541696,,,,,,,,,,,pharmacy,83.9864309,28.2109858
+Monal Pharmacy,,,"061-530975, 98066908471",,,,,,,,,,,pharmacy,83.9864544,28.2110012
+City Pharmacy,,,"061-531199, 98462209855",,,,,,,,,,,pharmacy,83.9865478,28.2110353
+GMC Pharmacy,,,,,,,,,,,,,,pharmacy,83.9865686,28.2110569
+Sagarmatha Medi Distributors,,,9856024899,,,,,,,,,,,pharmacy,83.9865525,28.2110744
+Tapaiko Ausadhi Pasal,,,9856033090,,,,,,,,,,,pharmacy,83.9866888,28.2112834
+Asmani Pharmacy,,,"061-534745, 9856037449",,,,,,,,,,,pharmacy,83.986703,28.2112996
+Somiya Pharmacy,,,061-533155,,,,,,,,,,,pharmacy,83.9868789,28.2115681
+Rajan Pharmacy,,,"061-540670, 9846034728",,,,,,,,,,,pharmacy,83.9869091,28.2116005
+Sakushal Pharmacy,,7:00-20:00,,,,,,,,,,,,pharmacy,83.9937307,28.1846915
+Kabya Pharmacy,,7:00-21:00,,,,,,,,,,,,pharmacy,83.9905895,28.1950677
+Jaysan Medical,,6:30-19:30,,,,,,,,,,,,pharmacy,83.9907088,28.1952048
+Saguna Pharmacy,,07:00-20:00,,,,,,,,,,,,pharmacy,83.993329,28.2013967
+Banstola Medical Hall,,,,,,,,,,,,,,pharmacy,83.9362013,28.2783145
+New Garima Medical Hall,,,,,,,,,,,,,,pharmacy,84.0751616,28.2139549
+Shuvatara Pharmacy,,,"9846030449, 9816127253",,,,,,,,,,,pharmacy,83.9856136,28.2177531
+Grand Medicine Nepal,,,061-535845,,,,,,,,,,,pharmacy,83.9857296,28.2208036
+Ashmi Pharmacy,,,,,,,,,,,,,,pharmacy,83.9889592,28.2153579
+Ex Army Medical Hall,,,,,,,,,,,,,,pharmacy,83.9891437,28.215884
+Keshab Homeo Pharmacy,,,,,,,,,,,,,,pharmacy,83.9863127,28.2107451
+Pratik Surgical Diagonostic Concern,,,,,,,,,,,,,,pharmacy,83.9861735,28.2105967
+Bindabasini Surgical Solution,,,"061-5412274, 9846781917",,,,,,,,,,,pharmacy,83.9912628,28.219823
+Priyanch Surgical House,,,9846286000,,,,,,,,,,,pharmacy,83.9913521,28.2204078
+Dun Pharmacy,,,9846142371,,,,,,,,,,,pharmacy,83.9913832,28.2213403
+Rusha Pharma Enterprises,,,061-522063,,,,,,,,,,,pharmacy,83.9913774,28.2213825
+Annapurna Medico Pharma,,,,,,,,,,,,,,pharmacy,83.9913383,28.221936
+Ananda Pharma,,,"061-532997, 9846155999",,,,,,,,,,,pharmacy,83.9913049,28.2221846
+Kathmandu Nardevi Aayurveda Pharma,,,9869093170,,,,,,,,,,,pharmacy,83.9912338,28.222956
+Care Pharmacy,,,9846287612,,,,,,,,,,,pharmacy,83.9878451,28.2118905
+Swastika Medical Hall,,,061-530646,,,,,,,,,,,pharmacy,83.9877514,28.2119301
+Shuvam Medical Hall,,,,,,,,,,,,,,pharmacy,83.985918,28.2097679
+Ripesh Medical Hall,,,061-531086,,,,,,,,,,,pharmacy,83.9861397,28.2096061
+Unesh Drug Disrtibutors,,,061-541060,,,,,,,,,,,pharmacy,83.9911436,28.2213319
+Shakya Medical Concen,,,,,,,,,,,,,,pharmacy,83.9911536,28.2216457
+Everest Surgical & Laboratory Concern,,,061-530482,,,,,,,,,,,pharmacy,83.9910779,28.2221603
+Jana Sewa Medical Hall,,,,,,,,,,,,,,pharmacy,83.9850514,28.2091523
+Himsagar Medico Pharma,,,"061- 525249, 061-527694",,,,,,,,,,,pharmacy,83.9845456,28.2085482
+Amrit Kalash Pharmacy,,,061-537317,,,,,,,,,,,pharmacy,83.9838267,28.2075367
+Light Pharmacy,,,9856039082,,,,,,,,,,,pharmacy,83.9826484,28.2056819
+Ratna Polyclinc & Medical Centre,,,"061-551574, 9802839540",,,,,,,,,,,pharmacy,83.9834788,28.2063534
+Sunrise Medico Pharma,,,,,,,,,,,,,,pharmacy,83.9843844,28.2078771
+Niti Niyam Medico Pharma,,,9846193383,,,,,,,,,,,pharmacy,83.9849771,28.2083438
+Sushan Pharmacy,,,,,,,,,,,,,,pharmacy,83.9858423,28.2383573
+Bishal Pharmacy,,,,,,,,,,,,,,pharmacy,84.0498244,28.1777306
+Sapana Medical Hall,private,10:00-20:00,984601468,,,,,,,,,,,pharmacy,84.050562,28.1769527
+Monika Pharmacy,,8-Jul,9846658110,,,,,,,,,,,pharmacy,84.0495176,28.175446
+Sumpurna Pharmacy,,7:00-20:00,9856034845,,,,,,,,,,,pharmacy,84.0371637,28.184802
+Himalyan Medicine Shop,,,,,,,,,,,,,,pharmacy,83.9832667,28.2344796
+Sankalpa Pharmacy,private,7:00-20:00,,,,,,,,,,,,pharmacy,83.9766013,28.2067994
+Re Life Ayurveda Hospital,private,,,,,,,,,,,,,pharmacy,83.9790598,28.2119398
+Kumari Medical Hall,,,,,,,,,,,,,,pharmacy,84.0921071,28.1152268
+Balika Pharmacy,,,,,,,,,,,,,,pharmacy,84.1090808,28.1149104
+Ashik Farmacy,,,,,,,,,,,,,,pharmacy,84.0934096,28.1146458
+Natural Health Care,,,,,,,,,,,,,,pharmacy,84.0072611,28.2147088
+Panta Pharmacy,,7:00 - 20:00,9856037315,,,,,,,,,,,pharmacy,84.0035617,28.1829521
+Ashish Medical Hall,,,61430837,,,,,,,,,,,pharmacy,84.0024814,28.1847731
+Palikhe Medical Pharma,,,9846066982,,,,,,,,,,,pharmacy,83.9958302,28.221252
+Chirag Pharmacy Wholesale,,,,,,,,,,,,,,pharmacy,83.9971016,28.2213944
+Babisha Sergisales,,,,,,,,,,,,,,pharmacy,83.9939258,28.2204751
+Alisha Medical Hall,,,,,,,,,,,,,,pharmacy,84.0049584,28.2200148
+Panta Pharmacy,,Sunrise-Sunset,,,,,,,,,,,,pharmacy,84.0003075,28.2185897
+Advance Aausadi Pasal,,,,,,,,,,,,,,pharmacy,84.0097643,28.2135814
+Shridh Medical Hall,,10:00- 16:00,,,,,,,,,,,,pharmacy,84.005754,28.2151154
+Komal Pharmacy,,,,,,,,,,,,,,pharmacy,83.9927724,28.2017586
+Medha Pharmacy,,,,,,,,,,,,,,pharmacy,83.9898232,28.2170625
+Sai Ram Medical Hall,,,,,,,,,,,,,,pharmacy,83.9627572,28.2574119
+Ashish Medical Hall,,,,,,,,,,,,,,pharmacy,83.9858061,28.2335952
+Family Dental Care,,,,,,,,,,,,,,dentist,83.99110015,28.22499905
+Orchid Dental and Orthodontic Centre,,,,,,,,,,,,,,dentist,83.9922619,28.22299665
+Paschimanchal Dental,,,061-46654,,,,,,,,,,,dentist,83.97110028,28.1939471
+Madhavi Dental Care,,,,,,,,,,,,,,dentist,83.9813485,28.2244947
+Dolphin Dental Care Center,,,,,,,,,,,,,,dentist,83.9848158,28.2120516
+Mata Mankamana Dental,,,,,,,,,,,,,,dentist,83.9867026,28.2181893
+BB Dental Clinic,,,,,,,,,,,,,,dentist,83.9905203,28.2232981
+Gandaki Dental Clinic,,,,,,,,,,,,,,dentist,83.990384,28.2233355
+New Gandaki Dental Clinic,,,,,,,,,,,,,,dentist,83.9903038,28.2234123
+Himal Dental Clinic,,,,,,,,,,,,,,dentist,83.9904991,28.2233016
+Machhapuchre Dental,,,,,,,,,,,,,,dentist,83.9903296,28.2233447
+Nice Dental Care,,,,,,,,,,,,,,dentist,83.990104,28.2232189
+Paropakar Dental Care Center,,,,,,,,,,,,,,dentist,83.9901482,28.2233821
+The Dental Care,,,,,,,,,,,,,,dentist,83.9907113,28.2232443
+Fewa Dental Clinic,,,,,,,,,,,,,,dentist,83.9873774,28.2240161
+Paschimanchal Dental Home,,09:00-16:00,,,,,,,,,,,,dentist,83.9867251,28.2113635
+Brighter Dental,,,,,,,,,,,,,,dentist,83.9877172,28.239716
+Global Dental Care,,,,,,,,,,,,,,dentist,83.9841123,28.2433666
+Garima Dental Clinic,,,,,,,,,,,,,,dentist,84.0007321,28.2047375
+Namaste Dental Care Centre,,,,,,,,,,,,,,dentist,83.9865104,28.2172837
+Birauta Dental Clinic,,,,,,,,,,,,,,dentist,83.9711226,28.1924925
+Shyam Dental,,,,,,,,,,,,,,dentist,83.9875687,28.2410969
+Perfect Dental Care,Private,,,,,,,,,,,,,dentist,83.9860616,28.224263
+Dhaulagiri Dental Home,,,,,,,,,,,,,,dentist,83.9715489,28.261074
+Amarsingh Dental Clinic,,,,,,,,,,,,,,dentist,84.000609,28.2052446
+Asta Dental Clinic,,,,,,,,,,,,,,dentist,83.9589115,28.2139653
+Smile Care and Dential Care,,,,,,,,,,,,,,dentist,83.9896381,28.2260926
+Yepolo Dental,,,,,,,,,,,,,,dentist,84.0361941,28.1845465
+Pokhara Shining Health and Dental Clinic,,,,,,,,,,,,,,dentist,83.98331,28.2434484
+Annapurna Dental Care,,,,,,,,,,,,,,dentist,83.9873986,28.2414278
+Ghandruk Dental Care,,,,,,,,,,,,,,dentist,83.9890828,28.2443301
+Poineer Dental Clinic,,,,,,,,,,,,,,dentist,83.9902884,28.2262324
+Machhapuchchre Dental Clinic,,,,,,,,,,,,,,dentist,83.9994277,28.2050653
+Metrocity Dental Clinic,,,,,,,,,,,,,,dentist,83.9816359,28.2117631
+Star Dental Clinic,,,,,,,,,,,,,,dentist,83.9668056,28.2115133
+32 Dental Care,,,,,,,,,,,,,,dentist,84.0568323,28.1627722
+Nice Dental Care Centre,,,,,,,,,,,,,,dentist,83.9900333,28.2262877
+Amrit Dental Clinic,,,,,,,,,yes,,,,,dentist,84.0683891,28.1636815
+Bindabasini Dental Care,,Su-Fr 10:00-17:00,,,,,,,,,,,,dentist,83.9703117,28.1919605
+Doctor Tooth Dental Care,,,,doctortoothdentalcare@gmail.com,,,,,,,,,,dentist,83.9900518,28.2240743
+Buddha Dental Care,,,,,,,,,,,,,,dentist,83.9883746,28.2262448
+Birauta Dental Clinic,,,,,,,,,,,,,,dentist,83.9711881,28.1924129
+Mata Manakamana Dental,,7:00-15:00,,,,,,,,,,,,dentist,84.0639013,28.1516565
+Padmashree Dental Home,,,,,,,,,,,,,,dentist,83.9866103,28.2194362
+Doctors Dental & Implant Centre,,,,,,,,,,,,,,dentist,83.9869456,28.220777
+Prime Dental Care Centre,Private,,,,,,,,,,,,,dentist,83.9904638,28.2260667
+Dental Pokhara Care Centre,,,,,,,,,,,,,,dentist,83.9971793,28.2272743
+Lotus Dental Home,,,9856035154,,,,,,,,,,,dentist,83.9861953,28.2106308
+Smile Dental Care,,,,,,,,,,,,,,dentist,83.9910493,28.2225911
+Subidha Dental Clinic,,,,,,,,,,,,,,dentist,83.9851079,28.2092372
+Prithvi Dental Care,,,,,,,,,,,,,,dentist,83.984162,28.2080102
+Brighter Dental House,,,,,,,,,,,,,,dentist,83.9838526,28.2069008
+Dyanamic Dental Clinic,,,,,,,,,,,,,,dentist,83.9855702,28.2093219
+Himal Dental,,,,,,,,,,,,,,dentist,84.0494978,28.1754549
+Advance Medicine serveice And Dental,,sunrise-sunset,,,,,,,,,,,,dentist,84.0097958,28.2128221
+Medha Dental House,,Mo-Su 09:00-19:00,,,,,,,,,,,,dentist,83.9897937,28.2170032
+Smile Dental Care Center,,,,,,,,,,,,,,dentist,83.9920865,28.2228313
+Bhadrakali Dental Clinic,,,,,,,,,,,,,,dentist,83.9958027,28.2005274
+Safal Dental Clinic,,,,,,,,,,,,,,dentist,83.9958845,28.2008016
+"Krishi Tatha Pashu Sewa Kendra, Lekhnath",government,Mo-Fr 10:00-16:00,,,,,,,,,,,,veterinary,84.081333,28.14822345
+Regional Veterinary Laboratary,,,061-520419,wrdls@dls.gov.np,,,,,,,,,,veterinary,84.00031738,28.21186658
+Kaphle Veterinary,,,,,,,,,,,,,,veterinary,83.9998249,28.2115706
+B & B Vet and Poultry Suppliers,,,,,,,,,,,,,,veterinary,84.07009677,28.16282342
+Himalayan Animal Rescue Trust (HART),,,,,,,,,,,,,,veterinary,83.9622361,28.2080649
+Himalayan Animal Rescue Trust (HART),,,+977 061 462 808,,,,,,,,,,,veterinary,84.0017951,28.2133097
+Bhandari Veterinary,,,,,,,,,,,,,,veterinary,83.9888762,28.2414178
+Pashupati Veterinary,,,,,,,,,,,,,,veterinary,83.9825979,28.2111185
+BG Veterinary,,,,,,,,,,,,,,veterinary,83.9833765,28.2107884
+Sunrise Veterinary Center,,sunrise-sunset,061 523513,,,,,,,,,,,veterinary,83.9988004,28.2056854
+Bibhid Veterinary Store,,,,,,,,,,,,,,veterinary,83.9953313,28.2038018
+,,,,,,,,,,,,,,veterinary,83.9802174,28.2714567
+Brothers Veterinary,,,,,,,,,,,,,,veterinary,83.9807005,28.2247775
+Pun Veterinary Centre,,,,,,,,,,,,,,veterinary,83.9949144,28.2047776
+Machapurchey Veterinary,,,,,,,,,,,,,,veterinary,83.9717501,28.2612958
+Bahari Vet Farma,,,,,,,,,,,,,,veterinary,83.9761699,28.2147016
+Rara Veterinary Concern,,Sunrise-Sunset,061-541169,,,,,,,,,,,veterinary,84.0004585,28.2129357
+Gautam Veterinary Suppliers,,Sunrise-Sunset,,,,,,,,,,,,veterinary,84.0005461,28.2129684
+Dipshikha Veterinary Centre,,,,,,,,,,,,,,veterinary,83.9692957,28.1917231
+Pokhrel Veterinary,,7:00-19:00,,,,,,,,,,,,veterinary,83.9966335,28.193269
+Sapkota Veterinary,,,,,,,,,,,,,,veterinary,84.049931,28.1751032
+Sishuwa Krishhi Sewa Bhandar,,,,,,,,,,,,,,veterinary,84.0684389,28.1645841
+Pokhara Vet and Pet Clinic,,,,,,,,,,,,,,veterinary,83.9860323,28.2242778
+Kalpana Veterinary Pharma,,,,,,,,,,,,,,veterinary,83.9766549,28.2123735
+Tiwari Vet Centre,,,,,,,,,,,,,,veterinary,84.0912254,28.1641804
+Sapkota Veterinary Suppliers,,,,,,,,,,,,,,veterinary,84.0498702,28.1751736
+Asai Vet Pharma,,,061-530693,,,,,,,,,,,veterinary,83.9764427,28.2124526
+Green Wealth Vet Pharma,,,061-531444,,,,,,,,,,,veterinary,83.9759827,28.2125037
+Saela Janasewa Pasu Ausadhi Pasal,,,,,,,,,,,,,,veterinary,84.0816388,28.148128
+Panchase Vet Pharma,,Su-Sa 8:00-18:00,,,,,,,,,,,,veterinary,83.9724004,28.1930397
+Nepal Krisi Sewa Bhandar,,,,,,,,,,,,,,veterinary,83.9872399,28.2237424
+Krishi Samagri Bhandar,,,,,,,,,,,,,,veterinary,83.9860806,28.2239675
+Acharya Agro Vet Center,,,,,,,,,,,,,,veterinary,84.0823743,28.1326664
+Samudhyak Pasu Prajanan Kendra,,,,,,,,,,,,,,veterinary,84.0393256,28.1476627
+Veterinary Centre,,,,,,,,,,,,,,veterinary,84.0750425,28.2140476
+Pokhara Veterinary Clinic,,,,,,,,,,,,,,veterinary,83.9835562,28.2064714
+Saurab Veterinary Centre,,,,,,,,,,,,,,veterinary,83.9540648,28.1569118
+Pasu Sewa Kendra,,,,,,,,,,,,,,veterinary,83.9984266,28.152601
+Animal Service Branch Bamdi,,8:00-16:00,,,,,,,,,,,,veterinary,83.8887336,28.2386548
+Animal Health And Training Centre,,,,,,,,,,,,,,veterinary,84.0506593,28.2246494
+Pashu Sewa Kendra,,,,,,,,,,,,,,veterinary,83.9393093,28.2802681
+Sijan Veterinary Centre,,7:30-20:00,,,,,,,,,,,,veterinary,83.9992976,28.2187072
+Janasewa Vet Pasal,,Sunrise-Sunset,061-533140,,,,,,,,,,,veterinary,84.0010256,28.213218
+Aarati Veterinary Suppliers,,Sunrise-Sunset,061-522301,,,,,,,,,,,veterinary,84.0003524,28.2128895
+Kendriya Vet Pharma,,,061-432714,,,,,,,,,,,veterinary,83.9961346,28.2056993
