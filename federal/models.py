@@ -53,5 +53,7 @@ class Ward(models.Model):
         on_delete=models.PROTECT,
     )
 
+    objects = WardManager()
+
     def __str__(self):
         return f'{str(self.municipality)}-{self.title}'
