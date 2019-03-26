@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,Health
 from incident.models import Incident
 from resources.models import Resource
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer
@@ -86,7 +86,7 @@ class PoliceGeojsonViewSet(views.APIView):
 class EducationGeojsonViewSet(views.APIView):
     permission_classes=(IsAuthenticated,)
     def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Education.objects.all(),geometry_field='location',fields=('pk','name'))
+        serializers=serialize('geojson',Education.objects.all(),geometry_field='location',fields=('pk','name','operator_type','opening_hours','phone_number','email_address','number_of_employees','number_of_students','comments','type'))
         # print(serializers)
         Educationgeojson=json.loads(serializers)
         return Response(Educationgeojson)
@@ -99,7 +99,7 @@ class LayerViewset(viewsets.ModelViewSet):
 class BankGeojsonViewSet(views.APIView):
     permission_classes=(IsAuthenticated,)
     def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Bank.objects.all(),geometry_field='location',fields=('pk','name'))
+        serializers=serialize('geojson',Bank.objects.all(),geometry_field='location',fields=('pk','name','phone_number','email_address','website','opening_hours','operator_type','bank_type','atm_available','Comments'))
         # print(serializers)
         Bankgeojson=json.loads(serializers)
         return Response(Bankgeojson)
@@ -111,6 +111,15 @@ class SettlementsGeojsonViewSet(views.APIView):
         # print(serializers)
         Settlementsgeojson=json.loads(serializers)
         return Response(Settlementsgeojson)
+
+
+class HealthGeojsonViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Health.objects.all(),geometry_field='location',fields=('name','operator_type','opening_hours','phone_number','email_address','emergency_service','icu','nicu','operating_theatre','x_ray','ambulance_service','number_of_staff','number_of_Beds','Comments','type'))
+        # print(serializers)
+        Healthgeojson=json.loads(serializers)
+        return Response(Healthgeojson)
 
 def Dashboard(request):
     if "GET" == request.method:
@@ -176,12 +185,13 @@ def count_update(modelname):
 
 class IncidentApiView(viewsets.ModelViewSet):
     serializer_class=IncidentSerializer
-    permission_classes=(IsAuthenticated,)
-    def get(self,request,*args,**kwargs):
-        incident = request.GET['incident']
-
-        serializer = IncidentSerializer(queryset, many=True)
-        return Response(serializer.data)
+    queryset = HazardResources.objects.all()
+    # permission_classes=(IsAuthenticated,)
+    # def get(self,request,*args,**kwargs):
+    #     incident = request.GET['incident']
+    #
+    #     serializer = IncidentSerializer(queryset, many=True)
+    #     return Response(serializer.data)
 
     # def get(self, request, *args, **kwargs):
     #     incident = request.GET['incident']

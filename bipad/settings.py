@@ -68,6 +68,11 @@ INSTALLED_APPS = [
     'resources',
     'inventory',
     'realtime',
+<<<<<<< HEAD
+=======
+
+    'risk_profile',
+>>>>>>> 1b9f6a0... new dashboard
     'misc',
     'document',
     'risk_profile',

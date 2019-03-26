@@ -17,13 +17,24 @@ class Command(BaseCommand):
             # print(reader)
 
             for row in reader:
+                if(row[10]!='long'):
+
+
                 # print(row[2])
-                try:
-                    education = Education.objects.create(
-                    name=row[0],
-                    lat=row[2],
-                    long=row[1],
-                    location=Point(float(row[1]),float(row[2]))
-                    )
-                except:
-                    print('error')
+                    try:
+                        education = Education.objects.create(
+                        name=row[0],
+                        operator_type=row[1],
+                        opening_hours=row[2],
+                        phone_number=row[3],
+                        email_address=row[4],
+                        number_of_employees=row[5],
+                        number_of_students=row[6],
+                        comments=row[7],
+                        type=row[8],
+                        lat=row[9],
+                        long=row[10],
+                        location=Point(float(row[10]),float(row[9]))
+                        )
+                    except:
+                        print('error')

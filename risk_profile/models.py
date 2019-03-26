@@ -42,7 +42,40 @@ class MarketCenter(models.Model):
 
 
 class Bank(models.Model):
+
+    Bnktyp = (
+    ('commercial', 'Commercial'),
+    ('development', 'Development'),
+    ('finance', 'Finance'),
+    ('micro_credit_development', 'Micro Credit Development'),
+
+)
+
+    Optyp = (
+    ('government', 'Government'),
+    ('private', 'Private'),
+    ('community', 'Community'),
+    ('other', 'Other'),
+
+)
+
+    Yn = (
+    ('yes', 'Yes'),
+    ('no', 'No'),
+
+)
+
+
+
     name=models.CharField(max_length=250,null=True, blank=True, default=None)
+    phone_number=models.CharField(max_length=550,null=True, blank=True, default=None)
+    email_address=models.CharField(max_length=550,null=True, blank=True, default=None)
+    website=models.CharField(max_length=550,null=True, blank=True, default=None)
+    opening_hours=models.CharField(max_length=550,null=True, blank=True, default=None)
+    operator_type=models.CharField(max_length=50,choices=Optyp,null=True, blank=True, default=None)
+    bank_type=models.CharField(max_length=50,choices=Bnktyp,null=True, blank=True, default=None)
+    atm_available=models.CharField(max_length=50,choices=Yn,null=True, blank=True, default='no')
+    Comments=models.CharField(max_length=550,null=True, blank=True, default=None)
     lat=models.CharField(max_length=250,null=True, blank=True, default=None)
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
@@ -89,14 +122,90 @@ class Policestation(models.Model):
     def __str__(self):
         return self.name
 
-class Education(models.Model):
+# class Education(models.Model):
+#     name=models.CharField(max_length=550,null=True, blank=True, default=None)
+#     lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+#     long=models.CharField(max_length=250,null=True, blank=True, default=None)
+#     location=models.PointField(null=True, blank=True, default=None)
+#
+#     def __str__(self):
+#         return self.name
+
+
+#new model as in sheets
+class Health(models.Model):
+
+    Optyp = (
+    ('government', 'Government'),
+    ('private', 'Private'),
+    ('community', 'Community'),
+    ('other', 'Other'),
+
+)
+
+    Yn = (
+    ('yes', 'Yes'),
+    ('no', 'No'),
+
+)
+
+
+
     name=models.CharField(max_length=550,null=True, blank=True, default=None)
+    operator_type=models.CharField(max_length=50,choices=Optyp,null=True, blank=True, default=None)
+    opening_hours=models.CharField(max_length=550,null=True, blank=True, default=None)
+    phone_number=models.CharField(max_length=550,null=True, blank=True, default=None)
+    email_address=models.CharField(max_length=550,null=True, blank=True, default=None)
+    emergency_service=models.CharField(max_length=50,choices=Yn,default='no')
+    icu=models.CharField(max_length=50,choices=Yn,default='no')
+    nicu=models.CharField(max_length=50,choices=Yn,default='no')
+    operating_theatre=models.CharField(max_length=50,default='no')
+    x_ray=models.CharField(max_length=50,choices=Yn,default='no')
+    ambulance_service=models.CharField(max_length=50,choices=Yn,default='no')
+    number_of_staff=models.CharField(max_length=550,null=True, blank=True, default=None)
+    number_of_Beds=models.CharField(max_length=550,null=True, blank=True, default=None)
+    Comments=models.CharField(max_length=550,null=True, blank=True, default=None)
+    type=models.CharField(max_length=550,null=True, blank=True, default=None)
     lat=models.CharField(max_length=250,null=True, blank=True, default=None)
     long=models.CharField(max_length=250,null=True, blank=True, default=None)
     location=models.PointField(null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
+
+
+
+class Education(models.Model):
+
+    Optyp = (
+    ('government', 'Government'),
+    ('private', 'Private'),
+    ('community', 'Community'),
+
+)
+
+
+    name=models.CharField(max_length=550,null=True, blank=True, default=None)
+    operator_type=models.CharField(max_length=50,choices=Optyp,null=True, blank=True, default=None)
+    opening_hours=models.CharField(max_length=550,null=True, blank=True, default=None)
+    phone_number=models.CharField(max_length=550,null=True, blank=True, default=None)
+    email_address=models.CharField(max_length=550,null=True, blank=True, default=None)
+    number_of_employees=models.CharField(max_length=550,null=True, blank=True, default=None)
+    number_of_students=models.CharField(max_length=550,null=True, blank=True, default=None)
+    comments=models.CharField(max_length=550,null=True, blank=True, default=None)
+    type=models.CharField(max_length=550,null=True, blank=True, default=None)
+    lat=models.CharField(max_length=250,null=True, blank=True, default=None)
+    long=models.CharField(max_length=250,null=True, blank=True, default=None)
+    location=models.PointField(null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+
 
 class LayerTable(models.Model):
 
@@ -162,3 +271,14 @@ class LayerTable(models.Model):
             print('error',e)
             return 0
         # return layer_tbl.count()
+    def type(self):
+        # layer_tbl = get_object_or_404(obj.layer_tbl)
+        try:
+            # print('hello')
+            return apps.get_model('risk_profile', self.layer_tbl).objects.values('type').distinct()
+
+            # return  model_name.objects.all().count()
+            # return getattr(models, obj.layer_tbl).objects.all()
+        except Exception as e:
+            print('error',e)
+            return apps.get_model('risk_profile', self.layer_tbl).objects.none()

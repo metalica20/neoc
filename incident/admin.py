@@ -101,7 +101,7 @@ class IncidentForm(forms.ModelForm):
         return self.cleaned_data
 
 
-@admin.register(Incident)
+# @admin.register(Incident)
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')

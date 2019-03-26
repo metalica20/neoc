@@ -95,6 +95,23 @@
 
                       </div>
 
+                      <div class="sidebar-widget grid-widget">
+
+                            <!-- <h5>chart</h5> -->
+                            <div id="barchart"></div>
+
+                      </div>
+                    <!-- sidebar start -->
+                      <div class="sidebar-widget grid-widget" id="filterDiv">
+
+                            <!-- <h5>chart</h5> -->
+                            <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+                             <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+                             <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br><br>
+                             Points: <input type="range" name="points" min="0" max="10">
+
+                      </div>
+
                       <div class="sidebar-widget grid-widget" id="filtered_layer_list_container" style="display:none;">
 
                         <div class="leftSidebar-header">
@@ -509,18 +526,28 @@
                     <div class="sidebar-widget capacity-widget">
                             <h5>capacity & resources</h5>
                         <ul class="list-content">
+                          {{resource}}
                             {% for resource in resources %}
                             <li class='{{resource.layer_tbl}}_activeclass'>
                                 <div class="capacity-content">
-                                    <div class="capacity-icon CheckBox" value="{{resource.layer_tbl}}" data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}" data-subcat="{{resource.sub_category}}">
+                                    <div class="capacity-icon CheckBox" value="{{resource.layer_tbl}}" data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}" data-subcat="{{resource.type}}" data-filter="{{resource.sub_category}}">
                                         <span><i class="{{resource.layer_icon}}"></i></span>
                                         {{resource.layer_name}} {{reaource.subCategory}}
                                     </div>
-                                    <div class="capacity-tag">
+                                    <!-- <div class="capacity-tag">
                                             {% for cat in resource.list_string %}
                                             <a href="#" value='{{cat}}' class="subcat {{resource.layer_name}}_subcat geoserver_{{resource.isGeoserver}}">{{ cat }}</a>
 
                                         {% endfor %}
+                                    </div> -->
+                                    <div class="capacity-tag">
+                                            {% for cat in resource.type %}
+
+
+
+                                          <a href="#" value='{{cat.type}}' class="subcat {{resource.layer_name}}_subcat geoserver_{{resource.isGeoserver}}">{{cat.type}}</a>
+
+                                            {% endfor  %}
                                     </div>
                                 </div>
                             </li>
@@ -599,6 +626,7 @@
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
     <script src="{% static 'mappage/js/chart.js' %}"></script>
     <script src="{% static 'mappage/js/d3.min.js' %}"></script>
+    <script src="{% static 'mappage/js/d3.v3.min.js' %}"></script>
 	<script src="{% static 'mappage/js/c3.js' %}"></script>
 	<script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
 	<script src="{% static 'mappage/js/proj4.js' %}"></script>
@@ -612,8 +640,8 @@
 
     <script>
             //
-            var base_url= 'http://139.59.67.104:8004'
-          //  var base_url = 'http://localhost:8000'
+          //  var base_url= 'http://139.59.67.104:8004'
+            var base_url = 'http://localhost:8000'
             $(document).ready(function(){
             map = L.map('mapid',{
                      zoomControl:false
@@ -742,19 +770,23 @@
                       });
                     }
                     else{
-                        if(data.results[i]['subCategory'] == null){
-                          var sub_array=[];
-                        }
-                        else{
+                        // if(data.results[i]['subCategory'] == null){
+                        //   console.log(data.results[i]['type'])
+                        //   var sub_array=[];
+                        // }
+                        // else{
+                        //    console.log(data.results[i]['type'])
                         //  console.log(data.results[i]['subCategory']);
-                            var sub_array = data.results[i]['subCategory'].split(",");
+                            //var sub_array = data.results[i]['subCategory'].split(",");
+                            var sub_array = data.results[i]['type'];
                              //console.log(sub_array);
                             for(let i=0;i<sub_array.length;i++){
+                            //  console.log(sub_array[i]['type']);
                                 //console.log("w",window[sub_array[i]])
-                                window[sub_array[i].replace(' ','_')] = L.layerGroup();
-                                //console.log("w",window[sub_array[i]])
+                                window[sub_array[i]['type'].replace(' ','_')] = L.layerGroup();
+
                             }
-                        }
+                        // }
                         layer_icon= data.results[i]['layerIcon']
                         //alert(layer_icon)
                         // console.log("print data ",data);
@@ -800,11 +832,13 @@
                                 return marker;
                                 },
                                 onEachFeature: function (feature, layer) {
-                                    for(let i=0;i<sub_array.length;i++){
-                                        if(sub_array[i]== feature.properties.type){
-                                            layer.addTo(window[sub_array[i].replace(' ','_')])
 
-                                        //    console.log('lg',window[sub_array[i].replace(' ','_')])
+                                    for(let i=0;i<sub_array.length;i++){
+
+                                        if(sub_array[i]['type']== feature.properties.type){
+                                            layer.addTo(window[sub_array[i]['type'].replace(' ','_')]);
+
+
                                         }
                                     }
                                     // console.log("feat",feature.properties.type)
@@ -923,13 +957,14 @@
                   })
 
                     //function chart-bar
-                    function  CreateChartData(geojson,subcat){
+                    function  CreateChartData(geojson,subcat,charttype,level){
 
-                      console.log(subcat);
-                      console.log(geojson);
+                       console.log(subcat);
+                       console.log(geojson.features);
                       features=geojson.features;
-                      subcat_arr=subcat.split(",");
-                      console.log(subcat_arr);
+                    //  subcat_arr=subcat.split(",");
+                        subcat_arr=subcat;
+                    //  console.log(subcat_arr);
                         var chartData=[];
                         //subcat_arr_count =[];
                         for(var k=0;k<subcat_arr.length;k++){
@@ -937,15 +972,26 @@
                           chartData.push({"label":subcat_arr[k].trim(),"count":0});
 
                         }
+                        console.log(subcat_arr);
 
                         $.each(features, function (feature) {
                           for(var i=0;i<subcat_arr.length;i++){
+                            if(level=='subcategory'){
+                              if(subcat_arr[i].trim()==features[feature].properties.type.trim()){
+                                chartData[i].count++;
 
-                            if(subcat_arr[i].trim()==features[feature].properties.type.trim()){
-                              chartData[i].count++;
+
+                              }
+                            }else{
+                              console.log(features[feature].properties[subcat_arr[i]].trim());
+                              if(features[feature].properties[subcat_arr[i]].trim()=='yes'){
+                                console.log(subcat);
+                                chartData[i].count++;
 
 
+                              }
                             }
+
 
                           }
 
@@ -953,10 +999,82 @@
 
                         });
                         console.log(chartData);
-                        createChart(chartData);
+                        if(charttype=='pie'){
+
+                          createChart(chartData);
+                        }else{
+                          createBarChart(chartData,'barchart');
+                        }
+
                       }
                     //chart end
 
+
+                    //function create filter
+                    function CreateFilter(filter,layerName){
+                      $('#filterDiv').html('');
+                      //console.log(filter);
+                      filter_arr=filter.split(",");
+                      var filter_div="";
+                      //console.log(filter_arr);
+                      for(var i=0;i<filter_arr.length;i++){
+                        //console.log(filter_arr[i]);
+                        var filter_name=filter_arr[i].replace(/\s/g,"_");
+                        if(filter_name=='number_of_Beds'||filter_name=='number_of_employees'||filter_name=='number_of_students'){
+                          filter_div += filter_arr[i]+': <input type="range" class="filter_resource" name="'+layerName+'" value="'+filter_name+'" min="0" max="10"><br>';
+                        }else{
+                          filter_div +='<input type="checkbox" class="filter_resource" name="'+layerName+'" value="'+filter_name+'"> '+filter_arr[i]+'<br>';
+                        }
+
+                      }
+                        $('#filterDiv').append(filter_div);
+
+                    }
+
+                    $("#filterDiv").on('change','.filter_resource',function(){
+                      console.log('checked in');
+                    var layerName=$(this).attr('name');
+                    //console.log(window[layerName]);
+                    layer_data=window[layerName].toGeoJSON();
+                  console.log(layer_data);
+                    var checkedList = [];
+                    $. each($("input[class='filter_resource']:checked"), function(){
+                    checkedList. push($(this). val());
+                    });
+                    //console.log(checkedList);
+                    for(var k=0;k<layer_data.features.length;k++){
+                      var delete_count=0;
+                      for(var i=0;i<checkedList.length;i++){
+                        //console.log(layer_data.features[k].properties[checkedList[i]]);
+
+                        if(layer_data.features[k].properties[checkedList[i]].trim().toLowerCase()=='yes'){
+
+                            delete_count++;
+                            //console.log(delete_count);
+
+                        }
+
+
+                      }
+                        if(delete_count==0){
+                            //console.log("delete count 00");
+                            //console.log(k);
+                            layer_data.features.splice(k,1);
+
+                        }
+
+
+                    }
+                    console.log(layer_data);
+                    window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
+
+                    }).addTo(map);
+
+                    CreateChartData(layer_data,checkedList,'bar','filter');
+
+
+                    });
+                    //end
                     visible_layers=[];
                     // request layer data
                     $(".CheckBox").on('click',function(){
@@ -964,7 +1082,16 @@
                       var geo_url= $(this).attr("data-url");
                       var geo_workspace =$(this).attr("data-workspace");
                       var subcat =$(this).attr("data-subcat");
-                      console.log(subcat);
+                      var filter =$(this).attr("data-filter");
+
+                     console.log(eval("["+subcat.split("[")[1].split("]")[0]+"]"));
+                     subcat_array1=eval("["+subcat.split("[")[1].split("]")[0]+"]");
+                     subcat_array=[];
+                     for(var i=0;i<subcat_array1.length;i++){
+                       subcat_array.push(subcat_array1[i]['type']);
+                     }
+                     console.log(subcat_array);
+
                       //var layerClicked=window[''+layerName];
                       var layerClicked=eval(layerName);
                   //     console.log(layerClicked);
@@ -972,12 +1099,16 @@
                   $.ajax({
                       url: url,
                       //data:{"layer_icon":layer_icon, "data":data,"i":i},
-                      subcat1:subcat,
+                      subcat1:subcat_array,
+                      filter2:filter,
                       // indexValue: i,
                       // layer_icon: layer_icon,
                       success: function(response) {
 
-                        CreateChartData(response,this.subcat1);
+                          console.log(response)
+
+                        CreateChartData(response,this.subcat1,'pie','subcategory');
+                        CreateFilter(this.filter2,layerName);
                         // console.log(response);
 
                       }
@@ -1043,7 +1174,7 @@
                 if($(this).hasClass('geoserver_False')){
 
                     let layer_name =$(this).attr("value").replace(" ","_");
-                    // console.log("layergrou", window[layer_name])
+                  // console.log("layergrou", window[layer_name])
                     if(map.hasLayer(window[layer_name])){
                         // console.log('remove');
                       map.removeLayer(window[layer_name]);
@@ -1101,7 +1232,7 @@
                 }
             })
           function getLayersInsidePolygon(coords,visible_layers){
-            console.log("visible layers  ",visible_layers.length);
+          //  console.log("visible layers  ",visible_layers.length);
             $('#filtered_layer_list').html('');
             for(var i=0;i<visible_layers.length;i++){
               //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
@@ -1138,11 +1269,11 @@
                         })
 
                     ).addTo(map).on('load', function (feature, layer) {
-                        console.log(feature);
+                      //  console.log(feature);
                         //console.log(feature.target._layers[0].feature.properties);
-                        console.log(feature.target._layers);
+                    //    console.log(feature.target._layers);
                         $.each(feature.target._layers, function (i) {
-                          console.log(feature.target._layers[i].feature.properties.name)
+                        //  console.log(feature.target._layers[i].feature.properties.name)
 
                           var list_item='<li><a href="#" target="">'+feature.target._layers[i].feature.properties.name+'</a></li>';
 
@@ -1189,11 +1320,11 @@
               drawnItems.addLayer(layer);
               layer.bindPopup("sadfdsa");
               layer.on('click',function(){
-                console.log('delete clicked');
+              //  console.log('delete clicked');
                 setTimeout(function(){
 
                   if($.isEmptyObject(drawnItems._layers)){
-                      console.log($.isEmptyObject(drawnItems._layers));
+                    //  console.log($.isEmptyObject(drawnItems._layers));
                         for(var i=0;i<visible_layers.length;i++){
 
                           if(map.hasLayer(window[visible_layers[i]['layerName']+"_filteredLayers"])){
@@ -1212,7 +1343,7 @@
                 }, 100);
 
               });
-              console.log(e.layer.editing.latlngs[0][0]);
+            //  console.log(e.layer.editing.latlngs[0][0]);
               var coordinates=e.layer.editing.latlngs[0][0];
               getLayersInsidePolygon(coordinates,visible_layers)
               map.fitBounds(layer.getBounds());
@@ -1381,7 +1512,7 @@ path.on('mouseout', function() { // when mouse leaves div
  });
 
 path.on('mousemove', function(d) { // when mouse moves
-  console.log(d3.event.layerY );
+  //console.log(d3.event.layerY );
   tooltip.style('top', (d3.event.layerY + 10) + 'px') // always 10px below the cursor
     .style('left', (d3.event.layerX + 10) + 'px'); // always 10px to the right of the mouse
   });
@@ -1448,12 +1579,97 @@ legend.append('text')
 }
 //chart end
 
+function createBarChart(chart_data, bar_id) {
+        $("#barchart").html("");
+        data = chart_data.sort(function(a, b) {
+            // console.log(d3.ascending(a.value, b.value));
+            return d3.descending(a.name, b.name);
+        })
+        console.log(data);
+        var hig = 50;
+        // if (bar_id == "graphic") {
+        //     hig = 160;
+        // }
+        //set up svg using margin conventions - we'll need plenty of room on the left for labels
+        var margin = {
+            top: 5,
+            right: 25,
+            bottom: 5,
+            left: 60
+        };
 
+        var width = 270 - margin.left - margin.right,
+            height = hig - margin.top - margin.bottom;
+
+        var svg = d3.select("#" + bar_id).append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .style("margin-top", "100px")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var x = d3.scale.linear()
+            .range([0, width])
+            .domain([0, d3.max(chart_data, function(d) {
+                return d.count;
+            })]);
+
+        var y = d3.scale.ordinal()
+            .rangeRoundBands([height, 0], .3)
+            .domain(chart_data.map(function(d) {
+                return d.label;
+            }));
+
+        //make y axis to show bar names
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            //no tick marks
+            .tickSize(0)
+            .orient("left");
+
+        var gy = svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+
+        var bars = svg.selectAll(".bar")
+            .data(chart_data)
+            .enter()
+            .append("g")
+
+        //append rects
+        bars.append("rect")
+            .attr("class", "bar")
+            .attr("y", function(d) {
+                return y(d.label);
+            })
+            .attr("height", y.rangeBand())
+            .attr("x", 3)
+            .attr("width", function(d) {
+              console.log(d);
+                return x(d.count);
+            });
+
+        //add a value label to the right of each bar
+        bars.append("text")
+            .attr("class", "label")
+            //y position of the label is halfway down the bar
+            .attr("y", function(d) {
+                return y(d.label) + y.rangeBand() / 2 + 4;
+            })
+            //x position is 3 pixels to the right of the bar
+            .attr("x", function(d) {
+                return x(d.count) + 5;
+            })
+            .text(function(d) {
+                return d.count;
+            });
+
+    }
 
 
 
           })//document ready
-            console.log("hello")
+          //  console.log("hello")
             </script>
 
 </body>
