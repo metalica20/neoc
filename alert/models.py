@@ -41,6 +41,7 @@ class Alert(TimeStampedModal):
         blank=True,
         related_name='alerts',
     )
+    point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
     # TODO: discuss location
 
