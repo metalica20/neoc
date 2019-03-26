@@ -3,6 +3,7 @@ from .models import (
     Earthquake,
     River,
     Rain,
+    Pollution,
 )
 
 
@@ -22,3 +23,9 @@ class RainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rain
         exclude = ('station_series_id',)
+
+
+class PollutionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pollution
+        fields = '__all__'

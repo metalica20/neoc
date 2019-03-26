@@ -50,3 +50,14 @@ class Fire(TimeStampedModal):
     brightness = models.FloatField(null=True, blank=True, default=None)
     confidence = models.FloatField(null=True, blank=True, default=None)
     land_cover = models.CharField(max_length=255, null=True, blank=True, default=None)
+
+
+class Pollution(TimeStampedModal):
+    location = models.CharField(max_length=255)
+    point = models.PointField()
+    city = models.CharField(max_length=255, null=True, blank=True, default=None)
+    measured_on = models.DateTimeField(default=None)
+    measurements = JSONField()
+
+    def __str__(self):
+        return self.location

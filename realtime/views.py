@@ -8,11 +8,13 @@ from .serializers import (
     EarthquakeSerializer,
     RiverSerializer,
     RainSerializer,
+    PollutionSerializer,
 )
 from .models import (
     Earthquake,
     River,
     Rain,
+    Pollution,
 )
 
 
@@ -35,3 +37,9 @@ class RainViewSet(viewsets.ModelViewSet):
     filter_class = RainFilter
     search_fields = ('title', 'basin')
     queryset = Rain.objects.all()
+
+
+class PollutionViewSet(viewsets.ModelViewSet):
+    serializer_class = PollutionSerializer
+    search_fields =('location',)
+    queryset = Pollution.objects.all()

@@ -8,7 +8,6 @@ from .models import (
 from bipad.admin import GeoModelAdmin
 
 
-
 @admin.register(Municipality)
 class MunicipalityAdmin(GeoModelAdmin):
     list_display = ('title', 'district')
