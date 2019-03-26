@@ -40,6 +40,7 @@ from realtime.views import (
     RiverViewSet,
     RainViewSet,
     PollutionViewSet,
+    FireViewSet,
 )
 
 from inventory.views import (
@@ -93,6 +94,8 @@ router.register(r'rain', RainViewSet,
                 base_name='rain')
 router.register(r'pollution', PollutionViewSet,
                 base_name='pollution')
+router.register(r'fire', FireViewSet,
+                base_name='fire')
 router.register(r'inventory-category', CategoryViewSet,
                 base_name='inventory-category')
 router.register(r'inventory-item', ItemViewSet,

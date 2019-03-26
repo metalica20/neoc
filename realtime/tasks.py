@@ -2,6 +2,7 @@ from misc.scraper.seismology import scrape_earthquakes
 from realtime.scripts.rain import fetch_rain
 from realtime.scripts.river import fetch_river
 from realtime.scripts.pollution import fetch_pollution
+from realtime.scripts.fire import fetch_fire
 from celery import shared_task
 
 
@@ -23,3 +24,9 @@ def fetch_rain_data():
 @shared_task
 def fetch_pollution_data():
     fetch_pollution()
+
+
+@shared_task
+def fetch_fire_data():
+    fetch_fire()
+
