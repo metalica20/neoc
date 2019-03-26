@@ -9,6 +9,4 @@ from .models import Hazard
 class HazardViewSet(viewsets.ModelViewSet):
     serializer_class = HazardSerializer
     search_fields = ('title',)
-    queryset = Hazard.objects.all().annotate(
-        incident_count=models.Count('incidents')
-    ).order_by('-incident_count')
+    queryset = Hazard.objects.all()
