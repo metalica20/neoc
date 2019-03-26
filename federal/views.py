@@ -7,7 +7,10 @@ from rest_framework.renderers import (
     JSONRenderer,
     BrowsableAPIRenderer,
 )
-from rest_flex_fields import FlexFieldsModelViewSet
+from rest_flex_fields import (
+    FlexFieldsModelViewSet,
+    is_expanded,
+)
 from .serializers import (
     ProvinceSerializer,
     ProvinceGeoSerializer,
@@ -24,6 +27,7 @@ from .models import (
     Municipality,
     Ward,
 )
+from .filters import WardFilter
 
 
 class ProvinceViewSet(FlexFieldsModelViewSet):
@@ -47,8 +51,13 @@ class DistrictViewSet(FlexFieldsModelViewSet):
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
     filter_fields = ('province',)
-    queryset = District.objects.annotate(bbox=Extent('boundary')).all()
     permit_list_expands = ['province']
+
+    def get_queryset(self):
+        queryset = District.objects.annotate(bbox=Extent('boundary')).all()
+        if is_expanded(self.request, 'province'):
+            queryset = queryset.select_related('province')
+        return queryset
 
     def get_serializer_class(self):
         # TODO: fix me
@@ -66,8 +75,15 @@ class MunicipalityViewSet(FlexFieldsModelViewSet):
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
     filter_fields = ('district',)
-    queryset = Municipality.objects.annotate(bbox=Extent('boundary')).all()
     permit_list_expands = ['district', 'province']
+
+    def get_queryset(self):
+        queryset = Municipality.objects.annotate(bbox=Extent('boundary')).all()
+        if is_expanded(self.request, 'district'):
+            queryset = queryset.select_related('district')
+        if is_expanded(self.request, 'province'):
+            queryset = queryset.select_related('district__province')
+        return queryset
 
     def get_serializer_class(self):
         # TODO: fix me
@@ -84,13 +100,18 @@ class MunicipalityViewSet(FlexFieldsModelViewSet):
 class WardViewSet(FlexFieldsModelViewSet):
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title', 'municipality__title')
-    filter_fields = (
-        'municipality',
-        'municipality__district',
-        'municipality__district__province',
-    )
-    queryset = Ward.objects.annotate(bbox=Extent('boundary')).all()
+    filter_class = WardFilter
     permit_list_expands = ['municipality', 'district', 'province']
+
+    def get_queryset(self):
+        queryset = Ward.objects.annotate(bbox=Extent('boundary')).all()
+        if is_expanded(self.request, 'municipality'):
+            queryset = queryset.select_related('municipality')
+        if is_expanded(self.request, 'district'):
+            queryset = queryset.select_related('municipality__district')
+        if is_expanded(self.request, 'province'):
+            queryset = queryset.select_related('municipality__district__province')
+        return queryset
 
     def get_serializer_class(self):
         # TODO: fix me
