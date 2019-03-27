@@ -169,6 +169,9 @@ class Infrastructure(TimeStampedModal):
         max_length=255, null=True, blank=True, default=None
     )
     count = models.PositiveIntegerField(default=1)
+    economic_loss = models.BigIntegerField(
+        null=True, blank=True, default=None
+    )
     loss = models.ForeignKey(
         Loss, related_name='infrastructures', on_delete=models.CASCADE
     )
@@ -204,6 +207,9 @@ class Livestock(TimeStampedModal):
     )
     status = models.CharField(max_length=25, choices=STATUS)
     count = models.PositiveIntegerField()
+    economic_loss = models.BigIntegerField(
+        null=True, blank=True, default=None
+    )
     loss = models.ForeignKey(
         Loss, related_name='livestocks', on_delete=models.CASCADE
     )
