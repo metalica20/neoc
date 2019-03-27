@@ -33,6 +33,7 @@ class Incident(TimeStampedModal):
     )
     source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT)
     verified = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)
     # TODO: discuss polygon or multipolygon or simply geometry
     point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
@@ -72,6 +73,7 @@ class Incident(TimeStampedModal):
     class Meta:
         permissions = [
             ('can_verify', 'Can verify incident'),
+            ('can_approve', 'Can approve incident'),
         ]
 
 

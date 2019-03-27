@@ -76,6 +76,7 @@ def fetch_incident(options):
                 point=point,
                 hazard_id=hazard_id,
                 verified=True,
+                approved=True,
                 old=old,
             )
         except:

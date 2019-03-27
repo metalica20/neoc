@@ -30,7 +30,8 @@ class AddressForm(forms.ModelForm):
         if instance:
             wards = Incident.objects.values('wards').filter(id=instance.id)
             if wards[0]['wards']:
-                municipality = Ward.objects.values('municipality','municipality__district').filter(id=wards[0]['wards'])
+                municipality = Ward.objects.values(
+                    'municipality', 'municipality__district').filter(id=wards[0]['wards'])
                 self.fields['municipality'].initial = municipality[0]['municipality']
                 self.fields['district'].initial = municipality[0]['municipality__district']
 
@@ -65,8 +66,26 @@ class AddressForm(forms.ModelForm):
 
     class Meta:
         model = Incident
-        fields = ('title', 'cause', 'source', 'verified', 'inducer', 'point', 'polygon', 'incident_on', 'reported_on',
-                  'event', 'hazard', 'loss', 'district', 'municipality', 'wards', 'street_address', 'description')
+        fields = (
+            'title',
+            'cause',
+            'source',
+            'verified',
+            'approved',
+            'inducer',
+            'point',
+            'polygon',
+            'incident_on',
+            'reported_on',
+            'event',
+            'hazard',
+            'loss',
+            'district',
+            'municipality',
+            'wards',
+            'street_address',
+            'description'
+        )
 
 
 @admin.register(Incident)
@@ -75,7 +94,7 @@ class IncidentAdmin(GeoModelAdmin):
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
     list_filter = ('hazard', 'source', 'verified', 'inducer')
     exclude = ('detail',)
-    actions = ("verify",)
+    actions = ("verify", 'approve')
     inlines = (DocumentInline,)
 
     form = AddressForm
@@ -90,9 +109,19 @@ class IncidentAdmin(GeoModelAdmin):
     verify.allowed_permissions = ('can_verify',)
     verify.short_description = 'Mark incidents as verified'
 
+    def approve(self, request, queryset):
+        queryset.update(verified=True)
+    approve.allowed_permissions = ('can_approve',)
+    approve.short_description = 'Mark incidents as approved'
+
     def has_can_verify_permission(self, request):
         opts = self.opts
         codename = get_permission_codename('can_verify', opts)
+        return request.user.has_perm('%s.%s' % (opts.app_label, codename))
+
+    def has_can_approve_permission(self, request):
+        opts = self.opts
+        codename = get_permission_codename('can_approve', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
     def get_form(self, request, obj=None, **kwargs):
@@ -103,6 +132,8 @@ class IncidentAdmin(GeoModelAdmin):
             form.base_fields['source'].disabled = True
         if not self.has_can_verify_permission(request):
             form.base_fields['verified'].disabled = True
+        if not self.has_can_approve_permission(request):
+            form.base_fields['approved'].disabled = True
         return form
 
     def get_queryset(self, request):
