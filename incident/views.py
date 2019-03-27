@@ -39,7 +39,7 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         queryset = Incident.objects.filter(
             verified=True,
             approved=True,
-        ).prefetch_related('wards')
+        )
         loss_queryset = Loss.with_stat.all()
         if is_expanded(self.request, 'event'):
             queryset = queryset.select_related('event')
@@ -47,6 +47,8 @@ class IncidentViewSet(FlexFieldsModelViewSet):
             queryset = queryset.select_related('hazard')
         if is_expanded(self.request, 'peoples'):
             loss_queryset = loss_queryset.prefetch_related('peoples')
+        if is_expanded(self.request, 'wards'):
+            queryset = queryset.select_related('wards')
         if is_expanded(self.request, 'families'):
             loss_queryset = loss_queryset.prefetch_related('families')
         if is_expanded(self.request, 'livestocks'):
