@@ -84,3 +84,6 @@ def on_alert_save(sender, instance, **kwargs):
     if instance.polygon:
         wards = Ward.objects.filter(boundary__intersects=instance.polygon)
         instance.wards.set(wards)
+    elif instance.point:
+        wards = Ward.objects.filter(boundary__intersects=instance.point)
+        instance.wards.set(wards)

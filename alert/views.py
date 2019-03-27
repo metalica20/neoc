@@ -15,5 +15,5 @@ class AlertViewSet(FlexFieldsModelViewSet):
         started_on__lte=timezone.now()
     ).exclude(
         expire_on__lte=timezone.now()
-    )
+    ).prefetch_related('wards')
     permit_list_expands = ['event']
