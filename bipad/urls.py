@@ -16,6 +16,7 @@ from drf_yasg import openapi
 
 from hazard.views import HazardViewSet
 from alert.views import AlertViewSet
+from document.views import DocumentViewSet
 from incident.views import IncidentViewSet
 from event.views import EventViewSet
 from federal.views import (
@@ -62,6 +63,8 @@ router.register(r'hazard', HazardViewSet,
                 base_name='hazard')
 router.register(r'alert', AlertViewSet,
                 base_name='alert')
+router.register(r'document', DocumentViewSet,
+                base_name='document')
 router.register(r'incident', IncidentViewSet,
                 base_name='incident')
 router.register(r'event', EventViewSet,
