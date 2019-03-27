@@ -110,7 +110,7 @@ class IncidentAdmin(GeoModelAdmin):
     verify.short_description = 'Mark incidents as verified'
 
     def approve(self, request, queryset):
-        queryset.update(verified=True)
+        queryset.update(approved=True)
     approve.allowed_permissions = ('can_approve',)
     approve.short_description = 'Mark incidents as approved'
 

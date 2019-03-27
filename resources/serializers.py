@@ -1,6 +1,7 @@
 from rest_flex_fields.serializers import FlexFieldsSerializerMixin
 from rest_polymorphic.serializers import PolymorphicSerializer
 from rest_framework import serializers
+from inventory.faker import get_items
 from .models import (
     Resource,
     Education,
@@ -20,12 +21,22 @@ class EducationSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer
 
 
 class HealthSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    inventories = serializers.SerializerMethodField()
+
+    def get_inventories(self, obj):
+        return get_items('health')
+
     class Meta:
         model = Health
         exclude = ('detail', 'polymorphic_ctype')
 
 
 class FinanceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    inventories = serializers.SerializerMethodField()
+
+    def get_inventories(self, obj):
+        return get_items('finance')
+
     class Meta:
         model = Finance
         exclude = ('detail', 'polymorphic_ctype')
@@ -79,6 +90,7 @@ MODEL_SERIALIZER_MAPPING = {
 
 
 class DetailResourceSerializer(PolymorphicSerializer):
+    resource_type_field_name = 'resourceType'
     model_serializer_mapping = MODEL_SERIALIZER_MAPPING
 
     def to_resource_type(self, model_or_instance):
@@ -104,6 +116,7 @@ class ResponseSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
 
 
 class DetailResponseSerializer(PolymorphicSerializer):
+    resource_type_field_name = 'resourceType'
     model_serializer_mapping = MODEL_SERIALIZER_MAPPING
 
     def get_distance(self, obj):
