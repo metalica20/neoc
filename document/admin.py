@@ -8,7 +8,6 @@ from federal.models import (
     Province,
     District,
     Municipality,
-    Ward,
 )
 from django import forms
 from django_select2.forms import ModelSelect2Widget
@@ -24,7 +23,6 @@ class AddressForm(forms.ModelForm):
             search_fields=['title__icontains'],
         )
     )
-
     district = forms.ModelChoiceField(
         queryset=District.objects.all(),
         required=False,
@@ -34,7 +32,6 @@ class AddressForm(forms.ModelForm):
             dependent_fields={'province': 'province'},
         )
     )
-
     municipality = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
         required=False,
@@ -42,16 +39,6 @@ class AddressForm(forms.ModelForm):
             model=Municipality,
             search_fields=['title__icontains'],
             dependent_fields={'district': 'district'},
-        )
-    )
-
-    ward = forms.ModelChoiceField(
-        queryset=Ward.objects.all(),
-        required=False,
-        widget=ModelSelect2Widget(
-            model=Ward,
-            search_fields=['title__icontains'],
-            dependent_fields={'municipality': 'municipality'},
         )
     )
 
