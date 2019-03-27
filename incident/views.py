@@ -23,12 +23,6 @@ class IncidentViewSet(FlexFieldsModelViewSet):
     serializer_class = IncidentSerializer
     filter_class = IncidentFilter
     search_fields = ('title', )
-    queryset = Incident.objects.filter(
-        verified=True,
-        approved=True,
-    ).prefetch_related(
-        Prefetch('loss', queryset=Loss.with_stat.all())
-    )
     permit_list_expands = [
         'event',
         'hazard',
@@ -42,7 +36,10 @@ class IncidentViewSet(FlexFieldsModelViewSet):
 
     def get_queryset(self):
         # TODO: research why wards are queried by default
-        queryset = Incident.objects.filter(verified=True).prefetch_related('wards')
+        queryset = Incident.objects.filter(
+            verified=True,
+            approved=True,
+        ).prefetch_related('wards')
         loss_queryset = Loss.with_stat.all()
         if is_expanded(self.request, 'event'):
             queryset = queryset.select_related('event')
