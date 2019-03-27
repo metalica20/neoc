@@ -9,7 +9,8 @@ from .serializers import (
     RiverSerializer,
     RainSerializer,
     PollutionSerializer,
-    FireSerializer
+    FireSerializer,
+    WeatherSerializer,
 )
 from .models import (
     Earthquake,
@@ -17,6 +18,7 @@ from .models import (
     Rain,
     Pollution,
     Fire,
+    Weather,
 )
 
 
@@ -51,3 +53,10 @@ class FireViewSet(viewsets.ModelViewSet):
     serializer_class = FireSerializer
     search_fields = ('land_cover',)
     queryset = Fire.objects.all()
+
+
+class WeatherViewSet(viewsets.ModelViewSet):
+    serializer_class = WeatherSerializer
+    search_fields = ('location',)
+    queryset = Weather.objects.all()
+
