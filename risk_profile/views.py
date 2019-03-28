@@ -1,8 +1,8 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,Health
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,Health,SocioEconomicGapanapa
 from incident.models import Incident
 from resources.models import Resource
-from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -16,6 +16,15 @@ from .forms import HospitalForm
 from hazard.models import Hazard, HazardResources
 # import pandas as pd
 # Create your views here.
+
+
+# socio-economic category api
+
+class SociocookViewSet(viewsets.ModelViewSet):
+    serializer_class=SociocookSerializer
+    queryset=SocioEconomicGapanapa.objects.all()
+
+# end
 
 class HospitalViewSet(viewsets.ModelViewSet):
     serializer_class=HospitalSerializer
@@ -205,3 +214,42 @@ class IncidentApiView(viewsets.ModelViewSet):
     #     # print(serializers)
     #     # incidentjson=json.loads(serializers)
     #     return Response(datajson)
+
+
+class NewtestfileViewSet(views.APIView):
+
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        a=self.kwargs['field']
+
+        # print(type(obj.a))
+
+        jsonc=SocioEconomicGapanapa.objects.values(a, 'name','slug_id')
+
+        # jsonc=SocioEconomicGapanapa.objects.all()
+        # print('jsoncccc',a)
+        # print('jsoncc', jsonc)
+        # d='data.a';
+
+        listj={}
+
+        # listk={}
+
+        listj['title']="access"
+        listj['subtitle']="aaaa"
+        # for data in jsonc:
+        #     listk[data.district]=data.lpgas_cook
+        listj['data']=jsonc
+        # print(listj)
+        return Response(listj)
+
+
+# class NewtestfileViewSet(views.APIView):
+#     permission_classes=(IsAuthenticated,)
+#     def get(self,request,*args,**kwargs):
+#         mun=self.kwargs['mun']
+#         field=self.kwargs['field']
+#         jsonc=SocioEconomicGapanapa.objects.filter(name=mun).values(field)
+#         # print()
+#         # a=20
+#         return Response(jsonc)

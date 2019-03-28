@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hospital,School,LayerTable
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa
 from incident.models import Incident
 from resources.models import Resource
 from hazard.models import Hazard, HazardResources
@@ -27,6 +27,12 @@ class ResourceSerializer(serializers.ModelSerializer):
     #     hazard_resource_queryset = HazardResources.objects.filter(id=obj.id).select_related('resource')
     #     data = django.core.serializers.serialize('json', list(hazard_resource_queryset))
     #     return data
+
+class SociocookSerializer(serializers.ModelSerializer):
+    # resources = serializers.SerializerMethodField('get_hazard_resources')
+    class Meta:
+        model = SocioEconomicGapanapa
+        fields= '__all__'
 
 
 class IncidentSerializer(serializers.ModelSerializer):

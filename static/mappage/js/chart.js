@@ -1,11 +1,11 @@
 $(function() {
     "use strict";
-    initC3Chart();
+    initC3Chart();    
 });
 
 
 function initC3Chart() {
-    setTimeout(function(){
+    setTimeout(function(){   
         $(document).ready(function(){
             var chart = c3.generate({
                 bindto: '#chart-pie', // id of chart wrapper
@@ -29,7 +29,7 @@ function initC3Chart() {
                         'data3': 'state',
                     }
                 },
-
+                
                 legend: {
                     show: true, //hide legend
                     position:'right',
@@ -39,23 +39,18 @@ function initC3Chart() {
                     top: 0
                 },
             });
-
-
-
         });
-
-
 
         $(document).ready(function(){
             var chart = c3.generate({
                 bindto: '#chart-bar-rotated',
 			    data: {
 			        columns: [
-
-			            ['Bed capacity	', 200, 10, 90, 240, 130, 220]
+					
+			            ['Bed capacity	', 200, 10, 90, 240, 130, 220] 
 			        ],
                     type: 'bar',
-
+                    
 			    },
 				axis: {
                     rotated:true,
@@ -94,7 +89,7 @@ function initC3Chart() {
                         data4: 'maroon',
                         data5: 'pink',
                     }
-
+                
 				},
 				bar: {
 					width: {
@@ -108,7 +103,7 @@ function initC3Chart() {
                             }
                         }
 					}
-
+				
 				},
 			});
         });
@@ -127,7 +122,7 @@ function initC3Chart() {
                         ['data4', 10, 70, 80, 20, 50, 60],
                         ['data5', 100, 150, 110, 130, 150, 160]
 					],
-
+                    
 			        types: {
 						data5 : 'spline',
 			        },
@@ -147,7 +142,7 @@ function initC3Chart() {
                         'data5': 'Universities',
                     }
                 },
-
+                
                 legend: {
                     show: true, //hide legend
                 },
@@ -198,14 +193,14 @@ function initC3Chart() {
                     top: 0
                 },
             });
-        });
+        }); 
         $(document).ready(function(){
             var chart = c3.generate({
                 bindto: '#lineGraph',
                 padding: {
                     top: 10,
                     left: 30,
-                },
+                },		
                 data: {
                     columns: [
                         ['data1', 14, 28, 31, 49, 57, 59, 52, 48, 55, 58, 62, 60, 62, 58, 55, 61, 70, 80, 77, 78, 82, 98, 99, 121, 136, 115, 112, 120, 103, 117, 121, 126],
@@ -221,6 +216,6 @@ function initC3Chart() {
                     },
                 }
             });
-        });
+        }); 
 }, 500);
 }

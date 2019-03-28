@@ -6,7 +6,7 @@ from django.core.serializers import serialize
 from rest_framework.renderers import JSONRenderer
 import json
 from risk_profile.models import Hospital,School
-from hazard.models import Hazard 
+from hazard.models import Hazard
 from .serializers import HospitalSerializer
 from django.contrib.gis.db.models.functions import Distance
 from django.apps import apps
@@ -30,17 +30,17 @@ class HazardResourceViewSet(views.APIView):
             distance_parm= self.kwargs['distance']
         except:
             distance_parm=5000
-        try: 
+        try:
             count= int(self.kwargs['count'])
         except:
             count=20
-        
+
         user_location =GEOSGeometry('POINT({} {})'.format(longitude,latitude), srid=4326)
 
         #Hazard_object = Hazard.objects.get(title=hazard_title)
         #Hresources = Hazard_object.hazardresources_set.all()
         api_json = {}
-        
+
         if(hazard_title=='flood'):
             resource_array=['Hospital','School','Policestation','Bridge']
         elif (hazard_title=='landslide'):
@@ -49,14 +49,14 @@ class HazardResourceViewSet(views.APIView):
             resource_array=['Policestation','Hospital','School','MarketCenter']
         elif (hazard_title=='earthquake'):
             resource_array=['Policestation','Hospital','School']
-           
+
 
 
         resource_object=[]
         print(distance_parm)
         for resource in resource_array:
             model_x= apps.get_model('risk_profile', resource)
-            print("model_x",model_x)            
+            print("model_x",model_x)
             resource_queryset=model_x.objects \
             .filter(location__distance_lte=(user_location,D(km=distance_parm))) \
             .annotate(distance=Distance('location',user_location)) \
@@ -67,7 +67,7 @@ class HazardResourceViewSet(views.APIView):
             stream = io.BytesIO(json)
             data = JSONParser().parse(stream)
             api_json[resource] =data
-        
+
         return Response(api_json)
 
 
@@ -81,10 +81,10 @@ class MapPage(TemplateView):
         vul= LayerTable.objects.filter(layer_cat='vulnerability')
         resource= LayerTable.objects.filter(layer_cat='resource')
         exposure= LayerTable.objects.filter(layer_cat='exposure')
-        
 
 
 
 
 
-        return render(request, 'mapPage.html', {'hazards': hazard,'resources':resource,'vulnerabilities':vul,'exposures':exposure})
+
+        return render(request, 'map.html', {'hazards': hazard,'resources':resource,'vulnerabilities':vul,'exposures':exposure})
