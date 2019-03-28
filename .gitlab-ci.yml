@@ -25,7 +25,10 @@ build:
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   only:
+    - tags
+    - develop
     - staging
+    - merge_requests
 
 test:
   image:
@@ -37,7 +40,7 @@ test:
   - ln -s docker-compose.prod.yml docker-compose.yml
   - docker-compose up -d
   - docker-compose exec -T server pip install coverage
-  - docker-compose exec -T server coverage run --source=. pypy3 manage.py test -v 2
+  - docker-compose exec -T server coverage run --source=. manage.py test -v 2
   - docker-compose exec -T server sh -c "coverage html && coverage report"
   - mkdir -p coverage && docker cp "$(docker-compose ps -q server)":/code/htmlcov/. coverage/. 
   coverage: '/TOTAL.*\s+(\d+%)$/'
@@ -45,7 +48,10 @@ test:
     paths:
       - coverage
   only:
+    - tags
+    - develop
     - staging
+    - merge_requests
 
 release-image:
   stage: release
@@ -54,6 +60,8 @@ release-image:
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
   only:
+    - tags
+    - develop
     - staging
 
 pages:
@@ -66,7 +74,7 @@ pages:
     paths:
       - public
   only:
-    - none
+    - develop
 
 deploy:
   stage: deploy
@@ -74,4 +82,3 @@ deploy:
     - ./docker/deploy.sh
   only:
     - staging
-
