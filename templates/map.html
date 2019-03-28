@@ -259,8 +259,8 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="OSM" name="exposure_1" value="customEx">
-                                                    <label class="custom-control-label" for="OSM">OSM </label>
+                                                    <input type="radio" class="custom-control-input hazard_geo" id="OSM" name="exposure_1" data-workspace="ngp:sankhu_drone" data-center="[27.740139803000158,85.46312123537065]" value="customEx">
+                                                    <label class="custom-control-label" for="OSM">Drone Image </label>
                                                 </div>
                                             </li>
                                             <li>
@@ -979,7 +979,7 @@
                   }).setView([28.410728397237914,84.4024658203125], 7);
                  map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
                  // map.scrollWheelZoom.disable();
-                 map.options.maxBounds;  // remove the maxBounds object from the map options
+                 //map.options.maxBounds;  // remove the maxBounds object from the map options
                  //map.options.minZoom = 9;
                  map.createPane("polygonsPane").style.zIndex = 620;
                  map.createPane("baseLayerPane").style.zIndex = 250;
@@ -1139,8 +1139,14 @@
                         }).addTo(map);
 
       hazard_layers.on('load',function(){
-      map.flyTo(center,11);
+
       });
+      if(id=="ngp:sankhu_drone"){
+      map.flyTo(center,18);
+      }else{
+        map.flyTo(center,11);
+      }
+
     });
 
 
