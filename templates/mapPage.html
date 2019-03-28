@@ -631,12 +631,12 @@
 	<script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
 	<script src="{% static 'mappage/js/proj4.js' %}"></script>
 	<script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
-  //chart-pie
+  <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
+  <!-- chart-pie -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- FusionCharts -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
-
-  //chart
+      <!-- chart -->
 
     <script>
             //
@@ -755,6 +755,136 @@
 
 
             var popup = new L.Popup({offset:[0,-20]});
+
+            //loading  federal layers into maps from geosjon
+            fed_url_prov="https://bipad.nepware.com/api/v1/municipality/?format=geojson";
+
+            function getColor(d) {
+              return d > 1000 ? '#800026' :
+                     d > 500  ? '#BD0026' :
+                     d > 200  ? '#E31A1C' :
+                     d > 100  ? '#FC4E2A' :
+                     d > 50   ? '#FD8D3C' :
+                     d > 20   ? '#FEB24C' :
+                     d > 10   ? '#FED976' :
+                                '#FFEDA0';
+                            }
+
+            function style(number) {
+
+
+
+
+
+                      return {
+                      fillColor: getColor(number),
+                      weight: 2,
+                      opacity: 1,
+                      color: 'white',
+                      dashArray: '3',
+                      fillOpacity: 0.7
+                                  };
+
+
+
+
+
+
+
+                  // });
+}
+
+
+
+            $.ajax({
+                // async:false,
+                url: fed_url_prov,
+                success: function(response) {
+                  //console.log(response);
+
+                  var province = new L.geoJson(response,
+                    {
+                    
+                        onEachFeature: function (feature, layer) {
+
+                       fed_url_api="http://localhost:8000/risk_profile/Newfile/"+feature.properties.title+"/mobile_com";
+
+                          $.ajax({
+                              // async:false,
+                              url: fed_url_api,
+                              success: function(result) {
+
+                                if(result[0]==undefined){
+                                  layer.setStyle(style(feature.properties.district));
+                                }else{
+                                  console.log(result[0].mobileCom);
+                                  layer.setStyle(style(result[0].mobileCom));
+                                }
+
+
+
+
+                        }
+                      });
+
+
+
+                        }
+
+              		}).addTo(map);
+
+                  //legend start
+  // var legend = L.control({position: 'bottomright'});
+  //
+  //             legend.onAdd = function (map) {
+  //
+  //                 var div = L.DomUtil.create('div', 'info legend'),
+  //                     grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+  //                     labels = [];
+  //
+  //                 // loop through our density intervals and generate a label with a colored square for each interval
+  //                 for (var i = 0; i < grades.length; i++) {
+  //                     div.innerHTML +=
+  //                         '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+  //                         grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+  //                 }
+  //
+  //                 return div;
+  //             };
+  //
+  //             legend.addTo(map);
+                  //legend end
+
+            // var province = new L.geoJson(response,
+            // {
+            //     //pane:"pointsPane",
+            //     pointToLayer: function(feature,Latlng)
+            //         {
+            //           //  console.log(layer_icon1)
+            //             /* if( layer_icon != 'null'){ */
+            //                             //alert(layer_icon)
+            //                 var divicon = L.divIcon({
+            //                     className: layer_icon1
+            //
+            //                 });
+            //                 var marker = L.marker(Latlng,{icon:divicon});
+            //
+            //         return marker;
+            //         },
+            //         onEachFeature: function (feature, layer) {
+            //
+            //
+            //             }
+            //
+            //     });
+
+              }
+              });
+            //end of federal layers
+
+
+
+
             $.get(base_url+'/risk_profile/Layer',function(data){
                 count = 0;
                 // console.log(data.results.length);
@@ -790,6 +920,10 @@
                         layer_icon= data.results[i]['layerIcon']
                         //alert(layer_icon)
                         // console.log("print data ",data);
+
+                        //loading  federal layers into maps from geosjon
+                        //end of federal layers
+
                         var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
                         $.ajax({
                             url: url,
@@ -959,8 +1093,8 @@
                     //function chart-bar
                     function  CreateChartData(geojson,subcat,charttype,level){
 
-                       console.log(subcat);
-                       console.log(geojson.features);
+                       //console.log(subcat);
+                       //console.log(geojson.features);
                       features=geojson.features;
                     //  subcat_arr=subcat.split(",");
                         subcat_arr=subcat;
@@ -972,7 +1106,7 @@
                           chartData.push({"label":subcat_arr[k].trim(),"count":0});
 
                         }
-                        console.log(subcat_arr);
+                        //console.log(subcat_arr);
 
                         $.each(features, function (feature) {
                           for(var i=0;i<subcat_arr.length;i++){
@@ -983,9 +1117,9 @@
 
                               }
                             }else{
-                              console.log(features[feature].properties[subcat_arr[i]].trim());
+                              //console.log(features[feature].properties[subcat_arr[i]].trim());
                               if(features[feature].properties[subcat_arr[i]].trim()=='yes'){
-                                console.log(subcat);
+                                //console.log(subcat);
                                 chartData[i].count++;
 
 
@@ -1032,23 +1166,25 @@
                     }
 
                     $("#filterDiv").on('change','.filter_resource',function(){
-                      console.log('checked in');
+                    //  console.log('checked in');
                     var layerName=$(this).attr('name');
                     //console.log(window[layerName]);
-                    layer_data=window[layerName].toGeoJSON();
+                    layer_data1=window[layerName].toGeoJSON();
+                    var layer_data = jQuery.extend(true, {}, layer_data1);
                   console.log(layer_data);
                     var checkedList = [];
                     $. each($("input[class='filter_resource']:checked"), function(){
                     checkedList. push($(this). val());
                     });
-                    //console.log(checkedList);
-                    for(var k=0;k<layer_data.features.length;k++){
+                    //console.log(layer_data.features.length);
+                    for(var k=layer_data.features.length-1;k>=0;k--){
                       var delete_count=0;
                       for(var i=0;i<checkedList.length;i++){
-                        //console.log(layer_data.features[k].properties[checkedList[i]]);
+                        console.log(layer_data.features[k].properties[checkedList[i]]);
 
-                        if(layer_data.features[k].properties[checkedList[i]].trim().toLowerCase()=='yes'){
-
+                        if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
+                            //console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
+//console.log("entered");
                             delete_count++;
                             //console.log(delete_count);
 
@@ -1056,7 +1192,9 @@
 
 
                       }
+                      //console.log(delete_count);
                         if(delete_count==0){
+                          //console.log("deleted");
                             //console.log("delete count 00");
                             //console.log(k);
                             layer_data.features.splice(k,1);
@@ -1084,13 +1222,13 @@
                       var subcat =$(this).attr("data-subcat");
                       var filter =$(this).attr("data-filter");
 
-                     console.log(eval("["+subcat.split("[")[1].split("]")[0]+"]"));
+                     //console.log(eval("["+subcat.split("[")[1].split("]")[0]+"]"));
                      subcat_array1=eval("["+subcat.split("[")[1].split("]")[0]+"]");
                      subcat_array=[];
                      for(var i=0;i<subcat_array1.length;i++){
                        subcat_array.push(subcat_array1[i]['type']);
                      }
-                     console.log(subcat_array);
+                     //console.log(subcat_array);
 
                       //var layerClicked=window[''+layerName];
                       var layerClicked=eval(layerName);
@@ -1105,7 +1243,7 @@
                       // layer_icon: layer_icon,
                       success: function(response) {
 
-                          console.log(response)
+                          //console.log(response)
 
                         CreateChartData(response,this.subcat1,'pie','subcategory');
                         CreateFilter(this.filter2,layerName);
@@ -1581,15 +1719,15 @@ legend.append('text')
 
 function createBarChart(chart_data, bar_id) {
         $("#barchart").html("");
-        data = chart_data.sort(function(a, b) {
+
+        var data = chart_data.sort(function(a, b) {
             // console.log(d3.ascending(a.value, b.value));
             return d3.descending(a.name, b.name);
         })
-        console.log(data);
-        var hig = 50;
-        // if (bar_id == "graphic") {
-        //     hig = 160;
-        // }
+        var hig = 75;
+        if (bar_id == "graphic") {
+            hig = 160;
+        }
         //set up svg using margin conventions - we'll need plenty of room on the left for labels
         var margin = {
             top: 5,
@@ -1605,18 +1743,19 @@ function createBarChart(chart_data, bar_id) {
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .style("margin-top", "100px")
+            .style("margin-top", "30px")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var x = d3.scale.linear()
             .range([0, width])
-            .domain([0, d3.max(chart_data, function(d) {
+            .domain([0, d3.max(data, function(d) {
                 return d.count;
             })]);
 
         var y = d3.scale.ordinal()
             .rangeRoundBands([height, 0], .3)
-            .domain(chart_data.map(function(d) {
+            .domain(data.map(function(d) {
+              console.log(d);
                 return d.label;
             }));
 
@@ -1632,7 +1771,7 @@ function createBarChart(chart_data, bar_id) {
             .call(yAxis)
 
         var bars = svg.selectAll(".bar")
-            .data(chart_data)
+            .data(data)
             .enter()
             .append("g")
 
@@ -1645,7 +1784,6 @@ function createBarChart(chart_data, bar_id) {
             .attr("height", y.rangeBand())
             .attr("x", 3)
             .attr("width", function(d) {
-              console.log(d);
                 return x(d.count);
             });
 

@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('Layer',views.LayerViewset.as_view({'get':'list'}),name='Layer'),
+    path('sociocook',views.SociocookViewSet.as_view({'get':'list'}),name='sociocook'),
     path('Hospital',views.HospitalGeojsonViewSet.as_view(),name='hospitaljson'),
     path('Marketcenter',views.MarketCenterGeojsonViewSet.as_view(),name='marketcenterjson'),
     path('Airport',views.AirportGeojsonViewSet.as_view(),name='airportjson'),
@@ -14,5 +15,6 @@ urlpatterns = [
     path('Dashboard',views.Dashboard,name='dashboard'),
     path('hazard-resource',views.SchoolViewSet.as_view({'get':'list'}),name='hazard-resources'),
     path('Health',views.HealthGeojsonViewSet.as_view(),name='Health'),
+    path('Newfile/<str:field>',views.NewtestfileViewSet.as_view(),name='Newfile'),
     # path('hospital',views.LayerViewset.as_view({'get':'list'}),name='hospital'),
 ]

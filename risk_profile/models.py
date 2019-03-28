@@ -133,6 +133,52 @@ class Policestation(models.Model):
 
 
 #new model as in sheets
+
+class SocioEconomicGapanapa(models.Model):
+    slug_id=models.CharField(max_length=500,null=True, blank=True, default=None)
+    name=models.CharField(max_length=500,null=True, blank=True, default=None)
+    gn_type=models.CharField(max_length=500,null=True, blank=True, default=None)
+    district=models.CharField(max_length=500,null=True, blank=True, default=None)
+    province=models.CharField(max_length=500,null=True, blank=True, default=None)
+    no_facility_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    one_atleast_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    radio_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    television_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    cablet_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    computer_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    internet_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    telegraph_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    mobile_com=models.CharField(max_length=500,null=True, blank=True, default=None)
+    wood_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    kerosene_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    lpgas_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    biogas_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    sa_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    electricity_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    other_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    nosta_cook=models.CharField(max_length=500,null=True, blank=True, default=None)
+    electricity_light=models.CharField(max_length=500,null=True, blank=True, default=None)
+    kerosene_light=models.CharField(max_length=500,null=True, blank=True, default=None)
+    biogas_light=models.CharField(max_length=500,null=True, blank=True, default=None)
+    solar_light=models.CharField(max_length=500,null=True, blank=True, default=None)
+    other_light=models.CharField(max_length=500,null=True, blank=True, default=None)
+    nons_light=models.CharField(max_length=500,null=True, blank=True, default=None)
+    tap_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    tube_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    cok_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    unco_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    spou_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    river_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    other_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    nots_water=models.CharField(max_length=500,null=True, blank=True, default=None)
+    wit_toilet=models.CharField(max_length=500,null=True, blank=True, default=None)
+    flush_toilet=models.CharField(max_length=500,null=True, blank=True, default=None)
+    ordinary_toilet=models.CharField(max_length=500,null=True, blank=True, default=None)
+    not_toilet=models.CharField(max_length=500,null=True, blank=True, default=None)
+
+
+
+
 class Health(models.Model):
 
     Optyp = (
@@ -203,9 +249,10 @@ class Education(models.Model):
 
 
 
+ #end   model used
 
 
-
+#publish data model
 
 class LayerTable(models.Model):
 
@@ -282,3 +329,5 @@ class LayerTable(models.Model):
         except Exception as e:
             print('error',e)
             return apps.get_model('risk_profile', self.layer_tbl).objects.none()
+
+# end publish data model
