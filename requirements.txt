@@ -20,7 +20,7 @@ djangorestframework-simplejwt==3.3
 drf-flex-fields==0.3.5
 drf-yasg==1.14.0
 Markdown==3.0.1
-psycopg2-binary==2.7.7
+psycopg2cffi==2.8.1
 pygeocoder==1.2.5
 PyJWT==1.7.1
 pyshp==2.1.0

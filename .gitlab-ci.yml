@@ -37,7 +37,7 @@ test:
   - ln -s docker-compose.prod.yml docker-compose.yml
   - docker-compose up -d
   - docker-compose exec -T server pip install coverage
-  - docker-compose exec -T server coverage run --source=. manage.py test -v 2
+  - docker-compose exec -T server coverage run --source=. pypy3 manage.py test -v 2
   - docker-compose exec -T server sh -c "coverage html && coverage report"
   - mkdir -p coverage && docker cp "$(docker-compose ps -q server)":/code/htmlcov/. coverage/. 
   coverage: '/TOTAL.*\s+(\d+%)$/'
