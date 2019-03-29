@@ -37,7 +37,7 @@ class Incident(TimeStampedModal):
     # TODO: discuss polygon or multipolygon or simply geometry
     point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
-    incident_on = models.DateTimeField(null=True, blank=True, default=None)
+    incident_on = models.DateTimeField()
     reported_on = models.DateTimeField(null=True, blank=True, default=None)
     event = models.ForeignKey(
         Event,
@@ -48,8 +48,7 @@ class Incident(TimeStampedModal):
     hazard = models.ForeignKey(
         Hazard,
         related_name='incidents',
-        on_delete=models.SET_NULL,
-        null=True, blank=True, default=None
+        on_delete=models.CASCADE,
     )
     loss = models.OneToOneField(
         Loss,

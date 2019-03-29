@@ -5,7 +5,6 @@
     border:none !important;
     width: auto !important;
 }
-
 .field-district .select2-selection--single,
 .field-wards .select2-selection--single,
 .field-municipality .select2-selection--single{
@@ -14,7 +13,6 @@
     border-bottom-color:#ECF2F6 !important;
     border: none !important;
 }
-
 .field-wards .select2-selection--multiple,
 .field-ward .select2-selection--single{
     box-shadow:inset 0 0 1px #c0afaf !important;
@@ -22,9 +20,14 @@
     border: none !important;
     width: auto !important;
 }
-
 .field-district .select2-container--jet,
 .field-municipality .select2-container--jet,
 .field-wards .select2-container--jet, .field-ward .select2-container--jet{
     display: none !important;
+}
+span[aria-labelledby="select2-id_loss-container"] {
+  pointer-events: none !important;
+}
+span[aria-labelledby="select2-id_loss-container"] .select2-selection__arrow {
+  display: none !important;
 }
