@@ -77,6 +77,7 @@ class ResourceAdmin(GeoPolymorphicParentModelAdmin):
             'all': ('federal/css/django_select2.css',)
         }
 
+
 @admin.register(Education)
 class EducationAdmin(ResourceAdmin):
     base_model = Education

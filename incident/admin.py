@@ -1,5 +1,8 @@
 from django.contrib.auth import get_permission_codename
-from django.contrib import admin
+from django.contrib import (
+    admin,
+    messages,
+)
 from bipad.admin import GeoModelAdmin
 from .models import (
     Incident,
@@ -16,6 +19,8 @@ from django_select2.forms import (
     ModelSelect2Widget,
     ModelSelect2MultipleWidget,
 )
+from .utils import get_similar_incident
+from django.utils.safestring import mark_safe
 
 
 class DocumentInline(admin.TabularInline):
@@ -104,13 +109,24 @@ class IncidentAdmin(GeoModelAdmin):
             'all': ('federal/css/django_select2.css',)
         }
 
+    def save_model(self, request, obj, form, change):
+        super(IncidentAdmin, self).save_model(request, obj, form, change)
+        similar_incidents = get_similar_incident(obj)
+        for incident in similar_incidents:
+            messages.add_message(request, messages.INFO, mark_safe(
+                "Similar data <a href='/admin/incident/incident/%d/change/'>%s</a> already exists"
+                % (incident.id, incident.title)
+            ))
+
     def verify(self, request, queryset):
         queryset.update(verified=True)
+
     verify.allowed_permissions = ('can_verify',)
     verify.short_description = 'Mark incidents as verified'
 
     def approve(self, request, queryset):
         queryset.update(approved=True)
+
     approve.allowed_permissions = ('can_approve',)
     approve.short_description = 'Mark incidents as approved'
 
@@ -126,7 +142,6 @@ class IncidentAdmin(GeoModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        form.base_fields['loss'].disabled = True
         if request.user.groups.filter(name='Nepal Police').exists():
             form.base_fields['source'].initial = 'nepal_police'
             form.base_fields['source'].disabled = True
