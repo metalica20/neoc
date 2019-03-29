@@ -27,6 +27,7 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         'event',
         'hazard',
         'wards',
+        'wards.municipality',
         'loss',
         'loss.peoples',
         'loss.families',
@@ -48,7 +49,7 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         if is_expanded(self.request, 'peoples'):
             loss_queryset = loss_queryset.prefetch_related('peoples')
         if is_expanded(self.request, 'wards'):
-            queryset = queryset.select_related('wards')
+            queryset = queryset.prefetch_related('wards')
         if is_expanded(self.request, 'families'):
             loss_queryset = loss_queryset.prefetch_related('families')
         if is_expanded(self.request, 'livestocks'):
@@ -61,6 +62,13 @@ class IncidentViewSet(FlexFieldsModelViewSet):
             )
 
         return queryset
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        is_lnd = self.request.query_params.get('lnd', 'false')
+        if is_lnd.lower() == 'true':
+            response['Cache-Control'] = 'max-age=3600'
+        return response
 
     @action(detail=True, name='Incident Response')
     def response(self, request, pk=None, version=None):
