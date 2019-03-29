@@ -8,7 +8,7 @@ class RealtimeTests(APITestCase):
         """
         Ensure we can list realtime api.
         """
-        models = ['earthquake', 'river', 'rain']
+        models = ['earthquake', 'river', 'rain', 'pollution', 'fire', 'weather']
         for model in models:
             url = reverse(
                 '{}-list'.format(model),

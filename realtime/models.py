@@ -61,3 +61,15 @@ class Pollution(TimeStampedModal):
 
     def __str__(self):
         return self.location
+
+
+class Weather(TimeStampedModal):
+    location = models.CharField(max_length=255)
+    point = models.PointField()
+    minimum_temp = models.FloatField(null=True, blank=True, default=None)
+    maximum_temp = models.FloatField(null=True, blank=True, default=None)
+    current_temp = models.FloatField(null=True, blank=True, default=None)
+    sunrise = models.TimeField(null=True, blank=True, default=None)
+    sunset = models.TimeField(null=True, blank=True, default=None)
+    humidity = models.FloatField(null=True, blank=True, default=None)
+    rainfall = models.CharField(max_length=25,null=True, blank=True, default=None)

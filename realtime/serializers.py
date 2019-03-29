@@ -5,6 +5,7 @@ from .models import (
     Rain,
     Pollution,
     Fire,
+    Weather,
 )
 
 
@@ -35,4 +36,10 @@ class PollutionSerializer(serializers.ModelSerializer):
 class FireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fire
+        fields = '__all__'
+
+
+class WeatherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Weather
         fields = '__all__'

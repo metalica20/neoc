@@ -39,7 +39,6 @@ def scrape_earthquakes():
     for element in article:
         texts = element.text.split("\n")
         rows.append(texts)
-
     for row in rows:
         earthquake = {}
         for i in range(0, len(fields)):
