@@ -25,7 +25,10 @@ build:
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
   only:
+    - tags
+    - develop
     - staging
+    - merge_requests
 
 test:
   image:
@@ -45,7 +48,10 @@ test:
     paths:
       - coverage
   only:
+    - tags
+    - develop
     - staging
+    - merge_requests
 
 release-image:
   stage: release
@@ -54,6 +60,8 @@ release-image:
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
   only:
+    - tags
+    - develop
     - staging
 
 pages:
@@ -66,7 +74,7 @@ pages:
     paths:
       - public
   only:
-    - none
+    - develop
 
 deploy:
   stage: deploy
@@ -74,4 +82,3 @@ deploy:
     - ./docker/deploy.sh
   only:
     - staging
-
