@@ -7,6 +7,8 @@ WORKDIR /code
 RUN \
   apk add --no-cache \
   musl-dev \
+  linux-headers \
+  pcre-dev \
   gcc \
   postgresql-dev && \
   apk add --no-cache \
@@ -19,8 +21,11 @@ RUN \
   zlib-dev \
   jpeg-dev
 
+RUN pip install uwsgi --no-cache-dir
+
+COPY ./requirements.txt /code/requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
+
 COPY . /code/
-RUN pypy3 -m pip install gunicorn --no-cache-dir
-RUN pypy3 -m pip install -r requirements.txt --no-cache-dir
 
 ENTRYPOINT /code/docker/docker-entrypoint.prod.sh
