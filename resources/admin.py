@@ -1,4 +1,4 @@
-from django.contrib.gis import(
+from django.contrib.gis import (
     admin,
     forms,
 )
@@ -28,7 +28,8 @@ class AddressForm(forms.ModelForm):
         if instance:
             ward = Resource.objects.values('ward').filter(id=instance.id)
             if ward[0]['ward']:
-                municipality = Ward.objects.values('municipality','municipality__district').filter(id=ward[0]['ward'])
+                municipality = Ward.objects.values(
+                    'municipality', 'municipality__district').filter(id=ward[0]['ward'])
                 self.fields['municipality'].initial = municipality[0]['municipality']
                 self.fields['district'].initial = municipality[0]['municipality__district']
     district = forms.ModelChoiceField(
@@ -71,6 +72,7 @@ class ResourceAdmin(GeoPolymorphicParentModelAdmin):
     base_model = Resource
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry)
+    search_fields = Resource.autocomplete_search_fields()
 
     class Media:
         css = {

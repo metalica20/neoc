@@ -20,7 +20,7 @@ class FamilyInline(admin.TabularInline):
     extra = 1
 
 
-class InfrastructureInline(admin.TabularInline):
+class InfrastructureInline(admin.StackedInline):
     model = Infrastructure
     extra = 1
 

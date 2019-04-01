@@ -9,7 +9,6 @@ from .models import (
     Document,
 )
 from federal.models import (
-    Province,
     District,
     Municipality,
     Ward,
@@ -19,7 +18,7 @@ from django_select2.forms import (
     ModelSelect2Widget,
     ModelSelect2MultipleWidget,
 )
-from .utils import get_similar_incident
+from .utils import get_similar_incident, get_followup_fields
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
 
@@ -116,6 +115,10 @@ class IncidentAdmin(GeoModelAdmin):
         }
 
     def save_model(self, request, obj, form, change):
+        if change:
+            obj.updated_by = request.user
+        else:
+            obj.created_by = request.user
         super(IncidentAdmin, self).save_model(request, obj, form, change)
         similar_incidents = get_similar_incident(obj)
         for incident in similar_incidents:
@@ -164,13 +167,21 @@ class IncidentAdmin(GeoModelAdmin):
         return queryset
 
     def create_event(self, request, queryset):
-        incident_id_list = []
-        for incident in queryset:
-            incident_id_list.append(incident.id)
-        incident_ids = ",".join(repr(incident_id) for incident_id in incident_id_list)
+        incident_ids = ",".join(str(incident.id) for incident in queryset)
         return HttpResponseRedirect('/admin/event/event/add/?incident=%s' % incident_ids)
 
     create_event.short_description = 'Create Event'
+
+    def change_view(self, request, object_id, form_url=''):
+        followup_fields = get_followup_fields(object_id)
+        if followup_fields:
+            messages.add_message(
+                request, messages.INFO,
+                'Incident is incomplete. %s need followup' % ', '.join(followup_fields)
+            )
+        return super().change_view(
+            request, object_id, form_url
+        )
 
 
 admin.site.register(Document)
