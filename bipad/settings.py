@@ -231,6 +231,16 @@ MAP_WIDGETS = {
     "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
 }
 
-DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBER_FIELDS', '1000'))
 FEDERAL_CACHE_CONTROL_MAX_AGE = 60*60*24*7
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBER_FIELDS', '1000'))
