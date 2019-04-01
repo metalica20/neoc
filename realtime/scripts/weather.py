@@ -1,10 +1,10 @@
 import os
 import re
 import requests
-import googlemaps
 from bs4 import BeautifulSoup
 from realtime.models import Weather
 from django.contrib.gis.geos import Point
+from pygeocoder import Geocoder
 
 
 GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
@@ -64,7 +64,5 @@ def fetch_weather():
 
 
 def get_point_of_location(location):
-    geocode_result = googlemaps.Client(key=GOOGLE_MAP_API_KEY).geocode(location)
-    lat = geocode_result[0]['geometry']['location']['lat']
-    lng = geocode_result[0]['geometry']['location']['lng']
-    return Point(lng, lat)
+    results = Geocoder(GOOGLE_MAP_API_KEY).geocode(location)
+    return Point(*results[0].coordinates)
