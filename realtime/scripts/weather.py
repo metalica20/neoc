@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from realtime.models import Weather
 from django.contrib.gis.geos import Point
-from pygeocoder import Geocoder
+import geocoder
 
 
 GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
@@ -46,23 +46,27 @@ def fetch_weather():
             table_rows.append(data)
 
     for i in range(0, int((len(table_rows)-1)/4)):
-        point = get_point_of_location(table_rows[0+i*4])
-        weather = Weather(
-            location=table_rows[0+i*4],
-            point=point,
-            maximum_temp=table_rows[1 + i * 4],
-            minimum_temp=table_rows[2 + i * 4],
-            sunrise=map_rows[0+i*4],
-            sunset=map_rows[1+i*4],
-            current_temp=map_rows[2+i*4],
-            humidity=map_rows[3+i*4],
-            rainfall=table_rows[3+i*4],
-        )
-        weathers.append(weather)
+        coordinates = location_to_coordinates(table_rows[0+i*4])
+        if coordinates:
+            weather = Weather(
+                location=table_rows[0+i*4],
+                point=Point(coordinates[1], coordinates[0]),
+                maximum_temp=table_rows[1 + i * 4],
+                minimum_temp=table_rows[2 + i * 4],
+                sunrise=map_rows[0+i*4],
+                sunset=map_rows[1+i*4],
+                current_temp=map_rows[2+i*4],
+                humidity=map_rows[3+i*4],
+                rainfall=table_rows[3+i*4],
+            )
+            weathers.append(weather)
     Weather.objects.all().delete()
     Weather.objects.bulk_create(weathers)
 
 
-def get_point_of_location(location):
-    results = Geocoder(GOOGLE_MAP_API_KEY).geocode(location)
-    return Point(*results[0].coordinates)
+def location_to_coordinates(location):
+    coordinates = geocoder.google(location, components="country:NP", key=GOOGLE_MAP_API_KEY).latlng
+    return coordinates
+
+
+

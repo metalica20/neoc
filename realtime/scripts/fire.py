@@ -11,7 +11,7 @@ ICIMOD_FIRE_QUERY_URL = "http://geoapps.icimod.org/arcgis/rest/services/Nepal/Ne
 
 def fetch_fire():
     date_to = str(localtime().timestamp()*1000)
-    date_from = str((localtime() + datetime.timedelta(-1400)).timestamp()*1000)
+    date_from = str((localtime() + datetime.timedelta(-30)).timestamp()*1000)
     params = {
         'time': date_from+','+date_to,
         'outFields': 'SCAN,ACQ_DATE,ACQ_TIME,CONFIDENCE,LANDCOVER,LATITUDE,LONGITUDE,BRIGHTNESS',

@@ -1,12 +1,12 @@
 import requests
-from pygeocoder import Geocoder
+import geocoder
 from django.contrib.gis.geos import Point
 from hazard.models import Hazard
 from incident.models import Incident
 from loss.models import People, Loss, Family, Livestock, Infrastructure
 import os
 
-API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
+GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 CURRENT_INCIDENT_URL = 'http://drrportal.gov.np/signageapi/data.php'
 ALL_INCIDENT_URL = 'http://drrportal.gov.np/signageapi/all.php'
@@ -47,7 +47,7 @@ def fetch_incident(options):
             loss = Loss.objects.create()
 
         incident_type = map_incident_type(data['Incident Type'], meta_data)
-        title = get_address(float(data['Incident Latitude']), float(
+        title = get_title(float(data['Incident Latitude']), float(
             data['Incident Longitude']), incident_type)
         hazards = Hazard.objects.values('id', 'title')
         for hazard in hazards:
@@ -166,8 +166,8 @@ def map_incident_type(incident_id, meta_data):
             return data[1]
 
 
-def get_address(lat, long, incident_type):
-    location = Geocoder(API_KEY).reverse_geocode(lat, long)
+def get_title(lat, long, incident_type):
+    location = geocoder.google([lat, long], components="country:NP", method='reverse', key=GOOGLE_MAP_API_KEY)
     if location.city:
         return incident_type + " at " + location.city
     else:
