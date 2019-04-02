@@ -4,16 +4,30 @@
         // $(".iconwrap .close-cion").on("click", function () {
         //     $(this).closest('.icon-submenu').hide();
         // });
-
-        // $(".sidebar .sidebarClose").on("click", function () {
-        //     $(this).closest(".sidebarwrapper").addClass("collapse-leftSidebar", 250);
-        //     $(this).closest(".sidebar").find('.expand-icon').fadeIn(300);
-        // });
-
-        $(".hazard-details .hazardDetails-close").on("click", function () {
-            $(this).closest(".hazard-wrapper").addClass("collapse-leftSidebar");
+        $('.compare-button').on('click', function(){
+            $('.compare-wrapper').slideToggle(300);
         });
-        
+        $('.compare-header ').on('click','span', function(){
+            $('.compare-wrapper').hide(300);
+        });
+
+
+
+        $(".hazard-details").on("click",".hazardDetails-close", function () {
+
+
+          // id=$('.hazard-details').attr('id');
+          //
+
+            id=$(this).closest(".hazard-details").attr('id');
+            //$('#'+id).css('display','none');
+            $('#'+id).hide(300);
+
+            console.log(id);
+
+            //$(this).closest(".hazard-wrapper").addClass("collapse-leftSidebar");
+        });
+
 
         // $(".sidebar .expand-icon").on("click", function () {
         //     $(this).closest(".sidebar").find('.sidebarwrapper').removeClass("collapse-leftSidebar",300);
@@ -35,67 +49,118 @@
             $(this).closest(".buffer-list").hide(500);
         });
 
-        
+
         $(".capacity-list .capacity-header i").on("click", function () {
             $(this).closest("li").find('ul').slideToggle(500);
             $(this).toggleClass('ion-ios-arrow-up');
-        
+
         });
         $(".progress-title i").on("click", function () {
             $(this).closest(".progress-title").find('.info').slideToggle(500);
-        
+
         });
         $(".updown i").on("click", function () {
             $(this).closest(".updown").find('.info').slideToggle(500);
-        
+
         });
 
-        var count= 0;
+
         $('.hazard-list label, .capacity-list label').on('click', function() {
             var targetId = $(this).attr('data-tab');
-            $('#' + targetId).show(500);
+            // ('#hazard_popup_html').removeClass('collapse-leftSidebar');
+            //console.log(targetId);
             if (targetId == 'flood-1' ) {
                 $('#flood-expand').fadeIn(300);
-                count ++;
+                $('#' + targetId).show(500);
+                $('#exposure_popup').hide(300);
+                $('#infa_exposure_popup').hide(300);
+                $('#capacity-popup').hide(300);
+                $('#vulnery-1').hide(300);
+
+              } else if (targetId == 'exposure_popup' ) {
+                      $('#infa_exposure_popup').hide(300);
+                      $('#' + targetId).show(500);
+                      $('#flood-1').hide(300);
+                      $('#capacity-popup').hide(300);
+                      $('#vulnery-1').hide(300);
+
+
+            } else if (targetId == 'infa_exposure_popup' ) {
+                            $('#exposure_popup').hide(300);
+                            $('#' + targetId).show(500);
+                            $('#flood-1').hide(300);
+                            $('#capacity-popup').hide(300);
+                            $('#vulnery-1').hide(300);
+
+
+
             } else if (targetId == 'capacity-popup' ) {
                     $('#capacity-expand').fadeIn(300);
-                    count++;
-                
+                    $('#' + targetId).show(500);
+                    $('#exposure_popup').hide(300);
+                    $('#infa_exposure_popup').hide(300);
+                    $('#flood-1').hide(300);
+                    $('#vulnery-1').hide(300);
+
             }
             else if (targetId == 'vulnery-1' ) {
                 $('#vulnery-expand').fadeIn(300);
-                count++;
-            
+                $('#' + targetId).show(500);
+                $('#exposure_popup').hide(300);
+                $('#infa_exposure_popup').hide(300);
+                $('#flood-1').hide(300);
+                $('#capacity-popup').hide(300);
+
+
+
         }
             // $('#flood-expand').fadeIn(300);
             // $('#capacity-expand').fadeIn(300);
             // $('#vulnery-expand').fadeIn(300);
         });
-        $('.hazardDetails-close').on('click', function() {
-            
-            setTimeout(function(){
-                var width = $('.hazardDetails-close').closest('.hazard-details').find(".hazard-wrapper").css('width');
-                console.log($(".hazard-details"));
-                
-                for(var i=0;i<$(".hazard-wrapper").length;i++){
-                    for(var j=0; j<$(".hazard-wrapper")[i].classList.length;j++){
-                        console.log($(".hazard-wrapper")[i].classList[j]);
-                        if ($(".hazard-wrapper")[i].classList[j] == "collapse-leftSidebar") {
-                            console.log("ebdsfasdfas");
-                            $('.expand-layer').css('right','325px');
-                        } 
-                    }
-                }
-                    
-                 }, 100);
-            
-           
-            
+        //
+        // $('.exoposure_data_pop').on('click',function(){
+        //   var targetId = $(this).attr('data-tab');
+        //   console.log(targetId);
+        //     $('#exposure_popup').show(500);
+        //
+        // });
+
+        // $('.hazardDetails-close_ex').on('click', function() {
+        //   console.log($(this).closest('.hazard-details').attr('id'));
+        //  id=$(this).attr('id');
+          //$('#'+id).css('display','none');
+
+
+            // setTimeout(function(){
+            //     var width = $('.hazardDetails-close').closest('.hazard-details').find(".hazard-wrapper").css('width');
+            //     console.log($(".hazard-details"));
+            //
+            //     for(var i=0;i<$(".hazard-wrapper").length;i++){
+            //         for(var j=0; j<$(".hazard-wrapper")[i].classList.length;j++){
+            //             console.log($(".hazard-wrapper")[i].classList[j]);
+            //             if ($(".hazard-wrapper")[i].classList[j] == "collapse-leftSidebar") {
+            //                 console.log("ebdsfasdfas");
+            //                 $('.expand-layer').css('right','325px');
+            //             }
+            //         }
+            //     }
+            //
+            //      }, 100);
+
+
+
             // $('#flood-expand').fadeIn(300);
             // $('#capacity-expand').fadeIn(300);
             // $('#vulnery-expand').fadeIn(300);
-        });
-        
+       // });
+
+      // $('#Flood').on('click',function(){
+      //   console.log('aaaa');
+      //   ('#hazard_popup_html').removeClass('collapse-leftSidebar');
+      //
+      // });
+
         // $('.submenu-list li.drop-list').prepend('<i class="ion ion ion-ios-add"></i>');
         // $('.submenu-list li.drop-list ul').hide();
         // $('.submenu-list li.drop-list i.ion-ios-add').on('click', function(){
@@ -113,11 +178,11 @@
         //     $(".custom-main-input").change(function () {
         //       $(this).closest('.check-list').find('.custom-checkbox input').prop('checked', $(this).prop("checked"));
         //     });
-          
+
         //     $(".custom-checkbox input").change(function() {
         //         var checkboxes = $(this).closest('.custom-checkbox').find('input');
         //         var checkedboxes = checkboxes.filter(':checked');
-            
+
         //         if(checkboxes.length === checkedboxes.length) {
         //         $(this).closest('.capacity-header').find('.custom-main-input').prop('checked', true);
         //         } else {
@@ -150,6 +215,15 @@
             borderRadius: "4px",
             railBorderRadius: "0"
         });
+        $(".compare-body").slimScroll({
+            height: "250px",
+            color: "#8c909a",
+            position: "right",
+            size: "2px",
+            alwaysVisible: 1,
+            borderRadius: "4px",
+            railBorderRadius: "0"
+        });
 
         $(".info-content").slimScroll({
             height: "150px",
@@ -170,7 +244,7 @@
         //     borderRadius: "3px",
         //     railBorderRadius: "0"
         // });
-        
+
         $('.select2').select2();
 
         $('.icon-list .ion-md-more').on('click', function(e) {
@@ -185,9 +259,6 @@
             });
 
         });
-        
+
     });
 })(jQuery);
-
-
-            

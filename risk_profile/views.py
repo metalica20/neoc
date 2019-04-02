@@ -244,12 +244,57 @@ class NewtestfileViewSet(views.APIView):
         return Response(listj)
 
 
-# class NewtestfileViewSet(views.APIView):
-#     permission_classes=(IsAuthenticated,)
-#     def get(self,request,*args,**kwargs):
-#         mun=self.kwargs['mun']
-#         field=self.kwargs['field']
-#         jsonc=SocioEconomicGapanapa.objects.filter(name=mun).values(field)
-#         # print()
-#         # a=20
-#         return Response(jsonc)
+class HazardfloodViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        # flood={}
+        # basins={}
+        # basins['']
+        # flood['title']="Flood"
+        jsonc={"title":"flood","data":{
+        "karnali":{
+        "5":{"returnperiod":"5 year","workspace":"ngp:flood_karnali_depth_5","center":"[28.491324426181734,81.24904632568361]"},
+        "10":{"returnperiod":"10 year","workspace":"ngp:flood_karnali_depth_10","center":"[28.491324426181734,81.24904632568361]"},
+        "25":{"returnperiod":"25 year","workspace":"ngp:flood_karnali_depth_25","center":"[28.491324426181734,81.24904632568361]"},
+        "50":{"returnperiod":"50 year","workspace":"ngp:flood_karnali_depth_50","center":"[28.491324426181734,81.24904632568361]"},
+        "100":{"returnperiod":"100 year","workspace":"ngp:flood_karnali_depth_100","center":"[28.491324426181734,81.24904632568361]"},
+        },
+        "Aurahi":{
+        "2":{"returnperiod":"2 year","workspace":"ngp:flood_aurahi_depth_2","center":"[26.77258726109544,86.00372314453126]"},
+        "5":{"returnperiod":"5 year","workspace":"ngp:flood_aurahi_depth_5","center":"[26.77258726109544,86.00372314453126]"},
+        "10":{"returnperiod":"10 year","workspace":"ngp:flood_aurahi_depth_10","center":"[26.77258726109544,86.00372314453126]"},
+        "25":{"returnperiod":"25 year","workspace":"ngp:flood_aurahi_depth_25","center":"[26.77258726109544,86.00372314453126]"},
+        "50":{"returnperiod":"50 year","workspace":"ngp:flood_aurahi_depth_50","center":"[26.77258726109544,86.00372314453126]"},
+        "100":{"returnperiod":"100 year","workspace":"ngp:flood_aurahi_depth_100","center":"[26.77258726109544,86.00372314453126]"},
+        },
+        "Banganga":{
+        "2":{"returnperiod":"2 year","workspace":"ngp:ngp:flood_banganga_depth_2","center":"[27.56869966279873,83.05664062500001]"},
+        "5":{"returnperiod":"5 year","workspace":"ngp:ngp:flood_banganga_depth_5","center":"[27.56869966279873,83.05664062500001]"},
+        "10":{"returnperiod":"10 year","workspace":"ngp:ngp:flood_banganga_depth_10","center":"[27.56869966279873,83.05664062500001]"},
+        "25":{"returnperiod":"25 year","workspace":"ngp:ngp:flood_banganga_depth_25","center":"[27.56869966279873,83.05664062500001]"},
+        "50":{"returnperiod":"50 year","workspace":"ngp:ngp:flood_banganga_depth_50","center":"[27.56869966279873,83.05664062500001]"},
+        "100":{"returnperiod":"100 year","workspace":"ngp:ngp:flood_banganga_depth_100","center":"[27.56869966279873,83.05664062500001]"},
+        },
+        }}
+
+        return Response(jsonc)
+
+
+class EarthquakefloodViewSet(views.APIView):
+    permission_classes=(IsAuthenticated,)
+    def get(self,request,*args,**kwargs):
+        # flood={}
+        # basins={}
+        # basins['']
+        # flood['title']="Flood"
+        jsonc={"title":"Earthquake","data":{
+        "Openquake":{
+        "Map":{"returnperiod":"Map","workspace":"earthquake","center":"[28.408312587374258,84.40521240234376]"},
+
+        },
+        "Adrc":{
+
+        },
+        }}
+
+        return Response(jsonc)

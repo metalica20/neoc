@@ -265,9 +265,9 @@ button {
   font-weight: 600;
   font-size: 1rem;
 }
-.mapwrap .leaflet-left {
+/* .mapwrap .leaflet-left {
   display: none;
-}
+} */
 .mapwrap .sidebar {
   position: absolute;
   top: 58px;
@@ -951,6 +951,14 @@ button {
   transition: all 0.5s;
   padding: 10px;
 }
+.mapwrap .hazard-details .hazard-wrapper .compare-button {
+  padding: 5px 15px;
+  text-transform: uppercase;
+  background-color: #1672c6;
+  color: #ffffff;
+  margin: 0.5rem auto;
+  font-size: 0.675rem;
+}
 .mapwrap .hazard-details .hazard-wrapper .hazard-title {
   display: -webkit-box;
   display: -moz-box;
@@ -1322,6 +1330,60 @@ button {
 }
 .mapwrap .hazard-details .hazard-wrapper.collapse-leftSidebar {
   display: none !important;
+}
+.mapwrap .compare-popup {
+  position: absolute;
+  left: auto;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+.mapwrap .compare-popup .compare-wrapper {
+  width: 310px;
+  background-color: #ffffff;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  padding: 10px;
+  display: none;
+}
+.mapwrap .compare-popup .compare-wrapper .compare-header {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  padding: 0 0 0.5rem 0;
+  border-bottom: 1px solid #1672c6;
+  margin-bottom: 0.5rem;
+}
+.mapwrap .compare-popup .compare-wrapper .compare-header h3 {
+  font-size: 0.675rem;
+  color: #1672c6;
+  flex-grow: 1;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.mapwrap .compare-popup .compare-wrapper .compare-header button {
+  flex-shrink: 0;
+  font-size: 0.775rem;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  outline: none !important;
+  -webkit-outline: none !important;
+}
+.mapwrap .compare-popup .compare-wrapper .compare-header button i {
+  font-weight: 600;
+}
+.mapwrap .compare-popup .compare-wrapper.compare-close {
+  display: none;
 }
 @media screen and (max-width: 991px) {
   .mapwrap .sidebar {
