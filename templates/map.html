@@ -675,13 +675,13 @@
                                    <ul class="hazardDetail-list">
                                        <li class="active">
                                            <div class="custom-control custom-radio">
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:sankhu_drone" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:sankhu_drone" data-url="http://nationalgeoportal.gov.np:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
                                                <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
                                            </div>
                                        </li>
                                        <li class="active">
                                            <div class="custom-control custom-radio">
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="test_1" name="test_1" value="customEx">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-url="http://nationalgeoportal.gov.np:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="test_1" name="test_1" value="customEx">
                                                <label class="custom-control-label" for="test_1">Drone  </label>
                                            </div>
                                        </li>
@@ -723,13 +723,13 @@
                                      <ul class="hazardDetail-list">
                                          <li class="active">
                                              <div class="custom-control custom-radio">
-                                                 <input type="radio" class="custom-control-input exposure_geo CheckBox" data-workspace="geonode:buildings" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
+                                                 <input type="radio" class="custom-control-input exposure_geo" data-workspace="geonode:buildings" data-url="https://geonepal.info/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
                                                  <label class="custom-control-label" for="build_1">Buildings  </label>
                                              </div>
                                          </li>
                                          <li class="active">
                                              <div class="custom-control custom-radio">
-                                                 <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
                                                  <label class="custom-control-label" for="hydro_1">Hydropower  </label>
                                              </div>
                                          </li>
@@ -1303,6 +1303,7 @@ $(".socio").on('click',function(){
 
     $('.exposure_geo').on('click',function(){
       console.log($(this).attr('id'));
+
       if($(this).attr('id')=='hydro_1'){
         console.log('entered')
         var url='http://hydro.naxa.com.np/api/Hydropower/';
@@ -1337,9 +1338,10 @@ $(".socio").on('click',function(){
       }else{
         var id = $(this).attr('data-workspace');
         var center = eval($(this).attr('data-center'));
+        var geo_url  = $(this).attr('data-url');
 
         console.log(id);
-        geo_url='https://geonepal.info/geoserver/ows';
+
         hazard_layers=L.tileLayer.betterWms(geo_url, {
                                 layers:id,
                                 transparent: true,
@@ -1347,14 +1349,14 @@ $(".socio").on('click',function(){
                                 // pane:"wmsPane"
                           }).addTo(map);
 
-        // hazard_layers.on('load',function(){
-        //
-        // });
-        // if(id=="ngp:sankhu_drone"){
-        // map.flyTo(center,18);
-        // }else{
-        //   map.flyTo(center,11);
-        // }
+        hazard_layers.on('load',function(){
+
+        });
+        if(id=="ngp:sankhu_drone"){
+        map.flyTo(center,18);
+        }else{
+          // map.flyTo(center,11);
+        }
 
       }
 
