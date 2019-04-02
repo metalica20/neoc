@@ -748,7 +748,7 @@
 
          maxZoom: 15,
          minZoom: 2,
-     });
+     }).addTo(map);
 
      //end
 
@@ -804,7 +804,7 @@
 
                   var province = new L.geoJson(response,
                     {
-                    
+
                         onEachFeature: function (feature, layer) {
 
                        fed_url_api="http://localhost:8000/risk_profile/Newfile/"+feature.properties.title+"/mobile_com";

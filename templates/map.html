@@ -203,15 +203,15 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Flood" name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input hazard_list" id="Flood" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="Flood" data-tab="flood-1">Flood </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Flood"></span>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Earthquacke" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Earthquacke">Earthquacke</label>
+                                                    <input type="radio" class="custom-control-input hazard_list" id="Earthquake" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Earthquake" data-tab="flood-1">Earthquacke</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Earthquake"></span>
                                             </li>
@@ -259,14 +259,14 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input hazard_geo" id="OSM" name="exposure_1" data-workspace="ngp:sankhu_drone" data-center="[27.740139803000158,85.46312123537065]" value="customEx">
-                                                    <label class="custom-control-label" for="OSM">Drone Image </label>
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="OSM" name="exposure_1"  value="customEx">
+                                                    <label class="custom-control-label"  data-tab="exposure_popup" for="OSM">Drone Imageries </label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Land" name="exposure_1" value="customEx">
-                                                    <label class="custom-control-label" for="Land">Land Use Details</label>
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="Land" name="Land" value="customEx">
+                                                    <label class="custom-control-label"  data-tab="infa_exposure_popup" for="Land">Infrastructures</label>
                                                 </div>
                                             </li>
                                         </ul>
@@ -335,38 +335,18 @@
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="Flood" name="risk" value="customEx">
-                                                    <label class="custom-control-label" for="Flood">Health </label>
+                                                    <label class="custom-control-label" for="Flood">Districtwise Earthquake Risk Score </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Health"></span>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="Earthquacke" name="risk" value="customEx">
-                                                    <label class="custom-control-label" for="Earthquacke">Education</label>
+                                                    <label class="custom-control-label" for="Earthquacke">Flood Risk</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Education"></span>
                                             </li>
-                                            <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Landslide" name="risk" value="customEx">
-                                                    <label class="custom-control-label" for="Landslide">communication</label>
-                                                </div>
-                                                <span class="humanitarian-icon-Emergency-Telecommunications"></span>
-                                            </li>
-                                            <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Fire" name="risk" value="customEx">
-                                                    <label class="custom-control-label" for="Fire">Health</label>
-                                                </div>
-                                                <span class="humanitarian-icon-Health"></span>
-                                            </li>
-                                            <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="Draought" name="risk" value="customEx">
-                                                    <label class="custom-control-label" for="Draought">Education</label>
-                                                </div>
-                                                <span class="humanitarian-icon-Education"></span>
-                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -390,8 +370,8 @@
                                         <ul class="list-content hazard-list">
                                             {% for resource in resources %}
                                             <li>
-                                                <div class="custom-control custom-radio">
-                                                    <input type="checkbox" class="custom-control-input custom-main-input CheckBox" value="{{resource.layer_tbl}}" id="{{resource.layer_tbl}}_id" >
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input CheckBox" value="{{resource.layer_tbl}}" data-subcat="{{resource.type}}" data-count="{{resource.count_obj}}" id="{{resource.layer_tbl}}_id" data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}" >
                                                     <label class="custom-control-label" for="{{resource.layer_tbl}}_id" data-tab="capacity-popup">{{resource.layer_name}}</label>
                                                 </div>
                                             </li>
@@ -417,9 +397,10 @@
                 </div>
             </div>
 
-            <!-- hazard popup -->
+            <!-- hazarda popup -->
             <div class="hazard-details" id="flood-1">
-                <div class="hazard-wrapper">
+                <div class="hazard-wrapper" id="hazard_popup_html">
+                    <!-- not needed part load from jquery-->
                     <div class="hazard-title">
                         <h3><span class="humanitarian-icon-Flood"></span>Flood</h3>
                         <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
@@ -454,32 +435,32 @@
                                             <ul class="hazardDetail-list">
                                                 <li class="active">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" data-workspace="ngp:flood_karnali_depth_5" data-center="[28.491324426181734,81.24904632568361]" id="hazard-1" name="hazard-1" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-1">5 year </label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" data-workspace="ngp:flood_karnali_depth_5" data-center="[28.491324426181734,81.24904632568361]" id="year17" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year17">5 year </label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-2" data-workspace="ngp:flood_karnali_depth_10" data-center="[28.491324426181734,81.24904632568361]" name="hazard-2" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-2">10 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year16" data-workspace="ngp:flood_karnali_depth_10" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year16">10 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-3" data-workspace="ngp:flood_karnali_depth_25" data-center="[28.491324426181734,81.24904632568361]" name="hazard-3" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-3">25 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year15" data-workspace="ngp:flood_karnali_depth_25" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year15">25 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-4" data-workspace="ngp:flood_karnali_depth_50" data-center="[28.491324426181734,81.24904632568361]" name="hazard-4" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-4">50 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year14" data-workspace="ngp:flood_karnali_depth_50" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year14">50 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-5" data-workspace="ngp:flood_karnali_depth_100" data-center="[28.491324426181734,81.24904632568361]" name="hazard-5" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-4">100 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year13" data-workspace="ngp:flood_karnali_depth_100" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year13">100 Year</label>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -512,38 +493,38 @@
                                             <ul class="hazardDetail-list">
                                                 <li class="active">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-1" data-workspace="ngp:flood_aurahi_depth_2" name="hazard-1" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-1">2 Year </label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year1" data-workspace="ngp:flood_aurahi_depth_2" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year1">2 Year </label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-2" data-workspace="ngp:flood_aurahi_depth_5" name="hazard-2" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-2">5 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year2" data-workspace="ngp:flood_aurahi_depth_5" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year2">5 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-3" data-workspace="ngp:flood_aurahi_depth_10" name="hazard-3" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-3">10 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year3" data-workspace="ngp:flood_aurahi_depth_10" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year3">10 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-4" data-workspace="ngp:flood_aurahi_depth_25" name="hazard-4" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-4">25 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year4" data-workspace="ngp:flood_aurahi_depth_25" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year4">25 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-5" data-workspace="ngp:flood_aurahi_depth_50" name="hazard-5" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-5">50 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year5" data-workspace="ngp:flood_aurahi_depth_50" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year5">50 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-6" data-workspace="ngp:flood_aurahi_depth_100" name="hazard-6" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-6">100 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year6" data-workspace="ngp:flood_aurahi_depth_100" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year6">100 Year</label>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -575,38 +556,38 @@
                                             <ul class="hazardDetail-list">
                                                 <li class="active">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-1" data-workspace="ngp:ngp:flood_banganga_depth_2" name="hazard-1" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-1">2 Year </label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year7" data-workspace="ngp:ngp:flood_banganga_depth_2" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year7">2 Year </label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-2" data-workspace="ngp:flood_banganga_depth_5" name="hazard-2" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-2">5 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year8" data-workspace="ngp:flood_banganga_depth_5" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year8">5 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-3" data-workspace="ngp:flood_banganga_depth_10" name="hazard-3" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-3">10 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year9" data-workspace="ngp:flood_banganga_depth_10" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year9">10 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-4" data-workspace="ngp:flood_banganga_depth_25" name="hazard-4" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-4">25 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year10" data-workspace="ngp:flood_banganga_depth_25" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year10">25 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-5" data-workspace="ngp:flood_banganga_depth_50" name="hazard-5" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-5">50 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year11" data-workspace="ngp:flood_banganga_depth_50" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year11">50 Year</label>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input hazard_geo" id="hazard-6" data-workspace="ngp:flood_karnali_depth_100" name="hazard-6" value="customEx">
-                                                        <label class="custom-control-label" for="hazard-6">100 Year</label>
+                                                        <input type="radio" class="custom-control-input hazard_geo" id="year12" data-workspace="ngp:flood_banganga_depth_100" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year12">100 Year</label>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -668,152 +649,120 @@
                             </div>
                         </div>
                     </div>
+                    <!-- not needed part -->
                 </div>
             </div>
+  <!-- hazard popup end   -->
+
+   <!--  exposure  popup -->
+
+   <!-- drone part popup -->
+   <div class="hazard-details" id="exposure_popup">
+       <div class="hazard-wrapper" id="exposure_popup">
+           <div class="hazard-title">
+               <h3><span class="humanitarian-icon-Flood"></span>Drone Images</h3>
+               <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+           </div>
+           <div class="hazard-content">
+               <!-- <h4>Hazard</h4> -->
+               <div class="hazard-acc">
+                   <div id="accordion">
+                       <div class="card">
+
+
+                           <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                               <div class="card-body">
+                                   <ul class="hazardDetail-list">
+                                       <li class="active">
+                                           <div class="custom-control custom-radio">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:sankhu_drone" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+                                               <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
+                                           </div>
+                                       </li>
+                                       <li class="active">
+                                           <div class="custom-control custom-radio">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="test_1" name="test_1" value="customEx">
+                                               <label class="custom-control-label" for="test_1">Drone  </label>
+                                           </div>
+                                       </li>
+
+
+
+
+                                   </ul>
+                               </div>
+                           </div>
+
+
+                       </div>
+
+                   </div>
+               </div>
+           </div>
+         </div>
+     </div>
+     <!-- drone part popup end  -->
+
+     <!-- Infrastructes part popup -->
+
+     <div class="hazard-details" id="infa_exposure_popup">
+         <div class="hazard-wrapper" id="infa_exposure_popup">
+             <div class="hazard-title">
+                 <h3><span class="humanitarian-icon-Flood"></span>Infrastructures</h3>
+                 <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+             </div>
+             <div class="hazard-content">
+                 <!-- <h4>Hazard</h4> -->
+                 <div class="hazard-acc">
+                     <div id="accordion">
+                         <div class="card">
+
+
+                             <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                 <div class="card-body">
+                                     <ul class="hazardDetail-list">
+                                         <li class="active">
+                                             <div class="custom-control custom-radio">
+                                                 <input type="radio" class="custom-control-input exposure_geo CheckBox" data-workspace="geonode:buildings" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
+                                                 <label class="custom-control-label" for="build_1">Buildings  </label>
+                                             </div>
+                                         </li>
+                                         <li class="active">
+                                             <div class="custom-control custom-radio">
+                                                 <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Hydropower  </label>
+                                             </div>
+                                         </li>
+
+                                         <!-- <li class="active">
+                                             <div class="custom-control custom-radio">
+                                                 <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="communication" name="communication" value="customEx">
+                                                 <label class="custom-control-label" for="communication">Communication Towers  </label>
+                                             </div>
+                                         </li> -->
+
+
+                                     </ul>
+                                 </div>
+                             </div>
+
+
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+
+     <!-- Infrastructes part popup end -->
+
+
+   <!-- popup exposure end -->
 
             <!-- capacity popup -->
             <div class="hazard-details" id="capacity-popup">
-                <div class="hazard-wrapper">
-                    <div class="hazard-title">
-                        <h3><span class="humanitarian-icon-Health-facility"></span>Health</h3>
-                        <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
-                    </div>
-                    <div class="capacity-content">
-                            <h4>Insight</h4>
-                        <div class="insight">
-                            <div class="progress-warpper">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="progress_1">
-                                    <label class="custom-control-label" for="progress_1" data-tab="capacity-popup"> </label>
-                                </div>
-                                <div class="progress-title">
-                                    <label>Hospital </label>
-                                    <i class="ion ion-md-information-circle"></i>
-                                    <div class="info">
-                                        <div class="info-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress skill-bar ">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <span class="skill">currently showing :<i class="val">2456</i></span>
-                            </div>
 
-                            <div class="progress-warpper">
-                                <div class="progress-title">
-                                    <label>Health post </label>
-                                    <i class="ion ion-md-information-circle"></i>
-                                    <div class="info">
-                                        <div class="info-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress skill-bar">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" >
-                                    </div>
-                                </div>
-                                <span class="skill">currently showing :<i class="val">3565</i></span>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="progress_2">
-                                    <label class="custom-control-label" for="progress_2" data-tab="capacity-popup"> </label>
-                                </div>
-                            </div>
-
-                            <div class="progress-warpper">
-                                <div class="progress-title">
-                                    <label>Clinic </label>
-                                    <i class="ion ion-md-information-circle"></i>
-                                    <div class="info">
-                                        <div class="info-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress skill-bar">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <span class="skill">currently showing :<i class="val">1400</i></span>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="progress_3">
-                                    <label class="custom-control-label" for="progress_3" data-tab="capacity-popup"> </label>
-                                </div>
-                            </div>
-
-                            <div class="progress-warpper">
-                                <div class="progress-title">
-                                    <label>Farmacy </label>
-                                    <i class="ion ion-md-information-circle"></i>
-                                    <div class="info">
-                                        <div class="info-content">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress skill-bar">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <span class="skill">currently showing :<i class="val">1256</i></span>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="progress_4">
-                                    <label class="custom-control-label" for="progress_4" data-tab="capacity-popup"> </label>
-                                </div>
-                            </div>
-                        </div>
-                        <h4>Filter</h4>
-                        <div class="filter-list">
-                            <ul>
-                                <li>
-                                    <a href="#">ICU</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="#">NICU</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="#">Ventilator</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="#">Xray</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="#">Emergency</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="#">Operation Theatre</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="#">Ambulance</a>
-                                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                        <div class="handle"></div>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="hazard-details" id="vulnery-1">
                 <div class="hazard-wrapper">
@@ -822,7 +771,7 @@
                         <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
                     </div>
                     <div class="hazard-content">
-                        <!-- <h4>Hazard</h4> -->
+                        <button type="button" class="compare-button">compare</button>
                         <div class="hazard-acc">
                             <ul class="hazardDetail-list">
                                 <li class="active">
@@ -833,40 +782,52 @@
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="television_com" name="comapre_2" value="customEx">
+                                        <input type="radio" class="custom-control-input socio" id="television_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="television_com">Televison</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="mobile_com" name="comapre_3" value="customEx">
+                                        <input type="radio" class="custom-control-input socio" id="mobile_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="mobile_com">Mobile</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="internet_com" name="hazard-4" value="customEx">
+                                        <input type="radio" class="custom-control-input socio" id="internet_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="internet_com">Internet</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="cablet_com" name="hazard-4" value="customEx">
+                                        <input type="radio" class="custom-control-input socio" id="cablet_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="cablet_com">Cable Net</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="computer_com" name="hazard-4" value="customEx">
+                                        <input type="radio" class="custom-control-input socio" id="computer_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="computer_com">Computer</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="telegraph_com" name="hazard-4" value="customEx">
+                                        <input type="radio" class="custom-control-input socio" id="telegraph_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="telegraph_com">Telephone</label>
                                     </div>
                                 </li>
+                                <!-- compare popup -->
+                                <div class="compare-popup">
+                                    <div class="compare-wrapper" id="radio-compare">
+                                        <div class="compare-header">
+                                            <h3>Access to radio</h3>
+                                            <span ><i class="ion ion-md-close-circle-outline"></i></span>
+                                        </div>
+                                        <div class="compare-body">
+                                            graph content
+                                        </div>
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -967,8 +928,8 @@
    {% comment %} <script src="js/map.js"></script> {% endcomment %}
    <script>
 
-           var base_url= 'http://139.59.67.104:8004';
-           //var base_url = 'http://localhost:8000';
+           // var base_url= 'http://139.59.67.104:8004';
+           var base_url = 'http://localhost:8000';
 
     $(document).ready(function(){
 
@@ -976,7 +937,7 @@
 
            map = L.map('mapid',{
                     zoomControl:false
-                  }).setView([28.410728397237914,84.4024658203125], 7);
+                  }).setView([28.410728397237914,84.4024658203125], 8);
                  map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
                  // map.scrollWheelZoom.disable();
                  //map.options.maxBounds;  // remove the maxBounds object from the map options
@@ -1044,7 +1005,9 @@
 
             }).addTo(map);
 
-           function getColor(d) {
+//required functions
+
+           function getColor(d) {          //getting color according to data density
              return d > 1000 ? '#800026' :
                     d > 500  ? '#BD0026' :
                     d > 200  ? '#E31A1C' :
@@ -1055,7 +1018,7 @@
                                '#FFEDA0';
                 }
 
-                function socioStyle(number) {
+                function socioStyle(number) {   //creating style
 
                       return {
                       fillColor: getColor(number),
@@ -1068,7 +1031,7 @@
 
                 }
 
-          function loadSocioData(socioid){
+          function loadSocioData(socioid){     //loding socia data in map layers
             //console.log(feature);
 
             fed_url_api=base_url+"/risk_profile/Newfile/"+socioid;
@@ -1109,43 +1072,292 @@
 
 
 
+function createSubcategoryChart(data,total_sum,layerName){
 
-          $(".socio").on('click',function(){
+console.log(data);
+$('.progress-bar').css('background-color','#1672c6');
+var html='<div class="hazard-wrapper">'+
+    '<div class="hazard-title">'+
+        '<h3><span class="humanitarian-icon-Health-facility"></span>'+layerName.replace("_"," ")+'</h3>'+
+        '<button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>'+
+    '</div>'+
+    '<div class="capacity-content">'+
+        '<h4>Insight</h4>'+
+        '<div class="insight">';
+for(var i=0; i<data.length;i++){
 
-            var id = $(this).attr("id");
-            //console.log(id);
-            loadSocioData(id);
+  html+='<div class="progress-warpper">'+
+      '<div class="custom-control custom-checkbox">'+
+          '<input type="checkbox" class="custom-control-input" id="progress_'+i+'" checked>'+
+        '<label class="custom-control-label" for="progress_'+i+'" data-tab="capacity-popup"> </label>'+
+      '</div>'+
+      '<div class="progress-title">'+
+          '<label>'+data[i].label.replace("_"," ")+' </label>'+
+          '<i class="ion ion-md-information-circle"></i>'+
+          '<div class="info">'+
+              '<div class="info-content">'+
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.'+
+            '</div>'+
+          '</div>'+
+      '</div>'+
+      '<div class="progress skill-bar">'+
+          '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(parseInt(data[i].count)/total_sum)*100+'%;" aria-valuenow="'+(parseInt(data[i].count)/total_sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
+          '</div>'+
+      '</div>'+
+      '<span class="skill">currently showing :<i class="val">'+data[i].count+'</i></span>'+
+  '</div>';
+
+}
 
 
-          });
+
+
+        html+='</div>';
+        // <h4>Filter</h4>
+        // <div class="filter-list">
+        //     <ul>
+        //         <li>
+        //             <a href="#">ICU</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //         <li>
+        //             <a href="#">NICU</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //         <li>
+        //             <a href="#">Ventilator</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //         <li>
+        //             <a href="#">Xray</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //         <li>
+        //             <a href="#">Emergency</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //         <li>
+        //             <a href="#">Operation Theatre</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //         <li>
+        //             <a href="#">Ambulance</a>
+        //             <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        //                 <div class="handle"></div>
+        //             </button>
+        //         </li>
+        //     </ul>
+        // </div>
+      html+='</div>';
+      html+='</div>';
+
+$('#capacity-popup').html(html);
+
+}
 
 
 
+
+          //function chart-bar
+  function  CreateChartData(geojson,subcat,charttype,level,total_sum,layerName){
+
+             //console.log(subcat);
+             //console.log(geojson.features);
+            features=geojson.features;
+          //  subcat_arr=subcat.split(",");
+              subcat_arr=subcat;
+          //  console.log(subcat_arr);
+              var chartData=[];
+              //subcat_arr_count =[];
+              for(var k=0;k<subcat_arr.length;k++){
+                console.log(subcat_arr[k]);
+                //subcat_arr_count[k][subcat_arr[k]+"_count"] = 0;
+                chartData.push({"label":subcat_arr[k].trim(),"count":0});
+
+              }
+              //console.log(subcat_arr);
+
+              $.each(features, function (feature) {
+                for(var i=0;i<subcat_arr.length;i++){
+                  if(level=='subcategory'){
+                    if(subcat_arr[i].trim()==features[feature].properties.type.trim()){
+                      chartData[i].count++;
+
+
+                    }
+                  }else{
+                    //console.log(features[feature].properties[subcat_arr[i]].trim());
+                    if(features[feature].properties[subcat_arr[i]].trim()=='yes'){
+                      //console.log(subcat);
+                      chartData[i].count++;
+
+
+                    }
+                  }
+
+
+                }
+
+
+
+              });
+
+
+              createSubcategoryChart(chartData,total_sum,layerName);
+              // if(charttype=='pie'){
+              //
+              //   createChart(chartData);
+              // }else{
+              //   createBarChart(chartData,'barchart');
+              // }
+
+            }
+
+
+// required functions end
+
+
+$(".socio").on('click',function(){
+
+  var id = $(this).attr("id");
+  //console.log(id);
+  loadSocioData(id);
+
+
+});
 //end vulnerability map Layer
 
 //start of hazard layer
 
-    $('.hazard_geo').on('click',function(){
+    $('#hazard_popup_html').on('click','.hazard_geo',function(){
+
       var id = $(this).attr('data-workspace');
       var center = eval($(this).attr('data-center'));
+      if(id=='earthquake'){
+        console.log('enteref');
 
-      console.log(id);
-      geo_url='http://nationalgeoportal.gov.np:8080/geoserver/wms';
-      hazard_layers=L.tileLayer.betterWms(geo_url, {
-                              layers:id,
-                              transparent: true,
-                              format: 'image/png',
-                              // pane:"wmsPane"
-                        }).addTo(map);
 
-      hazard_layers.on('load',function(){
+                 var earthquake_risk = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
+                 // trick: expose name via options, used in events
+                 name: 'Seismic Hazard PGA (g)',
+                 overlay: true,
+                 attribution: '',
+                 legend: true,
+                 printable: true,
+                 zIndex:9996,
+                 ext: '/media/ext/js/global-hazard.js',
 
-      });
-      if(id=="ngp:sankhu_drone"){
-      map.flyTo(center,18);
+                 maxZoom: 15,
+                 minZoom: 2,
+             });
+
+             if(map.hasLayer(earthquake_risk)){
+                 map.removeLayer(earthquake_risk);
+             }else{
+               map.addLayer(earthquake_risk);
+
+             }
+
       }else{
-        map.flyTo(center,11);
+        console.log(id);
+        geo_url='http://nationalgeoportal.gov.np:8080/geoserver/wms';
+        hazard_layers=L.tileLayer.betterWms(geo_url, {
+                                layers:id,
+                                transparent: true,
+                                format: 'image/png',
+                                // pane:"wmsPane"
+                          }).addTo(map);
+
+        hazard_layers.on('load',function(){
+
+        });
+        if(id=="ngp:sankhu_drone"){
+        map.flyTo(center,18);
+        }else{
+          map.flyTo(center,11);
+        }
+
       }
+
+
+
+
+    });
+
+
+//end of hazard layer
+
+//start of hazard layer
+
+    $('.exposure_geo').on('click',function(){
+      console.log($(this).attr('id'));
+      if($(this).attr('id')=='hydro_1'){
+        console.log('entered')
+        var url='http://hydro.naxa.com.np/api/Hydropower/';
+        var hydropower = new L.geoJson.ajax(url,
+          {
+
+            pointToLayer: function(feature, latlng) {
+
+            var marker = L.circleMarker(latlng);
+            return marker;
+
+          },
+
+
+
+              onEachFeature: function (feature, layer) {
+                style=({
+                  fillColor: '#c1f441',
+                  weight: 5,
+                  opacity: 0.5,
+                  color: '#871896',
+                  radius: '5',
+                  fillOpacity: 0.9
+
+                });
+                layer.setStyle(style);
+              }
+
+        }).addTo(map);
+
+
+      }else{
+        var id = $(this).attr('data-workspace');
+        var center = eval($(this).attr('data-center'));
+
+        console.log(id);
+        geo_url='https://geonepal.info/geoserver/ows';
+        hazard_layers=L.tileLayer.betterWms(geo_url, {
+                                layers:id,
+                                transparent: true,
+                                format: 'image/png',
+                                // pane:"wmsPane"
+                          }).addTo(map);
+
+        // hazard_layers.on('load',function(){
+        //
+        // });
+        // if(id=="ngp:sankhu_drone"){
+        // map.flyTo(center,18);
+        // }else{
+        //   map.flyTo(center,11);
+        // }
+
+      }
+
 
     });
 
@@ -1159,14 +1371,18 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                 for(var i=0;i<data.results.length;i++){
                   var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
                   layer_icon= data.results[i]['layerIcon']
+                  type1= data.results[i]['type'];
+
                       $.ajax({
                           url: url,
                           //data:{"layer_icon":layer_icon, "data":data,"i":i},
                           data1:data,
                           indexValue: i,
                           layer_icon: layer_icon,
+                          type2: type1,
                           success: function(response) {
                           var layer_icon1 = this.layer_icon;
+                          var type = this.type2;
 
                             window[this.data1.results[this.indexValue]['layerTbl']] = new L.geoJson(response,
                         {
@@ -1200,23 +1416,267 @@ $.get(base_url+'/risk_profile/Layer',function(data){
    });
 
 
+   function getLayersInsidePolygon(coords,visible_layers){
+   console.log("visible layers  ",coords);
+     $('#filtered_layer_list').html('');
+     for(var i=0;i<visible_layers.length;i++){
+       //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
+         var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
+         //var filter4 = new L.Filter.Within('location', L.polygon([L.latLng(27.68307, 85.4635),L.latLng(27.7213, 85.4914),L.latLng(27.72418, 85.44831)]), L.CRS.EPSG4326);
+          //filter3.toGml();
+
+          //filter1.toGml();
+          //console.log(b);
+
+
+            window[visible_layers[i]['layerName']+"_filteredLayers"] = new L.WFST(
+                 {
+                   url: visible_layers[i]['url'],
+                   typeNS: visible_layers[i]["workspace"],
+                   typeName: visible_layers[i]['layerName'],
+                   crs: L.CRS.EPSG4326,
+                   geometryField: 'location',
+                   filter: filter3,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
+                   style: {
+                     color: 'blue',
+                     weight: 2
+                   }
+                 },
+                 new L.Format.GeoJSON({
+                   crs: L.CRS.EPSG4326,
+                   pointToLayer(geoJsonPoint, latlng) {
+                     console.log(latlng);
+                     const layer = new L.CircleMarker(latlng, {
+                       radius: 8,
+                     });
+                     return layer;
+                   },
+                 })
+
+             ).addTo(map).on('load', function (feature, layer) {
+               //  console.log(feature);
+                 //console.log(feature.target._layers[0].feature.properties);
+             //    console.log(feature.target._layers);
+                 $.each(feature.target._layers, function (i) {
+                 //  console.log(feature.target._layers[i].feature.properties.name)
+
+                   var list_item='<li><a href="#" target="">'+feature.target._layers[i].feature.properties.name+'</a></li>';
+
+                   $('#filtered_layer_list').append(list_item);
+
+                 });
+                 $('#filtered_layer_list_container').css('display','block');
+                 //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
+             });
+         map.removeLayer(window[visible_layers[i]['layerName']]);
+         $("."+visible_layers[i]['layerName']+"_activeclass").removeClass("active");
+         $('#'+visible_layers[i]['layerName']+'_legend').remove();
+
+     }
+
+
+
+ }
+
+
+  //draw start
+  drawnItems = new L.FeatureGroup();
+  map.addLayer(drawnItems);
+
+  var drawControl = new L.Control.Draw({
+        position:"topleft",
+        draw: {
+
+           // disable toolbar item by setting it to false
+           polyline: false,
+           circle: false, // Turns off this drawing tool
+           rectangle: false,
+           marker: false,
+           },
+           edit: {
+                    featureGroup: drawnItems
+                }
+
+        });
+
+  map.addControl(drawControl);
+
+  map.on('draw:created', function(e) {
+    var type = e.layerType,
+      layer = e.layer;
+    drawnItems.addLayer(layer);
+    layer.bindPopup("sadfdsa");
+    layer.on('click',function(){
+    //  console.log('delete clicked');
+      setTimeout(function(){
+
+        if($.isEmptyObject(drawnItems._layers)){
+          //  console.log($.isEmptyObject(drawnItems._layers));
+              for(var i=0;i<visible_layers.length;i++){
+
+                if(map.hasLayer(window[visible_layers[i]['layerName']+"_filteredLayers"])){
+
+                  map.removeLayer( window[visible_layers[i]['layerName']+"_filteredLayers"]);
+
+                }
+
+              }
+              visible_layers=[];
+              $('#filtered_layer_list').html('');
+              $('#filtered_layer_list_container').css('display','none');
+        }
+
+
+      }, 100);
+
+    });
+  //  console.log(e.layer.editing.latlngs[0][0]);
+    var coordinates=e.layer.editing.latlngs[0][0];
+    getLayersInsidePolygon(coordinates,visible_layers)
+    map.fitBounds(layer.getBounds());
+  });
+  //draw end
+
+  visible_layers=[];
   $(".CheckBox").on('click',function(){
+
+    var geo_url= $(this).attr("data-url");
+    var geo_workspace =$(this).attr("data-workspace");
     layerName=$(this).val();
-    console.log(layerName);
+    var subcat =$(this).attr("data-subcat");
+    var total_sum =$(this).attr("data-count");
+    subcat_array1=eval("["+subcat.split("[")[1].split("]")[0]+"]");
+    subcat_array=[];
+    for(var i=0;i<subcat_array1.length;i++){
+      subcat_array.push(subcat_array1[i]['type']);
+    }
+    console.log(subcat_array);
 
     if(map.hasLayer(window[layerName])){
-                      // console.log('remove');
+
        map.removeLayer(window[layerName]);
+       $("."+layerName+"_activeclass").removeClass("active");
+       $('#'+layerName+'_legend').remove();
+       for(var i=0;i<visible_layers.length;i++){
+         if(visible_layers[i].layerName==layerName){
+           visible_layers.splice(i,1);
+         }
+       }
 
            }else{
 
-                      // console.log('add');
-                map.addLayer(window[layerName]);
 
+      map.addLayer(window[layerName]);
+
+      //$("."+layerName+"_activeclass").addClass("active");
+      let url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&';
+    //  console.log(url)
+      //info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="'+url+'"/></div>';
+ //console.log(info._div.innerHTML)
+      visible_layers.push({"layerName":layerName,"url":geo_url,"workspace":geo_workspace})
+
+
+
+      response=window[layerName].toGeoJSON();
+      CreateChartData(response,subcat_array,null,'subcategory',total_sum,layerName)
     }
 
   });
 
+  //hazard creating html on click
+  $(".hazard_list").on('click',function(){
+  id=$(this).attr('id');
+  $('#hazard_popup_html').html(" ");
+    console.log("hazard_list");
+    var url =base_url+"/risk_profile/"+id ;
+    $.ajax({
+        url: url,
+        //data:{"layer_icon":layer_icon, "data":data,"i":i},
+
+        success: function(response) {
+          // console.log(response.title);
+          var hazard_pop_html="";
+          hazard_pop_html+='<div class="hazard-title">'+
+              '<h3><span class="humanitarian-icon-Flood"></span>'+response.title+'</h3>'+
+              '<button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>'+
+          '</div>'+
+          '<div class="hazard-content">'+
+
+              '<div class="hazard-acc">'+
+                  '<div id="accordion">';
+                var  i=0;
+          $.each( response.data, function( key, value ) {
+              var aria_expand='false';
+              var show='';
+              if(i==0){
+                aria_expand='true';
+                 show='show';
+              }
+               hazard_pop_html+='<div class="card">';
+               hazard_pop_html+='<div class="card-header" id="'+key+i+'">'+
+                '<h5>'+
+                    '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_'+i+'" aria-expanded="'+aria_expand+'" aria-controls="landslide_col_'+i+'">'+key+
+                        '<div class="icon-list">'+
+                            '<span class="ion ion-md-information-circle"></span>'+
+                            '<span class="ion ion-md-albums"></span>'+
+                          '  <span class="ion ion-md-contrast"></span>'+
+                            '<span class="ion ion-md-more">'+
+                                '<div class="more-list">'+
+                                    '<span class="ion ion-md-cloud-download"></span>'+
+                                    '<span class="ion ion-md-eye"></span>'+
+                                    '<span class="ion ion-md-remove-circle-outline"></span>'+
+                                '</div>'+
+                            '</span>'+
+                        '</div>'+
+                    '</a>'+
+                '</h5>'+
+
+            '</div>';
+                  // console.log( key + ": " + value );
+                  // console.log(response.data[key]);
+                  var dataaa=response.data[key];
+
+                    hazard_pop_html+='<div id="landslide_col_'+i+'" class="collapse '+show+'" data-parent="#accordion" aria-labelledby="'+key+i+'">'+
+                      '<div class="card-body">'+
+                          '<ul class="hazardDetail-list">';
+
+                    var j=0;
+
+                  $.each(dataaa, function( key, value ) {
+                    // console.log(dataaa[key].center);
+                    hazard_pop_html+='<li>'+
+                        '<div class="custom-control custom-radio">'+
+                          '  <input type="radio" class="custom-control-input hazard_geo" id="'+key+i+j+'" data-workspace="'+dataaa[key].workspace+'" data-center="'+dataaa[key].center+'" name="year17" value="customEx">'+
+                            '<label class="custom-control-label" for="'+key+i+j+'">'+dataaa[key].returnperiod+'</label>'+
+                        '</div>'+
+                    '</li>';
+                    j++;
+                    });
+
+                      hazard_pop_html+='</ul>';
+                  hazard_pop_html+='</div>';
+              hazard_pop_html+='</div>';
+              hazard_pop_html+='</div>';
+              i++;
+          });
+
+          hazard_pop_html+='</div>';
+          hazard_pop_html+='</div>';
+          hazard_pop_html+='</div>';
+
+          // console.log(hazard_pop_html);
+          $('#hazard_popup_html').html(hazard_pop_html);
+        }
+
+      });
+
+
+
+  });
+
+
+
+  //end hazard
 
 // end resource
 

@@ -16,5 +16,7 @@ urlpatterns = [
     path('hazard-resource',views.SchoolViewSet.as_view({'get':'list'}),name='hazard-resources'),
     path('Health',views.HealthGeojsonViewSet.as_view(),name='Health'),
     path('Newfile/<str:field>',views.NewtestfileViewSet.as_view(),name='Newfile'),
+    path('Flood',views.HazardfloodViewSet.as_view(),name='Flood'),
+    path('Earthquake',views.EarthquakefloodViewSet.as_view(),name='Earthquake'),
     # path('hospital',views.LayerViewset.as_view({'get':'list'}),name='hospital'),
 ]
