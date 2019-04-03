@@ -1,29 +1,25 @@
 .select2-container--default{
-    min-width: 160px !important;
-    max-width: 400px !important;
-    font-size: 16px !important;
+    min-width: 160px;
+    max-width: 300px;
+    font-size: 16px;
     border:none !important;
     width: auto !important;
 }
-.field-district .select2-selection--single,
-.field-wards .select2-selection--single,
-.field-municipality .select2-selection--single{
-    height:30.5667px !important;
-    box-shadow:inset 0 0 1px #c0afaf !important;
-    border-bottom-color:#ECF2F6 !important;
+.select2-selection--single,
+.select2-selection--multiple
+{
+    min-height:30.5667px;
+    box-shadow:inset 0 0 1px #c0afaf;
+    border-bottom-color:#ECF2F6;
     border: none !important;
-}
-.field-wards .select2-selection--multiple,
-.field-ward .select2-selection--single{
-    box-shadow:inset 0 0 1px #c0afaf !important;
-    border-bottom-color:#ECF2F6 !important;
-    border: none !important;
-    width: auto !important;
 }
 .field-district .select2-container--jet,
 .field-municipality .select2-container--jet,
-.field-wards .select2-container--jet, .field-ward .select2-container--jet{
-    display: none !important;
+.field-wards .select2-container--jet,
+.field-incidents .select2-container--jet,
+.field-ward .select2-container--jet
+{
+    display: none;
 }
 span[aria-labelledby="select2-id_loss-container"] {
   pointer-events: none !important;

@@ -21,6 +21,7 @@ from django_select2.forms import (
 )
 from .utils import get_similar_incident
 from django.utils.safestring import mark_safe
+from django.http import HttpResponseRedirect
 
 
 class DocumentInline(admin.TabularInline):
@@ -99,7 +100,7 @@ class IncidentAdmin(GeoModelAdmin):
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
     list_filter = ('hazard', 'source', 'verified', 'inducer')
     exclude = ('detail',)
-    actions = ("verify", 'approve')
+    actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)
 
     form = IncidentForm
@@ -156,6 +157,14 @@ class IncidentAdmin(GeoModelAdmin):
         if request.user.groups.filter(name='Nepal Police').exists():
             return queryset.filter(source__name='nepal_police')
         return queryset
+
+    def create_event(self, request, queryset):
+        incident_id_list = []
+        for incident in queryset:
+            incident_id_list.append(incident.id)
+        incident_ids = ",".join(repr(incident_id) for incident_id in incident_id_list)
+        return HttpResponseRedirect('/admin/event/event/add/?incident=%s' % incident_ids)
+    create_event.short_description = 'Create Event'
 
 
 admin.site.register(Document)
