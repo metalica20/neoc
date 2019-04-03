@@ -25,4 +25,4 @@ class InventorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Inventory
-        fields = '__all__'
+        exclude = ('created_on', 'modified_on')

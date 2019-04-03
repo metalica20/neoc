@@ -1,7 +1,7 @@
 from rest_flex_fields.serializers import FlexFieldsSerializerMixin
 from rest_polymorphic.serializers import PolymorphicSerializer
 from rest_framework import serializers
-from inventory.faker import get_items
+from inventory.serializers import InventorySerializer
 from .models import (
     Resource,
     Education,
@@ -14,53 +14,49 @@ from .models import (
 )
 
 
-class EducationSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+class ResourceBaseSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    expandable_fields = {
+        'inventories': (InventorySerializer, {'source': 'inventories', 'many': True}),
+    }
+
+
+class EducationSerializer(ResourceBaseSerializer):
     class Meta:
         model = Education
         exclude = ('detail', 'polymorphic_ctype')
 
 
-class HealthSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
-    inventories = serializers.SerializerMethodField()
-
-    def get_inventories(self, obj):
-        return get_items('health')
-
+class HealthSerializer(ResourceBaseSerializer):
     class Meta:
         model = Health
         exclude = ('detail', 'polymorphic_ctype')
 
 
-class FinanceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
-    inventories = serializers.SerializerMethodField()
-
-    def get_inventories(self, obj):
-        return get_items('finance')
-
+class FinanceSerializer(ResourceBaseSerializer):
     class Meta:
         model = Finance
         exclude = ('detail', 'polymorphic_ctype')
 
 
-class CommunicationSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+class CommunicationSerializer(ResourceBaseSerializer):
     class Meta:
         model = Communication
         exclude = ('detail', 'polymorphic_ctype')
 
 
-class GovernanceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+class GovernanceSerializer(ResourceBaseSerializer):
     class Meta:
         model = Governance
         exclude = ('detail', 'polymorphic_ctype')
 
 
-class TourismSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+class TourismSerializer(ResourceBaseSerializer):
     class Meta:
         model = Tourism
         exclude = ('detail', 'polymorphic_ctype')
 
 
-class IndustrySerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+class IndustrySerializer(ResourceBaseSerializer):
     class Meta:
         model = Industry
         exclude = ('detail', 'polymorphic_ctype')
@@ -72,6 +68,10 @@ class ResourceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer)
         slug_field='model',
         source='polymorphic_ctype',
     )
+
+    expandable_fields = {
+        'inventories': (InventorySerializer, {'source': 'inventories', 'many': True}),
+    }
 
     class Meta:
         model = Resource
