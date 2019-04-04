@@ -18,14 +18,50 @@
 
           // id=$('.hazard-details').attr('id');
           //
-
+            // console.log(id);
             id=$(this).closest(".hazard-details").attr('id');
             //$('#'+id).css('display','none');
             $('#'+id).hide(300);
 
-            console.log(id);
+
 
             //$(this).closest(".hazard-wrapper").addClass("collapse-leftSidebar");
+        });
+        $(".hazard-title ").on("click",'.average-open', function () {
+            $(".average-section").show(300);
+        });
+        $(".average-section").on("click",'.averageClose', function () {
+            $(this).closest(".average-section").hide(300);
+        });
+        $(".metaData-header").on("click",'.metaClose', function () {
+            $(this).closest(".metaData").hide(300);
+        });
+        $(".icon-list").on("click",'.ion-md-albums', function () {
+            $(this).closest('.card').find('.collapse ').removeClass('show');
+			$(".metaData").show(500);
+
+        });
+        $(".icon-list").on("click",'.ion-md-contrast', function () {
+            $(this).closest('.card').find('.collapse ').removeClass('show');
+			$(this).closest('.card').find('.range-box').toggle(300);
+
+        });
+        $(".buffer-list .buffer-header span").on("click", function () {
+            $(this).closest(".buffer-list").hide(500);
+        });
+        $(".legend-wrapper .buffer-header ").on("click","span", function () {
+            $(this).closest(".legend-wrapper").hide(500);
+        });
+        $(".updown").on("click",'i', function () {
+            $(this).closest('.card').find('.collapse ').removeClass('show');
+            var info =$(this).closest('.info');
+			var infoOut = $(this).closest(".updown").find('.info').slideToggle(500);
+			$("body").mouseup(function(e) {
+                if (!infoOut.is(e.target) && info.has(e.target).length === 0) {
+                    infoOut.fadeOut(300);
+                }
+            });
+
         });
 
 
@@ -70,7 +106,7 @@
             // ('#hazard_popup_html').removeClass('collapse-leftSidebar');
             //console.log(targetId);
             if (targetId == 'flood-1' ) {
-                $('#flood-expand').fadeIn(300);
+
                 $('#' + targetId).show(500);
                 $('#exposure_popup').hide(300);
                 $('#infa_exposure_popup').hide(300);
@@ -95,7 +131,7 @@
 
 
             } else if (targetId == 'capacity-popup' ) {
-                    $('#capacity-expand').fadeIn(300);
+
                     $('#' + targetId).show(500);
                     $('#exposure_popup').hide(300);
                     $('#infa_exposure_popup').hide(300);
@@ -104,7 +140,7 @@
 
             }
             else if (targetId == 'vulnery-1' ) {
-                $('#vulnery-expand').fadeIn(300);
+
                 $('#' + targetId).show(500);
                 $('#exposure_popup').hide(300);
                 $('#infa_exposure_popup').hide(300);
@@ -235,6 +271,16 @@
             railBorderRadius: "0"
         });
 
+        $(".average-content").slimScroll({
+            height: "500px",
+            color: "#8c909a",
+            position: "right",
+            size: "2px",
+            alwaysVisible: !1,
+            borderRadius: "3px",
+            railBorderRadius: "0"
+        });
+
         // $(".rightSidebar .sidebarwrapper").slimScroll({
         //     height: "100vh",
         //     color: "#8c909a",
@@ -245,11 +291,15 @@
         //     railBorderRadius: "0"
         // });
 
+        $("[type=range]").on("change ", function() {
+            $(".range-index").html($(this).val());
+         });
+
         $('.select2').select2();
 
-        $('.icon-list .ion-md-more').on('click', function(e) {
+        $('.icon-list ').on('click', '.ion-md-more', function(e) {
             e.preventDefault();
-            $(this).closest('.upicon').attr('data-toggle','');
+            $(this).closest('.card').find('.collapse ').removeClass('show');
             var extraArea =$(this).closest('.icon-list');
 			var outSideArea = $(this).closest('.icon-list').find('.more-list').toggle(300);
 			$("body").mouseup(function(e) {
