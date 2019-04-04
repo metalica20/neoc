@@ -11,6 +11,7 @@ from resources.serializers import (
     ResponseSerializer,
     DetailResponseSerializer,
 )
+from federal.models import Ward
 from .models import Incident
 from .filter_set import IncidentFilter
 from loss.models import Loss
@@ -36,7 +37,6 @@ class IncidentViewSet(FlexFieldsModelViewSet):
     ]
 
     def get_queryset(self):
-        # TODO: research why wards are queried by default
         queryset = Incident.objects.filter(
             verified=True,
             approved=True,
@@ -49,7 +49,13 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         if is_expanded(self.request, 'peoples'):
             loss_queryset = loss_queryset.prefetch_related('peoples')
         if is_expanded(self.request, 'wards'):
-            queryset = queryset.prefetch_related('wards')
+            queryset = queryset.prefetch_related(
+                Prefetch('wards',
+                         queryset=Ward.objects.defer(
+                             'boundary',
+                             'municipality__boundary'
+                         ))
+            )
         if is_expanded(self.request, 'families'):
             loss_queryset = loss_queryset.prefetch_related('families')
         if is_expanded(self.request, 'livestocks'):
@@ -72,7 +78,6 @@ class IncidentViewSet(FlexFieldsModelViewSet):
 
     @action(detail=True, name='Incident Response')
     def response(self, request, pk=None, version=None):
-        # TODO: dynmaic distance
         distance = self.request.query_params.get('distance', 10)  # km
         incident = self.get_object()
         resources = None
