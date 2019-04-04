@@ -28,10 +28,10 @@ class DocumentInline(admin.TabularInline):
     extra = 1
 
 
-class AddressForm(forms.ModelForm):
+class IncidentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance', None)
-        super(AddressForm, self).__init__(*args, **kwargs)
+        super(IncidentForm, self).__init__(*args, **kwargs)
         if instance:
             wards = Incident.objects.values('wards').filter(id=instance.id)
             if wards[0]['wards']:
@@ -102,7 +102,7 @@ class IncidentAdmin(GeoModelAdmin):
     actions = ("verify", 'approve')
     inlines = (DocumentInline,)
 
-    form = AddressForm
+    form = IncidentForm
 
     class Media:
         css = {
