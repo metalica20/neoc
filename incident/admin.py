@@ -93,6 +93,11 @@ class IncidentForm(forms.ModelForm):
             'description'
         )
 
+    def clean(self):
+        if not(self.cleaned_data.get("wards") or self.cleaned_data.get("point") or self.cleaned_data.get("polygon")):
+            raise forms.ValidationError("You need to add either wards or point or polygon")
+        return self.cleaned_data
+
 
 @admin.register(Incident)
 class IncidentAdmin(GeoModelAdmin):
@@ -164,6 +169,7 @@ class IncidentAdmin(GeoModelAdmin):
             incident_id_list.append(incident.id)
         incident_ids = ",".join(repr(incident_id) for incident_id in incident_id_list)
         return HttpResponseRedirect('/admin/event/event/add/?incident=%s' % incident_ids)
+
     create_event.short_description = 'Create Event'
 
 
