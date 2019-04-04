@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from realtime.models import Earthquake
 from django.contrib.gis.geos import Point
 from django.utils import timezone
+from alert.models import Alert
+from hazard.models import Hazard
 
 url = "http://seismonepal.gov.np/earthquakes/2019"
 table_selector = "tbody", {"id": "searchResultBody"}
@@ -51,10 +53,30 @@ def scrape_earthquakes():
         event_on = datetime.datetime.strptime(earthquake['date'] + ' ' + earthquake['time'], '%Y-%m-%d %H:%M')
 
         if event_on > latest_event:
-            Earthquake.objects.create(
+            earthquake = Earthquake(
                     event_on=event_on,
                     point=Point(float(earthquake['longitude']), float(earthquake['latitude'])),
                     magnitude=earthquake['magnitude'],
                     description=earthquake['remarks'],
                     address=earthquake['location'],
             )
+            earthquake.save()
+            create_alert(earthquake)
+
+
+def create_alert(earthquake):
+    if float(earthquake.magnitude) > 4:
+        value = int(float(earthquake.magnitude)-3)
+        alert_expiry = earthquake.event_on + datetime.timedelta(7*value)
+        hazard = Hazard.objects.get(title="Earthquake")
+        Alert.objects.create(
+            title="Earthquake at %s" % earthquake.address,
+            source="nsc",
+            description=earthquake.description,
+            hazard=hazard,
+            public=True,
+            verified=True,
+            started_on=earthquake.event_on,
+            expire_on=alert_expiry,
+            point=earthquake.point,
+        )

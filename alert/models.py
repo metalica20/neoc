@@ -12,10 +12,12 @@ class Alert(TimeStampedModal):
 
     DHM = 'dhm'
     OTHERS = 'other'
+    NSC = 'nsc'
 
     SOURCES = (
-        (DHM, 'dhm'),
+        (DHM, 'DHM'),
         (OTHERS, 'Other'),
+        (NSC, 'NSC')
     )
 
     title = models.CharField(max_length=255)
