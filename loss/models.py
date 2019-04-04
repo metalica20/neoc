@@ -3,6 +3,7 @@ from django.contrib.postgres.fields import JSONField
 from bipad.models import TimeStampedModal, DistinctSum
 from django.db.models import Q
 from django.db.models.functions import Coalesce
+from resources.models import Resource
 
 
 class StatManager(models.Manager):
@@ -88,6 +89,7 @@ class People(TimeStampedModal):
         null=True, blank=True, default=None,
         choices=GENDERS
     )
+    address = models.CharField(max_length=255, null=True, blank=True, default=None)
     below_poverty = models.BooleanField(null=True, blank=True, default=None)
     disabled = models.BooleanField(null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
@@ -113,6 +115,7 @@ class Family(TimeStampedModal):
 
     title = models.CharField(max_length=255, null=True,
                              blank=True, default=None)
+    address = models.CharField(max_length=255, null=True, blank=True, default=None)
     status = models.CharField(max_length=25, choices=STATUS)
     below_poverty = models.BooleanField(null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
@@ -156,6 +159,11 @@ class Infrastructure(TimeStampedModal):
     type = models.ForeignKey(
         InfrastructureType, related_name='infrastructures', on_delete=models.PROTECT)
     status = models.CharField(max_length=25, choices=STATUS)
+    resource = models.ForeignKey(
+        Resource,
+        null=True, blank=True, default=None,
+        on_delete=models.SET_NULL
+    )
     equipment_value = models.PositiveIntegerField(
         null=True, blank=True, default=None
     )
