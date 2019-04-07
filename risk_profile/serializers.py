@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk
 from incident.models import Incident
 from resources.models import Resource
 from hazard.models import Hazard, HazardResources
@@ -48,6 +48,12 @@ class IncidentSerializer(serializers.ModelSerializer):
     #         liting.append(item.__class__)
     #     # data = django.core.serializers.serialize('json', list(hazard_resource_queryset))
     #     return list
+
+class RiskSerializer(serializers.ModelSerializer):
+    #resources = serializers.SerializerMethodField('get_hazard_resources')
+    class Meta:
+        model= Risk
+        fields = '__all__'
 
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:

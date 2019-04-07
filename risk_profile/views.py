@@ -1,8 +1,8 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,Health,SocioEconomicGapanapa
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,Health,SocioEconomicGapanapa,Risk
 from incident.models import Incident
 from resources.models import Resource
-from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -215,6 +215,9 @@ class IncidentApiView(viewsets.ModelViewSet):
     #     # incidentjson=json.loads(serializers)
     #     return Response(datajson)
 
+class RiskApiView(viewsets.ModelViewSet):
+    serializer_class=RiskSerializer
+    queryset = Risk.objects.all()
 
 class NewtestfileViewSet(views.APIView):
 

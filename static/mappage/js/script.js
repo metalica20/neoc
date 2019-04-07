@@ -19,7 +19,7 @@
           // id=$('.hazard-details').attr('id');
           //
             // console.log(id);
-            id=$(this).closest(".hazard-details").attr('id');
+          var  id=$(this).closest(".hazard-details").attr('id');
             //$('#'+id).css('display','none');
             $('#'+id).hide(300);
 
@@ -49,7 +49,8 @@
         $(".buffer-list .buffer-header span").on("click", function () {
             $(this).closest(".buffer-list").hide(500);
         });
-        $(".legend-wrapper .buffer-header ").on("click","span", function () {
+        $(".legend-list").on("click",".ion-md-close", function () {
+
             $(this).closest(".legend-wrapper").hide(500);
         });
         $(".updown").on("click",'i', function () {
@@ -112,6 +113,7 @@
                 $('#infa_exposure_popup').hide(300);
                 $('#capacity-popup').hide(300);
                 $('#vulnery-1').hide(300);
+                $('#hdi_vul').hide(300);
 
               } else if (targetId == 'exposure_popup' ) {
                       $('#infa_exposure_popup').hide(300);
@@ -119,6 +121,7 @@
                       $('#flood-1').hide(300);
                       $('#capacity-popup').hide(300);
                       $('#vulnery-1').hide(300);
+                      $('#hdi_vul').hide(300);
 
 
             } else if (targetId == 'infa_exposure_popup' ) {
@@ -127,6 +130,7 @@
                             $('#flood-1').hide(300);
                             $('#capacity-popup').hide(300);
                             $('#vulnery-1').hide(300);
+                            $('#hdi_vul').hide(300);
 
 
 
@@ -137,6 +141,7 @@
                     $('#infa_exposure_popup').hide(300);
                     $('#flood-1').hide(300);
                     $('#vulnery-1').hide(300);
+                    $('#hdi_vul').hide(300);
 
             }
             else if (targetId == 'vulnery-1' ) {
@@ -146,10 +151,22 @@
                 $('#infa_exposure_popup').hide(300);
                 $('#flood-1').hide(300);
                 $('#capacity-popup').hide(300);
+                $('#hdi_vul').hide(300);
 
 
 
-        }
+        }else if (targetId == 'hdi_vul' ) {
+
+            $('#' + targetId).show(500);
+            $('#exposure_popup').hide(300);
+            $('#infa_exposure_popup').hide(300);
+            $('#flood-1').hide(300);
+            $('#capacity-popup').hide(300);
+            $('#vulnery-1').hide(300);
+
+
+
+    }
             // $('#flood-expand').fadeIn(300);
             // $('#capacity-expand').fadeIn(300);
             // $('#vulnery-expand').fadeIn(300);
