@@ -18,5 +18,6 @@ urlpatterns = [
     path('Newfile/<str:field>',views.NewtestfileViewSet.as_view(),name='Newfile'),
     path('Flood',views.HazardfloodViewSet.as_view(),name='Flood'),
     path('Earthquake',views.EarthquakefloodViewSet.as_view(),name='Earthquake'),
+    path('Risk',views.RiskApiView.as_view({'get':'list'}),name='Risk'),
     # path('hospital',views.LayerViewset.as_view({'get':'list'}),name='hospital'),
 ]

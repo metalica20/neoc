@@ -266,7 +266,7 @@ button {
   font-size: 1rem;
 }
 .mapwrap .leaflet-left {
-  display: none;
+  /* display: none; */
 }
 .mapwrap .progress-warpper {
   margin-bottom: 10px;
@@ -1619,7 +1619,12 @@ button {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.buffer-wrapper ul li::before, .legend-list .legend-wrapper ul li::before {
+.buffer-wrapper ul li span, .legend-list .legend-wrapper ul li span{
+  margin-right: 10px;
+  width: 13px;
+  height: 13px;
+}
+/* .buffer-wrapper ul li::before, .legend-list .legend-wrapper ul li::before {
   content: "";
   margin-right: 10px;
   border-radius: 50%;
@@ -1646,7 +1651,7 @@ button {
 }
 .buffer-wrapper ul li:hover, .legend-list .legend-wrapper ul li:hover {
   background-color: #e0e0e0;
-}
+} */
 
 .buffer-list {
   position: absolute;

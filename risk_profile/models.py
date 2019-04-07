@@ -248,6 +248,15 @@ class Education(models.Model):
         return self.name
 
 
+class Risk(models.Model):
+    district=models.CharField(max_length=550,null=True, blank=True, default=None)
+    remoteness=models.CharField(max_length=550,null=True, blank=True, default=None)
+    hdi=models.CharField(max_length=550,null=True, blank=True, default=None)
+    riskScore=models.CharField(max_length=550,null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.district
+
 
  #end   model used
 

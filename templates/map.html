@@ -49,7 +49,7 @@
             <div id="mapid"></div>
 
             <!-- right navigation -->
-            <div class="right-nav">
+            <!-- <div class="right-nav">
                 <div class="nav-wrap">
                     <ul>
                         <li><a href="#"><i class="ion ion-md-home"></i><span>Dashboard</span></a></li>
@@ -65,7 +65,9 @@
                 <div class="buffer-icon">
                     <span class="ion ion-logo-buffer"></span>
                 </div>
-            </div>
+            </div> -->
+
+
             <div class="expand-layer">
                 <span class="expand-icon" id="flood-expand">
                     <i class="ion ion-md-funnel"></i>
@@ -95,7 +97,7 @@
             </div>
             <!-- legend layer list -->
             <div class="legend-list">
-                <div class="legend-wrapper">
+                <!-- <div class="legend-wrapper">
                     <div class="buffer-header">
                         <h4>Legend</h4>
                         <span><i class="ion ion-md-close"></i></span>
@@ -107,20 +109,8 @@
                         <li class="satelite"><a href="#">satelite</a></li>
                         <li class="road"><a href="#">Roads</a></li>
                     </ul>
-                </div>
-                <div class="legend-wrapper">
-                    <div class="buffer-header">
-                        <h4>Legend</h4>
-                        <span><i class="ion ion-md-close"></i></span>
-                    </div>
-                    <ul>
-                        <li class="light"><a href="#">Light</a></li>
-                        <li class="street"><a href="#">street</a></li>
-                        <li class="outdoor"><a href="#">outdoor</a></li>
-                        <li class="satelite"><a href="#">satelite</a></li>
-                        <li class="road"><a href="#">Roads</a></li>
-                    </ul>
-                </div>
+                </div> -->
+
 
             </div>
 
@@ -304,14 +294,14 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="HDI" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="HDI">HDI </label>
+                                                    <input type="radio" class="custom-control-input" id="HDI"  name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="HDI" data-tab="hdi_vul">HDI </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Helipad"></span>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="GDP" name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input admin_bound" id="GDP" data-admin="municipality" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="GDP" data-tab="vulnery-1">Access To Communication</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
@@ -670,7 +660,7 @@
 
    <!-- drone part popup -->
    <div class="hazard-details" id="exposure_popup">
-       <div class="hazard-wrapper" id="exposure_popup">
+       <div class="hazard-wrapper">
            <div class="hazard-title">
                <h3><span class="humanitarian-icon-Flood"></span>Drone Images</h3>
                <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
@@ -718,7 +708,7 @@
      <!-- Infrastructes part popup -->
 
      <div class="hazard-details" id="infa_exposure_popup">
-         <div class="hazard-wrapper" id="infa_exposure_popup">
+         <div class="hazard-wrapper" >
              <div class="hazard-title">
                  <h3><span class="humanitarian-icon-Flood"></span>Infrastructures</h3>
                  <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
@@ -772,10 +762,16 @@
 
    <!-- popup exposure end -->
 
-            <!-- capacity popup -->
+    <!-- capacity popup -->
             <div class="hazard-details" id="capacity-popup">
 
             </div>
+  <!-- end capacity popup -->
+
+
+      <!-- vulnerability popup -->
+
+              <!-- communication popup -->
 
             <div class="hazard-details" id="vulnery-1">
                 <div class="hazard-wrapper">
@@ -847,6 +843,84 @@
                 </div>
             </div>
 
+<!-- communication popup end -->
+
+ <!-- hdi start-->
+
+
+ <div class="hazard-details" id="hdi_vul">
+     <div class="hazard-wrapper" >
+         <div class="hazard-title">
+             <h3><span class="humanitarian-icon-Flood"></span>HDI</h3>
+             <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+         </div>
+         <div class="hazard-content">
+             <!-- <h4>Hazard</h4> -->
+             <div class="hazard-acc">
+                 <div id="accordion">
+
+                     <div class="card">
+                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                             <div class="card-body">
+                                 <ul class="hazardDetail-list">
+                                     <li class="active">
+                                         <div class="custom-control custom-radio">
+                                             <input type="radio" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                             <label class="custom-control-label" for="hdi_national">National Level </label>
+                                         </div>
+                                     </li>
+                                   </ul>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="card">
+                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                             <div class="card-body">
+                                 <ul class="hazardDetail-list">
+                                     <li class="active">
+                                         <div class="custom-control custom-radio">
+                                             <input type="radio" class="custom-control-input admin_bound vul_hdi" data-score="hdi" data-admin="district"  id="hdi_district" name="hdi_district" value="customEx">
+                                             <label class="custom-control-label" for="hdi_district">District Level  </label>
+                                         </div>
+                                     </li>
+                                   </ul>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="card">
+                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                             <div class="card-body">
+                                 <ul class="hazardDetail-list">
+                                     <li class="active">
+                                         <div class="custom-control custom-radio">
+                                             <input type="radio" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                             <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                         </div>
+                                     </li>
+                                   </ul>
+                             </div>
+                         </div>
+                     </div>
+
+
+
+
+                 </div>
+             </div>
+         </div>
+       </div>
+   </div>
+
+
+
+
+ <!-- hdi end -->
+
+
+      <!-- vulnerability popup end -->
+
             <!-- rightSidebar end -->
             <div class="data-sidebar">
                 <div class="sidebarwrapper">
@@ -903,7 +977,8 @@
 
 
     <!-- js library start -->
-    <script src="{% static 'mappage/js/jquery-3.3.1.min.js' %}"></script>
+    <!-- <script src="{% static 'mappage/js/jquery-3.3.1.min.js' %}"></script> -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="{% static 'mappage/js/select2.min.js' %}"></script>
     {% comment %} <script src="{% static 'mappage/js/popper.min.js' %}"></script> {% endcomment %}
     <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script>
@@ -911,7 +986,7 @@
         crossorigin=""></script>
     <script src="{% static 'mappage/js/jquery.slimscroll.min.js' %}"></script>
    <!-- <script src="{% static 'mappage/js/map.js' %}"></script> -->
-    <script src="{% static 'mappage/js/script.js' %}"></script>
+
     <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
     <script src="{% static 'mappage/js/chart.js' %}"></script>
     <script src="{% static 'mappage/js/d3.min.js' %}"></script>
@@ -920,15 +995,18 @@
   <script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
   <script src="{% static 'mappage/js/proj4.js' %}"></script>
   <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
-  <script src="{% static 'mappage/js/range-slider.js' %}"></script>
+
   <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
   <!-- chart-pie -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!-- FusionCharts -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
       <!-- chart -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+<script src="{% static 'mappage/js/script.js' %}"></script>
+
 
 
 
@@ -943,8 +1021,8 @@
    {% comment %} <script src="js/map.js"></script> {% endcomment %}
    <script>
 
-           var base_url= 'http://139.59.67.104:8004';
-           //var base_url = 'http://localhost:8000';
+           //var base_url= 'http://139.59.67.104:8004';
+           var base_url = 'http://localhost:8000';
 
     $(document).ready(function(){
 
@@ -995,30 +1073,54 @@
 
 //end initializing map
 
-//vulnerability map Layer
+//admin boundary layers map Layer
 
           fed_url_prov="https://bipad.nepware.com/api/v1/municipality/?format=geojson";
+          fed_url_district="https://bipad.nepware.com/api/v1/district/?format=geojson";
 
 
 
             //console.log(response);
 
-            var province = new L.geoJson.ajax(fed_url_prov,
-              {
+            municipality = new L.geoJson.ajax(fed_url_prov,
+             {
 
-                  onEachFeature: function (feature, layer) {
-                    layer.setStyle({
-                      fillColor:"blue",
-                      fillOpacity:0.1,
-                      weight: 1,
-                      opacity: 0.2,
-                      color: 'black',
+                 onEachFeature: function (feature, layer) {
+                   layer.setStyle({
+                     fillColor:"blue",
+                     fillOpacity:0.1,
+                     weight: 1,
+                     opacity: 0.2,
+                     color: 'black',
           //dashArray: '3'
 
-        });
-                  }
+                       });
+                 }
 
-            }).addTo(map);
+           });
+
+  //map.addLayer(province);
+
+  district = new L.geoJson.ajax(fed_url_district,{
+
+       onEachFeature: function (feature, layer) {
+         layer.setStyle({
+           fillColor:"blue",
+           fillOpacity:0.1,
+           weight: 1,
+           opacity: 0.2,
+           color: 'black',
+//dashArray: '3'
+
+             });
+       }
+
+ });
+
+ //map.addLayer(district);
+
+
+  //admin boundary layers map Layer end
 
 //required functions
 
@@ -1046,8 +1148,36 @@
 
                 }
 
+
+                function riskgetColor(d) {
+                           //getting color according to data density
+                  return d > 1 ? '#800026' :
+                         d > 0.9  ? '#BD0026' :
+                         d > 0.8  ? '#E31A1C' :
+                         d > 0.6  ? '#FC4E2A' :
+                         d > 0.4   ? '#FD8D3C' :
+                         d > 0.2   ? '#FEB24C' :
+                         d > 0   ? '#FED976' :
+                                    '#FFEDA0';
+                     }
+
+                     function riskStyle(number) {   //creating style
+
+                           return {
+                           fillColor: riskgetColor(number),
+                           weight: 2,
+                           opacity: 1,
+                           color: 'white',
+                           dashArray: '3',
+                           fillOpacity: 0.7
+                         };
+
+                     }
+
+
           function loadSocioData(socioid){     //loding socia data in map layers
             //console.log(feature);
+
 
             fed_url_api=base_url+"/risk_profile/Newfile/"+socioid;
 
@@ -1058,7 +1188,7 @@
                               url: fed_url_api,
                               success: function(result) {
                                 //console.log(result);
-                                var features = province._layers;
+                                var features = municipality._layers;
                                 $.each(features, function (feature) {
                                   for(var i=0;i<result.data.length;i++){
                                     if(features[feature].feature.properties.title==result.data[i]["name"]){
@@ -1083,9 +1213,92 @@
                         }
                       });
 
+                      var legend_html='<div class="legend-wrapper">'+
+                          '<div class="buffer-header">'+
+                              '<h4>'+socioid+'</h4>'+
+                              '<span><i class="ion ion-md-close"></i></span>'+
+                          '</div>'+
+                          '<ul>'+
+                              '<li class="satelite"><span style="background-color:#FFEDA0;"></span><a href="#">0-10</a></li>'+
+                              '<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">10-20</a></li>'+
+                              '<li class="outdoor"><span style="background-color:#FEB24C;"></span><a href="#">20-50</a></li>'+
+                              '<li class="street"><span style="background-color:#FD8D3C;"></span><a href="#">50-100</a></li>'+
+                              '<li class="light"><span style="background-color:#FC4E2A;"></span><a href="#">100-200</a></li>'+
+                              '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">200-500</a></li>'+
+                              '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">500-1000 </a></li>'+
+                              '<li class="light"><span style="background-color:#800026;"></span><a href="#">1000+</a></li>'+
+
+                          '</ul>'+
+                      '</div>';
+
+                      $('.legend-list').append(legend_html);
+
+
           }
 
 
+
+          function loadHdiData(risk_id){     //loding socia data in map layers
+            //console.log(feature);
+
+            fed_url_api=base_url+"/risk_profile/Risk";
+
+                          // socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
+                          //console.log(socioid1);
+                          $.ajax({
+                              // async:false,
+                              url: fed_url_api,
+                              success: function(result) {
+                                console.log(result.results[1][risk_id]);
+                                var features = district._layers;
+                                $.each(features, function (feature) {
+                                  for(var i=0;i<result.results.length;i++){
+                                    if(features[feature].feature.properties.title==result.results[i]['district']){
+                                      //console.log("entered if");
+                                      features[feature].setStyle(riskStyle(parseFloat(result.results[i][risk_id])));
+                                      break;
+                                    }
+                                    else{
+                                      features[feature].setStyle(riskStyle(1));
+                                    }
+
+                                  }
+
+
+
+                                });
+
+
+
+
+
+                        }
+                      });
+
+
+            //creating legend-list
+
+            var legend_html='<div class="legend-wrapper">'+
+                '<div class="buffer-header">'+
+                    '<h4>'+risk_id+'</h4>'+
+                    '<span><i class="ion ion-md-close"></i></span>'+
+                '</div>'+
+                '<ul>'+
+                    '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0-0.2</a></li>'+
+                    '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.2-0.4</a></li>'+
+                    '<li class="outdoor"><span style="background-color:#FC4E2A;"></span><a href="#">0.4-0.6</a></li>'+
+                    '<li class="street"><span style="background-color:#E31A1C;"></span><a href="#">0.6--0.8</a></li>'+
+                    '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">0.8-0.9</a></li>'+
+                    '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 1+ </a></li>'+
+
+                '</ul>'+
+            '</div>';
+
+            $('.legend-list').append(legend_html);
+
+            //legend end
+
+          }
 
 function createSubcategoryChart(data,total_sum,layerName,filter_resources){
 
@@ -1131,8 +1344,8 @@ for(var i=0; i<data.length;i++){
 
         filter_arr=filter_resources.split(",");
         console.log(filter_arr);
-        html+='<h4 style="display:none;">>Filter</h4>';
-        html+='<div class="filter-list" style="display:none;">';
+        html+='<h4>Filter</h4>';
+        html+='<div class="filter-list">';
             html+='<ul>';
         for(var i=0;i<filter_arr.length;i++){
                 html+='<li>'+
@@ -1163,6 +1376,18 @@ for(var i=0; i<data.length;i++){
       html+='</div>';
 
 $('#capacity-popup').html(html);
+
+$(".slider-range").slider({
+    range: true,
+    min: 0,
+    max: 1000,
+    values: [300, 600],
+    slide: function (event, ui) {
+        // find any element with class .amount WITHIN scope of $this
+        $(".amount").val( ui.values[0] + " - " + ui.values[1]);
+    }
+});
+$(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
 
 }
 
@@ -1227,15 +1452,28 @@ $('#capacity-popup').html(html);
 
 // required functions end
 
-
+//acccess to communication
 $(".socio").on('click',function(){
 
   var id = $(this).attr("id");
+  $('.legend-list').html('');
   //console.log(id);
   loadSocioData(id);
 
 
 });
+$(".vul_hdi").on('click',function(){
+
+  var id = $(this).attr("data-score");
+  $('.legend-list').html('');
+  //console.log(id);
+  loadHdiData(id);
+
+
+});
+
+//end access
+
 //end vulnerability map Layer
 
 //start of hazard layer
@@ -1555,6 +1793,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
   visible_layers=[];
   resource_filtered_global=null;
+
+  //resource layer map add
   $(".CheckBox").on('click',function(){
     console.log("changed");
     //sub cat data in map
@@ -1781,7 +2021,7 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
    }else{
      console.log("add subcatttttttttttt");
      console.log(window[sub_layerName]);
-     pharmacy.addTo(map);
+     // pharmacy.addTo(map);
      map.addLayer(window[sub_layerName]);
 
    }
@@ -1842,10 +2082,32 @@ window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
 //resource filter end
 
 
+//loading adminstrative boundary accordin to need
+
+$('.admin_bound').on('click',function(){
+console.log('ddatadasd');
+var admin_layer=$(this).attr('data-admin');
+console.log(admin_layer)
+
+if(admin_layer=='municipality'){
+  $('.legend-list').html('');
+  map.addLayer(window[admin_layer]);
+  map.removeLayer(window['district']);
+}else{
+  map.addLayer(window[admin_layer]);
+  map.removeLayer(window['municipality']);
+}
+
+
+});
+
+
+
+//end
     });//document end
  </script>
 
-
+<script src="{% static 'mappage/js/range-slider.js' %}"></script>
 </body>
 
 </html>
