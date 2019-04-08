@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.gis.db.models.functions import Centroid
 from django.contrib.gis.db.models import Extent
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_control
@@ -33,7 +34,10 @@ from .filters import WardFilter
 class ProvinceViewSet(FlexFieldsModelViewSet):
     renderer_classes = (JSONRenderer, GeoJSONRenderer, BrowsableAPIRenderer)
     search_fields = ('title',)
-    queryset = Province.objects.annotate(bbox=Extent('boundary')).all()
+    queryset = Province.objects.annotate(
+        bbox=Extent('boundary'),
+        centroid=Centroid('boundary'),
+    ).all()
 
     def get_serializer_class(self):
         # TODO: fix me
@@ -54,7 +58,10 @@ class DistrictViewSet(FlexFieldsModelViewSet):
     permit_list_expands = ['province']
 
     def get_queryset(self):
-        queryset = District.objects.annotate(bbox=Extent('boundary')).all()
+        queryset = District.objects.annotate(
+            bbox=Extent('boundary'),
+            centroid=Centroid('boundary'),
+        ).all()
         if is_expanded(self.request, 'province'):
             queryset = queryset.select_related('province')
         return queryset
@@ -78,7 +85,10 @@ class MunicipalityViewSet(FlexFieldsModelViewSet):
     permit_list_expands = ['district', 'province']
 
     def get_queryset(self):
-        queryset = Municipality.objects.annotate(bbox=Extent('boundary')).all()
+        queryset = Municipality.objects.annotate(
+            bbox=Extent('boundary'),
+            centroid=Centroid('boundary'),
+        ).all()
         if is_expanded(self.request, 'district'):
             queryset = queryset.select_related('district')
         if is_expanded(self.request, 'province'):
@@ -104,7 +114,10 @@ class WardViewSet(FlexFieldsModelViewSet):
     permit_list_expands = ['municipality', 'district', 'province']
 
     def get_queryset(self):
-        queryset = Ward.objects.annotate(bbox=Extent('boundary')).all()
+        queryset = Ward.objects.annotate(
+            bbox=Extent('boundary'),
+            centroid=Centroid('boundary'),
+        ).all()
         if is_expanded(self.request, 'municipality'):
             queryset = queryset.select_related('municipality')
         if is_expanded(self.request, 'district'):
