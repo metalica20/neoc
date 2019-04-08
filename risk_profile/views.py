@@ -21,17 +21,20 @@ from hazard.models import Hazard, HazardResources
 # socio-economic category api
 
 class SociocookViewSet(viewsets.ModelViewSet):
+    permission_classes=[]
     serializer_class=SociocookSerializer
     queryset=SocioEconomicGapanapa.objects.all()
 
 # end
 
 class HospitalViewSet(viewsets.ModelViewSet):
+    permission_classes=[]
     serializer_class=HospitalSerializer
     queryset=Hospital.objects.all()
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
+    permission_classes=[]
     serializer_class=IncidentSerializer
     queryset=Resource.objects.select_related().all()
     # print(GEOSGeometry('{ "type": "Point", "coordinates": [ 5.000000, 23.000000 ] }'))
@@ -39,7 +42,7 @@ class SchoolViewSet(viewsets.ModelViewSet):
     # print(a.geom_type)
 
 class HospitalGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         json_d={}
         serializers=serialize('geojson',Hospital.objects.all(),geometry_field='location',fields=('pk','fid','name','district','type'))
@@ -50,7 +53,7 @@ class HospitalGeojsonViewSet(views.APIView):
         return Response(hospitalgeojson)
 
 class MarketCenterGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         json_d={}
         serializers=serialize('geojson',MarketCenter.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
@@ -61,7 +64,7 @@ class MarketCenterGeojsonViewSet(views.APIView):
         return Response(MarketCentergeojson)
 
 # class AirportGeojsonViewSet(views.APIView):
-#     permission_classes=(IsAuthenticated,)
+#     permission_classes=[]
 #     def get(self,request,*args,**kwargs):
 #         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('name'))
 #         # print(serializers)
@@ -69,7 +72,7 @@ class MarketCenterGeojsonViewSet(views.APIView):
 #         return Response(Airportgeojson)
 
 class AirportGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('pk','name'))
         # print(serializers)
@@ -77,7 +80,7 @@ class AirportGeojsonViewSet(views.APIView):
         return Response(Airportgeojson)
 
 class BridgeGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Bridge.objects.all(),geometry_field='location',fields=('pk','name'))
         # print(serializers)
@@ -85,7 +88,7 @@ class BridgeGeojsonViewSet(views.APIView):
         return Response(Bridgegeojson)
 
 class PoliceGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Policestation.objects.all(),geometry_field='location',fields=('pk','name'))
         # print(serializers)
@@ -93,7 +96,7 @@ class PoliceGeojsonViewSet(views.APIView):
         return Response(Policestationgeojson)
 
 class EducationGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Education.objects.all(),geometry_field='location',fields=('pk','name','operator_type','opening_hours','phone_number','email_address','number_of_employees','number_of_students','comments','type'))
         # print(serializers)
@@ -101,12 +104,13 @@ class EducationGeojsonViewSet(views.APIView):
         return Response(Educationgeojson)
 
 class LayerViewset(viewsets.ModelViewSet):
+    permission_classes=[]
     serializer_class=LayerTableSerializer
     queryset=LayerTable.objects.all()
 
 
 class BankGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Bank.objects.all(),geometry_field='location',fields=('pk','name','phone_number','email_address','website','opening_hours','operator_type','bank_type','atm_available','Comments'))
         # print(serializers)
@@ -114,7 +118,7 @@ class BankGeojsonViewSet(views.APIView):
         return Response(Bankgeojson)
 
 class SettlementsGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Settlements.objects.all(),geometry_field='location',fields=('pk','name'))
         # print(serializers)
@@ -123,7 +127,7 @@ class SettlementsGeojsonViewSet(views.APIView):
 
 
 class HealthGeojsonViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         serializers=serialize('geojson',Health.objects.all(),geometry_field='location',fields=('name','operator_type','opening_hours','phone_number','email_address','emergency_service','icu','nicu','operating_theatre','x_ray','ambulance_service','number_of_staff','number_of_Beds','Comments','type'))
         # print(serializers)
@@ -193,6 +197,7 @@ def count_update(modelname):
 
 
 class IncidentApiView(viewsets.ModelViewSet):
+    permission_classes=[]
     serializer_class=IncidentSerializer
     queryset = HazardResources.objects.all()
     # permission_classes=(IsAuthenticated,)
@@ -216,12 +221,12 @@ class IncidentApiView(viewsets.ModelViewSet):
     #     return Response(datajson)
 
 class RiskApiView(viewsets.ModelViewSet):
+    permission_classes=[]
     serializer_class=RiskSerializer
     queryset = Risk.objects.all()
 
 class NewtestfileViewSet(views.APIView):
-
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         a=self.kwargs['field']
 
@@ -248,7 +253,7 @@ class NewtestfileViewSet(views.APIView):
 
 
 class HazardfloodViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         # flood={}
         # basins={}
@@ -284,7 +289,7 @@ class HazardfloodViewSet(views.APIView):
 
 
 class EarthquakefloodViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
     def get(self,request,*args,**kwargs):
         # flood={}
         # basins={}

@@ -20,7 +20,7 @@ from django.shortcuts import render
 # Create your views here.
 
 class HazardResourceViewSet(views.APIView):
-    permission_classes=(IsAuthenticated,)
+    permission_classes=[]
 
     def get(self,request,*args,**kwargs):
         longitude = self.kwargs['long']
