@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from rest_framework_gis.serializers import GeoFeatureModelSerializer
+from rest_framework_gis.serializers import (
+    GeoFeatureModelSerializer,
+    GeometryField,
+)
 from rest_flex_fields.serializers import FlexFieldsSerializerMixin
 from .models import Province, District, Municipality, Ward
 
@@ -13,6 +16,7 @@ class ProvinceGeoSerializer(GeoFeatureModelSerializer):
 
 class ProvinceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     bbox = serializers.ListField(read_only=True)
+    centroid = GeometryField(read_only=True)
 
     class Meta:
         model = Province
@@ -28,6 +32,7 @@ class DistrictGeoSerializer(GeoFeatureModelSerializer):
 
 class DistrictSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     bbox = serializers.ListField(read_only=True)
+    centroid = GeometryField(read_only=True)
 
     class Meta:
         model = District
@@ -47,6 +52,7 @@ class MunicipalityGeoSerializer(GeoFeatureModelSerializer):
 
 class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     bbox = serializers.ListField(read_only=True)
+    centroid = GeometryField(read_only=True)
 
     class Meta:
         model = Municipality
@@ -60,6 +66,7 @@ class MunicipalitySerializer(FlexFieldsSerializerMixin, serializers.ModelSeriali
 
 class WardSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     bbox = serializers.ListField(read_only=True)
+    centroid = GeometryField(read_only=True)
 
     class Meta:
         model = Ward
