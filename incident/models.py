@@ -5,6 +5,7 @@ from hazard.models import Hazard
 from event.models import Event
 from federal.models import Ward
 from django.contrib.postgres.fields import JSONField
+from django.contrib.auth.models import User
 
 
 class IncidentSource(models.Model):
@@ -65,6 +66,20 @@ class Incident(TimeStampedModal):
         max_length=255, null=True, blank=True, default=None)
     old = models.BooleanField(default=False, editable=False)
     detail = JSONField(null=True, blank=True, default=None)
+    created_by = models.ForeignKey(
+        User,
+        editable=False,
+        related_name='incidents_created',
+        on_delete=models.CASCADE,
+        null=True, blank=True, default=None
+    )
+    updated_by = models.ForeignKey(
+        User,
+        editable=False,
+        related_name='incidents_updated',
+        on_delete=models.CASCADE,
+        null=True, blank=True, default=None
+    )
 
     def __str__(self):
         return self.title
