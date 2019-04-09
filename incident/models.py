@@ -17,21 +17,10 @@ class IncidentSource(models.Model):
 
 
 class Incident(TimeStampedModal):
-    NON_NATURAL = 'non_natural'
-    NATURAL = 'natural'
-
-    INDUCERS = (
-        (NON_NATURAL, 'Non Natural'),
-        (NATURAL, 'Natural'),
-    )
 
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True, default=None)
     cause = models.TextField(null=True, blank=True, default=None)
-    inducer = models.CharField(
-        max_length=25, choices=INDUCERS,
-        null=True, blank=True, default=None
-    )
     source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT)
     verified = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
