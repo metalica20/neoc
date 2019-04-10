@@ -77,7 +77,6 @@ class IncidentForm(forms.ModelForm):
             'source',
             'verified',
             'approved',
-            'inducer',
             'point',
             'polygon',
             'incident_on',
@@ -102,7 +101,7 @@ class IncidentForm(forms.ModelForm):
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
-    list_filter = ('hazard', 'source', 'verified', 'inducer')
+    list_filter = ('hazard', 'source', 'verified', 'approved')
     exclude = ('detail',)
     actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)
