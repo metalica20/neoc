@@ -6,6 +6,7 @@ from event.models import Event
 from federal.models import Ward
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 
 class IncidentSource(models.Model):
@@ -18,41 +19,45 @@ class IncidentSource(models.Model):
 
 class Incident(TimeStampedModal):
 
-    title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True, default=None)
-    cause = models.TextField(null=True, blank=True, default=None)
-    source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT)
-    verified = models.BooleanField(default=False)
-    approved = models.BooleanField(default=False)
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    description = models.TextField(null=True, blank=True, default=None, verbose_name=_('Description'))
+    cause = models.TextField(null=True, blank=True, default=None, verbose_name=_('Cause'))
+    source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT, verbose_name=_('Source'))
+    verified = models.BooleanField(default=False, verbose_name=_('Verified'))
+    approved = models.BooleanField(default=False, verbose_name=_('Approved'))
     # TODO: discuss polygon or multipolygon or simply geometry
-    point = models.PointField(null=True, blank=True, default=None)
-    polygon = models.MultiPolygonField(null=True, blank=True, default=None)
-    incident_on = models.DateTimeField()
-    reported_on = models.DateTimeField(null=True, blank=True, default=None)
+    point = models.PointField(null=True, blank=True, default=None, verbose_name=_('Point'))
+    polygon = models.MultiPolygonField(null=True, blank=True, default=None, verbose_name=_('Polygon'))
+    incident_on = models.DateTimeField(verbose_name=_('Incident On'))
+    reported_on = models.DateTimeField(null=True, blank=True, default=None, verbose_name=_('Reported On'))
     event = models.ForeignKey(
         Event,
         related_name='incidents',
         on_delete=models.SET_NULL,
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Event'),
     )
     hazard = models.ForeignKey(
         Hazard,
         related_name='incidents',
         on_delete=models.CASCADE,
+        verbose_name=_('Hazard'),
     )
     loss = models.OneToOneField(
         Loss,
         related_name='incident',
         on_delete=models.SET_NULL,
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Loss'),
     )
     wards = models.ManyToManyField(
         Ward,
         blank=True,
         related_name='incidents',
+        verbose_name=_('Wards'),
     )
     street_address = models.CharField(
-        max_length=255, null=True, blank=True, default=None)
+        max_length=255, null=True, blank=True, default=None, verbose_name=_('Street Address'))
     old = models.BooleanField(default=False, editable=False)
     detail = JSONField(null=True, blank=True, default=None)
     created_by = models.ForeignKey(
@@ -78,6 +83,8 @@ class Incident(TimeStampedModal):
             ('can_verify', 'Can verify incident'),
             ('can_approve', 'Can approve incident'),
         ]
+        verbose_name = _('Incident')
+        verbose_name_plural = _('Incidents')
 
 
 class Document(TimeStampedModal):

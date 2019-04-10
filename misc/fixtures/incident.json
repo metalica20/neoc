@@ -3,7 +3,7 @@
     "model": "incident.incidentsource",
     "pk": "nepal_police",
     "fields": {
-      "display_name": "Nepal Police"
+      "display_name": "_(Nepal Police)",
     }
   },
   {

@@ -3,9 +3,10 @@ Django settings for bipad project.
 """
 
 import os
-from sentry_sdk.integrations.django import DjangoIntegration
 import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 from psycopg2cffi import compat
+
 compat.register()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -75,8 +76,9 @@ MIDDLEWARE = [
     'silk.middleware.SilkyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -175,7 +177,7 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ne'
 
 TIME_ZONE = 'Asia/Kathmandu'
 
@@ -228,9 +230,10 @@ MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 6),
         ("markerFitZoom", 12),
-        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np'}}),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np',}}),
     ),
     "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
+    "LANGUAGE": "ne",
 }
 
 FEDERAL_CACHE_CONTROL_MAX_AGE = 60*60*24*7
@@ -252,3 +255,7 @@ sentry_sdk.init(
 )
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBER_FIELDS', '1000'))
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)

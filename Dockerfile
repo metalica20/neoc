@@ -10,7 +10,8 @@ RUN \
   linux-headers \
   pcre-dev \
   gcc \
-  postgresql-dev && \
+  postgresql-dev \
+  gettext && \
   apk add --no-cache \
   --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
   --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
