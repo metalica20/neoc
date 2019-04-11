@@ -14,6 +14,7 @@ from django.contrib import messages
 from django.contrib.gis.geos import Point
 from .forms import HospitalForm
 from hazard.models import Hazard, HazardResources
+from django.db.models import Avg, Max, Min, Sum
 # import pandas as pd
 # Create your views here.
 
@@ -220,10 +221,23 @@ class IncidentApiView(viewsets.ModelViewSet):
     #     # incidentjson=json.loads(serializers)
     #     return Response(datajson)
 
-class RiskApiView(viewsets.ModelViewSet):
+# class RiskApiView(viewsets.ModelViewSet):
+#     permission_classes=[]
+#     serializer_class=RiskSerializer
+#     queryset = Risk.objects.all()
+class RiskApiView(views.APIView):
     permission_classes=[]
-    serializer_class=RiskSerializer
-    queryset = Risk.objects.all()
+    # serializer_class=RiskSerializer
+    # queryset = Risk.objects.all()
+    def get(self, request):
+        risk = Risk.objects.all()
+        serializer = RiskSerializer(risk ,many=True)
+        print(serializer.data)
+        all_sum = risk.aggregate(Sum('hdi'))['hdi__sum']
+        avg = risk.aggregate(Avg('hdi'))['hdi__avg']
+        return Response({'sum': all_sum if all_sum else 0 ,'avg':avg if avg else 0, 'results':serializer.data})
+
+
 
 class NewtestfileViewSet(views.APIView):
     permission_classes=[]
@@ -233,18 +247,23 @@ class NewtestfileViewSet(views.APIView):
         # print(type(obj.a))
 
         jsonc=SocioEconomicGapanapa.objects.values(a, 'name','slug_id')
+        avg=SocioEconomicGapanapa.objects.aggregate(Avg(a))
+        summ=SocioEconomicGapanapa.objects.aggregate(Max(a))
 
         # jsonc=SocioEconomicGapanapa.objects.all()
         # print('jsoncccc',a)
         # print('jsoncc', jsonc)
         # d='data.a';
-
+        field_avg=a+"__avg"
+        field_sum=a+"__max"
         listj={}
 
         # listk={}
 
-        listj['title']="access"
-        listj['subtitle']="aaaa"
+        listj['title']="Vulnerability"
+        listj['subtitle']="Access"
+        listj['sum']=summ[field_sum]
+        listj['avg']=avg[field_avg]
         # for data in jsonc:
         #     listk[data.district]=data.lpgas_cook
         listj['data']=jsonc
