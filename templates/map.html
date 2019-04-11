@@ -148,41 +148,63 @@
                 <div class="sidebarwrapper">
                     <!-- sidebar start -->
                     <div class="sidebar-widget filter-widget">
-                        <div class="right-sidebar-title filter-title">
-                            <h4>Filter</h4>
-                            <div class="filter-btn">
-                                <a href="#" class="apply-btn">apply</a>
-                                <a href="#" class="filter-btn">filter</a>
-                            </div>
-                        </div>
-                        <div class="filterSelect">
-                            <form>
-                                <div class="form-group">
-                                    <label>province</label>
-                                    <select class="select2" name="province">
-                                        <option value="pr1">Province-1</option>
-                                        <option value="pr2">Province-2</option>
-                                        <option value="pr3">Province-3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Municipality</label>
-                                    <select class="select2" name="Municipality">
-                                        <option value="pr1">kathmandu</option>
-                                        <option value="pr2">Pokhara</option>
-                                        <option value="pr3">Lalitpur</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>District</label>
-                                    <select class="select2" name="District">
-                                        <option value="pr1">kathmandu</option>
-                                        <option value="pr2">Pokhara</option>
-                                        <option value="pr3">Lalitpur</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
+
+
+                      <div class="right-sidebar-title filter-title">
+                          <h4>Filter</h4>
+                      </div>
+                      <div class="filterSelect">
+                          <div class="filterSelect">
+                              <h5>Admin level</h5>
+                              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                  <li class="nav-item">
+                                      <a class="nav-link active" id="province-tab" data-toggle="tab" href="#province" role="tab" aria-controls="province" aria-selected="true">province</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" id="district-tab" data-toggle="tab" href="#district" role="tab" aria-controls="district" aria-selected="false">District</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" id="municipality-tab" data-toggle="tab" href="#municipality" role="tab" aria-controls="municipality" aria-selected="false">municipality</a>
+                                  </li>
+                              </ul>
+                              <div class="tab-content" id="myTabContent">
+                                  <div class="tab-pane fade show active" id="province" role="tabpanel" aria-labelledby="province-tab">
+                                      <h5>Province</h5>
+                                      <div class="select-option">
+                                          <select class="select2 form-control" name="province">
+                                              <option value="pr1">Province-1</option>
+                                              <option value="pr2">Province-2</option>
+                                              <option value="pr3">Province-3</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="district" role="tabpanel" aria-labelledby="district-tab">
+                                      <h5>District</h5>
+                                      <div class="select-option">
+                                          <select class="select2 form-control" name="Municipality">
+                                              <option value="progress_4">kathmandu</option>
+                                              <option value="pr5">Pokhara</option>
+                                              <option value="pr6">Lalitpur</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="municipality" role="tabpanel" aria-labelledby="municipality-tab">
+                                      <h5>municipality</h5>
+                                      <div class="select-option">
+                                          <select class="select2 form-control" name="District">
+                                              <option value="pr1">kathmandu</option>
+                                              <option value="pr2">Pokhara</option>
+                                              <option value="pr3">Lalitpur</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+
+
+
                     </div>
                     <div class="hazard-acc">
                         <div id="sidebar-widget">
@@ -213,7 +235,7 @@
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input hazard_list" id="Earthquake" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Earthquake" data-tab="flood-1">Earthquacke</label>
+                                                    <label class="custom-control-label" for="Earthquake" data-tab="flood-1">Earthquake</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Earthquake"></span>
                                             </li>
@@ -234,7 +256,7 @@
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="Draought" name="example1" value="customEx">
-                                                    <label class="custom-control-label" for="Draought">Draought</label>
+                                                    <label class="custom-control-label" for="Draought">Drought</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Drought"></span>
                                             </li>
@@ -1221,8 +1243,15 @@
    {% comment %} <script src="js/map.js"></script> {% endcomment %}
    <script>
 
-           var base_url= 'http://139.59.67.104:8004';
-           var base_url = 'http://localhost:8000';
+
+
+
+          
+           if(document.location.hostname=='localhost'){
+             var base_url = 'http://localhost:8000';
+           }else{
+             var base_url= 'http://139.59.67.104:8004';
+           }
 
     $(document).ready(function(){
 
