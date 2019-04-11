@@ -6,6 +6,7 @@ from bipad.admin import GeoModelAdmin
 from .models import Alert
 from .utils import get_similar_alerts
 from django.utils.safestring import mark_safe
+from django.contrib.gis.geos import GEOSGeometry
 
 
 @admin.register(Alert)
@@ -16,6 +17,8 @@ class AlertAdmin(GeoModelAdmin):
     exclude = ('wards',)
 
     def save_model(self, request, obj, form, change):
+        if not obj.point and obj.polygon:
+            obj.point = GEOSGeometry(obj.polygon).centroid
         super(AlertAdmin, self).save_model(request, obj, form, change)
         similar_alerts = get_similar_alerts(obj)
         for alert in similar_alerts:
