@@ -28,7 +28,7 @@ def scrape_earthquakes():
     r = requests.get(url)
     data = r.text
     soup = BeautifulSoup(data, "html.parser")
-    article = soup.find(table_selector).find_all('tr')
+    earthquakes = soup.find(table_selector).find_all('tr')
 
     latest_event = datetime.datetime.fromtimestamp(0)
     latest_earthquake = Earthquake.objects.values('event_on').order_by('-event_on').first()
@@ -38,16 +38,17 @@ def scrape_earthquakes():
         latest_event = timezone.localtime(latest_event)
         latest_event = latest_event.replace(tzinfo=None)
 
-    for element in article:
-        texts = element.text.split("\n")
+    for earthquake in earthquakes:
+        texts = earthquake.text.split("\n")
         rows.append(texts)
     for row in rows:
+        while '' in row:
+            row.remove('')
         earthquake = {}
         for i in range(0, len(fields)):
-            earthquake[fields[i]] = row[i+1]
-
-        earthquake['date'] = row[1][4:]
-        earthquake['time'] = row[2][5:]
+            earthquake[fields[i]] = row[i]
+        earthquake['date'] = row[0][4:]
+        earthquake['time'] = row[1][5:]
         if earthquake['time'] == "N/A":
             earthquake['time'] = "00:00"
         event_on = datetime.datetime.strptime(earthquake['date'] + ' ' + earthquake['time'], '%Y-%m-%d %H:%M')
