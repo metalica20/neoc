@@ -38,8 +38,9 @@ class HazardResourceViewSetView(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         incident = int(self.request.GET.get('incident'))
-        count = self.request.GET.get('count')
-        max_distance = int(self.request.GET.get('max_distance'))
+        count = self.request.GET.get('count', 30)
+
+        max_distance = int(self.request.GET.get('max_distance', 1000))
         incident_obj = get_object_or_404(Incident, id=incident)
         lat = incident_obj.point.y
         longitude = incident_obj.point.x
