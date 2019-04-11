@@ -53,7 +53,7 @@ class RiskSerializer(serializers.ModelSerializer):
     #resources = serializers.SerializerMethodField('get_hazard_resources')
     class Meta:
         model= Risk
-        fields = '__all__'
+        fields = ('__all__')
 
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
