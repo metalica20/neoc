@@ -42,8 +42,20 @@ class HazardResourceViewSetView(viewsets.ModelViewSet):
 
         max_distance = int(self.request.GET.get('max_distance', 1000))
         incident_obj = get_object_or_404(Incident, id=incident)
-        lat = incident_obj.point.y
-        longitude = incident_obj.point.x
+
+        if incident_obj.point and not incident_obj.polygon:
+            """
+               If only point exist
+            """
+            lat = incident_obj.point.y
+            longitude = incident_obj.point.x
+        else:
+            """
+               If only polygon or both polygon and point exist
+            """
+            lat = incident_obj.polygon.centroid.x
+            longitude = incident_obj.polygon.centroid.y
+
         user_location = GEOSGeometry('POINT({} {})'.format(longitude, lat), srid=4326)
         return {'count': count, 'max_distance': max_distance, 'user_location': user_location}
 
