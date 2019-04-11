@@ -764,6 +764,19 @@
 
     <!-- capacity popup -->
             <div class="hazard-details" id="capacity-popup">
+              <div class="hazard-wrapper">
+                  <div class="hazard-title">
+                      <h3><span id= "subcategory_title" class="humanitarian-icon-Health-facility"></span>name</h3>
+                      <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+                  </div>
+                  <div class="capacity-content" >
+                      <h4>Insight</h4>
+                      <div class="insight" id="subcatChartContainer">
+                      </div>
+
+                      <div class="insight" id="subcatSwitchContainer"></div>
+                  </div>
+                </div>
 
             </div>
   <!-- end capacity popup -->
@@ -777,6 +790,7 @@
                 <div class="hazard-wrapper">
                     <div class="hazard-title">
                         <h3><span class="humanitarian-icon-Health-facility"></span>Access To Communication</h3>
+                        <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
                         <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
                     </div>
                     <div class="hazard-content">
@@ -852,6 +866,7 @@
      <div class="hazard-wrapper" >
          <div class="hazard-title">
              <h3><span class="humanitarian-icon-Flood"></span>HDI</h3>
+             <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
              <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
          </div>
          <div class="hazard-content">
@@ -969,6 +984,191 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- average section -->
+            <div class="average-section">
+                <div class="average-wrapper">
+                    <div class="average-header">
+                        <h4>Data visualization</h4>
+                        <button type="button" class="button averageClose"><i class=" ion ion-md-close-circle-outline"></i></button>
+                    </div>
+                    <div class="average-content">
+                        <div class="progress-list">
+                            <!-- <div class="progress-warpper">
+                                <div class="progress skill-bar ">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">kathmandu :<i class="val">2456</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" >
+                                    </div>
+                                </div>
+                                <span class="skill">Kaski :<i class="val">3565</i></span>
+                            </div>
+
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Lalitpur :<i class="val">1400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Manang :<i class="val">800</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Bhaktapur :<i class="val">1100</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Nepalgunj :<i class="val">400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Dhangadi :<i class="val">600</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Dharan :<i class="val">650</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Dhankuta :<i class="val">900</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Humla :<i class="val">400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Mahottari :<i class="val">600</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Lamjung :<i class="val">650</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Tanahu :<i class="val">900</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Morang :<i class="val">400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Sunsari :<i class="val">600</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Makwanpur :<i class="val">650</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Taplejung :<i class="val">900</i></span>
+                            </div> -->
+                            <!-- <div class="barchart-line" style="left:100%">
+                                <span class="average-text">Average</span>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="metaData">
+                <div class="metaData-wrapper" >
+                    <div class="metaData-header">
+                        <h4>meta data</h4>
+                        <button type="button" class="button metaClose"><i class=" ion ion-md-close-circle-outline"></i></button>
+                    </div>
+                    <div class="metaData-content">
+                        <h4>Metadata Record Info</h4>
+                        <ul>
+                            <li>
+                                <label>Language :</label> English
+                            </li>
+                            <li>
+                                <label>Chareset :</label> 	Utf8
+                            </li>
+                            <li>
+                                <label>Hierarchy Level :</label> dataset
+                            </li>
+                            <li>
+                                <label>Standard date :</label> North American Profile of ISO 19115:2003
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="metaData-content">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li>
+                                <label>Name :</label> National Geographic Information Infrastructure Division
+                            </li>
+                            <li>
+                                <label>Organization Name :</label> 	National Geographic Information Infrastructure Division
+                            </li>
+                            <li>
+                                <label>Position Name :</label> Chief Survey Officer
+                            </li>
+                            <li>
+                                <label>Role :</label> author
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <!-- mapsection end -->
     </div>
@@ -1022,7 +1222,7 @@
    <script>
 
            var base_url= 'http://139.59.67.104:8004';
-           //var base_url = 'http://localhost:8000';
+           var base_url = 'http://localhost:8000';
 
     $(document).ready(function(){
 
@@ -1178,7 +1378,7 @@
           function loadSocioData(socioid){     //loding socia data in map layers
             //console.log(feature);
 
-
+            $('.progress-list').html('');
             fed_url_api=base_url+"/risk_profile/Newfile/"+socioid;
 
                           socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
@@ -1187,11 +1387,24 @@
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
-                                //console.log(result);
+                                console.log(Math.round(result.avg));
+                                avg_val=(Math.round(result.avg)/result.sum)*100;
                                 var features = municipality._layers;
+                                var visual_html='';
                                 $.each(features, function (feature) {
                                   for(var i=0;i<result.data.length;i++){
                                     if(features[feature].feature.properties.title==result.data[i]["name"]){
+                                      var val_now=result.data[i][socioid1];
+                                      //console.log(val_now);
+                                      visual_html+='<div class="progress-warpper">'+
+                                          '<div class="progress skill-bar ">'+
+                                              '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(Math.round(val_now)/result.sum)*100+'%;" aria-valuenow="'+(Math.round(val_now)/result.sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
+                                              '</div>'+
+                                          '</div>'+
+                                          '<span class="skill">'+result.data[i]["name"]+' :<i class="val">'+val_now+'</i></span>'+
+                                      '</div>';
+
+
                                       //console.log("entered if");
                                       features[feature].setStyle(socioStyle(parseInt(result.data[i][socioid1])));
                                       break;
@@ -1209,7 +1422,13 @@
 
 
 
+                                visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
+                                    '<span class="average-text"> National Average</span>'+
+                                '</div>';
+                                //console.log(visual_html);
+                                //console.log(avg_val);
 
+                                $('.progress-list').append(visual_html);
                         }
                       });
 
@@ -1234,6 +1453,8 @@
                       $('.legend-list').append(legend_html);
 
 
+
+
           }
 
 
@@ -1249,11 +1470,21 @@
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
-                                //console.log(result.results[1][risk_id]);
+                                var avg_val=(Math.round(result.avg*100));
                                 var features = district._layers;
+                                var visual_html='';
                                 $.each(features, function (feature) {
                                   for(var i=0;i<result.results.length;i++){
                                     if(features[feature].feature.properties.title==result.results[i]['district']){
+                                      val=Math.round((result.results[i]['hdi'])*100);
+                                      visual_html+='<div class="progress-warpper">'+
+                                          '<div class="progress skill-bar ">'+
+                                              '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+val+'%;" aria-valuenow="'+result.results[i]['hdi']+'" aria-valuemin="0" aria-valuemax="100">'+
+                                              '</div>'+
+                                          '</div>'+
+                                          '<span class="skill">'+result.results[i]['district']+' :<i class="val">'+result.results[i]['hdi']+'</i></span>'+
+                                      '</div>';
+
                                       //console.log("entered if");
                                       features[feature].setStyle(riskStyle(parseFloat(result.results[i][risk_id])));
                                       break;
@@ -1269,7 +1500,13 @@
                                 });
 
 
+                                visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
+                                    '<span class="average-text"> National Average</span>'+
+                                '</div>';
+                                //console.log(visual_html);
+                                //console.log(avg_val);
 
+                                $('.progress-list').append(visual_html);
 
 
                         }
@@ -1300,95 +1537,142 @@
 
           }
 
-function createSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon){
+
+
+
+
+    function generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level){
+      var html = "";
+      for(var i=0; i<data.length;i++){
+
+        html +='<div class="progress-warpper">'+
+            '<div class="custom-control custom-checkbox">'+
+
+                '<input type="checkbox" class="custom-control-input sub_cat_ex '+layerName+'_child" value="'+layerName+'" data-sub="'+data[i].label.replace(' ','_')+'" id="progress_'+i+'" checked></input>'+
+               '<label class="custom-control-label" for="progress_'+i+'" data-tab="capacity-popup"> </label>'+
+            '</div>'+
+            '<div class="progress-title">'+
+                '<label>'+data[i].label.replace("_"," ")+' </label>'+
+                '<i class="ion ion-md-information-circle"></i>'+
+                '<div class="info">'+
+                    '<div class="info-content">'+
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.'+
+                  '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="progress skill-bar">'+
+                '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(parseInt(data[i].count)/total_sum)*100+'%;" aria-valuenow="'+(parseInt(data[i].count)/total_sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
+                '</div>'+
+            '</div>'+
+            '<span class="skill">currently showing :<i class="val">'+data[i].count+'</i></span>'+
+        '</div>';
+
+      }
+
+
+
+
+              $('#subcatChartContainer').html(html);
+    }
+
+
+    function generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level){
+
+              filter_arr=filter_resources.split(",");
+            //  console.log(filter_arr);
+              var html ='<h4>Filter</h4>';
+              html+='<div class="filter-list">';
+                  html+='<ul>';
+              for(var i=0;i<filter_arr.length;i++){
+                if(filter_arr[i].replace(/\s/g,"_")=='number_of_Beds'){
+                  html+='<div class="filter-list">'+
+                    '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+                    '<div class="slider">'+
+                        '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
+                        '<div class="slider-range"></div>'+
+                    '</div>'+
+                  '</div>';
+                }else{
+
+                  html+='<li>'+
+                      '<a href="#">'+filter_arr[i]+'</a>'+
+                      // '<button type="button" class="btn btn-sm btn-toggle filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'" data-toggle="button" aria-pressed="false" autocomplete="off">'+
+                      //     '<div class="handle"></div>'+
+                      //  '</button>'+
+                      '<label class="switch">'+
+                          '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" data-sum="'+total_sum+'" name="'+layerName+'"> </input>'+
+                          '<span class="slider-handle round"></span>'+
+                      '</label>'+
+                      // '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'"> </input>'+
+                  '</li>';
+        }
+
+                }
+
+
+
+
+            // html+='<div class="filter-list">'+
+            //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+            //   '<div class="slider">'+
+            //       '<input type="text" class="amount" />'+
+            //       '<div class="slider-range"></div>'+
+            //   '</div>'+
+            // '</div>';
+
+
+
+
+              html+='</ul>';
+
+            $('#subcatSwitchContainer').html(html);
+
+
+    }
+
+function createSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level){
 
 // console.log(data);
 $('.progress-bar').css('background-color','#1672c6');
-var html='<div class="hazard-wrapper">'+
-    '<div class="hazard-title">'+
-        '<h3><span class="humanitarian-icon-Health-facility"></span>'+layerName.replace("_"," ")+'</h3>'+
-        '<button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>'+
-    '</div>'+
-    '<div class="capacity-content">'+
-        '<h4>Insight</h4>'+
-        '<div class="insight">';
-for(var i=0; i<data.length;i++){
+if(level=='both'){
+  generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level);
+  generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level);
 
-  html+='<div class="progress-warpper">'+
-      '<div class="custom-control custom-checkbox">'+
+}else if(level=='subcategory'){
 
-          '<input type="checkbox" class="custom-control-input sub_cat_ex '+layerName+'_child" value="'+layerName+'" data-sub="'+data[i].label.replace(' ','_')+'" id="progress_'+i+'"></input>'+
-         '<label class="custom-control-label" for="progress_'+i+'" data-tab="capacity-popup"> </label>'+
-      '</div>'+
-      '<div class="progress-title">'+
-          '<label>'+data[i].label.replace("_"," ")+' </label>'+
-          '<i class="ion ion-md-information-circle"></i>'+
-          '<div class="info">'+
-              '<div class="info-content">'+
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.'+
-            '</div>'+
-          '</div>'+
-      '</div>'+
-      '<div class="progress skill-bar">'+
-          '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(parseInt(data[i].count)/total_sum)*100+'%;" aria-valuenow="'+(parseInt(data[i].count)/total_sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
-          '</div>'+
-      '</div>'+
-      '<span class="skill">currently showing :<i class="val">'+data[i].count+'</i></span>'+
-  '</div>';
+  generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level);
 
-}
+  }
+  else{
+    generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level);
+  }
 
 
 
+//waiting for element to created
 
-        html+='</div>';
+// setTimeout(function(){
 
-        filter_arr=filter_resources.split(",");
-      //  console.log(filter_arr);
-        html+='<h4>Filter</h4>';
-        html+='<div class="filter-list">';
-            html+='<ul>';
-        for(var i=0;i<filter_arr.length;i++){
-                html+='<li>'+
-                    '<a href="#">'+filter_arr[i]+'</a>'+
-                    // '<button type="button" class="btn btn-sm btn-toggle filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'" data-toggle="button" aria-pressed="false" autocomplete="off">'+
-                    //     '<div class="handle"></div>'+
-                    //  '</button>'+
-                    '<label class="switch">'+
-                        '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" data-icon="'+layer_icon+'" name="'+layerName+'"> </input>'+
-                        '<span class="slider-handle round"></span>'+
-                    '</label>'+
-                    // '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'"> </input>'+
-                '</li>';
-      }
+$(".slider").each(function () {
 
-      html+='<div class="filter-list">'+
-        '<h4 style="margin-top:1rem">Bed capacity</h4>'+
-        '<div class="slider">'+
-            '<input type="text" class="amount" />'+
-            '<div class="slider-range"></div>'+
-        '</div>'+
-      '</div>';
-
-
-        html+='</ul>';
-      html+='</div>';
-      html+='</div>';
-      html+='</div>';
-
-$('#capacity-popup').html(html);
-
-$(".slider-range").slider({
-    range: true,
-    min: 0,
-    max: 1000,
-    values: [300, 600],
-    slide: function (event, ui) {
-        // find any element with class .amount WITHIN scope of $this
-        $(".amount").val( ui.values[0] + " - " + ui.values[1]);
-    }
+    //$this is a reference to .slider in current iteration of each
+    var $this = $(this);
+    //find any .slider-range element WITHIN scope of $this
+          $(".slider-range", $this).slider({
+              range: true,
+              min: 0,
+              max: 1000,
+              values: [300, 600],
+              slide: function (event, ui) {
+                  // find any element with class .amount WITHIN scope of $this
+                  $(".amount", $this).val( ui.values[0] + " - " + ui.values[1]);
+              }
+          });
+          $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
 });
-$(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
+// }, 100);
+
+//end
 
 }
 
@@ -1416,7 +1700,7 @@ $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-ran
 
               $.each(features, function (feature) {
                 for(var i=0;i<subcat_arr.length;i++){
-                  if(level=='subcategory'){
+                  if(level=='subcategory' || level=='both'){
                     if(subcat_arr[i].trim()==features[feature].properties.type.trim()){
                       chartData[i].count++;
 
@@ -1440,7 +1724,7 @@ $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-ran
               });
 
 
-              createSubcategoryChart(chartData,total_sum,layerName,filter_resources,layer_icon);
+              createSubcategoryChart(chartData,total_sum,layerName,filter_resources,layer_icon,level);
               // if(charttype=='pie'){
               //
               //   createChart(chartData);
@@ -1521,6 +1805,8 @@ $(".vul_hdi").on('click',function(){
         hazard_layers.on('load',function(){
 
         });
+
+
         if(id=="ngp:sankhu_drone"){
         map.flyTo(center,18);
         }else{
@@ -1539,7 +1825,7 @@ $(".vul_hdi").on('click',function(){
 
 //start of hazard layer
 
-    $('.exposure_geo').on('click',function(){
+    $('.exposure_geo').one('click',function(){
     //  console.log($(this).attr('id'));
 
       if($(this).attr('id')=='hydro_1'){
@@ -1575,39 +1861,51 @@ $(".vul_hdi").on('click',function(){
 
       }else{
         var id = $(this).attr('data-workspace');
-        var center = eval($(this).attr('data-center'));
+
         var geo_url  = $(this).attr('data-url');
 
         //console.log(id);
 
-        hazard_layers=L.tileLayer.betterWms(geo_url, {
+        exposure_layers=L.tileLayer.betterWms(geo_url, {
                                 layers:id,
                                 transparent: true,
                                 format: 'image/png',
                                 // pane:"wmsPane"
-                          }).addTo(map);
+                          });//.addTo(map);
 
-        hazard_layers.on('load',function(){
+        exposure_layers.on('load',function(){
+         //console.log(map.hasLayer(hazard_layers));
+
 
         });
-        if(id=="ngp:sankhu_drone"){
-        map.flyTo(center,18);
-        }else{
-          // map.flyTo(center,11);
-        }
+
+
+         console.log('drone');
+         // console.log(map.hasLayer(exposure_layers));
+
+
 
       }
 
 
     });
 
+    $('.exposure_geo').on('click',function(){
+      var center = eval($(this).attr('data-center'));
+      if(map.hasLayer(exposure_layers)){
+      map.removeLayer(exposure_layers);
+      }else{
+        map.addLayer(exposure_layers);
+          map.flyTo(center,18);
+      }
+    });
 
 //end of hazard layer
 
 //start of resource layer
 $.get(base_url+'/risk_profile/Layer',function(data){
 
-                // console.log(data.results.length);
+                 //console.log(data);
                 for(var i=0;i<data.results.length;i++){
                   var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
                   layer_icon= data.results[i]['layerIcon']
@@ -1626,6 +1924,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           layer_icon: layer_icon,
                           type2: type1,
                           success: function(response) {
+                          //  console.log(response);
                           var layer_icon1 = this.layer_icon;
                           var type = this.type2;
 
@@ -1869,7 +2168,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
       response=window[layerName].toGeoJSON();
-      CreateChartData(response,subcat_array,null,'subcategory',total_sum,layerName,filter_resources,layer_icon);
+      CreateChartData(response,subcat_array,null,'both',total_sum,layerName,filter_resources,layer_icon);
 
     //  console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
       if($('.'+layerName+'_parent').prop('checked')==false){
@@ -2035,6 +2334,10 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
 
 //resources filter
 $("#capacity-popup").on('click','.filter_resource_btn',function(){
+  //console.log(new_gejson_filter);
+  var layerName=$(this).attr('name');
+  var layer_icon=$(this).attr('data-icon');
+  var total_sum=$(this).attr('data-sum');
 // console.log($(this).attr('aria-pressed'));
 // console.log($(".Health_child").prop("checked"));
 
@@ -2044,8 +2347,19 @@ $("#capacity-popup").on('click','.filter_resource_btn',function(){
 
  //console.log($("input[class='filter_resource_btn']:checked"));
 var features_data=[];
+var sub_layer_name=[];
+
+if(map.hasLayer(window["filter_resource_"+layerName])){
+  console.log('aa');
+
+  map.removeLayer(window["filter_resource_"+layerName]);
+
+}
 $. each($('.sub_cat_ex:checked'), function(){
+
   var name_sub=$(this).attr('data-sub');
+    sub_layer_name.push($(this).attr('data-sub'));
+    console.log(name_sub);
   layersdata=window[name_sub]._layers
   //console.log(window[name_sub]._layers);
   $.each(layersdata, function (feature) {
@@ -2063,12 +2377,10 @@ var layer_data1={
 
 };
 
-//console.log(new_gejson_filter);
-var layerName=$(this).attr('name');
-var layer_icon=$(this).attr('data-icon');
+
 //console.log(layer_icon);
-map.removeLayer(window[layerName]);
- layer_data1=window[layerName].toGeoJSON();
+
+ //layer_data1=window[layerName].toGeoJSON();
 // console.log(layer_data1);
 var layer_data = jQuery.extend(true, {}, layer_data1);
 // console.log(layer_data);
@@ -2077,7 +2389,7 @@ $. each($("input[class='filter_resource_btn']:checked"), function(){
 
 checkedList. push($(this). val());
 });
- //console.log(checkedList);
+ console.log(checkedList);
 //console.log(layer_data.features.length);
 for(var k=layer_data.features.length-1;k>=0;k--){
   var delete_count=0;
@@ -2105,7 +2417,7 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 
 
 }
-//console.log(layer_data);
+console.log(layer_data);
 //console.log(window['clinic']._layers);
 window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
 
@@ -2121,20 +2433,22 @@ window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
       return marker;
       },
 
-});
-
-console.log(map.hasLayer(window["filter_resource_"+layerName]));
-//console.log(layerName);
-if(map.hasLayer(window["filter_resource_"+layerName])){
-  console.log('aa');
-
-  map.removeLayer(window["filter_resource_"+layerName]);
-
+}).addTo(map);
+if(checkedList.length==0){
+  data_geo=window[layerName].toGeoJSON()
+  //map.addLayer(window[layerName]);
+  CreateChartData(data_geo,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
 }else{
-  console.log('bbb');
-  map.addLayer(window["filter_resource_"+layerName]);
+
+map.removeLayer(window[layerName]);
+CreateChartData(layer_data,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+
 }
 
+//console.log(map.hasLayer(window["filter_resource_"+layerName]));
+console.log(sub_layer_name);
+
+// CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon)
 
 
 
@@ -2169,12 +2483,18 @@ if(admin_layer=='municipality'){
 });
 
 
+$("#capacity-popup").change('.amount',function(){
+  console.log('adasdsad');
+
+
+});
+
 
 //end
     });//document end
  </script>
 
-<script src="{% static 'mappage/js/range-slider.js' %}"></script>
+<!-- <script src="{% static 'mappage/js/range-slider.js' %}"></script> -->
 </body>
 
 </html>
