@@ -21,6 +21,7 @@ from django_select2.forms import (
 from .utils import get_similar_incident, get_followup_fields
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
+from django.utils.translation import ugettext_lazy as _
 
 
 class DocumentInline(admin.TabularInline):
@@ -43,6 +44,7 @@ class IncidentForm(forms.ModelForm):
     district = forms.ModelChoiceField(
         queryset=District.objects.all(),
         required=False,
+        label=_("District"),
         widget=ModelSelect2Widget(
             model=District,
             search_fields=['title__icontains'],
@@ -52,6 +54,7 @@ class IncidentForm(forms.ModelForm):
     municipality = forms.ModelChoiceField(
         queryset=Municipality.objects.all(),
         required=False,
+        label=_("Municipality"),
         widget=ModelSelect2Widget(
             model=Municipality,
             search_fields=['title__icontains'],
@@ -62,6 +65,7 @@ class IncidentForm(forms.ModelForm):
     wards = forms.ModelMultipleChoiceField(
         queryset=Ward.objects.all(),
         required=False,
+        label=_("Wards"),
         widget=ModelSelect2MultipleWidget(
             model=Ward,
             search_fields=['title__icontains'],

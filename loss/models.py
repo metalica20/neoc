@@ -4,6 +4,7 @@ from bipad.models import TimeStampedModal, DistinctSum
 from django.db.models import Q
 from django.db.models.functions import Coalesce
 from resources.models import Resource
+from django.utils.translation import ugettext_lazy as _
 
 
 class StatManager(models.Manager):
@@ -31,11 +32,12 @@ class Loss(TimeStampedModal):
     Allows to accomodate both historical data with less details and
     current Nepal Police and other data with finer details
     """
-    description = models.TextField(null=True, blank=True, default=None)
+    description = models.TextField(null=True, blank=True, default=None, verbose_name=_('Description'))
     estimated_loss = models.BigIntegerField(
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Estimated Loss')
     )
-    detail = JSONField(null=True, blank=True, default=None)
+    detail = JSONField(null=True, blank=True, default=None,)
 
     objects = models.Manager()
     with_stat = StatManager()
@@ -49,7 +51,8 @@ class Loss(TimeStampedModal):
         return 'incident__title',
 
     class Meta:
-        verbose_name_plural = "losses"
+        verbose_name = _('Loss')
+        verbose_name_plural = _("Losses")
 
 
 class People(TimeStampedModal):
@@ -64,37 +67,43 @@ class People(TimeStampedModal):
     AFFECTED = 'affected'
 
     STATUS = (
-        (DEAD, 'Dead'),
-        (MISSING, 'Missing'),
-        (INJURED, 'Injured'),
-        (AFFECTED, 'Affected'),
+        (DEAD, _('Dead')),
+        (MISSING, _('Missing')),
+        (INJURED, _('Injured')),
+        (AFFECTED, _('Affected')),
     )
 
     MALE = 'male'
     FEMALE = 'female'
 
     GENDERS = (
-        (MALE, 'Male'),
-        (FEMALE, 'Female'),
+        (MALE, _('Male')),
+        (FEMALE, _('Female')),
     )
 
-    status = models.CharField(max_length=25, choices=STATUS)
+    status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     name = models.CharField(
         max_length=255,
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Name'),
     )
-    age = models.PositiveSmallIntegerField(null=True, blank=True, default=None)
+    age = models.PositiveSmallIntegerField(null=True, blank=True, default=None, verbose_name=_('Age'),)
     gender = models.CharField(
         max_length=25,
         null=True, blank=True, default=None,
-        choices=GENDERS
+        choices=GENDERS,
+        verbose_name=_('Gender'),
     )
-    address = models.CharField(max_length=255, null=True, blank=True, default=None)
-    below_poverty = models.BooleanField(null=True, blank=True, default=None)
-    disabled = models.BooleanField(null=True, blank=True, default=None)
-    count = models.PositiveIntegerField(default=1)
+    address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
+    below_poverty = models.BooleanField(null=True, blank=True, default=None,verbose_name=_('Below Poverty'))
+    disabled = models.BooleanField(null=True, blank=True, default=None, verbose_name=_('Disabled'))
+    count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     loss = models.ForeignKey(
         Loss, related_name='peoples', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('People')
+        verbose_name_plural = _('People')
 
 
 class Family(TimeStampedModal):
@@ -108,26 +117,28 @@ class Family(TimeStampedModal):
     EVACUATED = 'evacuated'
 
     STATUS = (
-        (AFFECTED, 'Affected'),
-        (RELOCATED, 'Relocated'),
-        (EVACUATED, 'Evacuated'),
+        (AFFECTED, _('Affected')),
+        (RELOCATED, _('Relocated')),
+        (EVACUATED, _('Evacuated')),
     )
 
     title = models.CharField(max_length=255, null=True,
-                             blank=True, default=None)
-    address = models.CharField(max_length=255, null=True, blank=True, default=None)
-    status = models.CharField(max_length=25, choices=STATUS)
-    below_poverty = models.BooleanField(null=True, blank=True, default=None)
-    count = models.PositiveIntegerField(default=1)
+                             blank=True, default=None, verbose_name=_('Title'))
+    address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
+    status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
+    below_poverty = models.BooleanField(null=True, blank=True, default=None, verbose_name=_('Below Poverty'))
+    count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     phone_number = models.CharField(
-        max_length=25, null=True, blank=True, default=None
+        max_length=25, null=True, blank=True, default=None,
+        verbose_name=_('Phone Number')
     )
     loss = models.ForeignKey(
         Loss, related_name='families', on_delete=models.CASCADE
     )
 
     class Meta:
-        verbose_name_plural = "families"
+        verbose_name_plural = _('Families')
+        verbose_name = _('Family')
 
 
 class InfrastructureType(models.Model):
@@ -150,39 +161,50 @@ class Infrastructure(TimeStampedModal):
     AFFECTED = 'affected'
 
     STATUS = (
-        (DESTROYED, 'Destroyed'),
-        (AFFECTED, 'Affected'),
+        (DESTROYED, _('Destroyed')),
+        (AFFECTED, _('Affected')),
     )
 
     title = models.CharField(max_length=255, null=True,
-                             blank=True, default=None)
+                             blank=True, default=None,
+                             verbose_name=_('Title'))
     type = models.ForeignKey(
-        InfrastructureType, related_name='infrastructures', on_delete=models.PROTECT)
-    status = models.CharField(max_length=25, choices=STATUS)
+        InfrastructureType, related_name='infrastructures', on_delete=models.PROTECT, verbose_name=_('Type'))
+    status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     resource = models.ForeignKey(
         Resource,
         null=True, blank=True, default=None,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        verbose_name=_('Resource')
     )
     equipment_value = models.PositiveIntegerField(
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Equipment Value')
     )
     infrastructure_value = models.PositiveIntegerField(
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Infrastructure Value')
     )
     beneficiary_owner = models.CharField(
-        max_length=255, null=True, blank=True, default=None
+        max_length=255, null=True, blank=True, default=None,
+        verbose_name=_('Beneficiary Owner')
     )
     service_disrupted = models.BooleanField(
-        max_length=255, null=True, blank=True, default=None
+        max_length=255, null=True, blank=True, default=None,
+        verbose_name=_('Service Disrupted')
     )
-    count = models.PositiveIntegerField(default=1)
+    count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     economic_loss = models.BigIntegerField(
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Economic Loss')
     )
     loss = models.ForeignKey(
         Loss, related_name='infrastructures', on_delete=models.CASCADE
     )
+
+    class Meta:
+        verbose_name = _('Infrastructure')
+        verbose_name_plural = _('Infrastructures')
 
 
 class LivestockType(models.Model):
@@ -200,24 +222,31 @@ class Livestock(TimeStampedModal):
     AFFECTED = 'affected'
 
     STATUS = (
-        (DESTROYED, 'Destroyed'),
-        (AFFECTED, 'Affected'),
+        (DESTROYED, _('Destroyed')),
+        (AFFECTED, _('Affected')),
     )
 
     title = models.CharField(
         max_length=255,
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Title')
     )
     type = models.ForeignKey(
         LivestockType,
         related_name='livestocks',
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        verbose_name=_('Type')
     )
-    status = models.CharField(max_length=25, choices=STATUS)
-    count = models.PositiveIntegerField()
+    status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
+    count = models.PositiveIntegerField(verbose_name=_('Count'))
     economic_loss = models.BigIntegerField(
-        null=True, blank=True, default=None
+        null=True, blank=True, default=None,
+        verbose_name=_('Economic Loss')
     )
     loss = models.ForeignKey(
         Loss, related_name='livestocks', on_delete=models.CASCADE
     )
+
+    class Meta:
+        verbose_name = _('Livestock')
+        verbose_name_plural = _('Livestocks')

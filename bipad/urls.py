@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls import static
 from django.urls import path, re_path, include
+from django.conf.urls.i18n import i18n_patterns
 from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -50,8 +51,9 @@ from inventory.views import (
     ItemViewSet,
     InventoryViewSet,
 )
+from django.utils.translation import ugettext_lazy as _
 
-admin.site.site_header = 'BIPAD administration'
+admin.site.site_header = _('BIPAD administration')
 schema_view = get_schema_view(
     openapi.Info(
         title="BIPAD API",
@@ -116,7 +118,7 @@ def get_api_path(path):
     return r'^api/(?P<version>({}))/{}'.format(API_VERSION, path)
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('admin/', include('django_select2.urls')),
     path('api-auth/', include('rest_framework.urls')),
@@ -134,7 +136,8 @@ urlpatterns = [
     re_path(r'^api/$', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
-] + static.static(
+) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )
+

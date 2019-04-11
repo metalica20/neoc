@@ -5,6 +5,7 @@ from .models import Event
 from django import forms
 from incident.models import Incident
 from django_select2.forms import ModelSelect2MultipleWidget
+from django.utils.translation import ugettext_lazy as _
 
 
 class EventForm(forms.ModelForm):
@@ -21,6 +22,7 @@ class EventForm(forms.ModelForm):
     incidents = forms.ModelMultipleChoiceField(
         queryset=Incident.objects.all(),
         required=False,
+        label=_("Incident"),
         widget=ModelSelect2MultipleWidget(
             model=Incident,
             search_fields=['title__icontains'],
