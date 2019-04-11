@@ -13,7 +13,7 @@ def get_similar_alerts(alert):
         )
     elif alert.polygon:
         similar_alerts = similar_alerts.filter(
-            polyon__distance_lte=(alert.polygon, D(km=5))
+            polygon__distance_lte=(alert.polygon, D(km=5))
         )
     else:
         return []
