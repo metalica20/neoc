@@ -118,9 +118,7 @@ def get_api_path(path):
     return r'^api/(?P<version>({}))/{}'.format(API_VERSION, path)
 
 
-urlpatterns = i18n_patterns(
-    path('admin/', admin.site.urls),
-    path('admin/', include('django_select2.urls')),
+urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
@@ -136,8 +134,10 @@ urlpatterns = i18n_patterns(
     re_path(r'^api/$', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
+] + i18n_patterns(
+    path('admin/', admin.site.urls),
+    path('admin/', include('django_select2.urls')),
 ) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )
-
