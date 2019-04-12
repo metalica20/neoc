@@ -19,7 +19,12 @@ from django_select2.forms import (
     ModelSelect2Widget,
     ModelSelect2MultipleWidget,
 )
-from .utils import get_similar_incident, get_followup_fields
+from .utils import (
+    get_similar_incident,
+    get_followup_fields,
+    get_incident_title,
+    generate_polygon_from_wards,
+)
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
@@ -119,7 +124,7 @@ class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
     list_filter = ('hazard', 'source', 'verified', 'approved')
-    exclude = ('detail',)
+    exclude = ('detail', 'title')
     actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)
 
@@ -131,6 +136,15 @@ class IncidentAdmin(GeoModelAdmin):
         }
 
     def save_model(self, request, obj, form, change):
+        if change:
+            obj.updated_by = request.user
+        else:
+            obj.created_by = request.user
+        wards = form.cleaned_data.get('wards')
+        if wards:
+            obj.polygon = generate_polygon_from_wards(wards)
+            obj.point = GEOSGeometry(obj.polygon).centroid
+
         geojson = form.cleaned_data.get('geojson')
         if geojson:
             geojson = json.loads(geojson.read().decode('utf-8'))
@@ -138,10 +152,9 @@ class IncidentAdmin(GeoModelAdmin):
 
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
-        if change:
-            obj.updated_by = request.user
-        else:
-            obj.created_by = request.user
+
+        obj.title = get_incident_title(obj)
+
         super(IncidentAdmin, self).save_model(request, obj, form, change)
         similar_incidents = get_similar_incident(obj)
         for incident in similar_incidents:
