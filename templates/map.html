@@ -1246,7 +1246,7 @@
 
 
 
-          
+
            if(document.location.hostname=='localhost'){
              var base_url = 'http://localhost:8000';
            }else{
@@ -1310,6 +1310,22 @@
 
 
             //console.log(response);
+            function highlight (layer) {
+        			  layer.setStyle({
+                  fillColor:"blue",
+                  fillOpacity:0.1,
+                  weight: 1,
+                  opacity: 0.2,
+                  color: 'black',
+        				  dashArray: ''
+        		    });
+            }
+            function resetHighlight (layer) {
+        			  layer.setStyle({
+        				     weight: 1,
+        				     dashArray: ''
+        		    });
+            }
 
             municipality = new L.geoJson.ajax(fed_url_prov,
              {
@@ -1323,6 +1339,22 @@
                      color: 'black',
           //dashArray: '3'
 
+                       });
+
+                       layer.on("click",function(){
+                         var socioValue= layer.feature.socioValue;
+                         if(layer.feature.socioValue!=undefined){
+                           console.log(socioValue);
+                           if($(".compare-wrapper").css('display')=="block"){
+                             highlight(layer);
+                           }
+                           else{
+                             //resetHighlight(layer);
+                           }
+
+
+
+                         }
                        });
                  }
 
@@ -1436,6 +1468,8 @@
 
                                       //console.log("entered if");
                                       features[feature].setStyle(socioStyle(parseInt(result.data[i][socioid1])));
+                                      features[feature].feature.socioValue = parseFloat(result.data[i][socioid1]);
+                                      //console.log(features[feature].feature);
                                       break;
                                     }
                                     else{
@@ -1460,6 +1494,7 @@
                                 $('.progress-list').append(visual_html);
                         }
                       });
+                      //new ajax
 
                       var legend_html='<div class="legend-wrapper">'+
                           '<div class="buffer-header">'+
@@ -1515,11 +1550,16 @@
                                       '</div>';
 
                                       //console.log("entered if");
+                                      console.log(features[feature]);
                                       features[feature].setStyle(riskStyle(parseFloat(result.results[i][risk_id])));
+                                      features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
+                                      //console.log(features[feature].feature);
+
                                       break;
                                     }
                                     else{
                                       features[feature].setStyle(riskStyle(1));
+
                                     }
 
                                   }
@@ -1860,7 +1900,7 @@ $(".vul_hdi").on('click',function(){
       if($(this).attr('id')=='hydro_1'){
       //  console.log('entered')
         var url='http://hydro.naxa.com.np/api/Hydropower/';
-        var hydropower = new L.geoJson.ajax(url,
+         hydropower = new L.geoJson.ajax(url,
           {
 
             pointToLayer: function(feature, latlng) {
@@ -1885,7 +1925,7 @@ $(".vul_hdi").on('click',function(){
                 layer.setStyle(style);
               }
 
-        }).addTo(map);
+        });
 
 
       }else{
@@ -1920,13 +1960,31 @@ $(".vul_hdi").on('click',function(){
     });
 
     $('.exposure_geo').on('click',function(){
+
+
       var center = eval($(this).attr('data-center'));
-      if(map.hasLayer(exposure_layers)){
-      map.removeLayer(exposure_layers);
+
+      if($(this).attr('id')=='hydro_1'){
+
+        // console.log()
+        if(map.hasLayer(hydropower)){
+        map.removeLayer(hydropower);
+
+        }else{
+          map.addLayer(hydropower);
+            map.flyTo([28.410728397237914,84.4024658203125],8)
+        }
+
       }else{
-        map.addLayer(exposure_layers);
-          map.flyTo(center,18);
+        if(map.hasLayer(exposure_layers)){
+        map.removeLayer(exposure_layers);
+        map.flyTo([28.410728397237914,84.4024658203125],8)
+        }else{
+          map.addLayer(exposure_layers);
+            map.flyTo(center,18);
+        }
       }
+
     });
 
 //end of hazard layer
@@ -2144,7 +2202,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       subcat_array.push(subcat_array1[i]['type']);
 
     }
-    //console.log($('.'+layerName+'_parent').prop('checked'));
+    console.log($('.'+layerName+'_parent').prop('checked'));
 
     if(map.hasLayer(window[layerName]) && $('.'+layerName+'_parent').prop('checked')==false){
 
@@ -2157,7 +2215,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
          }
        }
 
-       //console.log("checkthat",$('.'+layerName+'_parent').prop('checked'));
+       // console.log("checkthat",$('.'+layerName+'_parent').prop('checked'));
        if($('.'+layerName+'_parent').prop('checked')==false){
              //console.log("inside false");
              $('.'+layerName+'_child').prop('checked',false);
@@ -2182,8 +2240,14 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                }
 
 
+               if($('.'+layerName+'_parent').prop('checked')==false){
+               $('#capacity-popup').css('display','none')
+               map.removeLayer(window["filter_resource_"+layerName]);
+             }else{
+               map.addLayer(window[layerName]);
 
-      map.addLayer(window[layerName]);
+             }
+
 
 
 
