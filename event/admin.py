@@ -1,11 +1,15 @@
 import re
-from django.contrib import admin
+from django.contrib import (
+    admin,
+    messages
+)
 from bipad.admin import GeoModelAdmin
 from .models import Event
 from django import forms
 from incident.models import Incident
 from django_select2.forms import ModelSelect2MultipleWidget
 from django.utils.translation import ugettext_lazy as _
+from django.http import HttpResponseRedirect
 
 
 class EventForm(forms.ModelForm):
@@ -36,6 +40,7 @@ class EventForm(forms.ModelForm):
 
 @admin.register(Event)
 class EventAdmin(GeoModelAdmin):
+    actions = ("create_event",)
     form = EventForm
 
     class Media:
@@ -54,3 +59,14 @@ class EventAdmin(GeoModelAdmin):
         form.parameter = request.GET.get('incident')
         return form
 
+    def create_event(self, request, queryset):
+        if len(queryset) > 1:
+            messages.add_message(
+                request, messages.INFO,
+                'Select only one event'
+            )
+            return
+        event_id = queryset[0].id
+        return HttpResponseRedirect('/admin/alert/alert/add/?event=%s' % event_id)
+
+    create_event.short_description = 'Create Alert'
