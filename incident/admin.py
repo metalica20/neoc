@@ -1,3 +1,4 @@
+import json
 from django.contrib.auth import get_permission_codename
 from django.contrib import (
     admin,
@@ -22,6 +23,8 @@ from .utils import get_similar_incident, get_followup_fields
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.gis.geos import GEOSGeometry
+from misc.validators import validate_geojson
 
 
 class DocumentInline(admin.TabularInline):
@@ -73,6 +76,11 @@ class IncidentForm(forms.ModelForm):
         )
     )
 
+    geojson = forms.FileField(
+        required=False,
+        validators=[validate_geojson],
+    )
+
     class Meta:
         model = Incident
         fields = (
@@ -82,6 +90,7 @@ class IncidentForm(forms.ModelForm):
             'verified',
             'approved',
             'point',
+            'geojson',
             'polygon',
             'incident_on',
             'reported_on',
@@ -96,9 +105,13 @@ class IncidentForm(forms.ModelForm):
         )
 
     def clean(self):
-        if not(self.cleaned_data.get("wards") or self.cleaned_data.get("point") or self.cleaned_data.get("polygon")):
-            raise forms.ValidationError("You need to add either wards or point or polygon")
-        return self.cleaned_data
+        if not(
+                self.cleaned_data.get("wards") or
+                self.cleaned_data.get("point") or
+                self.cleaned_data.get("polygon") or
+                self.cleaned_data.get("geojson")
+        ):
+            raise self.ValidationError("You need to add either wards or point or polygon or Geojson")
 
 
 @admin.register(Incident)
@@ -118,6 +131,13 @@ class IncidentAdmin(GeoModelAdmin):
         }
 
     def save_model(self, request, obj, form, change):
+        geojson = form.cleaned_data.get('geojson')
+        if geojson:
+            geojson = json.loads(geojson.read().decode('utf-8'))
+            obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
+
+        if not obj.point and obj.polygon:
+            obj.point = GEOSGeometry(obj.polygon).centroid
         if change:
             obj.updated_by = request.user
         else:

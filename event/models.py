@@ -24,7 +24,7 @@ class Event(TimeStampedModal):
         null=True, blank=True, default=None,
         verbose_name=_('Point')
     )
-    polygon = models.PolygonField(
+    polygon = models.MultiPolygonField(
         null=True, blank=True, default=None,
         verbose_name=_('Polygon')
     )
