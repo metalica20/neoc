@@ -28,7 +28,7 @@ class Alert(TimeStampedModal):
     hazard = models.ForeignKey(
         Hazard,
         on_delete=models.SET_NULL,
-        default=None, null=True, blank=True
+        default=None, null=True, blank=False
     )
     started_on = models.DateTimeField(blank=True, default=timezone.now)
     expire_on = models.DateTimeField(null=True, blank=True, default=None)
