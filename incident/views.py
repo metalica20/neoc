@@ -78,7 +78,8 @@ class IncidentViewSet(FlexFieldsModelViewSet):
 
     @action(detail=True, name='Incident Response')
     def response(self, request, pk=None, version=None):
-        distance = self.request.query_params.get('distance', 10)  # km
+        distance__gte = self.request.query_params.get('distance__gte', 0)  # km
+        distance__lte = self.request.query_params.get('distance__lte', 10)  # km
         incident = self.get_object()
         resources = None
 
@@ -86,10 +87,13 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         if location:
             resources = Resource.objects.filter(
                 point__distance_lte=(
-                    location, D(km=distance)
-                ))\
-                .annotate(
-                    distance=Distance("point", location)
+                    location, D(km=distance__lte)
+                ),
+                point__distance_gte=(
+                    location, D(km=distance__gte)
+                )
+            ).annotate(
+                distance=Distance("point", location)
             ).select_related('polymorphic_ctype').order_by('distance')
 
         meta = self.request.query_params.get('meta')
