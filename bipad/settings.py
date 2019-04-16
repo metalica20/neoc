@@ -177,7 +177,7 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'ne'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Kathmandu'
 
@@ -230,7 +230,7 @@ MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 6),
         ("markerFitZoom", 12),
-        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np',}}),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np', }}),
     ),
     "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
     "LANGUAGE": "ne",
@@ -259,3 +259,5 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBE
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+SESSION_COOKIE_HTTPONLY = False
