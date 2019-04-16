@@ -55,5 +55,9 @@ class Ward(models.Model):
 
     objects = WardManager()
 
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'municipality__title', 'municipality__district__title'
+
     def __str__(self):
         return f'{str(self.municipality)}-{self.title}'

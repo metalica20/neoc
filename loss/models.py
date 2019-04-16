@@ -33,7 +33,8 @@ class Loss(TimeStampedModal):
     Allows to accomodate both historical data with less details and
     current Nepal Police and other data with finer details
     """
-    description = models.TextField(null=True, blank=True, default=None, verbose_name=_('Description'))
+    description = models.TextField(null=True, blank=True, default=None,
+                                   verbose_name=_('Description'))
     estimated_loss = models.BigIntegerField(
         null=True, blank=True, default=None,
         verbose_name=_('Estimated Loss')
@@ -106,7 +107,8 @@ class People(TimeStampedModal):
         null=True, blank=True, default=None,
         verbose_name=_('Name'),
     )
-    age = models.PositiveSmallIntegerField(null=True, blank=True, default=None, verbose_name=_('Age'),)
+    age = models.PositiveSmallIntegerField(
+        null=True, blank=True, default=None, verbose_name=_('Age'),)
     gender = models.CharField(
         max_length=25,
         null=True, blank=True, default=None,
@@ -120,8 +122,15 @@ class People(TimeStampedModal):
         on_delete=models.CASCADE,
         verbose_name=_('Nationality')
     )
-    address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
-    below_poverty = models.BooleanField(null=True, blank=True, default=None,verbose_name=_('Below Poverty'))
+    address = models.CharField(
+        max_length=255,
+        null=True, blank=True, default=None,
+        verbose_name=_('Address')
+    )
+    below_poverty = models.BooleanField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Below Poverty')
+    )
     disability = models.ForeignKey(
         DisabilityType,
         null=True, blank=True, default=None,
@@ -132,6 +141,13 @@ class People(TimeStampedModal):
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     loss = models.ForeignKey(
         Loss, related_name='peoples', on_delete=models.PROTECT)
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'name',
+
+    def __str__(self):
+        return self.name or 'People-{}'.format(self.id)
 
     class Meta:
         verbose_name = _('People')
@@ -156,9 +172,11 @@ class Family(TimeStampedModal):
 
     title = models.CharField(max_length=255, null=True,
                              blank=True, default=None, verbose_name=_('Title'))
-    address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
+    address = models.CharField(max_length=255, null=True, blank=True,
+                               default=None, verbose_name=_('Address'))
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
-    below_poverty = models.BooleanField(null=True, blank=True, default=None, verbose_name=_('Below Poverty'))
+    below_poverty = models.BooleanField(
+        null=True, blank=True, default=None, verbose_name=_('Below Poverty'))
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     phone_number = models.CharField(
         max_length=25, null=True, blank=True, default=None,
@@ -208,7 +226,11 @@ class Infrastructure(TimeStampedModal):
                              blank=True, default=None,
                              verbose_name=_('Title'))
     type = models.ForeignKey(
-        InfrastructureType, related_name='infrastructures', on_delete=models.PROTECT, verbose_name=_('Type'))
+        InfrastructureType,
+        related_name='infrastructures',
+        on_delete=models.PROTECT,
+        verbose_name=_('Type')
+    )
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     resource = models.ForeignKey(
         Resource,
@@ -303,7 +325,12 @@ class Livestock(TimeStampedModal):
 class AgricultureType(MPTTModel):
     title = models.CharField(max_length=255)
     unit = models.CharField(max_length=255)
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True, blank=True, default=None,
+        related_name='children'
+    )
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.unit)
