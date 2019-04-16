@@ -40,6 +40,9 @@ class EventForm(forms.ModelForm):
 
 @admin.register(Event)
 class EventAdmin(GeoModelAdmin):
+    search_fields = ('title',)
+    list_filter = ('severity',)
+    list_display = ('title', 'started_on', 'ended_on', 'severity')
     actions = ("create_event",)
     form = EventForm
 
