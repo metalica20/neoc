@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 06:14+0000\n"
+"POT-Creation-Date: 2019-04-17 10:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bipad/dashboard.py:15
+#: bipad/dashboard.py:16
+msgid "Select Language"
+msgstr "भाषा छनोट गर्नुस"
+
+#: bipad/dashboard.py:22 bipad/settings.py:269
+msgid "English"
+msgstr ""
+
+#: bipad/dashboard.py:23 bipad/settings.py:270
+msgid "Nepali"
+msgstr ""
+
+#: bipad/dashboard.py:29
 msgid "Quick links"
 msgstr ""
 
-#: bipad/dashboard.py:21
+#: bipad/dashboard.py:35
 msgid "Return to site"
 msgstr ""
 
-#: bipad/dashboard.py:22
+#: bipad/dashboard.py:36
 msgid "Change password"
 msgstr ""
 
-#: bipad/dashboard.py:24
+#: bipad/dashboard.py:38
 msgid "Log out"
 msgstr ""
 
-#: bipad/dashboard.py:30
+#: bipad/dashboard.py:44
 msgid "Applications"
 msgstr ""
 
-#: bipad/dashboard.py:36
+#: bipad/dashboard.py:50
 msgid "Administration"
 msgstr ""
 
-#: bipad/dashboard.py:42
+#: bipad/dashboard.py:56
 msgid "Recent Actions"
 msgstr ""
 
@@ -50,45 +62,58 @@ msgstr ""
 msgid "BIPAD administration"
 msgstr ""
 
-#: event/admin.py:25 incident/models.py:86
+#: event/admin.py:32 incident/models.py:86
 msgid "Incident"
 msgstr "घटना"
 
-#: event/models.py:12
+#: event/models.py:13
 msgid "Minor"
 msgstr "सामान्य"
 
-#: event/models.py:13
+#: event/models.py:14
 msgid "Major"
 msgstr "ठुलो "
 
-#: event/models.py:14
+#: event/models.py:15
 msgid "Catastrophic"
 msgstr "विनाशकारी "
 
-#: event/models.py:17 hazard/models.py:17 incident/models.py:22
-#: loss/models.py:126 loss/models.py:170 loss/models.py:232
+#: event/models.py:18 hazard/models.py:17 incident/models.py:22
+#: incident/models.py:93 loss/models.py:126 loss/models.py:170
+#: loss/models.py:232
 msgid "Title"
 msgstr "शीर्षक"
 
-#: event/models.py:18 hazard/models.py:19 incident/models.py:23
+#: event/models.py:21 hazard/models.py:19 incident/models.py:23
 #: loss/models.py:35
 msgid "Description"
 msgstr "विवरण"
 
-#: event/models.py:19 incident/models.py:30
+#: event/models.py:25 incident/models.py:29
+msgid "Point"
+msgstr ""
+
+#: event/models.py:29 incident/models.py:30
 msgid "Polygon"
 msgstr ""
 
-#: event/models.py:24
+#: event/models.py:34
+msgid "Started on"
+msgstr ""
+
+#: event/models.py:38
+msgid "Ended on"
+msgstr ""
+
+#: event/models.py:44
 msgid "Severity"
 msgstr "गम्भीरता"
 
-#: event/models.py:31 incident/models.py:38
+#: event/models.py:51 incident/models.py:38
 msgid "Event"
 msgstr "घटना"
 
-#: event/models.py:32
+#: event/models.py:52
 msgid "Events"
 msgstr ""
 
@@ -106,7 +131,7 @@ msgstr "क्रम"
 
 #: hazard/models.py:20
 msgid "Icon"
-msgstr "प्रतिमा"
+msgstr "प्रतीक"
 
 #: hazard/models.py:21
 msgid "Color"
@@ -130,15 +155,15 @@ msgstr "जोखिम"
 msgid "Hazards"
 msgstr "जोखिम"
 
-#: incident/admin.py:47
+#: incident/admin.py:55
 msgid "District"
 msgstr "जिल्ला"
 
-#: incident/admin.py:57
+#: incident/admin.py:65
 msgid "Municipality"
 msgstr "नगरपालिका"
 
-#: incident/admin.py:68 incident/models.py:57
+#: incident/admin.py:76 incident/models.py:57
 msgid "Wards"
 msgstr "वार्ड"
 
@@ -157,10 +182,6 @@ msgstr "प्रमाणित"
 #: incident/models.py:27
 msgid "Approved"
 msgstr "स्वीकृत"
-
-#: incident/models.py:29
-msgid "Point"
-msgstr ""
 
 #: incident/models.py:31
 msgid "Incident On"
@@ -182,9 +203,21 @@ msgstr "सडक ठेगाना"
 msgid "Incidents"
 msgstr ""
 
+#: incident/models.py:94
+msgid "Files"
+msgstr "फाइल"
+
+#: incident/models.py:97
+msgid "Document"
+msgstr "कागजात"
+
+#: incident/models.py:98
+msgid "Documents"
+msgstr "कागजात"
+
 #: loss/models.py:38
 msgid "Estimated Loss"
-msgstr "अनुमानित हानि"
+msgstr "अनुमानित क्षति"
 
 #: loss/models.py:55
 msgid "Losses"
@@ -252,7 +285,7 @@ msgstr "मानिसहरु"
 
 #: loss/models.py:121
 msgid "Relocated"
-msgstr "पुनः स्थानान्तरण "
+msgstr "पुनः स्थापित"
 
 #: loss/models.py:122
 msgid "Evacuated"
@@ -272,35 +305,35 @@ msgstr "परिवार"
 
 #: loss/models.py:164 loss/models.py:225
 msgid "Destroyed"
-msgstr "नष्ट"
+msgstr "नष्ट भएको"
 
 #: loss/models.py:178
 msgid "Resource"
-msgstr "स्रोत"
+msgstr "श्रोत"
 
 #: loss/models.py:182
 msgid "Equipment Value"
-msgstr "उपकरण मूल्य"
+msgstr "समान मूल्य"
 
 #: loss/models.py:186
 msgid "Infrastructure Value"
-msgstr "आधारभूत संरचना मूल्य"
+msgstr "आधारभूतको मूल्य"
 
 #: loss/models.py:190
 msgid "Beneficiary Owner"
-msgstr "लाभार्थी मालिक"
+msgstr "लाभार्थी"
 
 #: loss/models.py:194
 msgid "Service Disrupted"
-msgstr "सेवा अवरोध "
+msgstr "सुविधामा अबरोध  "
 
 #: loss/models.py:199 loss/models.py:244
 msgid "Economic Loss"
-msgstr "आर्थिक हानि"
+msgstr "आर्थिक क्षति"
 
 #: loss/models.py:206
 msgid "Infrastructure"
-msgstr "आधारभूत संरचना"
+msgstr "आधारभूत"
 
 #: loss/models.py:207
 msgid "Infrastructures"
@@ -328,4 +361,4 @@ msgid "Enter or update the address here"
 msgstr "यहाँ ठेगाना प्रविष्टि गर्नुहोस् वा अद्यावधिक गर्नुहोस्"
 
 msgid "Delete all Features"
-msgstr "यहाँ ठेगाना प्रविष्टि गर्नुहोस् वा अद्यावधिक गर्नुहोस्"
+msgstr "सबै विशेषताहरु मेटाउनुहोस"

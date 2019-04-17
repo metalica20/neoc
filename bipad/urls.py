@@ -51,6 +51,7 @@ from inventory.views import (
     ItemViewSet,
     InventoryViewSet,
 )
+from django.views.i18n import JavaScriptCatalog
 from django.utils.translation import ugettext_lazy as _
 
 admin.site.site_header = _('BIPAD administration')
@@ -135,9 +136,11 @@ urlpatterns = [
     re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
 ] + i18n_patterns(
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('admin/', admin.site.urls),
     path('admin/', include('django_select2.urls')),
 ) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )
+

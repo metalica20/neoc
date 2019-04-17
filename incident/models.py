@@ -90,5 +90,9 @@ class Incident(TimeStampedModal):
 class Document(TimeStampedModal):
     incident = models.ForeignKey(
         Incident, related_name='incident', on_delete=models.PROTECT)
-    title = models.CharField(max_length=255, blank=True, null=True, default=None)
-    file = models.FileField(verbose_name='files', blank=True,)
+    title = models.CharField(max_length=255, blank=True, null=True, default=None, verbose_name=_('Title'))
+    file = models.FileField(verbose_name=_('Files'), blank=True)
+
+    class Meta:
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     'jet.dashboard',
     'jet',
+    'modeltranslation',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -260,4 +261,11 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+
 SESSION_COOKIE_HTTPONLY = False
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('ne', gettext('Nepali')),
+)

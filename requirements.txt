@@ -11,6 +11,7 @@ django-polymorphic==2.0.3
 django-redis==4.10.0
 django-rest-polymorphic==0.1.8
 django-map-widgets==0.2.2
+django-modeltranslation==0.13
 django-reversion==3.0.3
 django-select2==6.3.1
 django-silk==3.0.1
