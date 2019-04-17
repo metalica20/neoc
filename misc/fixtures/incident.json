@@ -3,21 +3,25 @@
     "model": "incident.incidentsource",
     "pk": "nepal_police",
     "fields": {
-      "display_name": "_(Nepal Police)",
+      "display_name_en": "Nepal Police",
+      "display_name_ne": "नेपाल पुलिस"
+
     }
   },
   {
     "model": "incident.incidentsource",
     "pk": "ira",
     "fields": {
-      "display_name": "Initial Rapid Assesment"
+      "display_name_en": "Initial Rapid Assesment",
+      "display_name_ne": "इन्सीदेंट रिपोर्टिंग प्लात्फोर्म"
     }
   },
   {
     "model": "incident.incidentsource",
     "pk": "other",
     "fields": {
-      "display_name": "Other"
+      "display_name_en": "Other",
+      "display_name_ne": "अन्य"
     }
   }
 ]
