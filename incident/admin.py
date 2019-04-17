@@ -45,7 +45,9 @@ class IncidentForm(forms.ModelForm):
             wards = Incident.objects.values('wards').filter(id=instance.id)
             if wards[0]['wards']:
                 municipality = Ward.objects.values(
-                    'municipality', 'municipality__district').filter(id=wards[0]['wards'])
+                    'municipality',
+                    'municipality__district'
+                ).filter(id=wards[0]['wards'])
                 self.fields['municipality'].initial = municipality[0]['municipality']
                 self.fields['district'].initial = municipality[0]['municipality__district']
 
@@ -140,16 +142,23 @@ class IncidentAdmin(GeoModelAdmin):
             obj.updated_by = request.user
         else:
             obj.created_by = request.user
-        wards = form.cleaned_data.get('wards')
-        if wards:
-            obj.polygon = generate_polygon_from_wards(wards)
-            obj.point = GEOSGeometry(obj.polygon).centroid
 
         geojson = form.cleaned_data.get('geojson')
+        wards = form.cleaned_data.get('wards')
+
+        # geojson takes precedence over others
         if geojson:
             geojson = json.loads(geojson.read().decode('utf-8'))
+            # override polygon from geojson
             obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
-
+        if obj.polygon:
+            # polygon overrides wards
+            wards = Ward.objects.filter(boundary__intersects=obj.polygon)
+            form.cleaned_data['wards'] = wards
+        # if no polygon objects then generate polygon from wards
+        if wards and not obj.polygon:
+            obj.polygon = generate_polygon_from_wards(wards)
+        # generate centroid from polygon
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
 
