@@ -1,5 +1,11 @@
+import os
+import geocoder
 from .models import Alert
 from django.contrib.gis.measure import D
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
+
+
+GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 
 def get_similar_alerts(alert):
@@ -18,3 +24,22 @@ def get_similar_alerts(alert):
     else:
         return []
     return similar_alerts.order_by("-started_on")
+
+
+def generate_polygon_from_wards(wards):
+    polygon = GEOSGeometry(wards[0].boundary)
+    if len(wards) > 1:
+        for ward in wards[1:]:
+            polygon = polygon.union(GEOSGeometry(ward.boundary))
+        return MultiPolygon(polygon)
+    return polygon
+
+
+def get_alert_title(alert):
+    location = geocoder.google(
+        [alert.point.y, alert.point.x], components="country:NP", method='reverse', key=GOOGLE_MAP_API_KEY
+    )
+    if location.city:
+        return "%s at %s" % (alert.hazard, location.city)
+    else:
+        return "%s" % alert.hazard
