@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Hazard(models.Model):
-    NON_NATURAL = 'non_natural'
+    NON_NATURAL = 'non natural'
     NATURAL = 'natural'
 
     TYPES = (

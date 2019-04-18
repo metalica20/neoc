@@ -9,7 +9,7 @@
       "description": "",
       "icon": null,
       "color": "#A1FF85",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -22,7 +22,7 @@
       "description": "",
       "icon": null,
       "color": "#FF6BE1",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -35,7 +35,7 @@
       "description": "",
       "icon": "avalanche",
       "color": "#36FFD7",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -48,7 +48,7 @@
       "description": "",
       "icon": null,
       "color": "#FFA285",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -61,7 +61,7 @@
       "description": "",
       "icon": null,
       "color": "#C92A35",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -74,7 +74,7 @@
       "description": "",
       "icon": null,
       "color": "#82F6FF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -87,7 +87,7 @@
       "description": "",
       "icon": null,
       "color": "#8FFF9A",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -100,7 +100,7 @@
       "description": "",
       "icon": "earthquake",
       "color": "#FFBE7D",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -113,7 +113,7 @@
       "description": null,
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -126,7 +126,7 @@
       "description": "",
       "icon": "fire",
       "color": "#FF8A8A",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -139,7 +139,7 @@
       "description": "",
       "icon": "flood",
       "color": "#1A9BFF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -165,7 +165,7 @@
       "description": "",
       "icon": null,
       "color": "#69CDFF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -178,7 +178,7 @@
       "description": "",
       "icon": null,
       "color": "#61DFFF",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -191,7 +191,7 @@
       "description": "",
       "icon": null,
       "color": "#616161",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -204,7 +204,7 @@
       "description": "",
       "icon": null,
       "color": "#FF8AC4",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -217,20 +217,20 @@
       "description": "",
       "icon": null,
       "color": "#D6703C",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 18,
     "fields": {
-      "title_en": "Other(Natural)",
+      "title_en": "Other(natural)",
       "title_ne": "अन्य प्राकृतिक विपद्",
       "order": null,
       "description": "",
       "icon": null,
       "color": "#8C94FF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -243,7 +243,7 @@
       "description": "",
       "icon": null,
       "color": "#66FFC7",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -256,7 +256,7 @@
       "description": "",
       "icon": null,
       "color": "#FF29E2",
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -269,7 +269,7 @@
       "description": "",
       "icon": "snowstorm",
       "color": "#6EBBFF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -282,7 +282,7 @@
       "description": "",
       "icon": "storm",
       "color": "#A6E4FF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -295,7 +295,7 @@
       "description": "",
       "icon": "thunderbolt",
       "color": "#FFCA1A",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -308,7 +308,7 @@
       "description": "",
       "icon": "windstorm",
       "color": "#0FCFFF",
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -321,7 +321,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -334,7 +334,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -347,7 +347,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -360,7 +360,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -373,7 +373,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -386,7 +386,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Natural"
+      "type": "natural"
     }
   },
   {
@@ -399,7 +399,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -412,7 +412,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -425,7 +425,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -438,7 +438,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -451,7 +451,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -464,7 +464,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -477,7 +477,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -490,7 +490,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -503,7 +503,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -516,7 +516,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -529,7 +529,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -542,7 +542,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -555,7 +555,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -568,20 +568,20 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 45,
     "fields": {
-      "title_en": "Others (Non-Natural)",
+      "title_en": "Others (Non-natural)",
       "title_ne": "अन्य गैरप्राकृतिक विपद्",
       "order": null,
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -594,7 +594,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -607,7 +607,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
@@ -620,7 +620,7 @@
       "description": "",
       "icon": null,
       "color": null,
-      "type": "Non Natural"
+      "type": "non natural"
     }
   },
   {
