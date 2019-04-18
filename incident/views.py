@@ -97,8 +97,9 @@ class IncidentViewSet(FlexFieldsModelViewSet):
             ).select_related('polymorphic_ctype').order_by('distance')
 
         meta = self.request.query_params.get('meta')
+        page = self.paginate_queryset(resources)
         if meta:
-            serializer = DetailResponseSerializer(resources, many=True)
+            serializer = DetailResponseSerializer(page, many=True)
         else:
-            serializer = ResponseSerializer(resources, many=True)
-        return Response(serializer.data)
+            serializer = ResponseSerializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
