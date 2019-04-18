@@ -189,6 +189,10 @@ class Infrastructure(TimeStampedModal):
         max_length=255, null=True, blank=True, default=None,
         verbose_name=_('Beneficiary Owner')
     )
+    beneficiary_count = models.PositiveIntegerField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Beneficiary Count')
+    )
     service_disrupted = models.BooleanField(
         max_length=255, null=True, blank=True, default=None,
         verbose_name=_('Service Disrupted')
