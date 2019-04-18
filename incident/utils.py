@@ -56,12 +56,12 @@ def get_followup_fields(incident_id):
 
 
 def generate_polygon_from_wards(wards):
-    polygons = GEOSGeometry(wards[0].boundary)
+    polygon = GEOSGeometry(wards[0].boundary)
     if len(wards) > 1:
         for ward in wards[1:]:
-            polygons = polygons.union(GEOSGeometry(ward.boundary))
-        return MultiPolygon(polygons)
-    return polygons
+            polygon = polygon.union(GEOSGeometry(ward.boundary))
+        return MultiPolygon(polygon)
+    return polygon
 
 
 def get_incident_title(incident):
