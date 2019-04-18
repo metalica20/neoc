@@ -5,6 +5,58 @@ from .models import (
     ReleaseStatus,
     FiscalYear,
 )
+from django import forms
+from federal.models import (
+    District,
+    Municipality,
+    Ward
+)
+from django_select2.forms import ModelSelect2Widget
+
+
+class ReleaseForm(forms.ModelForm):
+    district = forms.ModelChoiceField(
+        queryset=District.objects.all(),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=District,
+            search_fields=['title__icontains'],
+        )
+    )
+    municipality = forms.ModelChoiceField(
+        queryset=Municipality.objects.all(),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=Municipality,
+            search_fields=['title__icontains'],
+            dependent_fields={'district': 'district'},
+        )
+    )
+    ward = forms.ModelChoiceField(
+        queryset=Ward.objects.all(),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=Ward,
+            search_fields=['title__icontains'],
+            dependent_fields={'municipality': 'municipality'},
+        )
+    )
+
+    class Meta:
+        Model = Release
+        fields = [
+            'provider_organization',
+            'incident',
+            'district',
+            'municipality',
+            'ward',
+            'person',
+            'beneficiary',
+            'beneficiary_owner',
+            'status',
+            'amount',
+            'description',
+        ]
 
 
 @admin.register(Flow)
@@ -41,6 +93,13 @@ class ReleaseAdmin(admin.ModelAdmin):
         'amount',
     )
     list_filter = ('status',)
+
+    form = ReleaseForm
+
+    class Media:
+        css = {
+            'all': ('federal/css/django_select2.css',)
+        }
 
 
 admin.site.register([ReleaseStatus, FiscalYear])

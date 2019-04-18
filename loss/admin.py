@@ -17,6 +17,13 @@ from django.core.exceptions import ValidationError
 from mptt.admin import MPTTModelAdmin
 from mptt.forms import TreeNodeChoiceField
 from incident.utils import get_followup_fields
+from federal.models import (
+    District,
+    Municipality,
+    Ward
+)
+from django_select2.forms import ModelSelect2Widget
+from django.utils.translation import ugettext_lazy as _
 
 
 class AgricultureForm(forms.ModelForm):
@@ -47,25 +54,122 @@ class LivestockTypeAdmin(MPTTModelAdmin):
 
 
 class PeopleForm(forms.ModelForm):
+    district = forms.ModelChoiceField(
+        queryset=District.objects.all(),
+        required=False,
+        label=_("District"),
+        widget=ModelSelect2Widget(
+            model=District,
+            search_fields=['title__icontains'],
+        )
+    )
+    municipality = forms.ModelChoiceField(
+        queryset=Municipality.objects.all(),
+        required=False,
+        label=_("Municipality"),
+        widget=ModelSelect2Widget(
+            model=Municipality,
+            search_fields=['title__icontains'],
+            dependent_fields={'district': 'district'},
+        )
+    )
+    ward = forms.ModelChoiceField(
+        queryset=Ward.objects.all(),
+        required=False,
+        label=_("Ward"),
+        widget=ModelSelect2Widget(
+            model=Ward,
+            search_fields=['title__icontains'],
+            dependent_fields={'municipality': 'municipality'},
+        )
+    )
+
     def clean(self):
         name = self.cleaned_data.get("name")
         count = self.cleaned_data.get("count")
         if name and count != 1:
             raise ValidationError("When name is given, count must be 1")
 
+    class Meta:
+        model = People
+        fields = (
+            'status',
+            'name',
+            'age',
+            'gender',
+            'nationality',
+            'district',
+            'municipality',
+            'ward',
+            'below_poverty',
+            'disability',
+            'count',
+        )
+
 
 class FamilyForm(forms.ModelForm):
+    district = forms.ModelChoiceField(
+        queryset=District.objects.all(),
+        required=False,
+        label=_("District"),
+        widget=ModelSelect2Widget(
+            model=District,
+            search_fields=['title__icontains'],
+        )
+    )
+    municipality = forms.ModelChoiceField(
+        queryset=Municipality.objects.all(),
+        required=False,
+        label=_("Municipality"),
+        widget=ModelSelect2Widget(
+            model=Municipality,
+            search_fields=['title__icontains'],
+            dependent_fields={'district': 'district'},
+        )
+    )
+    ward = forms.ModelChoiceField(
+        queryset=Ward.objects.all(),
+        required=False,
+        label=_("Ward"),
+        widget=ModelSelect2Widget(
+            model=Ward,
+            search_fields=['title__icontains'],
+            dependent_fields={'municipality': 'municipality'},
+        )
+    )
+
     def clean(self):
         title = self.cleaned_data.get("title")
         count = self.cleaned_data.get("count")
         if title and count != 1:
             raise ValidationError("When title is given, count must be 1")
 
+    class Meta:
+        model = Family
+        fields = (
+            'title',
+            'status',
+            'district',
+            'municipality',
+            'ward',
+            'below_poverty',
+            'phone_number',
+            'count',
+        )
+
 
 class PeopleInline(admin.StackedInline):
     model = People
     form = PeopleForm
     extra = 1
+
+    class Media:
+        css = {
+            'all': ('federal/css/django_select2.css',)
+        }
+        js = (
+            'https://code.jquery.com/jquery-3.3.1.min.js',
+        )
 
 
 class FamilyInline(admin.StackedInline):
