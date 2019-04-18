@@ -55,6 +55,13 @@ class Loss(TimeStampedModal):
         verbose_name_plural = _("Losses")
 
 
+class DisabilityType(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+
+    def __str__(self):
+        return self.title
+
+
 class People(TimeStampedModal):
     """
     People
@@ -96,10 +103,16 @@ class People(TimeStampedModal):
     )
     address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
     below_poverty = models.BooleanField(null=True, blank=True, default=None,verbose_name=_('Below Poverty'))
-    disabled = models.BooleanField(null=True, blank=True, default=None, verbose_name=_('Disabled'))
+    disability = models.ForeignKey(
+        DisabilityType,
+        null=True, blank=True, default=None,
+        related_name="peoples",
+        on_delete=models.CASCADE,
+        verbose_name=_('Disability')
+    )
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     loss = models.ForeignKey(
-        Loss, related_name='peoples', on_delete=models.CASCADE)
+        Loss, related_name='peoples', on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = _('People')
