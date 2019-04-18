@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'silk',
     'drf_yasg',
     'colorfield',
+    'mptt',
 
     'django_celery_beat',
     'rest_framework',
