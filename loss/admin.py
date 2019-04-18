@@ -8,15 +8,35 @@ from .models import (
     InfrastructureType,
     LivestockType,
 )
+from django import forms
+from django.core.exceptions import ValidationError
+
+
+class PeopleForm(forms.ModelForm):
+    def clean(self):
+        name = self.cleaned_data.get("name")
+        count = self.cleaned_data.get("count")
+        if name and count != 1:
+            raise ValidationError("When name is given, count must be 1")
+
+
+class FamilyForm(forms.ModelForm):
+    def clean(self):
+        title = self.cleaned_data.get("title")
+        count = self.cleaned_data.get("count")
+        if title and count != 1:
+            raise ValidationError("When title is given, count must be 1")
 
 
 class PeopleInline(admin.TabularInline):
     model = People
+    form = PeopleForm
     extra = 1
 
 
 class FamilyInline(admin.TabularInline):
     model = Family
+    form = FamilyForm
     extra = 1
 
 
