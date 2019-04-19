@@ -30,6 +30,7 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.gis.geos import GEOSGeometry
 from misc.validators import validate_geojson
+from django.core.exceptions import ValidationError
 
 
 class DocumentInline(admin.TabularInline):
@@ -118,7 +119,7 @@ class IncidentForm(forms.ModelForm):
                 self.cleaned_data.get("polygon") or
                 self.cleaned_data.get("geojson")
         ):
-            raise self.ValidationError("You need to add either wards or point or polygon or Geojson")
+            raise ValidationError("You need to add either wards or point or polygon or Geojson")
 
 
 @admin.register(Incident)
