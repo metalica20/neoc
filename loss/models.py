@@ -191,10 +191,18 @@ class Family(TimeStampedModal):
         verbose_name = _('Family')
 
 
-class InfrastructureType(models.Model):
+class InfrastructureType(MPTTModel):
     title = models.CharField(max_length=255, unique=True)
     description = models.CharField(
-        max_length=255, null=True, blank=True, default=None)
+        max_length=255,
+        null=True, blank=True, default=None
+    )
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.PROTECT,
+        null=True, blank=True, default=None,
+        related_name='children'
+    )
     # TODO: can also relate to resource_type
 
     def __str__(self):
@@ -278,11 +286,17 @@ class Infrastructure(TimeStampedModal):
         verbose_name_plural = _('Infrastructures')
 
 
-class LivestockType(models.Model):
+class LivestockType(MPTTModel):
     title = models.CharField(max_length=255, unique=True)
     description = models.CharField(
         max_length=255,
         null=True, blank=True, default=None
+    )
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.PROTECT,
+        null=True, blank=True, default=None,
+        related_name='children'
     )
 
     def __str__(self):
