@@ -183,6 +183,13 @@ class InfrastructureType(models.Model):
         return self.title
 
 
+class InfrastructureUnit(models.Model):
+    title = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Infrastructure(TimeStampedModal):
     """
     Insfrastructure
@@ -216,6 +223,11 @@ class Infrastructure(TimeStampedModal):
     infrastructure_value = models.PositiveIntegerField(
         null=True, blank=True, default=None,
         verbose_name=_('Infrastructure Value')
+    )
+    unit = models.ForeignKey(
+        InfrastructureUnit,
+        on_delete=models.PROTECT,
+        verbose_name=_('Unit')
     )
     beneficiary_owner = models.CharField(
         max_length=255, null=True, blank=True, default=None,

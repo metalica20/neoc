@@ -10,6 +10,7 @@ from .models import (
     Country,
     AgricultureType,
     Agriculture,
+    InfrastructureUnit,
 )
 from django import forms
 from django.core.exceptions import ValidationError
@@ -82,4 +83,4 @@ class LossAdmin(admin.ModelAdmin):
         AgricultureInline,
     )
 
-    admin.site.register([InfrastructureType, LivestockType, Country])
+    admin.site.register([InfrastructureType, LivestockType, Country, InfrastructureUnit])
