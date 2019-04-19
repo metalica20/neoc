@@ -118,6 +118,9 @@ class WardViewSet(FlexFieldsModelViewSet):
             bbox=Extent('boundary'),
             centroid=Centroid('boundary'),
         ).all()
+        format = self.request.query_params.get('format')
+        if format != 'geojson':
+            queryset = queryset.defer('boundary', 'municipality__boundary')
         if is_expanded(self.request, 'municipality'):
             queryset = queryset.select_related('municipality')
         if is_expanded(self.request, 'district'):
