@@ -15,11 +15,28 @@ class Hazard(models.Model):
     )
 
     title = models.CharField(max_length=250, unique=True, verbose_name=_('Title'))
-    order = models.SmallIntegerField(default=None, null=True, blank=True, verbose_name=_('Order'))
-    description = models.TextField(default=None, null=True, blank=True, verbose_name=_('Description'))
-    icon = models.CharField(max_length=25, default=None, null=True, blank=True, verbose_name=_('Icon'))
-    color = ColorField(default=None, null=True, blank=True, verbose_name=_('Color'))
-    resources = models.ManyToManyField(ContentType, through="HazardResources", verbose_name=_('Resources'))
+    order = models.SmallIntegerField(
+        default=None, null=True, blank=True,
+        verbose_name=_('Order')
+    )
+    description = models.TextField(
+        default=None, null=True, blank=True,
+        verbose_name=_('Description')
+    )
+    icon = models.CharField(
+        max_length=25,
+        default=None, null=True, blank=True,
+        verbose_name=_('Icon')
+    )
+    color = ColorField(
+        default=None, null=True, blank=True,
+        verbose_name=_('Color')
+    )
+    resources = models.ManyToManyField(
+        ContentType,
+        through="HazardResources",
+        verbose_name=_('Resources')
+    )
     type = models.CharField(
         max_length=25, choices=TYPES,
         null=True, blank=True, default=None,

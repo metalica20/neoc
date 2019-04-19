@@ -83,4 +83,5 @@ class LossAdmin(admin.ModelAdmin):
         AgricultureInline,
     )
 
-    admin.site.register([InfrastructureType, LivestockType, Country, InfrastructureUnit])
+
+admin.site.register([InfrastructureType, LivestockType, Country, InfrastructureUnit])

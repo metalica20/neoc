@@ -51,6 +51,10 @@ from inventory.views import (
     ItemViewSet,
     InventoryViewSet,
 )
+from relief.views import (
+    FlowViewSet,
+    ReleaseViewSet,
+)
 from django.views.i18n import JavaScriptCatalog
 from django.utils.translation import ugettext_lazy as _
 
@@ -111,6 +115,10 @@ router.register(r'inventory-item', ItemViewSet,
                 base_name='inventory-item')
 router.register(r'inventory', InventoryViewSet,
                 base_name='inventory')
+router.register(r'relief-flow', FlowViewSet,
+                base_name='relief-flow')
+router.register(r'relief-release', ReleaseViewSet,
+                base_name='relief-release')
 
 API_VERSION = 'v1'
 
@@ -143,4 +151,3 @@ urlpatterns = [
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )
-
