@@ -62,6 +62,17 @@ class DisabilityType(models.Model):
         return self.title
 
 
+class Country(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = 'country'
+        verbose_name_plural = "countries"
+
+
 class People(TimeStampedModal):
     """
     People
@@ -100,6 +111,13 @@ class People(TimeStampedModal):
         null=True, blank=True, default=None,
         choices=GENDERS,
         verbose_name=_('Gender'),
+    )
+    nationality = models.ForeignKey(
+        Country,
+        related_name="peoples",
+        null=True, blank=True, default=None,
+        on_delete=models.CASCADE,
+        verbose_name=_('Nationality')
     )
     address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
     below_poverty = models.BooleanField(null=True, blank=True, default=None,verbose_name=_('Below Poverty'))
