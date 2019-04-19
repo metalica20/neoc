@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='infrastructure',
             name='unit',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.PROTECT, to='loss.InfrastructureUnit', verbose_name='Unit'),
+            field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.PROTECT, to='loss.InfrastructureUnit', verbose_name='Unit'),
             preserve_default=False,
         ),
     ]

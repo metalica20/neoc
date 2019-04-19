@@ -248,6 +248,7 @@ class Infrastructure(TimeStampedModal):
     )
     unit = models.ForeignKey(
         InfrastructureUnit,
+        blank=True, default=None, null=True,
         on_delete=models.PROTECT,
         verbose_name=_('Unit')
     )
@@ -280,7 +281,8 @@ class Infrastructure(TimeStampedModal):
 class LivestockType(models.Model):
     title = models.CharField(max_length=255, unique=True)
     description = models.CharField(
-        max_length=255, null=True, blank=True, default=None
+        max_length=255,
+        null=True, blank=True, default=None
     )
 
     def __str__(self):
@@ -344,7 +346,8 @@ class Agriculture(TimeStampedModal):
         verbose_name=_('Type')
     )
     beneficiary_owner = models.CharField(
-        max_length=255, null=True, blank=True, default=None,
+        max_length=255,
+        null=True, blank=True, default=None,
         verbose_name=_('Beneficiary Owner')
     )
     beneficiary_count = models.PositiveIntegerField(
