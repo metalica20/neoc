@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Coalesce
 from resources.models import Resource
 from django.utils.translation import ugettext_lazy as _
+from mptt.models import MPTTModel, TreeForeignKey
 
 
 class StatManager(models.Manager):
@@ -285,3 +286,35 @@ class Livestock(TimeStampedModal):
     class Meta:
         verbose_name = _('Livestock')
         verbose_name_plural = _('Livestocks')
+
+
+class AgricultureType(MPTTModel):
+    title = models.CharField(max_length=255)
+    unit = models.CharField(max_length=255)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+
+    def __str__(self):
+        return '{} ({})'.format(self.title, self.unit)
+
+
+class Agriculture(TimeStampedModal):
+    type = models.ForeignKey(
+        AgricultureType,
+        related_name='agricultures',
+        on_delete=models.PROTECT,
+        verbose_name=_('Type')
+    )
+    beneficiary_owner = models.CharField(
+        max_length=255, null=True, blank=True, default=None,
+        verbose_name=_('Beneficiary Owner')
+    )
+    beneficiary_count = models.PositiveIntegerField(
+        default=None, null=True, blank=True,
+        verbose_name=_('Beneficiary Count')
+    )
+    quantity = models.PositiveIntegerField(
+        verbose_name=_('Quantity')
+    )
+    loss = models.ForeignKey(
+        Loss, related_name='agricultures', on_delete=models.CASCADE
+    )

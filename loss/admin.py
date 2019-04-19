@@ -7,10 +7,23 @@ from .models import (
     Infrastructure,
     InfrastructureType,
     LivestockType,
-    Country
+    Country,
+    AgricultureType,
+    Agriculture,
 )
 from django import forms
 from django.core.exceptions import ValidationError
+from mptt.admin import MPTTModelAdmin
+from mptt.forms import TreeNodeChoiceField
+
+
+class AgricultureForm(forms.ModelForm):
+    type = TreeNodeChoiceField(queryset=AgricultureType.objects.all())
+
+
+@admin.register(AgricultureType)
+class AgricultureTypeAdmin(MPTTModelAdmin):
+    mptt_level_indent = 20
 
 
 class PeopleForm(forms.ModelForm):
@@ -51,6 +64,12 @@ class LivestockInline(admin.TabularInline):
     extra = 1
 
 
+class AgricultureInline(admin.TabularInline):
+    model = Agriculture
+    form = AgricultureForm
+    extra = 1
+
+
 @admin.register(Loss)
 class LossAdmin(admin.ModelAdmin):
     search_fields = Loss.autocomplete_search_fields()
@@ -59,7 +78,8 @@ class LossAdmin(admin.ModelAdmin):
         PeopleInline,
         FamilyInline,
         LivestockInline,
-        InfrastructureInline
+        InfrastructureInline,
+        AgricultureInline,
     )
 
     admin.site.register([InfrastructureType, LivestockType, Country])
