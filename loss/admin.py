@@ -22,8 +22,26 @@ class AgricultureForm(forms.ModelForm):
     type = TreeNodeChoiceField(queryset=AgricultureType.objects.all())
 
 
+class InfrastructureForm(forms.ModelForm):
+    type = TreeNodeChoiceField(queryset=InfrastructureType.objects.all())
+
+
+class LivestockForm(forms.ModelForm):
+    type = TreeNodeChoiceField(queryset=LivestockType.objects.all())
+
+
 @admin.register(AgricultureType)
 class AgricultureTypeAdmin(MPTTModelAdmin):
+    mptt_level_indent = 20
+
+
+@admin.register(InfrastructureType)
+class InfrastructureTypeAdmin(MPTTModelAdmin):
+    mptt_level_indent = 20
+
+
+@admin.register(LivestockType)
+class LivestockTypeAdmin(MPTTModelAdmin):
     mptt_level_indent = 20
 
 
@@ -57,11 +75,13 @@ class FamilyInline(admin.TabularInline):
 
 class InfrastructureInline(admin.StackedInline):
     model = Infrastructure
+    form = InfrastructureForm
     extra = 1
 
 
 class LivestockInline(admin.TabularInline):
     model = Livestock
+    form = LivestockForm
     extra = 1
 
 
@@ -84,4 +104,4 @@ class LossAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register([InfrastructureType, LivestockType, Country, InfrastructureUnit])
+admin.site.register([Country, InfrastructureUnit])
