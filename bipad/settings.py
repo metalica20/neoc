@@ -265,3 +265,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = int(os.environ.get('DJANGO_DATA_UPLOAD_MAX_NUMBE
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+SERIALIZATION_MODULES = {
+        "custom_geojson": "risk_profile.geojson_serializer",
+}

@@ -141,6 +141,9 @@ class Testw(models.Model):
 
 class SocioEconomicGapanapa(models.Model):
     slug_id=models.CharField(max_length=500,null=True, blank=True, default=None)
+    province_id=models.CharField(max_length=500,null=True, blank=True, default=None)
+    district_id=models.CharField(max_length=500,null=True, blank=True, default=None)
+    municipality_id=models.CharField(max_length=500,null=True, blank=True, default=None)
     name=models.CharField(max_length=500,null=True, blank=True, default=None)
     gn_type=models.CharField(max_length=500,null=True, blank=True, default=None)
     district=models.CharField(max_length=500,null=True, blank=True, default=None)
@@ -152,7 +155,7 @@ class SocioEconomicGapanapa(models.Model):
     cablet_com=models.IntegerField(null=True, blank=True, default=None)
     computer_com=models.IntegerField(null=True, blank=True, default=None)
     internet_com=models.IntegerField(null=True, blank=True, default=None)
-    telegraph_com=models.IntegerField(null=True, blank=True, default=None)
+    telephone_com=models.IntegerField(null=True, blank=True, default=None)
     mobile_com=models.IntegerField(null=True, blank=True, default=None)
     wood_cook=models.IntegerField(null=True, blank=True, default=None)
     kerosene_cook=models.IntegerField(null=True, blank=True, default=None)
@@ -254,6 +257,8 @@ class Education(models.Model):
 
 
 class Risk(models.Model):
+    district_id=models.CharField(max_length=550,null=True, blank=True, default=None)
+    province_id=models.CharField(max_length=550,null=True, blank=True, default=None)
     district=models.CharField(max_length=550,null=True, blank=True, default=None)
     remoteness=models.FloatField(null=True, blank=True, default=None)
     hdi=models.FloatField(null=True, blank=True, default=None)
