@@ -19,6 +19,10 @@ class Resource(PolymorphicModel):
 
     detail = JSONField(null=True, blank=True, default=None)
 
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'title',
+
     def __str__(self):
         return self.title
 

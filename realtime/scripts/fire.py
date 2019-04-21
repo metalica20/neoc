@@ -6,14 +6,12 @@ from dateutil import tz
 from django.utils.timezone import localtime
 from bipad.settings import TIME_ZONE
 
-
 ICIMOD_FIRE_QUERY_URL = "http://geoapps.icimod.org/arcgis/rest/services/Nepal/NepalActiveFire/MapServer/0/query"
 
 
 def fetch_fire():
-    date_to = localtime().strftime('%s')
-    date_from = (localtime() + datetime.timedelta(-30)).strftime('%s')
-
+    date_to = str(localtime().timestamp()*1000)
+    date_from = str((localtime() + datetime.timedelta(-30)).timestamp()*1000)
     params = {
         'time': date_from+','+date_to,
         'outFields': 'SCAN,ACQ_DATE,ACQ_TIME,CONFIDENCE,LANDCOVER,LATITUDE,LONGITUDE,BRIGHTNESS',

@@ -4,7 +4,9 @@ from .models import (
     River,
     Rain,
     Fire,
+    Pollution,
+    Weather,
 )
+from bipad.admin import GeoModelAdmin
 
-
-admin.site.register([Earthquake, River, Rain, Fire])
+admin.site.register([Earthquake, River, Rain, Fire, Pollution, Weather], GeoModelAdmin)

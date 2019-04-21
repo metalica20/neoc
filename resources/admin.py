@@ -1,4 +1,7 @@
-from django.contrib import admin
+from django.contrib.gis import (
+    admin,
+    forms,
+)
 from bipad.admin import GeoPolymorphicParentModelAdmin
 from .models import (
     Resource,
@@ -10,14 +13,71 @@ from .models import (
     Governance,
     Industry,
 )
+from federal.models import (
+    District,
+    Municipality,
+    Ward
+)
+from django_select2.forms import ModelSelect2Widget
+
+
+class AddressForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance', None)
+        super(AddressForm, self).__init__(*args, **kwargs)
+        if instance:
+            ward = Resource.objects.values('ward').filter(id=instance.id)
+            if ward[0]['ward']:
+                municipality = Ward.objects.values(
+                    'municipality', 'municipality__district').filter(id=ward[0]['ward'])
+                self.fields['municipality'].initial = municipality[0]['municipality']
+                self.fields['district'].initial = municipality[0]['municipality__district']
+    district = forms.ModelChoiceField(
+        queryset=District.objects.all(),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=District,
+            search_fields=['title__icontains'],
+        )
+    )
+
+    municipality = forms.ModelChoiceField(
+        queryset=Municipality.objects.all(),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=Municipality,
+            search_fields=['title__icontains'],
+            dependent_fields={'district': 'district'},
+        )
+    )
+
+    ward = forms.ModelChoiceField(
+        queryset=Ward.objects.all(),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=Ward,
+            search_fields=['title__icontains'],
+            dependent_fields={'municipality': 'municipality'},
+        )
+    )
+
+    class Meta:
+        model = Resource
+        fields = '__all__'
 
 
 @admin.register(Resource)
 class ResourceAdmin(GeoPolymorphicParentModelAdmin):
+    form = AddressForm
     base_model = Resource
-    autocomplete_fields = ['ward']
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry)
+    search_fields = Resource.autocomplete_search_fields()
+
+    class Media:
+        css = {
+            'all': ('federal/css/django_select2.css',)
+        }
 
 
 @admin.register(Education)

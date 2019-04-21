@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-11 06:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: bipad/dashboard.py:15
+msgid "Quick links"
+msgstr ""
+
+#: bipad/dashboard.py:21
+msgid "Return to site"
+msgstr ""
+
+#: bipad/dashboard.py:22
+msgid "Change password"
+msgstr ""
+
+#: bipad/dashboard.py:24
+msgid "Log out"
+msgstr ""
+
+#: bipad/dashboard.py:30
+msgid "Applications"
+msgstr ""
+
+#: bipad/dashboard.py:36
+msgid "Administration"
+msgstr ""
+
+#: bipad/dashboard.py:42
+msgid "Recent Actions"
+msgstr ""
+
+#: bipad/urls.py:56
+msgid "BIPAD administration"
+msgstr ""
+
+#: event/admin.py:25 incident/models.py:86
+msgid "Incident"
+msgstr "घटना"
+
+#: event/models.py:12
+msgid "Minor"
+msgstr "सामान्य"
+
+#: event/models.py:13
+msgid "Major"
+msgstr "ठुलो "
+
+#: event/models.py:14
+msgid "Catastrophic"
+msgstr "विनाशकारी "
+
+#: event/models.py:17 hazard/models.py:17 incident/models.py:22
+#: loss/models.py:126 loss/models.py:170 loss/models.py:232
+msgid "Title"
+msgstr "शीर्षक"
+
+#: event/models.py:18 hazard/models.py:19 incident/models.py:23
+#: loss/models.py:35
+msgid "Description"
+msgstr "विवरण"
+
+#: event/models.py:19 incident/models.py:30
+msgid "Polygon"
+msgstr ""
+
+#: event/models.py:24
+msgid "Severity"
+msgstr "गम्भीरता"
+
+#: event/models.py:31 incident/models.py:38
+msgid "Event"
+msgstr "घटना"
+
+#: event/models.py:32
+msgid "Events"
+msgstr ""
+
+#: hazard/models.py:13
+msgid "Non Natural"
+msgstr "गैर प्राकृतिक"
+
+#: hazard/models.py:14
+msgid "Natural"
+msgstr "प्राकृतिक"
+
+#: hazard/models.py:18
+msgid "Order"
+msgstr "क्रम"
+
+#: hazard/models.py:20
+msgid "Icon"
+msgstr "प्रतिमा"
+
+#: hazard/models.py:21
+msgid "Color"
+msgstr "रंग"
+
+#: hazard/models.py:22
+msgid "Resources"
+msgstr "स्रोतहरू"
+
+#: hazard/models.py:26 loss/models.py:172 loss/models.py:238
+msgid "Type"
+msgstr "प्रकार"
+
+#: hazard/models.py:34 incident/models.py:44
+msgid "Hazard"
+msgstr "जोखिम"
+
+#: hazard/models.py:35
+#, fuzzy
+#| msgid "Hazard"
+msgid "Hazards"
+msgstr "जोखिम"
+
+#: incident/admin.py:47
+msgid "District"
+msgstr "जिल्ला"
+
+#: incident/admin.py:57
+msgid "Municipality"
+msgstr "नगरपालिका"
+
+#: incident/admin.py:68 incident/models.py:57
+msgid "Wards"
+msgstr "वार्ड"
+
+#: incident/models.py:24
+msgid "Cause"
+msgstr "कारण"
+
+#: incident/models.py:25
+msgid "Source"
+msgstr "श्रोत"
+
+#: incident/models.py:26
+msgid "Verified"
+msgstr "प्रमाणित"
+
+#: incident/models.py:27
+msgid "Approved"
+msgstr "स्वीकृत"
+
+#: incident/models.py:29
+msgid "Point"
+msgstr ""
+
+#: incident/models.py:31
+msgid "Incident On"
+msgstr "दुर्घटना भएको मिति"
+
+#: incident/models.py:32
+msgid "Reported On"
+msgstr "रिपोर्टिंग भएको मिति"
+
+#: incident/models.py:51 loss/models.py:54
+msgid "Loss"
+msgstr "क्षति"
+
+#: incident/models.py:60
+msgid "Street Address"
+msgstr "सडक ठेगाना"
+
+#: incident/models.py:87
+msgid "Incidents"
+msgstr ""
+
+#: loss/models.py:38
+msgid "Estimated Loss"
+msgstr "अनुमानित हानि"
+
+#: loss/models.py:55
+msgid "Losses"
+msgstr ""
+
+#: loss/models.py:70
+msgid "Dead"
+msgstr "मृत"
+
+#: loss/models.py:71
+msgid "Missing"
+msgstr "हराएको"
+
+#: loss/models.py:72
+msgid "Injured"
+msgstr "घाइते"
+
+#: loss/models.py:73 loss/models.py:120 loss/models.py:165 loss/models.py:226
+msgid "Affected"
+msgstr "प्रभावित"
+
+#: loss/models.py:80
+msgid "Male"
+msgstr "पुरुस"
+
+#: loss/models.py:81
+msgid "Female"
+msgstr "महिला"
+
+#: loss/models.py:84 loss/models.py:128 loss/models.py:173 loss/models.py:240
+msgid "Status"
+msgstr "स्थिति"
+
+#: loss/models.py:88
+msgid "Name"
+msgstr "नाम"
+
+#: loss/models.py:90
+msgid "Age"
+msgstr "उमेर"
+
+#: loss/models.py:95
+msgid "Gender"
+msgstr "लिङ्ग"
+
+#: loss/models.py:97 loss/models.py:127
+msgid "Address"
+msgstr "ठेगाना"
+
+#: loss/models.py:98 loss/models.py:129
+msgid "Below Poverty"
+msgstr "गरिबी तल"
+
+#: loss/models.py:99
+msgid "Disabled"
+msgstr "अक्षम"
+
+#: loss/models.py:100 loss/models.py:130 loss/models.py:196 loss/models.py:241
+msgid "Count"
+msgstr "गणना"
+
+#: loss/models.py:105 loss/models.py:106
+msgid "People"
+msgstr "मानिसहरु"
+
+#: loss/models.py:121
+msgid "Relocated"
+msgstr "पुनः स्थानान्तरण "
+
+#: loss/models.py:122
+msgid "Evacuated"
+msgstr "खाली गरियो"
+
+#: loss/models.py:133
+msgid "Phone Number"
+msgstr "फोन नम्बर"
+
+#: loss/models.py:140
+msgid "Families"
+msgstr "परिवार"
+
+#: loss/models.py:141
+msgid "Family"
+msgstr "परिवार"
+
+#: loss/models.py:164 loss/models.py:225
+msgid "Destroyed"
+msgstr "नष्ट"
+
+#: loss/models.py:178
+msgid "Resource"
+msgstr "स्रोत"
+
+#: loss/models.py:182
+msgid "Equipment Value"
+msgstr "उपकरण मूल्य"
+
+#: loss/models.py:186
+msgid "Infrastructure Value"
+msgstr "आधारभूत संरचना मूल्य"
+
+#: loss/models.py:190
+msgid "Beneficiary Owner"
+msgstr "लाभार्थी मालिक"
+
+#: loss/models.py:194
+msgid "Service Disrupted"
+msgstr "सेवा अवरोध "
+
+#: loss/models.py:199 loss/models.py:244
+msgid "Economic Loss"
+msgstr "आर्थिक हानि"
+
+#: loss/models.py:206
+msgid "Infrastructure"
+msgstr "आधारभूत संरचना"
+
+#: loss/models.py:207
+msgid "Infrastructures"
+msgstr "आधारभूत संरचना"
+
+#: loss/models.py:251
+msgid "Livestock"
+msgstr "पशुधन"
+
+#: loss/models.py:252
+msgid "Livestocks"
+msgstr "पशुधन"
+
+#: templates/rest_framework/base.html:6
+msgid "Bipad API"
+msgstr ""
+
+msgid "Coordinates"
+msgstr "निर्देशांक"
+
+msgid "Use My Location"
+msgstr "मेरो स्थान प्रयोग गर्नुहोस्"
+
+msgid "Enter or update the address here"
+msgstr "यहाँ ठेगाना प्रविष्टि गर्नुहोस् वा अद्यावधिक गर्नुहोस्"
+
+msgid "Delete all Features"
+msgstr "यहाँ ठेगाना प्रविष्टि गर्नुहोस् वा अद्यावधिक गर्नुहोस्"

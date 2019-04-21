@@ -20,10 +20,12 @@ class Command(BaseCommand):
                 # print(row[2])
                 try:
                     Bank = Risk.objects.create(
-                    district=row[0],
-                    remoteness=row[1],
-                    hdi=row[2],
-                    riskScore=row[3],
+                    district_id=row[0],
+                    province_id=row[1],
+                    district=row[2],
+                    remoteness=row[3],
+                    hdi=row[4],
+                    riskScore=row[5],
                     )
                 except:
                     print('error')

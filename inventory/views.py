@@ -22,11 +22,14 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     search_fields = ('title',)
     filter_fields = ('category',)
-    queryset = Item.objects.all()
+    queryset = Item.objects.select_related('category').all()
 
 
 class InventoryViewSet(viewsets.ModelViewSet):
     serializer_class = InventorySerializer
     search_fields = ('item',)
     filter_fields = ('item', 'resource')
-    queryset = Inventory.objects.all()
+    queryset = Inventory.objects.select_related(
+        'item',
+        'item__category'
+    ).all()

@@ -5,4 +5,4 @@ from .models import Hazard
 class HazardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hazard
-        exclude = ('resources',)
+        exclude = ('resources', 'order')

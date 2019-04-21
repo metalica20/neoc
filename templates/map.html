@@ -29,6 +29,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/leaflet.draw.css' %}">
 
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/nouislider.min.css' %}">
+
+
 </head>
 <!--head end-->
 
@@ -115,29 +118,36 @@
             </div>
 
             <!-- leftSidebar start -->
-            <div class="sidebar leftSidebar" style="display:none;">
+
+
+            <!-- <div class="sidebar leftSidebar" id="filtered_layer_list_container" style="display:block;">
+
+              <div class="leftSidebar-header">
+                  <h4>Incidents</h4>
+              </div>
+              <ul class="list-content" id='filtered_layer_list'>
+
+              </ul>
+
+            </div> -->
+
+            <div class="sidebar leftSidebar" style="display:block;">
                     <!-- <span class="expand-icon">
                         <i class="ion ion-ios-warning"></i>
                     </span> -->
-                    <div class="sidebarwrapper">
-                        <div class="leftSidebar-header">
-                            <h4>Service</h4>
-                            <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
-                            <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
-                        </div>
-                        <div class="sidebar-widget">
-                            <ul class="list-content">
-                                <li><a href="#" target="">Total population</a><span>113456</span></li>
-                                <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
-                                <li><a href="#" target="">population density</a><span>4567789</span></li>
-                                <li><a href="#" target="">Poverty rate</a><span>57568569</span></li>
-                                <li><a href="#" target="">Population under poverty rate</a><span>5685698</span></li>
-                                <li><a href="#" target="">HD</a><span>45363</span></li>
-                                <li><a href="#" target="">GDP</a><span>769768</span></li>
-                                <li><a href="#" target="">Index</a><span>45363</span></li>
-                                <li><a href="#" target="">Per income</a><span>769768</span></li>
-                            </ul>
-                        </div>
+                    <!-- <div class="sidebarwrapper" id="filtered_layer_list_container" style="display:none;">
+
+                      <div class="leftSidebar-header">
+                          <h4>Incidents</h4>
+                      </div>
+                      <ul class="list-content" id='filtered_layer_list'>
+
+                      </ul>
+
+                    </div> -->
+                    <div class="sidebarwrapper" id="filtered_layer_list_container" style="display:none;">
+
+
                     </div>
                 </div>
             <!-- rightSidebar start -->
@@ -147,7 +157,10 @@
                 </span> -->
                 <div class="sidebarwrapper">
                     <!-- sidebar start -->
-                    <div class="sidebar-widget filter-widget">
+
+             
+                    <div class="sidebar-widget filter-widget" style="display:none;">
+
 
 
                       <div class="right-sidebar-title filter-title">
@@ -239,7 +252,11 @@
                                                 </div>
                                                 <span class="humanitarian-icon-Earthquake"></span>
                                             </li>
+
                                             <li>
+
+                                            <!-- <li>
+
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="Landslide" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="Landslide">Landslide</label>
@@ -259,7 +276,11 @@
                                                     <label class="custom-control-label" for="Draought">Drought</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Drought"></span>
+
                                             </li>
+
+                                            </li> -->
+
                                         </ul>
                                     </div>
                                 </div>
@@ -328,13 +349,21 @@
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
                                             </li>
+
                                             <li>
+
+                                            <!-- <li>
+
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="percapital" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="percapital">per capital income</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
+
                                             </li>
+
+                                            </li> -->
+
                                         </ul>
                                     </div>
                                 </div>
@@ -699,14 +728,19 @@
                                    <ul class="hazardDetail-list">
                                        <li class="active">
                                            <div class="custom-control custom-radio">
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:sankhu_drone" data-url="http://nationalgeoportal.gov.np:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:sankhu_drone" data-url="http://139.59.67.104:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+
                                                <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
                                            </div>
                                        </li>
                                        <li class="active">
                                            <div class="custom-control custom-radio">
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-url="http://nationalgeoportal.gov.np:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="test_1" name="test_1" value="customEx">
-                                               <label class="custom-control-label" for="test_1">Drone  </label>
+
+                                               
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:bancharedanda" data-url="http://139.59.67.104:8080/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
+                                               <label class="custom-control-label" for="test_1">Drone </label>
+
                                            </div>
                                        </li>
 
@@ -857,12 +891,15 @@
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio" id="telegraph_com" name="comapre_1" value="customEx">
-                                        <label class="custom-control-label" for="telegraph_com">Telephone</label>
+
+                                        <input type="radio" class="custom-control-input socio" id="telephone_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="telephone_com">Telephone</label>
                                     </div>
                                 </li>
                                 <!-- compare popup -->
-                                <div class="compare-popup">
+                                <div class="compare-popup" id="compare_vul">
+
+
                                     <div class="compare-wrapper" id="radio-compare">
                                         <div class="compare-header">
                                             <h3>Access to radio</h3>
@@ -870,8 +907,15 @@
                                         </div>
                                         <div class="compare-body">
                                             graph content
+
+                                              <div id="chart"></div>
                                         </div>
                                     </div>
+
+
+
+
+
                                 </div>
                             </ul>
                         </div>
@@ -1217,8 +1261,9 @@
   <script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
   <script src="{% static 'mappage/js/proj4.js' %}"></script>
   <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
+  <script src="{% static 'mappage/js/nouislider.min.js' %}"></script>
+ <script src="https://unpkg.com/leaflet.vectorgrid@1.2.0/dist/Leaflet.VectorGrid.bundled.js"></script>
 
-  <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
 
   <!-- chart-pie -->
 
@@ -1250,7 +1295,7 @@
            if(document.location.hostname=='localhost'){
              var base_url = 'http://localhost:8000';
            }else{
-             var base_url= 'http://139.59.67.104:8004';
+             var base_url= 'https://bipad.naxa.com.np';
            }
 
     $(document).ready(function(){
@@ -1312,8 +1357,8 @@
             //console.log(response);
             function highlight (layer) {
         			  layer.setStyle({
-                  fillColor:"blue",
-                  fillOpacity:0.1,
+                  fillColor:"green",
+                  fillOpacity:0.5,
                   weight: 1,
                   opacity: 0.2,
                   color: 'black',
@@ -1327,58 +1372,258 @@
         		    });
             }
 
-            municipality = new L.geoJson.ajax(fed_url_prov,
-             {
-
-                 onEachFeature: function (feature, layer) {
-                   layer.setStyle({
-                     fillColor:"blue",
-                     fillOpacity:0.1,
-                     weight: 1,
-                     opacity: 0.2,
-                     color: 'black',
-          //dashArray: '3'
-
-                       });
-
-                       layer.on("click",function(){
-                         var socioValue= layer.feature.socioValue;
-                         if(layer.feature.socioValue!=undefined){
-                           console.log(socioValue);
-                           if($(".compare-wrapper").css('display')=="block"){
-                             highlight(layer);
-                           }
-                           else{
-                             //resetHighlight(layer);
-                           }
-
-
-
-                         }
-                       });
-                 }
-
-           });
+              
+          //   municipality = new L.geoJson.ajax(fed_url_prov,
+          //    {
+          //
+          //        onEachFeature: function (feature, layer) {
+          //          layer.setStyle({
+          //            fillColor:"blue",
+          //            fillOpacity:0.1,
+          //            weight: 1,
+          //            opacity: 0.2,
+          //            color: 'black',
+          // //dashArray: '3'
+          //
+          //              });
+          //
+          //              layer.on("click",function(){
+          //                //console.log(layer.feature);
+          //                var mun= layer.feature.properties.title;
+          //                console.log(mun);
+          //                //if(layer.feature.socioValue!=undefined){
+          //                  //console.log(socioValue);
+          //                  if($(".compare-wrapper").css('display')=="block"){
+          //                    highlight(layer);
+          //
+          //                    $.ajax({
+          //                        // async:false,
+          //                        url: base_url+'/risk_profile/socio/'+mun,
+          //                        success: function(result) {
+          //                          console.log(result);
+          //                          if(result.length!=0){
+          //                            console.log(result[0].noFacilityCom);
+          //
+          //
+          //
+          //
+          //                            dataset=[
+          //                                {label: "No Facility", count: result[0].noFacilityCom},
+          //                                {label: "Atleast One", count: result[0].oneAtleastCom},
+          //                                {label: "Radio", count: result[0].radioCom},
+          //                                {label: "Television", count: result[0].televisionCom},
+          //                                {label: "Cablet", count: result[0].cabletCom},
+          //                                {label: "Computer", count: result[0].computerCom},
+          //                                {label: "Internet", count: result[0].internetCom},
+          //                                {label: "Telephone", count: result[0].telegraphCom},
+          //                                {label: "Mobile", count: result[0].mobileCom},
+          //                              ];
+          //                            createChart(dataset)
+          //                          }else{
+          //
+          //
+          //                          }
+          //
+          //                        }
+          //                    });
+          //
+          //                    //console.log(data);
+          //                  }
+          //                  else{
+          //                    //resetHighlight(layer);
+          //                  }
+          //
+          //
+          //
+          //                //}
+          //              });
+          //        }
+          //
+          //  });
 
   //map.addLayer(province);
 
-  district = new L.geoJson.ajax(fed_url_district,{
-
-       onEachFeature: function (feature, layer) {
-         layer.setStyle({
-           fillColor:"blue",
-           fillOpacity:0.1,
-           weight: 1,
-           opacity: 0.2,
-           color: 'black',
-//dashArray: '3'
-
-             });
-       }
-
- });
+//   district = new L.geoJson.ajax(fed_url_district,{
+//
+//        onEachFeature: function (feature, layer) {
+//          layer.setStyle({
+//            fillColor:"blue",
+//            fillOpacity:0.1,
+//            weight: 1,
+//            opacity: 0.2,
+//            color: 'black',
+// //dashArray: '3'
+//
+//              });
+//        }
+//
+//  });
 
  //map.addLayer(district);
+
+
+ // Set vectorTileOptions
+ vectorTileOptions = {
+ tms:true,
+ vectorTileLayerStyles: {
+ 'Districts': function() {
+ return {
+   fillColor:"blue",
+   fillOpacity:0.1,
+   weight: 1,
+   opacity: 0.2,
+   color: 'black',
+   fill: true,
+ }
+ },
+ 'Provinces': function() {
+ return {
+   fillColor:"blue",
+   fillOpacity:0.1,
+   weight: 1,
+   opacity: 0.2,
+   color: 'black',
+   fill: true,
+ }
+ },
+ 'Municipalities': function() {
+ return {
+   fillColor:"blue",
+   fillOpacity:0.1,
+   weight: 1,
+   opacity: 0.2,
+   color: 'black',
+   fill: true,
+ }
+ },
+ },
+ interactive: true,	// Make sure that this VectorGrid fires mouse/pointer events
+ getFeatureId: function(feature) {
+    return feature.properties.id;
+  }
+ }
+
+ var name;
+ 		var clearHighlight = function(name) {
+      console.log(name);
+ 			if (name) {
+ 				district.resetFeatureStyle(name);
+ 			}
+ 			name = null;
+ 		};
+
+ // Creating the full vectorTile url
+ var provinceUrl = 'http://139.59.67.104:8080/geoserver/gwc/service/tms/1.0.0/Naxa:Provinces@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var districtUrl = 'http://139.59.67.104:8080/geoserver/gwc/service/tms/1.0.0/Naxa:Districts@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var municipalityUrl = 'http://139.59.67.104:8080/geoserver/gwc/service/tms/1.0.0/Naxa:Municipalities@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+
+
+ // Creating the Leaflet vectorGrid object
+ province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions).addTo(map);
+ district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions);
+ municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions);
+
+ //map.fitBounds(province.getBounds());
+
+function highlightLayers(layer, featureName){
+  console.log(feaureName);
+  layer.setFeatureStyle(featureName, {
+            weight: 2,
+            color: 'red',
+            opacity: 1,
+            fillColor: 'red',
+            fill: true,
+            //radius: 6,
+            fillOpacity: 0.5
+    })
+}
+
+
+
+ // Define the action taken once a polygon is clicked. In this case we will create a popup with the camping name
+ province.on('click', function(e) {
+   console.log(e.layer.properties);
+     L.popup()
+       .setContent('Province: '+e.layer.properties.PROV_NAME)
+       .setLatLng(e.latlng)
+       .openOn(map);
+   });
+
+
+   district.on('click', function(e) {
+       L.popup()
+         .setContent(e.layer.properties.DISTRICT)
+         .setLatLng(e.latlng)
+         .openOn(map);
+     });
+
+
+     municipality.on('click', function(e) {
+       //console.log(e.layer.properties);
+
+       if($(".compare-wrapper").css('display')=="block"){
+                         //highlightLayers;
+
+                         municipality.setFeatureStyle(e.layer.properties.id, {
+                                   weight: 2,
+                                   color: 'red',
+                                   opacity: 1,
+                                   fillColor: 'red',
+                                   fill: true,
+                                   //radius: 6,
+                                   fillOpacity: 0.5
+                           })
+                           //end
+                         var mun = e.layer.properties.GaPa_NaPa;
+                         $.ajax({
+                             // async:false,
+                             url: base_url+'/risk_profile/socio/'+mun,
+                             success: function(result) {
+                               console.log(result);
+                               if(result.length!=0){
+                                 console.log(result[0].noFacilityCom);
+
+
+
+
+                                 dataset=[
+                                     {label: "No Facility", count: result[0].noFacilityCom},
+                                     {label: "Atleast One", count: result[0].oneAtleastCom},
+                                     {label: "Radio", count: result[0].radioCom},
+                                     {label: "Television", count: result[0].televisionCom},
+                                     {label: "Cablet", count: result[0].cabletCom},
+                                     {label: "Computer", count: result[0].computerCom},
+                                     {label: "Internet", count: result[0].internetCom},
+                                     {label: "Telephone", count: result[0].telegraphCom},
+                                     {label: "Mobile", count: result[0].mobileCom},
+                                   ];
+                                 createChart(dataset)
+                               }else{
+
+
+                               }
+
+                             }
+                         });
+
+                         //console.log(data);
+                       }
+                       else{
+                         //resetHighlight(layer);
+                       }
+
+
+         L.popup()
+           .setContent(e.layer.properties.GaPa_NaPa)
+           .setLatLng(e.latlng)
+           .openOn(map);
+       });
+
+
+ // Add the vectorGrid to the map
+ //province.addTo(map);
+ //district.addTo(map);
+ //municipality.addTo(map);
 
 
   //admin boundary layers map Layer end
@@ -1404,7 +1649,8 @@
                       opacity: 1,
                       color: 'white',
                       dashArray: '3',
-                      fillOpacity: 0.7
+                      fillOpacity: 0.7,
+                      fill:true
                     };
 
                 }
@@ -1430,7 +1676,9 @@
                            opacity: 1,
                            color: 'white',
                            dashArray: '3',
-                           fillOpacity: 0.7
+                           fillOpacity: 0.7,
+                           fill:true
+
                          };
 
                      }
@@ -1448,15 +1696,24 @@
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
+
+                                //console.log(result);
                                 console.log(Math.round(result.avg));
                                 avg_val=(Math.round(result.avg)/result.sum)*100;
-                                var features = municipality._layers;
+
+
+
+
+
+
+                                //var features = municipality._layers;
                                 var visual_html='';
-                                $.each(features, function (feature) {
+
                                   for(var i=0;i<result.data.length;i++){
-                                    if(features[feature].feature.properties.title==result.data[i]["name"]){
+
                                       var val_now=result.data[i][socioid1];
-                                      //console.log(val_now);
+
+
                                       visual_html+='<div class="progress-warpper">'+
                                           '<div class="progress skill-bar ">'+
                                               '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(Math.round(val_now)/result.sum)*100+'%;" aria-valuenow="'+(Math.round(val_now)/result.sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
@@ -1466,21 +1723,16 @@
                                       '</div>';
 
 
-                                      //console.log("entered if");
-                                      features[feature].setStyle(socioStyle(parseInt(result.data[i][socioid1])));
-                                      features[feature].feature.socioValue = parseFloat(result.data[i][socioid1]);
-                                      //console.log(features[feature].feature);
-                                      break;
-                                    }
-                                    else{
-                                      features[feature].setStyle(socioStyle(1));
-                                    }
-
-                                  }
 
 
 
-                                });
+                                     municipality.setFeatureStyle(result.data[i]["municipalityId"], socioStyle(parseInt(result.data[i][socioid1])));
+
+
+
+
+                               }
+
 
 
 
@@ -1535,11 +1787,13 @@
                               url: fed_url_api,
                               success: function(result) {
                                 var avg_val=(Math.round(result.avg*100));
-                                var features = district._layers;
+
+                                // var features = district._layers;
                                 var visual_html='';
-                                $.each(features, function (feature) {
+
                                   for(var i=0;i<result.results.length;i++){
-                                    if(features[feature].feature.properties.title==result.results[i]['district']){
+
+
                                       val=Math.round((result.results[i]['hdi'])*100);
                                       visual_html+='<div class="progress-warpper">'+
                                           '<div class="progress skill-bar ">'+
@@ -1549,24 +1803,23 @@
                                           '<span class="skill">'+result.results[i]['district']+' :<i class="val">'+result.results[i]['hdi']+'</i></span>'+
                                       '</div>';
 
-                                      //console.log("entered if");
-                                      console.log(features[feature]);
-                                      features[feature].setStyle(riskStyle(parseFloat(result.results[i][risk_id])));
-                                      features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
+
+                                      console.log(result.results[i]['hdi']);
+                                       district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i]['hdi'])));
+                                      //features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
                                       //console.log(features[feature].feature);
 
-                                      break;
-                                    }
-                                    else{
-                                      features[feature].setStyle(riskStyle(1));
 
-                                    }
+
+
 
                                   }
 
 
 
-                                });
+
+
+
 
 
                                 visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
@@ -1575,7 +1828,9 @@
                                 //console.log(visual_html);
                                 //console.log(avg_val);
 
-                                $('.progress-list').append(visual_html);
+
+                                $('.progress-list').html(visual_html);
+
 
 
                         }
@@ -1654,13 +1909,16 @@
                   html+='<ul>';
               for(var i=0;i<filter_arr.length;i++){
                 if(filter_arr[i].replace(/\s/g,"_")=='number_of_Beds'){
-                  html+='<div class="filter-list">'+
-                    '<h4 style="margin-top:1rem">Bed capacity</h4>'+
-                    '<div class="slider">'+
-                        '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
-                        '<div class="slider-range"></div>'+
-                    '</div>'+
-                  '</div>';
+
+                  html+='<div id="slider'+i+'" class="slider filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" data-sum="'+total_sum+'" name="'+layerName+'"></div>'
+                  // html+='<div class="filter-list">'+
+                  //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+                  //   '<div class="slider filter_resource_btn">'+
+                  //       '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
+                  //       '<div class="slider-range filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'"></div>'+
+                  //   '</div>'+
+                  // '</div>';
+
                 }else{
 
                   html+='<li>'+
@@ -1724,20 +1982,131 @@ if(level=='both'){
 
 $(".slider").each(function () {
 
+
+  var $this = $(this).parent().children();
+  var id=$(this).attr('id');
+//  console.log($this);
+  //nouislider
+
+  var range = document.getElementById(id);
+  //console.log(range);
+
+  noUiSlider.create(range, {
+      start: [20, 80],
+      connect: true,
+      range: {
+          'min': 0,
+          'max': 100
+      }
+  }).on("set.one",function(){
+      var id_slider=$(this)[0]['target'].id;
+    // console.log("setone callleddddd");
+     console.log($('#'+id_slider)[0].noUiSlider.options.start);
+
+     console.log($('#'+id_slider));
+
+
+    var layerName=$('#'+id_slider).attr('name');
+    var layer_icon=$('#'+id_slider).attr('data-icon');
+    var total_sum=$('#'+id_slider).attr('data-sum');
+    //console.log(layerName);
+
+    //function
+    var features_data=[];
+    var sub_layer_name=[];
+
+    if(map.hasLayer(window["filter_resource_"+layerName])){
+      //console.log('aa');
+
+      map.removeLayer(window["filter_resource_"+layerName]);
+
+    }
+    $. each($('.sub_cat_ex:checked'), function(){
+
+      var name_sub=$(this).attr('data-sub');
+      sub_layer_name.push($(this).attr('data-sub'));
+      //  console.log(name_sub);
+      layersdata=window[name_sub]._layers
+      //console.log(window[name_sub]._layers);
+      $.each(layersdata, function (feature) {
+
+        //console.log(layersdata[feature].feature);
+        features_data.push(layersdata[feature].feature);
+
+      });
+
+    });
+
+    var layer_data1={
+       "type": "FeatureCollection",
+       "features":features_data
+
+    };
+
+
+    //console.log(layer_icon);
+
+     //layer_data1=window[layerName].toGeoJSON();
+    // console.log(layer_data1);
+    var layer_data = jQuery.extend(true, {}, layer_data1);
+    // console.log(layer_data);
+    var checkedList = [];
+    $. each($("input[class='filter_resource_btn']:checked"), function(){
+
+    checkedList. push($(this). val());
+    });
+     //console.log(checkedList);
+    //console.log(layer_data.features.length);
+    for(var k=layer_data.features.length-1;k>=0;k--){
+      var delete_count=0;
+      for(var i=0;i<checkedList.length;i++){
+        //console.log(layer_data.features[k].properties[checkedList[i]]);
+
+        if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
+            //console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
+    //console.log("entered");
+            delete_count++;
+            //console.log(delete_count);
+
+        }
+
+
+      }
+      //console.log(delete_count);
+        if(delete_count==0){
+          //console.log("deleted");
+            //console.log("delete count 00");
+            //console.log(k);
+            layer_data.features.splice(k,1);
+
+        }
+
+
+    }
+    //console.log(layer_data);
+     filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
+    //function
+
+
+
+  });
+  //nouislider end
+
     //$this is a reference to .slider in current iteration of each
-    var $this = $(this);
+
     //find any .slider-range element WITHIN scope of $this
-          $(".slider-range", $this).slider({
-              range: true,
-              min: 0,
-              max: 1000,
-              values: [300, 600],
-              slide: function (event, ui) {
-                  // find any element with class .amount WITHIN scope of $this
-                  $(".amount", $this).val( ui.values[0] + " - " + ui.values[1]);
-              }
-          });
-          $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
+          // $(".slider-range", $this).slider({
+          //     range: true,
+          //     min: 0,
+          //     max: 1000,
+          //     values: [300, 600],
+          //     slide: function (event, ui) {
+          //         // find any element with class .amount WITHIN scope of $this
+          //         $(".amount", $this).val( ui.values[0] + " - " + ui.values[1]);
+          //     }
+          // });
+          // $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
+
 });
 // }, 100);
 
@@ -1863,7 +2232,9 @@ $(".vul_hdi").on('click',function(){
 
       }else{
       //  console.log(id);
-        geo_url='http://nationalgeoportal.gov.np:8080/geoserver/wms';
+
+        geo_url='http://139.59.67.104:8080/geoserver/wms';
+
         hazard_layers=L.tileLayer.betterWms(geo_url, {
                                 layers:id,
                                 transparent: true,
@@ -1876,9 +2247,15 @@ $(".vul_hdi").on('click',function(){
         });
 
 
-        if(id=="ngp:sankhu_drone"){
+
+        if(id=="Naxa:sankhu_drone" ){
         map.flyTo(center,18);
-        }else{
+        }
+        else if(id=="Naxa:bancharedanda" ){
+
+        }
+        else{
+
           map.flyTo(center,11);
         }
 
@@ -1989,16 +2366,65 @@ $(".vul_hdi").on('click',function(){
 
 //end of hazard layer
 
+
+
+function createPopup(feature){
+
+  //popup content
+var contentString = '<div class="box box-primary" style="width:400px;">';
+                            // '<a href="#" style = "background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')"  class="btn btn-primary btn-xs"><b>View Details</b></a>'+
+                            //'<h6 class="profile-username text-center"></h6>';
+                            if(feature.properties['name']!=undefined){
+                              contentString += '<h6><b>'+feature.properties.name+'</b></h6>';
+                            }
+
+                            contentString +='<ul class="list-group list-group-unbordered">';
+
+  for (data in feature.properties) {
+
+  //  console.log(data);
+
+
+
+
+            if(data!='name'){
+            contentString +='<li class="list-group-item popup-list">';
+
+                              contentString +=  '<b>'+data+': </b> <a class="pull-right"> '+feature.properties[data]+'</a></li>';
+                            }
+
+                            // '<li class="list-group-item"><b>House Head Name</b> <a class="pull-right">'+feature.properties.Head_of_the_Household
+                            // +'</a></li>'+
+                            // '<li class="list-group-item"><b>Received Support Type </b> <a class="pull-right">'+feature.properties.Any_support_after_earthquake
+                            // +'</a></li>'+
+                      // '<img src="'+feature.properties.Front_Facing_Photo+'" width="400" height="280"/>'+
+
+
+}
+contentString +='</div></div></div>';
+return contentString;
+//popup content stop
+
+
+}
+
+
+
 //start of resource layer
 $.get(base_url+'/risk_profile/Layer',function(data){
 
                  //console.log(data);
+
+              //   console.log(data);
+
                 for(var i=0;i<data.results.length;i++){
                   var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
                   layer_icon= data.results[i]['layerIcon']
                   type1= data.results[i]['type'];
                   var sub_array = data.results[i]['type'];
-                  //console.log(sub_array);
+
+                  //console.log(data);
+
                   for(let i=0;i<sub_array.length;i++){
                     window[sub_array[i]['type'].replace(' ','_')] = L.layerGroup();
                   }
@@ -2006,7 +2432,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                       $.ajax({
                           url: url,
                           //data:{"layer_icon":layer_icon, "data":data,"i":i},
-                          data1:data,
+
+                          data1:data.results[i],
                           indexValue: i,
                           layer_icon: layer_icon,
                           type2: type1,
@@ -2015,7 +2442,10 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           var layer_icon1 = this.layer_icon;
                           var type = this.type2;
 
-                            window[this.data1.results[this.indexValue]['layerTbl']] = new L.geoJson(response,
+                          var dataList = this.data1;
+                        //  console.log(this.data1);
+
+                            window[this.data1['layerTbl']] = new L.geoJson(response,
                         {
                             //pane:"pointsPane",
                             pointToLayer: function(feature,Latlng)
@@ -2042,6 +2472,18 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                   }
 
 
+                                  var contentString = createPopup(feature);
+                                  layer.bindPopup(L.popup({
+                                    //closeOnClick: true,
+                                    //closeButton: true,
+                                    keepInView: true,
+                                    autoPan: true,
+                                    maxHeight: 200,
+                                    minWidth: 250
+                                  }).setContent(contentString));
+                                  //console.log(dataList['layerName']);
+
+
                                 }
 
                               });
@@ -2057,9 +2499,15 @@ $.get(base_url+'/risk_profile/Layer',function(data){
    });
 
 
+  visible_layers_count=0;
+
+
    function getLayersInsidePolygon(coords,visible_layers){
    //console.log("visible layers  ",coords);
      $('#filtered_layer_list').html('');
+
+     $('#filtered_header').html('');
+
      for(var i=0;i<visible_layers.length;i++){
        //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
          var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
@@ -2091,33 +2539,83 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                        radius: 8,
                      });
                      return layer;
-                   },
+
+                   }
                  })
 
              ).addTo(map).on('load', function (feature, layer) {
-               //  console.log(feature);
+                 console.log(visible_layers[visible_layers_count]['layerName']);
                  //console.log(feature.target._layers[0].feature.properties);
-             //    console.log(feature.target._layers);
+                 var filterhtml = '<div class="inner_wrapper" style="border: 1px solid #f3eeee; margin-top:5px;"><div class="leftSidebar-header" id="filtered_header'+visible_layers_count+'">'+
+                     '<h4>'+visible_layers[visible_layers_count]['layerName']+'</h4>'+
+                     '<!-- <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>'+
+                     '<button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button> -->'+
+                 '</div>'+
+                 '<div class="sidebar-widget">'+
+                     '<ul class="list-content" id="filtered_layer_list'+visible_layers_count+'">'+
+
+                     '</ul>'+
+                 '</div></div>';
+
+                  $('#filtered_layer_list_container').append(filterhtml);
                  $.each(feature.target._layers, function (i) {
                  //  console.log(feature.target._layers[i].feature.properties.name)
 
-                   var list_item='<li><a href="#" target="">'+feature.target._layers[i].feature.properties.name+'</a></li>';
+                   var list_item="<li><a class = 'filtered_list_items' data='"+JSON.stringify(feature.target._layers[i].feature.properties)+"' center='"+JSON.stringify(feature.target._layers[i].feature.geometry.coordinates)+"' href='#' target=''>"+feature.target._layers[i].feature.properties.name+"</a></li>";
 
-                   $('#filtered_layer_list').append(list_item);
+                   $('#filtered_layer_list'+visible_layers_count).append(list_item);
+
+                   var contentString = createPopup(feature.target._layers[i].feature);
+                   feature.target._layers[i].bindPopup(L.popup({
+                     //closeOnClick: true,
+                     //closeButton: true,
+                     keepInView: true,
+                     autoPan: true,
+                     maxHeight: 200,
+                     minWidth: 250
+                   }).setContent(contentString));
 
                  });
                  $('#filtered_layer_list_container').css('display','block');
+                 visible_layers_count++;
+
+
+
+
                  //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
              });
          map.removeLayer(window[visible_layers[i]['layerName']]);
          $("."+visible_layers[i]['layerName']+"_activeclass").removeClass("active");
          $('#'+visible_layers[i]['layerName']+'_legend').remove();
 
+
+
+
+
      }
 
 
 
  }
+
+
+
+
+ $('#filtered_layer_list_container').on('click','.filtered_list_items',function(){
+   var properties = JSON.parse($(this).attr('data'));
+   var center = JSON.parse($(this).attr('center'));
+   var lat = center[1];
+   var long = center[0];
+   map.flyTo([lat,long],18);
+   var feature = {"properties":properties}
+   var contentString = createPopup(feature);
+   var popup = L.popup()
+    .setLatLng([lat, long])
+    .setContent(contentString)
+    .openOn(map);
+
+ });
+
 
 
   //draw start
@@ -2202,7 +2700,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       subcat_array.push(subcat_array1[i]['type']);
 
     }
-    console.log($('.'+layerName+'_parent').prop('checked'));
+
+    //console.log($('.'+layerName+'_parent').prop('checked'));
+
 
     if(map.hasLayer(window[layerName]) && $('.'+layerName+'_parent').prop('checked')==false){
 
@@ -2425,25 +2925,75 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
 
 //end sub category resource
 
+//dragTapSlider.noUiSlider.on('slide.one', function() {
+
+function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon){
+
+
+  //console.log(layer_data);
+  //console.log(window['clinic']._layers);
+  window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
+
+    pointToLayer: function(feature,Latlng)
+        {
+
+                var divicon = L.divIcon({
+                    className: layer_icon
+
+                });
+                var marker = L.marker(Latlng,{icon:divicon});
+
+        return marker;
+        },
+        onEachFeature: function (feature, layer) {
+
+          createPopup(feature);
+          var contentString = createPopup(feature);
+          layer.bindPopup(L.popup({
+            //closeOnClick: true,
+            //closeButton: true,
+            keepInView: true,
+            autoPan: true,
+            maxHeight: 200,
+            minWidth: 250
+          }).setContent(contentString));
+        }
+
+  }).addTo(map);
+  if(checkedList.length==0){
+    data_geo=window[layerName].toGeoJSON()
+    //map.addLayer(window[layerName]);
+    CreateChartData(data_geo,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+  }else{
+
+  map.removeLayer(window[layerName]);
+  CreateChartData(layer_data,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+
+  }
+
+
+}
+
+
 //resources filter
-$("#capacity-popup").on('click','.filter_resource_btn',function(){
+$("#capacity-popup").on('change','.filter_resource_btn',function(){
+
   //console.log(new_gejson_filter);
   var layerName=$(this).attr('name');
   var layer_icon=$(this).attr('data-icon');
   var total_sum=$(this).attr('data-sum');
-// console.log($(this).attr('aria-pressed'));
+
+ console.log('fiter range');
+ console.log(layerName);
 // console.log($(".Health_child").prop("checked"));
-
-  // console.log('test');
-  //console.log($('.sub_cat_ex:checked').length);
-  //console.log($("input[class='test']:checked"));
-
- //console.log($("input[class='filter_resource_btn']:checked"));
+>>>>>>> neoc/temp
 var features_data=[];
 var sub_layer_name=[];
 
 if(map.hasLayer(window["filter_resource_"+layerName])){
-  console.log('aa');
+
+  //console.log('aa');
+
 
   map.removeLayer(window["filter_resource_"+layerName]);
 
@@ -2451,8 +3001,10 @@ if(map.hasLayer(window["filter_resource_"+layerName])){
 $. each($('.sub_cat_ex:checked'), function(){
 
   var name_sub=$(this).attr('data-sub');
-    sub_layer_name.push($(this).attr('data-sub'));
-    console.log(name_sub);
+
+  sub_layer_name.push($(this).attr('data-sub'));
+  //  console.log(name_sub);
+
   layersdata=window[name_sub]._layers
   //console.log(window[name_sub]._layers);
   $.each(layersdata, function (feature) {
@@ -2482,7 +3034,9 @@ $. each($("input[class='filter_resource_btn']:checked"), function(){
 
 checkedList. push($(this). val());
 });
- console.log(checkedList);
+
+ //console.log(checkedList);
+
 //console.log(layer_data.features.length);
 for(var k=layer_data.features.length-1;k>=0;k--){
   var delete_count=0;
@@ -2510,36 +3064,18 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 
 
 }
-console.log(layer_data);
-//console.log(window['clinic']._layers);
-window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
 
-  pointToLayer: function(feature,Latlng)
-      {
+ filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
+  // console.log('test');
+  //console.log($('.sub_cat_ex:checked').length);
+  //console.log($("input[class='test']:checked"));
 
-              var divicon = L.divIcon({
-                  className: layer_icon
+ //console.log($("input[class='filter_resource_btn']:checked"));
 
-              });
-              var marker = L.marker(Latlng,{icon:divicon});
-
-      return marker;
-      },
-
-}).addTo(map);
-if(checkedList.length==0){
-  data_geo=window[layerName].toGeoJSON()
-  //map.addLayer(window[layerName]);
-  CreateChartData(data_geo,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
-}else{
-
-map.removeLayer(window[layerName]);
-CreateChartData(layer_data,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
-
-}
 
 //console.log(map.hasLayer(window["filter_resource_"+layerName]));
-console.log(sub_layer_name);
+//console.log(sub_layer_name);
+
 
 // CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon)
 
@@ -2551,6 +3087,9 @@ console.log(sub_layer_name);
 
 
 });
+
+
+
 
 
 //resource filter end
@@ -2566,10 +3105,12 @@ var admin_layer=$(this).attr('data-admin');
 if(admin_layer=='municipality'){
   $('.legend-list').html('');
   map.addLayer(window[admin_layer]);
+
   map.removeLayer(window['district']);
 }else{
   map.addLayer(window[admin_layer]);
-  map.removeLayer(window['municipality']);
+  map.removeLayer(eval('municipality'));
+
 }
 
 
@@ -2584,6 +3125,198 @@ $("#capacity-popup").change('.amount',function(){
 
 
 //end
+
+
+
+//chart start--
+function createChart(dataset){
+
+
+// define data
+// var dataset = [
+//     {label: "Assamese", count: 13},
+//     {label: "Bengali", count: 83},
+//     {label: "Bodo", count: 1.4},
+//     {label: "Dogri", count: 2.3},
+//     {label: "Gujarati", count: 46},
+//     {label: "Hindi", count: 300},
+//     {label: "Kannada", count: 38},
+//     {label: "Kashmiri", count: 5.5},
+//     {label: "Konkani", count: 5},
+//     {label: "Maithili", count: 20},
+//     {label: "Malayalam", count: 33},
+//     {label: "Manipuri", count: 1.5},
+//     {label: "Marathi", count: 72},
+//     {label: "Nepali", count: 2.9},
+//     {label: "Oriya", count: 33},
+//     {label: "Punjabi", count: 29},
+//     {label: "Sanskrit", count: 0.01},
+//     {label: "Santhali", count: 6.5},
+//     {label: "Sindhi", count: 2.5},
+//     {label: "Tamil", count: 61},
+//     {label: "Telugu", count: 74},
+//     {label: "Urdu", count: 52}
+//   ];
+
+// chart dimensions
+var width = 300;
+var height = 160;
+
+// a circle chart needs a radius
+var radius = Math.min(width, height) / 2;
+
+// legend dimensions
+var legendRectSize = 10; // defines the size of the colored squares in legend
+var legendSpacing = 2; // defines spacing between squares
+
+// define color scale
+var color = d3.scaleOrdinal(d3.schemeCategory20c);
+// more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
+
+var svg = d3.select('#chart') // select element in the DOM with id 'chart'
+  .append('svg') // append an svg element to the element we've selected
+  .attr('width', width) // set the width of the svg element we just added
+  .attr('height', height) // set the height of the svg element we just added
+  .append('g') // append 'g' element to the svg element
+  .attr('transform', 'translate(' + (width / 3) + ',' + (height / 2) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
+
+var arc = d3.arc()
+  .innerRadius(30) // none for pie chart
+  .outerRadius(radius); // size of overall chart
+
+var pie = d3.pie() // start and end angles of the segments
+  .value(function(d) { return d.count; }) // how to extract the numerical data from each entry in our dataset
+  .sort(null); // by default, data sorts in oescending value. this will mess with our animation so we set it to null
+
+// define tooltip
+var tooltip = d3.select('#chart') // select element in the DOM with id 'chart'
+  .append('div') // append a div element to the element we've selected
+  .attr('class', 'tooltip_chart'); // add class 'tooltip' on the divs we just selected
+
+tooltip.append('div') // add divs to the tooltip defined above
+  .attr('class', 'label'); // add class 'label' on the selection
+
+tooltip.append('div') // add divs to the tooltip defined above
+  .attr('class', 'count'); // add class 'count' on the selection
+
+tooltip.append('div') // add divs to the tooltip defined above
+  .attr('class', 'percent'); // add class 'percent' on the selection
+
+// Confused? see below:
+
+// <div id="chart">
+//   <div class="tooltip">
+//     <div class="label">
+//     </div>
+//     <div class="count">
+//     </div>
+//     <div class="percent">
+//     </div>
+//   </div>
+// </div>
+
+dataset.forEach(function(d) {
+  d.count = +d.count; // calculate count as we iterate through the data
+  d.enabled = true; // add enabled property to track which entries are checked
+});
+
+// creating the chart
+var path = svg.selectAll('path') // select all path elements inside the svg. specifically the 'g' element. they don't exist yet but they will be created below
+  .data(pie(dataset)) //associate dataset wit he path elements we're about to create. must pass through the pie function. it magically knows how to extract values and bakes it into the pie
+  .enter() //creates placeholder nodes for each of the values
+  .append('path') // replace placeholders with path elements
+  .attr('d', arc) // define d attribute with arc function above
+  .attr('fill', function(d) { return color(d.data.label); }) // use color scale to define fill of each label in dataset
+  .each(function(d) { this._current - d; }); // creates a smooth animation for each track
+
+// mouse event handlers are attached to path so they need to come after its definition
+path.on('mouseover', function(d) {  // when mouse enters div
+ var total = d3.sum(dataset.map(function(d) { // calculate the total number of tickets in the dataset
+  return (d.enabled) ? d.count : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase
+  }));
+ var percent = Math.round(1000 * d.data.count / total) / 10; // calculate percent
+ tooltip.select('.label').html(d.data.label); // set current label
+ tooltip.select('.count').html(d.data.count); // set current count
+ tooltip.select('.percent').html(percent + '%'); // set percent calculated above
+ tooltip.style('display', 'block'); // set display
+});
+
+path.on('mouseout', function() { // when mouse leaves div
+  tooltip.style('display', 'none'); // hide tooltip for that element
+ });
+
+path.on('mousemove', function(d) { // when mouse moves
+  //console.log(d3.event.layerY );
+  tooltip.style('top', (d3.event.layerY + 10) + 'px') // always 10px below the cursor
+    .style('left', (d3.event.layerX + 10) + 'px'); // always 10px to the right of the mouse
+  });
+
+// define legend
+var legend = svg.selectAll('.legend') // selecting elements with class 'legend'
+  .data(color.domain()) // refers to an array of labels from our dataset
+  .enter() // creates placeholder
+  .append('g') // replace placeholders with g elements
+  .attr('class', 'legend') // each g is given a legend class
+  .attr('transform', function(d, i) {
+    var height = legendRectSize + legendSpacing; // height of element is the height of the colored square plus the spacing
+    var offset =  height * color.domain().length / 3; // vertical offset of the entire legend = height of a single element & half the total number of elements
+    var horz = 10 * legendRectSize; // the legend is shifted to the left to make room for the text
+    var vert = i * height - offset; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'
+      return 'translate(' + horz + ',' + vert + ')'; //return translation
+   });
+
+// adding colored squares to legend
+legend.append('rect') // append rectangle squares to legend
+  .attr('width', legendRectSize) // width of rect size is defined above
+  .attr('height', legendRectSize) // height of rect size is defined above
+  .style('fill', color) // each fill is passed a color
+  .style('stroke', color) // each stroke is passed a color
+  .on('click', function(label) {
+    var rect = d3.select(this); // this refers to the colored squared just clicked
+    var enabled = true; // set enabled true to default
+    var totalEnabled = d3.sum(dataset.map(function(d) { // can't disable all options
+      return (d.enabled) ? 1 : 0; // return 1 for each enabled entry. and summing it up
+    }));
+
+    if (rect.attr('class') === 'disabled') { // if class is disabled
+      rect.attr('class', ''); // remove class disabled
+    } else { // else
+      if (totalEnabled < 2) return; // if less than two labels are flagged, exit
+      rect.attr('class', 'disabled'); // otherwise flag the square disabled
+      enabled = false; // set enabled to false
+    }
+
+    pie.value(function(d) {
+      if (d.label === label) d.enabled = enabled; // if entry label matches legend label
+        return (d.enabled) ? d.count : 0; // update enabled property and return count or 0 based on the entry's status
+    });
+
+    path = path.data(pie(dataset)); // update pie with new data
+
+    path.transition() // transition of redrawn pie
+      .duration(750) //
+      .attrTween('d', function(d) { // 'd' specifies the d attribute that we'll be animating
+        var interpolate = d3.interpolate(this._current, d); // this = current path element
+        this._current = interpolate(0); // interpolate between current value and the new value of 'd'
+        return function(t) {
+          return arc(interpolate(t));
+        };
+      });
+  });
+
+// adding text to legend
+legend.append('text')
+  .attr('x', legendRectSize + legendSpacing)
+  .attr('y', legendRectSize - legendSpacing)
+  .text(function(d) { return d; }); // return label
+
+}
+//chart end
+
+
+
+
+
     });//document end
  </script>
 
