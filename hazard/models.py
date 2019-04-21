@@ -27,7 +27,7 @@ class Hazard(models.Model):
     icon = models.FileField(
         upload_to='hazard-icons/',
         default=None, null=True, blank=True,
-        validators=[FileExtensionValidator(allowed_extensions=['svg', 'png'])],
+        validators=[FileExtensionValidator(allowed_extensions=['svg'])],
         verbose_name=_('Icon')
     )
     color = ColorField(

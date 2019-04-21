@@ -1,6 +1,6 @@
 [
   {
-    "model": "loss.nationality",
+    "model": "loss.country",
     "pk": 1,
     "fields": {
       "title_en": "Nepali",

@@ -6,6 +6,7 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from psycopg2cffi import compat
+from django.utils.translation import ugettext_lazy as _
 
 compat.register()
 
@@ -268,6 +269,6 @@ SESSION_COOKIE_HTTPONLY = False
 
 gettext = lambda s: s
 LANGUAGES = (
-    ('en', gettext('English')),
-    ('ne', gettext('Nepali')),
+    ('en', _('English')),
+    ('ne', _('Nepali')),
 )

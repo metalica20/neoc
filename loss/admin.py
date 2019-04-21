@@ -73,7 +73,7 @@ class FamilyInline(admin.TabularInline):
     extra = 1
 
 
-class InfrastructureInline(admin.StackedInline):
+class InfrastructureInline(admin.TabularInline):
     model = Infrastructure
     form = InfrastructureForm
     extra = 1
