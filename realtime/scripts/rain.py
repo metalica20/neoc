@@ -13,12 +13,18 @@ def fetch_rain():
         if data['longitude']:
             point_value = Point(float(data['longitude']), float(data['latitude']))
 
+        # Clean N/A in averages values
+        averages = data['averages']
+        for average in averages:
+            if average['value'] == 'N/A':
+                average['value'] = None
+
         rain = Rain(
             id=data['id'],
             title=data['name'],
             basin=data['basin'],
             point=point_value,
-            averages=data['averages'],
+            averages=averages,
             status=data['status'],
             elevation=data['elevation'],
             description=data['description'],
