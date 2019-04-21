@@ -87,6 +87,7 @@ class IncidentForm(forms.ModelForm):
     geojson = forms.FileField(
         required=False,
         validators=[validate_geojson],
+        label=_('Geojson')
     )
 
     class Meta:
@@ -177,13 +178,13 @@ class IncidentAdmin(GeoModelAdmin):
         queryset.update(verified=True)
 
     verify.allowed_permissions = ('can_verify',)
-    verify.short_description = 'Mark incidents as verified'
+    verify.short_description = _('Mark incidents as verified')
 
     def approve(self, request, queryset):
         queryset.update(approved=True)
 
     approve.allowed_permissions = ('can_approve',)
-    approve.short_description = 'Mark incidents as approved'
+    approve.short_description = _('Mark incidents as approved')
 
     def has_can_verify_permission(self, request):
         opts = self.opts
@@ -216,7 +217,7 @@ class IncidentAdmin(GeoModelAdmin):
         incident_ids = ",".join(str(incident.id) for incident in queryset)
         return HttpResponseRedirect('/admin/event/event/add/?incident=%s' % incident_ids)
 
-    create_event.short_description = 'Create Event'
+    create_event.short_description = _('Create Event')
 
     def change_view(self, request, object_id, form_url=''):
         followup_fields = get_followup_fields(object_id)

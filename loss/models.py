@@ -95,10 +95,12 @@ class People(TimeStampedModal):
 
     MALE = 'male'
     FEMALE = 'female'
+    OTHERS = 'others'
 
     GENDERS = (
         (MALE, _('Male')),
         (FEMALE, _('Female')),
+        (OTHERS, _('Others')),
     )
 
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
@@ -119,7 +121,7 @@ class People(TimeStampedModal):
         Country,
         related_name="peoples",
         null=True, blank=True, default=None,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         verbose_name=_('Nationality')
     )
     address = models.CharField(
@@ -133,10 +135,10 @@ class People(TimeStampedModal):
     )
     disability = models.ForeignKey(
         DisabilityType,
-        null=True, blank=True, default=None,
         related_name="peoples",
-        on_delete=models.CASCADE,
-        verbose_name=_('Disability')
+        null=True, blank=True, default=None,
+        on_delete=models.PROTECT,
+        verbose_name=_('DISABILITY')
     )
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     loss = models.ForeignKey(
@@ -171,7 +173,7 @@ class Family(TimeStampedModal):
     )
 
     title = models.CharField(max_length=255, null=True,
-                             blank=True, default=None, verbose_name=_('Title'))
+                             blank=True, default=None, verbose_name=_('Owner Name'))
     address = models.CharField(max_length=255, null=True, blank=True,
                                default=None, verbose_name=_('Address'))
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
@@ -232,7 +234,7 @@ class Infrastructure(TimeStampedModal):
 
     title = models.CharField(max_length=255, null=True,
                              blank=True, default=None,
-                             verbose_name=_('Title'))
+                             verbose_name=_('Infrastructure Title'))
     type = models.ForeignKey(
         InfrastructureType,
         related_name='infrastructures',
@@ -269,7 +271,8 @@ class Infrastructure(TimeStampedModal):
         verbose_name=_('Beneficiary Count')
     )
     service_disrupted = models.BooleanField(
-        max_length=255, null=True, blank=True, default=None,
+        max_length=255,
+        null=True, blank=True, default=None,
         verbose_name=_('Service Disrupted')
     )
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
@@ -374,3 +377,7 @@ class Agriculture(TimeStampedModal):
     loss = models.ForeignKey(
         Loss, related_name='agricultures', on_delete=models.CASCADE
     )
+
+    class Meta:
+        verbose_name = _('Agriculture')
+        verbose_name_plural = _('Agriculture')
