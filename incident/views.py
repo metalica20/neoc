@@ -1,3 +1,6 @@
+import datetime
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.db.models import Prefetch
 from rest_flex_fields import (
@@ -14,6 +17,8 @@ from federal.models import Ward
 from .models import Incident
 from .filter_set import IncidentFilter
 from loss.models import Loss
+from django.core.cache import cache
+from .tasks import update_lnd
 
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.measure import D
@@ -68,11 +73,37 @@ class IncidentViewSet(FlexFieldsModelViewSet):
 
         return queryset
 
-    def list(self, request, *args, **kwargs):
-        response = super().list(request, *args, **kwargs)
-        is_lnd = self.request.query_params.get('lnd', 'false')
-        if is_lnd.lower() == 'true':
+    def get_cached_response(self, request, *args, **kwargs):
+        key = request.GET.urlencode()
+        item = cache.get(key)
+        if item is None:
+            response = Response(status=status.HTTP_204_NO_CONTENT)
+            # FIXME: async call
+            update_lnd(
+                super(IncidentViewSet, self).dispatch,
+                request,
+                *args,
+                **kwargs
+            )
+        else:
+            response, expiry = item
             response['Cache-Control'] = 'max-age=3600'
+            if expiry < datetime.datetime.now():
+                # FIXME: async call
+                update_lnd(
+                    super(IncidentViewSet, self).dispatch,
+                    request,
+                    *args,
+                    **kwargs
+                )
+        return response
+
+    def dispatch(self, request, *args, **kwargs):
+        is_lnd = request.GET.get('lnd', 'false')
+        if is_lnd.lower() == 'true':
+            response = self.get_cached_response(request, *args, **kwargs)
+        else:
+            response = super().dispatch(request, *args, **kwargs)
         return response
 
     @action(detail=True, name='Incident Response')
