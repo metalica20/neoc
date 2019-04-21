@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
+from django.core.validators import FileExtensionValidator
 
 
 class Hazard(models.Model):
@@ -23,9 +24,10 @@ class Hazard(models.Model):
         default=None, null=True, blank=True,
         verbose_name=_('Description')
     )
-    icon = models.CharField(
-        max_length=25,
+    icon = models.FileField(
+        upload_to='hazard-icons/',
         default=None, null=True, blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['svg', 'png'])],
         verbose_name=_('Icon')
     )
     color = ColorField(
