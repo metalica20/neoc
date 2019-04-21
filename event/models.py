@@ -2,6 +2,7 @@ from django.utils import timezone
 from django.contrib.gis.db import models
 from bipad.models import TimeStampedModal
 from django.utils.translation import ugettext_lazy as _
+from hazard.models import Hazard
 
 
 class Event(TimeStampedModal):
@@ -28,6 +29,13 @@ class Event(TimeStampedModal):
         null=True, blank=True, default=None,
         verbose_name=_('Polygon')
     )
+    hazard = models.ForeignKey(
+        Hazard,
+        on_delete=models.PROTECT,
+        default=18,
+        verbose_name=_('Hazard'),
+    )
+
     started_on = models.DateTimeField(
         blank=True,
         default=timezone.now,

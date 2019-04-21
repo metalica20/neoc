@@ -84,6 +84,9 @@ class EventAdmin(GeoModelAdmin):
             )
             return
         event_id = queryset[0].id
-        return HttpResponseRedirect('/admin/alert/alert/add/?event=%s' % event_id)
+        hazard_id = queryset[0].hazard_id
+        return HttpResponseRedirect(
+            '/admin/alert/alert/add/?event=%s&hazard=%s' % (event_id, hazard_id)
+        )
 
     create_event.short_description = 'Create Alert'
