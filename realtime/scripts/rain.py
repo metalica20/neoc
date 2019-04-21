@@ -13,9 +13,10 @@ def fetch_rain():
         if data['longitude']:
             point_value = Point(float(data['longitude']), float(data['latitude']))
 
-        # Clean N/A in averages values
+        # Clean averages values
         averages = data['averages']
         for average in averages:
+            average['interval'] = int(average['interval'])
             if average['value'] == 'N/A':
                 average['value'] = None
 
