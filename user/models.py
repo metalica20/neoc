@@ -12,7 +12,7 @@ class Profile(models.Model):
         Organization,
         related_name='users',
         on_delete=models.SET_NULL,
-        default=None, null=True, blank=False,
+        default=None, null=True, blank=True,
     )
     phone_number = models.CharField(
         max_length=17,

@@ -61,31 +61,31 @@ class FamilyForm(forms.ModelForm):
             raise ValidationError("When title is given, count must be 1")
 
 
-class PeopleInline(admin.TabularInline):
+class PeopleInline(admin.StackedInline):
     model = People
     form = PeopleForm
     extra = 1
 
 
-class FamilyInline(admin.TabularInline):
+class FamilyInline(admin.StackedInline):
     model = Family
     form = FamilyForm
     extra = 1
 
 
-class InfrastructureInline(admin.TabularInline):
+class InfrastructureInline(admin.StackedInline):
     model = Infrastructure
     form = InfrastructureForm
     extra = 1
 
 
-class LivestockInline(admin.TabularInline):
+class LivestockInline(admin.StackedInline):
     model = Livestock
     form = LivestockForm
     extra = 1
 
 
-class AgricultureInline(admin.TabularInline):
+class AgricultureInline(admin.StackedInline):
     model = Agriculture
     form = AgricultureForm
     extra = 1

@@ -33,6 +33,26 @@ from misc.validators import validate_geojson
 from django.core.exceptions import ValidationError
 
 
+INCIDENT_FIELDS = (
+    'cause',
+    'source',
+    'verified',
+    'approved',
+    'point',
+    'geojson',
+    'incident_on',
+    'reported_on',
+    'event',
+    'hazard',
+    'loss',
+    'district',
+    'municipality',
+    'wards',
+    'street_address',
+    'description'
+)
+
+
 class DocumentInline(admin.TabularInline):
     model = Document
     extra = 1
@@ -92,26 +112,7 @@ class IncidentForm(forms.ModelForm):
 
     class Meta:
         model = Incident
-        fields = (
-            'title',
-            'cause',
-            'source',
-            'verified',
-            'approved',
-            'point',
-            'geojson',
-            'polygon',
-            'incident_on',
-            'reported_on',
-            'event',
-            'hazard',
-            'loss',
-            'district',
-            'municipality',
-            'wards',
-            'street_address',
-            'description'
-        )
+        fields = INCIDENT_FIELDS
 
     def clean(self):
         if not(
@@ -196,6 +197,17 @@ class IncidentAdmin(GeoModelAdmin):
         codename = get_permission_codename('can_approve', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
+    def has_can_edit_permission(self, request):
+        opts = self.opts
+        codename = get_permission_codename('can_edit', opts)
+        return request.user.has_perm('%s.%s' % (opts.app_label, codename))
+
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        if not self.has_can_edit_permission(request):
+            extra_context = extra_context or {}
+            extra_context['read_only'] = True
+        return super().changeform_view(request, object_id, extra_context=extra_context)
+
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         if request.user.groups.filter(name='Nepal Police').exists():
@@ -205,6 +217,9 @@ class IncidentAdmin(GeoModelAdmin):
             form.base_fields['verified'].disabled = True
         if not self.has_can_approve_permission(request):
             form.base_fields['approved'].disabled = True
+        if not self.has_can_edit_permission(request):
+            for field in INCIDENT_FIELDS:
+                form.base_fields[field].disabled = True
         return form
 
     def get_queryset(self, request):
