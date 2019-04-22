@@ -1,7 +1,6 @@
 import os
 import geocoder
 import datetime
-from incident.models import Incident
 from .models import Incident
 from django.contrib.gis.measure import D
 from loss.models import (
@@ -66,9 +65,12 @@ def generate_polygon_from_wards(wards):
 
 def get_incident_title(incident):
     location = geocoder.google(
-        [incident.point.y, incident.point.x], components="country:NP", method='reverse', key=GOOGLE_MAP_API_KEY
+        [incident.point.y, incident.point.x],
+        components="country:NP",
+        method='reverse',
+        key=GOOGLE_MAP_API_KEY
     )
     if location.city:
-        return "%s at %s" % (incident.hazard, location.city)
+        return "%s at %s" % (incident.hazard.title_en, location.city)
     else:
         return "%s" % incident.hazard

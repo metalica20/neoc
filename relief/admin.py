@@ -52,7 +52,7 @@ class ReleaseForm(forms.ModelForm):
             'ward',
             'person',
             'beneficiary',
-            'beneficiary_owner',
+            'beneficiary_other',
             'status',
             'amount',
             'description',
