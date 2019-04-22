@@ -6,6 +6,7 @@ from django.db.models.functions import Coalesce
 from resources.models import Resource
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
+from federal.models import Ward
 
 
 class StatManager(models.Manager):
@@ -124,10 +125,12 @@ class People(TimeStampedModal):
         on_delete=models.PROTECT,
         verbose_name=_('Nationality')
     )
-    address = models.CharField(
-        max_length=255,
-        null=True, blank=True, default=None,
-        verbose_name=_('Address')
+    ward = models.ForeignKey(
+        Ward,
+        blank=True, null=True, default=None,
+        related_name='peoples',
+        verbose_name=_('Ward'),
+        on_delete=models.CASCADE
     )
     below_poverty = models.BooleanField(
         null=True, blank=True, default=None,
@@ -138,7 +141,7 @@ class People(TimeStampedModal):
         related_name="peoples",
         null=True, blank=True, default=None,
         on_delete=models.PROTECT,
-        verbose_name=_('DISABILITY')
+        verbose_name=_('Disability')
     )
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     loss = models.ForeignKey(
@@ -174,8 +177,13 @@ class Family(TimeStampedModal):
 
     title = models.CharField(max_length=255, null=True,
                              blank=True, default=None, verbose_name=_('Owner Name'))
-    address = models.CharField(max_length=255, null=True, blank=True,
-                               default=None, verbose_name=_('Address'))
+    ward = models.ForeignKey(
+        Ward,
+        blank=True, null=True, default=None,
+        related_name='families',
+        verbose_name=_('Ward'),
+        on_delete=models.CASCADE
+    )
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     below_poverty = models.BooleanField(
         null=True, blank=True, default=None, verbose_name=_('Below Poverty'))
@@ -241,6 +249,7 @@ class Infrastructure(TimeStampedModal):
         on_delete=models.PROTECT,
         verbose_name=_('Type')
     )
+
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     resource = models.ForeignKey(
         Resource,
