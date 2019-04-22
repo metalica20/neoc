@@ -128,7 +128,7 @@ class IncidentForm(forms.ModelForm):
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
-    list_filter = ('hazard', 'source', 'verified', 'approved')
+    list_filter = ('need_followup', 'hazard', 'source', 'verified', 'approved')
     exclude = ('detail', 'title')
     actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)

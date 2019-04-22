@@ -16,6 +16,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from mptt.admin import MPTTModelAdmin
 from mptt.forms import TreeNodeChoiceField
+from incident.utils import get_followup_fields
 
 
 class AgricultureForm(forms.ModelForm):
@@ -102,6 +103,14 @@ class LossAdmin(admin.ModelAdmin):
         InfrastructureInline,
         AgricultureInline,
     )
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if obj.incident:
+            fields = get_followup_fields(obj.incident.id)
+            if len(fields):
+                obj.incident.need_followup = True
+                obj.incident.save()
 
 
 admin.site.register([Country, InfrastructureUnit])

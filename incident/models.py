@@ -93,6 +93,7 @@ class Incident(TimeStampedModal):
         on_delete=models.CASCADE,
         null=True, blank=True, default=None
     )
+    need_followup = models.BooleanField(default=False, editable=False)
 
     def __str__(self):
         return self.title
