@@ -56,6 +56,11 @@ from risk_profile.views import (
     HospitalViewSet,
     SchoolViewSet,
 )
+
+from mappage.views import (
+    MapPage,
+)
+
 from django.utils.translation import ugettext_lazy as _
 
 admin.site.site_header = _('BIPAD administration')
@@ -148,6 +153,8 @@ urlpatterns = i18n_patterns(
     re_path(get_api_path(''), include(router.urls)),
     path('risk_profile/', include('risk_profile.urls')),
     path('risk_profile/', include('mappage.urls')),
+    path('',MapPage.as_view(),name="mappage"),
+
 ) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT

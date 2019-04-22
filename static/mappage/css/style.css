@@ -1860,4 +1860,22 @@ button {
     padding: 0.2rem 0.55rem;
   }
 
+
+  .mapwrap .sidebar.rightSidebar {
+
+      right: 10px;
+
+  }
+
+  .mapwrap .hazard-details {
+
+    right: 265px;
+
+}
+
+.mapwrap .average-section {
+    
+    right: 580px;
+
+}
 /*# sourceMappingURL=style.css.map */
