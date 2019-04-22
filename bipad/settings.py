@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'misc',
     'document',
     'relief',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -266,7 +267,10 @@ LOCALE_PATHS = (
 
 SESSION_COOKIE_HTTPONLY = False
 
-gettext = lambda s: s
+
+def gettext(s): return s
+
+
 LANGUAGES = (
     ('en', gettext('English')),
     ('ne', gettext('Nepali')),
