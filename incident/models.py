@@ -105,6 +105,7 @@ class Incident(TimeStampedModal):
         permissions = [
             ('can_verify', 'Can verify incident'),
             ('can_approve', 'Can approve incident'),
+            ('can_edit', 'Can edit incident'),
         ]
         verbose_name = _('Incident')
         verbose_name_plural = _('Incidents')
