@@ -1874,8 +1874,15 @@ button {
 }
 
 .mapwrap .average-section {
-    
+
     right: 580px;
 
+}
+
+.slimScrollDiv {
+
+}
+.mapwrap .sidebar {
+    z-index: 9999 !important;
 }
 /*# sourceMappingURL=style.css.map */

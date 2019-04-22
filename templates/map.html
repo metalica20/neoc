@@ -729,7 +729,7 @@
                                        <li class="active">
                                            <div class="custom-control custom-radio">
 
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:sankhu_drone" data-url="http://139.59.67.104:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:sankhu_drone" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
 
                                                <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
                                            </div>
@@ -738,7 +738,7 @@
                                            <div class="custom-control custom-radio">
 
 
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:bancharedanda" data-url="http://139.59.67.104:8080/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:bancharedanda" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
                                                <label class="custom-control-label" for="test_1">Drone </label>
 
                                            </div>
@@ -1513,9 +1513,9 @@
  		};
 
  // Creating the full vectorTile url
- var provinceUrl = 'http://139.59.67.104:8080/geoserver/gwc/service/tms/1.0.0/Naxa:Provinces@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
- var districtUrl = 'http://139.59.67.104:8080/geoserver/gwc/service/tms/1.0.0/Naxa:Districts@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
- var municipalityUrl = 'http://139.59.67.104:8080/geoserver/gwc/service/tms/1.0.0/Naxa:Municipalities@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var provinceUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Provinces@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var districtUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Districts@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipalities@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
 
 
  // Creating the Leaflet vectorGrid object
@@ -2233,7 +2233,7 @@ $(".vul_hdi").on('click',function(){
       }else{
       //  console.log(id);
 
-        geo_url='http://139.59.67.104:8080/geoserver/wms';
+        geo_url='https://apps.naxa.com.np/geoserver/wms';
 
         hazard_layers=L.tileLayer.betterWms(geo_url, {
                                 layers:id,
