@@ -31,6 +31,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.gis.geos import GEOSGeometry
 from misc.validators import validate_geojson
 from django.core.exceptions import ValidationError
+from django.utils.html import format_html
+from django.urls import reverse
 
 
 INCIDENT_FIELDS = (
@@ -127,13 +129,24 @@ class IncidentForm(forms.ModelForm):
 @admin.register(Incident)
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
-    list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
+    list_display = ('title', 'hazard', 'source', 'verified', 'incident_on', 'incident_actions')
     list_filter = ('need_followup', 'hazard', 'source', 'verified', 'approved')
     exclude = ('detail', 'title')
     actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)
 
     form = IncidentForm
+
+    def incident_actions(self, obj):
+        return format_html(
+            """
+            <button>
+                <a href="{}?incident={}">
+                    Add Relief
+                </a>
+            </button>
+            """.format(reverse('admin:relief_release_add'), obj.id)
+        )
 
     class Media:
         css = {
@@ -171,8 +184,8 @@ class IncidentAdmin(GeoModelAdmin):
         similar_incidents = get_similar_incident(obj)
         for incident in similar_incidents:
             messages.add_message(request, messages.INFO, mark_safe(
-                "Similar data <a href='/admin/incident/incident/%d/change/'>%s</a> already exists"
-                % (incident.id, incident.title)
+                "Similar data <a href='%s'>%s</a> already exists"
+                % (reverse('admin:incident_incident_change', args=[incident.id]), incident.title)
             ))
 
     def verify(self, request, queryset):
@@ -217,9 +230,6 @@ class IncidentAdmin(GeoModelAdmin):
             form.base_fields['verified'].disabled = True
         if not self.has_can_approve_permission(request):
             form.base_fields['approved'].disabled = True
-        if not self.has_can_edit_permission(request):
-            for field in INCIDENT_FIELDS:
-                form.base_fields[field].disabled = True
         return form
 
     def get_queryset(self, request):
