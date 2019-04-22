@@ -28,7 +28,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/leaflet.draw.css' %}">
-
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/nouislider.min.css' %}">
 
 
@@ -117,8 +116,24 @@
 
             </div>
 
-            <!-- leftSidebar start -->
-
+            <!-- leftSidebar start --
+<<<<<<< HEAD
+            <div class="sidebar leftSidebar" style="display:none;">
+                    <!-- <span class="expand-icon">
+                        <i class="ion ion-ios-warning"></i>
+                    </span> -->
+                    <div class="sidebarwrapper">
+                        <div class="leftSidebar-header">
+                            <h4>Service</h4>
+                            <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>
+                            <button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button>
+                        </div>
+                        <div class="sidebar-widget">
+                            <ul class="list-content">
+                                <li><a href="#" target="">Total population</a><span>113456</span></li>
+                                <li><a href="#" target="">Area (sq/km)</a><span>43634</span></li>
+                                <li><a href="#" target="">population density</a><span>4567789</span></li>
+                                <li><a href="#" target="">Poverty rate</a
 
             <!-- <div class="sidebar leftSidebar" id="filtered_layer_list_container" style="display:block;">
 
@@ -147,7 +162,7 @@
                     </div> -->
                     <div class="sidebarwrapper" id="filtered_layer_list_container" style="display:none;">
 
-
+>>>>>>> neoc/temp
                     </div>
                 </div>
             <!-- rightSidebar start -->
@@ -157,10 +172,11 @@
                 </span> -->
                 <div class="sidebarwrapper">
                     <!-- sidebar start -->
-
-
+<<<<<<< HEAD
+                    <div class="sidebar-widget filter-widget">
+=======
                     <div class="sidebar-widget filter-widget" style="display:none;">
-
+>>>>>>> neoc/temp
 
 
                       <div class="right-sidebar-title filter-title">
@@ -252,11 +268,11 @@
                                                 </div>
                                                 <span class="humanitarian-icon-Earthquake"></span>
                                             </li>
-
+<<<<<<< HEAD
                                             <li>
-
+=======
                                             <!-- <li>
-
+>>>>>>> neoc/temp
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="Landslide" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="Landslide">Landslide</label>
@@ -276,11 +292,11 @@
                                                     <label class="custom-control-label" for="Draought">Drought</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Drought"></span>
-
+<<<<<<< HEAD
                                             </li>
-
+=======
                                             </li> -->
-
+>>>>>>> neoc/temp
                                         </ul>
                                     </div>
                                 </div>
@@ -349,21 +365,21 @@
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
                                             </li>
-
+<<<<<<< HEAD
                                             <li>
-
+=======
                                             <!-- <li>
-
+>>>>>>> neoc/temp
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="percapital" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="percapital">per capital income</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
-
+<<<<<<< HEAD
                                             </li>
-
+=======
                                             </li> -->
-
+>>>>>>> neoc/temp
                                         </ul>
                                     </div>
                                 </div>
@@ -728,19 +744,23 @@
                                    <ul class="hazardDetail-list">
                                        <li class="active">
                                            <div class="custom-control custom-radio">
-
+<<<<<<< HEAD
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:sankhu_drone" data-url="http://nationalgeoportal.gov.np:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+=======
                                                <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:sankhu_drone" data-url="http://139.59.67.104:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
-
+>>>>>>> neoc/temp
                                                <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
                                            </div>
                                        </li>
                                        <li class="active">
                                            <div class="custom-control custom-radio">
-
-
+<<<<<<< HEAD
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-url="http://nationalgeoportal.gov.np:8080/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="test_1" name="test_1" value="customEx">
+                                               <label class="custom-control-label" for="test_1">Drone  </label>
+=======
                                                <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa:bancharedanda" data-url="http://139.59.67.104:8080/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
                                                <label class="custom-control-label" for="test_1">Drone </label>
-
+>>>>>>> neoc/temp
                                            </div>
                                        </li>
 
@@ -891,7 +911,14 @@
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-
+<<<<<<< HEAD
+                                        <input type="radio" class="custom-control-input socio" id="telegraph_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="telegraph_com">Telephone</label>
+                                    </div>
+                                </li>
+                                <!-- compare popup -->
+                                <div class="compare-popup">
+=======
                                         <input type="radio" class="custom-control-input socio" id="telephone_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="telephone_com">Telephone</label>
                                     </div>
@@ -899,7 +926,7 @@
                                 <!-- compare popup -->
                                 <div class="compare-popup" id="compare_vul">
 
-
+>>>>>>> neoc/temp
                                     <div class="compare-wrapper" id="radio-compare">
                                         <div class="compare-header">
                                             <h3>Access to radio</h3>
@@ -907,7 +934,10 @@
                                         </div>
                                         <div class="compare-body">
                                             graph content
-
+<<<<<<< HEAD
+                                        </div>
+                                    </div>
+=======
                                               <div id="chart"></div>
                                         </div>
                                     </div>
@@ -915,7 +945,7 @@
 
 
 
-
+>>>>>>> neoc/temp
                                 </div>
                             </ul>
                         </div>
@@ -1261,9 +1291,14 @@
   <script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
   <script src="{% static 'mappage/js/proj4.js' %}"></script>
   <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
-  <script src="{% static 'mappage/js/nouislider.min.js' %}"></script>
- <script src="https://unpkg.com/leaflet.vectorgrid@1.2.0/dist/Leaflet.VectorGrid.bundled.js"></script>
+<<<<<<< HEAD
 
+  <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.js"></script>
+=======
+  <script src="{% static 'mappage/js/nouislider.min.js' %}"></script>
+
+    <script src="https://unpkg.com/leaflet.vectorgrid@1.2.0/dist/Leaflet.VectorGrid.bundled.js"></script>
+>>>>>>> neoc/temp
 
   <!-- chart-pie -->
 
@@ -1272,6 +1307,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
       <!-- chart -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> neoc/temp
 <script src="{% static 'mappage/js/script.js' %}"></script>
 
 
@@ -1295,7 +1334,11 @@
            if(document.location.hostname=='localhost'){
              var base_url = 'http://localhost:8000';
            }else{
+<<<<<<< HEAD
+             var base_url= 'http://139.59.67.104:8004';
+=======
              var base_url= 'https://bipad.naxa.com.np';
+>>>>>>> neoc/temp
            }
 
     $(document).ready(function(){
@@ -1357,8 +1400,13 @@
             //console.log(response);
             function highlight (layer) {
         			  layer.setStyle({
+<<<<<<< HEAD
+                  fillColor:"blue",
+                  fillOpacity:0.1,
+=======
                   fillColor:"green",
                   fillOpacity:0.5,
+>>>>>>> neoc/temp
                   weight: 1,
                   opacity: 0.2,
                   color: 'black',
@@ -1372,7 +1420,61 @@
         		    });
             }
 
+<<<<<<< HEAD
+            municipality = new L.geoJson.ajax(fed_url_prov,
+             {
 
+                 onEachFeature: function (feature, layer) {
+                   layer.setStyle({
+                     fillColor:"blue",
+                     fillOpacity:0.1,
+                     weight: 1,
+                     opacity: 0.2,
+                     color: 'black',
+          //dashArray: '3'
+
+                       });
+
+                       layer.on("click",function(){
+                         var socioValue= layer.feature.socioValue;
+                         if(layer.feature.socioValue!=undefined){
+                           console.log(socioValue);
+                           if($(".compare-wrapper").css('display')=="block"){
+                             highlight(layer);
+                           }
+                           else{
+                             //resetHighlight(layer);
+                           }
+
+
+
+                         }
+                       });
+                 }
+
+           });
+
+  //map.addLayer(province);
+
+  district = new L.geoJson.ajax(fed_url_district,{
+
+       onEachFeature: function (feature, layer) {
+         layer.setStyle({
+           fillColor:"blue",
+           fillOpacity:0.1,
+           weight: 1,
+           opacity: 0.2,
+           color: 'black',
+//dashArray: '3'
+
+             });
+       }
+
+ });
+
+ //map.addLayer(district);
+
+=======
           //   municipality = new L.geoJson.ajax(fed_url_prov,
           //    {
           //
@@ -1624,7 +1726,7 @@ function highlightLayers(layer, featureName){
  //province.addTo(map);
  //district.addTo(map);
  //municipality.addTo(map);
-
+>>>>>>> neoc/temp
 
   //admin boundary layers map Layer end
 
@@ -1649,8 +1751,12 @@ function highlightLayers(layer, featureName){
                       opacity: 1,
                       color: 'white',
                       dashArray: '3',
+<<<<<<< HEAD
+                      fillOpacity: 0.7
+=======
                       fillOpacity: 0.7,
                       fill:true
+>>>>>>> neoc/temp
                     };
 
                 }
@@ -1676,9 +1782,12 @@ function highlightLayers(layer, featureName){
                            opacity: 1,
                            color: 'white',
                            dashArray: '3',
+<<<<<<< HEAD
+                           fillOpacity: 0.7
+=======
                            fillOpacity: 0.7,
                            fill:true
-
+>>>>>>> neoc/temp
                          };
 
                      }
@@ -1696,7 +1805,17 @@ function highlightLayers(layer, featureName){
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
-
+<<<<<<< HEAD
+                                console.log(Math.round(result.avg));
+                                avg_val=(Math.round(result.avg)/result.sum)*100;
+                                var features = municipality._layers;
+                                var visual_html='';
+                                $.each(features, function (feature) {
+                                  for(var i=0;i<result.data.length;i++){
+                                    if(features[feature].feature.properties.title==result.data[i]["name"]){
+                                      var val_now=result.data[i][socioid1];
+                                      //console.log(val_now);
+=======
                                 //console.log(result);
                                 console.log(Math.round(result.avg));
                                 avg_val=(Math.round(result.avg)/result.sum)*100;
@@ -1713,7 +1832,7 @@ function highlightLayers(layer, featureName){
 
                                       var val_now=result.data[i][socioid1];
 
-
+>>>>>>> neoc/temp
                                       visual_html+='<div class="progress-warpper">'+
                                           '<div class="progress skill-bar ">'+
                                               '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(Math.round(val_now)/result.sum)*100+'%;" aria-valuenow="'+(Math.round(val_now)/result.sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
@@ -1723,7 +1842,23 @@ function highlightLayers(layer, featureName){
                                       '</div>';
 
 
+<<<<<<< HEAD
+                                      //console.log("entered if");
+                                      features[feature].setStyle(socioStyle(parseInt(result.data[i][socioid1])));
+                                      features[feature].feature.socioValue = parseFloat(result.data[i][socioid1]);
+                                      //console.log(features[feature].feature);
+                                      break;
+                                    }
+                                    else{
+                                      features[feature].setStyle(socioStyle(1));
+                                    }
 
+                                  }
+
+
+
+                                });
+=======
 
 
                                      municipality.setFeatureStyle(result.data[i]["municipalityId"], socioStyle(parseInt(result.data[i][socioid1])));
@@ -1732,7 +1867,7 @@ function highlightLayers(layer, featureName){
 
 
                                }
-
+>>>>>>> neoc/temp
 
 
 
@@ -1787,13 +1922,19 @@ function highlightLayers(layer, featureName){
                               url: fed_url_api,
                               success: function(result) {
                                 var avg_val=(Math.round(result.avg*100));
-
+<<<<<<< HEAD
+                                var features = district._layers;
+                                var visual_html='';
+                                $.each(features, function (feature) {
+                                  for(var i=0;i<result.results.length;i++){
+                                    if(features[feature].feature.properties.title==result.results[i]['district']){
+=======
                                 // var features = district._layers;
                                 var visual_html='';
 
                                   for(var i=0;i<result.results.length;i++){
 
-
+>>>>>>> neoc/temp
                                       val=Math.round((result.results[i]['hdi'])*100);
                                       visual_html+='<div class="progress-warpper">'+
                                           '<div class="progress skill-bar ">'+
@@ -1803,7 +1944,20 @@ function highlightLayers(layer, featureName){
                                           '<span class="skill">'+result.results[i]['district']+' :<i class="val">'+result.results[i]['hdi']+'</i></span>'+
                                       '</div>';
 
+<<<<<<< HEAD
+                                      //console.log("entered if");
+                                      console.log(features[feature]);
+                                      features[feature].setStyle(riskStyle(parseFloat(result.results[i][risk_id])));
+                                      features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
+                                      //console.log(features[feature].feature);
 
+                                      break;
+                                    }
+                                    else{
+                                      features[feature].setStyle(riskStyle(1));
+
+                                    }
+=======
                                       console.log(result.results[i]['hdi']);
                                        district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i]['hdi'])));
                                       //features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
@@ -1811,15 +1965,17 @@ function highlightLayers(layer, featureName){
 
 
 
-
+>>>>>>> neoc/temp
 
                                   }
 
 
 
+<<<<<<< HEAD
+                                });
+=======
 
-
-
+>>>>>>> neoc/temp
 
 
                                 visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
@@ -1828,9 +1984,11 @@ function highlightLayers(layer, featureName){
                                 //console.log(visual_html);
                                 //console.log(avg_val);
 
-
+<<<<<<< HEAD
+                                $('.progress-list').append(visual_html);
+=======
                                 $('.progress-list').html(visual_html);
-
+>>>>>>> neoc/temp
 
 
                         }
@@ -1909,7 +2067,15 @@ function highlightLayers(layer, featureName){
                   html+='<ul>';
               for(var i=0;i<filter_arr.length;i++){
                 if(filter_arr[i].replace(/\s/g,"_")=='number_of_Beds'){
-
+<<<<<<< HEAD
+                  html+='<div class="filter-list">'+
+                    '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+                    '<div class="slider">'+
+                        '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
+                        '<div class="slider-range"></div>'+
+                    '</div>'+
+                  '</div>';
+=======
                   html+='<div id="slider'+i+'" class="slider filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" data-sum="'+total_sum+'" name="'+layerName+'"></div>'
                   // html+='<div class="filter-list">'+
                   //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
@@ -1918,7 +2084,7 @@ function highlightLayers(layer, featureName){
                   //       '<div class="slider-range filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'"></div>'+
                   //   '</div>'+
                   // '</div>';
-
+>>>>>>> neoc/temp
                 }else{
 
                   html+='<li>'+
@@ -1982,7 +2148,22 @@ if(level=='both'){
 
 $(".slider").each(function () {
 
-
+<<<<<<< HEAD
+    //$this is a reference to .slider in current iteration of each
+    var $this = $(this);
+    //find any .slider-range element WITHIN scope of $this
+          $(".slider-range", $this).slider({
+              range: true,
+              min: 0,
+              max: 1000,
+              values: [300, 600],
+              slide: function (event, ui) {
+                  // find any element with class .amount WITHIN scope of $this
+                  $(".amount", $this).val( ui.values[0] + " - " + ui.values[1]);
+              }
+          });
+          $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
+=======
   var $this = $(this).parent().children();
   var id=$(this).attr('id');
 //  console.log($this);
@@ -2106,7 +2287,7 @@ $(".slider").each(function () {
           //     }
           // });
           // $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
-
+>>>>>>> neoc/temp
 });
 // }, 100);
 
@@ -2232,9 +2413,11 @@ $(".vul_hdi").on('click',function(){
 
       }else{
       //  console.log(id);
-
+<<<<<<< HEAD
+        geo_url='http://nationalgeoportal.gov.np:8080/geoserver/wms';
+=======
         geo_url='http://139.59.67.104:8080/geoserver/wms';
-
+>>>>>>> neoc/temp
         hazard_layers=L.tileLayer.betterWms(geo_url, {
                                 layers:id,
                                 transparent: true,
@@ -2246,8 +2429,12 @@ $(".vul_hdi").on('click',function(){
 
         });
 
-        console.log(id);
 
+<<<<<<< HEAD
+        if(id=="ngp:sankhu_drone"){
+        map.flyTo(center,18);
+        }else{
+=======
         if(id=="Naxa:sankhu_drone" ){
         map.flyTo(center,18);
         }
@@ -2255,7 +2442,7 @@ $(".vul_hdi").on('click',function(){
 
         }
         else{
-
+>>>>>>> neoc/temp
           map.flyTo(center,11);
         }
 
@@ -2299,18 +2486,6 @@ $(".vul_hdi").on('click',function(){
                   fillOpacity: 0.9
 
                 });
-
-
-                var contentString = createPopup(feature);
-                layer.bindPopup(L.popup({
-                  //closeOnClick: true,
-                  //closeButton: true,
-                  keepInView: true,
-                  autoPan: true,
-                  maxHeight: 200,
-                  minWidth: 250
-                }).setContent(contentString));
-
                 layer.setStyle(style);
               }
 
@@ -2353,7 +2528,7 @@ $(".vul_hdi").on('click',function(){
 
       var center = eval($(this).attr('data-center'));
 
-      if($(this).attr('id')=='hydro_1' ){
+      if($(this).attr('id')=='hydro_1'){
 
         // console.log()
         if(map.hasLayer(hydropower)){
@@ -2364,21 +2539,13 @@ $(".vul_hdi").on('click',function(){
             map.flyTo([28.410728397237914,84.4024658203125],8)
         }
 
-
-
-
       }else{
         if(map.hasLayer(exposure_layers)){
         map.removeLayer(exposure_layers);
         map.flyTo([28.410728397237914,84.4024658203125],8)
         }else{
           map.addLayer(exposure_layers);
-          if($(this).attr('id')=='build_1'){
-              map.flyTo([28.410728397237914,84.4024658203125],8);
-          }else{
-              map.flyTo(center,18);
-          }
-
+            map.flyTo(center,18);
         }
       }
 
@@ -2386,7 +2553,8 @@ $(".vul_hdi").on('click',function(){
 
 //end of hazard layer
 
-
+<<<<<<< HEAD
+=======
 
 function createPopup(feature){
 
@@ -2429,22 +2597,25 @@ return contentString;
 }
 
 
-
+>>>>>>> neoc/temp
 //start of resource layer
 $.get(base_url+'/risk_profile/Layer',function(data){
 
                  //console.log(data);
-
+<<<<<<< HEAD
+=======
               //   console.log(data);
-
+>>>>>>> neoc/temp
                 for(var i=0;i<data.results.length;i++){
                   var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
                   layer_icon= data.results[i]['layerIcon']
                   type1= data.results[i]['type'];
                   var sub_array = data.results[i]['type'];
-
+<<<<<<< HEAD
+                  //console.log(sub_array);
+=======
                   //console.log(data);
-
+>>>>>>> neoc/temp
                   for(let i=0;i<sub_array.length;i++){
                     window[sub_array[i]['type'].replace(' ','_')] = L.layerGroup();
                   }
@@ -2452,8 +2623,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                       $.ajax({
                           url: url,
                           //data:{"layer_icon":layer_icon, "data":data,"i":i},
-
+<<<<<<< HEAD
+                          data1:data,
+=======
                           data1:data.results[i],
+>>>>>>> neoc/temp
                           indexValue: i,
                           layer_icon: layer_icon,
                           type2: type1,
@@ -2461,11 +2635,15 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           //  console.log(response);
                           var layer_icon1 = this.layer_icon;
                           var type = this.type2;
+<<<<<<< HEAD
 
+                            window[this.data1.results[this.indexValue]['layerTbl']] = new L.geoJson(response,
+=======
                           var dataList = this.data1;
                         //  console.log(this.data1);
 
                             window[this.data1['layerTbl']] = new L.geoJson(response,
+>>>>>>> neoc/temp
                         {
                             //pane:"pointsPane",
                             pointToLayer: function(feature,Latlng)
@@ -2491,7 +2669,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                       }
                                   }
 
-
+<<<<<<< HEAD
+=======
                                   var contentString = createPopup(feature);
                                   layer.bindPopup(L.popup({
                                     //closeOnClick: true,
@@ -2502,7 +2681,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                     minWidth: 250
                                   }).setContent(contentString));
                                   //console.log(dataList['layerName']);
-
+>>>>>>> neoc/temp
 
                                 }
 
@@ -2518,16 +2697,18 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
    });
 
-
+<<<<<<< HEAD
+=======
   visible_layers_count=0;
-
+>>>>>>> neoc/temp
 
    function getLayersInsidePolygon(coords,visible_layers){
    //console.log("visible layers  ",coords);
      $('#filtered_layer_list').html('');
-
+<<<<<<< HEAD
+=======
      $('#filtered_header').html('');
-
+>>>>>>> neoc/temp
      for(var i=0;i<visible_layers.length;i++){
        //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
          var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
@@ -2559,7 +2740,24 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                        radius: 8,
                      });
                      return layer;
+<<<<<<< HEAD
+                   },
+                 })
 
+             ).addTo(map).on('load', function (feature, layer) {
+               //  console.log(feature);
+                 //console.log(feature.target._layers[0].feature.properties);
+             //    console.log(feature.target._layers);
+                 $.each(feature.target._layers, function (i) {
+                 //  console.log(feature.target._layers[i].feature.properties.name)
+
+                   var list_item='<li><a href="#" target="">'+feature.target._layers[i].feature.properties.name+'</a></li>';
+
+                   $('#filtered_layer_list').append(list_item);
+
+                 });
+                 $('#filtered_layer_list_container').css('display','block');
+=======
                    }
                  })
 
@@ -2601,17 +2799,18 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
 
-
+>>>>>>> neoc/temp
                  //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
              });
          map.removeLayer(window[visible_layers[i]['layerName']]);
          $("."+visible_layers[i]['layerName']+"_activeclass").removeClass("active");
          $('#'+visible_layers[i]['layerName']+'_legend').remove();
 
+<<<<<<< HEAD
+=======
 
 
-
-
+>>>>>>> neoc/temp
      }
 
 
@@ -2619,7 +2818,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
  }
 
 
-
+<<<<<<< HEAD
+=======
 
  $('#filtered_layer_list_container').on('click','.filtered_list_items',function(){
    var properties = JSON.parse($(this).attr('data'));
@@ -2637,7 +2837,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
  });
 
 
-
+>>>>>>> neoc/temp
   //draw start
   drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
@@ -2720,9 +2920,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       subcat_array.push(subcat_array1[i]['type']);
 
     }
-
+<<<<<<< HEAD
+    console.log($('.'+layerName+'_parent').prop('checked'));
+=======
     //console.log($('.'+layerName+'_parent').prop('checked'));
-
+>>>>>>> neoc/temp
 
     if(map.hasLayer(window[layerName]) && $('.'+layerName+'_parent').prop('checked')==false){
 
@@ -2944,7 +3146,11 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
 });
 
 //end sub category resource
+<<<<<<< HEAD
 
+//resources filter
+$("#capacity-popup").on('click','.filter_resource_btn',function(){
+=======
 //dragTapSlider.noUiSlider.on('slide.one', function() {
 
 function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon){
@@ -2997,23 +3203,34 @@ function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,lay
 
 //resources filter
 $("#capacity-popup").on('change','.filter_resource_btn',function(){
-
+>>>>>>> neoc/temp
   //console.log(new_gejson_filter);
   var layerName=$(this).attr('name');
   var layer_icon=$(this).attr('data-icon');
   var total_sum=$(this).attr('data-sum');
+<<<<<<< HEAD
+// console.log($(this).attr('aria-pressed'));
+// console.log($(".Health_child").prop("checked"));
 
+  // console.log('test');
+  //console.log($('.sub_cat_ex:checked').length);
+  //console.log($("input[class='test']:checked"));
+
+ //console.log($("input[class='filter_resource_btn']:checked"));
+=======
  console.log('fiter range');
  console.log(layerName);
 // console.log($(".Health_child").prop("checked"));
-
+>>>>>>> neoc/temp
 var features_data=[];
 var sub_layer_name=[];
 
 if(map.hasLayer(window["filter_resource_"+layerName])){
-
+<<<<<<< HEAD
+  console.log('aa');
+=======
   //console.log('aa');
-
+>>>>>>> neoc/temp
 
   map.removeLayer(window["filter_resource_"+layerName]);
 
@@ -3021,10 +3238,13 @@ if(map.hasLayer(window["filter_resource_"+layerName])){
 $. each($('.sub_cat_ex:checked'), function(){
 
   var name_sub=$(this).attr('data-sub');
-
+<<<<<<< HEAD
+    sub_layer_name.push($(this).attr('data-sub'));
+    console.log(name_sub);
+=======
   sub_layer_name.push($(this).attr('data-sub'));
   //  console.log(name_sub);
-
+>>>>>>> neoc/temp
   layersdata=window[name_sub]._layers
   //console.log(window[name_sub]._layers);
   $.each(layersdata, function (feature) {
@@ -3054,9 +3274,11 @@ $. each($("input[class='filter_resource_btn']:checked"), function(){
 
 checkedList. push($(this). val());
 });
-
+<<<<<<< HEAD
+ console.log(checkedList);
+=======
  //console.log(checkedList);
-
+>>>>>>> neoc/temp
 //console.log(layer_data.features.length);
 for(var k=layer_data.features.length-1;k>=0;k--){
   var delete_count=0;
@@ -3084,7 +3306,38 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 
 
 }
+<<<<<<< HEAD
+console.log(layer_data);
+//console.log(window['clinic']._layers);
+window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
 
+  pointToLayer: function(feature,Latlng)
+      {
+
+              var divicon = L.divIcon({
+                  className: layer_icon
+
+              });
+              var marker = L.marker(Latlng,{icon:divicon});
+
+      return marker;
+      },
+
+}).addTo(map);
+if(checkedList.length==0){
+  data_geo=window[layerName].toGeoJSON()
+  //map.addLayer(window[layerName]);
+  CreateChartData(data_geo,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+}else{
+
+map.removeLayer(window[layerName]);
+CreateChartData(layer_data,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+
+}
+
+//console.log(map.hasLayer(window["filter_resource_"+layerName]));
+console.log(sub_layer_name);
+=======
  filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
   // console.log('test');
   //console.log($('.sub_cat_ex:checked').length);
@@ -3095,7 +3348,7 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 
 //console.log(map.hasLayer(window["filter_resource_"+layerName]));
 //console.log(sub_layer_name);
-
+>>>>>>> neoc/temp
 
 // CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon)
 
@@ -3109,9 +3362,10 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 });
 
 
+<<<<<<< HEAD
+=======
 
-
-
+>>>>>>> neoc/temp
 //resource filter end
 
 
@@ -3125,12 +3379,18 @@ var admin_layer=$(this).attr('data-admin');
 if(admin_layer=='municipality'){
   $('.legend-list').html('');
   map.addLayer(window[admin_layer]);
+<<<<<<< HEAD
+  map.removeLayer(window['district']);
+}else{
+  map.addLayer(window[admin_layer]);
+  map.removeLayer(window['municipality']);
+=======
 
   map.removeLayer(window['district']);
 }else{
   map.addLayer(window[admin_layer]);
   map.removeLayer(eval('municipality'));
-
+>>>>>>> neoc/temp
 }
 
 
@@ -3145,7 +3405,8 @@ $("#capacity-popup").change('.amount',function(){
 
 
 //end
-
+<<<<<<< HEAD
+=======
 
 
 //chart start--
@@ -3336,7 +3597,7 @@ legend.append('text')
 
 
 
-
+>>>>>>> neoc/temp
     });//document end
  </script>
 

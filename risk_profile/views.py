@@ -50,10 +50,10 @@ class SociocookViewSet(views.APIView):
 
 # socio-economic category api
 
-class SociocookViewSet(viewsets.ModelViewSet):
-    permission_classes=[]
-    serializer_class=SociocookSerializer
-    queryset=SocioEconomicGapanapa.objects.all()
+# class SociocookViewSet(viewsets.ModelViewSet):
+#     permission_classes=[]
+#     serializer_class=SociocookSerializer
+#     queryset=SocioEconomicGapanapa.objects.all()
 
 # end
 
