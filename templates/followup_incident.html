@@ -1,0 +1,22 @@
+{% load i18n jet_dashboard_tags %}
+
+<ul>
+    {% if not module.children %}
+        <li>
+            {% trans 'None available' %}
+        </li>
+    {% else %}
+        {% for entry in module.children %}
+            <li>
+                <span class="float-right">
+                  <span>{{entry.incident_on}}</span>
+                </span>
+
+                <div class="nowrap">
+                  <a href="/admin/incident/incident/{{entry.id}}/">
+                      <span>{{entry.title}}</span>
+                  </a>
+                </div>
+            </li>
+        {% endfor %}
+    {% endif %}

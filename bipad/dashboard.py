@@ -5,6 +5,8 @@ from jet.dashboard.dashboard import Dashboard
 from jet.utils import get_admin_site_name
 from jet.dashboard.models import UserDashboardModule
 
+from incident.models import Incident
+
 
 class IndexDashboard(Dashboard):
     columns = 2
@@ -58,6 +60,12 @@ class IndexDashboard(Dashboard):
             column=1,
             order=1
         ))
+        self.children.append(FollowupIncidents(
+            _('Incomplete incidents'),
+            10,
+            column=1,
+            order=2
+        ))
 
     def get_or_create_module_models(self, user):
         module_models = []
@@ -95,3 +103,37 @@ class IndexDashboard(Dashboard):
                 loaded_modules.append(module)
 
         self.modules = loaded_modules
+
+
+class FollowupIncidents(modules.DashboardModule):
+    title = _('Needs Followup')
+    template = 'followup_incident.html'
+    limit = 25
+    include_list = None
+    exclude_list = None
+    user = None
+
+    def __init__(self, title=None, limit=10, **kwargs):
+        kwargs.update({'limit': limit})
+        super().__init__(title, **kwargs)
+
+    def settings_dict(self):
+        return {
+            'limit': self.limit,
+            'include_list': self.include_list,
+            'exclude_list': self.exclude_list,
+            'user': self.user
+        }
+
+    def load_settings(self, settings):
+        self.limit = settings.get('limit', self.limit)
+        self.include_list = settings.get('include_list')
+        self.exclude_list = settings.get('exclude_list')
+        self.user = settings.get('user', None)
+
+    def init_with_context(self, context):
+        qs = Incident.objects.filter(
+            need_followup=True,
+        )
+
+        self.children = qs[:int(self.limit)]
