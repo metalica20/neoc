@@ -100,17 +100,7 @@ class ProjectForm(forms.ModelForm):
 class OrganizationAdmin(admin.ModelAdmin):
     form = OrganizationForm
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
-
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     form = ProjectForm
-
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }

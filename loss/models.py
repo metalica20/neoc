@@ -147,10 +147,6 @@ class People(TimeStampedModal):
     loss = models.ForeignKey(
         Loss, related_name='peoples', on_delete=models.PROTECT)
 
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'name',
-
     def __str__(self):
         return self.name or 'People-{}'.format(self.id)
 
