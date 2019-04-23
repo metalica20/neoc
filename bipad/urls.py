@@ -26,7 +26,10 @@ from federal.views import (
     MunicipalityViewSet,
     WardViewSet,
 )
-from resources.views import ResourceViewSet
+from resources.views import (
+    ResourceViewSet,
+    ResponseList,
+)
 from organization.views import (
     OrganizationViewSet,
     ProjectViewSet,
@@ -132,6 +135,11 @@ urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
     path('silk/', include('silk.urls', namespace='silk')),
+    re_path(
+        get_api_path(r'incident/(?P<pk>[^/.]+)/response/$'),
+        ResponseList.as_view(),
+        name='incident-response'
+    ),
     re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(),
             name='token_obtain_pair'),
     re_path(get_api_path(r'token/refresh/$'),

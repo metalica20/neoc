@@ -1,27 +1,18 @@
 import datetime
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import action
 from django.db.models import Prefetch
 from rest_flex_fields import (
     FlexFieldsModelViewSet,
     is_expanded,
 )
 from .serializers import IncidentSerializer
-from resources.models import Resource
-from resources.serializers import (
-    ResponseSerializer,
-    DetailResponseSerializer,
-)
 from federal.models import Ward
 from .models import Incident
 from .filter_set import IncidentFilter
 from loss.models import Loss
 from django.core.cache import cache
 from .tasks import update_lnd
-
-from django.contrib.gis.db.models.functions import Distance
-from django.contrib.gis.measure import D
 
 
 class IncidentViewSet(FlexFieldsModelViewSet):
@@ -105,31 +96,3 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         else:
             response = super().dispatch(request, *args, **kwargs)
         return response
-
-    @action(detail=True, name='Incident Response')
-    def response(self, request, pk=None, version=None):
-        distance__gte = self.request.query_params.get('distance__gte', 0)  # km
-        distance__lte = self.request.query_params.get('distance__lte', 10)  # km
-        incident = self.get_object()
-        resources = None
-
-        location = incident.point or incident.polygon
-        if location:
-            resources = Resource.objects.filter(
-                point__distance_lte=(
-                    location, D(km=distance__lte)
-                ),
-                point__distance_gte=(
-                    location, D(km=distance__gte)
-                )
-            ).annotate(
-                distance=Distance("point", location)
-            ).select_related('polymorphic_ctype').order_by('distance')
-
-        meta = self.request.query_params.get('meta')
-        page = self.paginate_queryset(resources)
-        if meta:
-            serializer = DetailResponseSerializer(page, many=True)
-        else:
-            serializer = ResponseSerializer(page, many=True)
-        return self.get_paginated_response(serializer.data)

@@ -7,6 +7,7 @@ from federal.models import (
     Province,
 )
 from .models import Resource
+from inventory.models import Item
 
 
 class ResourceFilter(django_filters.FilterSet):
@@ -45,6 +46,12 @@ class ResourceFilter(django_filters.FilterSet):
         lookup_expr='in',
         queryset=ContentType.objects.filter(
             app_label='resources').exclude(model='resource'),
+    )
+    inventory_item = django_filters.ModelMultipleChoiceFilter(
+        label="Inventory item is in",
+        field_name='inventories__item',
+        lookup_expr='in',
+        queryset=Item.objects.all(),
     )
 
     class Meta:
