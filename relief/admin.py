@@ -12,9 +12,26 @@ from federal.models import (
     Ward
 )
 from django_select2.forms import ModelSelect2Widget
+from loss.models import People
 
 
 class ReleaseForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance', None)
+        super(ReleaseForm, self).__init__(*args, **kwargs)
+        self.fields['person'].widget.queryset = People.objects.filter(name__isnull=False)
+        self.fields['beneficiary'].queryset = People.objects.filter(name__isnull=False)
+        if instance:
+            ward = Release.objects.values('ward').filter(id=instance.id)
+            if ward[0]['ward']:
+                municipality = Ward.objects.values(
+                    'municipality',
+                    'municipality__district'
+                ).filter(id=ward[0]['ward'])
+                self.fields['municipality'].initial = municipality[0]['municipality']
+                self.fields['district'].initial = municipality[0]['municipality__district']
+
     district = forms.ModelChoiceField(
         queryset=District.objects.all(),
         required=False,
@@ -39,6 +56,19 @@ class ReleaseForm(forms.ModelForm):
             model=Ward,
             search_fields=['title__icontains'],
             dependent_fields={'municipality': 'municipality'},
+        )
+    )
+    person = forms.ModelChoiceField(
+        queryset=People.objects.filter(name__isnull=False),
+        required=False,
+        widget=ModelSelect2Widget(
+            model=People,
+            search_fields=['name__icontains'],
+            dependent_fields={
+                'ward': 'ward',
+                'municipality': 'ward__municipality',
+                'district': 'ward__municipality__district'
+            },
         )
     )
 
@@ -81,14 +111,16 @@ class FlowAdmin(admin.ModelAdmin):
 @admin.register(Release)
 class ReleaseAdmin(admin.ModelAdmin):
     search_fields = (
-        'provider_organization__title',
         'incident__title',
-        'person__title',
+        'person__name',
+        'provider_organization__title',
+        'ward__municipality__title',
     )
     list_display = (
         'provider_organization',
         'incident',
         'person',
+        'ward',
         'status',
         'amount',
     )
@@ -100,6 +132,9 @@ class ReleaseAdmin(admin.ModelAdmin):
         css = {
             'all': ('federal/css/django_select2.css',)
         }
+        js = (
+            'https://code.jquery.com/jquery-3.3.1.min.js',
+        )
 
 
 admin.site.register([ReleaseStatus, FiscalYear])

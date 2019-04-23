@@ -54,6 +54,18 @@ class LivestockTypeAdmin(MPTTModelAdmin):
 
 
 class PeopleForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance', None)
+        super(PeopleForm, self).__init__(*args, **kwargs)
+        if instance:
+            ward = People.objects.values('ward').filter(id=instance.id)
+            if ward[0]['ward']:
+                municipality = Ward.objects.values(
+                    'municipality',
+                    'municipality__district'
+                ).filter(id=ward[0]['ward'])
+                self.fields['municipality'].initial = municipality[0]['municipality']
+                self.fields['district'].initial = municipality[0]['municipality__district']
     district = forms.ModelChoiceField(
         queryset=District.objects.all(),
         required=False,
@@ -161,15 +173,12 @@ class FamilyForm(forms.ModelForm):
 class PeopleInline(admin.StackedInline):
     model = People
     form = PeopleForm
-    extra = 1
+    extra = 5
 
     class Media:
         css = {
             'all': ('federal/css/django_select2.css',)
         }
-        js = (
-            'https://code.jquery.com/jquery-3.3.1.min.js',
-        )
 
 
 class FamilyInline(admin.StackedInline):
