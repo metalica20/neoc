@@ -74,11 +74,6 @@ class ResourceAdmin(GeoPolymorphicParentModelAdmin):
                     Communication, Governance, Industry)
     search_fields = Resource.autocomplete_search_fields()
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
-
 
 @admin.register(Education)
 class EducationAdmin(ResourceAdmin):

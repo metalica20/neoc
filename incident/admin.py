@@ -148,11 +148,6 @@ class IncidentAdmin(GeoModelAdmin):
             """.format(reverse('admin:relief_release_add'), obj.id)
         )
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
-
     def save_model(self, request, obj, form, change):
         if change:
             obj.updated_by = request.user

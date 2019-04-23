@@ -129,9 +129,6 @@ class ReleaseAdmin(admin.ModelAdmin):
     form = ReleaseForm
 
     class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
         js = (
             'https://code.jquery.com/jquery-3.3.1.min.js',
         )

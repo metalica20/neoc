@@ -173,12 +173,12 @@ class FamilyForm(forms.ModelForm):
 class PeopleInline(admin.StackedInline):
     model = People
     form = PeopleForm
-    extra = 5
+    extra = 1
 
     class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
+        js = (
+            'https://code.jquery.com/jquery-3.3.1.min.js',
+        )
 
 
 class FamilyInline(admin.StackedInline):
@@ -219,7 +219,7 @@ class LossAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        if obj.incident:
+        if hasattr(obj, 'incident'):
             fields = get_followup_fields(obj.incident.id)
             if len(fields):
                 obj.incident.need_followup = True

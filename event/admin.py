@@ -54,11 +54,6 @@ class EventAdmin(GeoModelAdmin):
     actions = ("create_event",)
     form = EventForm
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
-
     def save_model(self, request, obj, form, change):
         geojson = form.cleaned_data.get('geojson')
         if geojson:
