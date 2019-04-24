@@ -5,6 +5,7 @@ from rest_flex_fields import (
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from django.contrib.gis.db.models.functions import Distance
+from django.contrib.gis.measure import D
 from .serializers import (
     ResourceSerializer,
     DetailResourceSerializer,
@@ -95,11 +96,11 @@ class ResponseList(generics.ListAPIView):
         if countDict:
             queryset = self.filter_by_inventory_count(queryset, countDict)
         else:
-            distance__gte = self.request.query_params.get('distance__gte', 0)  # km
-            distance__lte = self.request.query_params.get('distance__lte', 0)  # km
+            distance__gte = self.request.query_params.get('distance__gte', 0)  # m
+            distance__lte = self.request.query_params.get('distance__lte', 10000)  # m
             queryset = queryset.filter(
-                distance__lte=distance__lte*1000,
-                distance__gte=distance__gte*1000,
+                distance__lte=D(m=distance__lte),
+                distance__gte=D(m=distance__gte),
             )
         return queryset.select_related('polymorphic_ctype').order_by('distance')
 
