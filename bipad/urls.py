@@ -135,6 +135,7 @@ urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
     path('silk/', include('silk.urls', namespace='silk')),
+    path('admin/', include('django_select2.urls')),
     re_path(
         get_api_path(r'incident/(?P<pk>[^/.]+)/response/$'),
         ResponseList.as_view(),
@@ -154,7 +155,6 @@ urlpatterns = [
 ] + i18n_patterns(
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('admin/', admin.site.urls),
-    path('admin/', include('django_select2.urls')),
 ) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
