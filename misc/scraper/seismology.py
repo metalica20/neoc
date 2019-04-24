@@ -46,13 +46,12 @@ def scrape_earthquakes():
             row.remove('')
         earthquake = {}
         for i in range(0, len(fields)):
-            earthquake[fields[i]] = row[i]
-        earthquake['date'] = row[0][4:]
-        earthquake['time'] = row[1][5:]
+            earthquake[fields[i]] = row[i+1]
+        earthquake['date'] = row[1][4:]
+        earthquake['time'] = row[2][6:11]
         if earthquake['time'] == "N/A":
             earthquake['time'] = "00:00"
         event_on = datetime.datetime.strptime(earthquake['date'] + ' ' + earthquake['time'], '%Y-%m-%d %H:%M')
-
         if event_on > latest_event:
             earthquake = Earthquake(
                     event_on=event_on,
@@ -73,7 +72,8 @@ def create_alert(earthquake):
         Alert.objects.create(
             title="Earthquake at %s" % earthquake.address,
             source="nsc",
-            description=earthquake.description,
+            description="Earth of magnitude %s occurred at %s on %s"
+                        % (earthquake.magnitude, earthquake.address, earthquake.event_on),
             hazard=hazard,
             public=True,
             verified=True,
