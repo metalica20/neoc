@@ -361,12 +361,21 @@ class AgricultureType(MPTTModel):
 
 
 class Agriculture(TimeStampedModal):
+    DESTROYED = 'destroyed'
+    AFFECTED = 'affected'
+
+    STATUS = (
+        (DESTROYED, _('Destroyed')),
+        (AFFECTED, _('Affected')),
+    )
+
     type = models.ForeignKey(
         AgricultureType,
         related_name='agricultures',
         on_delete=models.PROTECT,
         verbose_name=_('Type')
     )
+    status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     beneficiary_owner = models.CharField(
         max_length=255,
         null=True, blank=True, default=None,

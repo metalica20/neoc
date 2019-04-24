@@ -4,7 +4,6 @@ from .models import Alert
 from django.contrib.gis.measure import D
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
 
-
 GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 
@@ -43,3 +42,30 @@ def get_alert_title(alert):
         return "%s at %s" % (alert.hazard, location.city)
     else:
         return "%s" % alert.hazard
+
+
+def alert_notification(alert):
+    alerts = []
+    alerts.append('<tr><td style="border: 1px solid black; border-collapse: collapse">%s</td>'
+                  '<td style="border: 1px solid black; border-collapse: collapse">%s</td>'
+                  '<td  style="border: 1px solid black; border-collapse: collapse">%s</td>'
+                  '<td  style="border: 1px solid black; border-collapse: collapse">%s</td>'
+                  '<td  style="border: 1px solid black; border-collapse: collapse">%s</td></tr>'
+                  % (alert.source, alert.description, alert.hazard,
+                     alert.started_on, alert.expire_on)
+                  )
+
+    email_message = """\
+                <h3> %s </h3>
+                <table style="width:700px; border:1px solid black; text-align: center; border-collapse: collapse;">
+                <tr>
+                <th style="border: 1px solid black; border-collapse: collapse">Source</th>
+                <th style="border: 1px solid black; border-collapse: collapse">Description</th>
+                <th style="border: 1px solid black; border-collapse: collapse">Hazard</th>
+                <th style="border: 1px solid black; border-collapse: collapse">Started On</th>
+                <th style="border: 1px solid black; border-collapse: collapse">Expire On</th>
+                </tr>
+                %s
+                </table>
+              """ % (alert.title, ''.join(alerts))
+    return email_message
