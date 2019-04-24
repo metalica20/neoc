@@ -24,6 +24,10 @@ from federal.models import (
 )
 from django_select2.forms import ModelSelect2Widget
 from django.utils.translation import ugettext_lazy as _
+from jet.filters import RelatedFieldAjaxListFilter
+from django.urls import reverse
+from django.utils.html import format_html
+from jet.filters import DateRangeFilter
 
 
 class AgricultureForm(forms.ModelForm):
@@ -224,6 +228,78 @@ class LossAdmin(admin.ModelAdmin):
             if len(fields):
                 obj.incident.need_followup = True
                 obj.incident.save()
+
+
+class BaseLossAdmin(admin.ModelAdmin):
+    search_fields = ['loss__incident__title']
+    list_select_related = [
+        'loss__incident'
+    ]
+    list_filter = (
+        ('loss__incident', RelatedFieldAjaxListFilter),
+        ('loss__incident__incident_on', DateRangeFilter),
+    )
+    list_display_links = 'incident',
+
+    def has_add_permission(self, request):
+        return False
+
+    def incident(self, obj):
+        if hasattr(obj.loss, 'incident'):
+            return format_html('<a href="{}">{}</a>'.format(
+                reverse('admin:incident_incident_change', args=[obj.loss.incident.id]),
+                obj.loss.incident,
+            ))
+
+    def incident_on(self, obj):
+        if hasattr(obj.loss, 'incident'):
+            return obj.loss.incident.incident_on
+
+
+@admin.register(People)
+class PeopleAdmin(BaseLossAdmin):
+    search_fields = BaseLossAdmin.search_fields + ['name']
+    list_display = ('incident', 'incident_on', 'name', 'status',
+                    'age', 'gender', 'disability', 'count')
+    list_select_related = (
+        'loss__incident',
+    )
+    list_filter = (
+        ('loss__incident', RelatedFieldAjaxListFilter),
+    )
+
+    def incident(self, obj):
+        if hasattr(obj.loss, 'incident'):
+            return obj.loss.incident
+
+
+@admin.register(Family)
+class FamilyAdmin(BaseLossAdmin):
+    search_fields = ('title',)
+    list_display = ('incident', 'incident_on', 'title', 'status', 'below_poverty', 'count')
+
+
+@admin.register(Livestock)
+class LivestockAdmin(BaseLossAdmin):
+    search_fields = ('title',)
+    list_display = ('incident', 'incident_on', 'title', 'type', 'status', 'count', 'economic_loss')
+    list_select_related = (
+        'loss__incident',
+        'type',
+    )
+
+
+@admin.register(Infrastructure)
+class InfrastructureAdmin(BaseLossAdmin):
+    search_fields = ('title',)
+    list_display = ('incident',  'incident_on', 'title', 'type', 'status', 'equipment_value',
+                    'beneficiary_owner', 'economic_loss', 'count')
+
+
+@admin.register(Agriculture)
+class AgricultureAdmin(BaseLossAdmin):
+    search_fields = ('title',)
+    list_display = ('incident', 'incident_on', 'type', 'beneficiary_owner', 'quantity')
 
 
 admin.site.register([Country, InfrastructureUnit])
