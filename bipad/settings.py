@@ -276,3 +276,11 @@ LANGUAGES = (
     ('en', _('English')),
     ('ne', _('Nepali')),
 )
+
+DEFAULT_FROM_EMAIL = 'bipad@moha.gov.np'
+SERVER_EMAIL = 'bipad@moha.gov.np'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'mail.moha.gov.np'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bipad@moha.gov.np'
+EMAIL_HOST_PASSWORD = 'B!p@d#468'

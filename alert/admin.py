@@ -23,6 +23,7 @@ from federal.models import (
     Municipality,
     Ward
 )
+from .notifications import user_notifications
 
 
 class AlertForm(forms.ModelForm):
@@ -113,12 +114,18 @@ class AlertAdmin(GeoModelAdmin):
             obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
 
         if obj.polygon:
-            # polygon overrides wards
+            # polygon overwrites wards
             wards = Ward.objects.filter(boundary__intersects=obj.polygon)
+            form.cleaned_data['wards'] = wards
+
+        if not obj.polygon and obj.point:
+            # point overwrites wards
+            wards = Ward.objects.filter(boundary__intersects=obj.point)
             form.cleaned_data['wards'] = wards
 
         if wards and not obj.polygon:
             obj.polygon = generate_polygon_from_wards(wards)
+
             # generate centroid from polygon
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
@@ -131,3 +138,5 @@ class AlertAdmin(GeoModelAdmin):
                 "Similar alert <a href='/admin/alert/alert/%d/change/'>%s</a> already exists"
                 % (alert.id, alert.title)
             ))
+
+        user_notifications(wards, obj, change)

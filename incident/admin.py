@@ -33,6 +33,7 @@ from misc.validators import validate_geojson
 from django.core.exceptions import ValidationError
 from django.utils.html import format_html
 from django.urls import reverse
+from loss.notifications import user_notifications
 
 
 INCIDENT_FIELDS = (
@@ -182,6 +183,8 @@ class IncidentAdmin(GeoModelAdmin):
                 "Similar data <a href='%s'>%s</a> already exists"
                 % (reverse('admin:incident_incident_change', args=[incident.id]), incident.title)
             ))
+
+        user_notifications(obj, change)
 
     def verify(self, request, queryset):
         queryset.update(verified=True)

@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import (
     Organization,
     Project,
+    Responsibility,
 )
 from django import forms
 from federal.models import (
@@ -49,6 +50,7 @@ class OrganizationForm(forms.ModelForm):
             "title",
             "short_name",
             "long_name",
+            "responsible_for",
             "district",
             "municipality",
             "wards",
@@ -104,3 +106,6 @@ class OrganizationAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     form = ProjectForm
+
+
+admin.site.register(Responsibility)
