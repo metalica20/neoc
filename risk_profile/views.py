@@ -313,29 +313,30 @@ class HazardfloodViewSet(views.APIView):
         # basins={}
         # basins['']
         # flood['title']="Flood"
-        jsonc={"title":"flood","data":{
+        jsonc={"title":"Flood","about":"For example, the return period of a flood might be 100 years; ( alternatively expressed as its probability of ocurring being 1/100, or 1% in any one year). This does not mean that if a flood with such a return period occurs, then the next will occur in about one hundred years' time - instead, it means that, in any given year, there is a 1% chance that it will happen, regardless of when the last similar event was. Or, put differently, it is 10 times less likely to occur than a flood with a return period of 10 years (or a probability of 10%)",
+        "data":{
         "karnali":{
-        "5":{"returnperiod":"5 year","workspace":"Naxa:flood_karnali_depth_5","center":"[28.491324426181734,81.24904632568361]"},
-        "10":{"returnperiod":"10 year","workspace":"Naxa:flood_karnali_depth_10","center":"[28.491324426181734,81.24904632568361]"},
-        "25":{"returnperiod":"25 year","workspace":"Naxa:flood_karnali_depth_25","center":"[28.491324426181734,81.24904632568361]"},
-        "50":{"returnperiod":"50 year","workspace":"Naxa:flood_karnali_depth_50","center":"[28.491324426181734,81.24904632568361]"},
-        "100":{"returnperiod":"100 year","workspace":"Naxa:flood_karnali_depth_100","center":"[28.491324426181734,81.24904632568361]"},
+        "5":{"returnperiod":"5 year","workspace":"Naxa","layername":"flood_karnali_depth_5", "center":"[28.491324426181734,81.24904632568361]"},
+        "10":{"returnperiod":"10 year","workspace":"Naxa","layername":"flood_karnali_depth_10","center":"[28.491324426181734,81.24904632568361]"},
+        "25":{"returnperiod":"25 year","workspace":"Naxa","layername":"flood_karnali_depth_25","center":"[28.491324426181734,81.24904632568361]"},
+        "50":{"returnperiod":"50 year","workspace":"Naxa","layername":"flood_karnali_depth_50","center":"[28.491324426181734,81.24904632568361]"},
+        "100":{"returnperiod":"100 year","workspace":"Naxa","layername":"flood_karnali_depth_100","center":"[28.491324426181734,81.24904632568361]"},
         },
         "Aurahi":{
-        "2":{"returnperiod":"2 year","workspace":"Naxa:flood_aurahi_depth_2","center":"[26.77258726109544,86.00372314453126]"},
-        "5":{"returnperiod":"5 year","workspace":"Naxa:flood_aurahi_depth_5","center":"[26.77258726109544,86.00372314453126]"},
-        "10":{"returnperiod":"10 year","workspace":"Naxa:flood_aurahi_depth_10","center":"[26.77258726109544,86.00372314453126]"},
-        "25":{"returnperiod":"25 year","workspace":"Naxa:flood_aurahi_depth_25","center":"[26.77258726109544,86.00372314453126]"},
-        "50":{"returnperiod":"50 year","workspace":"Naxa:flood_aurahi_depth_50","center":"[26.77258726109544,86.00372314453126]"},
-        "100":{"returnperiod":"100 year","workspace":"Naxa:flood_aurahi_depth_100","center":"[26.77258726109544,86.00372314453126]"},
+        "2":{"returnperiod":"2 year","workspace":"Naxa","layername":"flood_aurahi_depth_2","center":"[26.77258726109544,86.00372314453126]"},
+        "5":{"returnperiod":"5 year","workspace":"Naxa","layername":"flood_aurahi_depth_5","center":"[26.77258726109544,86.00372314453126]"},
+        "10":{"returnperiod":"10 year","workspace":"Naxa","layername":"flood_aurahi_depth_10","center":"[26.77258726109544,86.00372314453126]"},
+        "25":{"returnperiod":"25 year","workspace":"Naxa","layername":"flood_aurahi_depth_25","center":"[26.77258726109544,86.00372314453126]"},
+        "50":{"returnperiod":"50 year","workspace":"Naxa","layername":"flood_aurahi_depth_50","center":"[26.77258726109544,86.00372314453126]"},
+        "100":{"returnperiod":"100 year","workspace":"Naxa","layername":"flood_aurahi_depth_100","center":"[26.77258726109544,86.00372314453126]"},
         },
         "Banganga":{
-        "2":{"returnperiod":"2 year","workspace":"Naxa:flood_banganga_depth_2","center":"[27.585361051057333,86.04191780090332]"},
-        "5":{"returnperiod":"5 year","workspace":"Naxa:flood_banganga_depth_5","center":"[27.585361051057333,86.04191780090332]"},
-        "10":{"returnperiod":"10 year","workspace":"Naxa:flood_banganga_depth_10","center":"[27.585361051057333,86.04191780090332]"},
-        "25":{"returnperiod":"25 year","workspace":"Naxa:flood_banganga_depth_25","center":"[27.585361051057333,86.04191780090332]"},
-        "50":{"returnperiod":"50 year","workspace":"Naxa:flood_banganga_depth_50","center":"[27.585361051057333,86.04191780090332]"},
-        "100":{"returnperiod":"100 year","workspace":"Naxa:flood_banganga_depth_100","center":"[27.585361051057333,86.04191780090332]"},
+        "2":{"returnperiod":"2 year","workspace":"Naxa","layernam":"flood_banganga_depth_2","center":"[27.585361051057333,86.04191780090332]"},
+        "5":{"returnperiod":"5 year","workspace":"Naxa","layername":"flood_banganga_depth_5","center":"[27.585361051057333,86.04191780090332]"},
+        "10":{"returnperiod":"10 year","workspace":"Naxa","layername":"flood_banganga_depth_10","center":"[27.585361051057333,86.04191780090332]"},
+        "25":{"returnperiod":"25 year","workspace":"Naxa","layername":"flood_banganga_depth_25","center":"[27.585361051057333,86.04191780090332]"},
+        "50":{"returnperiod":"50 year","workspace":"Naxa","layername":"flood_banganga_depth_50","center":"[27.585361051057333,86.04191780090332]"},
+        "100":{"returnperiod":"100 year","workspace":"Naxa","layername":"flood_banganga_depth_100","center":"[27.585361051057333,86.04191780090332]"},
         },
         }}
 
@@ -349,14 +350,15 @@ class EarthquakefloodViewSet(views.APIView):
         # basins={}
         # basins['']
         # flood['title']="Flood"
-        jsonc={"title":"Earthquake","data":{
-        "Openquake":{
-        "Map":{"returnperiod":"Map","workspace":"earthquake","center":"[28.408312587374258,84.40521240234376]"},
+        jsonc={"title":"Earthquake","about":"M. Pagani, J. Garcia-Pelaez, R. Gee, K. Johnson, V. Poggi, R. Styron, G. Weatherill, M. Simionato, D. Viganò, L. Danciu, D. Monelli (2018). Global Earthquake Model (GEM) Seismic Hazard Map (version 2018.1 - December 2018), DOI: 10.13117/GEM-GLOBAL-SEISMIC-HAZARD-MAP-2018.1. The Global Earthquake Model (GEM)  depicts the geographic distribution of the Peak Ground Acceleration (PGA) with a 10% probability of being exceeded in 50 years, computed for reference rock conditions (shear wave velocity, VS30, of 760-800 m/s). The map was created by collating maps computed using national and regional probabilistic seismic hazard models developed . Link to the website : https://maps.openquake.org/map/global-seismic-hazard-map/#7/29.299/81.635",
+        "data":{
+        "GSHM_Earthquake_Map":{
+        "Map":{"returnperiod":"Map","workspace":"earthquake", "layername":"earthquake","center":"[28.408312587374258,84.40521240234376]"},
 
         },
-        "Adrc":{
-
-        },
+        # "Adrc":{
+        #
+        # },
         }}
 
         return Response(jsonc)
