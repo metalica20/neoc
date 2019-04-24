@@ -10,6 +10,9 @@ class Earthquake(TimeStampedModal):
     address = models.CharField(max_length=255, null=True, blank=True, default=None)
     event_on = models.DateTimeField()
 
+    def __str__(self):
+        return 'Earthquake at {}'.format(self.address)
+
 
 class River(TimeStampedModal):
     title = models.CharField(max_length=255)
