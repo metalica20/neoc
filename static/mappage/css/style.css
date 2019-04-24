@@ -1848,7 +1848,7 @@ button {
 
 
 .leaflet-top .leaflet-control {
-    margin-top: 60px !important;
+    margin-top: 58px !important;
 }
 .leaflet-popup-scrolled {
     border:none !important;
@@ -1898,5 +1898,9 @@ button {
 
 .popover{
   z-index: 99999;
+}
+
+.leaflet-draw{
+  display:none;
 }
 /*# sourceMappingURL=style.css.map */

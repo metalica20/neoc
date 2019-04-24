@@ -144,23 +144,29 @@
                 $('#capacity-popup').hide(300);
                 $('#vulnery-1').hide(300);
                 $('#hdi_vul').hide(300);
+                $('#remote_vul').hide(300);
+                $('#earthquake_risk').hide(300);
 
               } else if (targetId == 'exposure_popup' ) {
-                      $('#infa_exposure_popup').hide(300);
-                      $('#' + targetId).show(500);
-                      $('#flood-1').hide(300);
-                      $('#capacity-popup').hide(300);
-                      $('#vulnery-1').hide(300);
-                      $('#hdi_vul').hide(300);
+                $('#infa_exposure_popup').hide(300);
+                $('#' + targetId).show(500);
+                $('#flood-1').hide(300);
+                $('#capacity-popup').hide(300);
+                $('#vulnery-1').hide(300);
+                $('#hdi_vul').hide(300);
+                $('#remote_vul').hide(300);
+                $('#earthquake_risk').hide(300);
 
 
             } else if (targetId == 'infa_exposure_popup' ) {
-                            $('#exposure_popup').hide(300);
-                            $('#' + targetId).show(500);
-                            $('#flood-1').hide(300);
-                            $('#capacity-popup').hide(300);
-                            $('#vulnery-1').hide(300);
-                            $('#hdi_vul').hide(300);
+              $('#exposure_popup').hide(300);
+              $('#' + targetId).show(500);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
 
 
 
@@ -172,6 +178,8 @@
                     $('#flood-1').hide(300);
                     $('#vulnery-1').hide(300);
                     $('#hdi_vul').hide(300);
+                    $('#remote_vul').hide(300);
+                    $('#earthquake_risk').hide(300);
 
             }
             else if (targetId == 'vulnery-1' ) {
@@ -182,6 +190,8 @@
                 $('#flood-1').hide(300);
                 $('#capacity-popup').hide(300);
                 $('#hdi_vul').hide(300);
+                $('#remote_vul').hide(300);
+                $('#earthquake_risk').hide(300);
 
 
 
@@ -193,13 +203,40 @@
             $('#flood-1').hide(300);
             $('#capacity-popup').hide(300);
             $('#vulnery-1').hide(300);
+            $('#remote_vul').hide(300);
+            $('#earthquake_risk').hide(300);
 
 
 
-    }
+          }else if (targetId == 'remote_vul' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#earthquake_risk').hide(300);
+
+
+
+          }else if (targetId == 'earthquake_risk' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+
+
+
+          }
             // $('#flood-expand').fadeIn(300);
             // $('#capacity-expand').fadeIn(300);
-            // $('#vulnery-expand').fadeIn(300);
+            // $('#vulnery-expand').fadeIn(300);earthquake_risk
         });
         //
         // $('.exoposure_data_pop').on('click',function(){
@@ -354,6 +391,6 @@
         });
         setTimeout(function(){
         $('[data-toggle="popover"]').popover();
-      },3000);
+       },3000);
     });
 })(jQuery);

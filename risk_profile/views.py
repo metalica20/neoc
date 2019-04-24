@@ -269,9 +269,12 @@ class RiskApiView(views.APIView):
         risk = Risk.objects.all().order_by('-hdi')
         serializer = RiskSerializer(risk ,many=True)
         print(serializer.data)
-        all_sum = risk.aggregate(Sum('hdi'))['hdi__sum']
+        all_sum = risk.aggregate(Sum('riskScore'))['riskScore__sum']
+        earthquake_risk_max = risk.aggregate(Max('riskScore'))['riskScore__max']
         avg = risk.aggregate(Avg('hdi'))['hdi__avg']
-        return Response({'sum': all_sum if all_sum else 0 ,'avg':avg if avg else 0, 'results':serializer.data})
+        avg_rem = risk.aggregate(Avg('remoteness'))['remoteness__avg']
+        avg_earthquake_risk = risk.aggregate(Avg('riskScore'))['riskScore__avg']
+        return Response({'maxriskScore': earthquake_risk_max if earthquake_risk_max else 0 ,'avghdi':avg if avg else 0,'avgremoteness':avg_rem if avg_rem else 0,'avgriskScore':avg_earthquake_risk if avg_earthquake_risk else 0, 'results':serializer.data})
 
 
 
