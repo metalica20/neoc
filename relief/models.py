@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
 from bipad.models import TimeStampedModal
 from organization.models import Organization
 from event.models import Event
@@ -33,11 +36,13 @@ class Flow(TimeStampedModal):
         Organization,
         related_name='provided_flows',
         on_delete=models.CASCADE,
+        null=True, blank=True, default=None,
     )
     event = models.ForeignKey(
         Event,
         related_name='flows',
         on_delete=models.CASCADE,
+        null=True, blank=True, default=None,
     )
     type = models.CharField(max_length=25, choices=TYPES)
     amount = models.BigIntegerField()
@@ -51,6 +56,11 @@ class Flow(TimeStampedModal):
         blank=True,
         default=timezone.now,
     )
+    description = models.TextField(null=True, blank=True, default=None)
+
+    def clean(self):
+        if self.type == 'inflow' and self.provider_organization is None:
+            raise ValidationError(_('Provider organization cannot be empty when type is inflow.'))
 
 
 class ReleaseStatus(models.Model):
