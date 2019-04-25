@@ -392,5 +392,10 @@
         setTimeout(function(){
         $('[data-toggle="popover"]').popover();
        },3000);
+
+       $(".bipadContent").on("click ",".custom-control-input", function() {
+         console.log('open');
+           $(this).closest('.custom-radio').toggleClass('custom-check');
+        });
     });
 })(jQuery);

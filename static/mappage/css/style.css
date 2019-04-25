@@ -1903,4 +1903,10 @@ button {
 .leaflet-draw{
   display:none;
 }
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+    background-color: transparent;
+}
+.custom-radio.custom-check .custom-control-input:checked~.custom-control-label::before{
+  background-color: #007bff;
+}
 /*# sourceMappingURL=style.css.map */
