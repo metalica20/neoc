@@ -72,6 +72,7 @@ class SchoolViewSet(viewsets.ModelViewSet):
     # a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
     # print(a.geom_type)
 
+# resources from apps
 class ResourceGeojsonViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
