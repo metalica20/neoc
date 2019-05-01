@@ -2808,7 +2808,7 @@ $('.parent_vul').on('click',function(){
 
 
 
-function createPopup(feature){
+function createPopup(feature,layername){
 
   //popup content
 var contentString = '<div class="box box-primary" style="width:400px;">';
@@ -2841,6 +2841,8 @@ var contentString = '<div class="box box-primary" style="width:400px;">';
 
 
 }
+contentString +='</ul>';
+contentString +='<button style="display:flex; justify-content:center; margin:0.5rem auto 0 auto;"><a href="" style="background-color:#337ab7; margin:0 auto; display: inline-block; color:#fff; padding:0.1rem 1rem; font-size:0.775rem; text-transform:uppercase;" class="btn btn-primary">View Details</a></button>';
 contentString +='</div></div></div>';
 return contentString;
 //popup content stop
