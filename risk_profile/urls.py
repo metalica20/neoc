@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('Layer',views.LayerViewset.as_view({'get':'list'}),name='Layer'),
     path('socio/<str:field>',views.SociocookViewSet.as_view(),name='sociocook'),
-    path('Hospital',views.HospitalGeojsonViewSet.as_view(),name='hospitaljson'),
+    path('Resources/<str:m_name>',views.ResourceGeojsonViewSet.as_view(),name='Resources'),#resources model geosjson
     path('Marketcenter',views.MarketCenterGeojsonViewSet.as_view(),name='marketcenterjson'),
     path('Airport',views.AirportGeojsonViewSet.as_view(),name='airportjson'),
     path('Bridge',views.BridgeGeojsonViewSet.as_view(),name='bridgejson'),

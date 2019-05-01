@@ -1,7 +1,7 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,SocioEconomicGapanapa,Risk,Health
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,SocioEconomicGapanapa,Risk
 from incident.models import Incident
-from resources.models import Resource
+from resources.models import Resource,Health
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
@@ -16,6 +16,7 @@ from .forms import HospitalForm
 from hazard.models import Hazard, HazardResources
 from django.db.models import Avg, Max, Min, Sum
 from django.http import HttpResponse
+from django.apps import apps
 # import pandas as pd
 # Create your views here.
 from .geojson_serializer import Serializer
@@ -71,23 +72,17 @@ class SchoolViewSet(viewsets.ModelViewSet):
     # a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
     # print(a.geom_type)
 
-class HospitalGeojsonViewSet(views.APIView):
+class ResourceGeojsonViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
-        # json_d={}
-        # print(Health.objects.all().values('title','bed_count'))
-        # serializers=serialize('custom_geojson',Health.objects.all(),geometry_field='point',fields=('pk','ward','title','description','type','bed_count'))
-        # # print(serializers)
-        # hospitalgeojson=json.loads(serializers)
-        # json_d['data']=hospitalgeojson
-        # json_d['is_goeserver']=False
-        # return Response(hospitalgeojson)
+        model_name=self.kwargs['m_name']
+        object_model=apps.get_model('resources',model_name)
         geojson_serializer = Serializer()
-        geojson_serializer.serialize(Health.objects.all())
+        geojson_serializer.serialize(object_model.objects.all())
         data = geojson_serializer.getvalue()
-        hospitalgeojson=json.loads(data)
+        resourcegeojson=json.loads(data)
 
-        return Response(hospitalgeojson)
+        return Response(resourcegeojson)
 
 class MarketCenterGeojsonViewSet(views.APIView):
     permission_classes=[]
@@ -356,7 +351,7 @@ class EarthquakefloodViewSet(views.APIView):
         jsonc={"title":"Earthquake","about":"M. Pagani, J. Garcia-Pelaez, R. Gee, K. Johnson, V. Poggi, R. Styron, G. Weatherill, M. Simionato, D. Viganò, L. Danciu, D. Monelli (2018). Global Earthquake Model (GEM) Seismic Hazard Map (version 2018.1 - December 2018), DOI: 10.13117/GEM-GLOBAL-SEISMIC-HAZARD-MAP-2018.1. The Global Earthquake Model (GEM)  depicts the geographic distribution of the Peak Ground Acceleration (PGA) with a 10% probability of being exceeded in 50 years, computed for reference rock conditions (shear wave velocity, VS30, of 760-800 m/s). The map was created by collating maps computed using national and regional probabilistic seismic hazard models developed . Link to the website : https://maps.openquake.org/map/global-seismic-hazard-map/#7/29.299/81.635",
         "data":{
         "GSHM_Earthquake_Map":{
-        "Map":{"returnperiod":"Map","workspace":"earthquake", "layername":"earthquake","center":"[28.408312587374258,84.40521240234376]"},
+        "Map":{"returnperiod":"Map","workspace":"earthquake", "layername":"earthquake","center":"[28.410728397237914,84.4024658203125]"},
 
         },
         # "Adrc":{

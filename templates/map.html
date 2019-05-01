@@ -236,14 +236,14 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input hazard_list" id="Flood" name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input hazard_list" hasLayer="false" data-currentLayer="" id="Flood" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="Flood" data-tab="flood-1">Flood </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Flood"></span>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input hazard_list" id="Earthquake" name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input hazard_list" id="Earthquake" hasLayer="false" data-currentLayer="" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="Earthquake" data-tab="flood-1">Earthquake</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Earthquake"></span>
@@ -295,13 +295,13 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="OSM" name="exposure_1"  value="customEx">
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="OSM" data-currentLayer="" name="exposure_1"  value="customEx">
                                                     <label class="custom-control-label"  data-tab="exposure_popup" for="OSM">Drone Imageries </label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="Land" name="Land" value="customEx">
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="Land" data-currentLayer="" name="Land" value="customEx">
                                                     <label class="custom-control-label"  data-tab="infa_exposure_popup" for="Land">Infrastructures</label>
                                                 </div>
                                             </li>
@@ -323,7 +323,7 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="HDI"  name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="HDI" data-currentLayer="" data-result=""  name="example1" value="customEx">
                                                     <label class="custom-control-label" for="HDI" data-tab="hdi_vul">HDI </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Helipad"></span>
@@ -331,7 +331,7 @@
 
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="REMOTE"  name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="REMOTE" data-currentLayer="" data-result=""  name="example1" value="customEx">
                                                     <label class="custom-control-label" for="REMOTE" data-tab="remote_vul">Remoteness </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Helipad"></span>
@@ -339,7 +339,7 @@
 
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input admin_bound" id="GDP" data-admin="municipality" name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input admin_bound parent_vul" id="GDP" data-currentLayer="" data-currentLayer="" data-admin="municipality" name="example1" value="customEx">
                                                     <label class="custom-control-label" for="GDP" data-tab="vulnery-1">Access To Communication</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
@@ -382,7 +382,7 @@
                                         <ul class="list-content hazard-list">
                                             <li class="active">
                                                 <div class="custom-control custom-radio">
-                                                  <input type="radio" class="custom-control-input" id="earthquake_r"  name="example1" value="customEx">
+                                                  <input type="radio" class="custom-control-input parent_vul" id="earthquake_r"  name="example1" value="customEx">
                                                   <label class="custom-control-label" for="earthquake_r" data-tab="earthquake_risk">Earthquake Risk </label>
                                                 </div>
                                                 <span class="humanitarian-icon-Health"></span>
@@ -733,7 +733,7 @@
                                            <div class="custom-control custom-radio">
                                              <span class="ion ion-md-contrast"  style="float:right; border:none;"></span>
 
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-layername="bancharedanda" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-parent="OSM" data-layername="bancharedanda" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
                                                <label class="custom-control-label" for="test_1">Drone </label>
 
                                            </div>
@@ -748,7 +748,7 @@
                                            <div class="custom-control custom-radio">
                                              <span class="ion ion-md-contrast"  style="float:right; border:none;"></span>
 
-                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-layername="sankhu_drone" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-parent="OSM" data-layername="sankhu_drone" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
 
                                                <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
                                            </div>
@@ -796,13 +796,13 @@
                                      <ul class="hazardDetail-list">
                                          <li class="active">
                                              <div class="custom-control custom-radio">
-                                                 <input type="radio" class="custom-control-input exposure_geo" data-layername="buildings"  data-workspace="geonode:buildings" data-url="https://geonepal.info/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
+                                                 <input type="radio" class="custom-control-input exposure_geo" data-parent="Land" data-layername="buildings"  data-workspace="geonode:buildings" data-url="https://geonepal.info/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
                                                  <label class="custom-control-label" for="build_1">Buildings  </label>
                                              </div>
                                          </li>
                                          <li class="active">
                                              <div class="custom-control custom-radio">
-                                                 <input type="radio" class="custom-control-input exposure_geo" data-layername="hydropower" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <input type="radio" class="custom-control-input exposure_geo" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
                                                  <label class="custom-control-label" for="hydro_1">Hydropower  </label>
                                              </div>
                                          </li>
@@ -870,44 +870,44 @@
                             <ul class="hazardDetail-list">
                                 <li class="active">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="radio_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="radio_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="radio_com">Radio </label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="television_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="television_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="television_com">Televison</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="mobile_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="mobile_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="mobile_com">Mobile</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="internet_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="internet_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="internet_com">Internet</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="cablet_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="cablet_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="cablet_com">Cable Net</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="computer_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="computer_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="computer_com">Computer</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
 
-                                        <input type="radio" class="custom-control-input socio nt_loaded" id="telephone_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="telephone_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="telephone_com">Telephone</label>
                                     </div>
                                 </li>
@@ -978,7 +978,7 @@
                                  <ul class="hazardDetail-list">
                                      <li class="active">
                                          <div class="custom-control custom-radio">
-                                             <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-score="hdi" data-admin="district"  id="hdi_district" name="hdi_district" value="customEx">
+                                             <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="HDI" data-score="hdi" data-admin="district"  id="hdi_district" name="hdi_district" value="customEx">
                                              <label class="custom-control-label" for="hdi_district">District Level  </label>
                                          </div>
                                      </li>
@@ -1053,7 +1053,7 @@
                                 <ul class="hazardDetail-list">
                                     <li class="active">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-score="remoteness" data-admin="district"  id="remote_district" name="remote_district" value="customEx">
+                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="REMOTE" data-score="remoteness" data-admin="district"  id="remote_district" name="remote_district" value="customEx">
                                             <label class="custom-control-label" for="remote_district">District Level  </label>
                                         </div>
                                     </li>
@@ -1125,7 +1125,7 @@
                                 <ul class="hazardDetail-list">
                                     <li class="active">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-score="riskScore" data-admin="district"  id="earthquake_district" name="earthquake_district" value="customEx">
+                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="earthquake_r" data-score="riskScore" data-admin="district"  id="earthquake_district" name="earthquake_district" value="customEx">
                                             <label class="custom-control-label" for="earthquake_district">District Level  </label>
                                         </div>
                                     </li>
@@ -1858,7 +1858,7 @@ function highlightLayers(layer, featureName){
                      }
 
 
-          function loadSocioData(socioid){     //loding socia data in map layers
+          function loadSocioData(socioid,parent_id){     //loding socia data in map layers
             //console.log(feature);
 
             $('.progress-list').html('');
@@ -1908,7 +1908,9 @@ function highlightLayers(layer, featureName){
 
                                }
 
-
+                               $('#'+parent_id).attr('data-currentLayer','municipality')
+                               $('#'+parent_id).attr('data-result',JSON.stringify(result.data))
+                               $('#'+parent_id).prop('checked',true);
 
 
 
@@ -1926,6 +1928,10 @@ function highlightLayers(layer, featureName){
                                 for(var j=0;j<result.data.length;j++){
                                     municipality.setFeatureStyle(result.data[j]["municipalityId"], resetStyle());
                                 }
+
+                                $('#'+parent_id).attr('data-currentLayer','');
+                                $('#'+parent_id).attr('data-result','');
+                                $('#'+parent_id).prop('checked',false);
                               //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
                                 $('#'+socioid).addClass('nt_loaded');
                               }
@@ -1961,8 +1967,8 @@ function highlightLayers(layer, featureName){
 
 
 
-          function loadHdiData(risk_id,id){     //loding socia data in map layers
-           //console.log(id);
+          function loadHdiData(risk_id,id,parent_id){     //loding socia data in map layers
+           console.log(risk_id);
 
 
 
@@ -2016,6 +2022,7 @@ function highlightLayers(layer, featureName){
 
 
 
+
                                     //  console.log(result.results[i]['hdi']);
 
                                       //features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
@@ -2027,11 +2034,9 @@ function highlightLayers(layer, featureName){
 
                                   }
 
-
-
-
-
-
+                                  $('#'+parent_id).attr('data-currentLayer','district')
+                                  $('#'+parent_id).attr('data-result',JSON.stringify(result.results))
+                                  $('#'+parent_id).prop('checked',true);
 
 
                                 visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
@@ -2044,12 +2049,61 @@ function highlightLayers(layer, featureName){
                                 $('.progress-list').html(visual_html);
 
 
+                                //creating legend-list
+
+                                var legend_html='<div class="legend-wrapper">'+
+                                    '<div class="buffer-header">'+
+                                        '<h4>'+risk_id+'</h4>'+
+                                        '<span><i class="ion ion-md-close"></i></span>'+
+                                    '</div>'+
+                                    '<ul>';
+                                    if(risk_id=='riskScore'){
+
+                                      legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.5</a></li>'+
+                                                    '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.5-1</a></li>'+
+                                                    '<li class="outdoor"><span style="background-color:#FD8D3C;"></span><a href="#">1-1.5</a></li>'+
+                                                    '<li class="street"><span style="background-color:#FC4E2A;"></span><a href="#">1.5-2</a></li>'+
+                                                    '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">2-2.5</a></li>'+
+                                                    '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">2.5-3</a></li>'+
+                                                    '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 3+ </a></li>';
+                                    }else{
+
+                                      legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.2</a></li>'+
+                                                    '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.2-0.4</a></li>'+
+                                                    '<li class="outdoor"><span style="background-color:#FD8D3C;"></span><a href="#">0.4-0.6</a></li>'+
+                                                    '<li class="street"><span style="background-color:#FC4E2A;"></span><a href="#">0.6-0.8</a></li>'+
+                                                    '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">0.8-0.9</a></li>'+
+                                                    '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">0.9-1</a></li>'+
+                                                    '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 1+ </a></li>';
+                                    }
+
+
+
+                      legend_html+='</ul>'+
+                                '</div>';
+
+                                $('.legend-list').append(legend_html);
+
+                                //legend end
+
+
+
+
+
                               $('#'+id).removeClass('nt_loaded');
+
                             }else{
+
+
                               for(var i=0;i<result.results.length;i++){
                                   district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
                               }
                             //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
+                            $('.legend-list').html('');
+                            $('#'+parent_id).attr('data-currentLayer','');
+                            $('#'+parent_id).attr('data-result','');
+                            $('#'+parent_id).prop('checked',false);
+
                               $('#'+id).addClass('nt_loaded');
                             }
 
@@ -2059,42 +2113,6 @@ function highlightLayers(layer, featureName){
                       });
 
 
-            //creating legend-list
-
-            var legend_html='<div class="legend-wrapper">'+
-                '<div class="buffer-header">'+
-                    '<h4>'+risk_id+'</h4>'+
-                    '<span><i class="ion ion-md-close"></i></span>'+
-                '</div>'+
-                '<ul>';
-                if(risk_id=='riskScore'){
-
-                  legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.5</a></li>'+
-                                '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.5-1</a></li>'+
-                                '<li class="outdoor"><span style="background-color:#FD8D3C;"></span><a href="#">1-1.5</a></li>'+
-                                '<li class="street"><span style="background-color:#FC4E2A;"></span><a href="#">1.5-2</a></li>'+
-                                '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">2-2.5</a></li>'+
-                                '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">2.5-3</a></li>';
-                                '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 3+ </a></li>';
-                }else{
-
-                  legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.2</a></li>'+
-                                '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.2-0.4</a></li>'+
-                                '<li class="outdoor"><span style="background-color:#FD8D3C;"></span><a href="#">0.4-0.6</a></li>'+
-                                '<li class="street"><span style="background-color:#FC4E2A;"></span><a href="#">0.6-0.8</a></li>'+
-                                '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">0.8-0.9</a></li>'+
-                                '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">0.9-1</a></li>'+
-                                '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 1+ </a></li>';
-                }
-
-
-
-  legend_html+='</ul>'+
-            '</div>';
-
-            $('.legend-list').append(legend_html);
-
-            //legend end
 
           }
 
@@ -2415,9 +2433,16 @@ $(".slider").each(function () {
   //add legend
 
   function addLegend(legend_content){
-    console.log(legend_content.replace(/_/g,""));
-    console.log(geo_url);
-    var url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+legend_content+'&';
+
+    if (legend_content=="earthquake"){
+
+      var url="{% static 'mappage/images/earthquake_legend.png' %}";
+
+    }else{
+      console.log(legend_content.replace(/_/g,""));
+      console.log(geo_url);
+      var url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+legend_content+'&';
+    }
 
      var legend_html='<div class="legend-wrapper">'+
          '<div class="buffer-header">'+
@@ -2449,8 +2474,9 @@ $(".socio").on('click',function(){
 
   var id = $(this).attr("id");
   $('.legend-list').html('');
+  var parent_id = $(this).attr("data-parent");
   //console.log(id);
-  loadSocioData(id);
+  loadSocioData(id,parent_id);
 
 
 });
@@ -2458,14 +2484,39 @@ $(".vul_hdi").on('click',function(){
 
   var id = $(this).attr("data-score");
   var id_input = $(this).attr("id");
+  var parent_id = $(this).attr("data-parent");
   $('.legend-list').html('');
-  console.log(id);
-  loadHdiData(id,id_input);
+  //console.log(id);
+  loadHdiData(id,id_input,parent_id);
 
 
 });
 
 //end access
+
+
+$('.parent_vul').on('click',function(){
+
+  var current_layer=$(this).attr('data-currentLayer');
+  var resultt=$(this).attr('data-result');
+  if(current_layer!=""){
+    var result=JSON.parse(resultt);
+    //console.log(JSON.parse(result));
+    if(current_layer=='municipality'){
+      dataid='municipalityId';
+      $(".socio").prop('checked',false);
+    }else{
+        dataid='districtId';
+    }
+    for(var i=0;i<result.length;i++){
+        window[current_layer].setFeatureStyle(result[i][dataid], resetStyle());
+    }
+    $(".vul_hdi").prop('checked',false);
+
+  }
+
+
+})
 
 //end vulnerability map Layer
 
@@ -2477,6 +2528,8 @@ $(".vul_hdi").on('click',function(){
 
 
     $('#hazard_popup_html').on('click','.hazard_geo',function(){
+
+
       console.log($(this).closest(".card").children()[0].id);
       var hazard_id = $(this).closest(".card").children()[0].id;
       var id = $(this).attr('data-workspace');
@@ -2488,20 +2541,32 @@ $(".vul_hdi").on('click',function(){
       if($(this).attr("haslayer")){
         //console.log('onclicktrue');
         if(map.hasLayer(window[layername])){
-          //console.log('onclicktrue');
+
              map.removeLayer(window[layername]);
+               $('.legend-list').html('');
+               $('.hazard_list').attr('hasLayer',false);
+               $('.hazard_list').attr('data-currentLayer','');
+
+               // map.flyTo([28.410728397237914,84.4024658203125], 7);
         }else{
+
+            addLegend(layername);
+
             //map.addLayer(window[layername]);
+            $('.hazard_list').attr('hasLayer',true);
+            $('.hazard_list').attr('data-currentLayer',layername);
             window[layername].addTo(map);
-            console.log(previous_hazard_layer);
+
             if(previous_hazard_layer!=null && previous_hazard_layer!=window[layername]){
-              console.log("entered previous");
+              $('.hazard_list').attr('hasLayer',false);
+              $('.hazard_list').attr('data-currentLayer','');
               map.removeLayer(previous_hazard_layer);
+
             }
 
             previous_hazard_layer = window[layername];
             $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
-            addLegend(layername);
+
 
             //$('.center').attr('data-name-trans',layername);
             //console.log('onclick');
@@ -2526,28 +2591,33 @@ $(".vul_hdi").on('click',function(){
                  minZoom: 2,
              }).addTo(map);
 
+               map.flyTo(center,7);
+             // var imgurl="{% static 'mappage/images/earthquake_legend.png' %}";
+             // var legend_html='<div class="legend-wrapper">'+
+             //     '<div class="buffer-header">'+
+             //         // '<h4>'+legend_content.replace(/_/g," ")+'</h4>'+
+             //         '<h4>GSHM Earthquake</h4>'+
+             //         '<span><i class="ion ion-md-close"></i></span>'+
+             //     '</div>'+
+             //     '<ul>'+
+             //         '<li class="satelite"></span><img src="'+imgurl+'"></img></li>'+
+             //
+             //
+             //     '</ul>'+
+             // '</div>';
+             //
+             // $('.legend-list').html(legend_html);
+             $('.hazard_list').attr('hasLayer',true);
+             $('.hazard_list').attr('data-currentLayer',layername);
+             addLegend(layername);
+          $(this).attr("haslayer",false);
 
-             var legend_html='<div class="legend-wrapper">'+
-                 '<div class="buffer-header">'+
-                     // '<h4>'+legend_content.replace(/_/g," ")+'</h4>'+
-                     '<h4>GSHM Earthquake</h4>'+
-                     '<span><i class="ion ion-md-close"></i></span>'+
-                 '</div>'+
-                 '<ul>'+
-                     '<li class="satelite"></span><img src="{% static "mappage/images/earthquake_legend.png" %}"></img></li>'+
-
-
-                 '</ul>'+
-             '</div>';
-
-             $('.legend-list').html(legend_html);
-          $(this).attr("haslayer","true");
           $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
           //$('.center').attr('data-name-trans',layername);
 
 
       }else{
-        console.log(id);
+      //  console.log(id);
 
         geo_url='https://apps.naxa.com.np/geoserver/wms';
 
@@ -2558,16 +2628,19 @@ $(".vul_hdi").on('click',function(){
                                 // pane:"wmsPane"
                           }).addTo(map);
 
-
+                          $('.hazard_list').attr('hasLayer',true);
+                          $('.hazard_list').attr('data-currentLayer',layername);
                           //console.log(previous_hazard_layer);
                           if(previous_hazard_layer!=null && previous_hazard_layer!=window[layername]){
-                            console.log("entered previous");
+                            //console.log("entered previous");
+                            // $('.hazard_list').attr('hasLayer',false);
+                            // $('.hazard_list').attr('data-currentLayer','');
                             map.removeLayer(previous_hazard_layer);
                           }
         previous_hazard_layer = window[layername];
 
         $(this).attr("haslayer",true);
-        console.log($('#'+hazard_id).find('.center'));
+      //  console.log($('#'+hazard_id).find('.center'));
         $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
         addLegend(layername);
         // $('.center').attr('data-name-trans',layername);
@@ -2614,6 +2687,7 @@ $(".vul_hdi").on('click',function(){
     $('.exposure_geo').one('click',function(){
     //  console.log($(this).attr('id'));
       var layername = $(this).attr('data-layername');
+
       if($(this).attr('id')=='hydro_1'){
       //  console.log('entered')
         var url='http://hydro.naxa.com.np/api/Hydropower/';
@@ -2691,16 +2765,19 @@ $(".vul_hdi").on('click',function(){
 
     $('.exposure_geo').on('click',function(){
       var layername = $(this).attr('data-layername');
-
+      var parent_id = $(this).attr('data-parent');
       var center = eval($(this).attr('data-center'));
 
       if($(this).attr('id')=='hydro_1' ){
 
         // console.log()
         if(map.hasLayer(window[layername])){
+        $('#'+parent_id).attr('data-currentLayer','');
         map.removeLayer(window[layername]);
 
+
         }else{
+          $('#'+parent_id).attr('data-currentLayer',layername);
           map.addLayer(window[layername]);
             map.flyTo([28.410728397237914,84.4024658203125],8)
         }
@@ -2710,9 +2787,11 @@ $(".vul_hdi").on('click',function(){
 
       }else{
         if(map.hasLayer(window[layername])){
+        $('#'+parent_id).attr('data-currentLayer','');
         map.removeLayer(window[layername]);
         map.flyTo([28.410728397237914,84.4024658203125],8)
         }else{
+          $('#'+parent_id).attr('data-currentLayer',layername);
           map.addLayer(window[layername]);
           if($(this).attr('id')=='build_1'){
               map.flyTo([28.410728397237914,84.4024658203125],8);
@@ -3212,9 +3291,38 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
   });
 
+  // exposure parent  radio
+
+  $('.exoposure_data_pop').on('click',function(){
+
+    var id=$(this).attr('id');
+
+      var  current_layer=$(this).attr('data-currentLayer');
+      if(current_layer!=""){ //child layer off from parent
+        map.removeLayer(window[current_layer]);
+        map.flyTo([28.410728397237914,84.4024658203125], 7);
+        $('.legend-list').html(" ");
+
+      }
+
+  });
+
+  //exposure end parent
+
+
   //hazard creating html on click
   $(".hazard_list").on('click',function(){
   id=$(this).attr('id');
+  var current_layer=$(this).attr('data-currentLayer');
+  console.log(current_layer);
+
+  if(current_layer!=""){ //child layer off from parent
+    map.removeLayer(window[current_layer]);
+    map.flyTo([28.410728397237914,84.4024658203125], 7);
+    $('.legend-list').html(" ");
+
+  }
+
   $('#hazard_popup_html').html(" ");
     //console.log("hazard_list");
     var url =base_url+"/risk_profile/"+id ;
@@ -3223,7 +3331,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
         //data:{"layer_icon":layer_icon, "data":data,"i":i},
 
         success: function(response) {
-          // console.log(response.title);
+          console.log(response);
           var hazard_pop_html="";
           hazard_pop_html+='<div class="hazard-title">'+
               '<h3><span class="humanitarian-icon-Flood"></span>'+response.title+'</h3>'+
