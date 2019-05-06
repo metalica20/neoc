@@ -16,7 +16,8 @@ class Organization(models.Model):
     title = models.CharField(max_length=255)
     responsible_for = models.ManyToManyField(
         Responsibility,
-        related_name="organizations"
+        related_name="organizations",
+        blank=True,
     )
     short_name = models.CharField(
         max_length=255, null=True, blank=True, default=None)

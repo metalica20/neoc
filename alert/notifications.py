@@ -17,12 +17,11 @@ def user_notifications(wards, obj, change):
     if not change:
         email = []
         phone_number = []
-        for ward in wards:
-            receivers = Profile.objects.filter(organization__ward=ward.id)
-            for receiver in receivers:
-                if receiver.user.email not in email:
-                    email.append(receiver.user.email)
-                    phone_number.append(receiver.phone_number)
+        receivers = Profile.objects.filter(organization__wards__in=wards)
+        for receiver in receivers:
+            if receiver.user.email not in email:
+                email.append(receiver.user.email)
+                phone_number.append(receiver.phone_number)
         message = alert_notification(obj)
         params['text'] = obj.title + '\n' + obj.description
         receiver = email

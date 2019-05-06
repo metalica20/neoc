@@ -28,6 +28,11 @@ from jet.filters import RelatedFieldAjaxListFilter
 from django.urls import reverse
 from django.utils.html import format_html
 from jet.filters import DateRangeFilter
+from .permissions import (
+    get_loss_queryset_for_user,
+    get_losstype_queryset_for_user,
+    get_infrastructure_queryset_for_user,
+)
 
 
 class AgricultureForm(forms.ModelForm):
@@ -229,6 +234,11 @@ class LossAdmin(admin.ModelAdmin):
                 obj.incident.need_followup = True
                 obj.incident.save()
 
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset = get_loss_queryset_for_user(queryset, request.user)
+        return queryset
+
 
 class BaseLossAdmin(admin.ModelAdmin):
     search_fields = ['loss__incident__title']
@@ -254,6 +264,11 @@ class BaseLossAdmin(admin.ModelAdmin):
     def incident_on(self, obj):
         if hasattr(obj.loss, 'incident'):
             return obj.loss.incident.incident_on
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset = get_losstype_queryset_for_user(queryset, request.user)
+        return queryset
 
 
 @admin.register(People)
@@ -294,6 +309,11 @@ class InfrastructureAdmin(BaseLossAdmin):
     search_fields = ('title',)
     list_display = ('incident',  'incident_on', 'title', 'type', 'status', 'equipment_value',
                     'beneficiary_owner', 'economic_loss', 'count')
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset = get_infrastructure_queryset_for_user(queryset, request.user)
+        return queryset
 
 
 @admin.register(Agriculture)

@@ -1,18 +1,22 @@
 from django.contrib import admin
+from django import forms
+from django_select2.forms import ModelSelect2Widget
+
+from federal.models import (
+    District,
+    Municipality,
+    Ward
+)
 from .models import (
     Flow,
     Release,
     ReleaseStatus,
     FiscalYear,
 )
-from django import forms
-from federal.models import (
-    District,
-    Municipality,
-    Ward
-)
-from django_select2.forms import ModelSelect2Widget
+from incident.models import Incident
 from loss.models import People
+from .permissions import get_queryset_for_user
+from incident.permissions import get_queryset_for_user as get_incident_queryset
 
 
 class ReleaseForm(forms.ModelForm):
@@ -105,7 +109,13 @@ class FlowAdmin(admin.ModelAdmin):
         'fiscal_year',
         'date',
     )
-    list_filter = ('type', 'fiscal_year', 'event')
+    list_filter = (
+        'type',
+        'fiscal_year',
+        'event',
+        'receiver_organization__wards__municipality__district',
+        'receiver_organization__wards__municipality__district__province',
+    )
 
 
 @admin.register(Release)
@@ -125,8 +135,17 @@ class ReleaseAdmin(admin.ModelAdmin):
         'amount',
     )
     list_filter = ('status',)
-
     form = ReleaseForm
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset = get_queryset_for_user(queryset, request.user)
+        return queryset
+
+    def get_form(self, request, *args, **kwargs):
+        form = super().get_form(request, *args, **kwargs)
+        form.request = request
+        return form
 
 
 admin.site.register([ReleaseStatus, FiscalYear])
