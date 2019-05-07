@@ -30,4 +30,4 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . /code/
 
-ENTRYPOINT /code/docker/docker-entrypoint.local.sh
+ENTRYPOINT /code/docker/docker-entrypoint.prod.sh
