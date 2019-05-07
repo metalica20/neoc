@@ -103,7 +103,7 @@ class IncidentForm(forms.ModelForm):
 
 
 
-# @admin.register(Incident)
+@admin.register(Incident)
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
@@ -190,4 +190,3 @@ class IncidentAdmin(GeoModelAdmin):
 
 
 admin.site.register(Document)
-

@@ -159,7 +159,7 @@
                     <!-- sidebar start -->
 
 
-                    <div class="sidebar-widget filter-widget" style="display:none;">
+                    <div class="sidebar-widget filter-widget" style="display:block;">
 
 
 
@@ -167,7 +167,32 @@
                           <h4>Filter</h4>
                       </div>
                       <div class="filterSelect">
-                          <div class="filterSelect">
+                        <div class="type-wrap">
+                          <input type="text" placeholder="search" class="form-control"/>
+                          <span>
+                            <i class="ion ion-md-close"></i>
+                            <i class="ion ion-md-arrow-dropdown"></i>
+                          </span>
+
+                        </div>
+                          <ul>
+                            <li>lorem ipsum</li>
+                            <li>lorem ipsum</li>
+                            <li>lorem ipsum</li>
+                            <li>lorem ipsum</li>
+                            <li>lorem ipsum</li>
+                          </ul>
+
+                        <!-- <div class="dropdown">
+                        <button class="btn-xm dropdown-toggle" type="button" data-toggle="dropdown">select option
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu" id="federal_boundary">
+                          <li>HTML</li>
+
+                        </ul>
+                        </div> -->
+
+                          <!-- <div class="filterSelect">
                               <h5>Admin level</h5>
                               <ul class="nav nav-tabs" id="myTab" role="tablist">
                                   <li class="nav-item">
@@ -212,7 +237,7 @@
                                       </div>
                                   </div>
                               </div>
-                          </div>
+                          </div> -->
 
                       </div>
 
@@ -795,14 +820,14 @@
                                  <div class="card-body">
                                      <ul class="hazardDetail-list">
                                          <li class="active">
-                                             <div class="custom-control custom-radio">
-                                                 <input type="radio" class="custom-control-input exposure_geo" data-parent="Land" data-layername="buildings"  data-workspace="geonode:buildings" data-url="https://geonepal.info/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-parent="Land" data-layername="buildings"  data-workspace="geonode:buildings" data-url="https://geonepal.info/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
                                                  <label class="custom-control-label" for="build_1">Buildings  </label>
                                              </div>
                                          </li>
                                          <li class="active">
-                                             <div class="custom-control custom-radio">
-                                                 <input type="radio" class="custom-control-input exposure_geo" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
                                                  <label class="custom-control-label" for="hydro_1">Hydropower  </label>
                                              </div>
                                          </li>
@@ -921,9 +946,18 @@
                                             <span ><i class="ion ion-md-close-circle-outline"></i></span>
                                         </div>
                                         <div class="compare-body">
-                                            graph content
 
-                                              <div id="chart"></div>
+
+                                              <div id="chart">
+                                                <div id="tooltip" style="opacity:0">
+                                                  <p><strong>Label Heading</p>
+                                                    <p><span id="percentage">100</span></p>
+                                                    <p><span id="value">100</span></p>
+
+                                                  </div>
+
+
+                                              </div>
                                         </div>
                                     </div>
 
@@ -1421,6 +1455,7 @@
 
            map = L.map('mapid',{
                     zoomControl:false
+
                   }).setView([28.410728397237914,84.4024658203125], 7);
                  // map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
                  // map.scrollWheelZoom.disable();
@@ -1437,6 +1472,9 @@
            //  var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/bipad/tiles/{z}/{x}/{y}?access_token='+accessToken, {
            //        attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
            // }).addTo(map);
+             L.control.scale({position:'bottomright',metric:true,imperial:false}).addTo(map);
+             L.control.zoom({position:'bottomright'}).addTo(map);
+
 
            var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvhnbms0ulh1fngemx4xaui/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw').addTo(map);
            // .addTo(map);
@@ -1589,36 +1627,36 @@
  'Districts': function() {
  return {
    fillColor:"blue",
-   fillOpacity:0.1,
+   fillOpacity:0,
    weight: 1,
-   opacity: 0.2,
-   color: 'black',
+   opacity: 1,
+   color: '#a3b7e3',
    fill: true,
  }
  },
  'Provinces': function() {
  return {
    fillColor:"blue",
-   fillOpacity:0.1,
+   fillOpacity:0,
    weight: 1.7,
-   opacity: 0.2,
-   color: 'black',
+   opacity: 1,
+   color: '#a3b7e3',
    fill: true,
  }
  },
  'Municipalities': function() {
  return {
    fillColor:"blue",
-   fillOpacity:0.1,
+   fillOpacity:0,
    weight: 1,
-   opacity: 0.2,
-   color: 'black',
+   opacity: 1,
+   color: '#a3b7e3',
    fill: true,
  }
  },
  },
  interactive: true,	// Make sure that this VectorGrid fires mouse/pointer events
- pane:"wmsPane",
+ pane:"baseLayerPane",
  getFeatureId: function(feature) {
     return feature.properties.id;
   }
@@ -1725,7 +1763,7 @@ function highlightLayers(layer, featureName){
                                  dataset=[
                                      {label: "No Facility", count: result[0].noFacilityCom},
                                      {label: "Atleast One", count: result[0].oneAtleastCom},
-                                     {label: "checkbox", count: result[0].radioCom},
+                                     {label: "Radio", count: result[0].radioCom},
                                      {label: "Television", count: result[0].televisionCom},
                                      {label: "Cablet", count: result[0].cabletCom},
                                      {label: "Computer", count: result[0].computerCom},
@@ -1733,7 +1771,7 @@ function highlightLayers(layer, featureName){
                                      {label: "Telephone", count: result[0].telegraphCom},
                                      {label: "Mobile", count: result[0].mobileCom},
                                    ];
-                                 createChart(dataset)
+                                 createChart(dataset,mun)
                                }else{
 
 
@@ -1769,7 +1807,7 @@ function highlightLayers(layer, featureName){
     function resetStyle(){
       return {
         fillColor:"blue",
-        fillOpacity:0.1,
+        fillOpacity:0,
         weight: 1,
         opacity: 0.2,
         color: 'black',
@@ -2715,7 +2753,7 @@ $('.parent_vul').on('click',function(){
                 });
 
 
-                var contentString = createPopup(feature);
+                var contentString = createPopup(feature,layername);
                 layer.bindPopup(L.popup({
                   //closeOnClick: true,
                   //closeButton: true,
@@ -2767,12 +2805,15 @@ $('.parent_vul').on('click',function(){
       var layername = $(this).attr('data-layername');
       var parent_id = $(this).attr('data-parent');
       var center = eval($(this).attr('data-center'));
-
+        var count_check=0;
       if($(this).attr('id')=='hydro_1' ){
 
         // console.log()
         if(map.hasLayer(window[layername])){
         $('#'+parent_id).attr('data-currentLayer','');
+
+        console.log($(".infan:checked").length);
+
         map.removeLayer(window[layername]);
 
 
@@ -2809,7 +2850,7 @@ $('.parent_vul').on('click',function(){
 
 
 function createPopup(feature,layername){
-
+//console.log(layername);
   //popup content
 var contentString = '<div class="box box-primary" style="width:400px;">';
                             // '<a href="#" style = "background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')"  class="btn btn-primary btn-xs"><b>View Details</b></a>'+
@@ -2842,7 +2883,10 @@ var contentString = '<div class="box box-primary" style="width:400px;">';
 
 }
 contentString +='</ul>';
-contentString +='<button style="display:flex; justify-content:center; margin:0.5rem auto 0 auto;"><a href="" style="background-color:#337ab7; margin:0 auto; display: inline-block; color:#fff; padding:0.1rem 1rem; font-size:0.775rem; text-transform:uppercase;" class="btn btn-primary">View Details</a></button>';
+if(layername!="hydrpower"){
+  contentString +='<button style="display:flex; justify-content:center; margin:0.5rem auto 0 auto;"><a href="'+base_url+'/admin/risk_profile/'+layername.toLowerCase()+'/'+feature.properties['pk']+'/change/" style="background-color:#337ab7; margin:0 auto; display: inline-block; color:#fff; padding:0.1rem 1rem; font-size:0.775rem; text-transform:uppercase;" class="btn btn-primary">Edit</a></button>';
+
+}
 contentString +='</div></div></div>';
 return contentString;
 //popup content stop
@@ -2886,7 +2930,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           var type = this.type2;
 
                           var dataList = this.data1;
-                        //  console.log(this.data1);
+                          console.log(dataList['layerTbl']);
+                          var layername=this.data1['layerTbl'];
 
                             window[this.data1['layerTbl']] = new L.geoJson(response,
                         {
@@ -2894,11 +2939,23 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                             pointToLayer: function(feature,Latlng)
                                 {
 
-                                        var divicon = L.divIcon({
-                                            className: layer_icon1
+                                        // var divicon = L.divIcon({
+                                        //     className: layer_icon1
+                                        //
+                                        // });
 
-                                        });
-                                        var marker = L.marker(Latlng,{icon:divicon});
+                                        var divicon =L.divIcon({
+                                          html: '<div class="image-icon"></div>',
+                                        // Specify a class name we can refer to in CSS.
+                                            className: layer_icon1,
+                                        // Set a markers width and height.
+                                        iconSize: [52, 52]
+                                      });
+
+                                        var marker = L.marker(
+                                          Latlng,{icon:divicon});
+
+
 
                                 return marker;
                                 },
@@ -2915,7 +2972,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                   }
 
 
-                                  var contentString = createPopup(feature);
+                                  var contentString = createPopup(feature,layername);
                                   layer.bindPopup(L.popup({
                                     //closeOnClick: true,
                                     //closeButton: true,
@@ -2943,7 +3000,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
   visible_layers_count=0;
-
+  filtered_layer_name = "";
+  var count_names = 0;
+  var count_names_total = [];
 
    function getLayersInsidePolygon(coords,visible_layers){
    //console.log("visible layers  ",coords);
@@ -2953,7 +3012,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
      for(var i=0;i<visible_layers.length;i++){
-       var layer_icon = "";
+       //var layer_icon = "";
        //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
          var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
          //var filter4 = new L.Filter.Within('location', L.polygon([L.latLng(27.68307, 85.4635),L.latLng(27.7213, 85.4914),L.latLng(27.72418, 85.44831)]), L.CRS.EPSG4326);
@@ -2961,8 +3020,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
           //filter1.toGml();
           //console.log(b);
+          visible_layers[i].count=0;
 
-
+            layer_icon = visible_layers[i]['icon'];
             window[visible_layers[i]['layerName']+"_filteredLayers"] = new L.WFST(
                  {
                    url: visible_layers[i]['url'],
@@ -2975,37 +3035,59 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                      color: 'blue',
                      weight: 2
                    },
-                   pane:"pointsPane",
-                   layer_icon:layer_icon
+                   // pane:"pointsPane",
+
                  },
                  new L.Format.GeoJSON({
                    crs: L.CRS.EPSG4326,
                    pointToLayer(geoJsonPoint, latlng) {
-                    // console.log(latlng);
-                     const layer = new L.CircleMarker(latlng, {
-                       radius: 8,
-                     });
 
-                     return layer;
+                      console.log(visible_layers[count_names]['layerName']);
+                     // console.log(geoJsonPoint.id.split(".")[0]);
+                     if(filtered_layer_name != geoJsonPoint.id.split(".")[0] && filtered_layer_name != ""){
+                       count_names++;
 
-                      //console.log(geoJsonPoint);
+                     }
+
+                      var divicon =L.divIcon({
+                        html: '<div class="image-icon"></div>',
+                      // Specify a class name we can refer to in CSS.
+                        className: visible_layers[count_names]['icon'],
+                      // Set a markers width and height.
+                      iconSize: [52, 52]
+                    });
+
+                      var marker = L.marker(
+                        latlng,{icon:divicon});
+
+
+
+
+
+
                      // var divicon = L.divIcon({
-                     //     className: layer_icon
+                     //     className: visible_layers[count_names]['icon']
                      //
                      // });
                      // var marker = L.marker(latlng,{icon:divicon});
                      //
-                     // return marker;
+                     //
+                     //
+                     visible_layers[count_names].count++;
+                     //console.log(visible_layers[count_names]);
+                     filtered_layer_name = geoJsonPoint.id.split(".")[0];
+                     return marker;
 
 
                    }
                  })
 
              ).addTo(map).on('load', function (feature, layer) {
-                 console.log(visible_layers_count);
+                // console.log(visible_layers_count);
+                 console.log( visible_layers[visible_layers_count]['layerName']);
                  //console.log(feature.target._layers[0].feature.properties);
                  var filterhtml = '<div id="'+visible_layers[visible_layers_count]['layerName']+'_filterlist" class="inner_wrapper" style="border: 1px solid #f3eeee; margin-top:5px;"><div class="leftSidebar-header" id="filtered_header'+visible_layers_count+'">'+
-                     '<h4>'+visible_layers[visible_layers_count]['layerName']+'</h4>'+
+                     '<h4>'+visible_layers[visible_layers_count]['layerName']+' ('+visible_layers[visible_layers_count]['count']+')</h4>'+
                      '<!-- <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>'+
                      '<button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button> -->'+
                  '</div>'+
@@ -3028,11 +3110,15 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                  //return marker;
 
-                   var list_item="<li><a class = 'filtered_list_items' data='"+JSON.stringify(feature.target._layers[i].feature.properties)+"' center='"+JSON.stringify(feature.target._layers[i].feature.geometry.coordinates)+"' href='#' target=''>"+feature.target._layers[i].feature.properties.name+"</a></li>";
+                   var list_item="<li><a class = 'filtered_list_items' data='"+JSON.stringify(feature.target._layers[i].feature.properties)+"' data-name='"+visible_layers[visible_layers_count]['layerName']+"' center='"+JSON.stringify(feature.target._layers[i].feature.geometry.coordinates)+"' href='#' target=''>"+feature.target._layers[i].feature.properties.name+"</a></li>";
 
                    $('#filtered_layer_list'+visible_layers_count).append(list_item);
 
-                   var contentString = createPopup(feature.target._layers[i].feature);
+                   var contentString = createPopup(feature.target._layers[i].feature,visible_layers[visible_layers_count]['layerName']);
+                   //console.log(contentString);
+                   feature.target._layers[i].on('click',function(){
+                     console.log('clickof inside');
+                   });
                    feature.target._layers[i].bindPopup(L.popup({
                      //closeOnClick: true,
                      //closeButton: true,
@@ -3070,12 +3156,13 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
  $('#filtered_layer_list_container').on('click','.filtered_list_items',function(){
    var properties = JSON.parse($(this).attr('data'));
+   var name = $(this).attr('data-name');
    var center = JSON.parse($(this).attr('center'));
    var lat = center[1];
    var long = center[0];
    map.flyTo([lat,long],18);
    var feature = {"properties":properties}
-   var contentString = createPopup(feature);
+   var contentString = createPopup(feature,name);
    var popup = L.popup()
     .setLatLng([lat, long])
     .setContent(contentString)
@@ -3086,7 +3173,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
   //draw start
-  drawnItems = new L.FeatureGroup();
+  drawnItems = new L.FeatureGroup({
+    // pane:'polygonsPane'
+  });
 
 
   var drawControl = new L.Control.Draw({
@@ -3112,7 +3201,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       layer = e.layer;
       map.addLayer(drawnItems);
     drawnItems.addLayer(layer);
-    layer.bindPopup("sadfdsa");
+    // layer.bindPopup("sadfdsa");
 
     layer.on('click',function(){
     //  console.log('delete clicked');
@@ -3492,8 +3581,8 @@ function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,lay
         },
         onEachFeature: function (feature, layer) {
 
-          createPopup(feature);
-          var contentString = createPopup(feature);
+          //createPopup(feature);
+          var contentString = createPopup(feature,layerName);
           layer.bindPopup(L.popup({
             //closeOnClick: true,
             //closeButton: true,
@@ -3528,8 +3617,8 @@ $("#capacity-popup").on('change','.filter_resource_btn',function(){
   var layer_icon=$(this).attr('data-icon');
   var total_sum=$(this).attr('data-sum');
 
- console.log('fiter range');
- console.log(layerName);
+ //console.log('fiter range');
+ //console.log(layerName);
 // console.log($(".Health_child").prop("checked"));
 
 var features_data=[];
@@ -3690,9 +3779,10 @@ $(".trans_constrast").on('change','.center',function(){
 
 
 //chart start--
-function createChart(dataset){
+function createChart(dataset,name){
 
-
+console.log(name);
+$('#chart').append('<div class = "chartWrapper" ><div style="margin-bottom:10px;"><h7 class="chart_header">'+name+'</h7></div><div id="chartBody_'+name+'"></div></div>');
 // define data
 // var dataset = [
 //     {label: "Assamese", count: 13},
@@ -3720,8 +3810,8 @@ function createChart(dataset){
 //   ];
 
 // chart dimensions
-var width = 300;
-var height = 160;
+var width = 200;
+var height = 120;
 
 // a circle chart needs a radius
 var radius = Math.min(width, height) / 2;
@@ -3734,7 +3824,7 @@ var legendSpacing = 2; // defines spacing between squares
 var color = d3.scaleOrdinal(d3.schemeCategory20c);
 // more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
 
-var svg = d3.select('#chart') // select element in the DOM with id 'chart'
+var svg = d3.select('#chartBody_'+name) // select element in the DOM with id 'chart'
   .append('svg') // append an svg element to the element we've selected
   .attr('width', width) // set the width of the svg element we just added
   .attr('height', height) // set the height of the svg element we just added
@@ -3750,7 +3840,7 @@ var pie = d3.pie() // start and end angles of the segments
   .sort(null); // by default, data sorts in oescending value. this will mess with our animation so we set it to null
 
 // define tooltip
-var tooltip = d3.select('#chart') // select element in the DOM with id 'chart'
+var tooltip = d3.select('#chartBody_'+name) // select element in the DOM with id 'chart'
   .append('div') // append a div element to the element we've selected
   .attr('class', 'tooltip_chart'); // add class 'tooltip' on the divs we just selected
 
@@ -3791,26 +3881,39 @@ var path = svg.selectAll('path') // select all path elements inside the svg. spe
   .each(function(d) { this._current - d; }); // creates a smooth animation for each track
 
 // mouse event handlers are attached to path so they need to come after its definition
-path.on('mouseover', function(d) {  // when mouse enters div
- var total = d3.sum(dataset.map(function(d) { // calculate the total number of tickets in the dataset
-  return (d.enabled) ? d.count : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase
-  }));
- var percent = Math.round(1000 * d.data.count / total) / 10; // calculate percent
- tooltip.select('.label').html(d.data.label); // set current label
- tooltip.select('.count').html(d.data.count); // set current count
- tooltip.select('.percent').html(percent + '%'); // set percent calculated above
- tooltip.style('display', 'block'); // set display
-});
+// path.on('mouseover', function(d) {  // when mouse enters div
+//  var total = d3.sum(dataset.map(function(d) { // calculate the total number of tickets in the dataset
+//   return (d.enabled) ? d.count : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase
+//   }));
+//  var percent = Math.round(1000 * d.data.count / total) / 10; // calculate percent
+//  tooltip.select('.label').html(d.data.label); // set current label
+//  tooltip.select('.count').html(d.data.count); // set current count
+//  tooltip.select('.percent').html(percent + '%'); // set percent calculated above
+//  tooltip.style('display', 'block'); // set display
+// });
+//
+// path.on('mouseout', function() { // when mouse leaves div
+//   tooltip.style('display', 'none'); // hide tooltip for that element
+//  });
+//
+// path.on('mousemove', function(d) { // when mouse moves
+//   //console.log(d3.event.layerY );
+//   tooltip.style('top', (d3.event.layerY + 0 ) + 'px') // always 10px below the cursor
+//     .style('left', (d3.event.layerX + 0) + 'px'); // always 10px to the right of the mouse
+//   });
 
-path.on('mouseout', function() { // when mouse leaves div
-  tooltip.style('display', 'none'); // hide tooltip for that element
- });
+// path.on("mouseover", function (d) {
+//
+//             tooltip.html(d)
+//             .style("left", d3.select(this).attr("cx") + "px")
+//             .style("top", d3.select(this).attr("cy") + "px");
+//           })
+//               .on("mouseout", function () {
+//               // Hide the tooltip
+//               d3.select("#tooltip")
+//                   .style("opacity", 0);;
+//           });
 
-path.on('mousemove', function(d) { // when mouse moves
-  //console.log(d3.event.layerY );
-  tooltip.style('top', (d3.event.layerY + 10) + 'px') // always 10px below the cursor
-    .style('left', (d3.event.layerX + 10) + 'px'); // always 10px to the right of the mouse
-  });
 
 // define legend
 var legend = svg.selectAll('.legend') // selecting elements with class 'legend'
@@ -3821,8 +3924,8 @@ var legend = svg.selectAll('.legend') // selecting elements with class 'legend'
   .attr('transform', function(d, i) {
     var height = legendRectSize + legendSpacing; // height of element is the height of the colored square plus the spacing
     var offset =  height * color.domain().length / 3; // vertical offset of the entire legend = height of a single element & half the total number of elements
-    var horz = 10 * legendRectSize; // the legend is shifted to the left to make room for the text
-    var vert = i * height - offset; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'
+    var horz = 7 * legendRectSize; // the legend is shifted to the left to make room for the text
+    var vert = i * height - offset-13; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'
       return 'translate(' + horz + ',' + vert + ')'; //return translation
    });
 
@@ -3869,12 +3972,127 @@ legend.append('rect') // append rectangle squares to legend
 legend.append('text')
   .attr('x', legendRectSize + legendSpacing)
   .attr('y', legendRectSize - legendSpacing)
+  // .attr('width', legendRectSize) // width of rect size is defined above
+  .style('font-size', '8px') // height of rect size is defined above
   .text(function(d) { return d; }); // return label
 
 }
 //chart end
 
 
+// creating  filter
+var prov_li="";
+var dist_li="";
+var mun_li="";
+$.ajax({
+  url: 'https://bipad.nepware.com/api/v1/province/?format=json',
+  success: function(data) {
+      console.log(data.results);
+
+      var  result=data.results;
+
+        for(var i=0;i<result.length;i++){
+
+         prov_li+='<li class="federal" id="'+result[i].title+'" data-fed="province">'+result[i].title+'</li>';
+        }
+
+          console.log(prov_li);
+          $('#federal_boundary').html(prov_li);
+
+        }
+                       // async:false,
+
+  });
+
+
+
+  $.ajax({
+    url: 'https://bipad.nepware.com/api/v1/district/?format=json&limit=20&search=',
+    success: function(data) {
+      //console.log(data.results);
+      var  result=data.results;
+
+        for(var i=0;i<result.length;i++){
+
+         dist_li+='<li class="federal" id="'+result[i].title+'" data-fed="district">'+result[i].title+'</li>';
+        }
+
+
+          $('#federal_boundary').append(dist_li);
+
+          }
+                         // async:false,
+
+    });
+
+
+
+$.ajax({
+  url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=',
+  success: function(data) {
+    //console.log(data.results);
+    var  result=data.results;
+
+      for(var i=0;i<result.length;i++){
+
+       mun_li+='<li class="federal" id="'+result[i].title+'" data-fed="municipality">'+result[i].title+'</li>';
+      }
+
+
+        $('#federal_boundary').append(mun_li);
+
+        }
+                       // async:false,
+
+  });
+
+
+
+$('#federal_boundary').on('click','.federal',function(){
+
+console.log($(this).attr('id'));
+console.log($(this).attr('data-fed'));
+
+var boundary=$(this).attr('id');
+var federal_name=$(this).attr('data-fed');
+
+// $.ajax({
+//   url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=',
+//   success: function(data) {
+//
+//     }
+//
+//   });
+var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&search='+boundary,
+
+  federal_boundary = new L.geoJson.ajax(fed_url,{
+
+       onEachFeature: function (feature, layer) {
+         layer.setStyle({
+           fillColor:"blue",
+           fillOpacity:0.1,
+           weight: 1,
+           opacity: 0.2,
+           color: 'black',
+//dashArray: '3'
+
+             });
+       }
+
+ }).addTo(map);
+
+ //map.addLayer(district);
+
+});
+
+
+
+//end
+
+
+// type head js
+
+// end
 
 
 

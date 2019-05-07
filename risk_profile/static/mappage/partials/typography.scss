@@ -1,0 +1,104 @@
+/*!Theme Name: Malaya Holidays
+Theme URI: http://ripplethemes.com
+Author: Prem Prasad khanal
+Author URI: http://coderprem.com/
+Description: Malaya Holidays Theme.
+Version: 1.0
+*/
+@import "../partials/mixin";
+@import url('https://fonts.googleapis.com/css?family=Asap:500|Oxygen+Mono|Source+Sans+Pro:300,400,600');
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    html {
+        height: 100vh;
+    }
+    @media (min-width: 1280px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+    @media (min-width: 768px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+    @media (min-width: 576px) {
+        .container {
+            max-width: 1280px;
+        }
+    }
+    @media (max-width: 576px) {
+        .container {
+            max-width: 540px;
+        }
+    }
+    @media (max-width: 1280px) {
+        .container {
+            padding: 0 30px;
+        }
+    }
+    @media (max-width: 1199px) {
+        .container {
+            padding: 0 15px;
+        }
+    }
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        color: $color-primary;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-family: $sans;
+        background-color: $color-bg;
+        font-weight: 400;
+        a {
+            background-color: transparent;
+            text-decoration: none;
+            color: $color-primary;
+            text-decoration: none !important;
+            color: inherit;
+            a:active,
+            &:hover {
+                outline: 0;
+                color: $color-primary;
+            }
+        }
+        h3 {
+            font-weight: normal;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            color: $color-primary;
+            margin: 0;
+            font-weight: normal;
+            font-family: $oxygen;
+        }
+        ul,
+        ol,
+        li>ul,
+        li>ol {
+            margin: 0;
+            list-style: none;
+            padding: 0;
+        }
+        img {
+            height: auto;
+            max-width: 100%;
+        }
+        p {
+            margin: 0;
+        }
+        @keyframes move {
+            50% {
+                bottom: 10px;
+                top: 0;
+            }
+        }
+    }
+}
