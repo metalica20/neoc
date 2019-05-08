@@ -24,7 +24,6 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 
 
-
 class DocumentInline(admin.TabularInline):
     model = Document
     extra = 1
@@ -100,7 +99,6 @@ class IncidentForm(forms.ModelForm):
         if not(self.cleaned_data.get("wards") or self.cleaned_data.get("point") or self.cleaned_data.get("polygon")):
             raise forms.ValidationError("You need to add either wards or point or polygon")
         return self.cleaned_data
-
 
 
 @admin.register(Incident)
