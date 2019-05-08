@@ -21,7 +21,6 @@ from django_select2.forms import (
 from .utils import get_similar_incident, get_followup_fields
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
-from django.utils.translation import ugettext_lazy as _
 
 
 class DocumentInline(admin.TabularInline):
@@ -98,7 +97,6 @@ class IncidentForm(forms.ModelForm):
     def clean(self):
         if not(self.cleaned_data.get("wards") or self.cleaned_data.get("point") or self.cleaned_data.get("polygon")):
             raise forms.ValidationError("You need to add either wards or point or polygon")
-        return self.cleaned_data
 
 
 @admin.register(Incident)

@@ -19,6 +19,7 @@ from loss.models import Loss
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.measure import D
 
+
 class IncidentViewSet(FlexFieldsModelViewSet):
     serializer_class = IncidentSerializer
     filter_class = IncidentFilter
