@@ -1508,7 +1508,28 @@
           // fed_url_prov="https://bipad.nepware.com/api/v1/municipality/?format=geojson";
           // fed_url_district="https://bipad.nepware.com/api/v1/district/?format=geojson";
 
+//removing all layers
+          function removeAllLayers(){
+            if(map.hasLayer(district)){
+              map.removeLayer(district)
+            }
+            if(map.hasLayer(municipality)){
+              map.removeLayer(municipality)
+            }
+            map.eachLayer(function (layer) {
+              console.log(layer);
+              if(layer==province||layer==district||layer==municipality||layer==mapboxTiles){
 
+
+              }else{
+
+                map.removeLayer(layer);
+
+              }
+            });
+            // map.addLayer(province);
+            $('.legend-list').html('');
+          }
 
             //console.log(response);
             function highlight (layer) {
@@ -1622,7 +1643,7 @@
  vectorTileOptions = {
  tms:true,
  vectorTileLayerStyles: {
- 'Districts': function() {
+ 'District': function() {
  return {
    fillColor:"blue",
    fillOpacity:0,
@@ -1632,7 +1653,7 @@
    fill: true,
  }
  },
- 'Provinces': function() {
+ 'Province': function() {
  return {
    fillColor:"blue",
    fillOpacity:0,
@@ -1642,7 +1663,7 @@
    fill: true,
  }
  },
- 'Municipalities': function() {
+ 'Municipality': function() {
  return {
    fillColor:"blue",
    fillOpacity:0,
@@ -1670,9 +1691,9 @@
  		};
 
  // Creating the full vectorTile url
- var provinceUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Provinces@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
- var districtUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Districts@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
- var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipalities@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var provinceUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var districtUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
 
 
  // Creating the Leaflet vectorGrid object
@@ -2508,21 +2529,24 @@ $(".slider").each(function () {
 //acccess to communication
 $(".socio").on('click',function(){
 
+  removeAllLayers();
   var id = $(this).attr("id");
   $('.legend-list').html('');
   var parent_id = $(this).attr("data-parent");
   //console.log(id);
+  map.flyTo([28.410728397237914,84.4024658203125],8)
   loadSocioData(id,parent_id);
 
 
 });
 $(".vul_hdi").on('click',function(){
-
+  removeAllLayers();
   var id = $(this).attr("data-score");
   var id_input = $(this).attr("id");
   var parent_id = $(this).attr("data-parent");
   $('.legend-list').html('');
   //console.log(id);
+  map.flyTo([28.410728397237914,84.4024658203125],8)
   loadHdiData(id,id_input,parent_id);
 
 
@@ -2565,7 +2589,7 @@ $('.parent_vul').on('click',function(){
 
     $('#hazard_popup_html').on('click','.hazard_geo',function(){
 
-
+      removeAllLayers();
       console.log($(this).closest(".card").children()[0].id);
       var hazard_id = $(this).closest(".card").children()[0].id;
       var id = $(this).attr('data-workspace');
@@ -2723,6 +2747,8 @@ $('.parent_vul').on('click',function(){
 
     $('.exposure_geo').one('click',function(){
     //  console.log($(this).attr('id'));
+    removeAllLayers();
+
       var layername = $(this).attr('data-layername');
 
       if($(this).attr('id')=='hydro_1'){
@@ -3986,29 +4012,29 @@ $.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",
     console.log("data ",dataP);
     console.log("status ",statusP);
     $.each(dataP.results, function (keyP, valueP) {
-        prov_li+='<li class="federal" id="'+dataP.results[keyP].title+'" data-fed="district" data-id="'+dataP.results[keyP].id+'" data-request="province">'+dataP.results[keyP].title+'</li>';
+        prov_li+='<li class="federal" id="'+(dataP.results[keyP].title).replace(/ /g,"_")+'" data-fed="district" data-id="'+dataP.results[keyP].id+'" data-request="province">'+dataP.results[keyP].title+'</li>';
     });
     $('#federal_boundary').html(prov_li);
 
-    $.get("https://bipad.nepware.com/api/v1/district/?format=json&limit=77&search=&&fields=id,title,province",function(dataDistrict,statusDistrict){
+    $.get("https://bipad.nepware.com/api/v1/district/?format=json&&search=&&fields=id,title,province",function(dataDistrict,statusDistrict){
       console.log(dataDistrict);
       $.each(dataP.results, function(keyP, valueP) {
         $.each(dataDistrict.results, function(keyD, valueD) {
           if (dataP.results[keyP].id == dataDistrict.results[keyD].province) {
-              dist_li+='<li class="federal" id="'+dataDistrict.results[keyD].title+'" data-fed="municipality" data-id="'+dataDistrict.results[keyD].id+'" data-request="district">'+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
+              dist_li+='<li class="federal" id="'+(dataDistrict.results[keyD].title).replace(/ /g,"_")+'" data-fed="municipality" data-id="'+dataDistrict.results[keyD].id+'" data-request="district">'+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
 
           }
         });
       });
     $('#federal_boundary').append(dist_li);
 
-    $.get("https://bipad.nepware.com/api/v1/municipality/?format=json&limit=200&search=&&fields=id,title,district",function(dataMun,statusMun){
+    $.get("https://bipad.nepware.com/api/v1/municipality/?format=json&search=&&fields=id,title,district",function(dataMun,statusMun){
       $.each(dataP.results, function(keyP, valueP) {
         $.each(dataDistrict.results, function(keyD, valueD) {
           $.each(dataMun.results, function(keyM, valueM) {
             if (dataDistrict.results[keyD].id == dataMun.results[keyM].district) {
               if(dataP.results[keyP].id == dataDistrict.results[keyD].province){
-                 mun_li+='<li class="federal" id="'+dataMun.results[keyM].title+'"  data-id="'+dataMun.results[keyM].id+'" data-request="municipality" data-fed="ward">'+dataMun.results[keyM].title+', '+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
+                 mun_li+='<li class="federal" id="'+(dataMun.results[keyM].title).replace(/ /g,"_")+'"  data-id="'+dataMun.results[keyM].id+'" data-request="municipality" data-fed="ward">'+dataMun.results[keyM].title+', '+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
               }
             }
           });
@@ -4159,8 +4185,37 @@ label=L.layerGroup();
 
 });
 
+$('#fed_filterInput').on('keyup',function(){
+  // console.log('search function here ');
+  var search_text=$(this).val();
+  filter = search_text.toUpperCase();
+  // console.log(filter);
+  $('.federal').css('display','none');
+var li = document.getElementsByClassName('federal');
+    console.log("<<<<<<<new search>>>>>>>>>>>");
+  // console.log(h6[1].id);
+//  $('#federal_boundary').html("");
+for (i = 0; i < li.length; i++) {
+      // a = h6[i].getElementsByTagName("a")[0];
+      //console.log(h6[i]);
 
 
+      if (((li[i].id).replace("_"," ")).toUpperCase().indexOf(filter) > -1) {
+        console.log(li[i].id);
+
+          $("#"+li[i].id).css('display','');
+      } else {
+          // console.log(li[i].id);
+
+        $("#"+li[i].id).css('display','none');
+      }
+  }
+
+
+
+
+
+});
 //end
 
 

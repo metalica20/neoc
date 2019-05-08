@@ -413,6 +413,7 @@
 
          $(".filter_close").on("click", function() {
              $(this).closest('.filterSelect').find('.filter-listing').hide();
+               $('.federal').css('display','');
              $('#fed_filterInput').val("");
              if(map.hasLayer(federal_boundary)){
                map.removeLayer(federal_boundary);
