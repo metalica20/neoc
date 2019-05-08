@@ -146,6 +146,7 @@
                 $('#hdi_vul').hide(300);
                 $('#remote_vul').hide(300);
                 $('#earthquake_risk').hide(300);
+                $('#osmLayer_popup').hide(300);
 
               } else if (targetId == 'exposure_popup' ) {
                 $('#infa_exposure_popup').hide(300);
@@ -156,6 +157,7 @@
                 $('#hdi_vul').hide(300);
                 $('#remote_vul').hide(300);
                 $('#earthquake_risk').hide(300);
+                $('#osmLayer_popup').hide(300);
 
 
             } else if (targetId == 'infa_exposure_popup' ) {
@@ -167,6 +169,7 @@
               $('#hdi_vul').hide(300);
               $('#remote_vul').hide(300);
               $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
 
 
 
@@ -180,6 +183,7 @@
                     $('#hdi_vul').hide(300);
                     $('#remote_vul').hide(300);
                     $('#earthquake_risk').hide(300);
+                    $('#osmLayer_popup').hide(300);
 
             }
             else if (targetId == 'vulnery-1' ) {
@@ -192,6 +196,7 @@
                 $('#hdi_vul').hide(300);
                 $('#remote_vul').hide(300);
                 $('#earthquake_risk').hide(300);
+                $('#osmLayer_popup').hide(300);
 
 
 
@@ -205,6 +210,7 @@
             $('#vulnery-1').hide(300);
             $('#remote_vul').hide(300);
             $('#earthquake_risk').hide(300);
+            $('#osmLayer_popup').hide(300);
 
 
 
@@ -218,6 +224,7 @@
               $('#vulnery-1').hide(300);
               $('#hdi_vul').hide(300);
               $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
 
 
 
@@ -230,6 +237,22 @@
               $('#capacity-popup').hide(300);
               $('#vulnery-1').hide(300);
               $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#osmLayer_popup').hide(300);
+
+
+
+          }else if (targetId == 'osmLayer_popup' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
 
 
 

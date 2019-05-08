@@ -328,6 +328,12 @@
                                                     <label class="custom-control-label"  data-tab="infa_exposure_popup" for="Land">Infrastructures</label>
                                                 </div>
                                             </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="osmLayer" data-currentLayer="" name="openstreet" value="customEx">
+                                                    <label class="custom-control-label"  data-tab="osmLayer_popup" for="osmLayer">OSM Layers</label>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -362,7 +368,7 @@
 
                                             <li>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input admin_bound parent_vul" id="GDP" data-currentLayer="" data-currentLayer="" data-admin="municipality" name="example1" value="customEx">
+                                                    <input type="radio" class="custom-control-input  parent_vul" id="GDP" data-currentLayer=""   name="example1" value="customEx">
                                                     <label class="custom-control-label" for="GDP" data-tab="vulnery-1">Access To Communication</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
@@ -391,12 +397,7 @@
                                     <h5>
                                         <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false"
                                         aria-controls="collapse-4">Risk
-                                            <i class="ion ion-md-information-circle"></i>
-                                            <div class="info">
-                                                <div class="info-content">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
-                                                </div>
-                                            </div>
+                                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
                                         </a>
                                     </h5>
                                 </div>
@@ -427,12 +428,7 @@
                                     <h5>
                                         <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false"
                                         aria-controls="collapse-5">capacity & resources
-                                            <i class="ion ion-md-information-circle"></i>
-                                            <div class="info">
-                                                <div class="info-content">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.
-                                                </div>
-                                            </div>
+                                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The strengths, attributes and resources available within the administrative area to manage and reduce disaster risks and strengthen resilience"></i>
                                         </a>
                                     </h5>
                                 </div>
@@ -754,6 +750,9 @@
                                        <li class="active opacityParent">
 
                                            <div class="custom-control custom-radio">
+                                             <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+
+
                                              <span class="ion ion-md-contrast"  style="float:right; border:none;"></span>
 
                                                <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-parent="OSM" data-layername="bancharedanda" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
@@ -769,6 +768,8 @@
 
 
                                            <div class="custom-control custom-radio">
+                                             <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+
                                              <span class="ion ion-md-contrast"  style="float:right; border:none;"></span>
 
                                                <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-parent="OSM" data-layername="sankhu_drone" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
@@ -853,6 +854,75 @@
 
      <!-- Infrastructes part popup end -->
 
+     <div class="hazard-details" id="osmLayer_popup">
+         <div class="hazard-wrapper" >
+             <div class="hazard-title">
+                 <h3><span class="humanitarian-icon-Flood"></span>OSM Layers</h3>
+                 <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+             </div>
+             <div class="hazard-content">
+                 <!-- <h4>Hazard</h4> -->
+                 <div class="hazard-acc">
+                     <div id="accordion">
+                         <div class="card">
+
+
+                             <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                 <div class="card-body">
+                                     <ul class="hazardDetail-list">
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input osm_layer" data-parent="openstreet" data-layername="osm"   data-center="[27.740139803000158,85.46312123537065]" id="openstreet" name="openstreet" value="customEx">
+                                                 <label class="custom-control-label" for="openstreet">Openstreet Map</label>
+                                             </div>
+                                         </li>
+                                         <!-- <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Terrain  </label>
+                                             </div>
+                                         </li>
+
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Hybrid </label>
+                                             </div>
+                                         </li>
+
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Satellite  </label>
+                                             </div>
+                                         </li> -->
+
+                                         <!-- <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="communication" name="communication" value="customEx">
+                                                 <label class="custom-control-label" for="communication">Communication Towers  </label>
+                                             </div>
+                                         </li> -->
+
+
+                                     </ul>
+                                 </div>
+                             </div>
+
+
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+
+
+       <!-- osm layerpopup start  -->
+
+
+       <!-- osm layer end -->
 
    <!-- popup exposure end -->
 
@@ -884,6 +954,7 @@
                 <div class="hazard-wrapper">
                     <div class="hazard-title">
                         <h3><span class="humanitarian-icon-Health-facility"></span>Access To Communication</h3>
+                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
                         <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
                         <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
                     </div>
@@ -893,44 +964,44 @@
                             <ul class="hazardDetail-list">
                                 <li class="active">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="radio_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="radio_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="radio_com">Radio </label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="television_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="television_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="television_com">Televison</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="mobile_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="mobile_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="mobile_com">Mobile</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="internet_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="internet_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="internet_com">Internet</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="cablet_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="cablet_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="cablet_com">Cable Net</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="computer_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="computer_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="computer_com">Computer</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio">
 
-                                        <input type="radio" class="custom-control-input socio nt_loaded" data-parent="GDP" id="telephone_com" name="comapre_1" value="customEx">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="telephone_com" name="comapre_1" value="customEx">
                                         <label class="custom-control-label" for="telephone_com">Telephone</label>
                                     </div>
                                 </li>
@@ -975,7 +1046,7 @@
  <!-- hdi start-->
 
 
- <div class="hazard-details" id="hdi_vul">
+ <div class="hazard-details trans_constrast" id="hdi_vul">
      <div class="hazard-wrapper" >
          <div class="hazard-title">
              <h3><span class="humanitarian-icon-Flood"></span>HDI</h3>
@@ -1003,15 +1074,19 @@
                          </div>
                      </div> -->
 
-                     <div class="card">
+                     <div class="card opacityParent">
                          <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
                              <div class="card-body">
                                <span class="ion ion-md-contrast"  style="float:right;"></span>
                                  <ul class="hazardDetail-list">
-                                     <li class="active">
+                                     <li class="active ">
                                          <div class="custom-control custom-radio">
-                                             <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="HDI" data-score="hdi" data-admin="district"  id="hdi_district" name="hdi_district" value="customEx">
+                                             <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="HDI" data-legendname="HDI" data-score="hdi" data-admin="district"  id="hdi_district" name="hdi_district" value="customEx">
                                              <label class="custom-control-label" for="hdi_district">District Level  </label>
+                                         </div>
+
+                                         <div class="range-box">
+                                             <input type="range" min="0" max="100" class="center" data-name-trans="district">
                                          </div>
                                      </li>
                                    </ul>
@@ -1050,7 +1125,7 @@
 
 <!-- remoteness -->
 
-<div class="hazard-details" id="remote_vul">
+<div class="hazard-details trans_constrast" id="remote_vul">
     <div class="hazard-wrapper" >
         <div class="hazard-title">
             <h3><span class="humanitarian-icon-Flood"></span>Remoteness</h3>
@@ -1078,16 +1153,21 @@
                         </div>
                     </div> -->
 
-                    <div class="card">
+                    <div class="card opacityParent">
                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
                             <div class="card-body">
                               <span class="ion ion-md-contrast"  style="float:right;"></span>
                                 <ul class="hazardDetail-list">
                                     <li class="active">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="REMOTE" data-score="remoteness" data-admin="district"  id="remote_district" name="remote_district" value="customEx">
+                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Remoteness" data-parent="REMOTE" data-score="remoteness" data-admin="district"  id="remote_district" name="remote_district" value="customEx">
                                             <label class="custom-control-label" for="remote_district">District Level  </label>
                                         </div>
+
+                                        <div class="range-box">
+                                            <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                        </div>
+
                                     </li>
                                   </ul>
                             </div>
@@ -1122,11 +1202,11 @@
 
 <!-- risk start popup -->
 
-<div class="hazard-details" id="earthquake_risk">
+<div class="hazard-details trans_constrast" id="earthquake_risk">
     <div class="hazard-wrapper" >
         <div class="hazard-title">
             <h3><span class="humanitarian-icon-Flood"></span>Earthquake Risk</h3>
-            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="HIgh remotness indicates areas that are most remote and low remotness index indicate better accessibility"></i>
+            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Tom R Robinson, Nicholas J Rosser, Alexander L Densmore, Katie J Oven, Surya N Shrestha, Ramesh Guragain, 2019. The risk analaysis is based on 90 scenario ensembles and vulnerability indexes ( Remoteness index, Human Development Index"></i>
             <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
             <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
         </div>
@@ -1150,15 +1230,18 @@
                         </div>
                     </div> -->
 
-                    <div class="card">
+                    <div class="card opacityParent">
                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
                             <div class="card-body">
                               <span class="ion ion-md-contrast"  style="float:right;"></span>
                                 <ul class="hazardDetail-list">
                                     <li class="active">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="earthquake_r" data-score="riskScore" data-admin="district"  id="earthquake_district" name="earthquake_district" value="customEx">
+                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Earthquake Risk" data-parent="earthquake_r" data-score="riskScore" data-admin="district"  id="earthquake_district" name="earthquake_district" value="customEx">
                                             <label class="custom-control-label" for="earthquake_district">District Level  </label>
+                                        </div>
+                                        <div class="range-box">
+                                            <input type="range" min="0" max="100" class="center" data-name-trans="district">
                                         </div>
                                     </li>
                                   </ul>
@@ -2024,7 +2107,7 @@ function highlightLayers(layer, featureName){
 
 
 
-          function loadHdiData(risk_id,id,parent_id){     //loding socia data in map layers
+          function loadHdiData(risk_id,id,parent_id,name){     //loding socia data in map layers
            console.log(risk_id);
 
 
@@ -2038,27 +2121,28 @@ function highlightLayers(layer, featureName){
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
+
                                 var fieldname="avg"+risk_id
                                 // console.log(fieldname);
-                                 console.log(result[fieldname]);
-                                 if(risk_id="riskScore"){
+                                 // console.log(result[fieldname]);
+                                 if(risk_id=="riskScore"){
                                    var avg_val=(Math.round((result[fieldname]/result.maxriskScore)*100));
                                  }else{
                                    var avg_val=(Math.round(result[fieldname]*100));
                                  }
 
-                                console.log(avg_val);
+                              //  console.log(avg_val);
                                 // var features = district._layers;
                                 var visual_html='';
 
                                 if($('#'+id).hasClass('nt_loaded')){
-                                  console.log('nt');
+                                //  console.log('nt');
                                   //district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i]['hdi'])));
 
 
                                   for(var i=0;i<result.results.length;i++){
 
-                                       if(risk_id="riskScore"){
+                                       if(risk_id=="riskScore"){
                                            val=Math.round((result.results[i][risk_id]/result.maxriskScore)*100);
                                         }else{
 
@@ -2107,10 +2191,10 @@ function highlightLayers(layer, featureName){
 
 
                                 //creating legend-list
-
+                                 console.log(risk_id);
                                 var legend_html='<div class="legend-wrapper">'+
                                     '<div class="buffer-header">'+
-                                        '<h4>'+risk_id+'</h4>'+
+                                        '<h4>'+name+'</h4>'+
                                         '<span><i class="ion ion-md-close"></i></span>'+
                                     '</div>'+
                                     '<ul>';
@@ -2544,10 +2628,11 @@ $(".vul_hdi").on('click',function(){
   var id = $(this).attr("data-score");
   var id_input = $(this).attr("id");
   var parent_id = $(this).attr("data-parent");
+  var name = $(this).attr("data-legendname");
   $('.legend-list').html('');
   //console.log(id);
   map.flyTo([28.410728397237914,84.4024658203125],8)
-  loadHdiData(id,id_input,parent_id);
+  loadHdiData(id,id_input,parent_id,name);
 
 
 });
@@ -3271,6 +3356,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
   //resource layer map add
   $(".CheckBox").on('click',function(){
     //console.log("changed");
+    removeAllLayers();
     //sub cat data in map
     if($('#filtered_layer_list_container').css('display')=="none"){
       $('.leaflet-draw').css('left','5px');
@@ -4217,7 +4303,17 @@ for (i = 0; i < li.length; i++) {
 
 });
 //end
+$('.osm_layer').on('click',function(){
+//console.log("layername");
+  var layername=eval($(this).attr('data-layername'));
+  console.log(layername);
+  if(map.hasLayer(layername)){
+    map.removeLayer(layername);
+  }else{
+    map.addLayer(layername);
+  }
 
+});
 
 // type head js
 

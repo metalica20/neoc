@@ -31,6 +31,7 @@ class SociocookViewSet(views.APIView):
         print(a);
         queryset=SocioEconomicGapanapa.objects.filter(name=a)
         serializer=SociocookSerializer(queryset,many=True)
+        print(queryset);
         return Response(serializer.data)
         # queryset=SocioEconomicGapanapa.objects.all()
         # serializers=serialize(queryset)
