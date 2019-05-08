@@ -2625,7 +2625,8 @@ $('.parent_vul').on('click',function(){
                  pane:"baseLayerPane",
                  maxZoom: 15,
                  minZoom: 2,
-             }).addTo(map);
+
+             }).addTo(map).setOpacity(0.5);
 
                map.flyTo(center,7);
              // var imgurl="{% static 'mappage/images/earthquake_legend.png' %}";
