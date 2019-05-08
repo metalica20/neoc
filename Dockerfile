@@ -27,7 +27,6 @@ RUN pip install uwsgi --no-cache-dir
 COPY ./requirements.txt /code/requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir
 
-
 COPY . /code/
 
 ENTRYPOINT /code/docker/docker-entrypoint.prod.sh

@@ -335,6 +335,15 @@
             borderRadius: "4px",
             railBorderRadius: "0"
         });
+        $("#federal_boundary").slimScroll({
+            height: "200px",
+            color: "#8c909a",
+            position: "right",
+            size: "2px",
+            alwaysVisible: !1,
+            borderRadius: "3px",
+            railBorderRadius: "0"
+        });
         $(".compare-body").slimScroll({
             height: "250px",
             color: "#8c909a",
@@ -397,9 +406,28 @@
          console.log('open');
            $(this).closest('.custom-radio').toggleClass('custom-check');
         });
+
         $(".filterSelect").on("click","input", function() {
-            $(this).closest('.filterSelect').find('ul').show();
+            $(this).closest('.filterSelect').find('.filter-listing').show();
          });
+
+         $(".filter_close").on("click", function() {
+             $(this).closest('.filterSelect').find('.filter-listing').hide();
+             $('#fed_filterInput').val("");
+             if(map.hasLayer(federal_boundary)){
+               map.removeLayer(federal_boundary);
+               map.removeLayer(label);
+             }
+             map.addLayer(province);
+             map.setView([28.410728397237914,84.4024658203125], 7);
+          });
+
+
+          $(".filter_dropdown").on("click", function() {
+              $(this).closest('.filterSelect').find('.filter-listing').show();
+           });
+
+
 
          $(".filterSelect").on("hover",".type-wrap", function() {
              $('.filterSelect').find('.ion-md-close').hide();

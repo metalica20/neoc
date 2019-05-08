@@ -1973,7 +1973,7 @@ button {
   outline:none !important;
   box-shadow: none;
 }
-.filterSelect ul{
+.filterSelect .filter-listing{
   position:absolute;
   top:100%;
   left:0;
@@ -1991,6 +1991,7 @@ button {
   padding:0.5rem;
   max-height: 200px;
   overflow-y: auto;
+  list-style: none;
 }
 .filterSelect ul li:hover{
   background-color:#efefef;
@@ -2000,7 +2001,16 @@ button {
   visibility: visible;
 }
 
+.leaflet-div-icon {
+    border: none;
+    background: transparent;
+}
 
+.fed_labelText{
+    color: #807c7c !important;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0px;
+}
 /* type head css */
 
 /*# sourceMappingURL=style.css.map */

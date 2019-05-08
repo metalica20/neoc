@@ -168,20 +168,18 @@
                       </div>
                       <div class="filterSelect">
                         <div class="type-wrap">
-                          <input type="text" placeholder="search" class="form-control"/>
+                          <input type="text" id="fed_filterInput" placeholder="search" class="form-control"/>
                           <span>
-                            <i class="ion ion-md-close"></i>
-                            <i class="ion ion-md-arrow-dropdown"></i>
+                            <i class="ion ion-md-close filter_close"></i>
+                            <i class="ion ion-md-arrow-dropdown filter_dropdown"></i>
                           </span>
 
                         </div>
-                          <ul>
-                            <li>lorem ipsum</li>
-                            <li>lorem ipsum</li>
-                            <li>lorem ipsum</li>
-                            <li>lorem ipsum</li>
-                            <li>lorem ipsum</li>
+                        <div class="filter-listing">
+                          <ul id="federal_boundary">
+
                           </ul>
+                        </div>
 
                         <!-- <div class="dropdown">
                         <button class="btn-xm dropdown-toggle" type="button" data-toggle="dropdown">select option
@@ -3980,108 +3978,183 @@ legend.append('text')
 //chart end
 
 
-// creating  filter
 var prov_li="";
 var dist_li="";
 var mun_li="";
-$.ajax({
-  url: 'https://bipad.nepware.com/api/v1/province/?format=json',
-  success: function(data) {
-      console.log(data.results);
+$.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",function(dataP,statusP){
+    console.log("data ",dataP);
+    console.log("status ",statusP);
+    $.each(dataP.results, function (keyP, valueP) {
+        prov_li+='<li class="federal" id="'+dataP.results[keyP].title+'" data-fed="district" data-id="'+dataP.results[keyP].id+'" data-request="province">'+dataP.results[keyP].title+'</li>';
+    });
+    $('#federal_boundary').html(prov_li);
 
-      var  result=data.results;
-
-        for(var i=0;i<result.length;i++){
-
-         prov_li+='<li class="federal" id="'+result[i].title+'" data-fed="province">'+result[i].title+'</li>';
-        }
-
-          console.log(prov_li);
-          $('#federal_boundary').html(prov_li);
-
-        }
-                       // async:false,
-
-  });
-
-
-
-  $.ajax({
-    url: 'https://bipad.nepware.com/api/v1/district/?format=json&limit=20&search=',
-    success: function(data) {
-      //console.log(data.results);
-      var  result=data.results;
-
-        for(var i=0;i<result.length;i++){
-
-         dist_li+='<li class="federal" id="'+result[i].title+'" data-fed="district">'+result[i].title+'</li>';
-        }
-
-
-          $('#federal_boundary').append(dist_li);
+    $.get("https://bipad.nepware.com/api/v1/district/?format=json&limit=77&search=&&fields=id,title,province",function(dataDistrict,statusDistrict){
+      console.log(dataDistrict);
+      $.each(dataP.results, function(keyP, valueP) {
+        $.each(dataDistrict.results, function(keyD, valueD) {
+          if (dataP.results[keyP].id == dataDistrict.results[keyD].province) {
+              dist_li+='<li class="federal" id="'+dataDistrict.results[keyD].title+'" data-fed="municipality" data-id="'+dataDistrict.results[keyD].id+'" data-request="district">'+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
 
           }
-                         // async:false,
+        });
+      });
+    $('#federal_boundary').append(dist_li);
 
+    $.get("https://bipad.nepware.com/api/v1/municipality/?format=json&limit=200&search=&&fields=id,title,district",function(dataMun,statusMun){
+      $.each(dataP.results, function(keyP, valueP) {
+        $.each(dataDistrict.results, function(keyD, valueD) {
+          $.each(dataMun.results, function(keyM, valueM) {
+            if (dataDistrict.results[keyD].id == dataMun.results[keyM].district) {
+              if(dataP.results[keyP].id == dataDistrict.results[keyD].province){
+                 mun_li+='<li class="federal" id="'+dataMun.results[keyM].title+'"  data-id="'+dataMun.results[keyM].id+'" data-request="municipality" data-fed="ward">'+dataMun.results[keyM].title+', '+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
+              }
+            }
+          });
+        });
+      });
+      $('#federal_boundary').append(mun_li);
     });
 
 
 
-$.ajax({
-  url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=',
-  success: function(data) {
-    //console.log(data.results);
-    var  result=data.results;
-
-      for(var i=0;i<result.length;i++){
-
-       mun_li+='<li class="federal" id="'+result[i].title+'" data-fed="municipality">'+result[i].title+'</li>';
-      }
+});
+});
 
 
-        $('#federal_boundary').append(mun_li);
 
-        }
-                       // async:false,
+// creating  filter
+// var prov_li="";
+// var dist_li="";
+// var mun_li="";
+// $.ajax({
+//   url: 'https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title',
+//   success: function(data) {
+//       console.log(data.results);
+//
+//       var  result=data.results;
+//
+//         for(var i=0;i<result.length;i++){
+//
+//          prov_li+='<li class="federal" id="'+result[i].title+'" data-fed="province">'+result[i].title+'</li>';
+//         }
+//
+//           console.log(prov_li);
+//           $('#federal_boundary').html(prov_li);
+//
+//         }
+//                        // async:false,
+//
+//   });
+//
+//
+//
+//   $.ajax({
+//     url: 'https://bipad.nepware.com/api/v1/district/?format=json&limit=20&search=&&fields=id,title',
+//     success: function(data) {
+//       //console.log(data.results);
+//       var  result=data.results;
+//
+//         for(var i=0;i<result.length;i++){
+//
+//          dist_li+='<li class="federal" id="'+result[i].title+'" data-fed="district">'+result[i].title+'</li>';
+//         }
+//
+//
+//           $('#federal_boundary').append(dist_li);
+//
+//           }
+//                          // async:false,
+//
+//     });
+//
 
-  });
+
+// $.ajax({
+//   url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=&&fields=id,title',
+//   success: function(data) {
+//     //console.log(data.results);
+//     var  result=data.results;
+//
+//       for(var i=0;i<result.length;i++){
+//
+//        mun_li+='<li class="federal" id="'+result[i].title+'" data-fed="municipality">'+result[i].title+'</li>';
+//       }
+//
+//
+//         $('#federal_boundary').append(mun_li);
+//
+//         }
+//                        // async:false,
+//
+//   });
 
 
+federal_boundary=null;
 
 $('#federal_boundary').on('click','.federal',function(){
 
-console.log($(this).attr('id'));
-console.log($(this).attr('data-fed'));
+// console.log($(this).attr('id'));
+// console.log($(this).attr('data-fed'));
 
+map.removeLayer(province);
+map.removeLayer(district);
+map.removeLayer(municipality);
+
+if(federal_boundary !=null && map.hasLayer(federal_boundary)){
+  console.log('remove');
+  map.removeLayer(federal_boundary);
+  map.removeLayer(label);
+}
 var boundary=$(this).attr('id');
 var federal_name=$(this).attr('data-fed');
+var layer_id=$(this).attr('data-id');
+var layer_request=$(this).attr('data-request');
+var name=$(this).html();
 
+$('#fed_filterInput').val(name);
 // $.ajax({
 //   url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=',
-//   success: function(data) {
+//   success: function(data) {fed_filterInput
 //
 //     }
 //
 //   });
-var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&search='+boundary,
-
-  federal_boundary = new L.geoJson.ajax(fed_url,{
+var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&'+layer_request+'='+layer_id;
+console.log(fed_url);
+label=L.layerGroup();
+ federal_boundary = new L.geoJson.ajax(fed_url,{
 
        onEachFeature: function (feature, layer) {
          layer.setStyle({
            fillColor:"blue",
-           fillOpacity:0.1,
-           weight: 1,
-           opacity: 0.2,
-           color: 'black',
+           fillOpacity:0,
+           weight: 2,
+           opacity:1,
+           color: '#a3b7e3',
 //dashArray: '3'
 
              });
+
+          var divIcon=L.divIcon({
+             html: "<span class='fed_labelText' style='color:blue;'>"+feature.properties.title+"</span>",
+             iconAnchor:[12,0],
+           });
+        var fed_marker=L.marker(layer.getBounds().getCenter(),{icon:divIcon});
+        fed_marker.addTo(label);
+
        }
 
- }).addTo(map);
+ });
 
- //map.addLayer(district);
+ federal_boundary.on('data:loaded',function(){
+   console.log('loaded');
+   map.addLayer(federal_boundary);
+   map.addLayer(label);
+ map.fitBounds(federal_boundary.getBounds());
+ });
+
+//map.addLayer(district);
 
 });
 
