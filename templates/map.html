@@ -18,7 +18,8 @@
 
     <!-- stylesheet start -->
 
-    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/customfonts.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/ionicons.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/select2.min.css' %}">
@@ -46,8 +47,12 @@
             <div class="bipad-logo">
                 <h1 class="logo"><a href="index.html">Bipad</a></h1>
                 <span class="sub-logo">RiskInfo</span>
+
             </div>
 
+            <div class="loader">
+              <div class="spinner-border"></div><span id="loader_text">Loading Data</span>
+            </div>
             <!-- map start -->
             <div id="mapid"></div>
 
@@ -1478,7 +1483,8 @@
     <script src="{% static 'mappage/js/popper.min.js' %}"></script>
 
 
-    <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script>
+    <!-- <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
         <script src="{% static 'mappage/js/select2.min.js' %}"></script>
@@ -1533,7 +1539,7 @@
            }
 
     $(document).ready(function(){
-
+      $('.loader').css('display','block')
           // initializing map
 
            map = L.map('mapid',{
@@ -1602,7 +1608,7 @@
               map.removeLayer(municipality)
             }
             map.eachLayer(function (layer) {
-              console.log(layer);
+            //  console.log(layer);
               if(layer==province||layer==district||layer==municipality||layer==mapboxTiles){
 
 
@@ -1635,93 +1641,75 @@
             }
 
 
-          //   municipality = new L.geoJson.ajax(fed_url_prov,
-          //    {
-          //
-          //        onEachFeature: function (feature, layer) {
-          //          layer.setStyle({
-          //            fillColor:"blue",
-          //            fillOpacity:0.1,
-          //            weight: 1,
-          //            opacity: 0.2,
-          //            color: 'black',
-          // //dashArray: '3'
-          //
-          //              });
-          //
-          //              layer.on("click",function(){
-          //                //console.log(layer.feature);
-          //                var mun= layer.feature.properties.title;
-          //                console.log(mun);
-          //                //if(layer.feature.socioValue!=undefined){
-          //                  //console.log(socioValue);
-          //                  if($(".compare-wrapper").css('display')=="block"){
-          //                    highlight(layer);
-          //
-          //                    $.ajax({
-          //                        // async:false,
-          //                        url: base_url+'/risk_profile/socio/'+mun,
-          //                        success: function(result) {
-          //                          console.log(result);
-          //                          if(result.length!=0){
-          //                            console.log(result[0].noFacilityCom);
-          //
-          //
-          //
-          //
-          //                            dataset=[
-          //                                {label: "No Facility", count: result[0].noFacilityCom},
-          //                                {label: "Atleast One", count: result[0].oneAtleastCom},
-          //                                {label: "checkbox", count: result[0].radioCom},
-          //                                {label: "Television", count: result[0].televisionCom},
-          //                                {label: "Cablet", count: result[0].cabletCom},
-          //                                {label: "Computer", count: result[0].computerCom},
-          //                                {label: "Internet", count: result[0].internetCom},
-          //                                {label: "Telephone", count: result[0].telegraphCom},
-          //                                {label: "Mobile", count: result[0].mobileCom},
-          //                              ];
-          //                            createChart(dataset)
-          //                          }else{
-          //
-          //
-          //                          }
-          //
-          //                        }
-          //                    });
-          //
-          //                    //console.log(data);
-          //                  }
-          //                  else{
-          //                    //resetHighlight(layer);
-          //                  }
-          //
-          //
-          //
-          //                //}
-          //              });
-          //        }
-          //
-          //  });
+vt_label_province=L.layerGroup();
+vt_label_district=L.layerGroup();
+vt_label_municipality=L.layerGroup();
+function label_Vector_Tiles(feature){
+  var name="";
+  var lat=feature.properties.Centroid_Y;
+  var long=feature.properties.Centroid_X;
+  if(feature.properties.hasOwnProperty('PROV_NAME')){
+    name=feature.properties.PROV_NAME;
+    var divIconP=L.divIcon({
+       html: "<span class='fed_labelText' style='color:blue;'>"+name+"</span>",
+       iconAnchor:[12,0],
+     });
 
-  //map.addLayer(province);
+      vt_label_marker_P=L.marker([lat,long],{icon:divIconP});
+      vt_label_marker_P.addTo(vt_label_province);
+  }
+  else if(feature.properties.hasOwnProperty('DistLabel')){
+    name=feature.properties.Name;
+    var divIconD=L.divIcon({
+       html: "<span class='fed_labelText' style='color:white !important; background:none;'>"+name+"</span>",
+       iconAnchor:[12,0],
+     });
 
-//   district = new L.geoJson.ajax(fed_url_district,{
-//
-//        onEachFeature: function (feature, layer) {
-//          layer.setStyle({
-//            fillColor:"blue",
-//            fillOpacity:0.1,
-//            weight: 1,
-//            opacity: 0.2,
-//            color: 'black',
-// //dashArray: '3'
-//
-//              });
-//        }
-//
-//  });
+      vt_label_marker_D=L.marker([lat,long],{icon:divIconD});
+      vt_label_marker_D.addTo(vt_label_district);
+  }
+  else if(feature.properties.hasOwnProperty('GaPa_NaPa')){
+    name=feature.properties.Name;
+    var divIconM=L.divIcon({
+       html: "<span class='fed_labelText' style='color:white !important;background:none;'>"+name+"</span>",
+       iconAnchor:[12,0],
+     });
 
- //map.addLayer(district);
+      vt_label_marker_M=L.marker([lat,long],{icon:divIconM});
+      vt_label_marker_M.addTo(vt_label_municipality);
+  }
+
+}
+
+map.addLayer(vt_label_province);
+
+
+map.on('zoomend',function(e){
+    var zoom = map.getZoom();
+    var activeLayer = null;
+    if(map.hasLayer(district)){
+      activeLayer = vt_label_district;
+    }else if(map.hasLayer(municipality)){
+      activeLayer = vt_label_municipality;
+    }else{
+      activeLayer = vt_label_province;
+    }
+    console.log(zoom);
+    if(zoom<7 && activeLayer == vt_label_province){
+      map.removeLayer(vt_label_province);
+    }else if(zoom<9 && activeLayer == vt_label_district){
+      map.removeLayer(vt_label_district);
+      map.removeLayer(vt_label_province);
+    }else if(zoom<11 && activeLayer == vt_label_municipality){
+      map.removeLayer(vt_label_municipality);
+      map.removeLayer(vt_label_district);
+      map.removeLayer(vt_label_province);
+    }
+    else if(zoom<7 && map.hasLayer(province)){
+      map.addLayer(vt_label_province);
+      map.addLayer(activeLayer);
+    }
+});
 
 
  // Set vectorTileOptions
@@ -1762,13 +1750,15 @@
  interactive: true,	// Make sure that this VectorGrid fires mouse/pointer events
  pane:"baseLayerPane",
  getFeatureId: function(feature) {
+   //console.log(feature);
+   label_Vector_Tiles(feature);
     return feature.properties.id;
   }
  }
 
  var name;
  		var clearHighlight = function(name) {
-      console.log(name);
+      //console.log(name);
  			if (name) {
  				district.resetFeatureStyle(name);
  			}
@@ -1794,7 +1784,7 @@
        .setLatLng(e.latlng)
        .openOn(map);
    }else{
-      console.log(adminPopup);
+      //console.log(adminPopup);
       map.removeLayer(adminPopup);
    }
 
@@ -1803,7 +1793,7 @@
  }
 
 function highlightLayers(layer, featureName){
-  console.log(feaureName);
+  //console.log(feaureName);
   layer.setFeatureStyle(featureName, {
             weight: 2,
             color: 'red',
@@ -1819,7 +1809,7 @@ function highlightLayers(layer, featureName){
 
  // Define the action taken once a polygon is clicked. In this case we will create a popup with the camping name
  province.on('mouseover', function(e) {
-   //console.log(e.layer.properties);
+   ////console.log(e.layer.properties);
      //AdminLayerPopup(e,true,'PROV_NAME');
 
  }).on('mouseout',function(e){
@@ -1828,7 +1818,7 @@ function highlightLayers(layer, featureName){
 
 
    district.on('mouseover', function(e) {
-     //console.log(e.layer.properties);
+     ////console.log(e.layer.properties);
        //AdminLayerPopup(e,true, 'DISTRICT');
 
    }).on('mouseout',function(e){
@@ -1837,7 +1827,7 @@ function highlightLayers(layer, featureName){
 
 
      municipality.on('click', function(e) {
-       //console.log(e.layer.properties);
+       ////console.log(e.layer.properties);
 
        if($(".compare-wrapper").css('display')=="block"){
                          //highlightLayers;
@@ -1857,9 +1847,9 @@ function highlightLayers(layer, featureName){
                              // async:false,
                              url: base_url+'/risk_profile/socio/'+mun,
                              success: function(result) {
-                               console.log(result);
+                               //console.log(result);
                                if(result.length!=0){
-                                 console.log(result[0].noFacilityCom);
+                                 //console.log(result[0].noFacilityCom);
 
 
 
@@ -1884,7 +1874,7 @@ function highlightLayers(layer, featureName){
                              }
                          });
 
-                         //console.log(data);
+                         ////console.log(data);
                        }
                        else{
                          //resetHighlight(layer);
@@ -2001,20 +1991,20 @@ function highlightLayers(layer, featureName){
 
 
           function loadSocioData(socioid,parent_id){     //loding socia data in map layers
-            //console.log(feature);
+            ////console.log(feature);
 
             $('.progress-list').html('');
             fed_url_api=base_url+"/risk_profile/Newfile/"+socioid;
 
                           socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
-                          //console.log(socioid1);
+                          ////console.log(socioid1);
                           $.ajax({
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
 
-                                //console.log(result);
-                                console.log(Math.round(result.avg));
+                                ////console.log(result);
+                                //console.log(Math.round(result.avg));
                                 avg_val=(Math.round(result.avg)/result.sum)*100;
 
 
@@ -2059,8 +2049,8 @@ function highlightLayers(layer, featureName){
                                 visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
                                     '<span class="average-text"> National Average</span>'+
                                 '</div>';
-                                //console.log(visual_html);
-                                //console.log(avg_val);
+                                ////console.log(visual_html);
+                                ////console.log(avg_val);
 
                                 $('.progress-list').append(visual_html);
 
@@ -2070,15 +2060,16 @@ function highlightLayers(layer, featureName){
                                 for(var j=0;j<result.data.length;j++){
                                     municipality.setFeatureStyle(result.data[j]["municipalityId"], resetStyle());
                                 }
-
+                                map.removeLayer(vt_label_municipality);
                                 $('#'+parent_id).attr('data-currentLayer','');
                                 $('#'+parent_id).attr('data-result','');
                                 $('#'+parent_id).prop('checked',false);
                               //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
                                 $('#'+socioid).addClass('nt_loaded');
                               }
-
+                          $('.loader').css('display','none');
                         }
+
                       });
                       //new ajax
 
@@ -2110,7 +2101,7 @@ function highlightLayers(layer, featureName){
 
 
           function loadHdiData(risk_id,id,parent_id,name){     //loding socia data in map layers
-           console.log(risk_id);
+           //console.log(risk_id);
 
 
 
@@ -2118,27 +2109,27 @@ function highlightLayers(layer, featureName){
             fed_url_api=base_url+"/risk_profile/Risk";
 
                           // socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
-                          //console.log(socioid1);
+                          ////console.log(socioid1);
                           $.ajax({
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
 
                                 var fieldname="avg"+risk_id
-                                // console.log(fieldname);
-                                 // console.log(result[fieldname]);
+                                // //console.log(fieldname);
+                                 // //console.log(result[fieldname]);
                                  if(risk_id=="riskScore"){
                                    var avg_val=(Math.round((result[fieldname]/result.maxriskScore)*100));
                                  }else{
                                    var avg_val=(Math.round(result[fieldname]*100));
                                  }
 
-                              //  console.log(avg_val);
+                              //  //console.log(avg_val);
                                 // var features = district._layers;
                                 var visual_html='';
 
                                 if($('#'+id).hasClass('nt_loaded')){
-                                //  console.log('nt');
+                                //  //console.log('nt');
                                   //district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i]['hdi'])));
 
 
@@ -2166,10 +2157,10 @@ function highlightLayers(layer, featureName){
 
 
 
-                                    //  console.log(result.results[i]['hdi']);
+                                    //  //console.log(result.results[i]['hdi']);
 
                                       //features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
-                                      //console.log(features[feature].feature);
+                                      ////console.log(features[feature].feature);
 
 
 
@@ -2185,15 +2176,15 @@ function highlightLayers(layer, featureName){
                                 visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
                                     '<span class="average-text"> National Average</span>'+
                                 '</div>';
-                                //console.log(visual_html);
-                                //console.log(avg_val);
+                                ////console.log(visual_html);
+                                ////console.log(avg_val);
 
 
                                 $('.progress-list').html(visual_html);
 
 
                                 //creating legend-list
-                                 console.log(risk_id);
+                                 //console.log(risk_id);
                                 var legend_html='<div class="legend-wrapper">'+
                                     '<div class="buffer-header">'+
                                         '<h4>'+name+'</h4>'+
@@ -2241,6 +2232,7 @@ function highlightLayers(layer, featureName){
                               for(var i=0;i<result.results.length;i++){
                                   district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
                               }
+                            map.removeLayer(vt_label_district);
                             //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
                             $('.legend-list').html('');
                             $('#'+parent_id).attr('data-currentLayer','');
@@ -2251,7 +2243,7 @@ function highlightLayers(layer, featureName){
                             }
 
 
-
+                          $('.loader').css('display','none');
                         }
                       });
 
@@ -2302,7 +2294,7 @@ function highlightLayers(layer, featureName){
     function generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level){
 
               filter_arr=filter_resources.split(",");
-            //  console.log(filter_arr);
+            //  //console.log(filter_arr);
               var html ='<h4>Filter</h4>';
               html+='<div class="filter-list">';
                   html+='<ul>';
@@ -2358,7 +2350,7 @@ function highlightLayers(layer, featureName){
 
 function createSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level){
 
-// console.log(data);
+// //console.log(data);
 $('.progress-bar').css('background-color','#1672c6');
 if(level=='both'){
   generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level);
@@ -2384,11 +2376,11 @@ $(".slider").each(function () {
 
   var $this = $(this).parent().children();
   var id=$(this).attr('id');
-//  console.log($this);
+//  //console.log($this);
   //nouislider
 
   var range = document.getElementById(id);
-  //console.log(range);
+  ////console.log(range);
 
   noUiSlider.create(range, {
       start: [20, 80],
@@ -2399,23 +2391,23 @@ $(".slider").each(function () {
       }
   }).on("set.one",function(){
       var id_slider=$(this)[0]['target'].id;
-    // console.log("setone callleddddd");
-     console.log($('#'+id_slider)[0].noUiSlider.options.start);
+    // //console.log("setone callleddddd");
+     //console.log($('#'+id_slider)[0].noUiSlider.options.start);
 
-     console.log($('#'+id_slider));
+     //console.log($('#'+id_slider));
 
 
     var layerName=$('#'+id_slider).attr('name');
     var layer_icon=$('#'+id_slider).attr('data-icon');
     var total_sum=$('#'+id_slider).attr('data-sum');
-    //console.log(layerName);
+    ////console.log(layerName);
 
     //function
     var features_data=[];
     var sub_layer_name=[];
 
     if(map.hasLayer(window["filter_resource_"+layerName])){
-      //console.log('aa');
+      ////console.log('aa');
 
       map.removeLayer(window["filter_resource_"+layerName]);
 
@@ -2424,12 +2416,12 @@ $(".slider").each(function () {
 
       var name_sub=$(this).attr('data-sub');
       sub_layer_name.push($(this).attr('data-sub'));
-      //  console.log(name_sub);
+      //  //console.log(name_sub);
       layersdata=window[name_sub]._layers
-      //console.log(window[name_sub]._layers);
+      ////console.log(window[name_sub]._layers);
       $.each(layersdata, function (feature) {
 
-        //console.log(layersdata[feature].feature);
+        ////console.log(layersdata[feature].feature);
         features_data.push(layersdata[feature].feature);
 
       });
@@ -2443,46 +2435,46 @@ $(".slider").each(function () {
     };
 
 
-    //console.log(layer_icon);
+    ////console.log(layer_icon);
 
      //layer_data1=window[layerName].toGeoJSON();
-    // console.log(layer_data1);
+    // //console.log(layer_data1);
     var layer_data = jQuery.extend(true, {}, layer_data1);
-    // console.log(layer_data);
+    // //console.log(layer_data);
     var checkedList = [];
     $. each($("input[class='filter_resource_btn']:checked"), function(){
 
     checkedList. push($(this). val());
     });
-     //console.log(checkedList);
-    //console.log(layer_data.features.length);
+     ////console.log(checkedList);
+    ////console.log(layer_data.features.length);
     for(var k=layer_data.features.length-1;k>=0;k--){
       var delete_count=0;
       for(var i=0;i<checkedList.length;i++){
-        //console.log(layer_data.features[k].properties[checkedList[i]]);
+        ////console.log(layer_data.features[k].properties[checkedList[i]]);
 
         if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
-            //console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
-    //console.log("entered");
+            ////console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
+    ////console.log("entered");
             delete_count++;
-            //console.log(delete_count);
+            ////console.log(delete_count);
 
         }
 
 
       }
-      //console.log(delete_count);
+      ////console.log(delete_count);
         if(delete_count==0){
-          //console.log("deleted");
-            //console.log("delete count 00");
-            //console.log(k);
+          ////console.log("deleted");
+            ////console.log("delete count 00");
+            ////console.log(k);
             layer_data.features.splice(k,1);
 
         }
 
 
     }
-    //console.log(layer_data);
+    ////console.log(layer_data);
      filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
     //function
 
@@ -2519,21 +2511,21 @@ $(".slider").each(function () {
           //function chart-bar
   function  CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon){
 
-             //console.log(subcat);
-             //console.log(geojson.features);
+             ////console.log(subcat);
+             ////console.log(geojson.features);
             features=geojson.features;
           //  subcat_arr=subcat.split(",");
               subcat_arr=subcat;
-          //  console.log(subcat_arr);
+          //  //console.log(subcat_arr);
               var chartData=[];
               //subcat_arr_count =[];
               for(var k=0;k<subcat_arr.length;k++){
-                //console.log(subcat_arr[k]);
+                ////console.log(subcat_arr[k]);
                 //subcat_arr_count[k][subcat_arr[k]+"_count"] = 0;
                 chartData.push({"label":subcat_arr[k].trim(),"count":0});
 
               }
-              //console.log(subcat_arr);
+              ////console.log(subcat_arr);
 
               $.each(features, function (feature) {
                 for(var i=0;i<subcat_arr.length;i++){
@@ -2544,9 +2536,9 @@ $(".slider").each(function () {
 
                     }
                   }else{
-                    //console.log(features[feature].properties[subcat_arr[i]].trim());
+                    ////console.log(features[feature].properties[subcat_arr[i]].trim());
                     if(features[feature].properties[subcat_arr[i]].trim()=='yes'){
-                      //console.log(subcat);
+                      ////console.log(subcat);
                       chartData[i].count++;
 
 
@@ -2582,8 +2574,8 @@ $(".slider").each(function () {
       var url="{% static 'mappage/images/earthquake_legend.png' %}";
 
     }else{
-      console.log(legend_content.replace(/_/g,""));
-      console.log(geo_url);
+      //console.log(legend_content.replace(/_/g,""));
+      //console.log(geo_url);
       var url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+legend_content+'&';
     }
 
@@ -2614,25 +2606,26 @@ $(".slider").each(function () {
 
 //acccess to communication
 $(".socio").on('click',function(){
-
+  $('.loader').css('display','block');
   removeAllLayers();
   var id = $(this).attr("id");
   $('.legend-list').html('');
   var parent_id = $(this).attr("data-parent");
-  //console.log(id);
+  ////console.log(id);
   map.flyTo([28.410728397237914,84.4024658203125],8)
   loadSocioData(id,parent_id);
 
 
 });
 $(".vul_hdi").on('click',function(){
+  $('.loader').css('display','block');
   removeAllLayers();
   var id = $(this).attr("data-score");
   var id_input = $(this).attr("id");
   var parent_id = $(this).attr("data-parent");
   var name = $(this).attr("data-legendname");
   $('.legend-list').html('');
-  //console.log(id);
+  ////console.log(id);
   map.flyTo([28.410728397237914,84.4024658203125],8)
   loadHdiData(id,id_input,parent_id,name);
 
@@ -2648,7 +2641,7 @@ $('.parent_vul').on('click',function(){
   var resultt=$(this).attr('data-result');
   if(current_layer!=""){
     var result=JSON.parse(resultt);
-    //console.log(JSON.parse(result));
+    ////console.log(JSON.parse(result));
     if(current_layer=='municipality'){
       dataid='municipalityId';
       $(".socio").prop('checked',false);
@@ -2675,9 +2668,9 @@ $('.parent_vul').on('click',function(){
 
 
     $('#hazard_popup_html').on('click','.hazard_geo',function(){
-
+      $('.loader').css('display','block');
       removeAllLayers();
-      console.log($(this).closest(".card").children()[0].id);
+      //console.log($(this).closest(".card").children()[0].id);
       var hazard_id = $(this).closest(".card").children()[0].id;
       var id = $(this).attr('data-workspace');
       var center = eval($(this).attr('data-center'));
@@ -2686,7 +2679,7 @@ $('.parent_vul').on('click',function(){
 
 
       if($(this).attr("haslayer")){
-        //console.log('onclicktrue');
+        ////console.log('onclicktrue');
         if(map.hasLayer(window[layername])){
 
              map.removeLayer(window[layername]);
@@ -2716,15 +2709,15 @@ $('.parent_vul').on('click',function(){
 
 
             //$('.center').attr('data-name-trans',layername);
-            //console.log('onclick');
+            ////console.log('onclick');
         }
         $(this).attr("haslayer",false);
       }else{
       if(id=='earthquake'){
-      //  console.log('enteref');
+      //  //console.log('enteref');
 
 
-                 window[layername] = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
+                window[layername] = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
                  // trick: expose name via options, used in events
                  name: 'Seismic Hazard PGA (g)',
                  overlay: true,
@@ -2739,22 +2732,10 @@ $('.parent_vul').on('click',function(){
 
              }).addTo(map).setOpacity(0.5);
 
+
+
                map.flyTo(center,7);
-             // var imgurl="{% static 'mappage/images/earthquake_legend.png' %}";
-             // var legend_html='<div class="legend-wrapper">'+
-             //     '<div class="buffer-header">'+
-             //         // '<h4>'+legend_content.replace(/_/g," ")+'</h4>'+
-             //         '<h4>GSHM Earthquake</h4>'+
-             //         '<span><i class="ion ion-md-close"></i></span>'+
-             //     '</div>'+
-             //     '<ul>'+
-             //         '<li class="satelite"></span><img src="'+imgurl+'"></img></li>'+
-             //
-             //
-             //     '</ul>'+
-             // '</div>';
-             //
-             // $('.legend-list').html(legend_html);
+
              $('.hazard_list').attr('hasLayer',true);
              $('.hazard_list').attr('data-currentLayer',layername);
              addLegend(layername);
@@ -2765,7 +2746,7 @@ $('.parent_vul').on('click',function(){
 
 
       }else{
-      //  console.log(id);
+      //  //console.log(id);
 
         geo_url='https://apps.naxa.com.np/geoserver/wms';
 
@@ -2776,11 +2757,13 @@ $('.parent_vul').on('click',function(){
                                 // pane:"wmsPane"
                           }).addTo(map);
 
+
+
                           $('.hazard_list').attr('hasLayer',true);
                           $('.hazard_list').attr('data-currentLayer',layername);
-                          //console.log(previous_hazard_layer);
+                          ////console.log(previous_hazard_layer);
                           if(previous_hazard_layer!=null && previous_hazard_layer!=window[layername]){
-                            //console.log("entered previous");
+                            ////console.log("entered previous");
                             // $('.hazard_list').attr('hasLayer',false);
                             // $('.hazard_list').attr('data-currentLayer','');
                             map.removeLayer(previous_hazard_layer);
@@ -2788,7 +2771,7 @@ $('.parent_vul').on('click',function(){
         previous_hazard_layer = window[layername];
 
         $(this).attr("haslayer",true);
-      //  console.log($('#'+hazard_id).find('.center'));
+      //  //console.log($('#'+hazard_id).find('.center'));
         $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
         addLegend(layername);
         // $('.center').attr('data-name-trans',layername);
@@ -2801,7 +2784,7 @@ $('.parent_vul').on('click',function(){
           hazard_one_click=0;
         }
 
-      //  console.log(id);
+      //  //console.log(id);
       if(hazard_one_click==0){
         if(id=="Naxa:sankhu_drone" ){
           map.flyTo(center,18);
@@ -2818,6 +2801,11 @@ $('.parent_vul').on('click',function(){
 
 
       }
+      window[layername].on('load',function(){
+        $('.loader').css('display','none');
+        //console.log("earthquake_tile");
+
+      })
     }
 
     hazard_previous_id = hazard_id;
@@ -2833,13 +2821,15 @@ $('.parent_vul').on('click',function(){
 //start of hazard layer
 
     $('.exposure_geo').one('click',function(){
-    //  console.log($(this).attr('id'));
+
+    $('.loader').css('display','block');
+
     removeAllLayers();
 
       var layername = $(this).attr('data-layername');
 
       if($(this).attr('id')=='hydro_1'){
-      //  console.log('entered')
+      //  //console.log('entered')
         var url='http://hydro.naxa.com.np/api/Hydropower/';
          window[layername] = new L.geoJson.ajax(url,
           {
@@ -2887,7 +2877,7 @@ $('.parent_vul').on('click',function(){
 
         var geo_url  = $(this).attr('data-url');
 
-        //console.log(id);
+        ////console.log(id);
 
         window[layername]=L.tileLayer.betterWms(geo_url, {
                                 layers:id+":"+layername,
@@ -2897,18 +2887,23 @@ $('.parent_vul').on('click',function(){
                           });//.addTo(map);
 
         window[layername].on('load',function(){
-         //console.log(map.hasLayer(hazard_layers));
+         ////console.log(map.hasLayer(hazard_layers));
 
 
         });
 
 
-         console.log('drone');
-         // console.log(map.hasLayer(exposure_layers));
+         //console.log('drone');
+         // //console.log(map.hasLayer(exposure_layers));
 
 
 
       }
+      window[layername].on('load data:loaded',function(){
+        $('.loader').css('display','none');
+        //console.log("earthquake_tile");
+
+      })
 
 
     });
@@ -2920,11 +2915,11 @@ $('.parent_vul').on('click',function(){
         var count_check=0;
       if($(this).attr('id')=='hydro_1' ){
 
-        // console.log()
+        // //console.log()
         if(map.hasLayer(window[layername])){
         $('#'+parent_id).attr('data-currentLayer','');
 
-        console.log($(".infan:checked").length);
+        //console.log($(".infan:checked").length);
 
         map.removeLayer(window[layername]);
 
@@ -2962,7 +2957,7 @@ $('.parent_vul').on('click',function(){
 
 
 function createPopup(feature,layername){
-//console.log(layername);
+////console.log(layername);
   //popup content
 var contentString = '<div class="box box-primary" style="width:400px;">';
                             // '<a href="#" style = "background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')"  class="btn btn-primary btn-xs"><b>View Details</b></a>'+
@@ -2975,7 +2970,7 @@ var contentString = '<div class="box box-primary" style="width:400px;">';
 
   for (data in feature.properties) {
 
-  //  console.log(data);
+  //  //console.log(data);
 
 
 
@@ -3011,17 +3006,17 @@ return contentString;
 //start of resource layer
 $.get(base_url+'/risk_profile/Layer',function(data){
 
-                 //console.log(data);
+                 ////console.log(data);
 
-              //   console.log(data);
-
+              //   //console.log(data);
+                var resources_loadCount=1;
                 for(var i=0;i<data.results.length;i++){
                   var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
                   layer_icon= data.results[i]['layerIcon']
                   type1= data.results[i]['type'];
                   var sub_array = data.results[i]['type'];
 
-                  //console.log(data);
+                  ////console.log(data);
 
                   for(let i=0;i<sub_array.length;i++){
                     window[sub_array[i]['type'].replace(' ','_')] = L.layerGroup();
@@ -3036,17 +3031,24 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           indexValue: i,
                           layer_icon: layer_icon,
                           type2: type1,
+                          complete: function() {
+                            console.log(data.results.length);
+                            if(data.results.length==resources_loadCount){
+                              $('.loader').css('display','none');
+                            }
+                            resources_loadCount++;
+                          },
                           success: function(response) {
-                          //  console.log(response);
+                          //  //console.log(response);
                           var layer_icon1 = this.layer_icon;
                           var type = this.type2;
 
                           var dataList = this.data1;
-                          console.log(dataList['layerTbl']);
+                          //console.log(dataList['layerTbl']);
                           var layername=this.data1['layerTbl'];
 
-                            window[this.data1['layerTbl']] = new L.geoJson(response,
-                        {
+                        window[this.data1['layerTbl']] = new L.geoJson(response,
+                         {
                             //pane:"pointsPane",
                             pointToLayer: function(feature,Latlng)
                                 {
@@ -3074,8 +3076,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                 onEachFeature: function (feature, layer) {
 
                                   for(let i=0;i<type.length;i++){
-                                    //console.log(sub_array[i]['type']);
-                                    //console.log(layer);
+                                    ////console.log(sub_array[i]['type']);
+                                    ////console.log(layer);
                                       if(type[i]['type']== feature.properties.type){
                                           layer.addTo(window[type[i]['type'].replace(' ','_')]);
 
@@ -3093,12 +3095,13 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                     maxHeight: 200,
                                     minWidth: 250
                                   }).setContent(contentString));
-                                  //console.log(dataList['layerName']);
+                                  ////console.log(dataList['layerName']);
 
 
                                 }
 
                               });
+
 
 
                           }
@@ -3117,7 +3120,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
   var count_names_total = [];
 
    function getLayersInsidePolygon(coords,visible_layers){
-   //console.log("visible layers  ",coords);
+   ////console.log("visible layers  ",coords);
      $('#filtered_layer_list').html('');
 
      $('#filtered_header').html('');
@@ -3131,7 +3134,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
           //filter3.toGml();
 
           //filter1.toGml();
-          //console.log(b);
+          ////console.log(b);
           visible_layers[i].count=0;
 
             layer_icon = visible_layers[i]['icon'];
@@ -3154,8 +3157,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                    crs: L.CRS.EPSG4326,
                    pointToLayer(geoJsonPoint, latlng) {
 
-                      console.log(visible_layers[count_names]['layerName']);
-                     // console.log(geoJsonPoint.id.split(".")[0]);
+                      //console.log(visible_layers[count_names]['layerName']);
+                     // //console.log(geoJsonPoint.id.split(".")[0]);
                      if(filtered_layer_name != geoJsonPoint.id.split(".")[0] && filtered_layer_name != ""){
                        count_names++;
 
@@ -3186,7 +3189,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                      //
                      //
                      visible_layers[count_names].count++;
-                     //console.log(visible_layers[count_names]);
+                     ////console.log(visible_layers[count_names]);
                      filtered_layer_name = geoJsonPoint.id.split(".")[0];
                      return marker;
 
@@ -3195,9 +3198,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                  })
 
              ).addTo(map).on('load', function (feature, layer) {
-                // console.log(visible_layers_count);
-                 console.log( visible_layers[visible_layers_count]['layerName']);
-                 //console.log(feature.target._layers[0].feature.properties);
+                // //console.log(visible_layers_count);
+                 //console.log( visible_layers[visible_layers_count]['layerName']);
+                 ////console.log(feature.target._layers[0].feature.properties);
                  var filterhtml = '<div id="'+visible_layers[visible_layers_count]['layerName']+'_filterlist" class="inner_wrapper" style="border: 1px solid #f3eeee; margin-top:5px;"><div class="leftSidebar-header" id="filtered_header'+visible_layers_count+'">'+
                      '<h4>'+visible_layers[visible_layers_count]['layerName']+' ('+visible_layers[visible_layers_count]['count']+')</h4>'+
                      '<!-- <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>'+
@@ -3211,7 +3214,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                   $('#filtered_layer_list_container').append(filterhtml);
                  $.each(feature.target._layers, function (i) {
-                 //  console.log(feature.target._layers[i].feature.properties.name)
+                 //  //console.log(feature.target._layers[i].feature.properties.name)
 
                  // var divicon = L.divIcon({
                  //     className: visible_layers[visible_layers_count]['layerName']
@@ -3227,9 +3230,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                    $('#filtered_layer_list'+visible_layers_count).append(list_item);
 
                    var contentString = createPopup(feature.target._layers[i].feature,visible_layers[visible_layers_count]['layerName']);
-                   //console.log(contentString);
+                   ////console.log(contentString);
                    feature.target._layers[i].on('click',function(){
-                     console.log('clickof inside');
+                     //console.log('clickof inside');
                    });
                    feature.target._layers[i].bindPopup(L.popup({
                      //closeOnClick: true,
@@ -3316,12 +3319,12 @@ $.get(base_url+'/risk_profile/Layer',function(data){
     // layer.bindPopup("sadfdsa");
 
     layer.on('click',function(){
-    //  console.log('delete clicked');
+    //  //console.log('delete clicked');
 
       setTimeout(function(){
 
         if($.isEmptyObject(drawnItems._layers)){
-          //  console.log($.isEmptyObject(drawnItems._layers));
+          //  //console.log($.isEmptyObject(drawnItems._layers));
               for(var i=0;i<visible_layers.length;i++){
 
                 if(map.hasLayer(window[visible_layers[i]['layerName']+"_filteredLayers"])){
@@ -3345,7 +3348,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       $('.leaflet-draw').css('left','266px');
 
 
-  //  console.log(e.layer.editing.latlngs[0][0]);
+  //  //console.log(e.layer.editing.latlngs[0][0]);
     var coordinates=e.layer.editing.latlngs[0][0];
     getLayersInsidePolygon(coordinates,visible_layers)
     map.fitBounds(layer.getBounds());
@@ -3357,7 +3360,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
   //resource layer map add
   $(".CheckBox").on('click',function(){
-    //console.log("changed");
+    ////console.log("changed");
     removeAllLayers();
     //sub cat data in map
     if($('#filtered_layer_list_container').css('display')=="none"){
@@ -3374,21 +3377,21 @@ $.get(base_url+'/risk_profile/Layer',function(data){
     var subcat =$(this).attr("data-subcat");
     var total_sum =$(this).attr("data-count");
     var layer_icon =$(this).attr("data-icon");
-    console.log(layer_icon);
+    //console.log(layer_icon);
     var filter_resources =$(this).attr("data-filter");
     subcat_array1=eval("["+subcat.split("[")[1].split("]")[0]+"]");
-    //console.log(subcat_array1);
+    ////console.log(subcat_array1);
     subcat_array=[];
     for(var i=0;i<subcat_array1.length;i++){
       subcat_array.push(subcat_array1[i]['type']);
 
     }
 
-    console.log($('.'+layerName+'_parent').prop('checked'));
+    //console.log($('.'+layerName+'_parent').prop('checked'));
 
 
     if(map.hasLayer(window[layerName]) || $('.'+layerName+'_parent').prop('checked')==false){
-      console.log('entered false');
+      //console.log('entered false');
 
        map.removeLayer(window[layerName]);
        map.removeLayer( window[layerName+"_filteredLayers"]);
@@ -3422,19 +3425,19 @@ $.get(base_url+'/risk_profile/Layer',function(data){
          }
        }
 
-       // console.log("checkthat",$('.'+layerName+'_parent').prop('checked'));
+       // //console.log("checkthat",$('.'+layerName+'_parent').prop('checked'));
        if($('.'+layerName+'_parent').prop('checked')==false){
-             //console.log("inside false");
+             ////console.log("inside false");
              $('.'+layerName+'_child').prop('checked',false);
              $('#capacity-popup').css('display','none')
              //$('.'+layerName+'_parent').trigger('click');
 
        }
        else{
-           //console.log($('.Health_child'));
+           ////console.log($('.Health_child'));
            $('.'+layerName+'_child').prop('checked',true);
            //$('#capacity-popup').find('.'+layerName+'_child').prop('checked',true);
-            // console.log("inside true");
+            // //console.log("inside true");
              //$('.'+layerName+'_parent').trigger('click');
 
        }
@@ -3463,9 +3466,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
       //$("."+layerName+"_activeclass").addClass("active");
       let url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&';
-    //  console.log(url)
+    //  //console.log(url)
       //info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="'+url+'"/></div>';
- //console.log(info._div.innerHTML)
+ ////console.log(info._div.innerHTML)
 
 
 
@@ -3473,18 +3476,18 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       response=window[layerName].toGeoJSON();
       CreateChartData(response,subcat_array,null,'both',total_sum,layerName,filter_resources,layer_icon);
 
-    //  console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
+    //  //console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
       if($('.'+layerName+'_parent').prop('checked')==false){
-          //  console.log("inside false");
+          //  //console.log("inside false");
             $('.'+layerName+'_child').prop('checked',false);
             //$('.'+layerName+'_parent').trigger('click');
 
       }
       else{
-        //  console.log($('.Health_child'));
+        //  //console.log($('.Health_child'));
           $('.'+layerName+'_child').prop('checked',true);
           //$('#capacity-popup').find('.'+layerName+'_child').prop('checked',true);
-            //console.log("inside true");
+            ////console.log("inside true");
             //$('.'+layerName+'_parent').trigger('click');
 
       }
@@ -3519,7 +3522,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
   $(".hazard_list").on('click',function(){
   id=$(this).attr('id');
   var current_layer=$(this).attr('data-currentLayer');
-  console.log(current_layer);
+  //console.log(current_layer);
 
   if(current_layer!=""){ //child layer off from parent
     map.removeLayer(window[current_layer]);
@@ -3529,14 +3532,14 @@ $.get(base_url+'/risk_profile/Layer',function(data){
   }
 
   $('#hazard_popup_html').html(" ");
-    //console.log("hazard_list");
+    ////console.log("hazard_list");
     var url =base_url+"/risk_profile/"+id ;
     $.ajax({
         url: url,
         //data:{"layer_icon":layer_icon, "data":data,"i":i},
 
         success: function(response) {
-          console.log(response);
+          //console.log(response);
           var hazard_pop_html="";
           hazard_pop_html+='<div class="hazard-title">'+
               '<h3><span class="humanitarian-icon-Flood"></span>'+response.title+'</h3>'+
@@ -3578,8 +3581,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                 '</h5>'+
 
             '</div>';
-                  // console.log( key + ": " + value );
-                  // console.log(response.data[key]);
+                  // //console.log( key + ": " + value );
+                  // //console.log(response.data[key]);
                   var dataaa=response.data[key];
 
                     hazard_pop_html+='<div id="landslide_col_'+i+'" class="collapse '+show+'" data-parent="#accordion" aria-labelledby="'+key+i+'">'+
@@ -3592,7 +3595,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                     var j=0;
 
                   $.each(dataaa, function( key, value ) {
-                    // console.log(dataaa[key].center);
+                    // //console.log(dataaa[key].center);
                     hazard_pop_html+='<li>'+
                         '<div class="custom-control custom-radio">'+
                           '  <input type="radio" class="custom-control-input hazard_geo" id="'+key+i+j+'" data-layername="'+dataaa[key].layername+'" data-workspace="'+dataaa[key].workspace+'" data-center="'+dataaa[key].center+'" name="year17" value="customEx">'+
@@ -3613,7 +3616,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
           hazard_pop_html+='</div>';
           hazard_pop_html+='</div>';
 
-          // console.log(hazard_pop_html);
+          // //console.log(hazard_pop_html);
           $('#hazard_popup_html').html(hazard_pop_html);
           $('[data-toggle="popover"]').popover();
         }
@@ -3638,20 +3641,20 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
   type_id=all_layerName+'_id';
   subcat_array1 =$('#'+type_id).attr('data-subcat');
 
-  //console.log($('.'+layerName+'_child').prop('checked'));
-  //console.log($('.'+layerName+'_child:checked'));
+  ////console.log($('.'+layerName+'_child').prop('checked'));
+  ////console.log($('.'+layerName+'_child:checked'));
     //if($(this).find('::checked').length > 0){
     if($('.'+layerName+'_child:checked').length>0){
-    //  console.log($('.'+layerName+'_child').prop('checked'));
+    //  //console.log($('.'+layerName+'_child').prop('checked'));
           $('.'+layerName+'_parent').prop('checked',true);
           //$('.'+layerName+'_parent').trigger('click');
-        //  console.log("clicksubcat",$('.'+layerName+'_parent').prop('checked'));
+        //  //console.log("clicksubcat",$('.'+layerName+'_parent').prop('checked'));
 
     }else{
-      //console.log('else',$('.'+layerName+'_child').prop('checked'));
+      ////console.log('else',$('.'+layerName+'_child').prop('checked'));
       $('.'+layerName+'_parent').prop('checked',false);
       //$('.'+layerName+'_parent').trigger('click');
-    //  console.log("clicksubcat false",$('.'+layerName+'_parent').prop('checked'));
+    //  //console.log("clicksubcat false",$('.'+layerName+'_parent').prop('checked'));
 
 
     }
@@ -3663,7 +3666,7 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
      map.removeLayer(window[sub_layerName]);
    }else{
 
-     //console.log(window[sub_layerName]);
+     ////console.log(window[sub_layerName]);
      // pharmacy.addTo(map);
      map.addLayer(window[sub_layerName]);
 
@@ -3677,8 +3680,8 @@ $('#capacity-popup').on('click','.sub_cat_ex',function(){
 function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon){
 
 
-  //console.log(layer_data);
-  //console.log(window['clinic']._layers);
+  ////console.log(layer_data);
+  ////console.log(window['clinic']._layers);
   window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
 
     pointToLayer: function(feature,Latlng)
@@ -3725,21 +3728,21 @@ function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,lay
 //resources filter
 $("#capacity-popup").on('change','.filter_resource_btn',function(){
 
-  //console.log(new_gejson_filter);
+  ////console.log(new_gejson_filter);
   var layerName=$(this).attr('name');
   var layer_icon=$(this).attr('data-icon');
   var total_sum=$(this).attr('data-sum');
 
- //console.log('fiter range');
- //console.log(layerName);
-// console.log($(".Health_child").prop("checked"));
+ ////console.log('fiter range');
+ ////console.log(layerName);
+// //console.log($(".Health_child").prop("checked"));
 
 var features_data=[];
 var sub_layer_name=[];
 
 if(map.hasLayer(window["filter_resource_"+layerName])){
 
-  //console.log('aa');
+  ////console.log('aa');
 
 
   map.removeLayer(window["filter_resource_"+layerName]);
@@ -3750,13 +3753,13 @@ $. each($('.sub_cat_ex:checked'), function(){
   var name_sub=$(this).attr('data-sub');
 
   sub_layer_name.push($(this).attr('data-sub'));
-  //  console.log(name_sub);
+  //  //console.log(name_sub);
 
   layersdata=window[name_sub]._layers
-  //console.log(window[name_sub]._layers);
+  ////console.log(window[name_sub]._layers);
   $.each(layersdata, function (feature) {
 
-    //console.log(layersdata[feature].feature);
+    ////console.log(layersdata[feature].feature);
     features_data.push(layersdata[feature].feature);
 
   });
@@ -3770,41 +3773,41 @@ var layer_data1={
 };
 
 
-//console.log(layer_icon);
+////console.log(layer_icon);
 
  //layer_data1=window[layerName].toGeoJSON();
-// console.log(layer_data1);
+// //console.log(layer_data1);
 var layer_data = jQuery.extend(true, {}, layer_data1);
-// console.log(layer_data);
+// //console.log(layer_data);
 var checkedList = [];
 $. each($("input[class='filter_resource_btn']:checked"), function(){
 
 checkedList. push($(this). val());
 });
 
- //console.log(checkedList);
+ ////console.log(checkedList);
 
-//console.log(layer_data.features.length);
+////console.log(layer_data.features.length);
 for(var k=layer_data.features.length-1;k>=0;k--){
   var delete_count=0;
   for(var i=0;i<checkedList.length;i++){
-    //console.log(layer_data.features[k].properties[checkedList[i]]);
+    ////console.log(layer_data.features[k].properties[checkedList[i]]);
 
     if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
-        //console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
-//console.log("entered");
+        ////console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
+////console.log("entered");
         delete_count++;
-        //console.log(delete_count);
+        ////console.log(delete_count);
 
     }
 
 
   }
-  //console.log(delete_count);
+  ////console.log(delete_count);
     if(delete_count==0){
-      //console.log("deleted");
-        //console.log("delete count 00");
-        //console.log(k);
+      ////console.log("deleted");
+        ////console.log("delete count 00");
+        ////console.log(k);
         layer_data.features.splice(k,1);
 
     }
@@ -3813,8 +3816,8 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 }
 
  filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
-  // console.log('test');
-  //console.log($('.sub_cat_ex:checked').length);
+  // //console.log('test');
+  ////console.log($('.sub_cat_ex:checked').length);
   //console.log($("input[class='test']:checked"));
 
  //console.log($("input[class='filter_resource_btn']:checked"));
@@ -3852,11 +3855,14 @@ var admin_layer=$(this).attr('data-admin');
 if(admin_layer=='municipality'){
   $('.legend-list').html('');
   map.addLayer(window[admin_layer]);
+  vt_label_municipality.addTo(map);
+
 
   map.removeLayer(window['district']);
 }else{
   map.addLayer(window[admin_layer]);
   map.removeLayer(eval('municipality'));
+  vt_label_district.addTo(map);
 
 }
 
@@ -3865,15 +3871,15 @@ if(admin_layer=='municipality'){
 
 
 $("#capacity-popup").change('.amount',function(){
-  console.log('adasdsad');
+  //console.log('adasdsad');
 
 
 });
 
 
 $(".trans_constrast").on('change','.center',function(){
-   console.log($(this).val());
-   console.log($(this).attr('data-name-trans'));
+   //console.log($(this).val());
+   //console.log($(this).attr('data-name-trans'));
   var val=($(this).val())/100;
   var name=$(this).attr('data-name-trans');
   window[name].setOpacity(val);
@@ -3894,7 +3900,7 @@ $(".trans_constrast").on('change','.center',function(){
 //chart start--
 function createChart(dataset,name){
 
-console.log(name);
+//console.log(name);
 $('#chart').append('<div class = "chartWrapper" ><div style="margin-bottom:10px;"><h7 class="chart_header">'+name+'</h7></div><div id="chartBody_'+name+'"></div></div>');
 // define data
 // var dataset = [
@@ -4097,15 +4103,15 @@ var prov_li="";
 var dist_li="";
 var mun_li="";
 $.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",function(dataP,statusP){
-    console.log("data ",dataP);
-    console.log("status ",statusP);
+    //console.log("data ",dataP);
+    //console.log("status ",statusP);
     $.each(dataP.results, function (keyP, valueP) {
         prov_li+='<li class="federal" id="'+(dataP.results[keyP].title).replace(/ /g,"_")+'" data-fed="district" data-id="'+dataP.results[keyP].id+'" data-request="province">'+dataP.results[keyP].title+'</li>';
     });
     $('#federal_boundary').html(prov_li);
 
     $.get("https://bipad.nepware.com/api/v1/district/?format=json&&search=&&fields=id,title,province",function(dataDistrict,statusDistrict){
-      console.log(dataDistrict);
+      //console.log(dataDistrict);
       $.each(dataP.results, function(keyP, valueP) {
         $.each(dataDistrict.results, function(keyD, valueD) {
           if (dataP.results[keyP].id == dataDistrict.results[keyD].province) {
@@ -4208,7 +4214,7 @@ $.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",
 federal_boundary=null;
 
 $('#federal_boundary').on('click','.federal',function(){
-
+$('.loader').css('display','block');
 // console.log($(this).attr('id'));
 // console.log($(this).attr('data-fed'));
 
@@ -4217,7 +4223,7 @@ map.removeLayer(district);
 map.removeLayer(municipality);
 
 if(federal_boundary !=null && map.hasLayer(federal_boundary)){
-  console.log('remove');
+  //console.log('remove');
   map.removeLayer(federal_boundary);
   map.removeLayer(label);
 }
@@ -4236,7 +4242,7 @@ $('#fed_filterInput').val(name);
 //
 //   });
 var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&'+layer_request+'='+layer_id;
-console.log(fed_url);
+//console.log(fed_url);
 label=L.layerGroup();
  federal_boundary = new L.geoJson.ajax(fed_url,{
 
@@ -4263,10 +4269,20 @@ label=L.layerGroup();
  });
 
  federal_boundary.on('data:loaded',function(){
-   console.log('loaded');
+   //console.log('loaded');
    map.addLayer(federal_boundary);
    map.addLayer(label);
  map.fitBounds(federal_boundary.getBounds());
+
+
+ map.removeLayer(vt_label_province);
+ map.removeLayer(vt_label_district);
+ map.removeLayer(vt_label_municipality);
+
+
+ $('.loader').css('display','none');
+
+
  });
 
 //map.addLayer(district);
@@ -4280,7 +4296,7 @@ $('#fed_filterInput').on('keyup',function(){
   // console.log(filter);
   $('.federal').css('display','none');
 var li = document.getElementsByClassName('federal');
-    console.log("<<<<<<<new search>>>>>>>>>>>");
+  //  console.log("<<<<<<<new search>>>>>>>>>>>");
   // console.log(h6[1].id);
 //  $('#federal_boundary').html("");
 for (i = 0; i < li.length; i++) {
@@ -4289,7 +4305,7 @@ for (i = 0; i < li.length; i++) {
 
 
       if (((li[i].id).replace("_"," ")).toUpperCase().indexOf(filter) > -1) {
-        console.log(li[i].id);
+        //console.log(li[i].id);
 
           $("#"+li[i].id).css('display','');
       } else {
@@ -4308,7 +4324,7 @@ for (i = 0; i < li.length; i++) {
 $('.osm_layer').on('click',function(){
 //console.log("layername");
   var layername=eval($(this).attr('data-layername'));
-  console.log(layername);
+  //console.log(layername);
   if(map.hasLayer(layername)){
     map.removeLayer(layername);
   }else{

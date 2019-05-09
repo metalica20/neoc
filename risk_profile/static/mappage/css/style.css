@@ -2011,6 +2011,30 @@ button {
     background: rgba(255, 255, 255, 0.5);
     padding: 0px;
 }
+
+.loader {
+    display:none;
+    margin-left: 48%;
+    position: absolute;
+    z-index: 9999;
+    margin-top: 10px;
+    background: white;
+    padding: 10px;
+}
+
+.spinner-border {
+    width: 1rem;
+    height: 1rem;
+    color: #3572cb;
+    border:.108em solid currentColor;
+    border-right-color: transparent;
+}
+
+span#loader_text {
+    padding-left: 8px;
+    vertical-align: middle;
+    color: #5d5959;
+}
 /* type head css */
 
 /*# sourceMappingURL=style.css.map */
