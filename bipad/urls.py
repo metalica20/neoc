@@ -54,11 +54,23 @@ from inventory.views import (
     ItemViewSet,
     InventoryViewSet,
 )
+
 from relief.views import (
     FlowViewSet,
     ReleaseViewSet,
 )
 from django.views.i18n import JavaScriptCatalog
+
+from risk_profile.views import (
+    HospitalViewSet,
+    SchoolViewSet,
+)
+
+from mappage.views import (
+    MapPage,
+)
+
+
 from django.utils.translation import ugettext_lazy as _
 
 admin.site.site_header = _('BIPAD administration')
@@ -118,10 +130,18 @@ router.register(r'inventory-item', ItemViewSet,
                 base_name='inventory-item')
 router.register(r'inventory', InventoryViewSet,
                 base_name='inventory')
+
 router.register(r'relief-flow', FlowViewSet,
                 base_name='relief-flow')
 router.register(r'relief-release', ReleaseViewSet,
                 base_name='relief-release')
+
+router.register(r'school', SchoolViewSet,
+                base_name='school')
+router.register(r'hospital', HospitalViewSet,
+                base_name='hospital')
+
+
 
 API_VERSION = 'v1'
 
@@ -152,9 +172,16 @@ urlpatterns = [
     re_path(r'^api/$', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
+
 ] + i18n_patterns(
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('admin/', admin.site.urls),
+
+    path('risk_profile/', include('risk_profile.urls')),
+    path('risk_profile/', include('mappage.urls')),
+    path('',MapPage.as_view(),name="mappage"),
+
+
 ) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT

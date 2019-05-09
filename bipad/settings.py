@@ -75,6 +75,9 @@ INSTALLED_APPS = [
     'document',
     'relief',
     'user',
+    'risk_profile',
+
+
 ]
 
 MIDDLEWARE = [
@@ -198,7 +201,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "bipad/static"),
 ]
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -243,6 +250,7 @@ MAP_WIDGETS = {
 
 FEDERAL_CACHE_CONTROL_MAX_AGE = 60*60*24*7
 
+
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -266,6 +274,7 @@ LOCALE_PATHS = (
 )
 
 
+
 SESSION_COOKIE_HTTPONLY = False
 
 
@@ -284,3 +293,6 @@ EMAIL_HOST = 'mail.moha.gov.np'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'bipad@moha.gov.np'
 EMAIL_HOST_PASSWORD = 'B!p@d#468'
+SERIALIZATION_MODULES = {
+        "custom_geojson": "risk_profile.geojson_serializer",
+}

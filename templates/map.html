@@ -1,0 +1,4330 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!--head start-->
+
+<head>
+    <!--meta tag start-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--title-->
+    <title>Bipad</title>
+
+    <!-- faveicon start   -->
+    <link rel="icon" type="image/png" href="{% static 'mappage/images/favicon.png' %}" sizes="32x32">
+
+    <!-- stylesheet start -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/customfonts.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/ionicons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/c3.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/leaflet.draw.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'mappage/css/nouislider.min.css' %}">
+
+
+</head>
+<!--head end-->
+
+<body>
+    <!-- bipad start -->
+    <div class="bipadContent">
+
+        <!-- mapsection start -->
+        <div class="mapwrap">
+
+            <!-- logo start -->
+            <div class="bipad-logo">
+                <h1 class="logo"><a href="index.html">Bipad</a></h1>
+                <span class="sub-logo">RiskInfo</span>
+            </div>
+
+            <!-- map start -->
+            <div id="mapid"></div>
+
+            <!-- right navigation -->
+            <!-- <div class="right-nav">
+                <div class="nav-wrap">
+                    <ul>
+                        <li><a href="#"><i class="ion ion-md-home"></i><span>Dashboard</span></a></li>
+                        <li><a href="#"><i class="ion ion-ios-warning"></i><span>Incidents</span></a></li>
+                        <li class="active"><a href="#"><i class="ion ion-ios-map"></i><span>Risk information</span></a></li>
+                        <li><a href="#"><i class="ion ion-md-alarm"></i><span>Loss & Damage</span></a></li>
+                        <li><a href="#"><i class="ion ion-ios-stopwatch"></i><span>Real Time</span></a></li>
+                        <li><a href="#"><i class="ion ion-md-briefcase"></i><span>profile mapping</span></a></li>
+                        <li><a href="#"><i class="ion ion-md-information-circle"></i><span>about us</span></a></li>
+                    </ul>
+
+                </div>
+                <div class="buffer-icon">
+                    <span class="ion ion-logo-buffer"></span>
+                </div>
+            </div> -->
+
+
+            <div class="expand-layer">
+                <span class="expand-icon" id="flood-expand">
+                    <i class="ion ion-md-funnel"></i>
+                </span>
+                <span class="expand-icon" id="capacity-expand">
+                    <i class="ion ion-md-funnel"></i>
+                </span>
+                <span class="expand-icon" id="vulnery-expand">
+                    <i class="ion ion-md-funnel"></i>
+                </span>
+            </div>
+            <!-- map layer list -->
+            <div class="buffer-list">
+              <div class="buffer-wrapper">
+                <div class="buffer-header">
+                    <h4>Maplayer</h4>
+                    <span><i class="ion ion-md-close"></i></span>
+                </div>
+                <ul>
+                    <li class="light"><a href="#">Light</a></li>
+                    <li class="street"><a href="#">street</a></li>
+                    <li class="outdoor"><a href="#">outdoor</a></li>
+                    <li class="satelite"><a href="#">satelite</a></li>
+                    <li class="road"><a href="#">Roads</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- legend layer list -->
+            <div class="legend-list">
+                <!-- <div class="legend-wrapper">
+                    <div class="buffer-header">
+                        <h4>Legend</h4>
+                        <span><i class="ion ion-md-close"></i></span>
+                    </div>
+                    <ul>
+                        <li class="light"><a href="#">Light</a></li>
+                        <li class="street"><a href="#">street</a></li>
+                        <li class="outdoor"><a href="#">outdoor</a></li>
+                        <li class="satelite"><a href="#">satelite</a></li>
+                        <li class="road"><a href="#">Roads</a></li>
+                    </ul>
+                </div> -->
+
+
+            </div>
+
+            <!-- leftSidebar start -->
+
+
+            <!-- <div class="sidebar leftSidebar" id="filtered_layer_list_container" style="display:block;">
+
+              <div class="leftSidebar-header">
+                  <h4>Incidents</h4>
+              </div>
+              <ul class="list-content" id='filtered_layer_list'>
+
+              </ul>
+
+            </div> -->
+
+            <div class="sidebar leftSidebar" style="display:block;">
+                    <!-- <span class="expand-icon">
+                        <i class="ion ion-ios-warning"></i>
+                    </span> -->
+                    <!-- <div class="sidebarwrapper" id="filtered_layer_list_container" style="display:none;">
+
+                      <div class="leftSidebar-header">
+                          <h4>Incidents</h4>
+                      </div>
+                      <ul class="list-content" id='filtered_layer_list'>
+
+                      </ul>
+
+                    </div> -->
+                    <div class="sidebarwrapper" id="filtered_layer_list_container" style="display:none;">
+
+
+                    </div>
+                </div>
+            <!-- rightSidebar start -->
+            <div class=" sidebar rightSidebar">
+                <!-- <span class="expand-icon">
+                    <i class="ion ion-md-funnel"></i>
+                </span> -->
+                <div class="sidebarwrapper">
+                    <!-- sidebar start -->
+
+
+                    <div class="sidebar-widget filter-widget" style="display:block;">
+
+
+
+                      <div class="right-sidebar-title filter-title">
+                          <h4>Filter</h4>
+                      </div>
+                      <div class="filterSelect">
+                        <div class="type-wrap">
+                          <input type="text" id="fed_filterInput" placeholder="search" class="form-control"/>
+                          <span>
+                            <i class="ion ion-md-close filter_close"></i>
+                            <i class="ion ion-md-arrow-dropdown filter_dropdown"></i>
+                          </span>
+
+                        </div>
+                        <div class="filter-listing">
+                          <ul id="federal_boundary">
+
+                          </ul>
+                        </div>
+
+                        <!-- <div class="dropdown">
+                        <button class="btn-xm dropdown-toggle" type="button" data-toggle="dropdown">select option
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu" id="federal_boundary">
+                          <li>HTML</li>
+
+                        </ul>
+                        </div> -->
+
+                          <!-- <div class="filterSelect">
+                              <h5>Admin level</h5>
+                              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                  <li class="nav-item">
+                                      <a class="nav-link active" id="province-tab" data-toggle="tab" href="#province" role="tab" aria-controls="province" aria-selected="true">province</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" id="district-tab" data-toggle="tab" href="#district" role="tab" aria-controls="district" aria-selected="false">District</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" id="municipality-tab" data-toggle="tab" href="#municipality" role="tab" aria-controls="municipality" aria-selected="false">municipality</a>
+                                  </li>
+                              </ul>
+                              <div class="tab-content" id="myTabContent">
+                                  <div class="tab-pane fade show active" id="province" role="tabpanel" aria-labelledby="province-tab">
+                                      <h5>Province</h5>
+                                      <div class="select-option">
+                                          <select class="select2 form-control" name="province">
+                                              <option value="pr1">Province-1</option>
+                                              <option value="pr2">Province-2</option>
+                                              <option value="pr3">Province-3</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="district" role="tabpanel" aria-labelledby="district-tab">
+                                      <h5>District</h5>
+                                      <div class="select-option">
+                                          <select class="select2 form-control" name="Municipality">
+                                              <option value="progress_4">kathmandu</option>
+                                              <option value="pr5">Pokhara</option>
+                                              <option value="pr6">Lalitpur</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="tab-pane fade" id="municipality" role="tabpanel" aria-labelledby="municipality-tab">
+                                      <h5>municipality</h5>
+                                      <div class="select-option">
+                                          <select class="select2 form-control" name="District">
+                                              <option value="pr1">kathmandu</option>
+                                              <option value="pr2">Pokhara</option>
+                                              <option value="pr3">Lalitpur</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div> -->
+
+                      </div>
+
+
+
+                    </div>
+                    <div class="hazard-acc">
+                        <div id="sidebar-widget">
+                            <div class="card">
+                                <div class="card-header" id="heading-1">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true"
+                                            aria-controls="collapse-1">Hazard
+                                            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Hazard is a phenomena or event that has the potential to cause damage/disruption to lives and livelihood "></i>
+
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-1" class="collapse show" data-parent="#sidebar-widget" aria-labelledby="heading-1">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input hazard_list" hasLayer="false" data-currentLayer="" id="Flood" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Flood" data-tab="flood-1">Flood </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Flood"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input hazard_list" id="Earthquake" hasLayer="false" data-currentLayer="" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Earthquake" data-tab="flood-1">Earthquake</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Earthquake"></span>
+                                            </li>
+
+                                            <li>
+
+                                            <!-- <li>
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="Landslide" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Landslide">Landslide</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Landslide-mudslide"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="Fire" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Fire">Fire</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Fire"></span>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="Draought" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="Draought">Drought</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Drought"></span>
+
+                                            </li>
+
+                                            </li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-2">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false"
+                                        aria-controls="collapse-2">Exposure
+                                            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-2" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-2">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="OSM" data-currentLayer="" name="exposure_1"  value="customEx">
+                                                    <label class="custom-control-label"  data-tab="exposure_popup" for="OSM">Drone Imageries </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="Land" data-currentLayer="" name="Land" value="customEx">
+                                                    <label class="custom-control-label"  data-tab="infa_exposure_popup" for="Land">Infrastructures</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input exoposure_data_pop" id="osmLayer" data-currentLayer="" name="openstreet" value="customEx">
+                                                    <label class="custom-control-label"  data-tab="osmLayer_popup" for="osmLayer">OSM Layers</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-3">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false"
+                                        aria-controls="collapse-3">Vulnerability
+                                            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The conditions determined by physical, social, economic and environmental factors or processes which increase the susceptibility of an individual, a community, assets or systems to the impacts of hazards."></i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-3" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-3">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="HDI" data-currentLayer="" data-result=""  name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="HDI" data-tab="hdi_vul">HDI </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Helipad"></span>
+                                            </li>
+
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="REMOTE" data-currentLayer="" data-result=""  name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="REMOTE" data-tab="remote_vul">Remoteness </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Helipad"></span>
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input  parent_vul" id="GDP" data-currentLayer=""   name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="GDP" data-tab="vulnery-1">Access To Communication</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Fund"></span>
+                                            </li>
+
+                                            <li>
+
+                                            <!-- <li>
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="percapital" name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="percapital">per capital income</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Fund"></span>
+
+                                            </li>
+
+                                            </li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-4">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false"
+                                        aria-controls="collapse-4">Risk
+                                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-4" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-4">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                  <input type="radio" class="custom-control-input parent_vul" id="earthquake_r"  name="example1" value="customEx">
+                                                  <label class="custom-control-label" for="earthquake_r" data-tab="earthquake_risk">Earthquake Risk </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Health"></span>
+                                            </li>
+                                            <!-- <li>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="Earthquacke" name="risk" value="customEx">
+                                                    <label class="custom-control-label" for="Earthquacke">Flood Risk</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Education"></span>
+                                            </li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="heading-5">
+                                    <h5>
+                                        <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false"
+                                        aria-controls="collapse-5">capacity & resources
+                                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The strengths, attributes and resources available within the administrative area to manage and reduce disaster risks and strengthen resilience"></i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-5" class="collapse" data-parent="#sidebar-widget" aria-labelledby="heading-5">
+                                    <div class="card-body">
+                                        <ul class="list-content hazard-list">
+                                            {% for resource in resources %}
+                                            <li>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input CheckBox {{resource.layer_tbl}}_parent" value="{{resource.layer_tbl}}" data-subcat="{{resource.type}}" data-icon={{resource.layer_icon}} data-filter="{{resource.sub_category}}" data-count="{{resource.count_obj}}"  id="{{resource.layer_tbl}}_id" data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}" >
+                                                    <label class="custom-control-label" for="{{resource.layer_tbl}}_id" data-tab="capacity-popup">{{resource.layer_name}}</label>
+                                                </div>
+                                            </li>
+                                              {% endfor  %}
+                                            {% comment %} <li class="check-list">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input" id="capacity-2" >
+                                                    <label class="custom-control-label" for="capacity-2">Health </label>
+                                                </div>
+                                            </li>
+                                            <li class="check-list">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input custom-main-input" id="capacity-3" >
+                                                    <label class="custom-control-label" for="capacity-3">Health </label>
+                                                </div>
+                                            </li> {% endcomment %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- hazarda popup -->
+            <div class="hazard-details" id="flood-1">
+                <div class="hazard-wrapper trans_constrast" id="hazard_popup_html">
+                    <!-- not needed part load from jquery-->
+                    <div class="hazard-title">
+                        <h3><span class="humanitarian-icon-Flood"></span>Flood</h3>
+                        <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+                    </div>
+                    <div class="hazard-content">
+                        <!-- <h4>Hazard</h4> -->
+                        <div class="hazard-acc">
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="landslide_1">
+                                        <h5>
+                                            <a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_1" aria-expanded="true"
+                                                aria-controls="landslide_col_1">Karnali
+                                                <div class="icon-list">
+                                                    <span class="ion ion-md-information-circle"></span>
+                                                    <span class="ion ion-md-albums"></span>
+                                                    <span class="ion ion-md-contrast"></span>
+                                                    <span class="ion ion-md-more">
+                                                        <div class="more-list">
+                                                            <span class="ion ion-md-cloud-download"></span>
+                                                            <span class="ion ion-md-eye"></span>
+                                                            <span class="ion ion-md-remove-circle-outline"></span>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </h5>
+
+                                    </div>
+                                    <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                        <div class="card-body">
+                                            <ul class="hazardDetail-list">
+                                                <li class="active">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" data-workspace="ngp:flood_karnali_depth_5" data-center="[28.491324426181734,81.24904632568361]" id="year17" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year17">5 year </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year16" data-workspace="ngp:flood_karnali_depth_10" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year16">10 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year15" data-workspace="ngp:flood_karnali_depth_25" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year15">25 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year14" data-workspace="ngp:flood_karnali_depth_50" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year14">50 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year13" data-workspace="ngp:flood_karnali_depth_100" data-center="[28.491324426181734,81.24904632568361]" name="year17" value="customEx">
+                                                        <label class="custom-control-label" for="year13">100 Year</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="landslide_2">
+                                        <h5>
+                                            <a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_2" aria-expanded="false"
+                                            aria-controls="landslide_col_2">Aurahi
+                                                <div class="icon-list">
+                                                    <span class="ion ion-md-information-circle"></span>
+                                                    <span class="ion ion-md-albums"></span>
+                                                    <span class="ion ion-md-contrast"></span>
+                                                    <span class="ion ion-md-more">
+                                                        <div class="more-list">
+                                                            <span class="ion ion-md-cloud-download"></span>
+                                                            <span class="ion ion-md-eye"></span>
+                                                            <span class="ion ion-md-remove-circle-outline"></span>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </h5>
+
+                                    </div>
+                                    <div id="landslide_col_2" class="collapse" data-parent="#accordion" aria-labelledby="landslide_2">
+                                        <div class="card-body">
+                                            <ul class="hazardDetail-list">
+                                                <li class="active">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year1" data-workspace="ngp:flood_aurahi_depth_2" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year1">2 Year </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year2" data-workspace="ngp:flood_aurahi_depth_5" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year2">5 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year3" data-workspace="ngp:flood_aurahi_depth_10" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year3">10 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year4" data-workspace="ngp:flood_aurahi_depth_25" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year4">25 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year5" data-workspace="ngp:flood_aurahi_depth_50" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year5">50 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year6" data-workspace="ngp:flood_aurahi_depth_100" name="year1" value="customEx">
+                                                        <label class="custom-control-label" for="year6">100 Year</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="landslide_3">
+                                        <h5>
+                                            <a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_3" aria-expanded="false"
+                                            aria-controls="landslide_col_3">Banganga
+                                                <div class="icon-list">
+                                                    <span class="ion ion-md-information-circle"></span>
+                                                    <span class="ion ion-md-albums"></span>
+                                                    <span class="ion ion-md-contrast"></span>
+                                                    <span class="ion ion-md-more">
+                                                        <div class="more-list">
+                                                            <span class="ion ion-md-cloud-download"></span>
+                                                            <span class="ion ion-md-eye"></span>
+                                                            <span class="ion ion-md-remove-circle-outline"></span>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="landslide_col_3" class="collapse" data-parent="#accordion" aria-labelledby="landslide_3">
+                                        <div class="card-body">
+                                            <ul class="hazardDetail-list">
+                                                <li class="active">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year7" data-workspace="ngp:ngp:flood_banganga_depth_2" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year7">2 Year </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year8" data-workspace="ngp:flood_banganga_depth_5" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year8">5 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year9" data-workspace="ngp:flood_banganga_depth_10" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year9">10 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year10" data-workspace="ngp:flood_banganga_depth_25" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year10">25 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year11" data-workspace="ngp:flood_banganga_depth_50" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year11">50 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input hazard_geo" id="year12" data-workspace="ngp:flood_banganga_depth_100" data-center="[27.60612718267851,86.12543106079102]" name="year7" value="customEx">
+                                                        <label class="custom-control-label" for="year12">100 Year</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="card">
+                                    <div class="card-header" id="landslide_4">
+                                        <h5>
+                                            <a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_4" aria-expanded="false"
+                                            aria-controls="landslide_col_4">Koshi
+                                                <div class="icon-list">
+                                                    <span class="ion ion-md-information-circle"></span>
+                                                    <span class="ion ion-md-albums"></span>
+                                                    <span class="ion ion-md-contrast"></span>
+                                                    <span class="ion ion-md-more">
+                                                        <div class="more-list">
+                                                            <span class="ion ion-md-cloud-download"></span>
+                                                            <span class="ion ion-md-eye"></span>
+                                                            <span class="ion ion-md-remove-circle-outline"></span>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </h5>
+
+                                    </div>
+                                    <div id="landslide_col_4" class="collapse" data-parent="#accordion" aria-labelledby="landslide_4">
+                                        <div class="card-body">
+                                            <ul class="hazardDetail-list">
+                                                <li class="active">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="hazard-1" name="hazard-1" value="customEx">
+                                                        <label class="custom-control-label" for="hazard-1">6 months </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="hazard-2" name="hazard-2" value="customEx">
+                                                        <label class="custom-control-label" for="hazard-2">1 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="hazard-3" name="hazard-3" value="customEx">
+                                                        <label class="custom-control-label" for="hazard-3">5 Year</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="hazard-4" name="hazard-4" value="customEx">
+                                                        <label class="custom-control-label" for="hazard-4">10 Year</label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- not needed part -->
+                </div>
+            </div>
+  <!-- hazard popup end   -->
+
+   <!--  exposure  popup -->
+
+   <!-- drone part popup -->
+   <div class="hazard-details trans_constrast" id="exposure_popup">
+       <div class="hazard-wrapper">
+           <div class="hazard-title">
+               <h3><span class="humanitarian-icon-Flood"></span>Drone Images</h3>
+               <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+
+           </div>
+           <div class="hazard-content">
+               <!-- <h4>Hazard</h4> -->
+               <div class="hazard-acc">
+                   <div id="accordion">
+                       <div class="card">
+
+
+
+                           <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                               <div class="card-body">
+
+
+                                   <ul class="hazardDetail-list">
+
+
+
+                                       <li class="active opacityParent">
+
+                                           <div class="custom-control custom-radio">
+                                             <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+
+
+                                             <span class="ion ion-md-contrast"  style="float:right; border:none;"></span>
+
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-parent="OSM" data-layername="bancharedanda" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.776141,85.229350]" id="test_1" name="test_1" value="customEx">
+                                               <label class="custom-control-label" for="test_1">Drone </label>
+
+                                           </div>
+                                           <div class="range-box">
+                                               <input type="range" min="0" max="100" class="center" data-name-trans="bancharedanda">
+                                           </div>
+                                       </li>
+
+                                       <li class="active opacityParent">
+
+
+                                           <div class="custom-control custom-radio">
+                                             <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+
+                                             <span class="ion ion-md-contrast"  style="float:right; border:none;"></span>
+
+                                               <input type="radio" class="custom-control-input exposure_geo" data-workspace="Naxa" data-parent="OSM" data-layername="sankhu_drone" data-url="https://apps.naxa.com.np/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="sankhu_1" name="sankhu_1" value="customEx">
+
+                                               <label class="custom-control-label" for="sankhu_1">Sankhu  </label>
+                                           </div>
+
+                                           <div class="range-box">
+                                               <input type="range" min="0" max="100" class="center" data-name-trans="sankhu_drone">
+                                           </div>
+                                       </li>
+
+
+
+
+                                   </ul>
+
+                               </div>
+                           </div>
+
+
+                       </div>
+
+                   </div>
+               </div>
+           </div>
+         </div>
+     </div>
+     <!-- drone part popup end  -->
+
+     <!-- Infrastructes part popup -->
+
+     <div class="hazard-details" id="infa_exposure_popup">
+         <div class="hazard-wrapper" >
+             <div class="hazard-title">
+                 <h3><span class="humanitarian-icon-Flood"></span>Infrastructures</h3>
+                 <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+             </div>
+             <div class="hazard-content">
+                 <!-- <h4>Hazard</h4> -->
+                 <div class="hazard-acc">
+                     <div id="accordion">
+                         <div class="card">
+
+
+                             <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                 <div class="card-body">
+                                     <ul class="hazardDetail-list">
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-parent="Land" data-layername="buildings"  data-workspace="geonode:buildings" data-url="https://geonepal.info/geoserver/wms" data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1" value="customEx">
+                                                 <label class="custom-control-label" for="build_1">Buildings  </label>
+                                             </div>
+                                         </li>
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Hydropower  </label>
+                                             </div>
+                                         </li>
+
+                                         <!-- <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="communication" name="communication" value="customEx">
+                                                 <label class="custom-control-label" for="communication">Communication Towers  </label>
+                                             </div>
+                                         </li> -->
+
+
+                                     </ul>
+                                 </div>
+                             </div>
+
+
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+
+     <!-- Infrastructes part popup end -->
+
+     <div class="hazard-details" id="osmLayer_popup">
+         <div class="hazard-wrapper" >
+             <div class="hazard-title">
+                 <h3><span class="humanitarian-icon-Flood"></span>OSM Layers</h3>
+                 <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+             </div>
+             <div class="hazard-content">
+                 <!-- <h4>Hazard</h4> -->
+                 <div class="hazard-acc">
+                     <div id="accordion">
+                         <div class="card">
+
+
+                             <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                 <div class="card-body">
+                                     <ul class="hazardDetail-list">
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input osm_layer" data-parent="openstreet" data-layername="osm"   data-center="[27.740139803000158,85.46312123537065]" id="openstreet" name="openstreet" value="customEx">
+                                                 <label class="custom-control-label" for="openstreet">Openstreet Map</label>
+                                             </div>
+                                         </li>
+                                         <!-- <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Terrain  </label>
+                                             </div>
+                                         </li>
+
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Hybrid </label>
+                                             </div>
+                                         </li>
+
+                                         <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo infan" data-layername="hydropower" data-parent="Land" data-workspace="ngp:drone_test" data-url="" data-center="[27.740139803000158,85.46312123537065]" id="hydro_1" name="hydro_1" value="customEx">
+                                                 <label class="custom-control-label" for="hydro_1">Satellite  </label>
+                                             </div>
+                                         </li> -->
+
+                                         <!-- <li class="active">
+                                             <div class="custom-control custom-checkbox">
+                                                 <input type="checkbox" class="custom-control-input exposure_geo" data-workspace="ngp:drone_test" data-center="[27.740139803000158,85.46312123537065]" id="communication" name="communication" value="customEx">
+                                                 <label class="custom-control-label" for="communication">Communication Towers  </label>
+                                             </div>
+                                         </li> -->
+
+
+                                     </ul>
+                                 </div>
+                             </div>
+
+
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+           </div>
+       </div>
+
+
+       <!-- osm layerpopup start  -->
+
+
+       <!-- osm layer end -->
+
+   <!-- popup exposure end -->
+
+    <!-- capacity popup -->
+            <div class="hazard-details" id="capacity-popup">
+              <div class="hazard-wrapper">
+                  <div class="hazard-title">
+                      <h3><span id= "subcategory_title" class="humanitarian-icon-Health-facility"></span>name</h3>
+                      <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+                  </div>
+                  <div class="capacity-content" >
+                      <h4>Insight</h4>
+                      <div class="insight" id="subcatChartContainer">
+                      </div>
+
+                      <div class="insight" id="subcatSwitchContainer"></div>
+                  </div>
+                </div>
+
+            </div>
+  <!-- end capacity popup -->
+
+
+      <!-- vulnerability popup -->
+
+              <!-- communication popup -->
+
+            <div class="hazard-details" id="vulnery-1">
+                <div class="hazard-wrapper">
+                    <div class="hazard-title">
+                        <h3><span class="humanitarian-icon-Health-facility"></span>Access To Communication</h3>
+                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+                        <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+                        <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+                    </div>
+                    <div class="hazard-content">
+                        <button type="button" class="compare-button">compare</button>
+                        <div class="hazard-acc">
+                            <ul class="hazardDetail-list">
+                                <li class="active">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="radio_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="radio_com">Radio </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="television_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="television_com">Televison</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="mobile_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="mobile_com">Mobile</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="internet_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="internet_com">Internet</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="cablet_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="cablet_com">Cable Net</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="computer_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="computer_com">Computer</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-control custom-radio">
+
+                                        <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="telephone_com" name="comapre_1" value="customEx">
+                                        <label class="custom-control-label" for="telephone_com">Telephone</label>
+                                    </div>
+                                </li>
+                                <!-- compare popup -->
+                                <div class="compare-popup" id="compare_vul">
+
+
+                                    <div class="compare-wrapper" id="radio-compare">
+                                        <div class="compare-header">
+                                            <h3>Access to radio</h3>
+                                            <span ><i class="ion ion-md-close-circle-outline"></i></span>
+                                        </div>
+                                        <div class="compare-body">
+
+
+                                              <div id="chart">
+                                                <div id="tooltip" style="opacity:0">
+                                                  <p><strong>Label Heading</p>
+                                                    <p><span id="percentage">100</span></p>
+                                                    <p><span id="value">100</span></p>
+
+                                                  </div>
+
+
+                                              </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- communication popup end -->
+
+ <!-- hdi start-->
+
+
+ <div class="hazard-details trans_constrast" id="hdi_vul">
+     <div class="hazard-wrapper" >
+         <div class="hazard-title">
+             <h3><span class="humanitarian-icon-Flood"></span>HDI</h3>
+             <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Human development index(HDI)  is harvested from National Plannning Commission's Nepal Human Development Report, 2014. HIgh HDI signifies development improvements  whereas low HDI signifies lack of developmen in the region "></i>
+             <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+             <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+         </div>
+         <div class="hazard-content">
+             <!-- <h4>Hazard</h4> -->
+             <div class="hazard-acc">
+                 <div id="accordion">
+
+                     <!-- <div class="card">
+                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                             <div class="card-body">
+                                 <ul class="hazardDetail-list">
+                                     <li class="active">
+                                         <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                             <label class="custom-control-label" for="hdi_national">National Level </label>
+                                         </div>
+                                     </li>
+                                   </ul>
+                             </div>
+                         </div>
+                     </div> -->
+
+                     <div class="card opacityParent">
+                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                             <div class="card-body">
+                               <span class="ion ion-md-contrast"  style="float:right;"></span>
+                                 <ul class="hazardDetail-list">
+                                     <li class="active ">
+                                         <div class="custom-control custom-radio">
+                                             <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-parent="HDI" data-legendname="HDI" data-score="hdi" data-admin="district"  id="hdi_district" name="hdi_district" value="customEx">
+                                             <label class="custom-control-label" for="hdi_district">District Level  </label>
+                                         </div>
+
+                                         <div class="range-box">
+                                             <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                         </div>
+                                     </li>
+                                   </ul>
+                             </div>
+                         </div>
+                     </div>
+
+                     <!-- <div class="card">
+                         <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                             <div class="card-body">
+                                 <ul class="hazardDetail-list">
+                                     <li class="active">
+                                         <div class="custom-control custom-checkbox">
+                                             <input type="checkbox" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                             <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                         </div>
+                                     </li>
+                                   </ul>
+                             </div>
+                         </div>
+                     </div> -->
+
+
+
+
+                 </div>
+             </div>
+         </div>
+       </div>
+   </div>
+
+
+
+
+ <!-- hdi end -->
+
+<!-- remoteness -->
+
+<div class="hazard-details trans_constrast" id="remote_vul">
+    <div class="hazard-wrapper" >
+        <div class="hazard-title">
+            <h3><span class="humanitarian-icon-Flood"></span>Remoteness</h3>
+            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="HIgh remotness indicates areas that are most remote and low remotness index indicate better accessibility"></i>
+            <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+            <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+        </div>
+        <div class="hazard-content">
+            <!-- <h4>Hazard</h4> -->
+            <div class="hazard-acc">
+                <div id="accordion">
+
+                    <!-- <div class="card">
+                        <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                            <div class="card-body">
+                                <ul class="hazardDetail-list">
+                                    <li class="active">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                            <label class="custom-control-label" for="hdi_national">National Level </label>
+                                        </div>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="card opacityParent">
+                        <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                            <div class="card-body">
+                              <span class="ion ion-md-contrast"  style="float:right;"></span>
+                                <ul class="hazardDetail-list">
+                                    <li class="active">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Remoteness" data-parent="REMOTE" data-score="remoteness" data-admin="district"  id="remote_district" name="remote_district" value="customEx">
+                                            <label class="custom-control-label" for="remote_district">District Level  </label>
+                                        </div>
+
+                                        <div class="range-box">
+                                            <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                        </div>
+
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="card">
+                        <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                            <div class="card-body">
+                                <ul class="hazardDetail-list">
+                                    <li class="active">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                            <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                        </div>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+
+<!-- remoteness end-->
+
+<!-- risk start popup -->
+
+<div class="hazard-details trans_constrast" id="earthquake_risk">
+    <div class="hazard-wrapper" >
+        <div class="hazard-title">
+            <h3><span class="humanitarian-icon-Flood"></span>Earthquake Risk</h3>
+            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Tom R Robinson, Nicholas J Rosser, Alexander L Densmore, Katie J Oven, Surya N Shrestha, Ramesh Guragain, 2019. The risk analaysis is based on 90 scenario ensembles and vulnerability indexes ( Remoteness index, Human Development Index"></i>
+            <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+            <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+        </div>
+        <div class="hazard-content">
+            <!-- <h4>Hazard</h4> -->
+            <div class="hazard-acc">
+                <div id="accordion">
+
+                    <!-- <div class="card">
+                        <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                            <div class="card-body">
+                                <ul class="hazardDetail-list">
+                                    <li class="active">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                            <label class="custom-control-label" for="hdi_national">National Level </label>
+                                        </div>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="card opacityParent">
+                        <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                            <div class="card-body">
+                              <span class="ion ion-md-contrast"  style="float:right;"></span>
+                                <ul class="hazardDetail-list">
+                                    <li class="active">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Earthquake Risk" data-parent="earthquake_r" data-score="riskScore" data-admin="district"  id="earthquake_district" name="earthquake_district" value="customEx">
+                                            <label class="custom-control-label" for="earthquake_district">District Level  </label>
+                                        </div>
+                                        <div class="range-box">
+                                            <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                        </div>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="card">
+                        <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                            <div class="card-body">
+                                <ul class="hazardDetail-list">
+                                    <li class="active">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                            <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                        </div>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+
+
+
+<!-- risk end popup -->
+      <!-- vulnerability popup end -->
+
+            <!-- rightSidebar end -->
+
+
+
+            <!-- average section -->
+            <div class="average-section">
+                <div class="average-wrapper">
+                    <div class="average-header">
+                        <h4>Data visualization</h4>
+                        <button type="button" class="button averageClose"><i class=" ion ion-md-close-circle-outline"></i></button>
+                    </div>
+                    <div class="average-content">
+                        <div class="progress-list">
+                            <!-- <div class="progress-warpper">
+                                <div class="progress skill-bar ">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">kathmandu :<i class="val">2456</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" >
+                                    </div>
+                                </div>
+                                <span class="skill">Kaski :<i class="val">3565</i></span>
+                            </div>
+
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Lalitpur :<i class="val">1400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Manang :<i class="val">800</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Bhaktapur :<i class="val">1100</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Nepalgunj :<i class="val">400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Dhangadi :<i class="val">600</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Dharan :<i class="val">650</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Dhankuta :<i class="val">900</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Humla :<i class="val">400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Mahottari :<i class="val">600</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Lamjung :<i class="val">650</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Tanahu :<i class="val">900</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Morang :<i class="val">400</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Sunsari :<i class="val">600</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Makwanpur :<i class="val">650</i></span>
+                            </div>
+                            <div class="progress-warpper">
+                                <div class="progress skill-bar">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <span class="skill">Taplejung :<i class="val">900</i></span>
+                            </div> -->
+                            <!-- <div class="barchart-line" style="left:100%">
+                                <span class="average-text">Average</span>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="metaData">
+                <div class="metaData-wrapper" >
+                    <div class="metaData-header">
+                        <h4>meta data</h4>
+                        <button type="button" class="button metaClose"><i class=" ion ion-md-close-circle-outline"></i></button>
+                    </div>
+                    <div class="metaData-content">
+                        <h4>Metadata Record Info</h4>
+                        <ul>
+                            <li>
+                                <label>Language :</label> English
+                            </li>
+                            <li>
+                                <label>Chareset :</label> 	Utf8
+                            </li>
+                            <li>
+                                <label>Hierarchy Level :</label> dataset
+                            </li>
+                            <li>
+                                <label>Standard date :</label> North American Profile of ISO 19115:2003
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="metaData-content">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li>
+                                <label>Name :</label> National Geographic Information Infrastructure Division
+                            </li>
+                            <li>
+                                <label>Organization Name :</label> 	National Geographic Information Infrastructure Division
+                            </li>
+                            <li>
+                                <label>Position Name :</label> Chief Survey Officer
+                            </li>
+                            <li>
+                                <label>Role :</label> author
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- mapsection end -->
+    </div>
+    <!-- bipad end -->
+
+
+
+    <!-- js library start -->
+    <!-- <script src="{% static 'mappage/js/jquery-3.3.1.min.js' %}"></script> -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'mappage/js/popper.min.js' %}"></script>
+
+
+    <script src="{% static 'mappage/js/bootstrap.min.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+        <script src="{% static 'mappage/js/select2.min.js' %}"></script>
+    <script src="{% static 'mappage/js/jquery.slimscroll.min.js' %}"></script>
+   <!-- <script src="{% static 'mappage/js/map.js' %}"></script> -->
+
+    <script src="{% static 'mappage/js/L.TileLayer.BetterWMS.js' %}"></script>
+    <script src="{% static 'mappage/js/chart.js' %}"></script>
+    <script src="{% static 'mappage/js/d3.min.js' %}"></script>
+    <script src="{% static 'mappage/js/d3.v3.min.js' %}"></script>
+  <script src="{% static 'mappage/js/c3.js' %}"></script>
+  <script src="{% static 'mappage/js/leaflet.draw.js' %}"></script>
+  <script src="{% static 'mappage/js/proj4.js' %}"></script>
+  <script src="{% static 'mappage/js/leaflet-wfst.src.js' %}"></script>
+  <script src="{% static 'mappage/js/nouislider.min.js' %}"></script>
+ <script src="https://unpkg.com/leaflet.vectorgrid@1.2.0/dist/Leaflet.VectorGrid.bundled.js"></script>
+
+
+  <!-- chart-pie -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- FusionCharts -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script>
+      <!-- chart -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+<script src="{% static 'mappage/js/script.js' %}"></script>
+
+
+
+
+    <!-- <script src="js/popper.min.js"></script> -->
+
+
+
+
+
+    <!-- <script src="js/chart.js"></script>
+	<script src="js/c3.js"></script> -->
+   {% comment %} <script src="js/map.js"></script> {% endcomment %}
+   <script>
+
+
+
+
+
+           if(document.location.hostname=='localhost'){
+             var base_url = 'http://localhost:8000';
+           }else{
+             var base_url= 'https://bipad.naxa.com.np';
+           }
+
+    $(document).ready(function(){
+
+          // initializing map
+
+           map = L.map('mapid',{
+                    zoomControl:false
+
+                  }).setView([28.410728397237914,84.4024658203125], 7);
+                 // map.attributionControl.addAttribution("<a href='http://www.naxa.com.np' title = 'Contributor'>NAXA</a>");
+                 // map.scrollWheelZoom.disable();
+                 //map.options.maxBounds;  // remove the maxBounds object from the map options
+                 //map.options.minZoom = 9;
+                 map.createPane("polygonsPane").style.zIndex = 620;
+                 map.createPane("baseLayerPane").style.zIndex = 250;
+                 map.createPane("wmsPane").style.zIndex = 450;
+                 map.createPane("linesPane").style.zIndex = 620;
+                 map.createPane("pointsPane").style.zIndex = 800;
+                 //map.options.minZoom = 14;
+                 //console.log("adfasfsadfasfasdfasfdasdfsafasdfsafasfasfsafsa");
+                 var accessToken = "pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw";
+           //  var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/bipad/tiles/{z}/{x}/{y}?access_token='+accessToken, {
+           //        attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+           // }).addTo(map);
+             L.control.scale({position:'bottomright',metric:true,imperial:false}).addTo(map);
+             L.control.zoom({position:'bottomright'}).addTo(map);
+
+
+           var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvhnbms0ulh1fngemx4xaui/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw').addTo(map);
+           // .addTo(map);
+                 var osm = L.tileLayer('https://a.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png', {
+                   attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+                   // pane:"baseLayerPane"
+                 });
+                 googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                   maxZoom: 20,
+                   subdomains:['mt0','mt1','mt2','mt3'],
+                   pane:"baseLayerPane"
+                 });
+                 googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                   maxZoom: 20,
+                   subdomains:['mt0','mt1','mt2','mt3'],
+                   pane:"baseLayerPane"
+                 });
+                 googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                   maxZoom: 20,
+                   subdomains:['mt0','mt1','mt2','mt3'],
+                   pane:"baseLayerPane"
+                 });
+                 googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+                   maxZoom: 20,
+                   subdomains:['mt0','mt1','mt2','mt3'],
+                   pane:"baseLayerPane"
+                 });
+
+//end initializing map
+
+//admin boundary layers map Layer
+
+          // fed_url_prov="https://bipad.nepware.com/api/v1/municipality/?format=geojson";
+          // fed_url_district="https://bipad.nepware.com/api/v1/district/?format=geojson";
+
+//removing all layers
+          function removeAllLayers(){
+            if(map.hasLayer(district)){
+              map.removeLayer(district)
+            }
+            if(map.hasLayer(municipality)){
+              map.removeLayer(municipality)
+            }
+            map.eachLayer(function (layer) {
+              console.log(layer);
+              if(layer==province||layer==district||layer==municipality||layer==mapboxTiles){
+
+
+              }else{
+
+                map.removeLayer(layer);
+
+              }
+            });
+            // map.addLayer(province);
+            $('.legend-list').html('');
+          }
+
+            //console.log(response);
+            function highlight (layer) {
+        			  layer.setStyle({
+                  fillColor:"green",
+                  fillOpacity:0.5,
+                  weight: 1,
+                  opacity: 0.2,
+                  color: 'black',
+        				  dashArray: ''
+        		    });
+            }
+            function resetHighlight (layer) {
+        			  layer.setStyle({
+        				     weight: 1,
+        				     dashArray: ''
+        		    });
+            }
+
+
+          //   municipality = new L.geoJson.ajax(fed_url_prov,
+          //    {
+          //
+          //        onEachFeature: function (feature, layer) {
+          //          layer.setStyle({
+          //            fillColor:"blue",
+          //            fillOpacity:0.1,
+          //            weight: 1,
+          //            opacity: 0.2,
+          //            color: 'black',
+          // //dashArray: '3'
+          //
+          //              });
+          //
+          //              layer.on("click",function(){
+          //                //console.log(layer.feature);
+          //                var mun= layer.feature.properties.title;
+          //                console.log(mun);
+          //                //if(layer.feature.socioValue!=undefined){
+          //                  //console.log(socioValue);
+          //                  if($(".compare-wrapper").css('display')=="block"){
+          //                    highlight(layer);
+          //
+          //                    $.ajax({
+          //                        // async:false,
+          //                        url: base_url+'/risk_profile/socio/'+mun,
+          //                        success: function(result) {
+          //                          console.log(result);
+          //                          if(result.length!=0){
+          //                            console.log(result[0].noFacilityCom);
+          //
+          //
+          //
+          //
+          //                            dataset=[
+          //                                {label: "No Facility", count: result[0].noFacilityCom},
+          //                                {label: "Atleast One", count: result[0].oneAtleastCom},
+          //                                {label: "checkbox", count: result[0].radioCom},
+          //                                {label: "Television", count: result[0].televisionCom},
+          //                                {label: "Cablet", count: result[0].cabletCom},
+          //                                {label: "Computer", count: result[0].computerCom},
+          //                                {label: "Internet", count: result[0].internetCom},
+          //                                {label: "Telephone", count: result[0].telegraphCom},
+          //                                {label: "Mobile", count: result[0].mobileCom},
+          //                              ];
+          //                            createChart(dataset)
+          //                          }else{
+          //
+          //
+          //                          }
+          //
+          //                        }
+          //                    });
+          //
+          //                    //console.log(data);
+          //                  }
+          //                  else{
+          //                    //resetHighlight(layer);
+          //                  }
+          //
+          //
+          //
+          //                //}
+          //              });
+          //        }
+          //
+          //  });
+
+  //map.addLayer(province);
+
+//   district = new L.geoJson.ajax(fed_url_district,{
+//
+//        onEachFeature: function (feature, layer) {
+//          layer.setStyle({
+//            fillColor:"blue",
+//            fillOpacity:0.1,
+//            weight: 1,
+//            opacity: 0.2,
+//            color: 'black',
+// //dashArray: '3'
+//
+//              });
+//        }
+//
+//  });
+
+ //map.addLayer(district);
+
+
+ // Set vectorTileOptions
+ vectorTileOptions = {
+ tms:true,
+ vectorTileLayerStyles: {
+ 'District': function() {
+ return {
+   fillColor:"blue",
+   fillOpacity:0,
+   weight: 1,
+   opacity: 1,
+   color: '#a3b7e3',
+   fill: true,
+ }
+ },
+ 'Province': function() {
+ return {
+   fillColor:"blue",
+   fillOpacity:0,
+   weight: 1.7,
+   opacity: 1,
+   color: '#a3b7e3',
+   fill: true,
+ }
+ },
+ 'Municipality': function() {
+ return {
+   fillColor:"blue",
+   fillOpacity:0,
+   weight: 1,
+   opacity: 1,
+   color: '#a3b7e3',
+   fill: true,
+ }
+ },
+ },
+ interactive: true,	// Make sure that this VectorGrid fires mouse/pointer events
+ pane:"baseLayerPane",
+ getFeatureId: function(feature) {
+    return feature.properties.id;
+  }
+ }
+
+ var name;
+ 		var clearHighlight = function(name) {
+      console.log(name);
+ 			if (name) {
+ 				district.resetFeatureStyle(name);
+ 			}
+ 			name = null;
+ 		};
+
+ // Creating the full vectorTile url
+ var provinceUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var districtUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+ var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+
+
+ // Creating the Leaflet vectorGrid object
+ province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions).addTo(map);
+ district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions);
+ municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions);
+
+ //map.fitBounds(province.getBounds());
+ function AdminLayerPopup(e, addPopup, name){
+   if(addPopup){
+     adminPopup = L.popup()
+       .setContent('Province: '+e.layer.properties.name)
+       .setLatLng(e.latlng)
+       .openOn(map);
+   }else{
+      console.log(adminPopup);
+      map.removeLayer(adminPopup);
+   }
+
+
+
+ }
+
+function highlightLayers(layer, featureName){
+  console.log(feaureName);
+  layer.setFeatureStyle(featureName, {
+            weight: 2,
+            color: 'red',
+            opacity: 1,
+            fillColor: 'red',
+            fill: true,
+            //radius: 6,
+            fillOpacity: 0.5
+    })
+}
+
+
+
+ // Define the action taken once a polygon is clicked. In this case we will create a popup with the camping name
+ province.on('mouseover', function(e) {
+   //console.log(e.layer.properties);
+     //AdminLayerPopup(e,true,'PROV_NAME');
+
+ }).on('mouseout',function(e){
+    //AdminLayerPopup(e,false,'PROV_NAME');
+ });
+
+
+   district.on('mouseover', function(e) {
+     //console.log(e.layer.properties);
+       //AdminLayerPopup(e,true, 'DISTRICT');
+
+   }).on('mouseout',function(e){
+      //AdminLayerPopup(e,false, 'DISTRICT');
+   });
+
+
+     municipality.on('click', function(e) {
+       //console.log(e.layer.properties);
+
+       if($(".compare-wrapper").css('display')=="block"){
+                         //highlightLayers;
+
+                         municipality.setFeatureStyle(e.layer.properties.id, {
+                                   weight: 2,
+                                   color: 'red',
+                                   opacity: 1,
+                                   fillColor: 'red',
+                                   fill: true,
+                                   //radius: 6,
+                                   fillOpacity: 0.5
+                           })
+                           //end
+                         var mun = e.layer.properties.GaPa_NaPa;
+                         $.ajax({
+                             // async:false,
+                             url: base_url+'/risk_profile/socio/'+mun,
+                             success: function(result) {
+                               console.log(result);
+                               if(result.length!=0){
+                                 console.log(result[0].noFacilityCom);
+
+
+
+
+                                 dataset=[
+                                     {label: "No Facility", count: result[0].noFacilityCom},
+                                     {label: "Atleast One", count: result[0].oneAtleastCom},
+                                     {label: "Radio", count: result[0].radioCom},
+                                     {label: "Television", count: result[0].televisionCom},
+                                     {label: "Cablet", count: result[0].cabletCom},
+                                     {label: "Computer", count: result[0].computerCom},
+                                     {label: "Internet", count: result[0].internetCom},
+                                     {label: "Telephone", count: result[0].telegraphCom},
+                                     {label: "Mobile", count: result[0].mobileCom},
+                                   ];
+                                 createChart(dataset,mun)
+                               }else{
+
+
+                               }
+
+                             }
+                         });
+
+                         //console.log(data);
+                       }
+                       else{
+                         //resetHighlight(layer);
+                       }
+
+
+         L.popup()
+           .setContent(e.layer.properties.GaPa_NaPa)
+           .setLatLng(e.latlng)
+           .openOn(map);
+       });
+
+
+ // Add the vectorGrid to the map
+ //province.addTo(map);
+ //district.addTo(map);
+ //municipality.addTo(map);
+
+
+  //admin boundary layers map Layer end
+
+//required functions
+
+    function resetStyle(){
+      return {
+        fillColor:"blue",
+        fillOpacity:0,
+        weight: 1,
+        opacity: 0.2,
+        color: 'black',
+        fill: true,
+      }
+    }
+
+           function getColor(d) {          //getting color according to data density
+             return d > 1000 ? '#800026' :
+                    d > 500  ? '#BD0026' :
+                    d > 200  ? '#E31A1C' :
+                    d > 100  ? '#FC4E2A' :
+                    d > 50   ? '#FD8D3C' :
+                    d > 20   ? '#FEB24C' :
+                    d > 10   ? '#FED976' :
+                               '#FFEDA0';
+                }
+
+                function socioStyle(number) {   //creating style
+
+                      return {
+                      fillColor: getColor(number),
+                      weight: 2,
+                      opacity: 1,
+                      color: 'white',
+                      dashArray: '3',
+                      fillOpacity: 0.7,
+                      fill:true
+                    };
+
+                }
+
+
+                function riskgetColor(d) {
+                           //getting color according to data density
+                  return d > 1 ? '#800026' :
+                         d > 0.9  ? '#BD0026' :
+                         d > 0.8  ? '#E31A1C' :
+                         d > 0.6  ? '#FC4E2A' :
+                         d > 0.4   ? '#FD8D3C' :
+                         d > 0.2   ? '#FEB24C' :
+                         d > 0   ? '#FED976' :
+                                    '#FFEDA0';
+                     }
+
+                     function riskStyle(number) {   //creating style
+
+                           return {
+                           fillColor: riskgetColor(number),
+                           weight: 2,
+                           opacity: 1,
+                           color: 'white',
+                           dashArray: '3',
+                           fillOpacity: 0.7,
+                           fill:true
+
+                         };
+
+                     }
+
+                     function earthRiskgetColor(d) {
+                                //getting color according to data density
+                       return d > 3 ? '#800026' :
+                              d > 2.5  ? '#BD0026' :
+                              d > 2  ? '#E31A1C' :
+                              d > 1.5  ? '#FC4E2A' :
+                              d > 1   ? '#FD8D3C' :
+                              d > 0.5   ? '#FEB24C' :
+                              d > 0   ? '#FED976' :
+                                         '#FFEDA0';
+                          }
+
+                     function earthRiskStyle(number) {   //creating style
+
+                           return {
+                           fillColor: earthRiskgetColor(number),
+                           weight: 2,
+                           opacity: 1,
+                           color: 'white',
+                           dashArray: '3',
+                           fillOpacity: 0.7,
+                           fill:true
+
+                         };
+
+                     }
+
+
+          function loadSocioData(socioid,parent_id){     //loding socia data in map layers
+            //console.log(feature);
+
+            $('.progress-list').html('');
+            fed_url_api=base_url+"/risk_profile/Newfile/"+socioid;
+
+                          socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
+                          //console.log(socioid1);
+                          $.ajax({
+                              // async:false,
+                              url: fed_url_api,
+                              success: function(result) {
+
+                                //console.log(result);
+                                console.log(Math.round(result.avg));
+                                avg_val=(Math.round(result.avg)/result.sum)*100;
+
+
+
+
+
+
+                                //var features = municipality._layers;
+                                var visual_html='';
+                                if($('#'+socioid).hasClass('nt_loaded')){
+                                  for(var i=0;i<result.data.length;i++){
+
+                                      var val_now=result.data[i][socioid1];
+
+
+
+                                      visual_html+='<div class="progress-warpper">'+
+                                          '<div class="progress skill-bar ">'+
+                                              '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(Math.round(val_now)/result.sum)*100+'%;" aria-valuenow="'+(Math.round(val_now)/result.sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
+                                              '</div>'+
+                                          '</div>'+
+                                          '<span class="skill">'+result.data[i]["name"]+' :<i class="val">'+val_now+'</i></span>'+
+                                      '</div>';
+
+
+
+
+
+                                     municipality.setFeatureStyle(result.data[i]["municipalityId"], socioStyle(parseInt(result.data[i][socioid1])));
+
+
+
+
+                               }
+
+                               $('#'+parent_id).attr('data-currentLayer','municipality')
+                               $('#'+parent_id).attr('data-result',JSON.stringify(result.data))
+                               $('#'+parent_id).prop('checked',true);
+
+
+
+                                visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
+                                    '<span class="average-text"> National Average</span>'+
+                                '</div>';
+                                //console.log(visual_html);
+                                //console.log(avg_val);
+
+                                $('.progress-list').append(visual_html);
+
+                                $('#'+socioid).removeClass('nt_loaded');
+
+                              }else{
+                                for(var j=0;j<result.data.length;j++){
+                                    municipality.setFeatureStyle(result.data[j]["municipalityId"], resetStyle());
+                                }
+
+                                $('#'+parent_id).attr('data-currentLayer','');
+                                $('#'+parent_id).attr('data-result','');
+                                $('#'+parent_id).prop('checked',false);
+                              //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
+                                $('#'+socioid).addClass('nt_loaded');
+                              }
+
+                        }
+                      });
+                      //new ajax
+
+                      var legend_html='<div class="legend-wrapper">'+
+                          '<div class="buffer-header">'+
+                              '<h4>'+socioid+'</h4>'+
+                              '<span><i class="ion ion-md-close"></i></span>'+
+                          '</div>'+
+                          '<ul>'+
+                              '<li class="satelite"><span style="background-color:#FFEDA0;"></span><a href="#">0-10</a></li>'+
+                              '<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">10-20</a></li>'+
+                              '<li class="outdoor"><span style="background-color:#FEB24C;"></span><a href="#">20-50</a></li>'+
+                              '<li class="street"><span style="background-color:#FD8D3C;"></span><a href="#">50-100</a></li>'+
+                              '<li class="light"><span style="background-color:#FC4E2A;"></span><a href="#">100-200</a></li>'+
+                              '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">200-500</a></li>'+
+                              '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">500-1000 </a></li>'+
+                              '<li class="light"><span style="background-color:#800026;"></span><a href="#">1000+</a></li>'+
+
+                          '</ul>'+
+                      '</div>';
+
+                      $('.legend-list').append(legend_html);
+
+
+
+
+          }
+
+
+
+          function loadHdiData(risk_id,id,parent_id,name){     //loding socia data in map layers
+           console.log(risk_id);
+
+
+
+            $('#'+id).addClass('loaded_layer');
+            fed_url_api=base_url+"/risk_profile/Risk";
+
+                          // socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
+                          //console.log(socioid1);
+                          $.ajax({
+                              // async:false,
+                              url: fed_url_api,
+                              success: function(result) {
+
+                                var fieldname="avg"+risk_id
+                                // console.log(fieldname);
+                                 // console.log(result[fieldname]);
+                                 if(risk_id=="riskScore"){
+                                   var avg_val=(Math.round((result[fieldname]/result.maxriskScore)*100));
+                                 }else{
+                                   var avg_val=(Math.round(result[fieldname]*100));
+                                 }
+
+                              //  console.log(avg_val);
+                                // var features = district._layers;
+                                var visual_html='';
+
+                                if($('#'+id).hasClass('nt_loaded')){
+                                //  console.log('nt');
+                                  //district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i]['hdi'])));
+
+
+                                  for(var i=0;i<result.results.length;i++){
+
+                                       if(risk_id=="riskScore"){
+                                           val=Math.round((result.results[i][risk_id]/result.maxriskScore)*100);
+                                        }else{
+
+                                          val=Math.round((result.results[i][risk_id])*100);
+                                          }
+                                      visual_html+='<div class="progress-warpper">'+
+                                          '<div class="progress skill-bar ">'+
+                                              '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+val+'%;" aria-valuenow="'+result.results[i][risk_id]+'" aria-valuemin="0" aria-valuemax="100">'+
+                                              '</div>'+
+                                          '</div>'+
+                                          '<span class="skill">'+result.results[i]['district']+' :<i class="val">'+result.results[i][risk_id]+'</i></span>'+
+                                      '</div>';
+                                      if(risk_id=="riskScore"){
+                                        district.setFeatureStyle(result.results[i]["districtId"], earthRiskStyle(parseFloat(result.results[i][risk_id])));
+                                      }else{
+                                        district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i][risk_id])));
+                                      }
+
+
+
+
+                                    //  console.log(result.results[i]['hdi']);
+
+                                      //features[feature].feature.socioValue = parseFloat(result.results[i][risk_id]);
+                                      //console.log(features[feature].feature);
+
+
+
+
+
+                                  }
+
+                                  $('#'+parent_id).attr('data-currentLayer','district')
+                                  $('#'+parent_id).attr('data-result',JSON.stringify(result.results))
+                                  $('#'+parent_id).prop('checked',true);
+
+
+                                visual_html+='<div class="barchart-line" style="left:'+avg_val+'%">'+
+                                    '<span class="average-text"> National Average</span>'+
+                                '</div>';
+                                //console.log(visual_html);
+                                //console.log(avg_val);
+
+
+                                $('.progress-list').html(visual_html);
+
+
+                                //creating legend-list
+                                 console.log(risk_id);
+                                var legend_html='<div class="legend-wrapper">'+
+                                    '<div class="buffer-header">'+
+                                        '<h4>'+name+'</h4>'+
+                                        '<span><i class="ion ion-md-close"></i></span>'+
+                                    '</div>'+
+                                    '<ul>';
+                                    if(risk_id=='riskScore'){
+
+                                      legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.5</a></li>'+
+                                                    '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.5-1</a></li>'+
+                                                    '<li class="outdoor"><span style="background-color:#FD8D3C;"></span><a href="#">1-1.5</a></li>'+
+                                                    '<li class="street"><span style="background-color:#FC4E2A;"></span><a href="#">1.5-2</a></li>'+
+                                                    '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">2-2.5</a></li>'+
+                                                    '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">2.5-3</a></li>'+
+                                                    '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 3+ </a></li>';
+                                    }else{
+
+                                      legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.2</a></li>'+
+                                                    '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.2-0.4</a></li>'+
+                                                    '<li class="outdoor"><span style="background-color:#FD8D3C;"></span><a href="#">0.4-0.6</a></li>'+
+                                                    '<li class="street"><span style="background-color:#FC4E2A;"></span><a href="#">0.6-0.8</a></li>'+
+                                                    '<li class="light"><span style="background-color:#E31A1C;"></span><a href="#">0.8-0.9</a></li>'+
+                                                    '<li class="light"><span style="background-color:#BD0026;"></span><a href="#">0.9-1</a></li>'+
+                                                    '<li class="light"><span style="background-color:#800026;"></span><a href="#"> 1+ </a></li>';
+                                    }
+
+
+
+                      legend_html+='</ul>'+
+                                '</div>';
+
+                                $('.legend-list').append(legend_html);
+
+                                //legend end
+
+
+
+
+
+                              $('#'+id).removeClass('nt_loaded');
+
+                            }else{
+
+
+                              for(var i=0;i<result.results.length;i++){
+                                  district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
+                              }
+                            //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
+                            $('.legend-list').html('');
+                            $('#'+parent_id).attr('data-currentLayer','');
+                            $('#'+parent_id).attr('data-result','');
+                            $('#'+parent_id).prop('checked',false);
+
+                              $('#'+id).addClass('nt_loaded');
+                            }
+
+
+
+                        }
+                      });
+
+
+
+          }
+
+
+
+
+
+    function generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level){
+      var html = "";
+      for(var i=0; i<data.length;i++){
+
+        html +='<div class="progress-warpper">'+
+            '<div class="custom-control custom-checkbox">'+
+
+                '<input type="checkbox" class="custom-control-input sub_cat_ex '+layerName+'_child" value="'+layerName+'" data-sub="'+data[i].label.replace(' ','_')+'" id="progress_'+i+'" checked></input>'+
+               '<label class="custom-control-label" for="progress_'+i+'" data-tab="capacity-popup"> </label>'+
+            '</div>'+
+            '<div class="progress-title">'+
+                '<label>'+data[i].label.replace("_"," ")+' </label>'+
+                '<i class="ion ion-md-information-circle" data-toggle="popover" data-content=""></i>'+
+                // '<div class="info">'+
+                //     '<div class="info-content">'+
+                //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat egestas ipsum, nec consequat mi euismod porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin porta iaculis nisi accumsan faucibus. Donec elementum risus sit amet lectus cursus, non dictum mauris pretium.'+
+                //   '</div>'+
+                '</div>'+
+
+            '<div class="progress skill-bar">'+
+                '<div class="progress-bar progress-bar-success" role="progressbar" style="width:'+(parseInt(data[i].count)/total_sum)*100+'%;" aria-valuenow="'+(parseInt(data[i].count)/total_sum)*100+'" aria-valuemin="0" aria-valuemax="100">'+
+                '</div>'+
+            '</div>'+
+            '<span class="skill">currently showing :<i class="val">'+data[i].count+'</i></span>'+
+            '</div>'+
+        '</div>';
+
+      }
+
+
+
+
+              $('#subcatChartContainer').html(html);
+    }
+
+
+    function generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level){
+
+              filter_arr=filter_resources.split(",");
+            //  console.log(filter_arr);
+              var html ='<h4>Filter</h4>';
+              html+='<div class="filter-list">';
+                  html+='<ul>';
+              for(var i=0;i<filter_arr.length;i++){
+                if(filter_arr[i].replace(/\s/g,"_")=='number_of_Beds'){
+
+                  html+='<div id="slider'+i+'" class="slider filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" data-sum="'+total_sum+'" name="'+layerName+'"></div>'
+                  // html+='<div class="filter-list">'+
+                  //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+                  //   '<div class="slider filter_resource_btn">'+
+                  //       '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
+                  //       '<div class="slider-range filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'"></div>'+
+                  //   '</div>'+
+                  // '</div>';
+
+                }else{
+
+                  html+='<li>'+
+                      '<a href="#">'+filter_arr[i]+'</a>'+
+                      // '<button type="button" class="btn btn-sm btn-toggle filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'" data-toggle="button" aria-pressed="false" autocomplete="off">'+
+                      //     '<div class="handle"></div>'+
+                      //  '</button>'+
+                      '<label class="switch">'+
+                          '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" data-sum="'+total_sum+'" name="'+layerName+'"> </input>'+
+                          '<span class="slider-handle round"></span>'+
+                      '</label>'+
+                      // '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'"> </input>'+
+                  '</li>';
+        }
+
+                }
+
+
+
+
+            // html+='<div class="filter-list">'+
+            //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+            //   '<div class="slider">'+
+            //       '<input type="text" class="amount" />'+
+            //       '<div class="slider-range"></div>'+
+            //   '</div>'+
+            // '</div>';
+
+
+
+
+              html+='</ul>';
+
+            $('#subcatSwitchContainer').html(html);
+
+
+    }
+
+function createSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level){
+
+// console.log(data);
+$('.progress-bar').css('background-color','#1672c6');
+if(level=='both'){
+  generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level);
+  generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level);
+
+}else if(level=='subcategory'){
+
+  generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level);
+
+  }
+  else{
+    generateSubcategorySwitch(data,total_sum,layerName,filter_resources,layer_icon,level);
+  }
+
+
+
+//waiting for element to created
+
+// setTimeout(function(){
+
+$(".slider").each(function () {
+
+
+  var $this = $(this).parent().children();
+  var id=$(this).attr('id');
+//  console.log($this);
+  //nouislider
+
+  var range = document.getElementById(id);
+  //console.log(range);
+
+  noUiSlider.create(range, {
+      start: [20, 80],
+      connect: true,
+      range: {
+          'min': 0,
+          'max': 100
+      }
+  }).on("set.one",function(){
+      var id_slider=$(this)[0]['target'].id;
+    // console.log("setone callleddddd");
+     console.log($('#'+id_slider)[0].noUiSlider.options.start);
+
+     console.log($('#'+id_slider));
+
+
+    var layerName=$('#'+id_slider).attr('name');
+    var layer_icon=$('#'+id_slider).attr('data-icon');
+    var total_sum=$('#'+id_slider).attr('data-sum');
+    //console.log(layerName);
+
+    //function
+    var features_data=[];
+    var sub_layer_name=[];
+
+    if(map.hasLayer(window["filter_resource_"+layerName])){
+      //console.log('aa');
+
+      map.removeLayer(window["filter_resource_"+layerName]);
+
+    }
+    $. each($('.sub_cat_ex:checked'), function(){
+
+      var name_sub=$(this).attr('data-sub');
+      sub_layer_name.push($(this).attr('data-sub'));
+      //  console.log(name_sub);
+      layersdata=window[name_sub]._layers
+      //console.log(window[name_sub]._layers);
+      $.each(layersdata, function (feature) {
+
+        //console.log(layersdata[feature].feature);
+        features_data.push(layersdata[feature].feature);
+
+      });
+
+    });
+
+    var layer_data1={
+       "type": "FeatureCollection",
+       "features":features_data
+
+    };
+
+
+    //console.log(layer_icon);
+
+     //layer_data1=window[layerName].toGeoJSON();
+    // console.log(layer_data1);
+    var layer_data = jQuery.extend(true, {}, layer_data1);
+    // console.log(layer_data);
+    var checkedList = [];
+    $. each($("input[class='filter_resource_btn']:checked"), function(){
+
+    checkedList. push($(this). val());
+    });
+     //console.log(checkedList);
+    //console.log(layer_data.features.length);
+    for(var k=layer_data.features.length-1;k>=0;k--){
+      var delete_count=0;
+      for(var i=0;i<checkedList.length;i++){
+        //console.log(layer_data.features[k].properties[checkedList[i]]);
+
+        if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
+            //console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
+    //console.log("entered");
+            delete_count++;
+            //console.log(delete_count);
+
+        }
+
+
+      }
+      //console.log(delete_count);
+        if(delete_count==0){
+          //console.log("deleted");
+            //console.log("delete count 00");
+            //console.log(k);
+            layer_data.features.splice(k,1);
+
+        }
+
+
+    }
+    //console.log(layer_data);
+     filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
+    //function
+
+
+
+  });
+  //nouislider end
+
+    //$this is a reference to .slider in current iteration of each
+
+    //find any .slider-range element WITHIN scope of $this
+          // $(".slider-range", $this).slider({
+          //     range: true,
+          //     min: 0,
+          //     max: 1000,
+          //     values: [300, 600],
+          //     slide: function (event, ui) {
+          //         // find any element with class .amount WITHIN scope of $this
+          //         $(".amount", $this).val( ui.values[0] + " - " + ui.values[1]);
+          //     }
+          // });
+          // $(".amount").val($(".slider-range").slider("values", 0) + " - " + $(".slider-range").slider("values", 1));
+
+});
+// }, 100);
+
+//end
+
+}
+
+
+
+
+          //function chart-bar
+  function  CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon){
+
+             //console.log(subcat);
+             //console.log(geojson.features);
+            features=geojson.features;
+          //  subcat_arr=subcat.split(",");
+              subcat_arr=subcat;
+          //  console.log(subcat_arr);
+              var chartData=[];
+              //subcat_arr_count =[];
+              for(var k=0;k<subcat_arr.length;k++){
+                //console.log(subcat_arr[k]);
+                //subcat_arr_count[k][subcat_arr[k]+"_count"] = 0;
+                chartData.push({"label":subcat_arr[k].trim(),"count":0});
+
+              }
+              //console.log(subcat_arr);
+
+              $.each(features, function (feature) {
+                for(var i=0;i<subcat_arr.length;i++){
+                  if(level=='subcategory' || level=='both'){
+                    if(subcat_arr[i].trim()==features[feature].properties.type.trim()){
+                      chartData[i].count++;
+
+
+                    }
+                  }else{
+                    //console.log(features[feature].properties[subcat_arr[i]].trim());
+                    if(features[feature].properties[subcat_arr[i]].trim()=='yes'){
+                      //console.log(subcat);
+                      chartData[i].count++;
+
+
+                    }
+                  }
+
+
+                }
+
+
+
+              });
+
+
+              createSubcategoryChart(chartData,total_sum,layerName,filter_resources,layer_icon,level);
+              // if(charttype=='pie'){
+              //
+              //   createChart(chartData);
+              // }else{
+              //   createBarChart(chartData,'barchart');
+              // }
+
+            }
+
+
+
+  //add legend
+
+  function addLegend(legend_content){
+
+    if (legend_content=="earthquake"){
+
+      var url="{% static 'mappage/images/earthquake_legend.png' %}";
+
+    }else{
+      console.log(legend_content.replace(/_/g,""));
+      console.log(geo_url);
+      var url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+legend_content+'&';
+    }
+
+     var legend_html='<div class="legend-wrapper">'+
+         '<div class="buffer-header">'+
+             // '<h4>'+legend_content.replace(/_/g," ")+'</h4>'+
+             '<h4>Flood Depth</h4>'+
+             '<span><i class="ion ion-md-close"></i></span>'+
+         '</div>'+
+         '<ul>'+
+             '<li class="satelite"></span><img src="'+url+'"></img></li>'+
+
+
+         '</ul>'+
+     '</div>';
+
+     $('.legend-list').html(legend_html);
+
+  }
+
+
+  //end
+
+// required functions end
+
+
+
+
+//acccess to communication
+$(".socio").on('click',function(){
+
+  removeAllLayers();
+  var id = $(this).attr("id");
+  $('.legend-list').html('');
+  var parent_id = $(this).attr("data-parent");
+  //console.log(id);
+  map.flyTo([28.410728397237914,84.4024658203125],8)
+  loadSocioData(id,parent_id);
+
+
+});
+$(".vul_hdi").on('click',function(){
+  removeAllLayers();
+  var id = $(this).attr("data-score");
+  var id_input = $(this).attr("id");
+  var parent_id = $(this).attr("data-parent");
+  var name = $(this).attr("data-legendname");
+  $('.legend-list').html('');
+  //console.log(id);
+  map.flyTo([28.410728397237914,84.4024658203125],8)
+  loadHdiData(id,id_input,parent_id,name);
+
+
+});
+
+//end access
+
+
+$('.parent_vul').on('click',function(){
+
+  var current_layer=$(this).attr('data-currentLayer');
+  var resultt=$(this).attr('data-result');
+  if(current_layer!=""){
+    var result=JSON.parse(resultt);
+    //console.log(JSON.parse(result));
+    if(current_layer=='municipality'){
+      dataid='municipalityId';
+      $(".socio").prop('checked',false);
+    }else{
+        dataid='districtId';
+    }
+    for(var i=0;i<result.length;i++){
+        window[current_layer].setFeatureStyle(result[i][dataid], resetStyle());
+    }
+    $(".vul_hdi").prop('checked',false);
+
+  }
+
+
+})
+
+//end vulnerability map Layer
+
+//start of hazard layer
+
+    var hazard_one_click=0;
+    var hazard_previous_id = '';
+    previous_hazard_layer = null;
+
+
+    $('#hazard_popup_html').on('click','.hazard_geo',function(){
+
+      removeAllLayers();
+      console.log($(this).closest(".card").children()[0].id);
+      var hazard_id = $(this).closest(".card").children()[0].id;
+      var id = $(this).attr('data-workspace');
+      var center = eval($(this).attr('data-center'));
+      var layername = $(this).attr('data-layername');
+      //remove previous layer on radio change
+
+
+      if($(this).attr("haslayer")){
+        //console.log('onclicktrue');
+        if(map.hasLayer(window[layername])){
+
+             map.removeLayer(window[layername]);
+               $('.legend-list').html('');
+               $('.hazard_list').attr('hasLayer',false);
+               $('.hazard_list').attr('data-currentLayer','');
+
+               // map.flyTo([28.410728397237914,84.4024658203125], 7);
+        }else{
+
+            addLegend(layername);
+
+            //map.addLayer(window[layername]);
+            $('.hazard_list').attr('hasLayer',true);
+            $('.hazard_list').attr('data-currentLayer',layername);
+            window[layername].addTo(map);
+
+            if(previous_hazard_layer!=null && previous_hazard_layer!=window[layername]){
+              $('.hazard_list').attr('hasLayer',false);
+              $('.hazard_list').attr('data-currentLayer','');
+              map.removeLayer(previous_hazard_layer);
+
+            }
+
+            previous_hazard_layer = window[layername];
+            $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
+
+
+            //$('.center').attr('data-name-trans',layername);
+            //console.log('onclick');
+        }
+        $(this).attr("haslayer",false);
+      }else{
+      if(id=='earthquake'){
+      //  console.log('enteref');
+
+
+                 window[layername] = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
+                 // trick: expose name via options, used in events
+                 name: 'Seismic Hazard PGA (g)',
+                 overlay: true,
+                 attribution: '',
+                 legend: true,
+                 printable: true,
+                 zIndex:9996,
+                 ext: '/media/ext/js/global-hazard.js',
+                 pane:"baseLayerPane",
+                 maxZoom: 15,
+                 minZoom: 2,
+
+             }).addTo(map).setOpacity(0.5);
+
+               map.flyTo(center,7);
+             // var imgurl="{% static 'mappage/images/earthquake_legend.png' %}";
+             // var legend_html='<div class="legend-wrapper">'+
+             //     '<div class="buffer-header">'+
+             //         // '<h4>'+legend_content.replace(/_/g," ")+'</h4>'+
+             //         '<h4>GSHM Earthquake</h4>'+
+             //         '<span><i class="ion ion-md-close"></i></span>'+
+             //     '</div>'+
+             //     '<ul>'+
+             //         '<li class="satelite"></span><img src="'+imgurl+'"></img></li>'+
+             //
+             //
+             //     '</ul>'+
+             // '</div>';
+             //
+             // $('.legend-list').html(legend_html);
+             $('.hazard_list').attr('hasLayer',true);
+             $('.hazard_list').attr('data-currentLayer',layername);
+             addLegend(layername);
+          $(this).attr("haslayer",false);
+
+          $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
+          //$('.center').attr('data-name-trans',layername);
+
+
+      }else{
+      //  console.log(id);
+
+        geo_url='https://apps.naxa.com.np/geoserver/wms';
+
+        window[layername]=L.tileLayer.betterWms(geo_url, {
+                                layers:id+":"+layername,
+                                transparent: true,
+                                format: 'image/png',
+                                // pane:"wmsPane"
+                          }).addTo(map);
+
+                          $('.hazard_list').attr('hasLayer',true);
+                          $('.hazard_list').attr('data-currentLayer',layername);
+                          //console.log(previous_hazard_layer);
+                          if(previous_hazard_layer!=null && previous_hazard_layer!=window[layername]){
+                            //console.log("entered previous");
+                            // $('.hazard_list').attr('hasLayer',false);
+                            // $('.hazard_list').attr('data-currentLayer','');
+                            map.removeLayer(previous_hazard_layer);
+                          }
+        previous_hazard_layer = window[layername];
+
+        $(this).attr("haslayer",true);
+      //  console.log($('#'+hazard_id).find('.center'));
+        $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
+        addLegend(layername);
+        // $('.center').attr('data-name-trans',layername);
+
+        //   window[layername].on('load',function(){
+        //
+        // });
+
+        if(hazard_previous_id != hazard_id){
+          hazard_one_click=0;
+        }
+
+      //  console.log(id);
+      if(hazard_one_click==0){
+        if(id=="Naxa:sankhu_drone" ){
+          map.flyTo(center,18);
+          }
+          else if(id=="Naxa:bancharedanda" ){
+
+          }
+          else{
+
+            map.flyTo(center,11);
+          }
+          hazard_one_click=1;
+        }
+
+
+      }
+    }
+
+    hazard_previous_id = hazard_id;
+
+
+
+    });
+
+
+
+//end of hazard layer
+
+//start of hazard layer
+
+    $('.exposure_geo').one('click',function(){
+    //  console.log($(this).attr('id'));
+    removeAllLayers();
+
+      var layername = $(this).attr('data-layername');
+
+      if($(this).attr('id')=='hydro_1'){
+      //  console.log('entered')
+        var url='http://hydro.naxa.com.np/api/Hydropower/';
+         window[layername] = new L.geoJson.ajax(url,
+          {
+
+            pointToLayer: function(feature, latlng) {
+
+            var marker = L.circleMarker(latlng);
+            return marker;
+
+          },
+
+
+
+              onEachFeature: function (feature, layer) {
+                style=({
+                  fillColor: '#c1f441',
+                  weight: 5,
+                  opacity: 0.5,
+                  color: '#871896',
+                  radius: '5',
+                  fillOpacity: 0.9
+
+                });
+
+
+                var contentString = createPopup(feature,layername);
+                layer.bindPopup(L.popup({
+                  //closeOnClick: true,
+                  //closeButton: true,
+                  keepInView: true,
+                  autoPan: true,
+                  maxHeight: 200,
+                  minWidth: 250
+                }).setContent(contentString));
+
+                layer.setStyle(style);
+              }
+
+        });
+
+
+      }else{
+        var id = $(this).attr('data-workspace');
+
+
+        var geo_url  = $(this).attr('data-url');
+
+        //console.log(id);
+
+        window[layername]=L.tileLayer.betterWms(geo_url, {
+                                layers:id+":"+layername,
+                                transparent: true,
+                                format: 'image/png',
+                                pane:"wmsPane"
+                          });//.addTo(map);
+
+        window[layername].on('load',function(){
+         //console.log(map.hasLayer(hazard_layers));
+
+
+        });
+
+
+         console.log('drone');
+         // console.log(map.hasLayer(exposure_layers));
+
+
+
+      }
+
+
+    });
+
+    $('.exposure_geo').on('click',function(){
+      var layername = $(this).attr('data-layername');
+      var parent_id = $(this).attr('data-parent');
+      var center = eval($(this).attr('data-center'));
+        var count_check=0;
+      if($(this).attr('id')=='hydro_1' ){
+
+        // console.log()
+        if(map.hasLayer(window[layername])){
+        $('#'+parent_id).attr('data-currentLayer','');
+
+        console.log($(".infan:checked").length);
+
+        map.removeLayer(window[layername]);
+
+
+        }else{
+          $('#'+parent_id).attr('data-currentLayer',layername);
+          map.addLayer(window[layername]);
+            map.flyTo([28.410728397237914,84.4024658203125],8)
+        }
+
+
+
+
+      }else{
+        if(map.hasLayer(window[layername])){
+        $('#'+parent_id).attr('data-currentLayer','');
+        map.removeLayer(window[layername]);
+        map.flyTo([28.410728397237914,84.4024658203125],8)
+        }else{
+          $('#'+parent_id).attr('data-currentLayer',layername);
+          map.addLayer(window[layername]);
+          if($(this).attr('id')=='build_1'){
+              map.flyTo([28.410728397237914,84.4024658203125],8);
+          }else{
+              map.flyTo(center,18);
+          }
+
+        }
+      }
+
+    });
+
+//end of hazard layer
+
+
+
+function createPopup(feature,layername){
+//console.log(layername);
+  //popup content
+var contentString = '<div class="box box-primary" style="width:400px;">';
+                            // '<a href="#" style = "background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')"  class="btn btn-primary btn-xs"><b>View Details</b></a>'+
+                            //'<h6 class="profile-username text-center"></h6>';
+                            if(feature.properties['name']!=undefined){
+                              contentString += '<h6><b>'+feature.properties.name+'</b></h6>';
+                            }
+
+                            contentString +='<ul class="list-group list-group-unbordered">';
+
+  for (data in feature.properties) {
+
+  //  console.log(data);
+
+
+
+
+            if(data!='name'){
+            contentString +='<li class="list-group-item popup-list">';
+
+                              contentString +=  '<b>'+data+': </b> <a class="pull-right"> '+feature.properties[data]+'</a></li>';
+                            }
+
+                            // '<li class="list-group-item"><b>House Head Name</b> <a class="pull-right">'+feature.properties.Head_of_the_Household
+                            // +'</a></li>'+
+                            // '<li class="list-group-item"><b>Received Support Type </b> <a class="pull-right">'+feature.properties.Any_support_after_earthquake
+                            // +'</a></li>'+
+                      // '<img src="'+feature.properties.Front_Facing_Photo+'" width="400" height="280"/>'+
+
+
+}
+contentString +='</ul>';
+if(layername!="hydrpower"){
+  contentString +='<button style="display:flex; justify-content:center; margin:0.5rem auto 0 auto;"><a href="'+base_url+'/admin/risk_profile/'+layername.toLowerCase()+'/'+feature.properties['pk']+'/change/" style="background-color:#337ab7; margin:0 auto; display: inline-block; color:#fff; padding:0.1rem 1rem; font-size:0.775rem; text-transform:uppercase;" class="btn btn-primary">Edit</a></button>';
+
+}
+contentString +='</div></div></div>';
+return contentString;
+//popup content stop
+
+
+}
+
+
+
+//start of resource layer
+$.get(base_url+'/risk_profile/Layer',function(data){
+
+                 //console.log(data);
+
+              //   console.log(data);
+
+                for(var i=0;i<data.results.length;i++){
+                  var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
+                  layer_icon= data.results[i]['layerIcon']
+                  type1= data.results[i]['type'];
+                  var sub_array = data.results[i]['type'];
+
+                  //console.log(data);
+
+                  for(let i=0;i<sub_array.length;i++){
+                    window[sub_array[i]['type'].replace(' ','_')] = L.layerGroup();
+                  }
+
+                      $.ajax({
+                          url: url,
+                          //data:{"layer_icon":layer_icon, "data":data,"i":i},
+                          //data:{"layer_icon":layer_icon, "data":data,"i":i},
+
+                          data1:data.results[i],
+                          indexValue: i,
+                          layer_icon: layer_icon,
+                          type2: type1,
+                          success: function(response) {
+                          //  console.log(response);
+                          var layer_icon1 = this.layer_icon;
+                          var type = this.type2;
+
+                          var dataList = this.data1;
+                          console.log(dataList['layerTbl']);
+                          var layername=this.data1['layerTbl'];
+
+                            window[this.data1['layerTbl']] = new L.geoJson(response,
+                        {
+                            //pane:"pointsPane",
+                            pointToLayer: function(feature,Latlng)
+                                {
+
+                                        // var divicon = L.divIcon({
+                                        //     className: layer_icon1
+                                        //
+                                        // });
+
+                                        var divicon =L.divIcon({
+                                          html: '<div class="image-icon"></div>',
+                                        // Specify a class name we can refer to in CSS.
+                                            className: layer_icon1,
+                                        // Set a markers width and height.
+                                        iconSize: [52, 52]
+                                      });
+
+                                        var marker = L.marker(
+                                          Latlng,{icon:divicon});
+
+
+
+                                return marker;
+                                },
+                                onEachFeature: function (feature, layer) {
+
+                                  for(let i=0;i<type.length;i++){
+                                    //console.log(sub_array[i]['type']);
+                                    //console.log(layer);
+                                      if(type[i]['type']== feature.properties.type){
+                                          layer.addTo(window[type[i]['type'].replace(' ','_')]);
+
+
+                                      }
+                                  }
+
+
+                                  var contentString = createPopup(feature,layername);
+                                  layer.bindPopup(L.popup({
+                                    //closeOnClick: true,
+                                    //closeButton: true,
+                                    keepInView: true,
+                                    autoPan: true,
+                                    maxHeight: 200,
+                                    minWidth: 250
+                                  }).setContent(contentString));
+                                  //console.log(dataList['layerName']);
+
+
+                                }
+
+                              });
+
+
+                          }
+                      });
+
+
+                }
+
+
+   });
+
+
+  visible_layers_count=0;
+  filtered_layer_name = "";
+  var count_names = 0;
+  var count_names_total = [];
+
+   function getLayersInsidePolygon(coords,visible_layers){
+   //console.log("visible layers  ",coords);
+     $('#filtered_layer_list').html('');
+
+     $('#filtered_header').html('');
+
+
+     for(var i=0;i<visible_layers.length;i++){
+       //var layer_icon = "";
+       //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
+         var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
+         //var filter4 = new L.Filter.Within('location', L.polygon([L.latLng(27.68307, 85.4635),L.latLng(27.7213, 85.4914),L.latLng(27.72418, 85.44831)]), L.CRS.EPSG4326);
+          //filter3.toGml();
+
+          //filter1.toGml();
+          //console.log(b);
+          visible_layers[i].count=0;
+
+            layer_icon = visible_layers[i]['icon'];
+            window[visible_layers[i]['layerName']+"_filteredLayers"] = new L.WFST(
+                 {
+                   url: visible_layers[i]['url'],
+                   typeNS: visible_layers[i]["workspace"],
+                   typeName: visible_layers[i]['layerName'],
+                   crs: L.CRS.EPSG4326,
+                   geometryField: 'location',
+                   filter: filter3,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
+                   style: {
+                     color: 'blue',
+                     weight: 2
+                   },
+                   // pane:"pointsPane",
+
+                 },
+                 new L.Format.GeoJSON({
+                   crs: L.CRS.EPSG4326,
+                   pointToLayer(geoJsonPoint, latlng) {
+
+                      console.log(visible_layers[count_names]['layerName']);
+                     // console.log(geoJsonPoint.id.split(".")[0]);
+                     if(filtered_layer_name != geoJsonPoint.id.split(".")[0] && filtered_layer_name != ""){
+                       count_names++;
+
+                     }
+
+                      var divicon =L.divIcon({
+                        html: '<div class="image-icon"></div>',
+                      // Specify a class name we can refer to in CSS.
+                        className: visible_layers[count_names]['icon'],
+                      // Set a markers width and height.
+                      iconSize: [52, 52]
+                    });
+
+                      var marker = L.marker(
+                        latlng,{icon:divicon});
+
+
+
+
+
+
+                     // var divicon = L.divIcon({
+                     //     className: visible_layers[count_names]['icon']
+                     //
+                     // });
+                     // var marker = L.marker(latlng,{icon:divicon});
+                     //
+                     //
+                     //
+                     visible_layers[count_names].count++;
+                     //console.log(visible_layers[count_names]);
+                     filtered_layer_name = geoJsonPoint.id.split(".")[0];
+                     return marker;
+
+
+                   }
+                 })
+
+             ).addTo(map).on('load', function (feature, layer) {
+                // console.log(visible_layers_count);
+                 console.log( visible_layers[visible_layers_count]['layerName']);
+                 //console.log(feature.target._layers[0].feature.properties);
+                 var filterhtml = '<div id="'+visible_layers[visible_layers_count]['layerName']+'_filterlist" class="inner_wrapper" style="border: 1px solid #f3eeee; margin-top:5px;"><div class="leftSidebar-header" id="filtered_header'+visible_layers_count+'">'+
+                     '<h4>'+visible_layers[visible_layers_count]['layerName']+' ('+visible_layers[visible_layers_count]['count']+')</h4>'+
+                     '<!-- <button type="button" class="button dataShow"><i class=" ion ion-ios-expand"></i></button>'+
+                     '<button type="button" class="button sidebarClose"><i class=" ion ion-ios-arrow-up"></i></button> -->'+
+                 '</div>'+
+                 '<div class="sidebar-widget">'+
+                     '<ul class="list-content" id="filtered_layer_list'+visible_layers_count+'">'+
+
+                     '</ul>'+
+                 '</div></div>';
+
+                  $('#filtered_layer_list_container').append(filterhtml);
+                 $.each(feature.target._layers, function (i) {
+                 //  console.log(feature.target._layers[i].feature.properties.name)
+
+                 // var divicon = L.divIcon({
+                 //     className: visible_layers[visible_layers_count]['layerName']
+                 //
+                 // });
+                 // var marker = L.marker(feature.target._layers[i].feature.geometry.coordinates,{icon:divicon});
+                 // feature.target._layers[i].setIcon(marker);
+
+                 //return marker;
+
+                   var list_item="<li><a class = 'filtered_list_items' data='"+JSON.stringify(feature.target._layers[i].feature.properties)+"' data-name='"+visible_layers[visible_layers_count]['layerName']+"' center='"+JSON.stringify(feature.target._layers[i].feature.geometry.coordinates)+"' href='#' target=''>"+feature.target._layers[i].feature.properties.name+"</a></li>";
+
+                   $('#filtered_layer_list'+visible_layers_count).append(list_item);
+
+                   var contentString = createPopup(feature.target._layers[i].feature,visible_layers[visible_layers_count]['layerName']);
+                   //console.log(contentString);
+                   feature.target._layers[i].on('click',function(){
+                     console.log('clickof inside');
+                   });
+                   feature.target._layers[i].bindPopup(L.popup({
+                     //closeOnClick: true,
+                     //closeButton: true,
+                     keepInView: true,
+                     autoPan: true,
+                     maxHeight: 200,
+                     minWidth: 250
+                   }).setContent(contentString));
+
+                 });
+                 $('#filtered_layer_list_container').css('display','block');
+                 visible_layers_count++;
+
+
+
+
+                 //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
+             });
+         map.removeLayer(window[visible_layers[i]['layerName']]);
+         $("."+visible_layers[i]['layerName']+"_activeclass").removeClass("active");
+         $('#'+visible_layers[i]['layerName']+'_legend').remove();
+
+
+
+
+
+     }
+
+
+
+ }
+
+
+
+
+ $('#filtered_layer_list_container').on('click','.filtered_list_items',function(){
+   var properties = JSON.parse($(this).attr('data'));
+   var name = $(this).attr('data-name');
+   var center = JSON.parse($(this).attr('center'));
+   var lat = center[1];
+   var long = center[0];
+   map.flyTo([lat,long],18);
+   var feature = {"properties":properties}
+   var contentString = createPopup(feature,name);
+   var popup = L.popup()
+    .setLatLng([lat, long])
+    .setContent(contentString)
+    .openOn(map);
+
+ });
+
+
+
+  //draw start
+  drawnItems = new L.FeatureGroup({
+    // pane:'polygonsPane'
+  });
+
+
+  var drawControl = new L.Control.Draw({
+        position:"topleft",
+        draw: {
+
+           // disable toolbar item by setting it to false
+           polyline: false,
+           circle: false, // Turns off this drawing tool
+           rectangle: false,
+           marker: false,
+           },
+           edit: {
+                    featureGroup: drawnItems
+                }
+
+        });
+
+  map.addControl(drawControl);
+
+  map.on('draw:created', function(e) {
+    var type = e.layerType,
+      layer = e.layer;
+      map.addLayer(drawnItems);
+    drawnItems.addLayer(layer);
+    // layer.bindPopup("sadfdsa");
+
+    layer.on('click',function(){
+    //  console.log('delete clicked');
+
+      setTimeout(function(){
+
+        if($.isEmptyObject(drawnItems._layers)){
+          //  console.log($.isEmptyObject(drawnItems._layers));
+              for(var i=0;i<visible_layers.length;i++){
+
+                if(map.hasLayer(window[visible_layers[i]['layerName']+"_filteredLayers"])){
+
+                  map.removeLayer( window[visible_layers[i]['layerName']+"_filteredLayers"]);
+
+                }
+
+              }
+              visible_layers=[];
+              $('#filtered_layer_list').html('');
+              $('#filtered_layer_list_container').css('display','none');
+        }
+
+
+      }, 100);
+
+    });
+
+
+      $('.leaflet-draw').css('left','266px');
+
+
+  //  console.log(e.layer.editing.latlngs[0][0]);
+    var coordinates=e.layer.editing.latlngs[0][0];
+    getLayersInsidePolygon(coordinates,visible_layers)
+    map.fitBounds(layer.getBounds());
+  });
+  //draw end
+
+  visible_layers=[];
+  resource_filtered_global=null;
+
+  //resource layer map add
+  $(".CheckBox").on('click',function(){
+    //console.log("changed");
+    removeAllLayers();
+    //sub cat data in map
+    if($('#filtered_layer_list_container').css('display')=="none"){
+      $('.leaflet-draw').css('left','5px');
+    }
+
+
+    $('.leaflet-draw').css('display','block');
+
+    var geo_url= $(this).attr("data-url");
+
+    var geo_workspace =$(this).attr("data-workspace");
+    layerName=$(this).val();
+    var subcat =$(this).attr("data-subcat");
+    var total_sum =$(this).attr("data-count");
+    var layer_icon =$(this).attr("data-icon");
+    console.log(layer_icon);
+    var filter_resources =$(this).attr("data-filter");
+    subcat_array1=eval("["+subcat.split("[")[1].split("]")[0]+"]");
+    //console.log(subcat_array1);
+    subcat_array=[];
+    for(var i=0;i<subcat_array1.length;i++){
+      subcat_array.push(subcat_array1[i]['type']);
+
+    }
+
+    console.log($('.'+layerName+'_parent').prop('checked'));
+
+
+    if(map.hasLayer(window[layerName]) || $('.'+layerName+'_parent').prop('checked')==false){
+      console.log('entered false');
+
+       map.removeLayer(window[layerName]);
+       map.removeLayer( window[layerName+"_filteredLayers"]);
+       $('#'+layerName+'_filterlist').html('');
+
+       if($('.CheckBox:checked').length==0){
+           $('.leaflet-draw').css('display','none');
+           map.removeLayer(drawnItems);
+           drawnItems._layers={};
+           visible_layers_count=0;
+           for(var m=0;m<visible_layers.length;m++){
+
+             if(map.hasLayer(window[visible_layers[m]['layerName']+"_filteredLayers"])){
+
+               map.removeLayer( window[visible_layers[m]['layerName']+"_filteredLayers"]);
+
+
+             }
+
+           }
+           visible_layers=[];
+           $('#filtered_layer_list').html('');
+           $('#filtered_layer_list_container').css('display','none');
+       }
+
+       $("."+layerName+"_activeclass").removeClass("active");
+       $('#'+layerName+'_legend').remove();
+       for(var i=0;i<visible_layers.length;i++){
+         if(visible_layers[i].layerName==layerName){
+           visible_layers.splice(i,1);
+         }
+       }
+
+       // console.log("checkthat",$('.'+layerName+'_parent').prop('checked'));
+       if($('.'+layerName+'_parent').prop('checked')==false){
+             //console.log("inside false");
+             $('.'+layerName+'_child').prop('checked',false);
+             $('#capacity-popup').css('display','none')
+             //$('.'+layerName+'_parent').trigger('click');
+
+       }
+       else{
+           //console.log($('.Health_child'));
+           $('.'+layerName+'_child').prop('checked',true);
+           //$('#capacity-popup').find('.'+layerName+'_child').prop('checked',true);
+            // console.log("inside true");
+             //$('.'+layerName+'_parent').trigger('click');
+
+       }
+
+           }else{
+
+               for(var i=0;i<subcat_array1.length;i++){
+                 map.addLayer(window[subcat_array1[i]['type']]);
+
+
+
+               }
+
+
+              if($('.'+layerName+'_parent').prop('checked')==false){
+               $('#capacity-popup').css('display','none')
+               map.removeLayer(window["filter_resource_"+layerName]);
+             }else{
+               map.addLayer(window[layerName]);
+               visible_layers.push({"layerName":layerName,"url":geo_url,"workspace":geo_workspace,"icon":layer_icon});
+
+             }
+
+
+
+
+      //$("."+layerName+"_activeclass").addClass("active");
+      let url= geo_url +'?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER='+layerName+'&';
+    //  console.log(url)
+      //info._div.innerHTML = info._div.innerHTML+'<div id="'+layerName+'_legend" style="background:white; padding:5px;"><h6>'+layerName+'</h6><img  src="'+url+'"/></div>';
+ //console.log(info._div.innerHTML)
+
+
+
+
+      response=window[layerName].toGeoJSON();
+      CreateChartData(response,subcat_array,null,'both',total_sum,layerName,filter_resources,layer_icon);
+
+    //  console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
+      if($('.'+layerName+'_parent').prop('checked')==false){
+          //  console.log("inside false");
+            $('.'+layerName+'_child').prop('checked',false);
+            //$('.'+layerName+'_parent').trigger('click');
+
+      }
+      else{
+        //  console.log($('.Health_child'));
+          $('.'+layerName+'_child').prop('checked',true);
+          //$('#capacity-popup').find('.'+layerName+'_child').prop('checked',true);
+            //console.log("inside true");
+            //$('.'+layerName+'_parent').trigger('click');
+
+      }
+
+
+    }
+
+
+
+  });
+
+  // exposure parent  radio
+
+  $('.exoposure_data_pop').on('click',function(){
+
+    var id=$(this).attr('id');
+
+      var  current_layer=$(this).attr('data-currentLayer');
+      if(current_layer!=""){ //child layer off from parent
+        map.removeLayer(window[current_layer]);
+        map.flyTo([28.410728397237914,84.4024658203125], 7);
+        $('.legend-list').html(" ");
+
+      }
+
+  });
+
+  //exposure end parent
+
+
+  //hazard creating html on click
+  $(".hazard_list").on('click',function(){
+  id=$(this).attr('id');
+  var current_layer=$(this).attr('data-currentLayer');
+  console.log(current_layer);
+
+  if(current_layer!=""){ //child layer off from parent
+    map.removeLayer(window[current_layer]);
+    map.flyTo([28.410728397237914,84.4024658203125], 7);
+    $('.legend-list').html(" ");
+
+  }
+
+  $('#hazard_popup_html').html(" ");
+    //console.log("hazard_list");
+    var url =base_url+"/risk_profile/"+id ;
+    $.ajax({
+        url: url,
+        //data:{"layer_icon":layer_icon, "data":data,"i":i},
+
+        success: function(response) {
+          console.log(response);
+          var hazard_pop_html="";
+          hazard_pop_html+='<div class="hazard-title">'+
+              '<h3><span class="humanitarian-icon-Flood"></span>'+response.title+'</h3>'+
+              '<button type="button" class="button hazardDetails-close">'+
+              '<i class=" ion ion-md-close-circle-outline"></i>'+
+          '</div>'+
+          '<div class="hazard-content">'+
+
+              '<div class="hazard-acc">'+
+                  '<div id="accordion">';
+                var  i=0;
+          $.each( response.data, function( key, value ) {
+              var aria_expand='false';
+              var show='';
+              if(i==0){
+                aria_expand='true';
+                 show='show';
+              }
+               hazard_pop_html+='<div class="card opacityParent">';
+               hazard_pop_html+='<div class="card-header" id="'+key+i+'">'+
+                '<h5>'+
+                    '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_'+i+'" aria-expanded="'+aria_expand+'" aria-controls="landslide_col_'+i+'">'+key.replace(/_/g," ")+ "</a>" +
+                        '<div class="icon-list">'+
+                            '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="'+response.about+'"></span>'+
+                            '<span class="ion ion-md-albums"></span>'+
+                            '<span class="ion ion-md-contrast"></span>'+
+                            '<span class="ion more-metalist">'+
+                              '<small class="ion ion-md-more">'+
+                              '</small>'+
+                                  '<div class="more-list">'+
+                                      '<span class="ion ion-md-cloud-download"></span>'+
+                                      '<span class="ion ion-md-eye"></span>'+
+                                      '<span class="ion ion-md-remove-circle-outline"></span>'+
+                                  '</div>'+
+
+                            '</span>'+
+                        '</div>'+
+
+                '</h5>'+
+
+            '</div>';
+                  // console.log( key + ": " + value );
+                  // console.log(response.data[key]);
+                  var dataaa=response.data[key];
+
+                    hazard_pop_html+='<div id="landslide_col_'+i+'" class="collapse '+show+'" data-parent="#accordion" aria-labelledby="'+key+i+'">'+
+                      '<div class="card-body">'+
+                      '<div class="range-box">'+
+                          '<input type="range" min="0" max="100" value="100" class="center" data-name-trans="'+key+'">'+
+                      '</div>'+
+                          '<ul class="hazardDetail-list">';
+
+                    var j=0;
+
+                  $.each(dataaa, function( key, value ) {
+                    // console.log(dataaa[key].center);
+                    hazard_pop_html+='<li>'+
+                        '<div class="custom-control custom-radio">'+
+                          '  <input type="radio" class="custom-control-input hazard_geo" id="'+key+i+j+'" data-layername="'+dataaa[key].layername+'" data-workspace="'+dataaa[key].workspace+'" data-center="'+dataaa[key].center+'" name="year17" value="customEx">'+
+                            '<label class="custom-control-label" for="'+key+i+j+'">'+dataaa[key].returnperiod+'</label>'+
+                        '</div>'+
+                    '</li>';
+                    j++;
+                    });
+
+                      hazard_pop_html+='</ul>';
+                  hazard_pop_html+='</div>';
+              hazard_pop_html+='</div>';
+              hazard_pop_html+='</div>';
+              i++;
+          });
+
+          hazard_pop_html+='</div>';
+          hazard_pop_html+='</div>';
+          hazard_pop_html+='</div>';
+
+          // console.log(hazard_pop_html);
+          $('#hazard_popup_html').html(hazard_pop_html);
+          $('[data-toggle="popover"]').popover();
+        }
+
+      });
+
+        // $('[data-toggle="popover"]').popover();
+
+  });
+
+
+
+  //end hazard
+
+// end resource
+
+//sub category resources
+$('#capacity-popup').on('click','.sub_cat_ex',function(){
+
+  all_layerName=$(this).val();
+  sub_layerName=$(this).attr('data-sub');
+  type_id=all_layerName+'_id';
+  subcat_array1 =$('#'+type_id).attr('data-subcat');
+
+  //console.log($('.'+layerName+'_child').prop('checked'));
+  //console.log($('.'+layerName+'_child:checked'));
+    //if($(this).find('::checked').length > 0){
+    if($('.'+layerName+'_child:checked').length>0){
+    //  console.log($('.'+layerName+'_child').prop('checked'));
+          $('.'+layerName+'_parent').prop('checked',true);
+          //$('.'+layerName+'_parent').trigger('click');
+        //  console.log("clicksubcat",$('.'+layerName+'_parent').prop('checked'));
+
+    }else{
+      //console.log('else',$('.'+layerName+'_child').prop('checked'));
+      $('.'+layerName+'_parent').prop('checked',false);
+      //$('.'+layerName+'_parent').trigger('click');
+    //  console.log("clicksubcat false",$('.'+layerName+'_parent').prop('checked'));
+
+
+    }
+
+
+
+  if(map.hasLayer(window[sub_layerName]) && $(this).prop('checked')==false){
+
+     map.removeLayer(window[sub_layerName]);
+   }else{
+
+     //console.log(window[sub_layerName]);
+     // pharmacy.addTo(map);
+     map.addLayer(window[sub_layerName]);
+
+   }
+});
+
+//end sub category resource
+
+//dragTapSlider.noUiSlider.on('slide.one', function() {
+
+function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon){
+
+
+  //console.log(layer_data);
+  //console.log(window['clinic']._layers);
+  window["filter_resource_"+layerName]=new L.geoJson(layer_data,{
+
+    pointToLayer: function(feature,Latlng)
+        {
+
+                var divicon = L.divIcon({
+                    className: layer_icon
+
+                });
+                var marker = L.marker(Latlng,{icon:divicon});
+
+        return marker;
+        },
+        onEachFeature: function (feature, layer) {
+
+          //createPopup(feature);
+          var contentString = createPopup(feature,layerName);
+          layer.bindPopup(L.popup({
+            //closeOnClick: true,
+            //closeButton: true,
+            keepInView: true,
+            autoPan: true,
+            maxHeight: 200,
+            minWidth: 250
+          }).setContent(contentString));
+        }
+
+  }).addTo(map);
+  if(checkedList.length==0){
+    data_geo=window[layerName].toGeoJSON()
+    //map.addLayer(window[layerName]);
+    CreateChartData(data_geo,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+  }else{
+
+  map.removeLayer(window[layerName]);
+  CreateChartData(layer_data,sub_layer_name,'charttype','subcategory',total_sum,layerName,[],layer_icon)
+
+  }
+
+
+}
+
+
+//resources filter
+$("#capacity-popup").on('change','.filter_resource_btn',function(){
+
+  //console.log(new_gejson_filter);
+  var layerName=$(this).attr('name');
+  var layer_icon=$(this).attr('data-icon');
+  var total_sum=$(this).attr('data-sum');
+
+ //console.log('fiter range');
+ //console.log(layerName);
+// console.log($(".Health_child").prop("checked"));
+
+var features_data=[];
+var sub_layer_name=[];
+
+if(map.hasLayer(window["filter_resource_"+layerName])){
+
+  //console.log('aa');
+
+
+  map.removeLayer(window["filter_resource_"+layerName]);
+
+}
+$. each($('.sub_cat_ex:checked'), function(){
+
+  var name_sub=$(this).attr('data-sub');
+
+  sub_layer_name.push($(this).attr('data-sub'));
+  //  console.log(name_sub);
+
+  layersdata=window[name_sub]._layers
+  //console.log(window[name_sub]._layers);
+  $.each(layersdata, function (feature) {
+
+    //console.log(layersdata[feature].feature);
+    features_data.push(layersdata[feature].feature);
+
+  });
+
+});
+
+var layer_data1={
+   "type": "FeatureCollection",
+   "features":features_data
+
+};
+
+
+//console.log(layer_icon);
+
+ //layer_data1=window[layerName].toGeoJSON();
+// console.log(layer_data1);
+var layer_data = jQuery.extend(true, {}, layer_data1);
+// console.log(layer_data);
+var checkedList = [];
+$. each($("input[class='filter_resource_btn']:checked"), function(){
+
+checkedList. push($(this). val());
+});
+
+ //console.log(checkedList);
+
+//console.log(layer_data.features.length);
+for(var k=layer_data.features.length-1;k>=0;k--){
+  var delete_count=0;
+  for(var i=0;i<checkedList.length;i++){
+    //console.log(layer_data.features[k].properties[checkedList[i]]);
+
+    if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
+        //console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
+//console.log("entered");
+        delete_count++;
+        //console.log(delete_count);
+
+    }
+
+
+  }
+  //console.log(delete_count);
+    if(delete_count==0){
+      //console.log("deleted");
+        //console.log("delete count 00");
+        //console.log(k);
+        layer_data.features.splice(k,1);
+
+    }
+
+
+}
+
+ filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
+  // console.log('test');
+  //console.log($('.sub_cat_ex:checked').length);
+  //console.log($("input[class='test']:checked"));
+
+ //console.log($("input[class='filter_resource_btn']:checked"));
+
+
+//console.log(map.hasLayer(window["filter_resource_"+layerName]));
+//console.log(sub_layer_name);
+
+
+// CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon)
+
+
+
+
+
+// CreateChartData(layer_data,checkedList,'bar','filter');
+
+
+});
+
+
+
+
+
+//resource filter end
+
+
+//loading adminstrative boundary accordin to need
+
+$('.admin_bound').on('click',function(){
+//console.log('ddatadasd');
+var admin_layer=$(this).attr('data-admin');
+//console.log(admin_layer)
+
+if(admin_layer=='municipality'){
+  $('.legend-list').html('');
+  map.addLayer(window[admin_layer]);
+
+  map.removeLayer(window['district']);
+}else{
+  map.addLayer(window[admin_layer]);
+  map.removeLayer(eval('municipality'));
+
+}
+
+
+});
+
+
+$("#capacity-popup").change('.amount',function(){
+  console.log('adasdsad');
+
+
+});
+
+
+$(".trans_constrast").on('change','.center',function(){
+   console.log($(this).val());
+   console.log($(this).attr('data-name-trans'));
+  var val=($(this).val())/100;
+  var name=$(this).attr('data-name-trans');
+  window[name].setOpacity(val);
+  // if(name=="Flood"){
+  //   hazard_layers.setOpacity(val);
+  // }else if(name=="drone"){
+  //   exposure_layers.setOpacity(val);
+  // }else{
+  //   earthquake_risk.setOpacity(val);
+  // }
+
+})
+
+//end
+
+
+
+//chart start--
+function createChart(dataset,name){
+
+console.log(name);
+$('#chart').append('<div class = "chartWrapper" ><div style="margin-bottom:10px;"><h7 class="chart_header">'+name+'</h7></div><div id="chartBody_'+name+'"></div></div>');
+// define data
+// var dataset = [
+//     {label: "Assamese", count: 13},
+//     {label: "Bengali", count: 83},
+//     {label: "Bodo", count: 1.4},
+//     {label: "Dogri", count: 2.3},
+//     {label: "Gujarati", count: 46},
+//     {label: "Hindi", count: 300},
+//     {label: "Kannada", count: 38},
+//     {label: "Kashmiri", count: 5.5},
+//     {label: "Konkani", count: 5},
+//     {label: "Maithili", count: 20},
+//     {label: "Malayalam", count: 33},
+//     {label: "Manipuri", count: 1.5},
+//     {label: "Marathi", count: 72},
+//     {label: "Nepali", count: 2.9},
+//     {label: "Oriya", count: 33},
+//     {label: "Punjabi", count: 29},
+//     {label: "Sanskrit", count: 0.01},
+//     {label: "Santhali", count: 6.5},
+//     {label: "Sindhi", count: 2.5},
+//     {label: "Tamil", count: 61},
+//     {label: "Telugu", count: 74},
+//     {label: "Urdu", count: 52}
+//   ];
+
+// chart dimensions
+var width = 200;
+var height = 120;
+
+// a circle chart needs a radius
+var radius = Math.min(width, height) / 2;
+
+// legend dimensions
+var legendRectSize = 10; // defines the size of the colored squares in legend
+var legendSpacing = 2; // defines spacing between squares
+
+// define color scale
+var color = d3.scaleOrdinal(d3.schemeCategory20c);
+// more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
+
+var svg = d3.select('#chartBody_'+name) // select element in the DOM with id 'chart'
+  .append('svg') // append an svg element to the element we've selected
+  .attr('width', width) // set the width of the svg element we just added
+  .attr('height', height) // set the height of the svg element we just added
+  .append('g') // append 'g' element to the svg element
+  .attr('transform', 'translate(' + (width / 3) + ',' + (height / 2) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
+
+var arc = d3.arc()
+  .innerRadius(30) // none for pie chart
+  .outerRadius(radius); // size of overall chart
+
+var pie = d3.pie() // start and end angles of the segments
+  .value(function(d) { return d.count; }) // how to extract the numerical data from each entry in our dataset
+  .sort(null); // by default, data sorts in oescending value. this will mess with our animation so we set it to null
+
+// define tooltip
+var tooltip = d3.select('#chartBody_'+name) // select element in the DOM with id 'chart'
+  .append('div') // append a div element to the element we've selected
+  .attr('class', 'tooltip_chart'); // add class 'tooltip' on the divs we just selected
+
+tooltip.append('div') // add divs to the tooltip defined above
+  .attr('class', 'label'); // add class 'label' on the selection
+
+tooltip.append('div') // add divs to the tooltip defined above
+  .attr('class', 'count'); // add class 'count' on the selection
+
+tooltip.append('div') // add divs to the tooltip defined above
+  .attr('class', 'percent'); // add class 'percent' on the selection
+
+// Confused? see below:
+
+// <div id="chart">
+//   <div class="tooltip">
+//     <div class="label">
+//     </div>
+//     <div class="count">
+//     </div>
+//     <div class="percent">
+//     </div>
+//   </div>
+// </div>
+
+dataset.forEach(function(d) {
+  d.count = +d.count; // calculate count as we iterate through the data
+  d.enabled = true; // add enabled property to track which entries are checked
+});
+
+// creating the chart
+var path = svg.selectAll('path') // select all path elements inside the svg. specifically the 'g' element. they don't exist yet but they will be created below
+  .data(pie(dataset)) //associate dataset wit he path elements we're about to create. must pass through the pie function. it magically knows how to extract values and bakes it into the pie
+  .enter() //creates placeholder nodes for each of the values
+  .append('path') // replace placeholders with path elements
+  .attr('d', arc) // define d attribute with arc function above
+  .attr('fill', function(d) { return color(d.data.label); }) // use color scale to define fill of each label in dataset
+  .each(function(d) { this._current - d; }); // creates a smooth animation for each track
+
+// mouse event handlers are attached to path so they need to come after its definition
+// path.on('mouseover', function(d) {  // when mouse enters div
+//  var total = d3.sum(dataset.map(function(d) { // calculate the total number of tickets in the dataset
+//   return (d.enabled) ? d.count : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase
+//   }));
+//  var percent = Math.round(1000 * d.data.count / total) / 10; // calculate percent
+//  tooltip.select('.label').html(d.data.label); // set current label
+//  tooltip.select('.count').html(d.data.count); // set current count
+//  tooltip.select('.percent').html(percent + '%'); // set percent calculated above
+//  tooltip.style('display', 'block'); // set display
+// });
+//
+// path.on('mouseout', function() { // when mouse leaves div
+//   tooltip.style('display', 'none'); // hide tooltip for that element
+//  });
+//
+// path.on('mousemove', function(d) { // when mouse moves
+//   //console.log(d3.event.layerY );
+//   tooltip.style('top', (d3.event.layerY + 0 ) + 'px') // always 10px below the cursor
+//     .style('left', (d3.event.layerX + 0) + 'px'); // always 10px to the right of the mouse
+//   });
+
+// path.on("mouseover", function (d) {
+//
+//             tooltip.html(d)
+//             .style("left", d3.select(this).attr("cx") + "px")
+//             .style("top", d3.select(this).attr("cy") + "px");
+//           })
+//               .on("mouseout", function () {
+//               // Hide the tooltip
+//               d3.select("#tooltip")
+//                   .style("opacity", 0);;
+//           });
+
+
+// define legend
+var legend = svg.selectAll('.legend') // selecting elements with class 'legend'
+  .data(color.domain()) // refers to an array of labels from our dataset
+  .enter() // creates placeholder
+  .append('g') // replace placeholders with g elements
+  .attr('class', 'legend') // each g is given a legend class
+  .attr('transform', function(d, i) {
+    var height = legendRectSize + legendSpacing; // height of element is the height of the colored square plus the spacing
+    var offset =  height * color.domain().length / 3; // vertical offset of the entire legend = height of a single element & half the total number of elements
+    var horz = 7 * legendRectSize; // the legend is shifted to the left to make room for the text
+    var vert = i * height - offset-13; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'
+      return 'translate(' + horz + ',' + vert + ')'; //return translation
+   });
+
+// adding colored squares to legend
+legend.append('rect') // append rectangle squares to legend
+  .attr('width', legendRectSize) // width of rect size is defined above
+  .attr('height', legendRectSize) // height of rect size is defined above
+  .style('fill', color) // each fill is passed a color
+  .style('stroke', color) // each stroke is passed a color
+  .on('click', function(label) {
+    var rect = d3.select(this); // this refers to the colored squared just clicked
+    var enabled = true; // set enabled true to default
+    var totalEnabled = d3.sum(dataset.map(function(d) { // can't disable all options
+      return (d.enabled) ? 1 : 0; // return 1 for each enabled entry. and summing it up
+    }));
+
+    if (rect.attr('class') === 'disabled') { // if class is disabled
+      rect.attr('class', ''); // remove class disabled
+    } else { // else
+      if (totalEnabled < 2) return; // if less than two labels are flagged, exit
+      rect.attr('class', 'disabled'); // otherwise flag the square disabled
+      enabled = false; // set enabled to false
+    }
+
+    pie.value(function(d) {
+      if (d.label === label) d.enabled = enabled; // if entry label matches legend label
+        return (d.enabled) ? d.count : 0; // update enabled property and return count or 0 based on the entry's status
+    });
+
+    path = path.data(pie(dataset)); // update pie with new data
+
+    path.transition() // transition of redrawn pie
+      .duration(750) //
+      .attrTween('d', function(d) { // 'd' specifies the d attribute that we'll be animating
+        var interpolate = d3.interpolate(this._current, d); // this = current path element
+        this._current = interpolate(0); // interpolate between current value and the new value of 'd'
+        return function(t) {
+          return arc(interpolate(t));
+        };
+      });
+  });
+
+// adding text to legend
+legend.append('text')
+  .attr('x', legendRectSize + legendSpacing)
+  .attr('y', legendRectSize - legendSpacing)
+  // .attr('width', legendRectSize) // width of rect size is defined above
+  .style('font-size', '8px') // height of rect size is defined above
+  .text(function(d) { return d; }); // return label
+
+}
+//chart end
+
+
+var prov_li="";
+var dist_li="";
+var mun_li="";
+$.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",function(dataP,statusP){
+    console.log("data ",dataP);
+    console.log("status ",statusP);
+    $.each(dataP.results, function (keyP, valueP) {
+        prov_li+='<li class="federal" id="'+(dataP.results[keyP].title).replace(/ /g,"_")+'" data-fed="district" data-id="'+dataP.results[keyP].id+'" data-request="province">'+dataP.results[keyP].title+'</li>';
+    });
+    $('#federal_boundary').html(prov_li);
+
+    $.get("https://bipad.nepware.com/api/v1/district/?format=json&&search=&&fields=id,title,province",function(dataDistrict,statusDistrict){
+      console.log(dataDistrict);
+      $.each(dataP.results, function(keyP, valueP) {
+        $.each(dataDistrict.results, function(keyD, valueD) {
+          if (dataP.results[keyP].id == dataDistrict.results[keyD].province) {
+              dist_li+='<li class="federal" id="'+(dataDistrict.results[keyD].title).replace(/ /g,"_")+'" data-fed="municipality" data-id="'+dataDistrict.results[keyD].id+'" data-request="district">'+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
+
+          }
+        });
+      });
+    $('#federal_boundary').append(dist_li);
+
+    $.get("https://bipad.nepware.com/api/v1/municipality/?format=json&search=&&fields=id,title,district",function(dataMun,statusMun){
+      $.each(dataP.results, function(keyP, valueP) {
+        $.each(dataDistrict.results, function(keyD, valueD) {
+          $.each(dataMun.results, function(keyM, valueM) {
+            if (dataDistrict.results[keyD].id == dataMun.results[keyM].district) {
+              if(dataP.results[keyP].id == dataDistrict.results[keyD].province){
+                 mun_li+='<li class="federal" id="'+(dataMun.results[keyM].title).replace(/ /g,"_")+'"  data-id="'+dataMun.results[keyM].id+'" data-request="municipality" data-fed="ward">'+dataMun.results[keyM].title+', '+dataDistrict.results[keyD].title+', '+dataP.results[keyP].title+'</li>';
+              }
+            }
+          });
+        });
+      });
+      $('#federal_boundary').append(mun_li);
+    });
+
+
+
+});
+});
+
+
+
+// creating  filter
+// var prov_li="";
+// var dist_li="";
+// var mun_li="";
+// $.ajax({
+//   url: 'https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title',
+//   success: function(data) {
+//       console.log(data.results);
+//
+//       var  result=data.results;
+//
+//         for(var i=0;i<result.length;i++){
+//
+//          prov_li+='<li class="federal" id="'+result[i].title+'" data-fed="province">'+result[i].title+'</li>';
+//         }
+//
+//           console.log(prov_li);
+//           $('#federal_boundary').html(prov_li);
+//
+//         }
+//                        // async:false,
+//
+//   });
+//
+//
+//
+//   $.ajax({
+//     url: 'https://bipad.nepware.com/api/v1/district/?format=json&limit=20&search=&&fields=id,title',
+//     success: function(data) {
+//       //console.log(data.results);
+//       var  result=data.results;
+//
+//         for(var i=0;i<result.length;i++){
+//
+//          dist_li+='<li class="federal" id="'+result[i].title+'" data-fed="district">'+result[i].title+'</li>';
+//         }
+//
+//
+//           $('#federal_boundary').append(dist_li);
+//
+//           }
+//                          // async:false,
+//
+//     });
+//
+
+
+// $.ajax({
+//   url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=&&fields=id,title',
+//   success: function(data) {
+//     //console.log(data.results);
+//     var  result=data.results;
+//
+//       for(var i=0;i<result.length;i++){
+//
+//        mun_li+='<li class="federal" id="'+result[i].title+'" data-fed="municipality">'+result[i].title+'</li>';
+//       }
+//
+//
+//         $('#federal_boundary').append(mun_li);
+//
+//         }
+//                        // async:false,
+//
+//   });
+
+
+federal_boundary=null;
+
+$('#federal_boundary').on('click','.federal',function(){
+
+// console.log($(this).attr('id'));
+// console.log($(this).attr('data-fed'));
+
+map.removeLayer(province);
+map.removeLayer(district);
+map.removeLayer(municipality);
+
+if(federal_boundary !=null && map.hasLayer(federal_boundary)){
+  console.log('remove');
+  map.removeLayer(federal_boundary);
+  map.removeLayer(label);
+}
+var boundary=$(this).attr('id');
+var federal_name=$(this).attr('data-fed');
+var layer_id=$(this).attr('data-id');
+var layer_request=$(this).attr('data-request');
+var name=$(this).html();
+
+$('#fed_filterInput').val(name);
+// $.ajax({
+//   url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=',
+//   success: function(data) {fed_filterInput
+//
+//     }
+//
+//   });
+var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&'+layer_request+'='+layer_id;
+console.log(fed_url);
+label=L.layerGroup();
+ federal_boundary = new L.geoJson.ajax(fed_url,{
+
+       onEachFeature: function (feature, layer) {
+         layer.setStyle({
+           fillColor:"blue",
+           fillOpacity:0,
+           weight: 2,
+           opacity:1,
+           color: '#a3b7e3',
+//dashArray: '3'
+
+             });
+
+          var divIcon=L.divIcon({
+             html: "<span class='fed_labelText' style='color:blue;'>"+feature.properties.title+"</span>",
+             iconAnchor:[12,0],
+           });
+        var fed_marker=L.marker(layer.getBounds().getCenter(),{icon:divIcon});
+        fed_marker.addTo(label);
+
+       }
+
+ });
+
+ federal_boundary.on('data:loaded',function(){
+   console.log('loaded');
+   map.addLayer(federal_boundary);
+   map.addLayer(label);
+ map.fitBounds(federal_boundary.getBounds());
+ });
+
+//map.addLayer(district);
+
+});
+
+$('#fed_filterInput').on('keyup',function(){
+  // console.log('search function here ');
+  var search_text=$(this).val();
+  filter = search_text.toUpperCase();
+  // console.log(filter);
+  $('.federal').css('display','none');
+var li = document.getElementsByClassName('federal');
+    console.log("<<<<<<<new search>>>>>>>>>>>");
+  // console.log(h6[1].id);
+//  $('#federal_boundary').html("");
+for (i = 0; i < li.length; i++) {
+      // a = h6[i].getElementsByTagName("a")[0];
+      //console.log(h6[i]);
+
+
+      if (((li[i].id).replace("_"," ")).toUpperCase().indexOf(filter) > -1) {
+        console.log(li[i].id);
+
+          $("#"+li[i].id).css('display','');
+      } else {
+          // console.log(li[i].id);
+
+        $("#"+li[i].id).css('display','none');
+      }
+  }
+
+
+
+
+
+});
+//end
+$('.osm_layer').on('click',function(){
+//console.log("layername");
+  var layername=eval($(this).attr('data-layername'));
+  console.log(layername);
+  if(map.hasLayer(layername)){
+    map.removeLayer(layername);
+  }else{
+    map.addLayer(layername);
+  }
+
+});
+
+// type head js
+
+// end
+
+
+
+    });//document end
+ </script>
+
+<!-- <script src="{% static 'mappage/js/range-slider.js' %}"></script> -->
+</body>
+
+</html>
