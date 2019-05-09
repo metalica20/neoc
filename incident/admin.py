@@ -167,6 +167,9 @@ class IncidentAdmin(GeoModelAdmin):
             # polygon overrides wards
             wards = Ward.objects.filter(boundary__intersects=obj.polygon)
             form.cleaned_data['wards'] = wards
+        if not obj.polygon and obj.point:
+            wards = Ward.objects.filter(boundary__intersects=obj.point)
+            form.cleaned_data['wards'] = wards
         # if no polygon objects then generate polygon from wards
         if wards and not obj.polygon:
             obj.polygon = generate_polygon_from_wards(wards)

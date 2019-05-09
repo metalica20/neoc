@@ -5,6 +5,7 @@ from hazard.models import Hazard
 from incident.models import Incident
 from loss.models import People, Loss, Family, Livestock, Infrastructure
 import os
+from federal.models import Ward
 
 GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
@@ -65,7 +66,8 @@ def fetch_incident(options):
             point = ""
 
         try:
-            Incident.objects.create(
+            wards = Ward.objects.filter(boundary__intersects=point)
+            incident = Incident.objects.create(
                 id=data['Incident ID'],
                 title=title,
                 incident_on=data['Incident Date'],
@@ -79,6 +81,7 @@ def fetch_incident(options):
                 approved=True,
                 old=old,
             )
+            incident.wards.set(wards)
         except:
             continue
 
