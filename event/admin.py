@@ -13,6 +13,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect
 from django.contrib.gis.geos import GEOSGeometry
 from misc.validators import validate_geojson
+from federal.models import Ward
+from alert.utils import generate_polygon_from_wards
 
 
 class EventForm(forms.ModelForm):
@@ -56,12 +58,15 @@ class EventAdmin(GeoModelAdmin):
 
     def save_model(self, request, obj, form, change):
         geojson = form.cleaned_data.get('geojson')
+        incidents = form.cleaned_data.get('incidents')
         if geojson:
             geojson = json.loads(geojson.read().decode('utf-8'))
             obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
-        incidents = form.cleaned_data.get('incidents')
+        if not obj.polygon and obj.point:
+            wards = Ward.objects.filter(boundary__intersects=obj.point)
+            obj.polygon = generate_polygon_from_wards(wards)
         super(EventAdmin, self).save_model(request, obj, form, change)
         for incident in incidents:
             Incident.objects.filter(pk=incident.id).update(event=obj)

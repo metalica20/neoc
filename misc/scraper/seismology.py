@@ -6,6 +6,8 @@ from django.contrib.gis.geos import Point
 from django.utils import timezone
 from alert.models import Alert
 from hazard.models import Hazard
+from federal.models import Ward
+
 
 url = "http://seismonepal.gov.np/earthquakes/2019"
 table_selector = "tbody", {"id": "searchResultBody"}
@@ -69,7 +71,8 @@ def create_alert(earthquake):
         value = int(float(earthquake.magnitude)-3)
         alert_expiry = earthquake.event_on + datetime.timedelta(7*value)
         hazard = Hazard.objects.get(title="Earthquake")
-        Alert.objects.create(
+        wards = Ward.objects.filter(boundary__intersects=earthquake.point)
+        alert = Alert(
             title="Earthquake at %s" % earthquake.address,
             source="nsc",
             description="Earth of magnitude %s occurred at %s on %s"
@@ -81,3 +84,5 @@ def create_alert(earthquake):
             expire_on=alert_expiry,
             point=earthquake.point,
         )
+        alert.save()
+        alert.wards.set(wards)

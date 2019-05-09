@@ -96,8 +96,7 @@ class AlertForm(forms.ModelForm):
 @admin.register(Alert)
 class AlertAdmin(GeoModelAdmin):
 
-    search_fields = ('title', 'started_on', 'wards__title', 'wards__municipality__title',
-                     'wards__municipality__district__title', 'hazard__title',)
+    search_fields = ('title',)
     list_display = ('title', 'source', 'verified', 'public', 'started_on', 'expire_on', 'hazard',)
     exclude = ('title',)
     form = AlertForm
