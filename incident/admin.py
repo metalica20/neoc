@@ -189,32 +189,33 @@ class IncidentAdmin(GeoModelAdmin):
     def verify(self, request, queryset):
         queryset.update(verified=True)
 
-    verify.allowed_permissions = ('can_verify',)
+    verify.allowed_permissions = ('verify',)
     verify.short_description = _('Mark incidents as verified')
 
     def approve(self, request, queryset):
         queryset.update(approved=True)
 
-    approve.allowed_permissions = ('can_approve',)
+    approve.allowed_permissions = ('approve',)
     approve.short_description = _('Mark incidents as approved')
 
-    def has_can_verify_permission(self, request):
+    def has_verify_permission(self, request):
         opts = self.opts
-        codename = get_permission_codename('can_verify', opts)
+        codename = get_permission_codename('verify', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
-    def has_can_approve_permission(self, request):
+    def has_approve_permission(self, request):
         opts = self.opts
-        codename = get_permission_codename('can_approve', opts)
+        codename = get_permission_codename('approve', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
-    def has_can_edit_permission(self, request):
+    def has_edit_permission(self, request):
         opts = self.opts
-        codename = get_permission_codename('can_edit', opts)
+        codename = get_permission_codename('edit', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
     def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
-        if not self.has_can_edit_permission(request):
+        print(self.has_edit_permission(request))
+        if not self.has_edit_permission(request):
             extra_context = extra_context or {}
             extra_context['read_only'] = True
         return super().changeform_view(request, object_id, extra_context=extra_context)
@@ -224,9 +225,9 @@ class IncidentAdmin(GeoModelAdmin):
         if request.user.groups.filter(name='Nepal Police').exists():
             form.base_fields['source'].initial = 'nepal_police'
             form.base_fields['source'].disabled = True
-        if not self.has_can_verify_permission(request):
+        if not self.has_verify_permission(request):
             form.base_fields['verified'].disabled = True
-        if not self.has_can_approve_permission(request):
+        if not self.has_approve_permission(request):
             form.base_fields['approved'].disabled = True
         return form
 
