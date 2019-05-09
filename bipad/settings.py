@@ -279,6 +279,8 @@ LOCALE_PATHS = (
 SERIALIZATION_MODULES = {
         "custom_geojson": "risk_profile.geojson_serializer",
 
+        }
+
 
 SESSION_COOKIE_HTTPONLY = False
 
