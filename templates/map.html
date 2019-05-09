@@ -1526,8 +1526,10 @@
 
            if(document.location.hostname=='localhost'){
              var base_url = 'http://localhost:8000';
-           }else{
+           }else if(document.location.hostname=='bipad.naxa.com.np'){
              var base_url= 'https://bipad.naxa.com.np';
+           }else{
+             var base_url= 'https://bipad.nepware.com';
            }
 
     $(document).ready(function(){
