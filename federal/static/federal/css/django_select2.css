@@ -13,11 +13,7 @@
     border-bottom-color:#ECF2F6;
     border: none !important;
 }
-.field-district .select2-container--jet,
-.field-municipality .select2-container--jet,
-.field-wards .select2-container--jet,
-.field-incidents .select2-container--jet,
-.field-ward .select2-container--jet
+.django-select2 ~ .select2-container--jet
 {
     display: none;
 }

@@ -5,6 +5,8 @@ from django.db.models import Q
 from django.db.models.functions import Coalesce
 from resources.models import Resource
 from django.utils.translation import ugettext_lazy as _
+from mptt.models import MPTTModel, TreeForeignKey
+from federal.models import Ward
 
 
 class StatManager(models.Manager):
@@ -32,7 +34,8 @@ class Loss(TimeStampedModal):
     Allows to accomodate both historical data with less details and
     current Nepal Police and other data with finer details
     """
-    description = models.TextField(null=True, blank=True, default=None, verbose_name=_('Description'))
+    description = models.TextField(null=True, blank=True, default=None,
+                                   verbose_name=_('Description'))
     estimated_loss = models.BigIntegerField(
         null=True, blank=True, default=None,
         verbose_name=_('Estimated Loss')
@@ -55,6 +58,24 @@ class Loss(TimeStampedModal):
         verbose_name_plural = _("Losses")
 
 
+class DisabilityType(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+
+    def __str__(self):
+        return self.title
+
+
+class Country(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        db_table = 'country'
+        verbose_name_plural = "countries"
+
+
 class People(TimeStampedModal):
     """
     People
@@ -75,10 +96,12 @@ class People(TimeStampedModal):
 
     MALE = 'male'
     FEMALE = 'female'
+    OTHERS = 'others'
 
     GENDERS = (
         (MALE, _('Male')),
         (FEMALE, _('Female')),
+        (OTHERS, _('Others')),
     )
 
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
@@ -87,19 +110,45 @@ class People(TimeStampedModal):
         null=True, blank=True, default=None,
         verbose_name=_('Name'),
     )
-    age = models.PositiveSmallIntegerField(null=True, blank=True, default=None, verbose_name=_('Age'),)
+    age = models.PositiveSmallIntegerField(
+        null=True, blank=True, default=None, verbose_name=_('Age'),)
     gender = models.CharField(
         max_length=25,
         null=True, blank=True, default=None,
         choices=GENDERS,
         verbose_name=_('Gender'),
     )
-    address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
-    below_poverty = models.BooleanField(null=True, blank=True, default=None,verbose_name=_('Below Poverty'))
-    disabled = models.BooleanField(null=True, blank=True, default=None, verbose_name=_('Disabled'))
+    nationality = models.ForeignKey(
+        Country,
+        related_name="peoples",
+        null=True, blank=True, default=None,
+        on_delete=models.PROTECT,
+        verbose_name=_('Nationality')
+    )
+    ward = models.ForeignKey(
+        Ward,
+        blank=True, null=True, default=None,
+        related_name='peoples',
+        verbose_name=_('Ward'),
+        on_delete=models.CASCADE
+    )
+    below_poverty = models.BooleanField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Below Poverty')
+    )
+    disability = models.ForeignKey(
+        DisabilityType,
+        related_name="peoples",
+        null=True, blank=True, default=None,
+        on_delete=models.PROTECT,
+        verbose_name=_('Disability')
+    )
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     loss = models.ForeignKey(
-        Loss, related_name='peoples', on_delete=models.CASCADE)
+        Loss, related_name='peoples', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name or 'People-{}'.format(self.id)
 
     class Meta:
         verbose_name = _('People')
@@ -123,10 +172,17 @@ class Family(TimeStampedModal):
     )
 
     title = models.CharField(max_length=255, null=True,
-                             blank=True, default=None, verbose_name=_('Title'))
-    address = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name=_('Address'))
+                             blank=True, default=None, verbose_name=_('Owner Name'))
+    ward = models.ForeignKey(
+        Ward,
+        blank=True, null=True, default=None,
+        related_name='families',
+        verbose_name=_('Ward'),
+        on_delete=models.CASCADE
+    )
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
-    below_poverty = models.BooleanField(null=True, blank=True, default=None, verbose_name=_('Below Poverty'))
+    below_poverty = models.BooleanField(
+        null=True, blank=True, default=None, verbose_name=_('Below Poverty'))
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
     phone_number = models.CharField(
         max_length=25, null=True, blank=True, default=None,
@@ -141,11 +197,26 @@ class Family(TimeStampedModal):
         verbose_name = _('Family')
 
 
-class InfrastructureType(models.Model):
+class InfrastructureType(MPTTModel):
     title = models.CharField(max_length=255, unique=True)
     description = models.CharField(
-        max_length=255, null=True, blank=True, default=None)
+        max_length=255,
+        null=True, blank=True, default=None
+    )
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.PROTECT,
+        null=True, blank=True, default=None,
+        related_name='children'
+    )
     # TODO: can also relate to resource_type
+
+    def __str__(self):
+        return self.title
+
+
+class InfrastructureUnit(models.Model):
+    title = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.title
@@ -167,9 +238,14 @@ class Infrastructure(TimeStampedModal):
 
     title = models.CharField(max_length=255, null=True,
                              blank=True, default=None,
-                             verbose_name=_('Title'))
+                             verbose_name=_('Infrastructure Title'))
     type = models.ForeignKey(
-        InfrastructureType, related_name='infrastructures', on_delete=models.PROTECT, verbose_name=_('Type'))
+        InfrastructureType,
+        related_name='infrastructures',
+        on_delete=models.PROTECT,
+        verbose_name=_('Type')
+    )
+
     status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
     resource = models.ForeignKey(
         Resource,
@@ -185,12 +261,23 @@ class Infrastructure(TimeStampedModal):
         null=True, blank=True, default=None,
         verbose_name=_('Infrastructure Value')
     )
+    unit = models.ForeignKey(
+        InfrastructureUnit,
+        blank=True, default=None, null=True,
+        on_delete=models.PROTECT,
+        verbose_name=_('Unit')
+    )
     beneficiary_owner = models.CharField(
         max_length=255, null=True, blank=True, default=None,
         verbose_name=_('Beneficiary Owner')
     )
+    beneficiary_count = models.PositiveIntegerField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Beneficiary Count')
+    )
     service_disrupted = models.BooleanField(
-        max_length=255, null=True, blank=True, default=None,
+        max_length=255,
+        null=True, blank=True, default=None,
         verbose_name=_('Service Disrupted')
     )
     count = models.PositiveIntegerField(default=1, verbose_name=_('Count'))
@@ -207,10 +294,17 @@ class Infrastructure(TimeStampedModal):
         verbose_name_plural = _('Infrastructures')
 
 
-class LivestockType(models.Model):
+class LivestockType(MPTTModel):
     title = models.CharField(max_length=255, unique=True)
     description = models.CharField(
-        max_length=255, null=True, blank=True, default=None
+        max_length=255,
+        null=True, blank=True, default=None
+    )
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.PROTECT,
+        null=True, blank=True, default=None,
+        related_name='children'
     )
 
     def __str__(self):
@@ -250,3 +344,54 @@ class Livestock(TimeStampedModal):
     class Meta:
         verbose_name = _('Livestock')
         verbose_name_plural = _('Livestocks')
+
+
+class AgricultureType(MPTTModel):
+    title = models.CharField(max_length=255)
+    unit = models.CharField(max_length=255)
+    parent = TreeForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True, blank=True, default=None,
+        related_name='children'
+    )
+
+    def __str__(self):
+        return '{} ({})'.format(self.title, self.unit)
+
+
+class Agriculture(TimeStampedModal):
+    DESTROYED = 'destroyed'
+    AFFECTED = 'affected'
+
+    STATUS = (
+        (DESTROYED, _('Destroyed')),
+        (AFFECTED, _('Affected')),
+    )
+
+    type = models.ForeignKey(
+        AgricultureType,
+        related_name='agricultures',
+        on_delete=models.PROTECT,
+        verbose_name=_('Type')
+    )
+    status = models.CharField(max_length=25, choices=STATUS, verbose_name=_('Status'))
+    beneficiary_owner = models.CharField(
+        max_length=255,
+        null=True, blank=True, default=None,
+        verbose_name=_('Beneficiary Owner')
+    )
+    beneficiary_count = models.PositiveIntegerField(
+        default=None, null=True, blank=True,
+        verbose_name=_('Beneficiary Count')
+    )
+    quantity = models.PositiveIntegerField(
+        verbose_name=_('Quantity')
+    )
+    loss = models.ForeignKey(
+        Loss, related_name='agricultures', on_delete=models.CASCADE
+    )
+
+    class Meta:
+        verbose_name = _('Agriculture')
+        verbose_name_plural = _('Agriculture')

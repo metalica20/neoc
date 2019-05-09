@@ -1,3 +1,5 @@
+import os
+import geocoder
 import datetime
 from .models import Incident
 from django.contrib.gis.measure import D
@@ -7,6 +9,10 @@ from loss.models import (
     Livestock,
     Infrastructure
 )
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
+
+
+GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 
 def get_similar_incident(incident):
@@ -46,3 +52,25 @@ def get_followup_fields(incident_id):
         fields.append('Infrastructure Economic Loss')
 
     return fields
+
+
+def generate_polygon_from_wards(wards):
+    polygon = GEOSGeometry(wards[0].boundary)
+    if len(wards) > 1:
+        for ward in wards[1:]:
+            polygon = polygon.union(GEOSGeometry(ward.boundary))
+        return MultiPolygon(polygon)
+    return polygon
+
+
+def get_incident_title(incident):
+    location = geocoder.google(
+        [incident.point.y, incident.point.x],
+        components="country:NP",
+        method='reverse',
+        key=GOOGLE_MAP_API_KEY
+    )
+    if location.city:
+        return "%s at %s" % (incident.hazard.title_en, location.city)
+    else:
+        return "%s" % incident.hazard

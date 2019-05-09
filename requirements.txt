@@ -1,6 +1,7 @@
 beautifulsoup4==4.7.1
 celery==4.2.1
 Django==2.1.5
+django-admin-rangefilter==0.3.15
 django-autofixture==0.12.1
 django-celery-beat==1.4.0
 django-colorfield==0.1.15
@@ -11,6 +12,8 @@ django-polymorphic==2.0.3
 django-redis==4.10.0
 django-rest-polymorphic==0.1.8
 django-map-widgets==0.2.2
+django-modeltranslation==0.13
+django-mptt==0.10.0
 django-reversion==3.0.3
 django-select2==6.3.1
 django-silk==3.0.1

@@ -20,16 +20,33 @@ class IncidentSource(models.Model):
 class Incident(TimeStampedModal):
 
     title = models.CharField(max_length=255, verbose_name=_('Title'))
-    description = models.TextField(null=True, blank=True, default=None, verbose_name=_('Description'))
-    cause = models.TextField(null=True, blank=True, default=None, verbose_name=_('Cause'))
-    source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT, verbose_name=_('Source'))
+    description = models.TextField(null=True, blank=True, default=None,
+                                   verbose_name=_('Description'))
+    cause = models.TextField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Cause')
+    )
+    source = models.ForeignKey(
+        IncidentSource,
+        on_delete=models.PROTECT,
+        verbose_name=_('Source')
+    )
     verified = models.BooleanField(default=False, verbose_name=_('Verified'))
     approved = models.BooleanField(default=False, verbose_name=_('Approved'))
     # TODO: discuss polygon or multipolygon or simply geometry
-    point = models.PointField(null=True, blank=True, default=None, verbose_name=_('Point'))
-    polygon = models.MultiPolygonField(null=True, blank=True, default=None, verbose_name=_('Polygon'))
+    point = models.PointField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Point')
+    )
+    polygon = models.MultiPolygonField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Polygon')
+    )
     incident_on = models.DateTimeField(verbose_name=_('Incident On'))
-    reported_on = models.DateTimeField(null=True, blank=True, default=None, verbose_name=_('Reported On'))
+    reported_on = models.DateTimeField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Reported On')
+    )
     event = models.ForeignKey(
         Event,
         related_name='incidents',
@@ -57,7 +74,9 @@ class Incident(TimeStampedModal):
         verbose_name=_('Wards'),
     )
     street_address = models.CharField(
-        max_length=255, null=True, blank=True, default=None, verbose_name=_('Street Address'))
+        max_length=255, null=True, blank=True, default=None,
+        verbose_name=_('Street Address')
+    )
     old = models.BooleanField(default=False, editable=False)
     detail = JSONField(null=True, blank=True, default=None)
     created_by = models.ForeignKey(
@@ -74,14 +93,20 @@ class Incident(TimeStampedModal):
         on_delete=models.CASCADE,
         null=True, blank=True, default=None
     )
+    need_followup = models.BooleanField(default=False, editable=False)
 
     def __str__(self):
         return self.title
 
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'title',
+
     class Meta:
         permissions = [
-            ('can_verify', 'Can verify incident'),
-            ('can_approve', 'Can approve incident'),
+            ('verify_incident', 'Can verify incident'),
+            ('approve_incident', 'Can approve incident'),
+            ('edit_incident', 'Can edit incident'),
         ]
         verbose_name = _('Incident')
         verbose_name_plural = _('Incidents')
@@ -89,6 +114,17 @@ class Incident(TimeStampedModal):
 
 class Document(TimeStampedModal):
     incident = models.ForeignKey(
-        Incident, related_name='incident', on_delete=models.PROTECT)
-    title = models.CharField(max_length=255, blank=True, null=True, default=None)
-    file = models.FileField(verbose_name='files', blank=True,)
+        Incident,
+        related_name='incident',
+        on_delete=models.PROTECT
+    )
+    title = models.CharField(
+        max_length=255,
+        blank=True, null=True, default=None,
+        verbose_name=_('Title')
+    )
+    file = models.FileField(verbose_name=_('Files'), blank=True)
+
+    class Meta:
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')

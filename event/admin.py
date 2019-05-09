@@ -1,4 +1,5 @@
 import re
+import json
 from django.contrib import (
     admin,
     messages
@@ -10,6 +11,8 @@ from incident.models import Incident
 from django_select2.forms import ModelSelect2MultipleWidget
 from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect
+from django.contrib.gis.geos import GEOSGeometry
+from misc.validators import validate_geojson
 
 
 class EventForm(forms.ModelForm):
@@ -33,6 +36,11 @@ class EventForm(forms.ModelForm):
         )
     )
 
+    geojson = forms.FileField(
+        required=False,
+        validators=[validate_geojson],
+    )
+
     class Meta:
         model = Event
         fields = '__all__'
@@ -40,15 +48,19 @@ class EventForm(forms.ModelForm):
 
 @admin.register(Event)
 class EventAdmin(GeoModelAdmin):
+    search_fields = ('title',)
+    list_filter = ('severity',)
+    list_display = ('title', 'started_on', 'ended_on', 'severity')
     actions = ("create_event",)
     form = EventForm
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
-
     def save_model(self, request, obj, form, change):
+        geojson = form.cleaned_data.get('geojson')
+        if geojson:
+            geojson = json.loads(geojson.read().decode('utf-8'))
+            obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
+        if not obj.point and obj.polygon:
+            obj.point = GEOSGeometry(obj.polygon).centroid
         incidents = form.cleaned_data.get('incidents')
         super(EventAdmin, self).save_model(request, obj, form, change)
         for incident in incidents:
@@ -67,6 +79,9 @@ class EventAdmin(GeoModelAdmin):
             )
             return
         event_id = queryset[0].id
-        return HttpResponseRedirect('/admin/alert/alert/add/?event=%s' % event_id)
+        hazard_id = queryset[0].hazard_id
+        return HttpResponseRedirect(
+            '/admin/alert/alert/add/?event=%s&hazard=%s' % (event_id, hazard_id)
+        )
 
     create_event.short_description = 'Create Alert'

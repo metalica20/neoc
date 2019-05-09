@@ -3,168 +3,633 @@
     "model": "hazard.hazard",
     "pk": 1,
     "fields": {
-      "title": "Air Crash"
+      "title_en": "Aircraft Accident",
+      "title_ne":"हवाई दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#A1FF85",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 2,
     "fields": {
-      "title": "Animal Terror"
+      "title_en": "Animal Incidents",
+      "title_ne": "जनावर आतङ्क",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#FF6BE1",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 3,
     "fields": {
-      "title": "Avalanche"
+      "title_en": "Avalanche",
+      "title_ne": "हिमपहिरो",
+      "order": null,
+      "description": "",
+      "icon": "avalanche",
+      "color": "#36FFD7",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 4,
     "fields": {
-      "title": "Boat Capsize"
+      "title_en": "Boat Capsize",
+      "title_ne": "डुंगा पल्टिनु",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#FFA285",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 5,
     "fields": {
-      "title": "Bridge Collapse"
+      "title_en": "Bridge Collapse",
+      "title_ne": "पुल भत्कीनु",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#C92A35",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 6,
     "fields": {
-      "title": "Cold Wave"
+      "title_en": "Cold Wave",
+      "title_ne": "शीतलहर",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#82F6FF",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 7,
     "fields": {
-      "title": "Drowning"
+      "title_en": "Drowning",
+      "title_ne": "डुबेर मर्नु",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#8FFF9A",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 8,
     "fields": {
-      "title": "Earthquake"
+      "title_en": "Earthquake",
+      "title_ne": "भूकम्प",
+      "order": null,
+      "description": "",
+      "icon": "earthquake",
+      "color": "#FFBE7D",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 9,
     "fields": {
-      "title": "Epidemic"
+      "title_en": "Epidemic",
+      "title_ne": "महामारी",
+      "order": null,
+      "description": null,
+      "icon": null,
+      "color": null,
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 10,
     "fields": {
-      "title": "Fire"
+      "title_en": "Fire",
+      "title_ne": "आगलागी",
+      "order": null,
+      "description": "",
+      "icon": "fire",
+      "color": "#FF8A8A",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 11,
     "fields": {
-      "title": "Flood"
+      "title_en": "Flood",
+      "title_ne": "बाढी",
+      "order": null,
+      "description": "",
+      "icon": "flood",
+      "color": "#1A9BFF",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 12,
     "fields": {
-      "title": "Forest Fire"
+      "title_en": "Forest Fire",
+      "title_ne": "डढेलो",
+      "order": null,
+      "description": "",
+      "icon": "forestfire",
+      "color": "#FF4545",
+      "type": null
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 13,
     "fields": {
-      "title": "Hailstone"
+      "title_en": "Hailstorm",
+      "title_ne": "असिना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#69CDFF",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 14,
     "fields": {
-      "title": "Heavy Rainfall"
+      "title_en": "Heavy Rainfall",
+      "title_ne": "अतिवृष्टि",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#61DFFF",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 15,
     "fields": {
-      "title": "Helicopter Crash"
+      "title_en": "Helicopter Crash",
+      "title_ne": "हेलिकप्टर दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#616161",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 16,
     "fields": {
-      "title": "High Altitude"
+      "title_en": "High Altitude",
+      "title_ne": "उच्च ऊंचाई",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#FF8AC4",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 17,
     "fields": {
-      "title": "Landslide"
+      "title_en": "Landslide",
+      "title_ne": "पहिरो",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#D6703C",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 18,
     "fields": {
-      "title": "Other"
+      "title_en": "Other(natural)",
+      "title_ne": "अन्य प्राकृतिक विपद्",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#8C94FF",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 19,
     "fields": {
-      "title": "Rainfall"
+      "title_en": "Rainfall",
+      "title_ne": "अनावृष्टि",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#66FFC7",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 20,
     "fields": {
-      "title": "Snake Bite"
+      "title_en": "Snake Bite",
+      "title_ne": "सर्पदंश",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#FF29E2",
+      "type": "non natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 21,
     "fields": {
-      "title": "Snow Storm"
+      "title_en": "Snow Storm",
+      "title_ne": "हिमपात",
+      "order": null,
+      "description": "",
+      "icon": "snowstorm",
+      "color": "#6EBBFF",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 22,
     "fields": {
-      "title": "Storm"
+      "title_en": "Storm",
+      "title_ne": "आँधी",
+      "order": null,
+      "description": "",
+      "icon": "storm",
+      "color": "#A6E4FF",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 23,
     "fields": {
-      "title": "Thunderbolt"
+      "title_en": "Thunderbolt",
+      "title_ne": "चट्याङ्ग",
+      "order": null,
+      "description": "",
+      "icon": "thunderbolt",
+      "color": "#FFCA1A",
+      "type": "natural"
     }
   },
   {
     "model": "hazard.hazard",
     "pk": 24,
     "fields": {
-      "title": "Wind Storm"
+      "title_en": "Wind Storm",
+      "title_ne": "हुरी बतास",
+      "order": null,
+      "description": "",
+      "icon": "windstorm",
+      "color": "#0FCFFF",
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 25,
+    "fields": {
+      "title_en": "Drought",
+      "title_ne": "खडेरी",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 26,
+    "fields": {
+      "title_en": "Glacial lake outburst",
+      "title_ne": "हिमताल विस्फोटन",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 27,
+    "fields": {
+      "title_en": "Heat wave",
+      "title_ne": "तातो हावाको लहर",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 28,
+    "fields": {
+      "title_en": "Inundation",
+      "title_ne": "डुबान",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 29,
+    "fields": {
+      "title_en": "Soil Erosion",
+      "title_ne": "भू-स्खलन",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 30,
+    "fields": {
+      "title_en": "Volcanic eruption",
+      "title_ne": "ज्वालामुखी बिस्फोट",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 31,
+    "fields": {
+      "title_en": "Industrial disaster",
+      "title_ne": "औद्योगिक दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 32,
+    "fields": {
+      "title_en": "Mine disaster",
+      "title_ne": "खानी दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 33,
+    "fields": {
+      "title_en": "Pandemics",
+      "title_ne": "प्यान्डामिक फ्लू",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 34,
+    "fields": {
+      "title_en": "Road accident",
+      "title_ne": "सडक दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 35,
+    "fields": {
+      "title_en": "Animal flu",
+      "title_ne": "पशु वा चराचुरुङ्गीमा हुने फ्लू",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 36,
+    "fields": {
+      "title_en": "Deforestation",
+      "title_ne": "वन विनाश",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 37,
+    "fields": {
+      "title_en": "Environmental pollution",
+      "title_ne": "वातावरणीय प्रदूषण",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 38,
+    "fields": {
+      "title_en": "Famine",
+      "title_ne": "अनिकाल",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 39,
+    "fields": {
+      "title_en": "Food poisoning",
+      "title_ne": "विषाक्त खाद्य सेवन",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 40,
+    "fields": {
+      "title_en": "Gas explosion",
+      "title_ne": "ग्याँस विष्फोटन",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 41,
+    "fields": {
+      "title_en": "Leakage (chemical)",
+      "title_ne": "रसायन चुहावट",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 42,
+    "fields": {
+      "title_en": "Leakage (radiation)",
+      "title_ne": "विकिरण चुहावट",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 43,
+    "fields": {
+      "title_en": "Leakage (toxic gas)",
+      "title_ne": "विषाक्त ग्याँस चुहावट",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 44,
+    "fields": {
+      "title_en": "Microorganism attack",
+      "title_ne": "किट वा सूक्ष्म जिवाणु आतङ्क",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 45,
+    "fields": {
+      "title_en": "Others (Non-natural)",
+      "title_ne": "अन्य गैरप्राकृतिक विपद्",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 46,
+    "fields": {
+      "title_en": "Physical Infrastructure damage",
+      "title_ne": "भौतिक संरचनाको क्षति",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 47,
+    "fields": {
+      "title_en": "Response Accident",
+      "title_ne": "प्रकोप उद्धार कार्यमा हुने दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 46,
+    "fields": {
+      "title_en": "Water Accident",
+      "title_ne": "जल दुर्घटना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": null,
+      "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazardresources",
+    "pk": 1,
+    "fields": {
+      "hazard": 1,
+      "resource": 29,
+      "weight": 5
     }
   }
 ]

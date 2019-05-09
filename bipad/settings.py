@@ -6,6 +6,7 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from psycopg2cffi import compat
+from django.utils.translation import ugettext_lazy as _
 
 compat.register()
 
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 
     'jet.dashboard',
     'jet',
+    'modeltranslation',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'silk',
     'drf_yasg',
     'colorfield',
+    'mptt',
 
     'django_celery_beat',
     'rest_framework',
@@ -70,7 +73,11 @@ INSTALLED_APPS = [
     'realtime',
     'misc',
     'document',
+    'relief',
+    'user',
     'risk_profile',
+
+
 
 ]
 
@@ -179,7 +186,7 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'ne'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Kathmandu'
 
@@ -199,6 +206,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
 
 
 MEDIA_URL = '/media/'
@@ -236,7 +244,7 @@ MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 6),
         ("markerFitZoom", 12),
-        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np',}}),
+        ("GooglePlaceAutocompleteOptions", {'componentRestrictions': {'country': 'np', }}),
     ),
     "GOOGLE_MAP_API_KEY": os.environ.get('GOOGLE_MAPS_API_KEY'),
     "LANGUAGE": "ne",
@@ -267,6 +275,30 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
+
 SERIALIZATION_MODULES = {
         "custom_geojson": "risk_profile.geojson_serializer",
+
+
+SESSION_COOKIE_HTTPONLY = False
+
+
+def gettext(s): return s
+
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('ne', _('Nepali')),
+)
+
+DEFAULT_FROM_EMAIL = 'bipad@moha.gov.np'
+SERVER_EMAIL = 'bipad@moha.gov.np'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'mail.moha.gov.np'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bipad@moha.gov.np'
+EMAIL_HOST_PASSWORD = 'B!p@d#468'
+SERIALIZATION_MODULES = {
+    "custom_geojson": "risk_profile.geojson_serializer",
+
 }

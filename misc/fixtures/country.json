@@ -1,0 +1,10 @@
+[
+  {
+    "model": "loss.country",
+    "pk": 1,
+    "fields": {
+      "title_en": "Nepali",
+      "title_ne": "नेपाली"
+    }
+  }
+]

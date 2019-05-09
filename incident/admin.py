@@ -1,3 +1,4 @@
+import json
 from django.contrib.auth import get_permission_codename
 from django.contrib import (
     admin,
@@ -18,10 +19,41 @@ from django_select2.forms import (
     ModelSelect2Widget,
     ModelSelect2MultipleWidget,
 )
-from .utils import get_similar_incident, get_followup_fields
+from .utils import (
+    get_similar_incident,
+    get_followup_fields,
+    get_incident_title,
+    generate_polygon_from_wards,
+)
 from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.gis.geos import GEOSGeometry
+from misc.validators import validate_geojson
+from django.core.exceptions import ValidationError
+from django.utils.html import format_html
+from django.urls import reverse
+from loss.notifications import user_notifications
+
+
+INCIDENT_FIELDS = (
+    'cause',
+    'source',
+    'verified',
+    'approved',
+    'point',
+    'geojson',
+    'incident_on',
+    'reported_on',
+    'event',
+    'hazard',
+    'loss',
+    'district',
+    'municipality',
+    'wards',
+    'street_address',
+    'description'
+)
 
 
 class DocumentInline(admin.TabularInline):
@@ -37,7 +69,9 @@ class IncidentForm(forms.ModelForm):
             wards = Incident.objects.values('wards').filter(id=instance.id)
             if wards[0]['wards']:
                 municipality = Ward.objects.values(
-                    'municipality', 'municipality__district').filter(id=wards[0]['wards'])
+                    'municipality',
+                    'municipality__district'
+                ).filter(id=wards[0]['wards'])
                 self.fields['municipality'].initial = municipality[0]['municipality']
                 self.fields['district'].initial = municipality[0]['municipality__district']
 
@@ -73,93 +107,127 @@ class IncidentForm(forms.ModelForm):
         )
     )
 
+    geojson = forms.FileField(
+        required=False,
+        validators=[validate_geojson],
+        label=_('Geojson')
+    )
+
     class Meta:
         model = Incident
-        fields = (
-            'title',
-            'cause',
-            'source',
-            'verified',
-            'approved',
-            'point',
-            'polygon',
-            'incident_on',
-            'reported_on',
-            'event',
-            'hazard',
-            'loss',
-            'district',
-            'municipality',
-            'wards',
-            'street_address',
-            'description'
-        )
+        fields = INCIDENT_FIELDS
 
     def clean(self):
-        if not(self.cleaned_data.get("wards") or self.cleaned_data.get("point") or self.cleaned_data.get("polygon")):
-            raise forms.ValidationError("You need to add either wards or point or polygon")
-        return self.cleaned_data
+        if not(
+                self.cleaned_data.get("wards") or
+                self.cleaned_data.get("point") or
+                self.cleaned_data.get("polygon") or
+                self.cleaned_data.get("geojson")
+        ):
+            raise ValidationError("You need to add either wards or point or polygon or Geojson")
 
 
 @admin.register(Incident)
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
-    list_display = ('title', 'hazard', 'source', 'verified', 'incident_on')
-    list_filter = ('hazard', 'source', 'verified', 'approved')
-    exclude = ('detail',)
+    list_display = ('title', 'hazard', 'source', 'verified', 'incident_on', 'incident_actions')
+    list_filter = ('need_followup', 'hazard', 'source', 'verified', 'approved')
+    exclude = ('detail', 'title')
     actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)
 
     form = IncidentForm
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
+    def incident_actions(self, obj):
+        return format_html(
+            """
+            <button>
+                <a href="{}?incident={}">
+                    Add Relief
+                </a>
+            </button>
+            """.format(reverse('admin:relief_release_add'), obj.id)
+        )
 
     def save_model(self, request, obj, form, change):
         if change:
             obj.updated_by = request.user
         else:
             obj.created_by = request.user
+
+        geojson = form.cleaned_data.get('geojson')
+        wards = form.cleaned_data.get('wards')
+
+        # geojson takes precedence over others
+        if geojson:
+            geojson = json.loads(geojson.read().decode('utf-8'))
+            # override polygon from geojson
+            obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
+        if obj.polygon:
+            # polygon overrides wards
+            wards = Ward.objects.filter(boundary__intersects=obj.polygon)
+            form.cleaned_data['wards'] = wards
+        # if no polygon objects then generate polygon from wards
+        if wards and not obj.polygon:
+            obj.polygon = generate_polygon_from_wards(wards)
+        # generate centroid from polygon
+        if not obj.point and obj.polygon:
+            obj.point = GEOSGeometry(obj.polygon).centroid
+
+        obj.title = get_incident_title(obj)
+
         super(IncidentAdmin, self).save_model(request, obj, form, change)
         similar_incidents = get_similar_incident(obj)
         for incident in similar_incidents:
             messages.add_message(request, messages.INFO, mark_safe(
-                "Similar data <a href='/admin/incident/incident/%d/change/'>%s</a> already exists"
-                % (incident.id, incident.title)
+                "Similar data <a href='%s'>%s</a> already exists"
+                % (reverse('admin:incident_incident_change', args=[incident.id]), incident.title)
             ))
+
+        user_notifications(obj, change)
 
     def verify(self, request, queryset):
         queryset.update(verified=True)
 
-    verify.allowed_permissions = ('can_verify',)
-    verify.short_description = 'Mark incidents as verified'
+    verify.allowed_permissions = ('verify',)
+    verify.short_description = _('Mark incidents as verified')
 
     def approve(self, request, queryset):
         queryset.update(approved=True)
 
-    approve.allowed_permissions = ('can_approve',)
-    approve.short_description = 'Mark incidents as approved'
+    approve.allowed_permissions = ('approve',)
+    approve.short_description = _('Mark incidents as approved')
 
-    def has_can_verify_permission(self, request):
+    def has_verify_permission(self, request):
         opts = self.opts
-        codename = get_permission_codename('can_verify', opts)
+        codename = get_permission_codename('verify', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
-    def has_can_approve_permission(self, request):
+    def has_approve_permission(self, request):
         opts = self.opts
-        codename = get_permission_codename('can_approve', opts)
+        codename = get_permission_codename('approve', opts)
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
+
+    def has_edit_permission(self, request):
+        opts = self.opts
+        codename = get_permission_codename('edit', opts)
+        return request.user.has_perm('%s.%s' % (opts.app_label, codename))
+
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        print(self.has_edit_permission(request))
+        if not self.has_edit_permission(request):
+            extra_context = extra_context or {}
+            extra_context['read_only'] = True
+        return super().changeform_view(request, object_id, extra_context=extra_context)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         if request.user.groups.filter(name='Nepal Police').exists():
             form.base_fields['source'].initial = 'nepal_police'
             form.base_fields['source'].disabled = True
-        if not self.has_can_verify_permission(request):
+        if not self.has_verify_permission(request):
             form.base_fields['verified'].disabled = True
-        if not self.has_can_approve_permission(request):
+        if not self.has_approve_permission(request):
             form.base_fields['approved'].disabled = True
         return form
 
@@ -173,7 +241,7 @@ class IncidentAdmin(GeoModelAdmin):
         incident_ids = ",".join(str(incident.id) for incident in queryset)
         return HttpResponseRedirect('/admin/event/event/add/?incident=%s' % incident_ids)
 
-    create_event.short_description = 'Create Event'
+    create_event.short_description = _('Create Event')
 
     def change_view(self, request, object_id, form_url=''):
         followup_fields = get_followup_fields(object_id)

@@ -51,10 +51,5 @@ class AddressForm(forms.ModelForm):
 class DocumentAdmin(VersionAdmin, GeoModelAdmin):
     form = AddressForm
 
-    class Media:
-        css = {
-            'all': ('federal/css/django_select2.css',)
-        }
-
 
 admin.site.register(Category)

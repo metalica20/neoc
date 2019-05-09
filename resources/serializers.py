@@ -15,6 +15,7 @@ from .models import (
 
 
 class ResourceBaseSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
+    carrot_count = serializers.IntegerField(read_only=True)
     expandable_fields = {
         'inventories': (InventorySerializer, {'source': 'inventories', 'many': True}),
     }

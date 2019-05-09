@@ -26,7 +26,10 @@ from federal.views import (
     MunicipalityViewSet,
     WardViewSet,
 )
-from resources.views import ResourceViewSet
+from resources.views import (
+    ResourceViewSet,
+    ResponseList,
+)
 from organization.views import (
     OrganizationViewSet,
     ProjectViewSet,
@@ -52,6 +55,14 @@ from inventory.views import (
     InventoryViewSet,
 )
 
+
+from relief.views import (
+    FlowViewSet,
+    ReleaseViewSet,
+)
+from django.views.i18n import JavaScriptCatalog
+
+
 from risk_profile.views import (
     HospitalViewSet,
     SchoolViewSet,
@@ -60,6 +71,7 @@ from risk_profile.views import (
 from mappage.views import (
     MapPage,
 )
+
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -126,6 +138,18 @@ router.register(r'hospital', HospitalViewSet,
                 base_name='hospital')
 
 
+router.register(r'relief-flow', FlowViewSet,
+                base_name='relief-flow')
+router.register(r'relief-release', ReleaseViewSet,
+                base_name='relief-release')
+
+router.register(r'school', SchoolViewSet,
+                base_name='school')
+router.register(r'hospital', HospitalViewSet,
+                base_name='hospital')
+
+
+
 API_VERSION = 'v1'
 
 
@@ -133,13 +157,17 @@ def get_api_path(path):
     return r'^api/(?P<version>({}))/{}'.format(API_VERSION, path)
 
 
-urlpatterns = i18n_patterns(
-    path('admin/', admin.site.urls),
-    path('admin/', include('django_select2.urls')),
+urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('jet/', include('jet.urls', 'jet')),
     path('silk/', include('silk.urls', namespace='silk')),
+    path('admin/', include('django_select2.urls')),
+    re_path(
+        get_api_path(r'incident/(?P<pk>[^/.]+)/response/$'),
+        ResponseList.as_view(),
+        name='incident-response'
+    ),
     re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(),
             name='token_obtain_pair'),
     re_path(get_api_path(r'token/refresh/$'),
@@ -151,9 +179,17 @@ urlpatterns = i18n_patterns(
     re_path(r'^api/$', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
+
+
+] + i18n_patterns(
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    path('admin/', admin.site.urls),
+
+
     path('risk_profile/', include('risk_profile.urls')),
     path('risk_profile/', include('mappage.urls')),
     path('',MapPage.as_view(),name="mappage"),
+
 
 ) + static.static(
     settings.MEDIA_URL,

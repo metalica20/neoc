@@ -1,0 +1,74 @@
+[
+  {
+    "model": "loss.disabilitytype",
+    "pk": 1,
+    "fields": {
+      "title_en": "Physical",
+      "title_ne": "शारीरिक असक्षमता"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 2,
+    "fields": {
+      "title_en": "Blindness/Low vision",
+      "title_ne": "दृस्टी बिहिन /कम दृष्टि"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 3,
+    "fields": {
+      "title_en": "Deaf/Hard to hearing",
+      "title_ne": "बहिरो/सुन्नु गाह्रो छ"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 4,
+    "fields": {
+      "title_en": "Deaf and Blind",
+      "title_ne": "बहिरो र दृस्टी बिहिन"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 5,
+    "fields": {
+      "title_en": "Speech Problem",
+      "title_ne": "बोली समस्या"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 6,
+    "fields": {
+      "title_en": "Mentally Challenged",
+      "title_ne": "मानसिक चुनौती"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 7,
+    "fields": {
+      "title_en": "Intellectually Disabled",
+      "title_ne": "बौद्धिक असक्षम"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 8,
+    "fields": {
+      "title_en": "Multiple Disabilities",
+      "title_ne": "बहु अक्षम"
+    }
+  },
+  {
+    "model": "loss.disabilitytype",
+    "pk": 9,
+    "fields": {
+      "title_en": "Others ",
+      "title_ne": "अन्य"
+    }
+  }
+]

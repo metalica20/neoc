@@ -4,8 +4,6 @@ from bipad.models import TimeStampedModal
 from hazard.models import Hazard
 from event.models import Event
 from federal.models import Ward
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 class Alert(TimeStampedModal):
@@ -28,7 +26,7 @@ class Alert(TimeStampedModal):
     hazard = models.ForeignKey(
         Hazard,
         on_delete=models.SET_NULL,
-        default=None, null=True, blank=True
+        default=None, null=True, blank=False
     )
     started_on = models.DateTimeField(blank=True, default=timezone.now)
     expire_on = models.DateTimeField(null=True, blank=True, default=None)
@@ -79,13 +77,3 @@ class Activity(TimeStampedModal):
         choices=STATUSES,
     )
     alert = models.ForeignKey(Alert, on_delete=models.CASCADE)
-
-
-@receiver(post_save, sender=Alert)
-def on_alert_save(sender, instance, **kwargs):
-    if instance.polygon:
-        wards = Ward.objects.filter(boundary__intersects=instance.polygon)
-        instance.wards.set(wards)
-    elif instance.point:
-        wards = Ward.objects.filter(boundary__intersects=instance.point)
-        instance.wards.set(wards)
