@@ -60,14 +60,14 @@ class ReleaseForm(forms.ModelForm):
     )
     person = forms.ModelChoiceField(
         queryset=People.objects.filter(name__isnull=False),
-        required=False,
         widget=ModelSelect2Widget(
             model=People,
             search_fields=['name__icontains'],
             dependent_fields={
                 'ward': 'ward',
                 'municipality': 'ward__municipality',
-                'district': 'ward__municipality__district'
+                'district': 'ward__municipality__district',
+                'incident': 'loss__incident',
             },
         )
     )
