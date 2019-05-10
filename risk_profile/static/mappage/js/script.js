@@ -443,6 +443,7 @@
                map.removeLayer(label);
              }
              map.addLayer(province);
+             map.addLayer(vt_label_province);
              map.setView([28.410728397237914,84.4024658203125], 7);
           });
 
