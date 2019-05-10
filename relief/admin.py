@@ -128,10 +128,5 @@ class ReleaseAdmin(admin.ModelAdmin):
 
     form = ReleaseForm
 
-    class Media:
-        js = (
-            'https://code.jquery.com/jquery-3.3.1.min.js',
-        )
-
 
 admin.site.register([ReleaseStatus, FiscalYear])
