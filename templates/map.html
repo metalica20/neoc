@@ -371,10 +371,51 @@
                                                 <span class="humanitarian-icon-Helipad"></span>
                                             </li>
 
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="PCI" data-currentLayer="" data-result=""  name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="PCI" data-tab="pci_vul">Per Capita Income </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Helipad"></span>
+                                            </li>
+
+
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="LE" data-currentLayer="" data-result=""  name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="LE" data-tab="le_vul">Life Expectancy </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Helipad"></span>
+                                            </li>
+
+                                            <li class="active">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input parent_vul" id="HPI" data-currentLayer="" data-result=""  name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="HPI" data-tab="hpi_vul">Human Poverty Index </label>
+                                                </div>
+                                                <span class="humanitarian-icon-Helipad"></span>
+                                            </li>
+
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input  parent_vul" id="GDP" data-currentLayer=""   name="example1" value="customEx">
                                                     <label class="custom-control-label" for="GDP" data-tab="vulnery-1">Access To Communication</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Fund"></span>
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input  parent_vul" id="ATW" data-currentLayer=""   name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="ATW" data-tab="awt_vul">Access To Water</label>
+                                                </div>
+                                                <span class="humanitarian-icon-Fund"></span>
+                                            </li>
+
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input  parent_vul" id="TOIL" data-currentLayer=""   name="example1" value="customEx">
+                                                    <label class="custom-control-label" for="TOIL" data-tab="toil_vul">Access To Toilet</label>
                                                 </div>
                                                 <span class="humanitarian-icon-Fund"></span>
                                             </li>
@@ -1049,6 +1090,192 @@
 
 <!-- communication popup end -->
 
+
+ <!-- access to water -->
+
+ <div class="hazard-details" id="awt_vul">
+     <div class="hazard-wrapper">
+         <div class="hazard-title">
+             <h3><span class="humanitarian-icon-Health-facility"></span>Access To Water</h3>
+             <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+             <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+             <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+         </div>
+         <div class="hazard-content">
+             <button type="button" class="compare-button">compare</button>
+             <div class="hazard-acc">
+                 <ul class="hazardDetail-list">
+                     <li class="active">
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="tap_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="tap_water">Tap</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="tube_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="tube_water">tube</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="cok_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="cok_water">cok</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="unco_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="unco_water">unco</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="spou_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="spou_water">spout</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="river_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="river_water">river</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="other_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="other_water">other</label>
+                         </div>
+                     </li>
+
+                     <li>
+                         <div class="custom-control custom-radio">
+
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="nots_water" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="nots_water">Not Specified</label>
+                         </div>
+                     </li>
+
+                     <!-- compare popup -->
+                     <div class="compare-popup" id="compare_vul">
+
+
+                         <div class="compare-wrapper" id="radio-compare">
+                             <div class="compare-header">
+                                 <h3>Access to radio</h3>
+                                 <span ><i class="ion ion-md-close-circle-outline"></i></span>
+                             </div>
+                             <div class="compare-body">
+
+
+                                   <div id="chart">
+                                     <span class="compare-info">click on the map to compare</span>
+                                     <!-- <div id="tooltip" style="opacity:0">
+                                       <p><strong>Label Heading</p>
+                                         <p><span id="percentage">100</span></p>
+                                         <p><span id="value">100</span></p>
+
+                                       </div> -->
+
+
+                                   </div>
+                             </div>
+                         </div>
+
+
+
+
+
+                     </div>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </div>
+
+ <!-- access to water end-->
+
+
+ <!-- access to water -->
+
+ <div class="hazard-details" id="toil_vul">
+     <div class="hazard-wrapper">
+         <div class="hazard-title">
+             <h3><span class="humanitarian-icon-Health-facility"></span>Access To Toilet</h3>
+             <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+             <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+             <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+         </div>
+         <div class="hazard-content">
+             <button type="button" class="compare-button">compare</button>
+             <div class="hazard-acc">
+                 <ul class="hazardDetail-list">
+                     <li class="active">
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="wit_toilet" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="wit_toilet">without</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="flush_toilet" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="flush_toilet">flush</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="ordinary_toilet" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="ordinary_toilet">ordinary</label>
+                         </div>
+                     </li>
+                     <li>
+                         <div class="custom-control custom-radio">
+                             <input type="radio" class="custom-control-input socio nt_loaded admin_bound" data-parent="GDP" data-admin="municipality" id="not_toilet" name="comapre_1" value="customEx">
+                             <label class="custom-control-label" for="not_toilet">not Specified</label>
+                         </div>
+                     </li>
+
+
+                     <!-- compare popup -->
+                     <div class="compare-popup" id="compare_vul">
+
+
+                         <div class="compare-wrapper" id="radio-compare">
+                             <div class="compare-header">
+                                 <h3>Access to radio</h3>
+                                 <span ><i class="ion ion-md-close-circle-outline"></i></span>
+                             </div>
+                             <div class="compare-body">
+
+
+                                   <div id="chart">
+                                     <span class="compare-info">click on the map to compare</span>
+                                     <!-- <div id="tooltip" style="opacity:0">
+                                       <p><strong>Label Heading</p>
+                                         <p><span id="percentage">100</span></p>
+                                         <p><span id="value">100</span></p>
+
+                                       </div> -->
+
+
+                                   </div>
+                             </div>
+                         </div>
+
+
+
+
+
+                     </div>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </div>
+
+ <!-- access to water end-->
+
  <!-- hdi start-->
 
 
@@ -1281,8 +1508,244 @@
 
 
 
-<!-- risk end popup -->
-      <!-- vulnerability popup end -->
+      <!-- risk end popup -->
+
+      <!-- Per Capita Income -->
+
+      <div class="hazard-details trans_constrast" id="pci_vul">
+          <div class="hazard-wrapper" >
+              <div class="hazard-title">
+                  <h3><span class="humanitarian-icon-Flood"></span>Per Capita Income</h3>
+                  <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="HIgh remotness indicates areas that are most remote and low remotness index indicate better accessibility"></i>
+                  <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+                  <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+              </div>
+              <div class="hazard-content">
+                  <!-- <h4>Hazard</h4> -->
+                  <div class="hazard-acc">
+                      <div id="accordion">
+
+                          <!-- <div class="card">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                                  <label class="custom-control-label" for="hdi_national">National Level </label>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div> -->
+
+                          <div class="card opacityParent">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                    <span class="ion ion-md-contrast"  style="float:right;"></span>
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-radio">
+                                                  <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Per Capita Income" data-parent="PCI" data-score="perCapitaIncome" data-admin="district"  id="pci_district" name="pci_district" value="customEx">
+                                                  <label class="custom-control-label" for="pci_district">District Level  </label>
+                                              </div>
+
+                                              <div class="range-box">
+                                                  <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                              </div>
+
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- <div class="card">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                                  <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div> -->
+
+
+
+
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+      <!-- per capita income end-->
+
+
+      <!-- life Expectancy -->
+
+      <div class="hazard-details trans_constrast" id="le_vul">
+          <div class="hazard-wrapper" >
+              <div class="hazard-title">
+                  <h3><span class="humanitarian-icon-Flood"></span>Life Expectancy</h3>
+                  <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="HIgh remotness indicates areas that are most remote and low remotness index indicate better accessibility"></i>
+                  <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+                  <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+              </div>
+              <div class="hazard-content">
+                  <!-- <h4>Hazard</h4> -->
+                  <div class="hazard-acc">
+                      <div id="accordion">
+
+                          <!-- <div class="card">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                                  <label class="custom-control-label" for="hdi_national">National Level </label>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div> -->
+
+                          <div class="card opacityParent">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                    <span class="ion ion-md-contrast"  style="float:right;"></span>
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-radio">
+                                                  <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Life Expectancy" data-parent="LE" data-score="lifeExpectancy" data-admin="district"  id="le_district" name="le_district" value="customEx">
+                                                  <label class="custom-control-label" for="le_district">District Level  </label>
+                                              </div>
+
+                                              <div class="range-box">
+                                                  <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                              </div>
+
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- <div class="card">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                                  <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div> -->
+
+
+
+
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+      <!--life Expectancy end-->
+
+
+      <!-- Human poverty Index -->
+
+      <div class="hazard-details trans_constrast" id="hpi_vul">
+          <div class="hazard-wrapper" >
+              <div class="hazard-title">
+                  <h3><span class="humanitarian-icon-Flood"></span>Human POverty Index</h3>
+                  <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="HIgh remotness indicates areas that are most remote and low remotness index indicate better accessibility"></i>
+                  <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
+                  <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
+              </div>
+              <div class="hazard-content">
+                  <!-- <h4>Hazard</h4> -->
+                  <div class="hazard-acc">
+                      <div id="accordion">
+
+                          <!-- <div class="card">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input admin_bound vul_hdi" data-score="hdi"  id="hdi_national" name="hdi_national"  value="customEx">
+                                                  <label class="custom-control-label" for="hdi_national">National Level </label>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div> -->
+
+                          <div class="card opacityParent">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                    <span class="ion ion-md-contrast"  style="float:right;"></span>
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-radio">
+                                                  <input type="radio" class="custom-control-input admin_bound vul_hdi nt_loaded" data-legendname="Human Poverty Index" data-parent="HPI" data-score="humanPovertyIndex" data-admin="district"  id="hpi_district" name="hpi_district" value="customEx">
+                                                  <label class="custom-control-label" for="hpi_district">District Level  </label>
+                                              </div>
+
+                                              <div class="range-box">
+                                                  <input type="range" min="0" max="100" class="center" data-name-trans="district">
+                                              </div>
+
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- <div class="card">
+                              <div id="landslide_col_1" class="collapse show" data-parent="#accordion" aria-labelledby="landslide_1">
+                                  <div class="card-body">
+                                      <ul class="hazardDetail-list">
+                                          <li class="active">
+                                              <div class="custom-control custom-checkbox">
+                                                  <input type="checkbox" class="custom-control-input admin_bound" data-admin="municipality"  id="hdi_munci" name="hdi_munci" value="customEx">
+                                                  <label class="custom-control-label" for="hdi_munci">Municipality Level  </label>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                  </div>
+                              </div>
+                          </div> -->
+
+
+
+
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+      <!--Human poverty Index end-->
+
+
+
+<!-- vulnerability popup end -->
 
             <!-- rightSidebar end -->
 
@@ -1566,7 +2029,7 @@
              L.control.zoom({position:'bottomright'}).addTo(map);
 
 
-           var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvhnbms0ulh1fngemx4xaui/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw').addTo(map);
+           var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw').addTo(map);
            // .addTo(map);
                  var osm = L.tileLayer('https://a.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png', {
                    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -1706,7 +2169,7 @@ map.on('zoomend',function(e){
       map.removeLayer(vt_label_district);
       map.removeLayer(vt_label_province);
     }
-    else if(zoom<7 && map.hasLayer(province)){
+    else if(zoom>7 && map.hasLayer(province)){
       map.addLayer(vt_label_province);
       map.addLayer(activeLayer);
     }
@@ -2102,12 +2565,12 @@ function highlightLayers(layer, featureName){
 
 
           function loadHdiData(risk_id,id,parent_id,name){     //loding socia data in map layers
-           ////console.log(risk_id);
+           console.log(risk_id);
 
 
 
             $('#'+id).addClass('loaded_layer');
-            fed_url_api=base_url+"/risk_profile/Risk";
+            fed_url_api=base_url+"/risk_profile/Risk/"+risk_id;
 
                           // socioid1=socioid.split("_")[0]+socioid.split("_")[1].charAt(0).toUpperCase()+socioid.split("_")[1].slice(1);
                           //////console.log(socioid1);
@@ -2115,12 +2578,12 @@ function highlightLayers(layer, featureName){
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
-
-                                var fieldname="avg"+risk_id
+                                console.log(result);
+                                var fieldname="avg";
                                 // ////console.log(fieldname);
                                  // ////console.log(result[fieldname]);
-                                 if(risk_id=="riskScore"){
-                                   var avg_val=(Math.round((result[fieldname]/result.maxriskScore)*100));
+                                 if(risk_id !="hdi" && risk_id !="remoteness"){
+                                   var avg_val=(Math.round((result[fieldname]/result.max)*100));
                                  }else{
                                    var avg_val=(Math.round(result[fieldname]*100));
                                  }
@@ -2136,8 +2599,8 @@ function highlightLayers(layer, featureName){
 
                                   for(var i=0;i<result.results.length;i++){
 
-                                       if(risk_id=="riskScore"){
-                                           val=Math.round((result.results[i][risk_id]/result.maxriskScore)*100);
+                                       if(risk_id !="hdi" && risk_id !="remoteness"){
+                                           val=Math.round((result.results[i][risk_id]/result.max)*100);
                                         }else{
 
                                           val=Math.round((result.results[i][risk_id])*100);
@@ -2149,7 +2612,7 @@ function highlightLayers(layer, featureName){
                                           '</div>'+
                                           '<span class="skill">'+result.results[i]['district']+' :<i class="val">'+result.results[i][risk_id]+'</i></span>'+
                                       '</div>';
-                                      if(risk_id=="riskScore"){
+                                      if(risk_id !="hdi" && risk_id !="remoteness"){
                                         district.setFeatureStyle(result.results[i]["districtId"], earthRiskStyle(parseFloat(result.results[i][risk_id])));
                                       }else{
                                         district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i][risk_id])));
@@ -2192,7 +2655,7 @@ function highlightLayers(layer, featureName){
                                         '<span><i class="ion ion-md-close"></i></span>'+
                                     '</div>'+
                                     '<ul>';
-                                    if(risk_id=='riskScore'){
+                                    if(risk_id !="hdi" && risk_id !="remoteness"){
 
                                       legend_html+='<li class="satelite"><span style="background-color:#FED976;"></span><a href="#">0-0.5</a></li>'+
                                                     '<li class="satelite"><span style="background-color:#FEB24C;"></span><a href="#">0.5-1</a></li>'+

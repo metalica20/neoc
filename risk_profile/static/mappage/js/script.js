@@ -148,6 +148,11 @@
                 $('#remote_vul').hide(300);
                 $('#earthquake_risk').hide(300);
                 $('#osmLayer_popup').hide(300);
+                $('#pci_vul').hide(300);
+                $('#le_vul').hide(300);
+                $('#hpi_vul').hide(300);
+                $('#awt_vul').hide(300);
+                $('#toil_vul').hide(300);
 
               } else if (targetId == 'exposure_popup' ) {
                 $('#infa_exposure_popup').hide(300);
@@ -159,7 +164,11 @@
                 $('#remote_vul').hide(300);
                 $('#earthquake_risk').hide(300);
                 $('#osmLayer_popup').hide(300);
-
+                $('#pci_vul').hide(300);
+                $('#le_vul').hide(300);
+                $('#hpi_vul').hide(300);
+                $('#awt_vul').hide(300);
+                $('#toil_vul').hide(300);
 
             } else if (targetId == 'infa_exposure_popup' ) {
               $('#exposure_popup').hide(300);
@@ -171,7 +180,11 @@
               $('#remote_vul').hide(300);
               $('#earthquake_risk').hide(300);
               $('#osmLayer_popup').hide(300);
-
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
 
 
             } else if (targetId == 'capacity-popup' ) {
@@ -185,7 +198,11 @@
                     $('#remote_vul').hide(300);
                     $('#earthquake_risk').hide(300);
                     $('#osmLayer_popup').hide(300);
-
+                    $('#pci_vul').hide(300);
+                    $('#le_vul').hide(300);
+                    $('#hpi_vul').hide(300);
+                    $('#awt_vul').hide(300);
+                    $('#toil_vul').hide(300);
             }
             else if (targetId == 'vulnery-1' ) {
 
@@ -198,7 +215,11 @@
                 $('#remote_vul').hide(300);
                 $('#earthquake_risk').hide(300);
                 $('#osmLayer_popup').hide(300);
-
+                $('#pci_vul').hide(300);
+                $('#le_vul').hide(300);
+                $('#hpi_vul').hide(300);
+                $('#awt_vul').hide(300);
+                $('#toil_vul').hide(300);
 
 
         }else if (targetId == 'hdi_vul' ) {
@@ -212,7 +233,11 @@
             $('#remote_vul').hide(300);
             $('#earthquake_risk').hide(300);
             $('#osmLayer_popup').hide(300);
-
+            $('#pci_vul').hide(300);
+            $('#le_vul').hide(300);
+            $('#hpi_vul').hide(300);
+            $('#awt_vul').hide(300);
+            $('#toil_vul').hide(300);
 
 
           }else if (targetId == 'remote_vul' ) {
@@ -226,7 +251,11 @@
               $('#hdi_vul').hide(300);
               $('#earthquake_risk').hide(300);
               $('#osmLayer_popup').hide(300);
-
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
 
 
           }else if (targetId == 'earthquake_risk' ) {
@@ -240,7 +269,11 @@
               $('#hdi_vul').hide(300);
               $('#remote_vul').hide(300);
               $('#osmLayer_popup').hide(300);
-
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
 
 
           }else if (targetId == 'osmLayer_popup' ) {
@@ -254,6 +287,108 @@
               $('#hdi_vul').hide(300);
               $('#remote_vul').hide(300);
               $('#earthquake_risk').hide(300);
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
+
+
+
+          }else if (targetId == 'pci_vul' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
+
+
+
+
+          }else if (targetId == 'le_vul' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
+
+
+
+          }else if (targetId == 'hpi_vul' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#awt_vul').hide(300);
+              $('#toil_vul').hide(300);
+
+
+
+          }else if (targetId == 'awt_vul' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#toil_vul').hide(300);
+
+
+
+          }else if (targetId == 'toil_vul' ) {
+
+              $('#' + targetId).show(500);
+              $('#exposure_popup').hide(300);
+              $('#infa_exposure_popup').hide(300);
+              $('#flood-1').hide(300);
+              $('#capacity-popup').hide(300);
+              $('#vulnery-1').hide(300);
+              $('#hdi_vul').hide(300);
+              $('#remote_vul').hide(300);
+              $('#earthquake_risk').hide(300);
+              $('#osmLayer_popup').hide(300);
+              $('#pci_vul').hide(300);
+              $('#le_vul').hide(300);
+              $('#hpi_vul').hide(300);
+              $('#awt_vul').hide(300);
 
 
 

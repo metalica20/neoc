@@ -28,10 +28,10 @@ class SociocookViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
         a=self.kwargs['field']
-        print(a);
+        # print(a);
         queryset=SocioEconomicGapanapa.objects.filter(name=a)
         serializer=SociocookSerializer(queryset,many=True)
-        print(queryset);
+        # print(queryset);
         return Response(serializer.data)
         # queryset=SocioEconomicGapanapa.objects.all()
         # serializers=serialize(queryset)
@@ -259,20 +259,36 @@ class IncidentApiView(viewsets.ModelViewSet):
 #     permission_classes=[]
 #     serializer_class=RiskSerializer
 #     queryset = Risk.objects.all()
+# class RiskApiView(views.APIView):
+#     permission_classes=[]
+#     # serializer_class=RiskSerializer
+#     # queryset = Risk.objects.all()
+#     def get(self, request):
+#         risk = Risk.objects.all().order_by('-hdi')
+#         serializer = RiskSerializer(risk ,many=True)
+#         print(serializer.data)
+#         all_sum = risk.aggregate(Sum('riskScore'))['riskScore__sum']
+#         earthquake_risk_max = risk.aggregate(Max('riskScore'))['riskScore__max']
+#         avg = risk.aggregate(Avg('hdi'))['hdi__avg']
+#         avg_rem = risk.aggregate(Avg('remoteness'))['remoteness__avg']
+#         avg_earthquake_risk = risk.aggregate(Avg('riskScore'))['riskScore__avg']
+#         return Response({'maxriskScore': earthquake_risk_max if earthquake_risk_max else 0 ,'avghdi':avg if avg else 0,'avgremoteness':avg_rem if avg_rem else 0,'avgriskScore':avg_earthquake_risk if avg_earthquake_risk else 0, 'results':serializer.data})
+
+
 class RiskApiView(views.APIView):
     permission_classes=[]
     # serializer_class=RiskSerializer
     # queryset = Risk.objects.all()
-    def get(self, request):
-        risk = Risk.objects.all().order_by('-hdi')
+    def get(self,request,*args,**kwargs):
+        a=self.kwargs['field']
+        print(a);
+        risk = Risk.objects.all().order_by('-'+a)
         serializer = RiskSerializer(risk ,many=True)
-        print(serializer.data)
-        all_sum = risk.aggregate(Sum('riskScore'))['riskScore__sum']
-        earthquake_risk_max = risk.aggregate(Max('riskScore'))['riskScore__max']
-        avg = risk.aggregate(Avg('hdi'))['hdi__avg']
-        avg_rem = risk.aggregate(Avg('remoteness'))['remoteness__avg']
-        avg_earthquake_risk = risk.aggregate(Avg('riskScore'))['riskScore__avg']
-        return Response({'maxriskScore': earthquake_risk_max if earthquake_risk_max else 0 ,'avghdi':avg if avg else 0,'avgremoteness':avg_rem if avg_rem else 0,'avgriskScore':avg_earthquake_risk if avg_earthquake_risk else 0, 'results':serializer.data})
+        # print(serializer.data)
+        sum = risk.aggregate(Sum(a))[a+'__sum']
+        max = risk.aggregate(Max(a))[a+'__max']
+        avg = risk.aggregate(Avg(a))[a+'__avg']
+        return Response({'max':max if max else 0 ,'avg':avg if avg else 0,'results':serializer.data})
 
 
 

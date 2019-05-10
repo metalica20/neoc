@@ -263,6 +263,9 @@ class Risk(models.Model):
     remoteness=models.FloatField(null=True, blank=True, default=None)
     hdi=models.FloatField(null=True, blank=True, default=None)
     riskScore=models.FloatField(null=True, blank=True, default=None)
+    perCapitaIncome=models.FloatField(null=True, blank=True, default=None)
+    lifeExpectancy=models.FloatField(null=True, blank=True, default=None)
+    humanPovertyIndex=models.FloatField(null=True, blank=True, default=None)
 
     def __str__(self):
         return self.district
