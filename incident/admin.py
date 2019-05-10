@@ -39,20 +39,21 @@ from loss.notifications import user_notifications
 INCIDENT_FIELDS = (
     'cause',
     'source',
-    'verified',
-    'approved',
     'point',
+    'district',
+    'municipality',
+    'wards',
     'geojson',
     'incident_on',
     'reported_on',
     'event',
     'hazard',
     'loss',
-    'district',
-    'municipality',
-    'wards',
     'street_address',
-    'description'
+    'description',
+    'approved',
+    'verified',
+    'verification_message',
 )
 
 
@@ -65,6 +66,8 @@ class IncidentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance', None)
         super(IncidentForm, self).__init__(*args, **kwargs)
+        self.fields['verification_message'].widget.attrs['rows'] = 3
+        self.fields['verification_message'].widget.attrs['columns'] = 15
         if instance:
             wards = Incident.objects.values('wards').filter(id=instance.id)
             if wards[0]['wards']:
@@ -124,7 +127,10 @@ class IncidentForm(forms.ModelForm):
                 self.cleaned_data.get("polygon") or
                 self.cleaned_data.get("geojson")
         ):
-            raise ValidationError("You need to add either wards or point or polygon or Geojson")
+            raise ValidationError(_("You need to add either wards or point or polygon or Geojson"))
+        if not self.cleaned_data.get('verified'):
+            if self.cleaned_data.get('verification_message'):
+                raise ValidationError(_("You cannot write verification message if not verified"))
 
 
 @admin.register(Incident)
@@ -176,7 +182,6 @@ class IncidentAdmin(GeoModelAdmin):
         # generate centroid from polygon
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
-
         obj.title = get_incident_title(obj)
 
         super(IncidentAdmin, self).save_model(request, obj, form, change)
@@ -217,7 +222,6 @@ class IncidentAdmin(GeoModelAdmin):
         return request.user.has_perm('%s.%s' % (opts.app_label, codename))
 
     def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
-        print(self.has_edit_permission(request))
         if not self.has_edit_permission(request):
             extra_context = extra_context or {}
             extra_context['read_only'] = True

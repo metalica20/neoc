@@ -32,6 +32,10 @@ class Incident(TimeStampedModal):
         verbose_name=_('Source')
     )
     verified = models.BooleanField(default=False, verbose_name=_('Verified'))
+    verification_message = models.TextField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Verification Message')
+    )
     approved = models.BooleanField(default=False, verbose_name=_('Approved'))
     # TODO: discuss polygon or multipolygon or simply geometry
     point = models.PointField(
