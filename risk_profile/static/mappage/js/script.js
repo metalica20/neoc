@@ -8,6 +8,7 @@
         // });
         $('.compare-button').on('click', function(){
             $('.compare-wrapper').slideToggle(300);
+            $("#chart").html('<span>Click on the map to compare</span>');
         });
         $('.compare-header ').on('click','span', function(){
             $('.compare-wrapper').hide(300);
