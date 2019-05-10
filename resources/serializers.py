@@ -11,6 +11,7 @@ from .models import (
     Governance,
     Tourism,
     Industry,
+    Cultural,
 )
 
 
@@ -63,6 +64,12 @@ class IndustrySerializer(ResourceBaseSerializer):
         exclude = ('detail', 'polymorphic_ctype')
 
 
+class CulturalSerializer(ResourceBaseSerializer):
+    class Meta:
+        model = Cultural
+        exclude = ('detail', 'polymorphic_ctype')
+
+
 class ResourceSerializer(FlexFieldsSerializerMixin, serializers.ModelSerializer):
     resource_type = serializers.SlugRelatedField(
         read_only=True,
@@ -87,6 +94,7 @@ MODEL_SERIALIZER_MAPPING = {
     Governance: GovernanceSerializer,
     Tourism: TourismSerializer,
     Industry: IndustrySerializer,
+    Cultural: CulturalSerializer,
 }
 
 

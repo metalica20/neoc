@@ -12,6 +12,7 @@ from .models import (
     Communication,
     Governance,
     Industry,
+    Cultural,
 )
 from federal.models import (
     District,
@@ -71,7 +72,7 @@ class ResourceAdmin(GeoPolymorphicParentModelAdmin):
     form = AddressForm
     base_model = Resource
     child_models = (Education, Health, Finance, Tourism,
-                    Communication, Governance, Industry)
+                    Communication, Governance, Industry, Cultural)
     search_fields = Resource.autocomplete_search_fields()
 
 
@@ -114,4 +115,10 @@ class GovernanceAdmin(ResourceAdmin):
 @admin.register(Industry)
 class IndustryAdmin(ResourceAdmin):
     base_model = Industry
+    show_in_index = True
+
+
+@admin.register(Cultural)
+class CulturalAdmin(ResourceAdmin):
+    base_model = Cultural
     show_in_index = True
