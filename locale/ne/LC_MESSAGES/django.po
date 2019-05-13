@@ -440,3 +440,24 @@ msgstr "प्रविष्टि गरेर संशोधन जारी
 
 msgid "Unknown"
 msgstr "थाहा नभएको"
+
+msgid "Verification Message"
+msgstr "प्रमाणिकरण भएको सन्देश"
+
+msgid "You cannot write verification message if not verified"
+msgstr "प्रमाणित नभएको विपदमा प्रमाणिकरण सन्देश लेख्नु मिल्दैन "
+
+msgid "You need to add either wards or point or polygon or Geojson"
+msgstr "वडा, बिन्दु, बहुभुज अथवा Geojson मा एउटा हल्नुपर्क्ष  "
+
+msgid "Upload files with extension .json or .geojson only"
+msgstr ".geojson अथवा .json extension भएको फाइल मात्र अपलोड गर्नुहोस् "
+
+msgid "Geometry type should be MultiPolygon"
+msgstr "Geometryको प्रकार MultiPolygon हुनु पर्क्ष "
+
+msgid "Invalid GeoJson"
+msgstr "GeoJson अमान्य छ  "
+
+msgid "Geojson type must be feature"
+msgstr "Geojsonको प्रकार feature हुनु पर्क्ष "
