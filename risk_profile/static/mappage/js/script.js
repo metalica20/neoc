@@ -149,14 +149,13 @@
                 $('#earthquake_risk').hide(300);
                 $('#osmLayer_popup').hide(300);
                 $('#pci_vul').hide(300);
-                $('#le_vul').hide(300);
                 $('#hpi_vul').hide(300);
                 $('#awt_vul').hide(300);
                 $('#toil_vul').hide(300);
 
               } else if (targetId == 'exposure_popup' ) {
-                $('#infa_exposure_popup').hide(300);
                 $('#' + targetId).show(500);
+                $('#infa_exposure_popup').hide(300);
                 $('#flood-1').hide(300);
                 $('#capacity-popup').hide(300);
                 $('#vulnery-1').hide(300);
@@ -328,7 +327,6 @@
               $('#earthquake_risk').hide(300);
               $('#osmLayer_popup').hide(300);
               $('#pci_vul').hide(300);
-              $('#le_vul').hide(300);
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
