@@ -332,7 +332,7 @@ class LayerTable(models.Model):
         # layer_tbl = get_object_or_404(obj.layer_tbl)
         try:
             # print('hello')
-            return apps.get_model('risk_profile', self.layer_tbl).objects.all().count()
+            return apps.get_model('resources', self.layer_tbl).objects.all().count()
 
             # return  model_name.objects.all().count()
             # return getattr(models, obj.layer_tbl).objects.all()
@@ -344,12 +344,12 @@ class LayerTable(models.Model):
         # layer_tbl = get_object_or_404(obj.layer_tbl)
         try:
             # print('hello')
-            return apps.get_model('risk_profile', self.layer_tbl).objects.values('type').distinct()
+            return apps.get_model('resources', self.layer_tbl).objects.values('type').distinct()
 
             # return  model_name.objects.all().count()
             # return getattr(models, obj.layer_tbl).objects.all()
         except Exception as e:
             print('error',e)
-            return apps.get_model('risk_profile', self.layer_tbl).objects.none()
+            return apps.get_model('resources', self.layer_tbl).objects.none()
 
 # end publish data model

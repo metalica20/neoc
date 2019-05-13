@@ -2844,7 +2844,7 @@ $(".slider").each(function () {
   //nouislider
 
   var range = document.getElementById(id);
-  //////console.log(range);
+    //console.log(range);
 
   noUiSlider.create(range, {
       start: [20, 80],
@@ -2854,8 +2854,12 @@ $(".slider").each(function () {
           'max': 100
       }
   }).on("set.one",function(){
+
       var id_slider=$(this)[0]['target'].id;
-    // ////console.log("setone callleddddd");
+      var id_slider1=document.getElementById(id_slider);
+      current_value_array=id_slider1.noUiSlider.get();
+      console.log(current_value_array);
+      // console.log("setone callleddddd");
      ////console.log($('#'+id_slider)[0].noUiSlider.options.start);
 
      ////console.log($('#'+id_slider));
@@ -2864,7 +2868,8 @@ $(".slider").each(function () {
     var layerName=$('#'+id_slider).attr('name');
     var layer_icon=$('#'+id_slider).attr('data-icon');
     var total_sum=$('#'+id_slider).attr('data-sum');
-    //////console.log(layerName);
+    var fieldname=$('#'+id_slider).attr('value');
+    //  console.log(layerName);
 
     //function
     var features_data=[];
@@ -2881,11 +2886,11 @@ $(".slider").each(function () {
       var name_sub=$(this).attr('data-sub');
       sub_layer_name.push($(this).attr('data-sub'));
       //  ////console.log(name_sub);
-      layersdata=window[name_sub]._layers
+       var layersdata=window[name_sub]._layers
       //////console.log(window[name_sub]._layers);
       $.each(layersdata, function (feature) {
 
-        //////console.log(layersdata[feature].feature);
+      //  console.log(layersdata[feature].feature);
         features_data.push(layersdata[feature].feature);
 
       });
@@ -2899,33 +2904,36 @@ $(".slider").each(function () {
     };
 
 
-    //////console.log(layer_icon);
+      console.log(layer_data1);
 
      //layer_data1=window[layerName].toGeoJSON();
     // ////console.log(layer_data1);
     var layer_data = jQuery.extend(true, {}, layer_data1);
-    // ////console.log(layer_data);
+    console.log(layer_data);
     var checkedList = [];
     $. each($("input[class='filter_resource_btn']:checked"), function(){
 
     checkedList. push($(this). val());
     });
-     //////console.log(checkedList);
-    //////console.log(layer_data.features.length);
+    //  //////console.log(checkedList);
+    // //////console.log(layer_data.features.length);
+    if(checkedList.length>0){
+
+
     for(var k=layer_data.features.length-1;k>=0;k--){
       var delete_count=0;
       for(var i=0;i<checkedList.length;i++){
-        //////console.log(layer_data.features[k].properties[checkedList[i]]);
 
-        if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != ""){
-            //////console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
-    //////console.log("entered");
+
+        if(layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase()=="YES" && layer_data.features[k].properties[checkedList[i]].trim() != "" ){
+
+          // if(layer_data.features[k].properties[fieldname]>current_value_array[0] && layer_data.features[k].properties[fieldname]<current_value_array[1]){
             delete_count++;
             //////console.log(delete_count);
 
+        // }
+
         }
-
-
       }
       //////console.log(delete_count);
         if(delete_count==0){
@@ -2938,7 +2946,28 @@ $(".slider").each(function () {
 
 
     }
-    //////console.log(layer_data);
+
+  }
+
+    // var new_layer_data = jQuery.extend(true, {}, layer_data);
+    var delete_count_slider=0;
+  //  console.log(layer_data.features);
+  //  console.log(fieldname);
+    for(var l=layer_data.features.length-1;l>=0;l--){
+      //console.log('deleted',layer_data.features[l].properties[fieldname])
+      if(layer_data.features[l].properties[fieldname]>parseInt(current_value_array[0]) && layer_data.features[l].properties[fieldname]<parseInt(current_value_array[1])){
+        // console.log('deleted'+layer_data.features[l].properties[fieldname])
+        delete_count_slider++;
+      }
+
+      if(delete_count_slider==0){
+      layer_data.features.splice(l,1);
+      }
+
+    }
+
+
+  //  console.log(layer_data);
      filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
     //function
 
@@ -3475,15 +3504,16 @@ $.get(base_url+'/risk_profile/Layer',function(data){
               //   ////console.log(data);
                 var resources_loadCount=1;
                 for(var i=0;i<data.results.length;i++){
-                  var url =base_url+"/risk_profile/"+ data.results[i]['layerTbl'];
+                  var url =base_url+"/risk_profile/Resources/"+ data.results[i]['layerTbl'];
                   layer_icon= data.results[i]['layerIcon']
                   type1= data.results[i]['type'];
                   var sub_array = data.results[i]['type'];
 
-                  //////console.log(data);
+                  //console.log(sub_array);
 
                   for(let i=0;i<sub_array.length;i++){
                     window[sub_array[i]['type'].replace(' ','_')] = L.layerGroup();
+                  //  console.log(sub_array[i]['type'].replace(' ','_'))
                   }
 
                       $.ajax({
@@ -3503,9 +3533,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                             resources_loadCount++;
                           },
                           success: function(response) {
-                          //  ////console.log(response);
+                          console.log(response);
+
                           var layer_icon1 = this.layer_icon;
                           var type = this.type2;
+                          console.log(type);
 
                           var dataList = this.data1;
                           ////console.log(dataList['layerTbl']);
@@ -3875,12 +3907,14 @@ $.get(base_url+'/risk_profile/Layer',function(data){
     ////console.log(layer_icon);
     var filter_resources =$(this).attr("data-filter");
     subcat_array1=eval("["+subcat.split("[")[1].split("]")[0]+"]");
-    //////console.log(subcat_array1);
+     //console.log(subcat_array1);
     subcat_array=[];
     for(var i=0;i<subcat_array1.length;i++){
       subcat_array.push(subcat_array1[i]['type']);
 
     }
+
+    // console.log(subcat_array);
 
     ////console.log($('.'+layerName+'_parent').prop('checked'));
 
@@ -3943,9 +3977,10 @@ $.get(base_url+'/risk_profile/Layer',function(data){
        }
 
            }else{
-
+             console.log(subcat_array1);
                for(var i=0;i<subcat_array1.length;i++){
-                 map.addLayer(window[subcat_array1[i]['type']]);
+                 console.log(window[subcat_array1[i]['type']]);
+                 map.addLayer(window[subcat_array1[i]['type'].replace(' ','_')]);
 
 
 
@@ -4226,6 +4261,7 @@ function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,lay
 
 
 //resources filter
+
 $("#capacity-popup").on('change','.filter_resource_btn',function(){
 
   //////console.log(new_gejson_filter);
@@ -4255,7 +4291,7 @@ $. each($('.sub_cat_ex:checked'), function(){
   sub_layer_name.push($(this).attr('data-sub'));
   //  ////console.log(name_sub);
 
-  layersdata=window[name_sub]._layers
+  var layersdata=window[name_sub]._layers
   //////console.log(window[name_sub]._layers);
   $.each(layersdata, function (feature) {
 
@@ -4315,8 +4351,9 @@ for(var k=layer_data.features.length-1;k>=0;k--){
 
 }
 
- filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon)
-  // ////console.log('test');
+ filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,layer_icon);
+
+   // ////console.log('test');
   //////console.log($('.sub_cat_ex:checked').length);
   ////console.log($("input[class='test']:checked"));
 
