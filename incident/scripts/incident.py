@@ -50,11 +50,9 @@ def fetch_incident(options):
         incident_type = map_incident_type(data['Incident Type'], meta_data)
         title = get_title(float(data['Incident Latitude']), float(
             data['Incident Longitude']), incident_type)
-        hazards = Hazard.objects.values('id', 'title')
-        for hazard in hazards:
-            if hazard['title'] == incident_type:
-                hazard_id = hazard['id']
-
+        hazard = Hazard.objects.filter(title__iexact=incident_type).first()
+        if not hazard:
+            hazard = Hazard.objects.filter(id=45).first()
         if data['Reported By'] == "Nepal Police":
             source = "nepal_police"
         else:
@@ -76,7 +74,7 @@ def fetch_incident(options):
                 loss=loss,
                 source_id=source,
                 point=point,
-                hazard_id=hazard_id,
+                hazard=hazard,
                 verified=True,
                 approved=True,
                 old=old,
