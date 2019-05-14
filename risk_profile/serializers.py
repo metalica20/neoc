@@ -18,39 +18,24 @@ class HospitalSerializer(serializers.ModelSerializer):
 
 
 class ResourceSerializer(serializers.ModelSerializer):
-    # resources = serializers.SerializerMethodField('get_hazard_resources')
     class Meta:
         model = Resource
         fields= '__all__'
 
-    # def get_hazard_resources(self, obj):
-    #     hazard_resource_queryset = HazardResources.objects.filter(id=obj.id).select_related('resource')
-    #     data = django.core.serializers.serialize('json', list(hazard_resource_queryset))
-    #     return data
 
 class SociocookSerializer(serializers.ModelSerializer):
-    # resources = serializers.SerializerMethodField('get_hazard_resources')
     class Meta:
         model = SocioEconomicGapanapa
         fields= '__all__'
 
 
 class IncidentSerializer(serializers.ModelSerializer):
-    #resources = serializers.SerializerMethodField('get_hazard_resources')
     class Meta:
         model= HazardResources
         fields = '__all__'
 
-    # def get_hazard_resources(self, obj):
-    #     hazard_resource_queryset = Resource.objects.filter(polymorphic_ctype=obj.polymorphic_ctype)
-    #     liting = []
-    #     for item in hazard_resource_queryset:
-    #         liting.append(item.__class__)
-    #     # data = django.core.serializers.serialize('json', list(hazard_resource_queryset))
-    #     return list
 
 class RiskSerializer(serializers.ModelSerializer):
-    #resources = serializers.SerializerMethodField('get_hazard_resources')
     class Meta:
         model= Risk
         fields = ('__all__')
@@ -69,24 +54,15 @@ class LayerTableSerializer(serializers.ModelSerializer):
     type = serializers.SerializerMethodField()
 
     def get_layer_table_count(self, obj):
-        # layer_tbl = get_object_or_404(obj.layer_tbl)
         try:
             # print('hello')
-            return getattr(models, obj.layer_tbl).objects.all().count()
-            # return  model_name.objects.all().count()
-            # return getattr(models, obj.layer_tbl).objects.all()
+            return getattr(resources.models, obj.layer_tbl).objects.all().count()
         except Exception as e:
             print('error',e)
             return 0
-        # return layer_tbl.count()
     def get_type(self,obj):
-        # layer_tbl = get_object_or_404(obj.layer_tbl)
         try:
-            # print('hello')
-            return getattr(models, obj.layer_tbl).objects.values('type').distinct()
-
-            # return  model_name.objects.all().count()
-            # return getattr(models, obj.layer_tbl).objects.all()
+            return getattr(resources.models, obj.layer_tbl).objects.values('type').distinct()
         except Exception as e:
             print('error',e)
             return 0

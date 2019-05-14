@@ -26,6 +26,9 @@ class Command(BaseCommand):
                     remoteness=row[3],
                     hdi=row[4],
                     riskScore=row[5],
+                    perCapitaIncome=row[6],
+                    lifeExpectancy=row[7],
+                    humanPovertyIndex=row[8],
                     )
                 except:
                     print('error')
