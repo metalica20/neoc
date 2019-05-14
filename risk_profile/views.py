@@ -1,7 +1,7 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Education,Bank,Settlements,SocioEconomicGapanapa,Risk,Health
+from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Bank,Settlements,SocioEconomicGapanapa,Risk
 from incident.models import Incident
-from resources.models import Resource
+from resources.models import Resource,Education,Health
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
@@ -28,26 +28,9 @@ class SociocookViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
         a=self.kwargs['field']
-        print(a);
         queryset=SocioEconomicGapanapa.objects.filter(name=a)
         serializer=SociocookSerializer(queryset,many=True)
-        print(queryset);
         return Response(serializer.data)
-        # queryset=SocioEconomicGapanapa.objects.all()
-        # serializers=serialize(queryset)
-        # MarketCentergeojson=json.loads(serializers)
-        #
-        # # serializer_class=SociocookSerializer
-        # listt=[]
-        #
-        # listt['data']=q
-    # def get_queryset(self):
-
-
-
-
-
-# end
 
 
 # socio-economic category api
@@ -69,12 +52,8 @@ class SchoolViewSet(viewsets.ModelViewSet):
     permission_classes=[]
     serializer_class=IncidentSerializer
     queryset=Resource.objects.select_related().all()
-    # print(GEOSGeometry('{ "type": "Point", "coordinates": [ 5.000000, 23.000000 ] }'))
-    # a=GEOSGeometry('0101000020E61000007C639A19D85B554040F64B4FCEB83B40')
-    # print(a.geom_type)
 
-# resources from apps
-# resources from apps
+
 class ResourceGeojsonViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
@@ -84,59 +63,51 @@ class ResourceGeojsonViewSet(views.APIView):
         geojson_serializer.serialize(object_model.objects.all())
         data = geojson_serializer.getvalue()
         resourcegeojson=json.loads(data)
-
         return Response(resourcegeojson)
 
-class MarketCenterGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        json_d={}
-        serializers=serialize('geojson',MarketCenter.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
-        # print(serializers)
-        MarketCentergeojson=json.loads(serializers)
-        json_d['data']=MarketCentergeojson
-        json_d['is_goeserver']=False
-        return Response(MarketCentergeojson)
-
+# class MarketCenterGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         json_d={}
+#         serializers=serialize('geojson',MarketCenter.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
+#         # print(serializers)
+#         MarketCentergeojson=json.loads(serializers)
+#         json_d['data']=MarketCentergeojson
+#         json_d['is_goeserver']=False
+#         return Response(MarketCentergeojson)
+#
+#
 # class AirportGeojsonViewSet(views.APIView):
 #     permission_classes=[]
 #     def get(self,request,*args,**kwargs):
-#         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('name'))
+#         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('pk','name'))
 #         # print(serializers)
 #         Airportgeojson=json.loads(serializers)
 #         return Response(Airportgeojson)
-
-class AirportGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('pk','name'))
-        # print(serializers)
-        Airportgeojson=json.loads(serializers)
-        return Response(Airportgeojson)
-
-class BridgeGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Bridge.objects.all(),geometry_field='location',fields=('pk','name'))
-        # print(serializers)
-        Bridgegeojson=json.loads(serializers)
-        return Response(Bridgegeojson)
-
-class PoliceGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Policestation.objects.all(),geometry_field='location',fields=('pk','name'))
-        # print(serializers)
-        Policestationgeojson=json.loads(serializers)
-        return Response(Policestationgeojson)
-
-class EducationGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Education.objects.all(),geometry_field='location',fields=('pk','name','operator_type','opening_hours','phone_number','email_address','number_of_employees','number_of_students','comments','type'))
-        # print(serializers)
-        Educationgeojson=json.loads(serializers)
-        return Response(Educationgeojson)
+#
+# class BridgeGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Bridge.objects.all(),geometry_field='location',fields=('pk','name'))
+#         # print(serializers)
+#         Bridgegeojson=json.loads(serializers)
+#         return Response(Bridgegeojson)
+#
+# class PoliceGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Policestation.objects.all(),geometry_field='location',fields=('pk','name'))
+#         # print(serializers)
+#         Policestationgeojson=json.loads(serializers)
+#         return Response(Policestationgeojson)
+#
+# class EducationGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Education.objects.all(),geometry_field='location',fields=('pk','name','operator_type','opening_hours','phone_number','email_address','number_of_employees','number_of_students','comments','type'))
+#         # print(serializers)
+#         Educationgeojson=json.loads(serializers)
+#         return Response(Educationgeojson)
 
 class LayerViewset(viewsets.ModelViewSet):
     permission_classes=[]
@@ -144,30 +115,30 @@ class LayerViewset(viewsets.ModelViewSet):
     queryset=LayerTable.objects.all()
 
 
-class BankGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Bank.objects.all(),geometry_field='location',fields=('pk','name','phone_number','email_address','website','opening_hours','operator_type','bank_type','atm_available','Comments'))
-        # print(serializers)
-        Bankgeojson=json.loads(serializers)
-        return Response(Bankgeojson)
-
-class SettlementsGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Settlements.objects.all(),geometry_field='location',fields=('pk','name'))
-        # print(serializers)
-        Settlementsgeojson=json.loads(serializers)
-        return Response(Settlementsgeojson)
-
-
-class HealthGeojsonViewSet(views.APIView):
-    permission_classes=[]
-    def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Health.objects.all(),geometry_field='location',fields=('name','operator_type','opening_hours','phone_number','email_address','emergency_service','icu','nicu','operating_theatre','x_ray','ambulance_service','number_of_staff','number_of_Beds','Comments','type'))
-        # print(serializers)
-        Healthgeojson=json.loads(serializers)
-        return Response(Healthgeojson)
+# class BankGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Bank.objects.all(),geometry_field='location',fields=('pk','name','phone_number','email_address','website','opening_hours','operator_type','bank_type','atm_available','Comments'))
+#         # print(serializers)
+#         Bankgeojson=json.loads(serializers)
+#         return Response(Bankgeojson)
+#
+# class SettlementsGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Settlements.objects.all(),geometry_field='location',fields=('pk','name'))
+#         # print(serializers)
+#         Settlementsgeojson=json.loads(serializers)
+#         return Response(Settlementsgeojson)
+#
+#
+# class HealthGeojsonViewSet(views.APIView):
+#     permission_classes=[]
+#     def get(self,request,*args,**kwargs):
+#         serializers=serialize('geojson',Health.objects.all(),geometry_field='location',fields=('name','operator_type','opening_hours','phone_number','email_address','emergency_service','icu','nicu','operating_theatre','x_ray','ambulance_service','number_of_staff','number_of_Beds','Comments','type'))
+#         # print(serializers)
+#         Healthgeojson=json.loads(serializers)
+        # return Response(Healthgeojson)
 
 def Dashboard(request):
     if "GET" == request.method:
@@ -197,29 +168,13 @@ def Dashboard(request):
             for field in fields:
 
                 if(field.name!='id' and field.name!='location'):
-                    # print(field.name)
-                    # print(csv_colum[i])
                     data_dict[field.name]=csv_colum[i]
                     i=i+1
-                    # print(csv_colum[1])
-
-            # print(float(csv_colum[1]))
-            # print(csv_colum[0])
-            # print(Point(float(csv_colum[1]),float(csv_colum[0])))
             data_dict['location']=Point(float(csv_colum[1]),float(csv_colum[0]))
-            # data_dict['location']=GEOSGeometry('POINT('float(csv_colum[1]) float(csv_colum[0])')')
             print('CSV colm', csv_colum[1])
             print('locationnn', data_dict['location'])
             form = HospitalForm(data_dict)
             form.save()
-
-
-        # count_update('Hospital')
-        # return render(request, "dashboard.html")
-
-
-
-
 
     except Exception as e:
         pass
@@ -235,44 +190,19 @@ class IncidentApiView(viewsets.ModelViewSet):
     permission_classes=[]
     serializer_class=IncidentSerializer
     queryset = HazardResources.objects.all()
-    # permission_classes=(IsAuthenticated,)
-    # def get(self,request,*args,**kwargs):
-    #     incident = request.GET['incident']
-    #
-    #     serializer = IncidentSerializer(queryset, many=True)
-    #     return Response(serializer.data)
 
-    # def get(self, request, *args, **kwargs):
-    #     incident = request.GET['incident']
-    #     i = Incident.objects.get(pk=incident)
-    #     hazard = Hazard.objects.get(id=i.hazard_id)
-    #     print(hazard)
-    #     # serializers=serialize('json',Incident.objects.get(pk=incident),fields=('pk','title'))
-    #     datajson=json.loads(i)
-    #
-    #     # serializers=serialize('json', HazardResources.objects.filter(hazard=hazard).select_related('resource'), fields=('resource', ))
-    #     # print(serializers)
-    #     # incidentjson=json.loads(serializers)
-    #     return Response(datajson)
 
-# class RiskApiView(viewsets.ModelViewSet):
-#     permission_classes=[]
-#     serializer_class=RiskSerializer
-#     queryset = Risk.objects.all()
 class RiskApiView(views.APIView):
     permission_classes=[]
-    # serializer_class=RiskSerializer
-    # queryset = Risk.objects.all()
-    def get(self, request):
-        risk = Risk.objects.all().order_by('-hdi')
+    def get(self,request,*args,**kwargs):
+        a=self.kwargs['field']
+        print(a);
+        risk = Risk.objects.all().order_by('-'+a)
         serializer = RiskSerializer(risk ,many=True)
-        print(serializer.data)
-        all_sum = risk.aggregate(Sum('riskScore'))['riskScore__sum']
-        earthquake_risk_max = risk.aggregate(Max('riskScore'))['riskScore__max']
-        avg = risk.aggregate(Avg('hdi'))['hdi__avg']
-        avg_rem = risk.aggregate(Avg('remoteness'))['remoteness__avg']
-        avg_earthquake_risk = risk.aggregate(Avg('riskScore'))['riskScore__avg']
-        return Response({'maxriskScore': earthquake_risk_max if earthquake_risk_max else 0 ,'avghdi':avg if avg else 0,'avgremoteness':avg_rem if avg_rem else 0,'avgriskScore':avg_earthquake_risk if avg_earthquake_risk else 0, 'results':serializer.data})
+        sum = risk.aggregate(Sum(a))[a+'__sum']
+        max = risk.aggregate(Max(a))[a+'__max']
+        avg = risk.aggregate(Avg(a))[a+'__avg']
+        return Response({'max':max if max else 0 ,'avg':avg if avg else 0,'results':serializer.data})
 
 
 
@@ -285,25 +215,14 @@ class NewtestfileViewSet(views.APIView):
         jsonc=SocioEconomicGapanapa.objects.values(a,'name','municipality_id').order_by('-'+a)
         avg=SocioEconomicGapanapa.objects.aggregate(Avg(a))
         summ=SocioEconomicGapanapa.objects.aggregate(Max(a))
-
-        # jsonc=SocioEconomicGapanapa.objects.all()
-        # print('jsoncccc',a)
-        # print('jsoncc', jsonc)
-        # d='data.a';
         field_avg=a+"__avg"
         field_sum=a+"__max"
         listj={}
-
-        # listk={}
-
         listj['title']="Vulnerability"
         listj['subtitle']="Access"
         listj['sum']=summ[field_sum]
         listj['avg']=avg[field_avg]
-        # for data in jsonc:
-        #     listk[data.district]=data.lpgas_cook
         listj['data']=jsonc
-        # print(listj)
         return Response(listj)
 
 
@@ -347,10 +266,6 @@ class HazardfloodViewSet(views.APIView):
 class EarthquakefloodViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
-        # flood={}
-        # basins={}
-        # basins['']
-        # flood['title']="Flood"
         jsonc={"title":"Earthquake","about":"M. Pagani, J. Garcia-Pelaez, R. Gee, K. Johnson, V. Poggi, R. Styron, G. Weatherill, M. Simionato, D. Viganò, L. Danciu, D. Monelli (2018). Global Earthquake Model (GEM) Seismic Hazard Map (version 2018.1 - December 2018), DOI: 10.13117/GEM-GLOBAL-SEISMIC-HAZARD-MAP-2018.1. The Global Earthquake Model (GEM)  depicts the geographic distribution of the Peak Ground Acceleration (PGA) with a 10% probability of being exceeded in 50 years, computed for reference rock conditions (shear wave velocity, VS30, of 760-800 m/s). The map was created by collating maps computed using national and regional probabilistic seismic hazard models developed . Link to the website : https://maps.openquake.org/map/global-seismic-hazard-map/#7/29.299/81.635",
         "data":{
         "GSHM_Earthquake_Map":{

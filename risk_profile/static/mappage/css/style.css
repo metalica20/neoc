@@ -1931,11 +1931,11 @@ button {
     height: 20px !important;
     width: 20px !important;
     margin-top:-16px !important;
-    margin-left:-4px !important;
+    margin-left:-5px !important;
     border-radius: 50%;
-    border: solid;
-    border-color: blue;
-    background-color:blue;
+    border: 1px solid #757474;
+    /* border-color: blue; */
+    background-color: #eee;
 }
 .filterSelect{
   position: relative;
@@ -2008,7 +2008,7 @@ button {
 
 .fed_labelText{
     color: #807c7c !important;
-    background: rgba(255, 255, 255, 0.5);
+    /* background: rgba(255, 255, 255, 0.5); */
     padding: 0px;
 }
 
@@ -2046,6 +2046,10 @@ span#loader_text {
 }
 .leaflet-popup-content {
     color: #767676;
+}
+.leaflet-marker-icon.leaflet-interactive {
+    width: 100px !important;
+    margin-left: -20px !important;
 }
 /* type head css */
 
