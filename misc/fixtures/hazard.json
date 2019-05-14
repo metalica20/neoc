@@ -16,7 +16,7 @@
     "model": "hazard.hazard",
     "pk": 2,
     "fields": {
-      "title_en": "Animal Incidents",
+      "title_en": "Animal Terror",
       "title_ne": "जनावर आतङ्क",
       "order": null,
       "description": "",
@@ -159,7 +159,7 @@
     "model": "hazard.hazard",
     "pk": 13,
     "fields": {
-      "title_en": "Hailstorm",
+      "title_en": "Hail Storm",
       "title_ne": "असिना",
       "order": null,
       "description": "",
@@ -621,6 +621,19 @@
       "icon": null,
       "color": null,
       "type": "non natural"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 47,
+    "fields": {
+      "title_en": "Hailstone",
+      "title_ne": "असिना",
+      "order": null,
+      "description": "",
+      "icon": null,
+      "color": "#69CDFF",
+      "type": "natural"
     }
   },
   {
