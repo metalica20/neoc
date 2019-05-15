@@ -49,7 +49,7 @@ def fetch_incident(options):
 
         incident_type = map_incident_type(data['Incident Type'], meta_data)
         title = get_title(float(data['Incident Latitude']), float(
-            data['Incident Longitude']), incident_type)
+            data['Incident Longitude']), incident_type, data['Incident Place'])
         hazard = Hazard.objects.filter(title__iexact=incident_type).first()
         if not hazard:
             hazard = Hazard.objects.filter(id=45).first()
@@ -57,7 +57,6 @@ def fetch_incident(options):
             source = "nepal_police"
         else:
             source = "other"
-
         try:
             point = Point(float(data['Incident Longitude']), float(data['Incident Latitude']))
         except TypeError:
@@ -167,9 +166,11 @@ def map_incident_type(incident_id, meta_data):
             return data[1]
 
 
-def get_title(lat, long, incident_type):
+def get_title(lat, long, incident_type, incident_place):
     location = geocoder.google([lat, long], components="country:NP", method='reverse', key=GOOGLE_MAP_API_KEY)
-    if location.city:
+    if incident_place:
+        return incident_type + " at " + incident_place
+    elif location.city:
         return incident_type + " at " + location.city
     else:
         return incident_type
