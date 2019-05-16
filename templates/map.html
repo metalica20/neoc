@@ -150,8 +150,18 @@
                       </ul>
 
                     </div> -->
-                    <div class="sidebarwrapper" id="filtered_layer_list_container" style="display:none;">
 
+
+
+                    <div class="sidebarwrapper leftsidebarwrapper" style="display:none;">
+                      <div class="panel-group">
+                       <div class="panel panel-default">
+                          <div class="panel-heading">
+                             <ul id="filtered_layer_list_container" class="panel-title filtered-list-parent">
+                             </ul>
+                           </div>
+                         </div>
+                       </div>
 
                     </div>
                 </div>
@@ -443,7 +453,7 @@
                                     <h5>
                                         <a class="collapsed updown" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false"
                                         aria-controls="collapse-4">Risk
-                                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The situation of people, infrastructure, housing, production capacities and other tangible human assets located in hazard-prone areas"></i>
+                                        <i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content=""></i>
                                         </a>
                                     </h5>
                                 </div>
@@ -1283,7 +1293,7 @@
      <div class="hazard-wrapper" >
          <div class="hazard-title">
              <h3><span class="humanitarian-icon-Flood"></span>HDI</h3>
-             <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Human development index(HDI)  is harvested from National Plannning Commission's Nepal Human Development Report, 2014. HIgh HDI signifies development improvements  whereas low HDI signifies lack of developmen in the region "></i>
+             <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The Human Development Index is a statistic composite index of life expectancy, education, and per capita income indicators"></i>
              <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
              <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
          </div>
@@ -1362,7 +1372,7 @@
     <div class="hazard-wrapper" >
         <div class="hazard-title">
             <h3><span class="humanitarian-icon-Flood"></span>Remoteness</h3>
-            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="HIgh remotness indicates areas that are most remote and low remotness index indicate better accessibility"></i>
+            <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="It is an indicator of acccessibility; data available district wise"></i>
             <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
             <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
         </div>
@@ -1672,7 +1682,7 @@
           <div class="hazard-wrapper" >
               <div class="hazard-title">
                   <h3><span class="humanitarian-icon-Flood"></span>Human POverty Index</h3>
-                  <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content=""></i>
+                  <i class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="The Human Poverty Index (HPI) is an indication of the standard of living in a country"></i>
                   <button type="button" class="button average-open"><i class="  ion ion-ios-expand"></i></button>
                   <button type="button" class="button hazardDetails-close"><i class=" ion ion-md-close-circle-outline"></i></button>
               </div>
@@ -2065,6 +2075,7 @@
 
 //removing all layers
           function removeAllLayers(){
+            $('.custom-control').removeClass().addClass('custom-control custom-radio');
             if(map.hasLayer(district)){
               map.removeLayer(district)
             }
@@ -2105,9 +2116,37 @@
             }
 
 
+
+
+            labelcount = 0;
+            function countEqual(oo, pp) {
+
+                //var i, equal = true;
+                var singleloopend=0;
+                //console.log(oo.length);
+                $.each(oo, function (i) {
+
+                  // console.log('province   ',oo[i]._latlng);
+                  // console.log('marker',  pp._latlng);
+                  if(singleloopend==0){
+                    labelcount=0;
+                  }
+                  if(oo[i]._latlng.lat==pp._latlng.lat && oo[i]._latlng.lng==pp._latlng.lng ){
+                    labelcount++;
+                  }
+
+                  singleloopend++;
+                });
+                //console.log(labelcount);
+                return labelcount;
+            }
+
+
+
 vt_label_province=L.layerGroup();
 vt_label_district=L.layerGroup();
 vt_label_municipality=L.layerGroup();
+
 function label_Vector_Tiles(feature){
   var name="";
   var lat=feature.properties.Centroid_Y;
@@ -2120,7 +2159,19 @@ function label_Vector_Tiles(feature){
      });
 
       vt_label_marker_P=L.marker([lat,long],{icon:divIconP});
-      vt_label_marker_P.addTo(vt_label_province);
+      //console.log(countEqual(vt_label_province._layers, vt_label_marker_P));
+      if(countEqual(vt_label_province._layers, vt_label_marker_P) > 0){
+        //do nothing
+      }else{
+        console.log('a');
+        vt_label_marker_P.addTo(vt_label_province);
+      }
+
+
+
+      // $.each(vt_label_province._layers, function (key) {
+      //    // 0
+      // });
   }
   else if(feature.properties.hasOwnProperty('DistLabel')){
     name=feature.properties.Name;
@@ -2130,7 +2181,13 @@ function label_Vector_Tiles(feature){
      });
 
       vt_label_marker_D=L.marker([lat,long],{icon:divIconD});
-      vt_label_marker_D.addTo(vt_label_district);
+        //console.log(countEqual(vt_label_district._layers, vt_label_marker_D));
+      if(countEqual(vt_label_district._layers, vt_label_marker_D) > 0){
+        //do nothing
+      }else{
+          console.log('b');
+        vt_label_marker_D.addTo(vt_label_district);
+      }
   }
   else if(feature.properties.hasOwnProperty('GaPa_NaPa')){
     name=feature.properties.Name;
@@ -2140,7 +2197,13 @@ function label_Vector_Tiles(feature){
      });
 
       vt_label_marker_M=L.marker([lat,long],{icon:divIconM});
-      vt_label_marker_M.addTo(vt_label_municipality);
+      //vt_label_marker_M.addTo(vt_label_municipality);
+      if(countEqual(vt_label_municipality._layers, vt_label_marker_M) > 0){
+        //do nothing
+      }else{
+          console.log('c');
+        vt_label_marker_M.addTo(vt_label_municipality);
+      }
   }
 
 }
@@ -2170,6 +2233,7 @@ map.on('zoomend',function(e){
       map.removeLayer(vt_label_province);
     }
     else if(zoom>7 && map.hasLayer(province)){
+      labelcount=0;
       map.addLayer(vt_label_province);
       map.addLayer(activeLayer);
     }
@@ -3241,7 +3305,7 @@ $('.parent_vul').on('click',function(){
       }else{
       //  ////console.log(id);
 
-        geo_url='https://apps.naxa.com.np/geoserver/wms';
+        geo_url='https://geoserver.naxa.com.np/geoserver/wms';
 
         window[layername]=L.tileLayer.betterWms(geo_url, {
                                 layers:id+":"+layername,
@@ -3402,6 +3466,7 @@ $('.parent_vul').on('click',function(){
     });
 
     $('.exposure_geo').on('click',function(){
+        removeAllLayers();
       var layername = $(this).attr('data-layername');
       var parent_id = $(this).attr('data-parent');
       var center = eval($(this).attr('data-center'));
@@ -3702,15 +3767,35 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                 ////console.log(visible_layers);
                  ////console.log( visible_layers[visible_layers_count]['layerName']);
                  //////console.log(feature.target._layers[0].feature.properties);
+                var filterhtml=
+                    '<i class="ion ion-md-arrow-dropdown filtered-list-dropdown"></i><li data-toggle="collapse"  href="#filtered_layer_list'+visible_layers_count+'">'+visible_layers[visible_layers_count]["layerName"]+'  ('+visible_layers[visible_layers_count]["count"]+')</li>'+
+                    '<div id="filtered_layer_list'+visible_layers_count+'" class="panel-collapse collapse">'+
+                       '<ul id= "filtered_layer_list_ul'+visible_layers_count+'" class="list-group filtered_layer_list_ul">'+
 
-                 var filterhtml = '<div id="'+visible_layers[visible_layers_count]['layerName']+'_filterlist" class="inner_wrapper" style="border: 1px solid #f3eeee; margin-top:5px;"><div class="leftSidebar-header" id="filtered_header'+visible_layers_count+'">'+
+                       '</ul>'+
+                    '</div>';
 
-                 '</div>'+
-                 '<div class="sidebar-widget">'+
-                     '<ul class="list-content" id="filtered_layer_list'+visible_layers_count+'">'+
 
-                     '</ul>'+
-                 '</div></div>';
+
+
+
+
+
+
+
+
+
+
+
+
+                 //  filterhtml += '<div id="'+visible_layers[visible_layers_count]['layerName']+'_filterlist" class="inner_wrapper" style="border: 1px solid #f3eeee; margin-top:5px;"><div class="leftSidebar-header" id="filtered_header'+visible_layers_count+'">'+
+                 //
+                 // '</div>'+
+                 // '<div class="sidebar-widget">'+
+                 //     '<ul class="list-content" id="filtered_layer_list'+visible_layers_count+'">'+
+                 //
+                 //     '</ul>'+
+                 // '</div></div>';
 
                   $('#filtered_layer_list_container').append(filterhtml);
                  $.each(feature.target._layers, function (i) {
@@ -3732,7 +3817,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                    }
                  }
                  console.log(featurecount);
-                 $('#filtered_header'+visible_layers_count).html('<h4>'+feature.target._layers[i].feature.id.split('.')[0]/*+' ('+visible_layers[featurecount]['count']+')*/+'</h4>');
+          //$('#filtered_header'+visible_layers_count).html('<h4>'+feature.target._layers[i].feature.id.split('.')[0]/*+' ('+visible_layers[featurecount]['count']+')*/+'</h4>');
 
 
                  //console.log(visible_layers[visible_layers_count]['layerName']);
@@ -3740,11 +3825,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                  //if(visible_layers[visible_layers_count]['layerName']==feature.target._layers[i].feature.id.split('.')[0]){
                   //console.log('matched');
-                   var list_item="<li><a class = 'filtered_list_items' data='"+JSON.stringify(feature.target._layers[i].feature.properties)+"' data-name='"+visible_layers[visible_layers_count]['layerName']+"' center='"+JSON.stringify(feature.target._layers[i].feature.geometry.coordinates)+"' href='#' target=''>"+feature.target._layers[i].feature.properties.name+"</a></li>";
+                   var list_item="<li class='list-group-item'><a class = 'filtered_list_items' data='"+JSON.stringify(feature.target._layers[i].feature.properties)+"' data-name='"+visible_layers[visible_layers_count]['layerName']+"' center='"+JSON.stringify(feature.target._layers[i].feature.geometry.coordinates)+"' href='#' target=''>"+feature.target._layers[i].feature.properties.name+"</a></li>";
                    //layer);
                    ////console.log(visible_layers[visible_layers_count]);
                    ////console.log('#filtered_layer_list'+visible_layers_count);
-                   $('#filtered_layer_list'+visible_layers_count).append(list_item);
+                   $('#filtered_layer_list_ul'+visible_layers_count).append(list_item);
                  //}
 
 
@@ -3764,7 +3849,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                    }).setContent(contentString));
 
                  });
-                 $('#filtered_layer_list_container').css('display','block');
+                 $('.leftsidebarwrapper').css('display','block');
                  visible_layers_count++;
 
 
@@ -3773,6 +3858,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                  //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
              });
          map.removeLayer(window[visible_layers[i]['layerName']]);
+         $('#capacity-popup').hide(300);
+         $('.CheckBox').prop('checked',false);
          $("."+visible_layers[i]['layerName']+"_activeclass").removeClass("active");
          $('#'+visible_layers[i]['layerName']+'_legend').remove();
 
@@ -3861,6 +3948,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                 }
 
               }
+
               visible_layers=[];
               $('#filtered_layer_list').html('');
               $('#filtered_layer_list_container').css('display','none');
@@ -4392,6 +4480,7 @@ var admin_layer=$(this).attr('data-admin');
 if(admin_layer=='municipality'){
   $('.legend-list').html('');
   map.addLayer(window[admin_layer]);
+  labelcount=0;
   vt_label_municipality.addTo(map);
 
 
@@ -4399,6 +4488,7 @@ if(admin_layer=='municipality'){
 }else{
   map.addLayer(window[admin_layer]);
   map.removeLayer(eval('municipality'));
+  labelcount=0;
   vt_label_district.addTo(map);
 
 }
@@ -4752,6 +4842,7 @@ federal_boundary=null;
 
 $('#federal_boundary').on('click','.federal',function(){
 $('.loader').css('display','block');
+$('.filter-listing').hide();
 // //console.log($(this).attr('id'));
 // //console.log($(this).attr('data-fed'));
 
@@ -4873,7 +4964,6 @@ $('.osm_layer').on('click',function(){
 // type head js
 
 // end
-
 
 
     });//document end

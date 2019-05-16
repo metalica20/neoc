@@ -135,6 +135,8 @@
 
         $('.hazard-list label, .capacity-list label').on('click', function() {
             var targetId = $(this).attr('data-tab');
+            // if($('.custom-control ').hasClass())
+          $('.custom-control .custom-radio').removeClass().addClass('custom-control custom-radio');
             // ('#hazard_popup_html').removeClass('collapse-leftSidebar');
             //console.log(targetId);
             if (targetId == 'flood-1' ) {
