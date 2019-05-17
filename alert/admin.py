@@ -26,7 +26,7 @@ from federal.models import (
     Municipality,
     Ward
 )
-from .notifications import user_notifications
+from .notifications import send_user_notification
 
 
 class AlertForm(forms.ModelForm):
@@ -124,14 +124,13 @@ class AlertAdmin(GeoModelAdmin):
             # override polygon from geojson
             obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
 
-        if obj.polygon:
-            # polygon overwrites wards
-            wards = Ward.objects.filter(boundary__intersects=obj.polygon)
-            form.cleaned_data['wards'] = wards
-
         if not obj.polygon and obj.point:
             # point overwrites wards
-            wards = Ward.objects.filter(boundary__intersects=obj.point)
+            wards = Ward.objects.filter(boundary__contains=obj.point)
+            form.cleaned_data['wards'] = wards
+
+        if not obj.point and not obj.wards:
+            wards = Ward.objects.filter(boundary__contains=obj.polygon)
             form.cleaned_data['wards'] = wards
 
         if wards and not obj.polygon:
@@ -150,4 +149,4 @@ class AlertAdmin(GeoModelAdmin):
                 % (alert.id, alert.title)
             ))
 
-        user_notifications(wards, obj, change)
+        send_user_notification(wards, obj, change)
