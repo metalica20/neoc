@@ -1,0 +1,62 @@
+[
+  {
+    "model": "organization.organization",
+    "pk": 1000,
+    "fields": {
+      "title": "Nepal Police",
+      "short_name": null,
+      "long_name": null,
+      "description": "",
+      "responsible_for": [],
+      "wards": []
+    }
+  },
+  {
+    "model": "organization.organization",
+    "pk": 1001,
+    "fields": {
+      "title": "Ministry of Agriculture",
+      "short_name": null,
+      "long_name": null,
+      "description": "",
+      "responsible_for": [],
+      "wards": []
+    }
+  },
+  {
+    "model": "organization.organization",
+    "pk": 1002,
+    "fields": {
+      "title": "Ministry of Tourism",
+      "short_name": null,
+      "long_name": null,
+      "description": "",
+      "responsible_for": [],
+      "wards": []
+    }
+  },
+  {
+    "model": "organization.organization",
+    "pk": 1003,
+    "fields": {
+      "title": "Ministry of Health",
+      "short_name": null,
+      "long_name": null,
+      "description": "",
+      "responsible_for": [],
+      "wards": []
+    }
+  },
+  {
+    "model": "organization.organization",
+    "pk": 1004,
+    "fields": {
+      "title": "Ministry of Irrigation",
+      "short_name": null,
+      "long_name": null,
+      "description": "",
+      "responsible_for": [],
+      "wards": []
+    }
+  }
+]

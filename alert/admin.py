@@ -3,6 +3,12 @@ from django.contrib import (
     admin,
     messages,
 )
+from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
+from django.contrib.gis.geos import GEOSGeometry
+from django import forms
+from django.core.exceptions import ValidationError
+
 from bipad.admin import GeoModelAdmin
 from .models import Alert
 from .utils import (
@@ -10,9 +16,6 @@ from .utils import (
     generate_polygon_from_wards,
     get_alert_title
 )
-from django.utils.safestring import mark_safe
-from django.contrib.gis.geos import GEOSGeometry
-from django import forms
 from misc.validators import validate_geojson
 from django_select2.forms import (
     ModelSelect2Widget,
@@ -72,6 +75,15 @@ class AlertForm(forms.ModelForm):
             dependent_fields={'municipality': 'municipality'},
         )
     )
+
+    def clean(self):
+        if not(
+                self.cleaned_data.get("wards") or
+                self.cleaned_data.get("point") or
+                self.cleaned_data.get("polygon") or
+                self.cleaned_data.get("geojson")
+        ):
+            raise ValidationError(_("You need to add either wards or point or polygon or Geojson"))
 
     class Meta:
         model = Alert

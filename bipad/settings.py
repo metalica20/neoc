@@ -251,12 +251,21 @@ FEDERAL_CACHE_CONTROL_MAX_AGE = 60*60*24*7
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379',
+        'LOCATION': 'redis://redis:6379/1',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
+    },
+    'select2': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379/2',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'TIMEOUT': 60 * 60 * 24,
     }
 }
+SELECT2_CACHE_BACKEND = 'select2'
 
 # SENTRY
 sentry_sdk.init(
