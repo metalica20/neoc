@@ -7,6 +7,7 @@ from resources.models import Resource
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from federal.models import Ward
+from organization.models import Organization
 
 
 class StatManager(models.Manager):
@@ -202,6 +203,11 @@ class InfrastructureType(MPTTModel):
     description = models.CharField(
         max_length=255,
         null=True, blank=True, default=None
+    )
+    owner_organizations = models.ManyToManyField(
+        Organization,
+        null=True, blank=True, default=None,
+        related_name='organizations'
     )
     parent = TreeForeignKey(
         'self',
