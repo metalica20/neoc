@@ -33,3 +33,4 @@ redis==3.2.0
 requests==2.21.0
 sentry-sdk==0.7.6
 six==1.12.0
+django-pgviews==0.5.5
