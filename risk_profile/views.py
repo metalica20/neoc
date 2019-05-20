@@ -201,8 +201,9 @@ class RiskApiView(views.APIView):
         serializer = RiskSerializer(risk ,many=True)
         sum = risk.aggregate(Sum(a))[a+'__sum']
         max = risk.aggregate(Max(a))[a+'__max']
+        min = risk.aggregate(Min(a))[a+'__min']
         avg = risk.aggregate(Avg(a))[a+'__avg']
-        return Response({'max':max if max else 0 ,'avg':avg if avg else 0,'results':serializer.data})
+        return Response({'sum':sum if sum else 0 ,'max':max if max else 0 ,'min':min if min else 0 ,'avg':avg if avg else 0,'results':serializer.data})
 
 
 
