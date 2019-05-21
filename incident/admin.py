@@ -35,7 +35,7 @@ from .utils import (
     get_incident_title,
     generate_polygon_from_wards,
 )
-from loss.notifications import user_notifications
+from loss.notifications import send_user_notification
 from .permissions import get_queryset_for_user
 
 
@@ -178,21 +178,25 @@ class IncidentAdmin(GeoModelAdmin):
         # geojson takes precedence over others
         if geojson:
             geojson = json.loads(geojson.read().decode('utf-8'))
-            # override polygon from geojson
             obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
-        if obj.polygon:
-            # polygon overrides wards
-            wards = Ward.objects.filter(boundary__intersects=obj.polygon)
+
+        if obj.point and not wards:
+            # point overwrites wards
+            wards = Ward.objects.filter(boundary__contains=obj.point)
             form.cleaned_data['wards'] = wards
-        if not obj.polygon and obj.point:
-            wards = Ward.objects.filter(boundary__intersects=obj.point)
+
+        if not obj.point and not wards:
+            wards = Ward.objects.filter(boundary__contains=obj.polygon)
             form.cleaned_data['wards'] = wards
-        # if no polygon objects then generate polygon from wards
-        if wards and not obj.polygon:
-            obj.polygon = generate_polygon_from_wards(wards)
-        # generate centroid from polygon
+
+        if wards and not obj.polygon and not obj.point:
+            polygon = generate_polygon_from_wards(wards)
+            obj.point = GEOSGeometry(polygon).centroid
+
+            # generate centroid from polygon
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
+
         obj.title = get_incident_title(obj)
 
         super().save_model(request, obj, form, change)
@@ -208,7 +212,7 @@ class IncidentAdmin(GeoModelAdmin):
                 % (reverse('admin:incident_incident_change', args=[incident.id]), incident.title)
             ))
 
-        user_notifications(obj, change)
+        send_user_notification(obj, change)
 
     def verify(self, request, queryset):
         queryset.update(verified=True)

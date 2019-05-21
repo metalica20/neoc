@@ -18,11 +18,10 @@ import requests
 from django.db.models import Sum
 from user.models import Profile
 
-
 SMS_API_URL = os.environ.get("SMS_API_URL")
 
 
-def user_notifications(incident, change):
+def send_user_notification(incident, change):
 
     params = {
         'from': os.environ.get('SMS_FROM'),
@@ -89,10 +88,14 @@ def send_mail(subject, message, receiver, params):
 
 
 def get_email_receiver(department):
-    email = []
-    phone_number = []
-    receivers = Profile.objects.filter(organization__responsible_for__title=department)
-    for receiver in receivers:
-        email.append(receiver.user.email)
-        phone_number.append(receiver.phone_number)
-    return email, ','.join(phone_number)
+    sms_receivers = Profile.objects.filter(
+        organization__responsible_for__title=department,
+        opt_sms_notification=True,
+        phone_number__isnull=False
+    ).values_list('phone_number', flat=True)
+    email_receivers = Profile.objects.filter(
+        organization__responsible_for__title=department,
+        opt_email_notification=True,
+        user__email__isnull=False
+    ).values_list('user__email', flat=True)
+    return email_receivers, sms_receivers
