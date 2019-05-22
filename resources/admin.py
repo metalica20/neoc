@@ -1,7 +1,6 @@
 from django.contrib.gis import (
     admin,
 )
-
 from bipad.admin import GeoPolymorphicParentModelAdmin
 from .models import (
     Resource,

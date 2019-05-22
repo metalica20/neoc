@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .permissions import get_queryset_for_user
 from .models import (
     Inventory,
@@ -83,7 +82,9 @@ class InventoryForm(forms.ModelForm):
 
 @admin.register(Inventory)
 class InventoryAdmin(admin.ModelAdmin):
-    list_display = ['item', 'resource', 'quantity']
+    search_fields = ('item__category__title', 'item__title',)
+    list_display = ('item', 'resource', 'quantity')
+    list_filter = ('item__category__title',)
     form = InventoryForm
 
     def get_queryset(self, request):
