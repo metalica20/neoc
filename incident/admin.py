@@ -4,6 +4,16 @@ from django.contrib import (
     admin,
     messages,
 )
+from django.utils.safestring import mark_safe
+from django.http import HttpResponseRedirect
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.gis.geos import GEOSGeometry
+from misc.validators import validate_geojson
+from django.core.exceptions import ValidationError
+from django.utils.html import format_html
+from django.urls import reverse
+from jet.filters import DateRangeFilter
+
 from bipad.admin import GeoModelAdmin
 from .models import (
     Incident,
@@ -25,31 +35,24 @@ from .utils import (
     get_incident_title,
     generate_polygon_from_wards,
 )
-from django.utils.safestring import mark_safe
-from django.http import HttpResponseRedirect
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.gis.geos import GEOSGeometry
-from misc.validators import validate_geojson
-from django.core.exceptions import ValidationError
-from django.utils.html import format_html
-from django.urls import reverse
-from loss.notifications import user_notifications
+from loss.notifications import send_user_notification
+from .permissions import get_queryset_for_user
 
 
 INCIDENT_FIELDS = (
+    'hazard',
     'cause',
     'source',
-    'point',
     'district',
     'municipality',
     'wards',
+    'street_address',
+    'point',
     'geojson',
     'incident_on',
     'reported_on',
     'event',
-    'hazard',
     'loss',
-    'street_address',
     'description',
     'approved',
     'verified',
@@ -66,8 +69,9 @@ class IncidentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance', None)
         super(IncidentForm, self).__init__(*args, **kwargs)
-        self.fields['verification_message'].widget.attrs['rows'] = 3
-        self.fields['verification_message'].widget.attrs['columns'] = 15
+        if hasattr(self.fields, 'verification_message'):
+            self.fields['verification_message'].widget.attrs['rows'] = 3
+            self.fields['verification_message'].widget.attrs['columns'] = 15
         if instance:
             wards = Incident.objects.values('wards').filter(id=instance.id)
             if wards[0]['wards']:
@@ -137,7 +141,14 @@ class IncidentForm(forms.ModelForm):
 class IncidentAdmin(GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on', 'incident_actions')
-    list_filter = ('need_followup', 'hazard', 'source', 'verified', 'approved')
+    list_filter = (
+        ('loss__incident__incident_on', DateRangeFilter),
+        'need_followup',
+        'hazard',
+        'source',
+        'verified',
+        'approved',
+    )
     exclude = ('detail', 'title')
     actions = ("verify", 'approve', "create_event")
     inlines = (DocumentInline,)
@@ -167,24 +178,33 @@ class IncidentAdmin(GeoModelAdmin):
         # geojson takes precedence over others
         if geojson:
             geojson = json.loads(geojson.read().decode('utf-8'))
-            # override polygon from geojson
             obj.polygon = GEOSGeometry(json.dumps(geojson['geometry']))
-        if obj.polygon:
-            # polygon overrides wards
-            wards = Ward.objects.filter(boundary__intersects=obj.polygon)
+
+        if obj.point and not wards:
+            # point overwrites wards
+            wards = Ward.objects.filter(boundary__contains=obj.point)
             form.cleaned_data['wards'] = wards
-        if not obj.polygon and obj.point:
-            wards = Ward.objects.filter(boundary__intersects=obj.point)
+
+        if not obj.point and not wards:
+            wards = Ward.objects.filter(boundary__contains=obj.polygon)
             form.cleaned_data['wards'] = wards
-        # if no polygon objects then generate polygon from wards
-        if wards and not obj.polygon:
-            obj.polygon = generate_polygon_from_wards(wards)
-        # generate centroid from polygon
+
+        if wards and not obj.polygon and not obj.point:
+            polygon = generate_polygon_from_wards(wards)
+            obj.point = GEOSGeometry(polygon).centroid
+
+            # generate centroid from polygon
         if not obj.point and obj.polygon:
             obj.point = GEOSGeometry(obj.polygon).centroid
+
         obj.title = get_incident_title(obj)
 
-        super(IncidentAdmin, self).save_model(request, obj, form, change)
+        super().save_model(request, obj, form, change)
+        followup_fields = get_followup_fields(obj.id)
+        if len(followup_fields) or (obj.verified and obj.verification_message):
+            obj.need_followup = True
+            obj.save()
+
         similar_incidents = get_similar_incident(obj)
         for incident in similar_incidents:
             messages.add_message(request, messages.INFO, mark_safe(
@@ -192,7 +212,7 @@ class IncidentAdmin(GeoModelAdmin):
                 % (reverse('admin:incident_incident_change', args=[incident.id]), incident.title)
             ))
 
-        user_notifications(obj, change)
+        send_user_notification(obj, change)
 
     def verify(self, request, queryset):
         queryset.update(verified=True)
@@ -228,20 +248,21 @@ class IncidentAdmin(GeoModelAdmin):
         return super().changeform_view(request, object_id, extra_context=extra_context)
 
     def get_form(self, request, obj=None, **kwargs):
+        self.readonly_fields = []
+        if not self.has_verify_permission(request):
+            self.readonly_fields.append('verified')
+            self.readonly_fields.append('verification_message')
+        if not self.has_approve_permission(request):
+            self.readonly_fields.append('approved')
         form = super().get_form(request, obj, **kwargs)
-        if request.user.groups.filter(name='Nepal Police').exists():
+        if request.user.profile.organization == 'Nepal Police':
             form.base_fields['source'].initial = 'nepal_police'
             form.base_fields['source'].disabled = True
-        if not self.has_verify_permission(request):
-            form.base_fields['verified'].disabled = True
-        if not self.has_approve_permission(request):
-            form.base_fields['approved'].disabled = True
         return form
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        if request.user.groups.filter(name='Nepal Police').exists():
-            return queryset.filter(source__name='nepal_police')
+        queryset = get_queryset_for_user(queryset, request.user)
         return queryset
 
     def create_event(self, request, queryset):

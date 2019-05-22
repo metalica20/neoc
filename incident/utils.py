@@ -7,7 +7,8 @@ from loss.models import (
     People,
     Family,
     Livestock,
-    Infrastructure
+    Infrastructure,
+    Agriculture,
 )
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
 
@@ -50,6 +51,11 @@ def get_followup_fields(incident_id):
             economic_loss__isnull=True
     ).exists():
         fields.append('Infrastructure Economic Loss')
+    if Agriculture.objects.filter(
+            loss__incident__id=incident_id,
+            economic_loss__isnull=True
+    ).exists():
+        fields.append('Agriculture Economic Loss')
 
     return fields
 

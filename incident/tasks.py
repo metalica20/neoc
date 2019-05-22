@@ -1,7 +1,8 @@
 import datetime
 from celery import shared_task
 from django.core.cache import cache
-from .scripts.incident import fetch_incident
+from .scripts.incident import fetch_incident as _fetch_incident
+
 
 @shared_task
 def update_lnd(func, request, *args, **kwargs):
@@ -17,5 +18,7 @@ def update_lnd(func, request, *args, **kwargs):
 
 @shared_task
 def fetch_incident():
-    fetch_incident()
-
+    _fetch_incident({
+        'historical': False,
+        'all': False,
+    })
