@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Bank,Settlements,SocioEconomicGapanapa,Risk
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk
 from incident.models import Incident
 from resources.models import Resource,Education,Health
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer
