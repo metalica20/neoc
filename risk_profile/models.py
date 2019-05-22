@@ -228,14 +228,13 @@ class Healthv(pg.View):
         db_table = 'health_views'
         managed = False
 
+class Educationv(pg.View):
+    sql = """SELECT r.title,r.description,r.point,resources_education.* FROM resources_education LEFT JOIN resources_resource as r ON r.id=resources_education.resource_ptr_id;"""
 
-# class Healthv(pg.View):
-#     projection = ['risk_profile.Health.*',]
-#     sql = """SELECT * FROM risk_profile_health;"""
+    class Meta:
+        db_table = 'education_views'
+        managed = False
 
-#     class Meta:
-#         db_table = 'geoserver_views'
-#         managed = False
 
 LICENSE_TYPES=(
     ('0', 'Survey'),
@@ -396,6 +395,32 @@ def validate_file_extension(value):
     if not value.name.endswith('.geojson'):
         raise ValidationError('Error message')
 
+class HazardType(models.Model):
+    title = models.CharField(max_length=50, null=True, blank=True)
+    about = models.CharField(max_length=50, null=True, blank=True)
 
+    def __str__(self):
+        return self.title
 
+class HazardLayer(models.Model):
+    hazard_type = models.ForeignKey(HazardType, on_delete=models.CASCADE, related_name='HazardLayer', null=True, blank=True)
+    title = models.CharField(max_length=50, null=True, blank=True)
+        
+    def __str__(self):
+        return self.title
+
+class HazardSubLayer(models.Model):
+    hazard_layer = models.ForeignKey(HazardLayer, on_delete=models.CASCADE, related_name='HazardSubLayer')
+    hazard_subLayer = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return "{}-{}".format(self.hazard_layer,self.hazard_subLayer)
+
+class HazardSubLayerDetail(models.Model):
+    hazard_subLayer = models.ForeignKey(HazardSubLayer, on_delete=models.CASCADE,related_name='HazardSubLayerDetail')
+    returnperiod = models.CharField(max_length=50, null=True, blank=True)
+    workspace = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.returnperiod
 # end publish data model
