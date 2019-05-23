@@ -134,6 +134,11 @@ class FollowupIncidents(modules.DashboardModule):
     def init_with_context(self, context):
         qs = Incident.objects.filter(
             need_followup=True,
+            created_by=self.user,
+        ) or Incident.objects.filter(
+            verified=False,
+            verification_message__isnull=False,
+            created_by=self.user,
         )
 
         self.children = qs[:int(self.limit)]

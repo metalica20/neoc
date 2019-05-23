@@ -142,7 +142,6 @@ router.register(r'hospital', HospitalViewSet,
                 base_name='hospital')
 
 
-
 API_VERSION = 'v1'
 
 
@@ -173,15 +172,12 @@ urlpatterns = [
     re_path(r'^redoc/$', schema_view.with_ui('redoc'), name='schema-redoc'),
     re_path(get_api_path(''), include(router.urls)),
 
+    path('risk_profile/', include('risk_profile.urls')),
+    path('risk_profile/', include('mappage.urls')),
+    path('', MapPage.as_view(), name="mappage"),
 ] + i18n_patterns(
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('admin/', admin.site.urls),
-
-    path('risk_profile/', include('risk_profile.urls')),
-    path('risk_profile/', include('mappage.urls')),
-    path('',MapPage.as_view(),name="mappage"),
-
-
 ) + static.static(
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT

@@ -1,3 +1,4 @@
+import os
 from django.core.mail import EmailMessage
 from .utils import (
     people_loss_notification,
@@ -17,18 +18,18 @@ import requests
 from django.db.models import Sum
 from user.models import Profile
 
+SMS_API_URL = os.environ.get("SMS_API_URL")
 
-SMS_API_URL = "http://202.70.80.2:8001/api/sms/"
 
-params = {
-        'from': 1133,
+def send_user_notification(incident, change):
+
+    params = {
+        'from': os.environ.get('SMS_FROM'),
         'to': '',
-        'token': 'IIPpW7uuEWvc62pQq6BR',
+        'token': os.environ.get('SMS_API_TOKEN'),
         'text': '',
     }
 
-
-def user_notifications(incident, change):
     if not change:
         header = "{} Loss is added"
 
@@ -39,7 +40,7 @@ def user_notifications(incident, change):
             subject = header.format("People")
             params['text'] = incident.title + sms_message
             receiver, params['to'] = get_email_receiver('People')
-            send_mail(subject, message, receiver)
+            send_mail(subject, message, receiver, params)
 
         family = Family.objects.filter(loss=incident.loss)
         if family:
@@ -48,7 +49,7 @@ def user_notifications(incident, change):
             subject = header.format("Family")
             params['text'] = incident.title + sms_message
             receiver, params['to'] = get_email_receiver('People')
-            send_mail(subject, message, receiver)
+            send_mail(subject, message, receiver, params)
 
         livestock = Livestock.objects.filter(loss=incident.loss)
         if livestock:
@@ -57,7 +58,7 @@ def user_notifications(incident, change):
             subject = header.format("Livestock")
             params['text'] = incident.title + sms_message
             receiver, params['to'] = get_email_receiver('Livestock')
-            send_mail(subject, message, receiver)
+            send_mail(subject, message, receiver, params)
 
         infrastructure = Infrastructure.objects.filter(loss=incident.loss)
         if infrastructure:
@@ -66,19 +67,20 @@ def user_notifications(incident, change):
             subject = header.format("Infrastructure")
             params['text'] = incident.title + sms_message
             receiver, params['to'] = get_email_receiver('Infrastructure')
-            send_mail(subject, message, receiver)
+            send_mail(subject, message, receiver, params)
 
         agriculture = Agriculture.objects.filter(loss=incident.loss)
         if agriculture:
-            status = agriculture.values('status', 'type__unit').order_by('status').annotate(total=Sum('quantity'))
+            status = agriculture.values('status', 'type__unit').order_by(
+                'status').annotate(total=Sum('quantity'))
             message, sms_message = agriculture_loss_notification(agriculture, status)
             subject = header.format("Agriculture")
             params['text'] = incident.title + sms_message
             receiver, params['to'] = get_email_receiver('Agriculture')
-            send_mail(subject, message, receiver)
+            send_mail(subject, message, receiver, params)
 
 
-def send_mail(subject, message, receiver):
+def send_mail(subject, message, receiver, params):
     email = EmailMessage(subject, message, to=receiver)
     email.content_subtype = "html"
     requests.get(SMS_API_URL, params=params)
@@ -86,10 +88,14 @@ def send_mail(subject, message, receiver):
 
 
 def get_email_receiver(department):
-    email = []
-    phone_number = []
-    receivers = Profile.objects.filter(organization__responsible_for__title=department)
-    for receiver in receivers:
-        email.append(receiver.user.email)
-        phone_number.append(receiver.phone_number)
-    return email, ','.join(phone_number)
+    sms_receivers = Profile.objects.filter(
+        organization__responsible_for__title=department,
+        opt_sms_notification=True,
+        phone_number__isnull=False
+    ).values_list('phone_number', flat=True)
+    email_receivers = Profile.objects.filter(
+        organization__responsible_for__title=department,
+        opt_email_notification=True,
+        user__email__isnull=False
+    ).values_list('user__email', flat=True)
+    return email_receivers, sms_receivers

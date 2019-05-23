@@ -391,6 +391,10 @@ class Agriculture(TimeStampedModal):
     loss = models.ForeignKey(
         Loss, related_name='agricultures', on_delete=models.CASCADE
     )
+    economic_loss = models.BigIntegerField(
+        null=True, blank=True, default=None,
+        verbose_name=_('Economic Loss')
+    )
 
     class Meta:
         verbose_name = _('Agriculture')

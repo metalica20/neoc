@@ -11,13 +11,18 @@ from bipad.admin import GeoModelAdmin
 @admin.register(Municipality)
 class MunicipalityAdmin(GeoModelAdmin):
     list_display = ('title', 'district')
+    search_fields = ('title',)
 
 
 @admin.register(District)
 class DistrictAdmin(GeoModelAdmin):
     list_display = ('title', 'province')
+    search_fields = ('title',)
 
 
-admin.site.register([Province, Ward], GeoModelAdmin)
+@admin.register(Ward)
+class WardAdmin(GeoModelAdmin):
+    search_fields = ('title',)
 
 
+admin.site.register(Province, GeoModelAdmin)

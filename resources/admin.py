@@ -1,7 +1,7 @@
 from django.contrib.gis import (
     admin,
-    forms,
 )
+
 from bipad.admin import GeoPolymorphicParentModelAdmin
 from .models import (
     Resource,
@@ -14,66 +14,22 @@ from .models import (
     Industry,
     Cultural,
 )
-from federal.models import (
-    District,
-    Municipality,
-    Ward
-)
-from django_select2.forms import ModelSelect2Widget
-
-
-class AddressForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        instance = kwargs.get('instance', None)
-        super(AddressForm, self).__init__(*args, **kwargs)
-        if instance:
-            ward = Resource.objects.values('ward').filter(id=instance.id)
-            if ward[0]['ward']:
-                municipality = Ward.objects.values(
-                    'municipality', 'municipality__district').filter(id=ward[0]['ward'])
-                self.fields['municipality'].initial = municipality[0]['municipality']
-                self.fields['district'].initial = municipality[0]['municipality__district']
-    district = forms.ModelChoiceField(
-        queryset=District.objects.all(),
-        required=False,
-        widget=ModelSelect2Widget(
-            model=District,
-            search_fields=['title__icontains'],
-        )
-    )
-
-    municipality = forms.ModelChoiceField(
-        queryset=Municipality.objects.all(),
-        required=False,
-        widget=ModelSelect2Widget(
-            model=Municipality,
-            search_fields=['title__icontains'],
-            dependent_fields={'district': 'district'},
-        )
-    )
-
-    ward = forms.ModelChoiceField(
-        queryset=Ward.objects.all(),
-        required=False,
-        widget=ModelSelect2Widget(
-            model=Ward,
-            search_fields=['title__icontains'],
-            dependent_fields={'municipality': 'municipality'},
-        )
-    )
-
-    class Meta:
-        model = Resource
-        fields = '__all__'
+from .permissions import get_queryset_for_user
 
 
 @admin.register(Resource)
 class ResourceAdmin(GeoPolymorphicParentModelAdmin):
-    form = AddressForm
+    exclude = ('ward',)
     base_model = Resource
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry, Cultural)
+    list_filter = ('ward__municipality__district',)
     search_fields = Resource.autocomplete_search_fields()
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        queryset = get_queryset_for_user(queryset, request.user)
+        return queryset
 
 
 @admin.register(Education)

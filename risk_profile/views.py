@@ -1,8 +1,8 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType
 from incident.models import Incident
 from resources.models import Resource,Education,Health
-from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -65,18 +65,21 @@ class ResourceGeojsonViewSet(views.APIView):
         resourcegeojson=json.loads(data)
         return Response(resourcegeojson)
 
-# class MarketCenterGeojsonViewSet(views.APIView):
-#     permission_classes=[]
-#     def get(self,request,*args,**kwargs):
-#         json_d={}
-#         serializers=serialize('geojson',MarketCenter.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
-#         # print(serializers)
-#         MarketCentergeojson=json.loads(serializers)
-#         json_d['data']=MarketCentergeojson
-#         json_d['is_goeserver']=False
-#         return Response(MarketCentergeojson)
-#
-#
+class Hazard(views.APIView):
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        # a=self.kwargs['field']
+        hazardtype=request.query_params.get('title',None)
+        if hazardtype:
+            queryset=HazardType.objects.filter(title=hazardtype)
+        else:
+            queryset=HazardType.objects.all()
+        serializer=HazardtypeSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+    # queryset=FloodBasin.objects.select_related('FloodPeriod').all()
+
+
 # class AirportGeojsonViewSet(views.APIView):
 #     permission_classes=[]
 #     def get(self,request,*args,**kwargs):

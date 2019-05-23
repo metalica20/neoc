@@ -35,10 +35,15 @@ def generate_polygon_from_wards(wards):
 
 
 def get_alert_title(alert):
-    location = geocoder.google(
-        [alert.point.y, alert.point.x], components="country:NP", method='reverse', key=GOOGLE_MAP_API_KEY
-    )
-    if location.city:
+    location = None
+    if alert.point:
+        location = geocoder.google(
+            [alert.point.y, alert.point.x],
+            components="country:NP",
+            method='reverse',
+            key=GOOGLE_MAP_API_KEY,
+        )
+    if location and location.city:
         return "%s at %s" % (alert.hazard, location.city)
     else:
         return "%s" % alert.hazard
