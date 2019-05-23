@@ -235,6 +235,28 @@ class Educationv(pg.View):
         db_table = 'education_views'
         managed = False
 
+class Financev(pg.View):
+    sql = """SELECT r.title,r.description,r.point,resources_finance.* FROM resources_finance LEFT JOIN resources_resource as r ON r.id=resources_finance.resource_ptr_id;"""
+
+    class Meta:
+        db_table = 'finance_views'
+        managed = False
+
+class Governancev(pg.View):
+    sql = """SELECT r.title,r.description,r.point,resources_governance.* FROM resources_governance LEFT JOIN resources_resource as r ON r.id=resources_governance.resource_ptr_id;"""
+
+    class Meta:
+        db_table = 'governance_views'
+        managed = False
+
+class Culturalv(pg.View):
+    sql = """SELECT r.title,r.description,r.point,resources_cultural.* FROM resources_cultural LEFT JOIN resources_resource as r ON r.id=resources_cultural.resource_ptr_id;"""
+
+    class Meta:
+        db_table = 'cultural_views'
+        managed = False
+
+
 
 LICENSE_TYPES=(
     ('0', 'Survey'),
@@ -397,7 +419,7 @@ def validate_file_extension(value):
 
 class HazardType(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True)
-    about = models.CharField(max_length=50, null=True, blank=True)
+    about = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -405,6 +427,7 @@ class HazardType(models.Model):
 class HazardLayer(models.Model):
     hazard_type = models.ForeignKey(HazardType, on_delete=models.CASCADE, related_name='HazardLayer', null=True, blank=True)
     title = models.CharField(max_length=50, null=True, blank=True)
+    about = models.CharField(max_length=500, null=True, blank=True)
         
     def __str__(self):
         return self.title
@@ -420,7 +443,9 @@ class HazardSubLayerDetail(models.Model):
     hazard_subLayer = models.ForeignKey(HazardSubLayer, on_delete=models.CASCADE,related_name='HazardSubLayerDetail')
     returnperiod = models.CharField(max_length=50, null=True, blank=True)
     workspace = models.CharField(max_length=50, null=True, blank=True)
+    layername=models.CharField(max_length=50, null=True, blank=True)
+    center = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.returnperiod
+        return self.layername
 # end publish data model
