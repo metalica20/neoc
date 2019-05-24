@@ -2035,11 +2035,13 @@
                  // map.scrollWheelZoom.disable();
                  //map.options.maxBounds;  // remove the maxBounds object from the map options
                  //map.options.minZoom = 9;
+                 map.createPane("test").style.zIndex = 0;
                  map.createPane("polygonsPane").style.zIndex = 620;
                  map.createPane("baseLayerPane").style.zIndex = 250;
                  map.createPane("wmsPane").style.zIndex = 450;
                  map.createPane("linesPane").style.zIndex = 620;
                  map.createPane("pointsPane").style.zIndex = 800;
+                 map.createPane("maskPane").style.zIndex = 99999;
                  //map.options.minZoom = 14;
                  ////console.log("adfasfsadfasfasdfasfdasdfsafasdfsafasfasfsafsa");
                  var accessToken = "pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw";
@@ -2374,6 +2376,7 @@ function highlightLayers(layer, featureName){
 
 
      municipality.on('click', function(e) {
+      $('#chart > span').remove();
        //////console.log(e.layer.properties);
        $('.compare-info').css('display','none');
        if($(".compare-wrapper").css('display')=="block"){
@@ -3343,13 +3346,15 @@ $('.parent_vul').on('click',function(){
       var id = $(this).attr('data-workspace');
       var center = eval($(this).attr('data-center'));
       var layername = $(this).attr('data-layername');
+      // var Earthquake_hazard =$("#Map00").parent()[0].className;
+      console.log(layername);
       //remove previous layer on radio change
       
 
       if($(this).attr("haslayer")){
-        //////console.log('onclicktrue');
+        // console.log('onclicktrue');
         if(map.hasLayer(window[layername])){
-
+          console.log("inside of earthquake click layer");
              map.removeLayer(window[layername]);
                $('.legend-list').html('');
                $('.hazard_list').attr('hasLayer',false);
@@ -3357,7 +3362,7 @@ $('.parent_vul').on('click',function(){
 
                // map.flyTo([28.410728397237914,84.4024658203125], 7);
         }else{
-
+            // console.log("else");
             addLegend(layername);
 
             //map.addLayer(window[layername]);
@@ -3381,10 +3386,16 @@ $('.parent_vul').on('click',function(){
         }
         $(this).attr("haslayer",false);
       }else{
+        console.log("else ko ni else ");
+        console.log(id);
+       
       if(id=='earthquake'){
+        var num= 1;
       //  ////console.log('enteref');
-
-
+          console.log("earthquake bhitra ");  
+          
+          // console.log($("#Map00").parent());
+          if(num=1){
                 window[layername] = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
                  // trick: expose name via options, used in events
                  name: 'Seismic Hazard PGA (g)',
@@ -3407,11 +3418,18 @@ $('.parent_vul').on('click',function(){
              $('.hazard_list').attr('hasLayer',true);
              $('.hazard_list').attr('data-currentLayer',layername);
              addLegend(layername);
-          $(this).attr("haslayer",false);
+          // $(this).attr("haslayer",false);
 
           $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
           //$('.center').attr('data-name-trans',layername);
-
+          num=0;
+            }
+            else{
+              console.log(num);
+              removeAllLayers();
+              console.log("removeAllLayers");
+              console.log(removeAllLayers);
+            }
 
       }else{
       //  ////console.log(id);
@@ -3721,13 +3739,14 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                           //creating cluster names
                           window[layername+'_markers']=L.markerClusterGroup({
-                            disableClusteringAtZoom:12
+                            disableClusteringAtZoom:12,
+                            clusterPane: 'polygonsPane'
                           });
 
 
                         window[this.data1['layerTbl']] = new L.geoJson(response,
                          {
-                            //pane:"pointsPane",
+                            // pane:"polygonsPane",
                             pointToLayer: function(feature,Latlng)
                                 {
 
@@ -3744,10 +3763,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                         // Set a markers width and height.
                                           //iconSize: [52, 52],
                                           iconAnchor: [4, 2],
+                                          // pane:"polygonsPane"
                                       });
 
                                         var marker = L.marker(
-                                          Latlng,{icon:divicon});
+                                          Latlng,{icon:divicon,pane:"wmsPane"});
 
 
                                 window[layername+'_markers'].addLayer(marker);
@@ -4959,6 +4979,7 @@ $.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",
 
 
 federal_boundary=null;
+federal_maskboundary=null;
 
 $('#federal_boundary').on('click','.federal',function(){
 $('.loader').css('display','block');
@@ -4976,6 +4997,10 @@ if(federal_boundary !=null && map.hasLayer(federal_boundary)){
   map.removeLayer(label);
 }
 var boundary=$(this).attr('id');
+console.log(boundary);
+// if(boundary== 'Province_1'){
+  boundaryy=boundary.split('_').join(' ');
+// }
 var federal_name=$(this).attr('data-fed');
 var layer_id=$(this).attr('data-id');
 var layer_request=$(this).attr('data-request');
@@ -4989,8 +5014,12 @@ $('#fed_filterInput').val(name);
 //     }
 //
 //   });
+
 var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&'+layer_request+'='+layer_id;
-////console.log(fed_url);
+var fed_mask_url='https://bipad.nepware.com/api/v1/'+layer_request+'/?format=geojson&search='+boundaryy;
+
+console.log(fed_url);
+console.log(fed_mask_url);
 label=L.layerGroup();
  federal_boundary = new L.geoJson.ajax(fed_url,{
 
@@ -5015,24 +5044,89 @@ label=L.layerGroup();
        }
 
  });
+//  federal_maskboundary = new L.geoJson.ajax(fed_mask_url,{
 
- federal_boundary.on('data:loaded',function(){
-   ////console.log('loaded');
-   map.addLayer(federal_boundary);
-   map.addLayer(label);
- map.fitBounds(federal_boundary.getBounds());
+     
+//  });
+// Varun mask Layer Start
+                      removeAllLayers();
+
+                      $.ajax({
+                          // async:false,
+                          url: fed_mask_url,
+                          success: function(result) {
+                            console.log(result);
+                            L.Mask = L.Polygon.extend({
+                              options: {
+                                  stroke: false,
+                                  color: '#f6f6f4',
+                                  fillOpacity: 1,
+                                  clickable: true,
+                                  // zIndex:1000,
+                                  outerBounds: new L.LatLngBounds([-90, -360], [90, 360])
+                              },
+                              pane:"maskPane",
+                            
+                          
+                              initialize: function (latLngs, options) {
+                            
+                                var outerBoundsLatLngs = [
+                                this.options.outerBounds.getSouthWest(),
+                                this.options.outerBounds.getNorthWest(),
+                                this.options.outerBounds.getNorthEast(),
+                                this.options.outerBounds.getSouthEast()
+                                ];
+                                L.Polygon.prototype.initialize.call(this, [outerBoundsLatLngs, latLngs], options);
+                              },
+                          
+                          });
+                            L.mask = function (latLngs, options) {
+                              return new L.Mask(latLngs, options);
+                            };
+                          
+                          
+                            var coordinates = result.features[0].geometry.coordinates[0];
+                          
+                            var latLngs = [];
+                            for (i=0; i<coordinates.length; i++) {
+                              for(j=0; j<coordinates[i].length;j++){
+                                              // console.log(coordinates[i][j]);
+                                              latLngs.push(new L.LatLng(coordinates[i][j][1], coordinates[i][j][0]));
+                                          }
+                                      }
+                          
+                                     
+                                      L.mask(latLngs).addTo(map).bringToFront();
+                                      
+                                      
+                          }
+                      });
+// Varun mask Layer End
+
+                  console.log(federal_boundary);
+                  // console.log(federal_maskboundary);
+                        //Varun Layer Mask Code Start
+          
+                        //Varun Layer Mask Code End
+ 
+
+                        federal_boundary.on('data:loaded',function(){
+                          ////console.log('loaded');
+                          map.addLayer(federal_boundary);
+                          //  map.addLayer(federal_maskboundary);
+                          map.addLayer(label);
+                          map.fitBounds(federal_boundary.getBounds());
 
 
- map.removeLayer(vt_label_province);
- map.removeLayer(vt_label_district);
- map.removeLayer(vt_label_municipality);
+                          map.removeLayer(vt_label_province);
+                          map.removeLayer(vt_label_district);
+                          map.removeLayer(vt_label_municipality);
 
 
- $('.loader').css('display','none');
+                          $('.loader').css('display','none');
 
 
- });
-
+                        });
 //map.addLayer(district);
 
 });

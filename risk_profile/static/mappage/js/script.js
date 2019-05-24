@@ -25,47 +25,22 @@
           var  id=$(this).closest(".hazard-details").attr('id');
           var  dataex=$(this).closest(".hazard-details").attr('data-ex');
 
-          //var closestclass= $("#"+dataex).closest("div")[0];
-          
-            //$('#'+id).css('display','none');
-            console.log(id);
-            console.log("#"+dataex);
-            console.log($('#'+dataex).parent());
             $('#'+dataex).parent().removeClass().addClass('custom-control custom-radio');
 
             $('#'+id).hide(300);
+            $(".average-section").hide(300);
          
 
 
             //$(this).closest(".hazard-wrapper").addClass("collapse-leftSidebar");
         });
-
-
-        // $("input[type='radio']").click(function(){
-        //     var  id=$(this).closest(".hazard-details").attr('id');
-        //     //$('#'+id).css('display','none');
-        //     console.log(id);
-        //     $('#'+id).hide(300);
-        //     console.log("input type checked");
-        //     var radioValue = $("input[name='checks']:checked").val();
-        //     console.log(radioValue);
-        //     if($("input[type=radio]").attr('disabled')== 'true'){
-        //         console.log("tick");
-        //     };
-        //     if(radioValue){
-        //         alert("Your are a - " + radioValue);
-        //     }
-        // });
-        // $('input', '.custom-radio').click(function(e){
-        //     var val = $(this).attr('id');
-        //     alert(val);
-        //   });
         
         $(".hazard-title ").on("click",'.average-open', function () {
             $(".average-section").show(300);
         });
         $(".average-section").on("click",'.averageClose', function () {
             $(this).closest(".average-section").hide(300);
+            
         });
         $(".metaData-header").on("click",'.metaClose', function () {
             $(this).closest(".metaData").hide(300);
@@ -679,6 +654,6 @@
              $('.filterSelect').find('.ion-md-close').hide();
           });
 
-          $("")
+          
     });
 })(jQuery);
