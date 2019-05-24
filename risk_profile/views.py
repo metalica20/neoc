@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,Hydropower
 from incident.models import Incident
 from resources.models import Resource,Education,Health
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer
@@ -80,14 +80,14 @@ class Hazard(views.APIView):
     # queryset=FloodBasin.objects.select_related('FloodPeriod').all()
 
 
-# class AirportGeojsonViewSet(views.APIView):
-#     permission_classes=[]
-#     def get(self,request,*args,**kwargs):
-#         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('pk','name'))
-#         # print(serializers)
-#         Airportgeojson=json.loads(serializers)
-#         return Response(Airportgeojson)
-#
+class HydroGeojsonViewSet(views.APIView):
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Hydropower.objects.all(),geometry_field='latlong',fields=('project','capacity'))
+        # print(serializers)
+        Hydrogeojson=json.loads(serializers)
+        return Response(Hydrogeojson)
+
 # class BridgeGeojsonViewSet(views.APIView):
 #     permission_classes=[]
 #     def get(self,request,*args,**kwargs):

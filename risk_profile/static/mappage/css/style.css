@@ -2079,7 +2079,7 @@ span#loader_text {
 }
 
 .marker-cluster-large div{
-  background-color: rgb(9, 121, 250) !important;
+  background-color: #1672c6 !important;
 }
 
 .marker-cluster-medium {
@@ -2087,7 +2087,7 @@ span#loader_text {
 }
 
 .marker-cluster-medium div{
-  background-color: rgb(9, 121, 250) !important;
+  background-color: #1672c6 !important;
 }
 
 .marker-cluster-small{
@@ -2095,7 +2095,7 @@ span#loader_text {
 }
 
 .marker-cluster-small div{
-  background-color: rgb(9, 121, 250) !important;
+  background-color:#1672c6 !important;
 }
 
 .marker-cluster div {

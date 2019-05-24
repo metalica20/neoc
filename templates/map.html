@@ -2543,7 +2543,7 @@ function highlightLayers(layer, featureName){
                           }
 
                      function earthRiskStyle(number, maxvalue, minvalue) {   //creating style
-                      //console.log(minvalue);
+                     // console.log(number);
                                 //console.log(maxvalue);
                            return {
                            fillColor: earthRiskgetColor(number, maxvalue, minvalue),
@@ -2671,6 +2671,9 @@ function highlightLayers(layer, featureName){
           function isOdd(num) { return num % 2;}
           //calculate intervals between min and max values
           var range = function(start, end, step) {
+                                  
+                                  console.log(Math.round(start*10)/10)
+                                  // console.log(round(end,2))
                                   var range = [];
                                   var typeofStart = typeof start;
                                   var typeofEnd = typeof end;
@@ -2694,11 +2697,20 @@ function highlightLayers(layer, featureName){
                                   if (typeofStart == "number") {
 
                                       while (step > 0 ? end >= start : end <= start) {
+                                        if(end<=10){
+                                          range.push(start.toFixed(2));
+                                        }else{
                                           range.push(Math.round(start));
+                                        }
+                                         
                                           start += step;
                                       }
                                       if(isOdd(Math.round(end))){
-                                        range.push(Math.round(end));
+                                        if(end<=10){
+                                          range.push(end.toFixed(2));
+                                        }else{
+                                          range.push(Math.round(end));
+                                        }
                                       }
 
                                   } else if (typeofStart == "string") {
@@ -2833,8 +2845,14 @@ function highlightLayers(layer, featureName){
                                     '</div>'+
                                     '<ul>';
                                     if(risk_id !="hdi" && risk_id !="remoteness"){
+                                      console.log(intervals.length)
                                       for(var u=0; u<intervals.length-1;u++){
                                         legend_html+='<li class="satelite"><span style="background-color:'+color_range[u]+';"></span><a href="#">'+intervals[u]+' - '+intervals[u+1]+'</a></li>';
+                                        // console.log("u"+u);
+                                        if(u>3){
+                                          // console.log(u);
+                                          break;
+                                        }
                                       }
                                       // legend_html+='<li class="satelite"><span style="background-color:'+color_range[intervals.length+1]+';"></span><a href="#">0-'+result.max+'</a></li>';
                                                     // '<li class="satelite"><span style="background-color:#FD8D3C;"></span><a href="#">'+(result.max/5).toFixed(2)+'-'+(result.max/4).toFixed(2)+'</a></li>'+
