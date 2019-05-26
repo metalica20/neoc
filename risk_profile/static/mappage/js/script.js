@@ -635,11 +635,12 @@
                $('.federal').css('display','');
              $('#fed_filterInput').val("");
              
-             filterapplied= CheckFilterApplied();
-             if(map.hasLayer(federal_boundary)&& filterapplied== false){
+             //filterapplied= CheckFilterApplied();
+             if(map.hasLayer(federal_boundary)){
                map.removeLayer(federal_boundary);
                map.removeLayer(label);
                map.removeLayer(Mask);
+               $('.admin-level').html("National");
              }
              map.addLayer(province);
              map.addLayer(vt_label_province);

@@ -51,6 +51,7 @@
             <!-- logo start -->
             <div class="bipad-logo">
                 <h1 class="logo"><a href="index.html">Bipad</a></h1>
+                <h3 class="admin-level">National</h3>
                 <span class="sub-logo">RiskInfo</span>
 
             </div>
@@ -2024,7 +2025,8 @@
 
 
     $(document).ready(function(){
-      $('.loader').css('display','block')
+     
+        $('.loader').css('display','block')
           // initializing map
 
            map = L.map('mapid',{
@@ -2060,7 +2062,9 @@
              L.control.zoom({position:'bottomright'}).addTo(map);
 
 
-           var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw').addTo(map);
+           var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw',{
+                    attribution: '&copy; <a href="https://www.mapbox.com">Mapbox</a>'
+                  }).addTo(map);
            // .addTo(map);
                 //  var osm = L.tileLayer('https://a.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png', {
                 //    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -3305,12 +3309,20 @@ $(".slider").each(function () {
 //acccess to communication
 $(".socio").on('click',function(){
   $('.loader').css('display','block');
+  filterapplied=CheckFilterApplied();
   removeAllLayers();
+  if(filterapplied== true){
+    map.addLayer(federal_boundary);
+    map.addLayer(Mask);
+    //map.addLayer(label);
+    
+  }else{
+    map.flyTo([28.410728397237914,84.4024658203125],8)
+  }
   var id = $(this).attr("id");
   $('.legend-list').html('');
   var parent_id = $(this).attr("data-parent");
   //////console.log(id);
-  map.flyTo([28.410728397237914,84.4024658203125],8)
   loadSocioData(id,parent_id);
 
 
@@ -3578,7 +3590,7 @@ $('.parent_vul').on('click',function(){
 
       if($(this).attr('id')=='hydro_1'){
       //  ////console.log('entered')
-        var url='http://hydro.naxa.com.np/api/Hydropower/';
+        var url=base_url+'/risk_profile/Hydro';
          window[layername] = new L.geoJson.ajax(url,
           {
 
@@ -3610,7 +3622,8 @@ $('.parent_vul').on('click',function(){
                   keepInView: true,
                   autoPan: true,
                   maxHeight: 200,
-                  minWidth: 250
+                  minWidth: 250,
+                  pane:"topPane"
                 }).setContent(contentString));
 
                 layer.setStyle(style);
@@ -3734,7 +3747,7 @@ var contentString = '<div class="box box-primary" style="width:400px;">';
 
 
 
-            if(data!='name'){
+            if(data!='name' && data!='pk'){
             contentString +='<li class="list-group-item popup-list">';
 
                               contentString +=  '<b>'+data+': </b> <a class="pull-right"> '+feature.properties[data]+'</a></li>';
@@ -3887,7 +3900,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                   //   keepInView: true,
                                   //   autoPan: true,
                                   //   maxHeight: 200,
-                                  //   minWidth: 250
+                                  //   minWidth: 250,
+                                      // pane:"topPane"
                                   // }).setContent(contentString));
                                   //////console.log(dataList['layerName']);
 
@@ -4076,7 +4090,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                      keepInView: true,
                      autoPan: true,
                      maxHeight: 200,
-                     minWidth: 250
+                     minWidth: 250,
+                     pane:"topPane"
                    }).setContent(contentString));
 
                  });
@@ -4148,6 +4163,8 @@ $.get(base_url+'/risk_profile/Layer',function(data){
         });
 
   map.addControl(drawControl);
+
+  
 
   map.on('draw:created', function(e) {
     var type = e.layerType,
@@ -4562,7 +4579,8 @@ function filtermap(layer_data,checkedList,sub_layer_name,total_sum,layerName,lay
             keepInView: true,
             autoPan: true,
             maxHeight: 200,
-            minWidth: 250
+            minWidth: 250,
+            pane:"topPane"
           }).setContent(contentString));
         }
 
@@ -4715,7 +4733,11 @@ if(admin_layer=='municipality'){
   // $('.legend-list').html('');
   map.addLayer(window[admin_layer]);
   labelcount=0;
-  vt_label_municipality.addTo(map);
+  var zoom = map.getZoom();
+  if(zoom>11){
+    vt_label_municipality.addTo(map);
+  }
+  
   
 
 
@@ -5232,6 +5254,8 @@ label=L.layerGroup();
 
                         });
 //map.addLayer(district);
+                        var header_name=name.split(',')[0]
+                        $('.admin-level').html(header_name);
 
 });
 
@@ -5275,7 +5299,9 @@ for (i = 0; i < li.length; i++) {
 
 
 
-
+  if($.trim(search_text).length == 0){
+    $('.admin-level').html("National");
+  }
 
 });
 //end
@@ -5313,7 +5339,11 @@ $('.osm_layer').on('click',function(){
 //VARUN END
      
 
-
+        $('#mapid').on('click',function(){
+            $('.filter-listing').hide();
+        });
+        
+        $('.leaflet-draw').attr('title','Start drawing on the map to filter active layers.')
     });//document end
  </script>
 

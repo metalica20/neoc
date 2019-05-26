@@ -83,7 +83,7 @@ class Hazard(views.APIView):
 class HydroGeojsonViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
-        serializers=serialize('geojson',Hydropower.objects.all(),geometry_field='latlong',fields=('project','capacity'))
+        serializers=serialize('geojson',Hydropower.objects.all(),geometry_field='latlong',fields=('pk','name','capacity','status','issue_date_years','validity_date_years','promoter','province_name','district_name','gapanapa_name','river','address'))
         # print(serializers)
         Hydrogeojson=json.loads(serializers)
         return Response(Hydrogeojson)

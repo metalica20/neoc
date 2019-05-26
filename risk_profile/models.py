@@ -292,7 +292,7 @@ class Hydropower(models.Model):
     province_name = models.CharField(max_length=50, null=True, blank=True)
     district_name = models.CharField(max_length=50, null=True, blank=True)
     gapanapa_name = models.CharField(max_length=100, null=True, blank=True)
-    project = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     capacity = models.FloatField(verbose_name="Capacity (MW)", null=True, blank=True)
     river = models.CharField(max_length=100)
     lic_number = models.CharField(max_length=100, null=True, blank=True)    
@@ -388,10 +388,10 @@ class Hydropower(models.Model):
     hydro_summary = models.TextField(null=True, blank=True)
 
     class Meta:
-        ordering = ['project']
+        ordering = ['name']
 
     def __str__(self):
-        return self.project
+        return self.name
 
     @property
     def value(self):
