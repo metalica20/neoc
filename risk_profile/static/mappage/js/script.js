@@ -629,14 +629,17 @@
         $(".filterSelect").on("click","input", function() {
             $(this).closest('.filterSelect').find('.filter-listing').show();
          });
-
+         
          $(".filter_close").on("click", function() {
              $(this).closest('.filterSelect').find('.filter-listing').hide();
                $('.federal').css('display','');
              $('#fed_filterInput').val("");
-             if(map.hasLayer(federal_boundary)){
+             
+             filterapplied= CheckFilterApplied();
+             if(map.hasLayer(federal_boundary)&& filterapplied== false){
                map.removeLayer(federal_boundary);
                map.removeLayer(label);
+               map.removeLayer(Mask);
              }
              map.addLayer(province);
              map.addLayer(vt_label_province);

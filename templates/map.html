@@ -2035,13 +2035,21 @@
                  // map.scrollWheelZoom.disable();
                  //map.options.maxBounds;  // remove the maxBounds object from the map options
                  //map.options.minZoom = 9;
-                 map.createPane("test").style.zIndex = 0;
-                 map.createPane("polygonsPane").style.zIndex = 620;
+                 map.createPane("tilePane").style.zIndex = 200;
                  map.createPane("baseLayerPane").style.zIndex = 250;
-                 map.createPane("wmsPane").style.zIndex = 450;
-                 map.createPane("linesPane").style.zIndex = 620;
-                 map.createPane("pointsPane").style.zIndex = 800;
-                 map.createPane("maskPane").style.zIndex = 99999;
+                 map.createPane("wmsPane").style.zIndex = 300;
+                 map.createPane("overlayPane").style.zIndex = 400;
+                 map.createPane("polygonsPane").style.zIndex = 450;
+                 map.createPane("linesPane").style.zIndex = 460;
+                 map.createPane("shadowPane").style.zIndex = 500;
+                 map.createPane("markerPane").style.zIndex = 600;
+                 map.createPane("pointsPane").style.zIndex = 600;
+                 map.createPane("tooltipPane").style.zIndex = 650;
+                 map.createPane("popupPane").style.zIndex = 700;
+                 map.createPane("maskPane").style.zIndex = 700;
+                 map.createPane("topPane").style.zIndex = 701;
+                
+
                  //map.options.minZoom = 14;
                  ////console.log("adfasfsadfasfasdfasfdasdfsafasdfsafasfasfsafsa");
                  var accessToken = "pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw";
@@ -2297,7 +2305,7 @@ map.on('zoomend',function(e){
  },
  },
  interactive: true,	// Make sure that this VectorGrid fires mouse/pointer events
- pane:"baseLayerPane",
+ pane:"wmsPane",
  getFeatureId: function(feature) {
    ////console.log(feature);
    label_Vector_Tiles(feature);
@@ -2630,6 +2638,7 @@ function highlightLayers(layer, featureName){
                                     municipality.setFeatureStyle(result.data[j]["municipalityId"], resetStyle());
                                 }
                                 map.removeLayer(vt_label_municipality);
+                                $('.legend-list').html('');
                                 $('#'+parent_id).attr('data-currentLayer','');
                                 $('#'+parent_id).attr('data-result','');
                                 $('#'+parent_id).prop('checked',false);
@@ -2641,7 +2650,6 @@ function highlightLayers(layer, featureName){
 
                       });
                       //new ajax
-
                       var legend_html='<div class="legend-wrapper">'+
                           '<div class="buffer-header">'+
                               '<h4>'+socioid+'</h4>'+
@@ -2659,8 +2667,9 @@ function highlightLayers(layer, featureName){
 
                           '</ul>'+
                       '</div>';
-
+                            
                       $('.legend-list').append(legend_html);
+                      // $('.bipad-logo').append(legend_html);
 
 
 
@@ -3308,14 +3317,25 @@ $(".socio").on('click',function(){
 });
 $(".vul_hdi").on('click',function(){
   $('.loader').css('display','block');
+  filterapplied=CheckFilterApplied();
   removeAllLayers();
+  
+
+  if(filterapplied== true){
+    map.addLayer(federal_boundary);
+    map.addLayer(Mask);
+    //map.addLayer(label);
+    
+  }else{
+    map.flyTo([28.410728397237914,84.4024658203125],8)
+  }
   var id = $(this).attr("data-score");
   var id_input = $(this).attr("id");
   var parent_id = $(this).attr("data-parent");
   var name = $(this).attr("data-legendname");
   $('.legend-list').html('');
   //////console.log(id);
-  map.flyTo([28.410728397237914,84.4024658203125],8)
+  
   loadHdiData(id,id_input,parent_id,name);
 
 
@@ -3341,6 +3361,7 @@ $('.parent_vul').on('click',function(){
         window[current_layer].setFeatureStyle(result[i][dataid], resetStyle());
     }
     $(".vul_hdi").prop('checked',false);
+    $(".legend-list").html('');
 
   }
 
@@ -3358,7 +3379,18 @@ $('.parent_vul').on('click',function(){
 
     $('#hazard_popup_html').on('click','.hazard_geo',function(){
       $('.loader').css('display','block');
-      removeAllLayers();
+
+            filterapplied= CheckFilterApplied();
+            removeAllLayers();
+            if(filterapplied== true){
+              map.addLayer(federal_boundary);
+              map.addLayer(Mask);
+            //map.addLayer(label);
+            
+            }
+            // else{
+
+            // }
       ////console.log($(this).closest(".card").children()[0].id);
       var hazard_id = $(this).closest(".card").children()[0].id;
       var id = $(this).attr('data-workspace');
@@ -3413,7 +3445,7 @@ $('.parent_vul').on('click',function(){
           console.log("earthquake bhitra ");  
           
           // console.log($("#Map00").parent());
-          if(num=1){
+         
                 window[layername] = L.tileLayer('https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', {
                  // trick: expose name via options, used in events
                  name: 'Seismic Hazard PGA (g)',
@@ -3423,15 +3455,20 @@ $('.parent_vul').on('click',function(){
                  printable: true,
                  zIndex:9996,
                  ext: '/media/ext/js/global-hazard.js',
-                 pane:"baseLayerPane",
+                 pane:"wmsPane",
                  maxZoom: 15,
                  minZoom: 2,
 
              }).addTo(map).setOpacity(0.5);
 
+             if(filterapplied== true){
+                
+              }
+              else{
+                map.flyTo(center,7);
+              }
 
-
-               map.flyTo(center,7);
+               
 
              $('.hazard_list').attr('hasLayer',true);
              $('.hazard_list').attr('data-currentLayer',layername);
@@ -3440,14 +3477,13 @@ $('.parent_vul').on('click',function(){
 
           $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
           //$('.center').attr('data-name-trans',layername);
-          num=0;
-            }
-            else{
+          
               console.log(num);
-              removeAllLayers();
+              
+              //removeAllLayers();
               console.log("removeAllLayers");
               console.log(removeAllLayers);
-            }
+            
 
       }else{
       //  ////console.log(id);
@@ -3458,7 +3494,7 @@ $('.parent_vul').on('click',function(){
                                 layers:id+":"+layername,
                                 transparent: true,
                                 format: 'image/png',
-                                // pane:"wmsPane"
+                                pane:"wmsPane"
                           }).addTo(map);
 
 
@@ -3527,9 +3563,17 @@ $('.parent_vul').on('click',function(){
     $('.exposure_geo').one('click',function(){
 
     $('.loader').css('display','block');
-
+      filterapplied= CheckFilterApplied();
     removeAllLayers();
+    if(filterapplied== true){
+      map.addLayer(federal_boundary);
+      map.addLayer(Mask);
+    //map.addLayer(label);
+    
+    }
+    else{
 
+    }
       var layername = $(this).attr('data-layername');
 
       if($(this).attr('id')=='hydro_1'){
@@ -3613,7 +3657,17 @@ $('.parent_vul').on('click',function(){
     });
 
     $('.exposure_geo').on('click',function(){
+        filterapplied= CheckFilterApplied();
         removeAllLayers();
+        if(filterapplied== true){
+          map.addLayer(federal_boundary);
+          map.addLayer(Mask);
+        //map.addLayer(label);
+        
+        }
+        else{
+          
+        }
       var layername = $(this).attr('data-layername');
       var parent_id = $(this).attr('data-parent');
       var center = eval($(this).attr('data-center'));
@@ -3632,7 +3686,7 @@ $('.parent_vul').on('click',function(){
         }else{
           $('#'+parent_id).attr('data-currentLayer',layername);
           map.addLayer(window[layername]);
-            map.flyTo([28.410728397237914,84.4024658203125],8)
+            // map.flyTo([28.410728397237914,84.4024658203125],8)
         }
 
 
@@ -3758,7 +3812,16 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           //creating cluster names
                           window[layername+'_markers']=L.markerClusterGroup({
                             disableClusteringAtZoom:12,
-                            clusterPane: 'polygonsPane'
+                            clusterPane: 'pointsPane',
+                            // iconCreateFunction: function (cluster) {
+                            //     var markers = cluster.getAllChildMarkers();
+                            //     console.log('clustermarkers  ', cluster );
+                            //     var n = 0;
+                            //     for (var i = 0; i < markers.length; i++) {
+                            //         n += markers[i].number;
+                            //     }
+                            //     //return L.divIcon({ html: n, className: className, iconSize: L.point(40, 40) });
+                            // }
                           });
 
 
@@ -3785,7 +3848,20 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                       });
 
                                         var marker = L.marker(
-                                          Latlng,{icon:divicon,pane:"wmsPane"});
+                                          Latlng,{icon:divicon, pane:"markerPane"});
+                                          
+                                          var contentString = createPopup(feature,layername);
+                                            marker.bindPopup(L.popup({
+                                              //closeOnClick: true,
+                                              //closeButton: true,
+                                              keepInView: true,
+                                              autoPan: true,
+                                              maxHeight: 200,
+                                              minWidth: 250,
+                                              pane:"topPane"
+                                            }).setContent(contentString));
+                                        
+                                        
 
 
                                 window[layername+'_markers'].addLayer(marker);
@@ -3804,15 +3880,15 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                                   }
 
 
-                                  var contentString = createPopup(feature,layername);
-                                  layer.bindPopup(L.popup({
-                                    //closeOnClick: true,
-                                    //closeButton: true,
-                                    keepInView: true,
-                                    autoPan: true,
-                                    maxHeight: 200,
-                                    minWidth: 250
-                                  }).setContent(contentString));
+                                  // var contentString = createPopup(feature,layername);
+                                  // layer.bindPopup(L.popup({
+                                  //   //closeOnClick: true,
+                                  //   //closeButton: true,
+                                  //   keepInView: true,
+                                  //   autoPan: true,
+                                  //   maxHeight: 200,
+                                  //   minWidth: 250
+                                  // }).setContent(contentString));
                                   //////console.log(dataList['layerName']);
 
 
@@ -3893,7 +3969,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                     });
 
                       var marker = L.marker(
-                        latlng,{icon:divicon});
+                        latlng,{icon:divicon, pane:"pointsPane"});
 
 
 
@@ -4051,7 +4127,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
   //draw start
   drawnItems = new L.FeatureGroup({
-    // pane:'polygonsPane'
+     pane:'polygonsPane'
   });
 
 
@@ -4636,10 +4712,11 @@ var admin_layer=$(this).attr('data-admin');
 ////console.log(admin_layer)
 
 if(admin_layer=='municipality'){
-  $('.legend-list').html('');
+  // $('.legend-list').html('');
   map.addLayer(window[admin_layer]);
   labelcount=0;
   vt_label_municipality.addTo(map);
+  
 
 
   map.removeLayer(window['district']);
@@ -4998,18 +5075,23 @@ $.get("https://bipad.nepware.com/api/v1/province/?format=json&&fields=id,title",
 
 federal_boundary=null;
 federal_maskboundary=null;
+Mask=null;
 
 $('#federal_boundary').on('click','.federal',function(){
-$('.loader').css('display','block');
-$('.filter-listing').hide();
-// //console.log($(this).attr('id'));
-// //console.log($(this).attr('data-fed'));
+  $('.loader').css('display','block');
+  $('.filter-listing').hide();
+  // //console.log($(this).attr('id'));
+  // //console.log($(this).attr('data-fed'));
 
-map.removeLayer(province);
-map.removeLayer(district);
-map.removeLayer(municipality);
+if(map.hasLayer(Mask)){
+  map.removeLayer(Mask);
+}
 
-if(federal_boundary !=null && map.hasLayer(federal_boundary)){
+//map.removeLayer(province);
+//map.removeLayer(district);
+//map.removeLayer(municipality);
+filterapplied=CheckFilterApplied();
+if(federal_boundary !=null && map.hasLayer(federal_boundary)&& filterapplied== false){
   ////console.log('remove');
   map.removeLayer(federal_boundary);
   map.removeLayer(label);
@@ -5067,7 +5149,7 @@ label=L.layerGroup();
      
 //  });
 // Varun mask Layer Start
-                      removeAllLayers();
+                      //removeAllLayers();
 
                       $.ajax({
                           // async:false,
@@ -5081,9 +5163,10 @@ label=L.layerGroup();
                                   fillOpacity: 1,
                                   clickable: true,
                                   // zIndex:1000,
-                                  outerBounds: new L.LatLngBounds([-90, -360], [90, 360])
+                                  outerBounds: new L.LatLngBounds([-90, -360], [90, 360]),
+                                  pane:"maskPane",
                               },
-                              pane:"maskPane",
+                              
                             
                           
                               initialize: function (latLngs, options) {
@@ -5098,6 +5181,8 @@ label=L.layerGroup();
                               },
                           
                           });
+
+                          
                             L.mask = function (latLngs, options) {
                               return new L.Mask(latLngs, options);
                             };
@@ -5113,8 +5198,9 @@ label=L.layerGroup();
                                           }
                                       }
                           
-                                     
-                                      L.mask(latLngs).addTo(map).bringToFront();
+                                       Mask = L.mask(latLngs);
+                                      //Mask.addTo(map).bringToFront();
+                                      map.addLayer(Mask);
                                       
                                       
                           }
@@ -5148,6 +5234,18 @@ label=L.layerGroup();
 //map.addLayer(district);
 
 });
+
+filterapplied= false;
+
+function CheckFilterApplied(){
+    if(map.hasLayer(federal_boundary)){
+      
+      return true;
+    }
+    else{
+      return false;
+    }
+}
 
 $('#fed_filterInput').on('keyup',function(){
   // //console.log('search function here ');
