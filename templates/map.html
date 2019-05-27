@@ -3596,7 +3596,7 @@ $('.parent_vul').on('click',function(){
 
             pointToLayer: function(feature, latlng) {
 
-            var marker = L.circleMarker(latlng);
+            var marker = L.circleMarker(latlng,{pane:"markerPane"});
             return marker;
 
           },
@@ -5163,7 +5163,8 @@ label=L.layerGroup();
         var fed_marker=L.marker(layer.getBounds().getCenter(),{icon:divIcon});
         fed_marker.addTo(label);
 
-       }
+       },
+       pane:"polygonsPane"
 
  });
 //  federal_maskboundary = new L.geoJson.ajax(fed_mask_url,{
