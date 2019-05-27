@@ -23,18 +23,24 @@
           //
             // console.log(id);
           var  id=$(this).closest(".hazard-details").attr('id');
-            //$('#'+id).css('display','none');
-            $('#'+id).hide(300);
+          var  dataex=$(this).closest(".hazard-details").attr('data-ex');
 
+            $('#'+dataex).parent().removeClass().addClass('custom-control custom-radio');
+
+            $('#'+id).hide(300);
+            $(".average-section").hide(300);
+         
 
 
             //$(this).closest(".hazard-wrapper").addClass("collapse-leftSidebar");
         });
+        
         $(".hazard-title ").on("click",'.average-open', function () {
             $(".average-section").show(300);
         });
         $(".average-section").on("click",'.averageClose', function () {
             $(this).closest(".average-section").hide(300);
+            
         });
         $(".metaData-header").on("click",'.metaClose', function () {
             $(this).closest(".metaData").hide(300);
@@ -135,59 +141,82 @@
 
         $('.hazard-list label, .capacity-list label').on('click', function() {
             var targetId = $(this).attr('data-tab');
+            
+            // if($('.custom-control ').hasClass())
+          $('.custom-control .custom-radio').removeClass().addClass('custom-control custom-radio');
             // ('#hazard_popup_html').removeClass('collapse-leftSidebar');
-            //console.log(targetId);
+            // alert(targetId);
+            // console.log(this);
+            // console.log($(this).closest('.custom-radio')[0].attr("class"));
+            
+            // console.log($(this).className));
+            console.log($(this).attr("class"));
+
+            var clickedparent= $(this).closest('.custom-radio')[0];
+            // console.log(clickedparent.className);
             if (targetId == 'flood-1' ) {
-
-                $('#' + targetId).show(500);
-                $('#exposure_popup').hide(300);
-                $('#infa_exposure_popup').hide(300);
-                $('#capacity-popup').hide(300);
-                $('#vulnery-1').hide(300);
-                $('#hdi_vul').hide(300);
-                $('#remote_vul').hide(300);
-                $('#earthquake_risk').hide(300);
-                $('#osmLayer_popup').hide(300);
-                $('#pci_vul').hide(300);
-                $('#hpi_vul').hide(300);
-                $('#awt_vul').hide(300);
-                $('#toil_vul').hide(300);
-
+                if((clickedparent.className) == "custom-control custom-radio"){
+                    $('#' + targetId).show(500);
+                    $('#exposure_popup').hide(300);
+                    $('#infa_exposure_popup').hide(300);
+                    $('#capacity-popup').hide(300);
+                    $('#vulnery-1').hide(300);
+                    $('#hdi_vul').hide(300);
+                    $('#remote_vul').hide(300);
+                    $('#earthquake_risk').hide(300);
+                    $('#osmLayer_popup').hide(300);
+                    $('#pci_vul').hide(300);
+                    $('#hpi_vul').hide(300);
+                    $('#awt_vul').hide(300);
+                    $('#toil_vul').hide(300);
+                }
+                else {
+                    $('#' + targetId).hide(500);
+                }
               } else if (targetId == 'exposure_popup' ) {
-                $('#' + targetId).show(500);
-                $('#infa_exposure_popup').hide(300);
-                $('#flood-1').hide(300);
-                $('#capacity-popup').hide(300);
-                $('#vulnery-1').hide(300);
-                $('#hdi_vul').hide(300);
-                $('#remote_vul').hide(300);
-                $('#earthquake_risk').hide(300);
-                $('#osmLayer_popup').hide(300);
-                $('#pci_vul').hide(300);
-                $('#le_vul').hide(300);
-                $('#hpi_vul').hide(300);
-                $('#awt_vul').hide(300);
-                $('#toil_vul').hide(300);
+                if((clickedparent.className) == "custom-control custom-radio"){
+                    $('#' + targetId).show(500);
+                    $('#infa_exposure_popup').hide(300);
+                    $('#flood-1').hide(300);
+                    $('#capacity-popup').hide(300);
+                    $('#vulnery-1').hide(300);
+                    $('#hdi_vul').hide(300);
+                    $('#remote_vul').hide(300);
+                    $('#earthquake_risk').hide(300);
+                    $('#osmLayer_popup').hide(300);
+                    $('#pci_vul').hide(300);
+                    $('#le_vul').hide(300);
+                    $('#hpi_vul').hide(300);
+                    $('#awt_vul').hide(300);
+                    $('#toil_vul').hide(300);
+                }
+                else {
+                    $('#' + targetId).hide(500);
+                }
 
             } else if (targetId == 'infa_exposure_popup' ) {
-              $('#exposure_popup').hide(300);
-              $('#' + targetId).show(500);
-              $('#flood-1').hide(300);
-              $('#capacity-popup').hide(300);
-              $('#vulnery-1').hide(300);
-              $('#hdi_vul').hide(300);
-              $('#remote_vul').hide(300);
-              $('#earthquake_risk').hide(300);
-              $('#osmLayer_popup').hide(300);
-              $('#pci_vul').hide(300);
-              $('#le_vul').hide(300);
-              $('#hpi_vul').hide(300);
-              $('#awt_vul').hide(300);
-              $('#toil_vul').hide(300);
-
+                if((clickedparent.className) == "custom-control custom-radio"){
+                    $('#exposure_popup').hide(300);
+                    $('#' + targetId).show(500);
+                    $('#flood-1').hide(300);
+                    $('#capacity-popup').hide(300);
+                    $('#vulnery-1').hide(300);
+                    $('#hdi_vul').hide(300);
+                    $('#remote_vul').hide(300);
+                    $('#earthquake_risk').hide(300);
+                    $('#osmLayer_popup').hide(300);
+                    $('#pci_vul').hide(300);
+                    $('#le_vul').hide(300);
+                    $('#hpi_vul').hide(300);
+                    $('#awt_vul').hide(300);
+                    $('#toil_vul').hide(300);
+                }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
             } else if (targetId == 'capacity-popup' ) {
-
+                // if((clickedparent.className) == "custom-control custom-radio"){
                     $('#' + targetId).show(500);
                     $('#exposure_popup').hide(300);
                     $('#infa_exposure_popup').hide(300);
@@ -202,9 +231,13 @@
                     $('#hpi_vul').hide(300);
                     $('#awt_vul').hide(300);
                     $('#toil_vul').hide(300);
+                
+                // else{
+                //     $('#' + targetId).hide(500);
+                // }
             }
             else if (targetId == 'vulnery-1' ) {
-
+                if((clickedparent.className) == "custom-control custom-radio"){
                 $('#' + targetId).show(500);
                 $('#exposure_popup').hide(300);
                 $('#infa_exposure_popup').hide(300);
@@ -219,10 +252,13 @@
                 $('#hpi_vul').hide(300);
                 $('#awt_vul').hide(300);
                 $('#toil_vul').hide(300);
-
+                }
+                else{
+                    $('#' + targetId).hide(500);
+                }
 
         }else if (targetId == 'hdi_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
             $('#' + targetId).show(500);
             $('#exposure_popup').hide(300);
             $('#infa_exposure_popup').hide(300);
@@ -237,10 +273,13 @@
             $('#hpi_vul').hide(300);
             $('#awt_vul').hide(300);
             $('#toil_vul').hide(300);
-
+        }
+        else{
+            $('#' + targetId).hide(500);
+        }
 
           }else if (targetId == 'remote_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -255,10 +294,13 @@
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
           }else if (targetId == 'earthquake_risk' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -273,10 +315,13 @@
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
           }else if (targetId == 'osmLayer_popup' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -291,11 +336,14 @@
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
 
           }else if (targetId == 'pci_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -310,12 +358,15 @@
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
 
 
           }else if (targetId == 'le_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -330,11 +381,14 @@
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
 
           }else if (targetId == 'hpi_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -349,11 +403,14 @@
               $('#le_vul').hide(300);
               $('#awt_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
 
           }else if (targetId == 'awt_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -368,11 +425,14 @@
               $('#le_vul').hide(300);
               $('#hpi_vul').hide(300);
               $('#toil_vul').hide(300);
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
 
           }else if (targetId == 'toil_vul' ) {
-
+            if((clickedparent.className) == "custom-control custom-radio"){
               $('#' + targetId).show(500);
               $('#exposure_popup').hide(300);
               $('#infa_exposure_popup').hide(300);
@@ -387,8 +447,10 @@
               $('#le_vul').hide(300);
               $('#hpi_vul').hide(300);
               $('#awt_vul').hide(300);
-
-
+            }
+            else{
+                $('#' + targetId).hide(500);
+            }
 
           }
             // $('#flood-expand').fadeIn(300);
@@ -567,14 +629,18 @@
         $(".filterSelect").on("click","input", function() {
             $(this).closest('.filterSelect').find('.filter-listing').show();
          });
-
+         
          $(".filter_close").on("click", function() {
              $(this).closest('.filterSelect').find('.filter-listing').hide();
                $('.federal').css('display','');
              $('#fed_filterInput').val("");
+             
+             //filterapplied= CheckFilterApplied();
              if(map.hasLayer(federal_boundary)){
                map.removeLayer(federal_boundary);
                map.removeLayer(label);
+               map.removeLayer(Mask);
+               $('.admin-level').html("National");
              }
              map.addLayer(province);
              map.addLayer(vt_label_province);
@@ -591,5 +657,7 @@
          $(".filterSelect").on("hover",".type-wrap", function() {
              $('.filterSelect').find('.ion-md-close').hide();
           });
+
+          
     });
 })(jQuery);

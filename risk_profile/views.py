@@ -1,8 +1,8 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,MarketCenter,LayerTable,Airport,Bridge,Policestation,Bank,Settlements,SocioEconomicGapanapa,Risk
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,Hydropower
 from incident.models import Incident
 from resources.models import Resource,Education,Health
-from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -65,26 +65,29 @@ class ResourceGeojsonViewSet(views.APIView):
         resourcegeojson=json.loads(data)
         return Response(resourcegeojson)
 
-# class MarketCenterGeojsonViewSet(views.APIView):
-#     permission_classes=[]
-#     def get(self,request,*args,**kwargs):
-#         json_d={}
-#         serializers=serialize('geojson',MarketCenter.objects.all(),geometry_field='location',fields=('pk','fid','name','district'))
-#         # print(serializers)
-#         MarketCentergeojson=json.loads(serializers)
-#         json_d['data']=MarketCentergeojson
-#         json_d['is_goeserver']=False
-#         return Response(MarketCentergeojson)
-#
-#
-# class AirportGeojsonViewSet(views.APIView):
-#     permission_classes=[]
-#     def get(self,request,*args,**kwargs):
-#         serializers=serialize('geojson',Airport.objects.all(),geometry_field='location',fields=('pk','name'))
-#         # print(serializers)
-#         Airportgeojson=json.loads(serializers)
-#         return Response(Airportgeojson)
-#
+class Hazard(views.APIView):
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        # a=self.kwargs['field']
+        hazardtype=request.query_params.get('title',None)
+        if hazardtype:
+            queryset=HazardType.objects.filter(title=hazardtype)
+        else:
+            queryset=HazardType.objects.all()
+        serializer=HazardtypeSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+    # queryset=FloodBasin.objects.select_related('FloodPeriod').all()
+
+
+class HydroGeojsonViewSet(views.APIView):
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        serializers=serialize('geojson',Hydropower.objects.all(),geometry_field='latlong',fields=('pk','name','capacity','status','issue_date_years','validity_date_years','promoter','province_name','district_name','gapanapa_name','river','address'))
+        # print(serializers)
+        Hydrogeojson=json.loads(serializers)
+        return Response(Hydrogeojson)
+
 # class BridgeGeojsonViewSet(views.APIView):
 #     permission_classes=[]
 #     def get(self,request,*args,**kwargs):
@@ -201,8 +204,9 @@ class RiskApiView(views.APIView):
         serializer = RiskSerializer(risk ,many=True)
         sum = risk.aggregate(Sum(a))[a+'__sum']
         max = risk.aggregate(Max(a))[a+'__max']
+        min = risk.aggregate(Min(a))[a+'__min']
         avg = risk.aggregate(Avg(a))[a+'__avg']
-        return Response({'max':max if max else 0 ,'avg':avg if avg else 0,'results':serializer.data})
+        return Response({'sum':sum if sum else 0 ,'max':max if max else 0 ,'min':min if min else 0 ,'avg':avg if avg else 0,'results':serializer.data})
 
 
 
@@ -236,27 +240,91 @@ class HazardfloodViewSet(views.APIView):
         jsonc={"title":"Flood","about":"For example, the return period of a flood might be 100 years; ( alternatively expressed as its probability of ocurring being 1/100, or 1% in any one year). This does not mean that if a flood with such a return period occurs, then the next will occur in about one hundred years' time - instead, it means that, in any given year, there is a 1% chance that it will happen, regardless of when the last similar event was. Or, put differently, it is 10 times less likely to occur than a flood with a return period of 10 years (or a probability of 10%)",
         "data":{
         "karnali":{
-        "5":{"returnperiod":"5 year","workspace":"Naxa","layername":"flood_karnali_depth_5", "center":"[28.491324426181734,81.24904632568361]"},
-        "10":{"returnperiod":"10 year","workspace":"Naxa","layername":"flood_karnali_depth_10","center":"[28.491324426181734,81.24904632568361]"},
-        "25":{"returnperiod":"25 year","workspace":"Naxa","layername":"flood_karnali_depth_25","center":"[28.491324426181734,81.24904632568361]"},
-        "50":{"returnperiod":"50 year","workspace":"Naxa","layername":"flood_karnali_depth_50","center":"[28.491324426181734,81.24904632568361]"},
-        "100":{"returnperiod":"100 year","workspace":"Naxa","layername":"flood_karnali_depth_100","center":"[28.491324426181734,81.24904632568361]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Karnali_Flood_Depth_5", "center":"[28.491324426181734,81.24904632568361]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Karnali_Flood_Depth_10","center":"[28.491324426181734,81.24904632568361]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Karnali_Flood_Depth_25","center":"[28.491324426181734,81.24904632568361]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Karnali_Flood_Depth_50","center":"[28.491324426181734,81.24904632568361]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Karnali_Flood_Depth_100","center":"[28.491324426181734,81.24904632568361]"},
         },
         "Aurahi":{
-        "2":{"returnperiod":"2 year","workspace":"Naxa","layername":"flood_aurahi_depth_2","center":"[26.77258726109544,86.00372314453126]"},
-        "5":{"returnperiod":"5 year","workspace":"Naxa","layername":"flood_aurahi_depth_5","center":"[26.77258726109544,86.00372314453126]"},
-        "10":{"returnperiod":"10 year","workspace":"Naxa","layername":"flood_aurahi_depth_10","center":"[26.77258726109544,86.00372314453126]"},
-        "25":{"returnperiod":"25 year","workspace":"Naxa","layername":"flood_aurahi_depth_25","center":"[26.77258726109544,86.00372314453126]"},
-        "50":{"returnperiod":"50 year","workspace":"Naxa","layername":"flood_aurahi_depth_50","center":"[26.77258726109544,86.00372314453126]"},
-        "100":{"returnperiod":"100 year","workspace":"Naxa","layername":"flood_aurahi_depth_100","center":"[26.77258726109544,86.00372314453126]"},
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layername":"Aurahi_Flood_Depth_2","center":"[26.77258726109544,86.00372314453126]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Aurahi_Flood_Depth_5","center":"[26.77258726109544,86.00372314453126]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Aurahi_Flood_Depth_10","center":"[26.77258726109544,86.00372314453126]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Aurahi_Flood_Depth_25","center":"[26.77258726109544,86.00372314453126]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Aurahi_Flood_Depth_50","center":"[26.77258726109544,86.00372314453126]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Aurahi_Flood_Depth_100","center":"[26.77258726109544,86.00372314453126]"},
         },
         "Banganga":{
-        "2":{"returnperiod":"2 year","workspace":"Naxa","layernam":"flood_banganga_depth_2","center":"[27.585361051057333,86.04191780090332]"},
-        "5":{"returnperiod":"5 year","workspace":"Naxa","layername":"flood_banganga_depth_5","center":"[27.585361051057333,86.04191780090332]"},
-        "10":{"returnperiod":"10 year","workspace":"Naxa","layername":"flood_banganga_depth_10","center":"[27.585361051057333,86.04191780090332]"},
-        "25":{"returnperiod":"25 year","workspace":"Naxa","layername":"flood_banganga_depth_25","center":"[27.585361051057333,86.04191780090332]"},
-        "50":{"returnperiod":"50 year","workspace":"Naxa","layername":"flood_banganga_depth_50","center":"[27.585361051057333,86.04191780090332]"},
-        "100":{"returnperiod":"100 year","workspace":"Naxa","layername":"flood_banganga_depth_100","center":"[27.585361051057333,86.04191780090332]"},
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Banganga_Flood_Depth_2","center":"[27.585361051057333,86.04191780090332]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Banganga_Flood_Depth_5","center":"[27.585361051057333,86.04191780090332]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Banganga_Flood_Depth_10","center":"[27.585361051057333,86.04191780090332]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Banganga_Flood_Depth_25","center":"[27.585361051057333,86.04191780090332]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Banganga_Flood_Depth_50","center":"[27.585361051057333,86.04191780090332]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Banganga_Flood_Depth_100","center":"[27.585361051057333,86.04191780090332]"},
+        },
+        "Bakraha":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Bakraha_Flood_Depth_2","center":"[27.585361051057333,86.04191780090332]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Bakraha_Flood_Depth_5","center":"[27.585361051057333,86.04191780090332]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Bakraha_Flood_Depth_10","center":"[27.585361051057333,86.04191780090332]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Bakraha_Flood_Depth_25","center":"[27.585361051057333,86.04191780090332]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Bakraha_Flood_Depth_50","center":"[27.585361051057333,86.04191780090332]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Bakraha_Flood_Depth_100","center":"[27.585361051057333,86.04191780090332]"},
+        },
+        "Biring":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Biring_Flood_Depth_2","center":"[26.556593211456345,87.97353744506836]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Biring_Flood_Depth_5","center":"[26.556593211456345,87.97353744506836]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Biring_Flood_Depth_10","center":"[26.556593211456345,87.97353744506836]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Biring_Flood_Depth_25","center":"[26.556593211456345,87.97353744506836]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Biring_Flood_Depth_50","center":"[26.556593211456345,87.97353744506836]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Biring_Flood_Depth_100","center":"[26.556593211456345,87.97353744506836]"},
+        },
+        "EastRapti":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"EastRapti_Flood_Depth_2","center":"[27.55272061297821,84.70218658447267]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"EastRapti_Flood_Depth_5","center":"[27.55272061297821,84.70218658447267]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"EastRapti_Flood_Depth_10","center":"[27.55272061297821,84.70218658447267]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"EastRapti_Flood_Depth_25","center":"[27.55272061297821,84.70218658447267]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"EastRapti_Flood_Depth_50","center":"[27.55272061297821,84.70218658447267]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"EastRapti_Flood_Depth_100","center":"[27.55272061297821,84.70218658447267]"},
+        },
+        "Gagan":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Gagan_Flood_Depth_2","center":"[26.737638715240838,86.38978958129884]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Gagan_Flood_Depth_5","center":"[26.737638715240838,86.38978958129884]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Gagan_Flood_Depth_10","center":"[26.737638715240838,86.38978958129884]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Gagan_Flood_Depth_25","center":"[26.737638715240838,86.38978958129884]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Gagan_Flood_Depth_50","center":"[26.737638715240838,86.38978958129884]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Gagan_Flood_Depth_100","center":"[26.737638715240838,86.38978958129884]"},
+        },
+        "Jalad":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Jalad_Flood_Depth_2","center":"[26.811202091464338,86.01024627685547]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Jalad_Flood_Depth_5","center":"[26.811202091464338,86.01024627685547]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Jalad_Flood_Depth_10","center":"[26.811202091464338,86.01024627685547]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Jalad_Flood_Depth_25","center":"[26.811202091464338,86.01024627685547]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Jalad_Flood_Depth_50","center":"[26.811202091464338,86.01024627685547]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Jalad_Flood_Depth_100","center":"[26.811202091464338,86.01024627685547]"},
+        },
+        "Kankai":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Kankai_Flood_Depth_2","center":"[26.565498761661104,87.84616470336914]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Kankai_Flood_Depth_5","center":"[26.565498761661104,87.84616470336914]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Kankai_Flood_Depth_10","center":"[26.565498761661104,87.84616470336914]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Kankai_Flood_Depth_25","center":"[26.565498761661104,87.84616470336914]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Kankai_Flood_Depth_50","center":"[26.565498761661104,87.84616470336914]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Kankai_Flood_Depth_100","center":"[26.565498761661104,87.84616470336914]"},
+        },
+        "Narayani":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"Narayani_Flood_Depth_2","center":"[27.603845382606277,84.22496795654298]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"Narayani_Flood_Depth_5","center":"[27.603845382606277,84.22496795654298]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"Narayani_Flood_Depth_10","center":"[27.603845382606277,84.22496795654298]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"Narayani_Flood_Depth_25","center":"[27.603845382606277,84.22496795654298]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"Narayani_Flood_Depth_50","center":"[27.603845382606277,84.22496795654298]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Narayani_Flood_Depth_100","center":"[27.603845382606277,84.22496795654298]"},
+        },
+        "WestRapti":{
+        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"WestRapti_Flood_Depth_2","center":"[27.95013217159467,82.28313446044922]"},
+        "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_5","center":"[27.95013217159467,82.28313446044922]"},
+        "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_10","center":"[27.95013217159467,82.28313446044922]"},
+        "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_25","center":"[27.95013217159467,82.28313446044922]"},
+        "50":{"returnperiod":"50 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_50","center":"[27.95013217159467,82.28313446044922]"},
+        "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_100","center":"[27.95013217159467,82.28313446044922]"},
         },
         }}
 
