@@ -2393,7 +2393,10 @@ function highlightLayers(layer, featureName){
        $('.compare-info').css('display','none');
        if($(".compare-wrapper").css('display')=="block"){
                          //highlightLayers;
-
+          console.log(e.layer.options);
+          var previous_style= e.layer.options;
+          // console.log(e.layer.option.color);
+          if(e.layer.options.color != "red"){
                          municipality.setFeatureStyle(e.layer.properties.id, {
                                    weight: 2,
                                    color: 'red',
@@ -2403,6 +2406,7 @@ function highlightLayers(layer, featureName){
                                    //radius: 6,
                                    fillOpacity: 0.5
                            })
+                           console.log(municipality,"Down");
                            //end
                          var mun = e.layer.properties.GaPa_NaPa;
                          $.ajax({
@@ -2435,7 +2439,18 @@ function highlightLayers(layer, featureName){
 
                              }
                          });
-
+          }
+          else{
+            municipality.setFeatureStyle(e.layer.properties.id, {
+                                   weight: 2,
+                                   color: 'white',
+                                   opacity: 1,
+                                   fillColor: e.layer.options.fillColor,
+                                   fill: true,
+                                   //radius: 6,
+                                   fillOpacity: 0.5
+                           })
+          }
                          //////console.log(data);
                        }
                        else{
@@ -4430,16 +4445,20 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
   $('#hazard_popup_html').html(" ");
     //////console.log("hazard_list");
-    var url =base_url+"/risk_profile/"+id ;
+    var url =base_url+"/risk_profile/hazard?title="+id ;
+    console.log(url);
     $.ajax({
         url: url,
         //data:{"layer_icon":layer_icon, "data":data,"i":i},
 
         success: function(response) {
-          ////console.log(response);
+          console.log(response);
+
+          for(var k=0;k<response.length;k++){
+
           var hazard_pop_html="";
           hazard_pop_html+='<div class="hazard-title">'+
-              '<h3><span class="humanitarian-icon-Flood"></span>'+response.title+'</h3>'+
+              '<h3><span class="humanitarian-icon-Flood"></span>'+response[k].title+'</h3>'+
               '<button type="button" class="button hazardDetails-close">'+
               '<i class=" ion ion-md-close-circle-outline"></i>'+
           '</div>'+
@@ -4448,7 +4467,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
               '<div class="hazard-acc">'+
                   '<div id="accordion">';
                 var  i=0;
-          $.each( response.data, function( key, value ) {
+                var hazardlayer=response[k].HazardLayer;
+          // $.each( response.data, function( key, value ) {
+            for(var l=0;l<hazardlayer.length;l++){
               var aria_expand='false';
               var show='';
               if(i==0){
@@ -4456,11 +4477,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                  show='show';
               }
                hazard_pop_html+='<div class="card opacityParent">';
-               hazard_pop_html+='<div class="card-header" id="'+key+i+'">'+
+               hazard_pop_html+='<div class="card-header" id="'+hazardlayer[l].title+i+'">'+
                 '<h5>'+
-                    '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_'+i+'" aria-expanded="'+aria_expand+'" aria-controls="landslide_col_'+i+'">'+key.replace(/_/g," ")+ "</a>" +
+                    '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_'+i+'" aria-expanded="'+aria_expand+'" aria-controls="landslide_col_'+i+'">'+hazardlayer[l].title.replace(/_/g," ")+ "</a>" +
                         '<div class="icon-list">'+
-                            '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="'+response.about+'"></span>'+
+                            '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="'+hazardlayer[l].title+'"></span>'+
                             '<span class="ion ion-md-albums"></span>'+
                             '<span class="ion ion-md-contrast"></span>'+
                             '<span class="ion more-metalist">'+
@@ -4480,34 +4501,36 @@ $.get(base_url+'/risk_profile/Layer',function(data){
             '</div>';
                   // ////console.log( key + ": " + value );
                   // ////console.log(response.data[key]);
-                  var dataaa=response.data[key];
+                  //var dataaa=response.data[key];
+                  var hazardsublayer=hazardlayer[l].HazardSubLayer;
 
-                    hazard_pop_html+='<div id="landslide_col_'+i+'" class="collapse '+show+'" data-parent="#accordion" aria-labelledby="'+key+i+'">'+
+                    hazard_pop_html+='<div id="landslide_col_'+i+'" class="collapse '+show+'" data-parent="#accordion" aria-labelledby="'+hazardlayer[l].title+i+'">'+
                       '<div class="card-body">'+
                       '<div class="range-box">'+
-                          '<input type="range" min="0" max="100" value="100" class="center" data-name-trans="'+key+'">'+
+                          '<input type="range" min="0" max="100" value="100" class="center" data-name-trans="'+hazardlayer[l].title+'">'+
                       '</div>'+
                           '<ul class="hazardDetail-list">';
 
                     var j=0;
 
-                  $.each(dataaa, function( key, value ) {
+                  // $.each(dataaa, function( key, value ) {
+                    for(var m=0;m<hazardsublayer.length;m++){
                     // ////console.log(dataaa[key].center);
                     hazard_pop_html+='<li>'+
                         '<div class="custom-control custom-radio">'+
-                          '  <input type="radio" class="custom-control-input hazard_geo" id="'+key+i+j+'" data-layername="'+dataaa[key].layername+'" data-workspace="'+dataaa[key].workspace+'" data-center="'+dataaa[key].center+'" name="year17" value="customEx">'+
-                            '<label class="custom-control-label" for="'+key+i+j+'">'+dataaa[key].returnperiod+'</label>'+
+                          '  <input type="radio" class="custom-control-input hazard_geo" id="'+hazardsublayer[m].hazardSubLayer+i+j+'" data-layername="'+hazardsublayer[m].layername+'" data-workspace="'+hazardsublayer[m].workspace+'" data-center="'+hazardsublayer[m].center+'" name="year17" value="customEx">'+
+                            '<label class="custom-control-label" for="'+hazardsublayer[m].hazardSubLayer+i+j+'">'+hazardsublayer[m].hazardSubLayer+'</label>'+
                         '</div>'+
                     '</li>';
                     j++;
-                    });
+                    }; //end of sublayer
 
                       hazard_pop_html+='</ul>';
                   hazard_pop_html+='</div>';
               hazard_pop_html+='</div>';
               hazard_pop_html+='</div>';
               i++;
-          });
+          } //end of layer
 
           hazard_pop_html+='</div>';
           hazard_pop_html+='</div>';
@@ -4516,7 +4539,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
           // ////console.log(hazard_pop_html);
           $('#hazard_popup_html').html(hazard_pop_html);
           $('[data-toggle="popover"]').popover();
+          
         }
+        }//success end
 
       });
 
