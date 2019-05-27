@@ -3406,6 +3406,7 @@ $('.parent_vul').on('click',function(){
       ////console.log($(this).closest(".card").children()[0].id);
       var hazard_id = $(this).closest(".card").children()[0].id;
       var id = $(this).attr('data-workspace');
+      var id_input=$(this).attr('id');
       var center = eval($(this).attr('data-center'));
       var layername = $(this).attr('data-layername');
       // var Earthquake_hazard =$("#Map00").parent()[0].className;
@@ -3452,6 +3453,18 @@ $('.parent_vul').on('click',function(){
         console.log(id);
        
       if(id=='earthquake'){
+        var id_input_classname= $('#'+id_input).parent()[0].className;
+          // console.log($('#'+id_input).parent()[0].className);
+          // console.log($("#Map00").parent());
+          if(id_input_classname == 'custom-control custom-radio custom-check' ){
+                            //////console.log("entered previous");
+                            // $('.hazard_list').attr('hasLayer',false);
+                            // $('.hazard_list').attr('data-currentLayer','');
+                            // map.removeLayer();
+                            console.log('removelayer');
+                            $('.loader').css('display','none');
+                          }
+                          else{
         var num= 1;
       //  ////console.log('enteref');
           console.log("earthquake bhitra ");  
@@ -3494,8 +3507,8 @@ $('.parent_vul').on('click',function(){
               
               //removeAllLayers();
               console.log("removeAllLayers");
-              console.log(removeAllLayers);
-            
+              // console.log(removeAllLayers);
+        }
 
       }else{
       //  ////console.log(id);
@@ -3671,6 +3684,16 @@ $('.parent_vul').on('click',function(){
 
     $('.exposure_geo').on('click',function(){
         filterapplied= CheckFilterApplied();
+        var layername = $(this).attr('data-layername');
+      var parent_id = $(this).attr('data-parent');
+      var center = eval($(this).attr('data-center'));
+        var count_check=0;
+        var haslayer= false;
+        if(map.hasLayer(window[layername])){
+          haslayer= true;
+        }else{
+          haslayer=false;
+        }
         removeAllLayers();
         if(filterapplied== true){
           map.addLayer(federal_boundary);
@@ -3681,24 +3704,24 @@ $('.parent_vul').on('click',function(){
         else{
           
         }
-      var layername = $(this).attr('data-layername');
-      var parent_id = $(this).attr('data-parent');
-      var center = eval($(this).attr('data-center'));
-        var count_check=0;
+      
+        
       if($(this).attr('id')=='hydro_1' ){
-
+        console.log(layername);
+        console.log(map.hasLayer(window[layername]),"layername");
         // ////console.log()
-        if(map.hasLayer(window[layername])){
+        if(haslayer){
         $('#'+parent_id).attr('data-currentLayer','');
 
         ////console.log($(".infan:checked").length);
-
+          console.log("REMOVE");
         map.removeLayer(window[layername]);
 
 
         }else{
           $('#'+parent_id).attr('data-currentLayer',layername);
           map.addLayer(window[layername]);
+          console.log("ADD");
             // map.flyTo([28.410728397237914,84.4024658203125],8)
         }
 
@@ -3706,7 +3729,7 @@ $('.parent_vul').on('click',function(){
 
 
       }else{
-        if(map.hasLayer(window[layername])){
+        if(haslayer){
         $('#'+parent_id).attr('data-currentLayer','');
         map.removeLayer(window[layername]);
         map.flyTo([28.410728397237914,84.4024658203125],8)
@@ -4208,7 +4231,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
     });
 
 
-      $('.leaflet-draw').css('left','266px');
+      // $('.leaflet-draw').css('left','266px');
 
 
   //  ////console.log(e.layer.editing.latlngs[0][0]);
