@@ -449,12 +449,12 @@ class HazardSubLayerDetail(models.Model):
     def __str__(self):
         return self.layername
 
-class ExposureType(models.Model):
-    title = models.CharField(max_length=50, null=True, blank=True)
-    about = models.CharField(max_length=500, null=True, blank=True)
+# class ExposureType(models.Model):
+#     title = models.CharField(max_length=50, null=True, blank=True)
+#     about = models.CharField(max_length=500, null=True, blank=True)
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
 
 
 
