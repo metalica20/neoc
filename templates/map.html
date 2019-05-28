@@ -4022,7 +4022,7 @@
 
           for (let i = 0; i < sub_array.length; i++) {
             window[sub_array[i]['type'].replace(' ', '_')] = L.layerGroup();
-            window[sub_array[i]['type'].replace(' ', '_')+'_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane',});
+            window[sub_array[i]['type'].replace(' ', '_') + '_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane', });
             //  console.log(sub_array[i]['type'].replace(' ','_'))
           }
 
@@ -4113,7 +4113,7 @@
                       //////console.log(sub_array[i]['type']);
 
                       if (type[i]['type'] == feature.properties.type) {
-                        window[sub_array[i]['type'].replace(' ', '_')+'_markers'].addLayer(marker);
+                        window[sub_array[i]['type'].replace(' ', '_') + '_markers'].addLayer(marker);
 
 
                       }
@@ -4559,7 +4559,7 @@
           // console.log(subcat_array1);
           for (var i = 0; i < subcat_array1.length; i++) {
             //console.log(window[subcat_array1[i]['type']]);
-            map.addLayer(window[subcat_array1[i]['type'].replace(' ', '_')+'_markers']);
+            map.addLayer(window[subcat_array1[i]['type'].replace(' ', '_') + '_markers']);
 
 
 
@@ -4687,7 +4687,7 @@
                   '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_' + i + '" aria-expanded="' + aria_expand + '" aria-controls="landslide_col_' + i + '">' + hazardlayer[l].title.replace(/_/g, " ") + "</a>" +
                   '<div class="icon-list">' +
                   '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="' + hazardlayer[l].title + '"></span>' +
-                  '<span class="ion ion-md-albums"></span>' +
+                  '<a href="http://bipad.togglecorp.com"><span class="ion ion-md-albums"></span></a>' +
                   '<span class="ion ion-md-contrast"></span>' +
                   '<span class="ion more-metalist">' +
                   '<small class="ion ion-md-more">' +
@@ -4789,26 +4789,26 @@
 
 
 
-        if (map.hasLayer(window[sub_layerName+'_markers']) && $(this).prop('checked') == false) {
+        if (map.hasLayer(window[sub_layerName + '_markers']) && $(this).prop('checked') == false) {
 
-          map.removeLayer(window[sub_layerName+'_markers']);
+          map.removeLayer(window[sub_layerName + '_markers']);
         } else {
 
           //////console.log(window[sub_layerName]);
           // pharmacy.addTo(map);
-          map.addLayer(window[sub_layerName+'_markers']);
+          map.addLayer(window[sub_layerName + '_markers']);
 
         }
       });
 
       //end sub category resource
-     
+
       //dragTapSlider.noUiSlider.on('slide.one', function() {
-      
+
       function filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon) {
 
 
-        
+
         //////console.log(window['clinic']._layers);
         window["filter_resource_" + layerName] = new L.geoJson(layer_data, {
 
@@ -5555,6 +5555,14 @@
 
         if ($.trim(search_text).length == 0) {
           $('.admin-level').html("National");
+          if (map.hasLayer(Mask)) {
+            console.log("EMPTY");
+            map.removeLayer(Mask);
+            map.removeLayer(label);
+            map.removeLayer(federal_boundary);
+            map.setView([28.410728397237914, 84.4024658203125], 7);
+            // map.removeLayer(Mask);
+          }
         }
 
       });

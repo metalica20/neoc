@@ -644,5 +644,12 @@
         .find(".ion-md-close")
         .hide();
     });
+
+    $(".hazard-acc .card-header").on("click", "a", function() {
+      if ($(".hazard-details").css("display", "block")) {
+        $(".hazard-details").css("display", "none");
+      } else {
+      }
+    });
   });
 })(jQuery);
