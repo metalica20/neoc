@@ -2192,7 +2192,7 @@ function label_Vector_Tiles(feature){
       if(countEqual(vt_label_province._layers, vt_label_marker_P) > 0){
         //do nothing
       }else{
-        console.log('a');
+       // console.log('a');
         vt_label_marker_P.addTo(vt_label_province);
       }
 
@@ -2214,7 +2214,7 @@ function label_Vector_Tiles(feature){
       if(countEqual(vt_label_district._layers, vt_label_marker_D) > 0){
         //do nothing
       }else{
-          console.log('b');
+         // console.log('b');
         vt_label_marker_D.addTo(vt_label_district);
       }
   }
@@ -2230,7 +2230,7 @@ function label_Vector_Tiles(feature){
       if(countEqual(vt_label_municipality._layers, vt_label_marker_M) > 0){
         //do nothing
       }else{
-          console.log('c');
+         // console.log('c');
         vt_label_marker_M.addTo(vt_label_municipality);
       }
   }
@@ -2767,7 +2767,7 @@ function highlightLayers(layer, featureName){
 
 
           function loadHdiData(risk_id,id,parent_id,name){     //loding socia data in map layers
-           console.log(risk_id);
+           //console.log(risk_id);
 
 
 
@@ -2780,7 +2780,7 @@ function highlightLayers(layer, featureName){
                               // async:false,
                               url: fed_url_api,
                               success: function(result) {
-                                console.log(result);
+                                //console.log(result);
                                 var fieldname="avg";
                                 var sum=result.sum;
                                 // ////console.log(fieldname);
@@ -2819,7 +2819,7 @@ function highlightLayers(layer, featureName){
                                           '<span class="skill">'+result.results[i]['district']+' :<i class="val">'+result.results[i][risk_id]+'</i></span>'+
                                       '</div>';
                                       if(risk_id !="hdi" && risk_id !="remoteness"){
-                                        console.log(result.min);
+                                       // console.log(result.min);
                                         district.setFeatureStyle(result.results[i]["districtId"], earthRiskStyle(result.results[i][risk_id], result.max, result.min));
                                       }else{
                                         district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i][risk_id])));
@@ -2860,8 +2860,8 @@ function highlightLayers(layer, featureName){
                               console.log(range(12,30,(30-12)/4));
                               var intervals = range(result.min, result.max, (result.max-result.min)/5);
                               var color_range = ["#FED976",  "#FD8D3C", "#E31A1C", "#BD0026", "#800026"];
-                              console.log(intervals);
-                              console.log(result.min);
+                             // console.log(intervals);
+                              //console.log(result.min);
                                 
                               
                                 //creating legend-list
@@ -2873,7 +2873,7 @@ function highlightLayers(layer, featureName){
                                     '</div>'+
                                     '<ul>';
                                     if(risk_id !="hdi" && risk_id !="remoteness"){
-                                      console.log(intervals.length)
+                                      //console.log(intervals.length)
                                       for(var u=0; u<intervals.length-1;u++){
                                         legend_html+='<li class="satelite"><span style="background-color:'+color_range[u]+';"></span><a href="#">'+intervals[u]+' - '+intervals[u+1]+'</a></li>';
                                         // console.log("u"+u);
@@ -2944,7 +2944,9 @@ function highlightLayers(layer, featureName){
 
 
     function generateSubcategoryChart(data,total_sum,layerName,filter_resources,layer_icon,level){
+      console.log(data);
       var html = "";
+     // console.log(data);
       for(var i=0; i<data.length;i++){
 
         html +='<div class="progress-warpper">'+
@@ -3082,7 +3084,7 @@ $(".slider").each(function () {
       var id_slider=$(this)[0]['target'].id;
       var id_slider1=document.getElementById(id_slider);
       current_value_array=id_slider1.noUiSlider.get();
-      console.log(current_value_array);
+     // console.log(current_value_array);
       // console.log("setone callleddddd");
      ////console.log($('#'+id_slider)[0].noUiSlider.options.start);
 
@@ -3133,7 +3135,7 @@ $(".slider").each(function () {
      //layer_data1=window[layerName].toGeoJSON();
     // ////console.log(layer_data1);
     var layer_data = jQuery.extend(true, {}, layer_data1);
-    console.log(layer_data);
+    //console.log(layer_data);
     var checkedList = [];
     $. each($("input[class='filter_resource_btn']:checked"), function(){
 
@@ -3228,8 +3230,8 @@ $(".slider").each(function () {
           //function chart-bar
   function  CreateChartData(geojson,subcat,charttype,level,total_sum,layerName,filter_resources,layer_icon){
 
-             //////console.log(subcat);
-             //////console.log(geojson.features);
+             console.log(level);
+             console.log(geojson);
             features=geojson.features;
           //  subcat_arr=subcat.split(",");
               subcat_arr=subcat;
@@ -3243,16 +3245,21 @@ $(".slider").each(function () {
 
               }
               //////console.log(subcat_arr);
-
+              //console.log('datya');
               $.each(features, function (feature) {
+                console.log('datya');
                 for(var i=0;i<subcat_arr.length;i++){
+                  console.log('datya');
                   if(level=='subcategory' || level=='both'){
+                    //console.log('datya');
                     if(subcat_arr[i].trim()==features[feature].properties.type.trim()){
                       chartData[i].count++;
 
 
                     }
                   }else{
+                    //console.log(subcat_arr[i].trim());
+                    //console.log('datya');
                     //////console.log(features[feature].properties[subcat_arr[i]].trim());
                     if(features[feature].properties[subcat_arr[i]].trim()=='yes'){
                       //////console.log(subcat);
@@ -3268,7 +3275,7 @@ $(".slider").each(function () {
 
 
               });
-
+              //console.log(chartData);
 
               createSubcategoryChart(chartData,total_sum,layerName,filter_resources,layer_icon,level);
               // if(charttype=='pie'){
@@ -3425,14 +3432,14 @@ $('.parent_vul').on('click',function(){
       var center = eval($(this).attr('data-center'));
       var layername = $(this).attr('data-layername');
       // var Earthquake_hazard =$("#Map00").parent()[0].className;
-      console.log(layername);
+      //console.log(layername);
       //remove previous layer on radio change
       
 
       if($(this).attr("haslayer")){
         // console.log('onclicktrue');
         if(map.hasLayer(window[layername])){
-          console.log("inside of earthquake click layer");
+          //console.log("inside of earthquake click layer");
              map.removeLayer(window[layername]);
                $('.legend-list').html('');
                $('.hazard_list').attr('hasLayer',false);
@@ -3464,8 +3471,8 @@ $('.parent_vul').on('click',function(){
         }
         $(this).attr("haslayer",false);
       }else{
-        console.log("else ko ni else ");
-        console.log(id);
+      //  console.log("else ko ni else ");
+        //console.log(id);
        
       if(id=='earthquake'){
         var id_input_classname= $('#'+id_input).parent()[0].className;
@@ -3476,13 +3483,13 @@ $('.parent_vul').on('click',function(){
                             // $('.hazard_list').attr('hasLayer',false);
                             // $('.hazard_list').attr('data-currentLayer','');
                             // map.removeLayer();
-                            console.log('removelayer');
+                           // console.log('removelayer');
                             $('.loader').css('display','none');
                           }
                           else{
         var num= 1;
       //  ////console.log('enteref');
-          console.log("earthquake bhitra ");  
+          //console.log("earthquake bhitra ");  
           
           // console.log($("#Map00").parent());
          
@@ -3518,10 +3525,10 @@ $('.parent_vul').on('click',function(){
           $('#'+hazard_id).parent().find('.center').attr('data-name-trans',layername);
           //$('.center').attr('data-name-trans',layername);
           
-              console.log(num);
+             // console.log(num);
               
               //removeAllLayers();
-              console.log("removeAllLayers");
+             // console.log("removeAllLayers");
               // console.log(removeAllLayers);
         }
 
@@ -3722,21 +3729,21 @@ $('.parent_vul').on('click',function(){
       
         
       if($(this).attr('id')=='hydro_1' ){
-        console.log(layername);
+       // console.log(layername);
         console.log(map.hasLayer(window[layername]),"layername");
         // ////console.log()
         if(haslayer){
         $('#'+parent_id).attr('data-currentLayer','');
 
         ////console.log($(".infan:checked").length);
-          console.log("REMOVE");
+         // console.log("REMOVE");
         map.removeLayer(window[layername]);
 
 
         }else{
           $('#'+parent_id).attr('data-currentLayer',layername);
           map.addLayer(window[layername]);
-          console.log("ADD");
+          //console.log("ADD");
             // map.flyTo([28.410728397237914,84.4024658203125],8)
         }
 
@@ -3850,11 +3857,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                             resources_loadCount++;
                           },
                           success: function(response) {
-                          console.log(response);
+                         // console.log(response);
 
                           var layer_icon1 = this.layer_icon;
                           var type = this.type2;
-                          console.log(type);
+                         // console.log(type);
 
                           var dataList = this.data1;
                           ////console.log(dataList['layerTbl']);
@@ -3876,7 +3883,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                           });
 
 
-                        window[this.data1['layerTbl']] = new L.geoJson(response,
+                        window[layername] = new L.geoJson(response,
                          {
                             // pane:"polygonsPane",
                             pointToLayer: function(feature,Latlng)
@@ -3916,13 +3923,13 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
                                 window[layername+'_markers'].addLayer(marker);
-                                // return marker;
+                                 return marker;
                                 },
                                 onEachFeature: function (feature, layer) {
-
+                                  
                                   for(let i=0;i<type.length;i++){
                                     //////console.log(sub_array[i]['type']);
-                                    //////console.log(layer);
+                                    
                                       if(type[i]['type']== feature.properties.type){
                                           layer.addTo(window[type[i]['type'].replace(' ','_')]);
 
@@ -3948,11 +3955,12 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
                               });
 
-
-
+                              console.log(layername);
+                              console.log(window[layername]) ;
                           }
                       });
 
+                       
 
                 }
 
@@ -4095,11 +4103,11 @@ $.get(base_url+'/risk_profile/Layer',function(data){
                  var featurecount = 0;
                  for(var j=0; j<visible_layers.length;j++){
                    if(visible_layers[visible_layers_count]['layerName']==feature.target._layers[i].feature.id.split('.')[0]){
-                     console.log("entered  ");
+                    // console.log("entered  ");
                      featurecount=j;
                    }
                  }
-                 console.log(featurecount);
+                 //console.log(featurecount);
           //$('#filtered_header'+visible_layers_count).html('<h4>'+feature.target._layers[i].feature.id.split('.')[0]/*+' ('+visible_layers[featurecount]['count']+')*/+'</h4>');
 
 
@@ -4287,7 +4295,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
       subcat_array.push(subcat_array1[i]['type']);
 
     }
-    console.log(window[layerName+'_markers']);
+    console.log(window[layerName]);
     
         // console.log(subcat_array);
 
@@ -4301,7 +4309,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
        map.removeLayer(window[layerName+'_markers']);
        if(map.hasLayer(window[layerName+"_filteredLayers"])){
           map.removeLayer( window[layerName+"_filteredLayers"]);
-       }
+       }response
 
        $('#'+layerName+'_filterlist').html('');
 
@@ -4353,9 +4361,9 @@ $.get(base_url+'/risk_profile/Layer',function(data){
        }
 
            }else{
-             console.log(subcat_array1);
+            // console.log(subcat_array1);
                for(var i=0;i<subcat_array1.length;i++){
-                 console.log(window[subcat_array1[i]['type']]);
+                 //console.log(window[subcat_array1[i]['type']]);
                  map.addLayer(window[subcat_array1[i]['type'].replace(' ','_')]);
 
 
@@ -4386,6 +4394,7 @@ $.get(base_url+'/risk_profile/Layer',function(data){
 
 
       response=window[layerName].toGeoJSON();
+      console.log(layerName);
       CreateChartData(response,subcat_array,null,'both',total_sum,layerName,filter_resources,layer_icon);
 
     //  ////console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
@@ -4446,13 +4455,13 @@ $.get(base_url+'/risk_profile/Layer',function(data){
   $('#hazard_popup_html').html(" ");
     //////console.log("hazard_list");
     var url =base_url+"/risk_profile/hazard?title="+id ;
-    console.log(url);
+    //console.log(url);
     $.ajax({
         url: url,
         //data:{"layer_icon":layer_icon, "data":data,"i":i},
 
         success: function(response) {
-          console.log(response);
+          //console.log(response);
 
           for(var k=0;k<response.length;k++){
 
@@ -5167,7 +5176,7 @@ if(federal_boundary !=null && map.hasLayer(federal_boundary)&& filterapplied== f
   map.removeLayer(label);
 }
 var boundary=$(this).attr('id');
-console.log(boundary);
+//console.log(boundary);
 // if(boundary== 'Province_1'){
   boundaryy=boundary.split('_').join(' ');
 // }
@@ -5188,8 +5197,8 @@ $('#fed_filterInput').val(name);
 var fed_url='https://bipad.nepware.com/api/v1/'+federal_name+'/?format=geojson&'+layer_request+'='+layer_id;
 var fed_mask_url='https://bipad.nepware.com/api/v1/'+layer_request+'/?format=geojson&search='+boundaryy;
 
-console.log(fed_url);
-console.log(fed_mask_url);
+///console.log(fed_url);
+//console.log(fed_mask_url);
 label=L.layerGroup();
  federal_boundary = new L.geoJson.ajax(fed_url,{
 
@@ -5226,7 +5235,7 @@ label=L.layerGroup();
                           // async:false,
                           url: fed_mask_url,
                           success: function(result) {
-                            console.log(result);
+                           // console.log(result);
                             L.Mask = L.Polygon.extend({
                               options: {
                                   stroke: false,
@@ -5278,7 +5287,7 @@ label=L.layerGroup();
                       });
 // Varun mask Layer End
 
-                  console.log(federal_boundary);
+                  //console.log(federal_boundary);
                   // console.log(federal_maskboundary);
                         //Varun Layer Mask Code Start
           
