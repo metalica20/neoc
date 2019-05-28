@@ -283,10 +283,6 @@ class PeopleAdmin(BaseLossAdmin):
         ('loss__incident', RelatedFieldAjaxListFilter),
     )
 
-    def incident(self, obj):
-        if hasattr(obj.loss, 'incident'):
-            return obj.loss.incident
-
 
 @admin.register(Family)
 class FamilyAdmin(BaseLossAdmin):
