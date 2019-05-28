@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LayerTable,Health,SocioEconomicGapanapa,Risk,Hydropower,HazardType,HazardLayer,HazardSubLayer,ExposureType,ExposureLayer,ExposureLayerDetail
+from .models import LayerTable,Health,SocioEconomicGapanapa,Risk,Hydropower,HazardType,HazardLayer,HazardSubLayer,ExposureType,ExposureLayer
 # Register your models here.
 admin.site.register(Hydropower)
 admin.site.register(HazardType)
@@ -13,4 +13,4 @@ admin.site.register(ExposureType)
 admin.site.register(ExposureLayer)
 admin.site.register(Health)
 admin.site.register(Risk)
-admin.site.register(ExposureLayerDetail)
+# admin.site.register(ExposureLayerDetail)

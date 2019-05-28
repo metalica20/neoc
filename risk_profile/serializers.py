@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,HazardLayer,HazardSubLayer
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,HazardLayer,HazardSubLayer,ExposureLayer,ExposureType
 from incident.models import Incident
 from resources.models import Resource
 from hazard.models import Hazard, HazardResources
@@ -38,6 +38,18 @@ class HazardtypeSerializer(serializers.ModelSerializer):
     class Meta:
         model=HazardType
         fields = ('id', 'title', 'about', 'HazardLayer')
+
+
+class ExposurelayerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=ExposureLayer  
+        fields = ('__all__')
+
+class ExposuretypeSerializer(serializers.ModelSerializer):
+    ExposureLayer= ExposurelayerSerializer(many=True, read_only=True)
+    class Meta:
+        model=ExposureType  
+        fields = ('id', 'title', 'about', 'ExposureLayer')
 
 
 class ResourceSerializer(serializers.ModelSerializer):

@@ -4009,6 +4009,7 @@
 
           for (let i = 0; i < sub_array.length; i++) {
             window[sub_array[i]['type'].replace(' ', '_')] = L.layerGroup();
+            window[sub_array[i]['type'].replace(' ', '_')+'_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane',});
             //  console.log(sub_array[i]['type'].replace(' ','_'))
           }
 
@@ -4093,7 +4094,17 @@
 
 
 
-                    window[layername + '_markers'].addLayer(marker);
+                    // window[layername + '_markers'].addLayer(marker);
+
+                    for (let i = 0; i < type.length; i++) {
+                      //////console.log(sub_array[i]['type']);
+
+                      if (type[i]['type'] == feature.properties.type) {
+                        window[sub_array[i]['type'].replace(' ', '_')+'_markers'].addLayer(marker);
+
+
+                      }
+                    }
                     return marker;
                   },
                   onEachFeature: function (feature, layer) {
@@ -4477,7 +4488,7 @@
           //console.log('entered true');
 
           map.removeLayer(window[layerName]);
-          map.removeLayer(window[layerName + '_markers']);
+          // map.removeLayer(window[layerName + '_markers']);
           if (map.hasLayer(window[layerName + "_filteredLayers"])) {
             map.removeLayer(window[layerName + "_filteredLayers"]);
           } response
@@ -4535,7 +4546,8 @@
           // console.log(subcat_array1);
           for (var i = 0; i < subcat_array1.length; i++) {
             //console.log(window[subcat_array1[i]['type']]);
-            map.addLayer(window[subcat_array1[i]['type'].replace(' ', '_')]);
+            map.addLayer(window[subcat_array1[i]['type'].replace(' ', '_')+'_markers']);
+
 
 
 
@@ -4739,6 +4751,7 @@
       $('#capacity-popup').on('click', '.sub_cat_ex', function () {
 
         all_layerName = $(this).val();
+        console.log(layerName);
         sub_layerName = $(this).attr('data-sub');
         type_id = all_layerName + '_id';
         subcat_array1 = $('#' + type_id).attr('data-subcat');
@@ -4763,26 +4776,26 @@
 
 
 
-        if (map.hasLayer(window[sub_layerName]) && $(this).prop('checked') == false) {
+        if (map.hasLayer(window[sub_layerName+'_markers']) && $(this).prop('checked') == false) {
 
-          map.removeLayer(window[sub_layerName]);
+          map.removeLayer(window[sub_layerName+'_markers']);
         } else {
 
           //////console.log(window[sub_layerName]);
           // pharmacy.addTo(map);
-          map.addLayer(window[sub_layerName]);
+          map.addLayer(window[sub_layerName+'_markers']);
 
         }
       });
 
       //end sub category resource
-
+     
       //dragTapSlider.noUiSlider.on('slide.one', function() {
-
+      
       function filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon) {
 
 
-        //////console.log(layer_data);
+        
         //////console.log(window['clinic']._layers);
         window["filter_resource_" + layerName] = new L.geoJson(layer_data, {
 

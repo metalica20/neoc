@@ -464,20 +464,24 @@ class ExposureLayer(models.Model):
     exposure_type = models.ForeignKey(ExposureType, on_delete=models.CASCADE, related_name='ExposureLayer', null=True, blank=True)
     title = models.CharField(max_length=50, null=True, blank=True)
     about = models.CharField(max_length=500, null=True, blank=True)
+    workspace = models.CharField(max_length=50, null=True, blank=True)
+    layername=models.CharField(max_length=50, null=True, blank=True)
+    center = models.CharField(max_length=100, null=True, blank=True)
+
         
     def __str__(self):
         return "{}-{}".format(self.exposure_type,self.title)
 
 
 
-class ExposureLayerDetail(models.Model):
-    exposure_subLayer = models.ForeignKey(ExposureLayer, on_delete=models.CASCADE,related_name='ExposureLayerDetail')
-    title = models.CharField(max_length=50, null=True, blank=True)
-    workspace = models.CharField(max_length=50, null=True, blank=True)
-    layername=models.CharField(max_length=50, null=True, blank=True)
-    center = models.CharField(max_length=100, null=True, blank=True)
+# class ExposureLayerDetail(models.Model):
+#     exposure_subLayer = models.ForeignKey(ExposureLayer, on_delete=models.CASCADE,related_name='ExposureLayerDetail')
+#     title = models.CharField(max_length=50, null=True, blank=True)
+#     workspace = models.CharField(max_length=50, null=True, blank=True)
+#     layername=models.CharField(max_length=50, null=True, blank=True)
+#     center = models.CharField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        return "{}-{}".format(self.exposure_subLayer.exposure_type.title,self.exposure_subLayer.title)
+#     def __str__(self):
+#         return "{}-{}".format(self.exposure_subLayer.exposure_type.title,self.exposure_subLayer.title)
 
 # end publish data model

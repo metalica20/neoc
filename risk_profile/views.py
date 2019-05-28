@@ -1,8 +1,8 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,Hydropower
+from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,Hydropower,ExposureType
 from incident.models import Incident
 from resources.models import Resource,Education,Health
-from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer
+from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer,ExposuretypeSerializer
 from rest_framework.response import Response
 from django.contrib.gis.geos import GEOSGeometry
 from rest_framework.permissions import IsAuthenticated
@@ -78,6 +78,19 @@ class Hazard(views.APIView):
         return Response(serializer.data)
 
     # queryset=FloodBasin.objects.select_related('FloodPeriod').all()
+
+class Exposure(views.APIView):
+    permission_classes=[]
+    def get(self,request,*args,**kwargslf):
+        exposuretype=request.query_params.get('title',None)
+        if exposuretype:
+            queryset=ExposureType.objects.filter(title=exposuretype)
+        else:
+            queryset=ExposureType.objects.all()
+        serializer=ExposuretypeSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+
 
 
 class HydroGeojsonViewSet(views.APIView):

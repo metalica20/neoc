@@ -6,6 +6,7 @@ urlpatterns = [
     path('socio/<str:field>',views.SociocookViewSet.as_view(),name='sociocook'),
     path('Resources/<str:m_name>',views.ResourceGeojsonViewSet.as_view(),name='Resources'),#resources model geosjson
     path('hazard',views.Hazard.as_view(),name='hazard'),
+    path('exposure',views.Exposure.as_view(),name='exposure'),
     path('Hydro',views.HydroGeojsonViewSet.as_view(),name='hydro'),
     # path('Bridge',views.BridgeGeojsonViewSet.as_view(),name='bridgejson'),
     # path('Policestation',views.PoliceGeojsonViewSet.as_view(),name='policejson'),
