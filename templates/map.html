@@ -2488,7 +2488,19 @@
       province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions).addTo(map);
       district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions);
       municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions);
+      district.on('click', function (e) {
+        console.log("DISTRICT CLICKED TOOLTIP");
+        console.log(e.layer.properties.DistLabel);
+      });
+      district.on('mouseover', function (e) {
+        // console.log("DISTRICT CLICKED TOOLTIP");
+        console.log(e.layer.properties.DistLabel);
+        var popup = L.popup()
+          .setLatLng(e.latlng)
+          .setContent('<ul class="list-group list-group-unbordered"><li class="list-group-item popup-list"><b>District: </b> <a class="pull-right">' + e.layer.properties.DistLabel + '</a></li><li class="list-group-item popup-list"><b>Value:' + e.layer.options.value + '</a></li></ul>')
+          .openOn(map);
 
+      });
       //map.fitBounds(province.getBounds());
       function AdminLayerPopup(e, addPopup, name) {
         if (addPopup) {
@@ -2678,7 +2690,8 @@
           color: 'white',
           dashArray: '3',
           fillOpacity: 0.7,
-          fill: true
+          fill: true,
+          value: number
         };
 
       }
@@ -2705,8 +2718,8 @@
           color: 'white',
           dashArray: '3',
           fillOpacity: 0.7,
-          fill: true
-
+          fill: true,
+          value: number
         };
 
       }
@@ -3661,7 +3674,7 @@
             else {
               var num = 1;
               //  ////console.log('enteref');
-              //console.log("earthquake bhitra ");  
+              //console.log("earthquake bhitra ");
 
               // console.log($("#Map00").parent());
 
@@ -3949,7 +3962,7 @@
         //////console.log(layername);
         //popup content
         var contentString = '<div class="box box-primary" style="width:400px;">';
-        // '<a href="#" style = "background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')"  class="btn btn-primary btn-xs"><b>View Details</b></a>'+
+        // '<a href="#" style="background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')" class="btn btn-primary btn-xs"><b>View Details</b></a>'+
         //'<h6 class="profile-username text-center"></h6>';
         if (feature.properties['name'] != undefined) {
           contentString += '<h6><b>' + feature.properties.name + '</b></h6>';
@@ -3974,7 +3987,7 @@
           // +'</a></li>'+
           // '<li class="list-group-item"><b>Received Support Type </b> <a class="pull-right">'+feature.properties.Any_support_after_earthquake
           // +'</a></li>'+
-          // '<img src="'+feature.properties.Front_Facing_Photo+'" width="400" height="280"/>'+
+          // '<img src="'+feature.properties.Front_Facing_Photo+'" width="400" height="280" />'+
 
 
         }
@@ -3983,7 +3996,7 @@
           contentString += '<button style="display:flex; justify-content:center; margin:0.5rem auto 0 auto;"><a href="' + base_url + '/admin/risk_profile/' + layername.toLowerCase() + '/' + feature.properties['pk'] + '/change/" style="background-color:#337ab7; margin:0 auto; display: inline-block; color:#fff; padding:0.1rem 1rem; font-size:0.775rem; text-transform:uppercase;" class="btn btn-primary">Edit</a></button>';
 
         }
-        contentString += '</div></div></div>';
+        contentString += '</div></div ></div > ';
         return contentString;
         //popup content stop
 
