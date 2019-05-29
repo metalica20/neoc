@@ -3129,7 +3129,7 @@
 
 
       function generateSubcategoryChart(data, total_sum, layerName, filter_resources, layer_icon, level) {
-        console.log(data);
+        //console.log(data);
         var html = "";
         // console.log(data);
         for (var i = 0; i < data.length; i++) {
@@ -3137,7 +3137,7 @@
           html += '<div class="progress-warpper">' +
             '<div class="custom-control custom-checkbox">' +
 
-            '<input type="checkbox" class="custom-control-input sub_cat_ex ' + layerName + '_child" value="' + layerName + '" data-sub="' + data[i].label.replace(' ', '_') + '" id="progress_' + i + '" checked></input>' +
+            '<input type="checkbox" class="custom-control-input sub_cat_ex ' + layerName + '_child" value="' + layerName + '" data-sub="' + data[i].label.replace(' ', '_') + '" id="progress_' + i + '" data-icon="'+layer_icon+'" checked></input>' +
             '<label class="custom-control-label" for="progress_' + i + '" data-tab="capacity-popup"> </label>' +
             '</div>' +
             '<div class="progress-title">' +
@@ -3415,8 +3415,8 @@
       //function chart-bar
       function CreateChartData(geojson, subcat, charttype, level, total_sum, layerName, filter_resources, layer_icon) {
 
-        console.log(level);
-        console.log(geojson);
+        // console.log(level);
+        // console.log(geojson);
         features = geojson.features;
         //  subcat_arr=subcat.split(",");
         subcat_arr = subcat;
@@ -3432,9 +3432,9 @@
         //////console.log(subcat_arr);
         //console.log('datya');
         $.each(features, function (feature) {
-          console.log('datya');
+         // console.log('datya');
           for (var i = 0; i < subcat_arr.length; i++) {
-            console.log('datya');
+            //console.log('datya');
             if (level == 'subcategory' || level == 'both') {
               //console.log('datya');
               if (subcat_arr[i].trim() == features[feature].properties.type.trim()) {
@@ -4107,7 +4107,7 @@
 
 
 
-                    // window[layername + '_markers'].addLayer(marker);
+                     window[layername + '_markers'].addLayer(marker);
 
                     for (let i = 0; i < type.length; i++) {
                       //////console.log(sub_array[i]['type']);
@@ -4150,8 +4150,8 @@
 
                 });
 
-              console.log(layername);
-              console.log(window[layername]);
+              // console.log(layername);
+              // console.log(window[layername]);
             }
           });
 
@@ -4490,7 +4490,7 @@
           subcat_array.push(subcat_array1[i]['type']);
 
         }
-        console.log(window[layerName]);
+        // console.log(window[layerName]);
 
         // console.log(subcat_array);
 
@@ -4501,10 +4501,14 @@
           //console.log('entered true');
 
           map.removeLayer(window[layerName]);
-          // map.removeLayer(window[layerName + '_markers']);
+          map.removeLayer(window[layerName + '_markers']);
           if (map.hasLayer(window[layerName + "_filteredLayers"])) {
             map.removeLayer(window[layerName + "_filteredLayers"]);
-          } response
+          } 
+
+          if(map.hasLayer(window["filter_cluster"])){
+             map.removeLayer(window["filter_cluster"]);
+          }
 
           $('#' + layerName + '_filterlist').html('');
 
@@ -4559,7 +4563,7 @@
           // console.log(subcat_array1);
           for (var i = 0; i < subcat_array1.length; i++) {
             //console.log(window[subcat_array1[i]['type']]);
-            map.addLayer(window[subcat_array1[i]['type'].replace(' ', '_')+'_markers']);
+            // map.addLayer(window[subcat_array1[i]['type'].replace(' ', '_')+'_markers']);
 
 
 
@@ -4572,7 +4576,7 @@
             map.removeLayer(window["filter_resource_" + layerName]);
           } else {
             // map.addLayer(window[layerName]);
-            // map.addLayer(window[layerName + '_markers']);
+            map.addLayer(window[layerName + '_markers']);
             visible_layers.push({ "layerName": layerName, "url": geo_url, "workspace": geo_workspace, "icon": layer_icon });
 
           }
@@ -4590,7 +4594,7 @@
 
 
           response = window[layerName].toGeoJSON();
-          console.log(layerName);
+          // console.log(layerName);
           CreateChartData(response, subcat_array, null, 'both', total_sum, layerName, filter_resources, layer_icon);
 
           //  ////console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
@@ -4760,14 +4764,78 @@
 
       // end resource
 
+        function createCluster(data,layer_icon1,layername){
+          map.removeLayer(window[layername+"_markers"]);
+          // map.removeLayer(window["filter_cluster"]);
+          if(map.hasLayer(window["filter_cluster"])){
+             map.removeLayer(window["filter_cluster"]);
+          }
+           window["filter_cluster"] =L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane',});
+             filter_cluster_layer = new L.geoJson(data,
+                {
+                  // pane:"polygonsPane",
+                  pointToLayer: function (feature, Latlng) {
+
+                    // var divicon = L.divIcon({
+                    //     className: layer_icon1
+                    //
+                    // });
+
+                    //console.log(layer_icon1);
+                    var divicon = L.divIcon({
+                      html: '<div class="image-icon"></div>',
+                      // Specify a class name we can refer to in CSS.
+                      className: layer_icon1,
+                      // Set a markers width and height.
+                      //iconSize: [52, 52],
+                      iconAnchor: [4, 2],
+                      // pane:"polygonsPane"
+                    });
+
+                    var marker = L.marker(
+                      Latlng, { icon: divicon, pane: "markerPane" });
+
+                    var contentString = createPopup(feature, layername);
+                    marker.bindPopup(L.popup({
+                      //closeOnClick: true,
+                      //closeButton: true,
+                      keepInView: true,
+                      autoPan: true,
+                      maxHeight: 200,
+                      minWidth: 250,
+                      pane: "topPane"
+                    }).setContent(contentString));
+
+
+
+
+                     window["filter_cluster"].addLayer(marker);
+
+                   
+                    return marker;
+                  },
+                  onEachFeature: function (feature, layer) {
+
+                  }
+
+                });
+
+          map.addLayer(window["filter_cluster"]);
+
+
+        }
+
+
+
       //sub category resources
       $('#capacity-popup').on('click', '.sub_cat_ex', function () {
 
         all_layerName = $(this).val();
-        console.log(layerName);
+        //console.log(layerName);
         sub_layerName = $(this).attr('data-sub');
         type_id = all_layerName + '_id';
         subcat_array1 = $('#' + type_id).attr('data-subcat');
+        layer_icon=$(this).attr('data-icon');
 
         //////console.log($('.'+layerName+'_child').prop('checked'));
         //////console.log($('.'+layerName+'_child:checked'));
@@ -4787,18 +4855,49 @@
 
         }
 
+        //console.log(window[layerName]);
+        // console.log(window[sub_layerName+'_markers']._needsClustering[0].feature.properties);
+        var all_markercluster=window[sub_layerName+'_markers']._needsClustering;
+
+        // if (map.hasLayer(window[sub_layerName+'_markers']) && $(this).prop('checked') == false) {
+
+        //   map.removeLayer(window[sub_layerName+'_markers']);
+        // } else {
+
+        //   //////console.log(window[sub_layerName]);
+        //   // pharmacy.addTo(map);
+        //   // map.addLayer(window[sub_layerName+'_markers']);
+
+        // }
 
 
-        if (map.hasLayer(window[sub_layerName+'_markers']) && $(this).prop('checked') == false) {
+        var features_data=[];
+        $.each($('.sub_cat_ex:checked'), function () {
 
-          map.removeLayer(window[sub_layerName+'_markers']);
-        } else {
+                var name_sub = $(this).attr('data-sub');
+                // sub_layer_name.push($(this).attr('data-sub'));
+                //  ////console.log(name_sub);
+                var layersdata = window[name_sub]._layers
+                //////console.log(window[name_sub]._layers);
+                $.each(layersdata, function (feature) {
 
-          //////console.log(window[sub_layerName]);
-          // pharmacy.addTo(map);
-          map.addLayer(window[sub_layerName+'_markers']);
+                  //  console.log(layersdata[feature].feature);
+                  features_data.push(layersdata[feature].feature);
 
-        }
+                });
+
+                });
+
+                var layer_data1 = {
+                "type": "FeatureCollection",
+                "features": features_data
+
+                };
+
+                createCluster(layer_data1,layer_icon,all_layerName);
+                console.log(layer_data1);
+                  
+
       });
 
       //end sub category resource
