@@ -15,6 +15,13 @@ def get_losstype_queryset_for_user(queryset, user):
 
 
 def get_infrastructure_queryset_for_user(queryset, user):
-    incidents = get_incident_queryset(Incident.objects.all(), user)
+    if user.is_superuser:
+        incidents = get_incident_queryset(
+            Incident.objects.all(), user
+        )
+    else:
+        incidents = get_incident_queryset(
+            Incident.objects.filter(loss__infrastructures__type__owner_organizations=user.profile.organization), user
+        )
     queryset = queryset.filter(loss__incident__in=incidents).distinct()
     return queryset
