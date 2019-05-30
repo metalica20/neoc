@@ -294,7 +294,6 @@ class InfrastructureType(MPTTModel):
     )
     owner_organizations = models.ManyToManyField(
         Organization,
-        null=True, blank=True, default=None,
         related_name='organizations'
     )
     parent = TreeForeignKey(

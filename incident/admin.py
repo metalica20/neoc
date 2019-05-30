@@ -13,6 +13,7 @@ from django.core.exceptions import ValidationError
 from django.utils.html import format_html
 from django.urls import reverse
 from jet.filters import DateRangeFilter
+from reversion.admin import VersionAdmin
 
 from bipad.admin import GeoModelAdmin
 from .models import (
@@ -138,7 +139,7 @@ class IncidentForm(forms.ModelForm):
 
 
 @admin.register(Incident)
-class IncidentAdmin(GeoModelAdmin):
+class IncidentAdmin(VersionAdmin, GeoModelAdmin):
     search_fields = ('title', 'description', 'street_address', 'hazard__title')
     list_display = ('title', 'hazard', 'source', 'verified', 'incident_on', 'incident_actions')
     list_filter = (
