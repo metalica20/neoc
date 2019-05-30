@@ -26,7 +26,7 @@ class ProfileForm(forms.ModelForm):
         required=False,
         label=_("District"),
         widget=ModelSelect2Widget(
-            model=Municipality,
+            model=District,
             search_fields=['title__icontains'],
         )
     )
