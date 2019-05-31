@@ -1,5 +1,4 @@
 import requests
-import json
 from realtime.models import Pollution
 from django.contrib.gis.geos import Point
 from datetime import datetime

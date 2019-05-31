@@ -43,6 +43,12 @@ class Alert(TimeStampedModal):
     )
     point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
+    reference_type = models.CharField(
+        max_length=25,
+        editable=False,
+        null=True, blank=True, default=None
+    )
+    reference_id = models.PositiveIntegerField(null=True, blank=True, default=None)
     # TODO: discuss location
 
     def __str__(self):
