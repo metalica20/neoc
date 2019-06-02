@@ -28,7 +28,8 @@ class IncidentViewSet(FlexFieldsModelViewSet):
         'loss.peoples',
         'loss.families',
         'loss.livestocks',
-        'loss.infrastructures'
+        'loss.infrastructures',
+        'loss.agricultures',
     ]
 
     def get_queryset(self):
@@ -57,6 +58,8 @@ class IncidentViewSet(FlexFieldsModelViewSet):
             loss_queryset = loss_queryset.prefetch_related('livestocks')
         if is_expanded(self.request, 'infrastructures'):
             loss_queryset = loss_queryset.prefetch_related('infrastructures')
+        if is_expanded(self.request, 'agricultures'):
+            loss_queryset = loss_queryset.prefetch_related('agricultures')
         if is_expanded(self.request, 'loss'):
             queryset = queryset.prefetch_related(Prefetch(
                 'loss', loss_queryset)
