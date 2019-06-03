@@ -347,24 +347,24 @@
                     <ul class="list-content hazard-list">
                       <li class="active">
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input exoposure_data_pop" id="OSM"
-                            data-currentLayer="" name="checks" value="customEx">
+                          <input type="radio" class="custom-control-input exoposure_data_pop" data-pop="Drone Imageries"
+                            id="OSM" data-currentLayer="" name="checks" value="customEx">
                           <label class="custom-control-label" data-tab="exposure_popup" for="OSM">Drone Imageries
                           </label>
                         </div>
                       </li>
                       <li>
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input exoposure_data_pop" id="Land"
-                            data-currentLayer="" name="checks" value="customEx">
+                          <input type="radio" class="custom-control-input exoposure_data_pop" data-pop="Infrastructures"
+                            id="Land" data-currentLayer="" name="checks" value="customEx">
                           <label class="custom-control-label" data-tab="infa_exposure_popup"
                             for="Land">Infrastructures</label>
                         </div>
                       </li>
                       <li>
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input exoposure_data_pop" id="osmLayer"
-                            data-currentLayer="" name="checks" value="customEx">
+                          <input type="radio" class="custom-control-input exoposure_data_pop" data-pop="OSM Layers"
+                            id="osmLayer" data-currentLayer="" name="checks" value="customEx">
                           <label class="custom-control-label" data-tab="osmLayer_popup" for="osmLayer">OSM
                             Layers</label>
                         </div>
@@ -874,7 +874,7 @@
                     <div class="card-body">
 
 
-                      <ul class="hazardDetail-list">
+                      <ul class="hazardDetail-list exposure_drone_pop">
 
 
 
@@ -959,7 +959,7 @@
                   <div id="landslide_col_1" class="collapse show" data-parent="#accordion"
                     aria-labelledby="landslide_1">
                     <div class="card-body">
-                      <ul class="hazardDetail-list">
+                      <ul class="hazardDetail-list exposure_drone_pop" id="exposure_infra_pop">
                         <li class="active">
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input exposure_geo infan" data-parent="Land"
@@ -2597,14 +2597,24 @@
                     { label: "Cablet", count: result[0].cabletCom },
                     { label: "Computer", count: result[0].computerCom },
                     { label: "Internet", count: result[0].internetCom },
-                    { label: "Telephone", count: result[0].telegraphCom },
+                    { label: "Telephone", count: result[0].telephoneCom },
                     { label: "Mobile", count: result[0].mobileCom },
                   ];
-                  createChart(dataset, mun, e.layer.properties.id);
+                  console.log(dataset, "dataset");
+                  console.log(mun, "mun");
+                  console.log(e.layer.properties.id, "id");
+                  console.log(dataset[0].count, "datasetcount");
+                  // if (dataset[0].count == 0) {
+                  // $('#chart').append('<div class = "chartWrapper" id=' + id + ' ><div style="margin-bottom:10px;"><h7 class="chart_header">' + name + '</h7></div><div id="chartBody_' + name + '"><label>No Data</label></div></div>');
+                  // console.log("count");
+                  // }
+                  // else {
+                  createChartCompare(dataset, mun, e.layer.properties.id);
                   L.popup()
                     .setContent(e.layer.properties.GaPa_NaPa)
                     .setLatLng(e.latlng)
                     .openOn(map);
+                  // }
                 } else {
 
 
@@ -3137,7 +3147,7 @@
           html += '<div class="progress-warpper">' +
             '<div class="custom-control custom-checkbox">' +
 
-            '<input type="checkbox" class="custom-control-input sub_cat_ex ' + layerName + '_child" value="' + layerName + '" data-sub="' + data[i].label.replace(' ', '_') + '" id="progress_' + i + '" data-icon="'+layer_icon+'" checked></input>' +
+            '<input type="checkbox" class="custom-control-input sub_cat_ex ' + layerName + '_child" value="' + layerName + '" data-sub="' + data[i].label.replace(' ', '_') + '" id="progress_' + i + '" data-icon="' + layer_icon + '" checked></input>' +
             '<label class="custom-control-label" for="progress_' + i + '" data-tab="capacity-popup"> </label>' +
             '</div>' +
             '<div class="progress-title">' +
@@ -3416,7 +3426,7 @@
       function CreateChartData(geojson, subcat, charttype, level, total_sum, layerName, filter_resources, layer_icon) {
 
         // console.log(level);
-        // console.log(geojson);
+        console.log("CREATE CHARt");
         features = geojson.features;
         //  subcat_arr=subcat.split(",");
         subcat_arr = subcat;
@@ -3432,7 +3442,7 @@
         //////console.log(subcat_arr);
         //console.log('datya');
         $.each(features, function (feature) {
-         // console.log('datya');
+          // console.log('datya');
           for (var i = 0; i < subcat_arr.length; i++) {
             //console.log('datya');
             if (level == 'subcategory' || level == 'both') {
@@ -3616,29 +3626,37 @@
         var id_input = $(this).attr('id');
         var center = eval($(this).attr('data-center'));
         var layername = $(this).attr('data-layername');
+        var current_layer = $(this).attr('data-layername');
         // var Earthquake_hazard =$("#Map00").parent()[0].className;
         //console.log(layername);
         //remove previous layer on radio change
 
 
         if ($(this).attr("haslayer")) {
-          // console.log('onclicktrue');
-          if (map.hasLayer(window[layername])) {
+          console.log('onclicktrue');
+          console.log(map.hasLayer(window[layername]));
+          console.log((window[layername]));
+          var classname = $(this).parent().attr("class");
+          console.log(classname, "classname");
+          if (classname == 'custom-control custom-radio custom-check') {
             //console.log("inside of earthquake click layer");
             map.removeLayer(window[layername]);
             $('.legend-list').html('');
             $('.hazard_list').attr('hasLayer', false);
             $('.hazard_list').attr('data-currentLayer', '');
+            $('.loader').css('display', 'none');
 
             // map.flyTo([28.410728397237914,84.4024658203125], 7);
           } else {
-            // console.log("else");
+            console.log("else");
             addLegend(layername);
 
             //map.addLayer(window[layername]);
             $('.hazard_list').attr('hasLayer', true);
             $('.hazard_list').attr('data-currentLayer', layername);
             window[layername].addTo(map);
+            console.log(previous_hazard_layer);
+            console.log(window[layername]);
 
             if (previous_hazard_layer != null && previous_hazard_layer != window[layername]) {
               $('.hazard_list').attr('hasLayer', false);
@@ -3656,7 +3674,7 @@
           }
           $(this).attr("haslayer", false);
         } else {
-          //  console.log("else ko ni else ");
+          console.log("else ko ni else ");
           //console.log(id);
 
           if (id == 'earthquake') {
@@ -3668,7 +3686,7 @@
               // $('.hazard_list').attr('hasLayer',false);
               // $('.hazard_list').attr('data-currentLayer','');
               // map.removeLayer();
-              // console.log('removelayer');
+              console.log('removelayer');
               $('.loader').css('display', 'none');
             }
             else {
@@ -3733,7 +3751,7 @@
 
             $('.hazard_list').attr('hasLayer', true);
             $('.hazard_list').attr('data-currentLayer', layername);
-            //////console.log(previous_hazard_layer);
+            console.log(previous_hazard_layer, "previouslayer");
             if (previous_hazard_layer != null && previous_hazard_layer != window[layername]) {
               //////console.log("entered previous");
               // $('.hazard_list').attr('hasLayer',false);
@@ -3751,6 +3769,7 @@
             //   window[layername].on('load',function(){
             //
             // });
+
 
             if (hazard_previous_id != hazard_id) {
               hazard_one_click = 0;
@@ -3792,7 +3811,10 @@
 
       //start of hazard layer
 
-      $('.exposure_geo').one('click', function () {
+      //$('#exposure_popup').one('click', '.exposure_geo', function () {
+
+      function exposureOneClick(layername, parent_id, center, id, geo_url, main_id) {
+        console.log("ONE");
 
         $('.loader').css('display', 'block');
         filterapplied = CheckFilterApplied();
@@ -3806,7 +3828,9 @@
         else {
 
         }
-        var layername = $(this).attr('data-layername');
+        //var layername = $(this).attr('data-layername');
+        //var layername = $(this).attr('data-layername');
+        console.log('layername');
 
         if ($(this).attr('id') == 'hydro_1') {
           //  ////console.log('entered')
@@ -3852,21 +3876,22 @@
             });
 
 
+
         } else {
           var id = $(this).attr('data-workspace');
 
 
           var geo_url = $(this).attr('data-url');
 
-          //////console.log(id);
+          console.log(layername, "else layername");
 
-          window[layername] = L.tileLayer.betterWms(geo_url, {
+          window[layername + ""] = L.tileLayer.betterWms(geo_url, {
             layers: id + ":" + layername,
             transparent: true,
             format: 'image/png',
             pane: "wmsPane"
           });//.addTo(map);
-
+          console.log(window[layername + ""], "Layenamewindow");
           window[layername].on('load', function () {
             //////console.log(map.hasLayer(hazard_layers));
 
@@ -3881,19 +3906,42 @@
 
         }
         window[layername].on('load data:loaded', function () {
+          map.addLayer(window[layername]);
           $('.loader').css('display', 'none');
           ////console.log("earthquake_tile");
 
         })
 
+      }
+      //});
 
-      });
 
-      $('.exposure_geo').on('click', function () {
+      var exposureOneClickCount = 0;
+      var previousExposureClick = null;
+      $('#exposure_popup').on('click', '.exposure_geo', function (e) {
+        console.log("ON");
+
         filterapplied = CheckFilterApplied();
         var layername = $(this).attr('data-layername');
         var parent_id = $(this).attr('data-parent');
         var center = eval($(this).attr('data-center'));
+
+        var id = $(this).attr('data-workspace');
+        var main_id = $(this).attr('id')
+        var geo_url = $(this).attr('data-url');
+        console.log(layername);
+
+
+
+        if ($(this).attr('id') != previousExposureClick) {
+          exposureOneClickCount = 0;
+        }
+
+        if (exposureOneClickCount == 0) {
+          exposureOneClick(layername, parent_id, center, id, geo_url, main_id);
+        }
+
+
         var count_check = 0;
         var haslayer = false;
         if (map.hasLayer(window[layername])) {
@@ -3919,7 +3967,6 @@
           // ////console.log()
           if (haslayer) {
             $('#' + parent_id).attr('data-currentLayer', '');
-
             ////console.log($(".infan:checked").length);
             // console.log("REMOVE");
             map.removeLayer(window[layername]);
@@ -3927,7 +3974,9 @@
 
           } else {
             $('#' + parent_id).attr('data-currentLayer', layername);
-            map.addLayer(window[layername]);
+            if (exposureOneClickCount != 0) {
+              map.addLayer(window[layername]);
+            }
             //console.log("ADD");
             // map.flyTo([28.410728397237914,84.4024658203125],8)
           }
@@ -3942,7 +3991,10 @@
             map.flyTo([28.410728397237914, 84.4024658203125], 8)
           } else {
             $('#' + parent_id).attr('data-currentLayer', layername);
-            map.addLayer(window[layername]);
+            console.log(layername);
+            if (exposureOneClickCount != 0) {
+              map.addLayer(window[layername]);
+            }
             if ($(this).attr('id') == 'build_1') {
               map.flyTo([28.410728397237914, 84.4024658203125], 8);
             } else {
@@ -3952,6 +4004,8 @@
           }
         }
 
+        previousExposureClick = $(this).attr('id');
+        exposureOneClickCount++;
       });
 
       //end of hazard layer
@@ -4022,7 +4076,7 @@
 
           for (let i = 0; i < sub_array.length; i++) {
             window[sub_array[i]['type'].replace(' ', '_')] = L.layerGroup();
-            window[sub_array[i]['type'].replace(' ', '_')+'_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane',});
+            window[sub_array[i]['type'].replace(' ', '_') + '_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane', });
             //  console.log(sub_array[i]['type'].replace(' ','_'))
           }
 
@@ -4107,13 +4161,13 @@
 
 
 
-                     window[layername + '_markers'].addLayer(marker);
+                    window[layername + '_markers'].addLayer(marker);
 
                     for (let i = 0; i < type.length; i++) {
                       //////console.log(sub_array[i]['type']);
 
                       if (type[i]['type'] == feature.properties.type) {
-                        window[sub_array[i]['type'].replace(' ', '_')+'_markers'].addLayer(marker);
+                        window[sub_array[i]['type'].replace(' ', '_') + '_markers'].addLayer(marker);
 
 
                       }
@@ -4504,10 +4558,10 @@
           map.removeLayer(window[layerName + '_markers']);
           if (map.hasLayer(window[layerName + "_filteredLayers"])) {
             map.removeLayer(window[layerName + "_filteredLayers"]);
-          } 
+          }
 
-          if(map.hasLayer(window["filter_cluster"])){
-             map.removeLayer(window["filter_cluster"]);
+          if (map.hasLayer(window["filter_cluster"])) {
+            map.removeLayer(window["filter_cluster"]);
           }
 
           $('#' + layerName + '_filterlist').html('');
@@ -4625,6 +4679,8 @@
       $('.exoposure_data_pop').on('click', function () {
 
         var id = $(this).attr('id');
+        var data_pop = $(this).attr('data-pop');
+
 
         var current_layer = $(this).attr('data-currentLayer');
         if (current_layer != "") { //child layer off from parent
@@ -4634,8 +4690,68 @@
 
         }
 
-      });
+        var url = base_url + "/risk_profile/exposure?title=" + data_pop;
+        url = url.replace(" ", "%20")
+        console.log(url);
 
+
+        $.ajax({
+          url: url,
+          //data:{"layer_icon":layer_icon, "data":data,"i":i},
+
+          success: function (response) {
+            //console.log(response);
+
+            for (var k = 0; k < response.length; k++) {
+              console.log(response);
+              var expo_pop_html = "";
+              var expo_layer = response[k].ExposureLayer;
+              console.log(expo_layer.length);
+              for (var l = 0; l < expo_layer.length; l++) {
+                console.log(expo_layer);
+                if (data_pop == 'Drone Imageries') {
+                  $("#exposure_drone_pop").html("");
+                  console.log("DRONE");
+                  expo_pop_html += '<li class="active opacityParent">';
+                  expo_pop_html += '<div class="custom-control custom-radio">' +
+                    '<i class="ion ion-md-information-circle" style="float:right;" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Drone Images"></i>' +
+                    '<span class="ion ion-md-contrast" style="float:right; border:none;"></span>' +
+                    '<input type="radio" class="custom-control-input exposure_geo" data-workspace="' + expo_layer[l].workspace + '"' +
+                    'data-parent="OSM" data-layername="' + expo_layer[l].layername + '"' +
+                    'data-url="https://apps.naxa.com.np/geoserver/wms" data-center="' + expo_layer[l].center + '"' +
+                    'id="test_1' + [l] + '" name="test1" value="customEx">' +
+                    '<label class="custom-control-label" for="test_1' + [l] + '">' + expo_layer[l].title + '</label></div>' +
+                    ' <div class="range-box">' +
+                    '<input type="range" min="0" max="100" class="center" data-name-trans="bancharedanda">' +
+                    '</div>' +
+                    '</li>';
+
+                  $('#exposure_drone_pop').html(expo_pop_html);
+                }
+                // else if (data_pop == 'Infrastructures') {
+                //   $("#exposure_infra_pop").html("");
+                //   expo_pop_html += '<li class="active">';
+                //   expo_pop_html += '<div class="custom-control custom-checkbox">' +
+                //     '<input type="checkbox" class="custom-control-input exposure_geo infan" data-workspace="' + expo_layer[l].workspace + '"' +
+                //     'data-parent="Land" data-layername="' + expo_layer[l].layername + '"' +
+                //     'data-url="https://apps.naxa.com.np/geoserver/wms" data-center="' + expo_layer[l].center + '"' +
+                //     'id="build_1' + [l] + '" name="build_1" value="customEx">' +
+                //     '<label class="custom-control-label" for="build_1' + [l] + '">' + expo_layer[l].title + '</label></div>' +
+                //     ' <div class="range-box">' +
+                //     '<input type="range" min="0" max="100" class="center" data-name-trans="bancharedanda">' +
+                //     '</div>' +
+                //     '</li>';
+
+                //   $('#exposure_infra_pop').html(expo_pop_html);
+                //   console.log("INFRA");
+                // }
+              }
+
+            }
+          }
+
+        });
+      });
       //exposure end parent
 
 
@@ -4646,6 +4762,7 @@
         ////console.log(current_layer);
 
         if (current_layer != "") { //child layer off from parent
+          console.log("DOSDSD");
           map.removeLayer(window[current_layer]);
           map.flyTo([28.410728397237914, 84.4024658203125], 7);
           $('.legend-list').html(" ");
@@ -4691,7 +4808,7 @@
                   '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_' + i + '" aria-expanded="' + aria_expand + '" aria-controls="landslide_col_' + i + '">' + hazardlayer[l].title.replace(/_/g, " ") + "</a>" +
                   '<div class="icon-list">' +
                   '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="' + hazardlayer[l].title + '"></span>' +
-                  '<span class="ion ion-md-albums"></span>' +
+                  '<a href="http://bipad.togglecorp.com"><span class="ion ion-md-albums"></span></a>' +
                   '<span class="ion ion-md-contrast"></span>' +
                   '<span class="ion more-metalist">' +
                   '<small class="ion ion-md-more">' +
@@ -4764,66 +4881,66 @@
 
       // end resource
 
-        function createCluster(data,layer_icon1,layername){
-          map.removeLayer(window[layername+"_markers"]);
-          // map.removeLayer(window["filter_cluster"]);
-          if(map.hasLayer(window["filter_cluster"])){
-             map.removeLayer(window["filter_cluster"]);
-          }
-           window["filter_cluster"] =L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane',});
-             filter_cluster_layer = new L.geoJson(data,
-                {
-                  // pane:"polygonsPane",
-                  pointToLayer: function (feature, Latlng) {
-
-                    // var divicon = L.divIcon({
-                    //     className: layer_icon1
-                    //
-                    // });
-
-                    //console.log(layer_icon1);
-                    var divicon = L.divIcon({
-                      html: '<div class="image-icon"></div>',
-                      // Specify a class name we can refer to in CSS.
-                      className: layer_icon1,
-                      // Set a markers width and height.
-                      //iconSize: [52, 52],
-                      iconAnchor: [4, 2],
-                      // pane:"polygonsPane"
-                    });
-
-                    var marker = L.marker(
-                      Latlng, { icon: divicon, pane: "markerPane" });
-
-                    var contentString = createPopup(feature, layername);
-                    marker.bindPopup(L.popup({
-                      //closeOnClick: true,
-                      //closeButton: true,
-                      keepInView: true,
-                      autoPan: true,
-                      maxHeight: 200,
-                      minWidth: 250,
-                      pane: "topPane"
-                    }).setContent(contentString));
-
-
-
-
-                     window["filter_cluster"].addLayer(marker);
-
-                   
-                    return marker;
-                  },
-                  onEachFeature: function (feature, layer) {
-
-                  }
-
-                });
-
-          map.addLayer(window["filter_cluster"]);
-
-
+      function createCluster(data, layer_icon1, layername) {
+        map.removeLayer(window[layername + "_markers"]);
+        // map.removeLayer(window["filter_cluster"]);
+        if (map.hasLayer(window["filter_cluster"])) {
+          map.removeLayer(window["filter_cluster"]);
         }
+        window["filter_cluster"] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane', });
+        filter_cluster_layer = new L.geoJson(data,
+          {
+            // pane:"polygonsPane",
+            pointToLayer: function (feature, Latlng) {
+
+              // var divicon = L.divIcon({
+              //     className: layer_icon1
+              //
+              // });
+
+              //console.log(layer_icon1);
+              var divicon = L.divIcon({
+                html: '<div class="image-icon"></div>',
+                // Specify a class name we can refer to in CSS.
+                className: layer_icon1,
+                // Set a markers width and height.
+                //iconSize: [52, 52],
+                iconAnchor: [4, 2],
+                // pane:"polygonsPane"
+              });
+
+              var marker = L.marker(
+                Latlng, { icon: divicon, pane: "markerPane" });
+
+              var contentString = createPopup(feature, layername);
+              marker.bindPopup(L.popup({
+                //closeOnClick: true,
+                //closeButton: true,
+                keepInView: true,
+                autoPan: true,
+                maxHeight: 200,
+                minWidth: 250,
+                pane: "topPane"
+              }).setContent(contentString));
+
+
+
+
+              window["filter_cluster"].addLayer(marker);
+
+
+              return marker;
+            },
+            onEachFeature: function (feature, layer) {
+
+            }
+
+          });
+
+        map.addLayer(window["filter_cluster"]);
+
+
+      }
 
 
 
@@ -4835,7 +4952,7 @@
         sub_layerName = $(this).attr('data-sub');
         type_id = all_layerName + '_id';
         subcat_array1 = $('#' + type_id).attr('data-subcat');
-        layer_icon=$(this).attr('data-icon');
+        layer_icon = $(this).attr('data-icon');
 
         //////console.log($('.'+layerName+'_child').prop('checked'));
         //////console.log($('.'+layerName+'_child:checked'));
@@ -4857,7 +4974,7 @@
 
         //console.log(window[layerName]);
         // console.log(window[sub_layerName+'_markers']._needsClustering[0].feature.properties);
-        var all_markercluster=window[sub_layerName+'_markers']._needsClustering;
+        var all_markercluster = window[sub_layerName + '_markers']._needsClustering;
 
         // if (map.hasLayer(window[sub_layerName+'_markers']) && $(this).prop('checked') == false) {
 
@@ -4871,43 +4988,43 @@
         // }
 
 
-        var features_data=[];
+        var features_data = [];
         $.each($('.sub_cat_ex:checked'), function () {
 
-                var name_sub = $(this).attr('data-sub');
-                // sub_layer_name.push($(this).attr('data-sub'));
-                //  ////console.log(name_sub);
-                var layersdata = window[name_sub]._layers
-                //////console.log(window[name_sub]._layers);
-                $.each(layersdata, function (feature) {
+          var name_sub = $(this).attr('data-sub');
+          // sub_layer_name.push($(this).attr('data-sub'));
+          //  ////console.log(name_sub);
+          var layersdata = window[name_sub]._layers
+          //////console.log(window[name_sub]._layers);
+          $.each(layersdata, function (feature) {
 
-                  //  console.log(layersdata[feature].feature);
-                  features_data.push(layersdata[feature].feature);
+            //  console.log(layersdata[feature].feature);
+            features_data.push(layersdata[feature].feature);
 
-                });
+          });
 
-                });
+        });
 
-                var layer_data1 = {
-                "type": "FeatureCollection",
-                "features": features_data
+        var layer_data1 = {
+          "type": "FeatureCollection",
+          "features": features_data
 
-                };
+        };
 
-                createCluster(layer_data1,layer_icon,all_layerName);
-                console.log(layer_data1);
-                  
+        createCluster(layer_data1, layer_icon, all_layerName);
+        console.log(layer_data1);
+
 
       });
 
       //end sub category resource
-     
+
       //dragTapSlider.noUiSlider.on('slide.one', function() {
-      
+
       function filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon) {
 
 
-        
+
         //////console.log(window['clinic']._layers);
         window["filter_resource_" + layerName] = new L.geoJson(layer_data, {
 
@@ -5134,9 +5251,10 @@
 
 
       //chart start--
-      function createChart(dataset, name, id) {
+      function createChartCompare(dataset, name1, id) {
 
-        ////console.log(name);
+        console.log("CREATE CHART COMPARE");
+        var name = name1.split(" ")[0];
         $('#chart').append('<div class = "chartWrapper" id=' + id + ' ><div style="margin-bottom:10px;"><h7 class="chart_header">' + name + '</h7></div><div id="chartBody_' + name + '"></div></div>');
         // define data
         // var dataset = [
@@ -5179,6 +5297,9 @@
         var color = d3.scaleOrdinal(d3.schemeCategory20c);
         // more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
 
+
+
+        console.log(name, "name replace");
         var svg = d3.select('#chartBody_' + name) // select element in the DOM with id 'chart'
           .append('svg') // append an svg element to the element we've selected
           .attr('width', width) // set the width of the svg element we just added
@@ -5221,6 +5342,8 @@
         //   </div>
         // </div>
 
+
+        console.log(dataset, "FUNCTION INSIDE DATASET");
         dataset.forEach(function (d) {
           d.count = +d.count; // calculate count as we iterate through the data
           d.enabled = true; // add enabled property to track which entries are checked
@@ -5457,9 +5580,7 @@
         // //console.log($(this).attr('id'));
         // //console.log($(this).attr('data-fed'));
 
-        if (map.hasLayer(Mask)) {
-          map.removeLayer(Mask);
-        }
+
 
         //map.removeLayer(province);
         //map.removeLayer(district);
@@ -5479,8 +5600,12 @@
         var layer_id = $(this).attr('data-id');
         var layer_request = $(this).attr('data-request');
         var name = $(this).html();
-
+        // var geoname= $(this)
+        console.log(name, "NAME");
         $('#fed_filterInput').val(name);
+        console.log(layer_request, "layer_request");
+        console.log(boundaryy, "boundary");
+
         // $.ajax({
         //   url: 'https://bipad.nepware.com/api/v1/municipality/?format=json&limit=20&search=',
         //   success: function(data) {fed_filterInput
@@ -5489,8 +5614,26 @@
         //
         //   });
 
+
         var fed_url = 'https://bipad.nepware.com/api/v1/' + federal_name + '/?format=geojson&' + layer_request + '=' + layer_id;
         var fed_mask_url = 'https://bipad.nepware.com/api/v1/' + layer_request + '/?format=geojson&search=' + boundaryy;
+
+        var adjusted_name = name;
+        // var adjusted_name = name.toLowerCase();
+        var url_name = adjusted_name.replace(" ", "_");
+        console.log(url_name, "url_name");
+
+        if (name == "Province 2" || name == 'Gandaki' || name == 'Karnali') {
+          fed_mask_url = base_url + '/static/filter_geojson/' + url_name + '.geojson';
+          console.log("XIRYO");
+
+        }
+        else {
+          console.log("BAIRAKO");
+        }
+
+        console.log(fed_url);
+        console.log(fed_mask_url);
 
         ///console.log(fed_url);
         //console.log(fed_mask_url);
@@ -5519,18 +5662,23 @@
           pane: "polygonsPane"
 
         });
-        //  federal_maskboundary = new L.geoJson.ajax(fed_mask_url,{
-
-
-        //  });
-        // Varun mask Layer Start
-        //removeAllLayers();
-
         $.ajax({
           // async:false,
           url: fed_mask_url,
-          success: function (result) {
-            // console.log(result);
+          success: function (response) {
+            console.log(response, "response");
+            if (map.hasLayer(Mask)) {
+              map.removeLayer(Mask);
+            }
+            var prov_name = "Province 2" || name == 'Gandaki' || 'Karnali';
+            if (name == "Province 2" || name == 'Gandaki' || name == "Karnali") {
+              // var result= JSON.parse(result);
+              // var parsed_data = JSON.parse(response);
+              // console.log(parsed_data);
+              // console.log(parsed_data.);
+              response = JSON.parse(response);
+            }
+
             L.Mask = L.Polygon.extend({
               options: {
                 stroke: false,
@@ -5561,25 +5709,53 @@
             L.mask = function (latLngs, options) {
               return new L.Mask(latLngs, options);
             };
+            console.log(name, "name");
+            if (name == 'Province 2' || name == 'Gandaki' || name == 'Karnali') {
+              // console.log(response);
 
-
-            var coordinates = result.features[0].geometry.coordinates[0];
+              console.log(response);
+              coordinates = response.geometry.coordinates[0][0];
+            } else {
+              console.log(response);
+              coordinates = response.features[0].geometry.coordinates[0];
+            }
 
             var latLngs = [];
             for (i = 0; i < coordinates.length; i++) {
-              for (j = 0; j < coordinates[i].length; j++) {
-                // console.log(coordinates[i][j]);
-                latLngs.push(new L.LatLng(coordinates[i][j][1], coordinates[i][j][0]));
+              if (name == 'Province 2' || name == 'Gandaki' || name == 'Karnali') {
+                latLngs.push(new L.LatLng(coordinates[i][1], coordinates[i][0]));
+              }
+              else {
+                for (j = 0; j < coordinates[i].length; j++) {
+                  // console.log(coordinates[i][j]);
+                  latLngs.push(new L.LatLng(coordinates[i][j][1], coordinates[i][j][0]));
+                }
               }
             }
 
             Mask = L.mask(latLngs);
             //Mask.addTo(map).bringToFront();
+
+
+
             map.addLayer(Mask);
 
 
           }
+
         });
+
+        // removeAllLayers();
+        // map.removeLayer(Mask);
+        // map.removeLayer(label);
+        //  federal_maskboundary = new L.geoJson.ajax(fed_mask_url,{
+
+
+        //  });
+        // Varun mask Layer Start
+        //removeAllLayers();
+
+
         // Varun mask Layer End
 
         //console.log(federal_boundary);
@@ -5654,6 +5830,16 @@
 
         if ($.trim(search_text).length == 0) {
           $('.admin-level').html("National");
+          // if (map.hasLayer(Mask)) {
+          console.log("EMPTY");
+          // map.removeLayer(Mask);
+          // map.removeLayer(label);
+          // map.removeLayer(federal_boundary);
+          removeAllLayers();
+          map.addLayer(vt_label_province);
+          map.setView([28.410728397237914, 84.4024658203125], 7);
+          // map.removeLayer(Mask);
+          // }
         }
 
       });
@@ -5697,6 +5883,28 @@
       });
 
       $('.leaflet-draw').attr('title', 'Start drawing on the map to filter active layers.')
+      $(".filter_close").on("click", function () {
+        $(this)
+          .closest(".filterSelect")
+          .find(".filter-listing")
+          .hide();
+        $(".federal").css("display", "");
+        $("#fed_filterInput").val("");
+
+        //filterapplied= CheckFilterApplied();
+        if (map.hasLayer(federal_boundary)) {
+          // map.removeLayer(federal_boundary);
+          // map.removeLayer(label);
+          // map.removeLayer(Mask);
+          $(".admin-level").html("National");
+
+          // map.addLayer(vt_label_province);
+        }
+        removeAllLayers();
+        map.addLayer(province);
+        map.addLayer(vt_label_province);
+        map.setView([28.410728397237914, 84.4024658203125], 7);
+      });
     });//document end
   </script>
 

@@ -2416,9 +2416,12 @@ html .ui-button.ui-state-disabled:active {
 
 .chartWrapper {
   margin-top: 5px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   margin-right: 90px;
-  margin-left: 15px;
+  margin-left: 13px;
+  height: 150px;
+  border: 1px solid #f7f7f7;
+  padding: 2px;
 }
 
 .image-icon {
@@ -2628,5 +2631,10 @@ body {
 
 .leaflet-control-attribution {
   opacity: 0.6;
+}
+
+.chart_header {
+  font-size: 0.75rem;
+  color: #3581bd;
 }
 /*# sourceMappingURL=style.css.map */
