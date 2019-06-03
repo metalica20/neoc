@@ -332,7 +332,7 @@ class HazardfloodViewSet(views.APIView):
         "100":{"returnperiod":"100 year","workspace":"Bipad","layername":"Narayani_Flood_Depth_100","center":"[27.603845382606277,84.22496795654298]"},
         },
         "WestRapti":{
-        "2":{"returnperiod":"2 year","workspace":"Bipad","layernam":"WestRapti_Flood_Depth_2","center":"[27.95013217159467,82.28313446044922]"},
+        "2":{"returnperiod":"2 years","workspace":"Bipad","layernam":"WestRapti_Flood_Depth_2","center":"[27.95013217159467,82.28313446044922]"},
         "5":{"returnperiod":"5 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_5","center":"[27.95013217159467,82.28313446044922]"},
         "10":{"returnperiod":"10 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_10","center":"[27.95013217159467,82.28313446044922]"},
         "25":{"returnperiod":"25 year","workspace":"Bipad","layername":"WestRapti_Flood_Depth_25","center":"[27.95013217159467,82.28313446044922]"},
