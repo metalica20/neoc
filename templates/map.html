@@ -2597,14 +2597,24 @@
                     { label: "Cablet", count: result[0].cabletCom },
                     { label: "Computer", count: result[0].computerCom },
                     { label: "Internet", count: result[0].internetCom },
-                    { label: "Telephone", count: result[0].telegraphCom },
+                    { label: "Telephone", count: result[0].telephoneCom },
                     { label: "Mobile", count: result[0].mobileCom },
                   ];
-                  createChart(dataset, mun, e.layer.properties.id);
+                  console.log(dataset, "dataset");
+                  console.log(mun, "mun");
+                  console.log(e.layer.properties.id, "id");
+                  console.log(dataset[0].count, "datasetcount");
+                  // if (dataset[0].count == 0) {
+                  // $('#chart').append('<div class = "chartWrapper" id=' + id + ' ><div style="margin-bottom:10px;"><h7 class="chart_header">' + name + '</h7></div><div id="chartBody_' + name + '"><label>No Data</label></div></div>');
+                  // console.log("count");
+                  // }
+                  // else {
+                  createChartCompare(dataset, mun, e.layer.properties.id);
                   L.popup()
                     .setContent(e.layer.properties.GaPa_NaPa)
                     .setLatLng(e.latlng)
                     .openOn(map);
+                  // }
                 } else {
 
 
@@ -3416,7 +3426,7 @@
       function CreateChartData(geojson, subcat, charttype, level, total_sum, layerName, filter_resources, layer_icon) {
 
         // console.log(level);
-        // console.log(geojson);
+        console.log("CREATE CHARt");
         features = geojson.features;
         //  subcat_arr=subcat.split(",");
         subcat_arr = subcat;
@@ -5241,9 +5251,10 @@
 
 
       //chart start--
-      function createChart(dataset, name, id) {
+      function createChartCompare(dataset, name1, id) {
 
-        ////console.log(name);
+        console.log("CREATE CHART COMPARE");
+        var name = name1.split(" ")[0];
         $('#chart').append('<div class = "chartWrapper" id=' + id + ' ><div style="margin-bottom:10px;"><h7 class="chart_header">' + name + '</h7></div><div id="chartBody_' + name + '"></div></div>');
         // define data
         // var dataset = [
@@ -5286,6 +5297,9 @@
         var color = d3.scaleOrdinal(d3.schemeCategory20c);
         // more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
 
+
+
+        console.log(name, "name replace");
         var svg = d3.select('#chartBody_' + name) // select element in the DOM with id 'chart'
           .append('svg') // append an svg element to the element we've selected
           .attr('width', width) // set the width of the svg element we just added
@@ -5328,6 +5342,8 @@
         //   </div>
         // </div>
 
+
+        console.log(dataset, "FUNCTION INSIDE DATASET");
         dataset.forEach(function (d) {
           d.count = +d.count; // calculate count as we iterate through the data
           d.enabled = true; // add enabled property to track which entries are checked
