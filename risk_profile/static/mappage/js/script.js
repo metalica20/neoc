@@ -262,6 +262,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "hdi_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -281,6 +282,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "remote_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -300,6 +302,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "earthquake_risk") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -319,6 +322,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "osmLayer_popup") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -338,6 +342,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "pci_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -357,6 +362,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "le_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -376,6 +382,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "hpi_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -395,6 +402,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "awt_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -414,6 +422,7 @@
           $("#toil_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       } else if (targetId == "toil_vul") {
         if (clickedparent.className == "custom-control custom-radio") {
@@ -433,6 +442,7 @@
           $("#awt_vul").hide(300);
         } else {
           $("#" + targetId).hide(500);
+          $(".average-section").hide(300);
         }
       }
       // $('#flood-expand').fadeIn(300);
@@ -610,26 +620,6 @@
         .closest(".filterSelect")
         .find(".filter-listing")
         .show();
-    });
-
-    $(".filter_close").on("click", function() {
-      $(this)
-        .closest(".filterSelect")
-        .find(".filter-listing")
-        .hide();
-      $(".federal").css("display", "");
-      $("#fed_filterInput").val("");
-
-      //filterapplied= CheckFilterApplied();
-      if (map.hasLayer(federal_boundary)) {
-        map.removeLayer(federal_boundary);
-        map.removeLayer(label);
-        map.removeLayer(Mask);
-        $(".admin-level").html("National");
-      }
-      map.addLayer(province);
-      map.addLayer(vt_label_province);
-      map.setView([28.410728397237914, 84.4024658203125], 7);
     });
 
     $(".filter_dropdown").on("click", function() {
