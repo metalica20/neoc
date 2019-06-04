@@ -31,7 +31,7 @@ class HazardlayerSerializer(serializers.ModelSerializer):
     HazardSubLayer= HazardSubLayerSerializer(many=True, read_only=True)
     class Meta:
         model=HazardLayer
-        fields = ('title','HazardSubLayer')
+        fields = ('title','about','HazardSubLayer')
 
 class HazardtypeSerializer(serializers.ModelSerializer):
     HazardLayer= HazardlayerSerializer(many=True, read_only=True)
