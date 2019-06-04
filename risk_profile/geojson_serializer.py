@@ -8,6 +8,10 @@ class Serializer(GeoJSONSerializer):
         # print(data)
         # print(obj.title)
         # Extend to your taste 'ward': obj.ward.title
-        data['properties'].update({'title':obj.title,'description': obj.description,})
-        data.update({'geometry':{"type": "Point", "coordinates":[obj.point.x,obj.point.y]}})
-        return data
+        try:
+            data['properties'].update({'title':obj.title,'description': obj.description,})
+            data.update({'geometry':{"type": "Point", "coordinates":[obj.point.x,obj.point.y]}})
+            return data
+        except:
+            print('error')
+            # return Null
