@@ -1,9 +1,5 @@
 from rest_framework import serializers
-<<<<<<< HEAD
 from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,HazardLayer,HazardSubLayer,ExposureLayer,ExposureType
-=======
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,HazardLayer,HazardSubLayer,HazardSubLayerDetail
->>>>>>> 2c974129632fef35a8bc5ee562383817077e9b6b
 from incident.models import Incident
 from resources.models import Resource
 from hazard.models import Hazard, HazardResources
@@ -20,7 +16,6 @@ class HospitalSerializer(serializers.ModelSerializer):
         model=Hospital
         fields = ('__all__')
 
-<<<<<<< HEAD
 # class HazardSubLayerDetailSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model=HazardSubLayerDetail
@@ -31,35 +26,18 @@ class HazardSubLayerSerializer(serializers.ModelSerializer):
     class Meta:
         model=HazardSubLayer
         fields = ('__all__')
-=======
-class HazardSubLayerDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=HazardSubLayerDetail
-        fields = ('returnperiod','workspace')
-
-class HazardSubLayerSerializer(serializers.ModelSerializer):
-    HazardSubLayerDetail= HazardSubLayerDetailSerializer(many=True, read_only=True)
-    class Meta:
-        model=HazardSubLayer
-        fields = ('hazard_subLayer','HazardSubLayerDetail')
->>>>>>> 2c974129632fef35a8bc5ee562383817077e9b6b
 
 class HazardlayerSerializer(serializers.ModelSerializer):
     HazardSubLayer= HazardSubLayerSerializer(many=True, read_only=True)
     class Meta:
         model=HazardLayer
-<<<<<<< HEAD
         fields = ('title','about','HazardSubLayer')
-=======
-        fields = ('title','HazardSubLayer')
->>>>>>> 2c974129632fef35a8bc5ee562383817077e9b6b
 
 class HazardtypeSerializer(serializers.ModelSerializer):
     HazardLayer= HazardlayerSerializer(many=True, read_only=True)
     class Meta:
         model=HazardType
         fields = ('id', 'title', 'about', 'HazardLayer')
-<<<<<<< HEAD
 
 
 class ExposurelayerSerializer(serializers.ModelSerializer):
@@ -72,8 +50,6 @@ class ExposuretypeSerializer(serializers.ModelSerializer):
     class Meta:
         model=ExposureType  
         fields = ('id', 'title', 'about', 'ExposureLayer')
-=======
->>>>>>> 2c974129632fef35a8bc5ee562383817077e9b6b
 
 
 class ResourceSerializer(serializers.ModelSerializer):
