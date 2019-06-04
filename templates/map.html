@@ -3830,9 +3830,9 @@
         }
         //var layername = $(this).attr('data-layername');
         //var layername = $(this).attr('data-layername');
-        console.log('layername');
+        console.log(main_id, "main id");
 
-        if ($(this).attr('id') == 'hydro_1') {
+        if (main_id == 'hydro_1') {
           //  ////console.log('entered')
           var url = base_url + '/risk_profile/Hydro';
           window[layername] = new L.geoJson.ajax(url,
@@ -3875,28 +3875,45 @@
 
             });
 
+            window[layername].on('data:loaded', function () {
+              map.addLayer(window[layername]);
+             
+              $('.loader').css('display', 'none');
+              console.log("earthquake_tile");
 
+          })
 
         } else {
-          var id = $(this).attr('data-workspace');
+          // var id = $(this).attr('data-workspace');
 
 
-          var geo_url = $(this).attr('data-url');
+          // var geo_url = $(this).attr('data-url');
+          console.log(geo_url);
 
           console.log(layername, "else layername");
 
-          window[layername + ""] = L.tileLayer.betterWms(geo_url, {
+          window[layername] = L.tileLayer.betterWms(geo_url, {
             layers: id + ":" + layername,
             transparent: true,
             format: 'image/png',
             pane: "wmsPane"
-          });//.addTo(map);
-          console.log(window[layername + ""], "Layenamewindow");
-          window[layername].on('load', function () {
-            //////console.log(map.hasLayer(hazard_layers));
+          }).addTo(map);
+          console.log(window[layername], "Layenamewindow");
+          // map.addLayer(window[layername]); 
+          setTimeout(function(){
+            map.flyTo(center,18)
+            map.addLayer(window[layername]); 
+            $('.loader').css('display', 'none');
 
+            console.log('done');
+           }, 4000);
+          // map.addLayer(window[layername]);
+          // $('.loader').css('display', 'none');
+          // window[layername].on('load', function () {
+          //   console.log('loaded');
+          //   $('.loader').css('display', 'none');
 
-          });
+          // });
 
 
           ////console.log('drone');
@@ -3905,12 +3922,7 @@
 
 
         }
-        window[layername].on('load data:loaded', function () {
-          map.addLayer(window[layername]);
-          $('.loader').css('display', 'none');
-          ////console.log("earthquake_tile");
-
-        })
+       
 
       }
       //});
@@ -3918,7 +3930,7 @@
 
       var exposureOneClickCount = 0;
       var previousExposureClick = null;
-      $('#exposure_popup').on('click', '.exposure_geo', function (e) {
+      $('.exposure_drone_pop').on('click', '.exposure_geo', function (e) {
         console.log("ON");
 
         filterapplied = CheckFilterApplied();
@@ -3929,15 +3941,18 @@
         var id = $(this).attr('data-workspace');
         var main_id = $(this).attr('id')
         var geo_url = $(this).attr('data-url');
-        console.log(layername);
+        console.log(main_id , "main id on click");
+        console.log(previousExposureClick);
 
 
 
-        if ($(this).attr('id') != previousExposureClick) {
+        if (layername != previousExposureClick) {
+          console.log("not matched");
           exposureOneClickCount = 0;
         }
 
         if (exposureOneClickCount == 0) {
+          console.log('function');
           exposureOneClick(layername, parent_id, center, id, geo_url, main_id);
         }
 
@@ -3978,7 +3993,7 @@
               map.addLayer(window[layername]);
             }
             //console.log("ADD");
-            // map.flyTo([28.410728397237914,84.4024658203125],8)
+            map.flyTo([28.410728397237914,84.4024658203125],8)
           }
 
 
@@ -4004,7 +4019,7 @@
           }
         }
 
-        previousExposureClick = $(this).attr('id');
+        previousExposureClick = layername;
         exposureOneClickCount++;
       });
 
