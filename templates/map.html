@@ -282,24 +282,27 @@
                 <div id="collapse-1" class="collapse show" data-parent="#sidebar-widget" aria-labelledby="heading-1">
                   <div class="card-body">
                     <ul class="list-content hazard-list">
+
+                        {% for hazard in hazardtype %}
                       <li class="active">
                         <div class="custom-control custom-radio">
                           <input type="radio" class="custom-control-input hazard_list" hasLayer="false"
-                            data-currentLayer="" id="Flood" name="checks" value="customEx">
-                          <label class="custom-control-label" for="Flood" data-tab="flood-1">Flood </label>
+                            data-currentLayer="" id="{{ hazard.title }}" name="checks" value="customEx">
+                          <label class="custom-control-label" for="{{ hazard.title }}" data-tab="flood-1">{{ hazard.title }} </label>
                         </div>
                         <span class="humanitarian-icon-Flood"></span>
                       </li>
-                      <li>
+                      {% endfor %}
+                      <!-- <li>
                         <div class="custom-control custom-radio">
                           <input type="radio" class="custom-control-input hazard_list" id="Earthquake" hasLayer="false"
                             data-currentLayer="" name="checks" value="customEx">
                           <label class="custom-control-label" for="Earthquake" data-tab="flood-1">Earthquake</label>
                         </div>
                         <span class="humanitarian-icon-Earthquake"></span>
-                      </li>
+                      </li> -->
 
-                      <li>
+                    
 
                         <!-- <li>
 

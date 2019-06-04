@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.core.serializers import serialize
 from rest_framework.renderers import JSONRenderer
 import json
-from risk_profile.models import Hospital,School
+from risk_profile.models import Hospital,School,HazardType,ExposureType
 from .serializers import ModelSerializer
 from hazard.models import Hazard, HazardResources
 from .serializers import HospitalSerializer, HazardResourceSerializer
@@ -158,16 +158,18 @@ class HazardResourceViewSet(views.APIView):
 # HTML View
 
 class MapPage(TemplateView):
-    template_name= 'mapPage.html'
+    template_name= 'map.html'
     def get(self, request, *args, **kwargs):
         hazard= LayerTable.objects.filter(layer_cat='hazard')
         vul= LayerTable.objects.filter(layer_cat='vulnerability')
         resource= LayerTable.objects.filter(layer_cat='resource')
         exposure= LayerTable.objects.filter(layer_cat='exposure')
+        hazard_type= HazardType.objects.all()
+        exposure_type=ExposureType.objects.all()
 
 
 
 
 
 
-        return render(request, 'map.html', {'hazards': hazard,'resources':resource,'vulnerabilities':vul,'exposures':exposure})
+        return render(request, 'map.html', {'hazards': hazard,'resources':resource,'vulnerabilities':vul,'exposures':exposure,'hazardtype':hazard_type,'exposuretype':exposure_type})
