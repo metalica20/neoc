@@ -14,6 +14,14 @@ class EventFilter(django_filters.FilterSet):
         field_name='started_on',
         lookup_expr='gte',
     )
+    created_on__gt = django_filters.IsoDateTimeFilter(
+        field_name='created_on',
+        lookup_expr='gte',
+    )
+    created_on__lt = django_filters.IsoDateTimeFilter(
+        field_name='created_on',
+        lookup_expr='lte',
+    )
     started_on__lt = django_filters.IsoDateTimeFilter(
         field_name='started_on',
         lookup_expr='lte',

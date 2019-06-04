@@ -1,6 +1,9 @@
 from django.contrib.gis import (
     admin,
 )
+from jet.filters import RelatedFieldAjaxListFilter
+from reversion.admin import VersionAdmin
+
 from bipad.admin import GeoPolymorphicParentModelAdmin
 from .models import (
     Resource,
@@ -17,7 +20,6 @@ from .permissions import get_queryset_for_user
 from federal.models import (
     Ward
 )
-from jet.filters import RelatedFieldAjaxListFilter
 from inventory.models import Inventory
 
 
@@ -27,16 +29,18 @@ class InventoryInline(admin.StackedInline):
 
 
 @admin.register(Resource)
-class ResourceAdmin(GeoPolymorphicParentModelAdmin):
+class ResourceAdmin(VersionAdmin, GeoPolymorphicParentModelAdmin):
     exclude = ('ward',)
     base_model = Resource
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry, Cultural)
     search_fields = ('ward__municipality__title', 'title')
+    list_display = ('id', 'title', 'ward')
     list_select_related = (
         'ward__municipality',
     )
     list_filter = (
+        ('ward__municipality__district', RelatedFieldAjaxListFilter),
         ('ward__municipality', RelatedFieldAjaxListFilter),
     )
     inlines = (InventoryInline,)
@@ -93,6 +97,9 @@ class GovernanceAdmin(ResourceAdmin):
 class IndustryAdmin(ResourceAdmin):
     base_model = Industry
     show_in_index = True
+
+    class Meta:
+        verbose_name_plural = 'Industries'
 
 
 @admin.register(Cultural)

@@ -21,7 +21,9 @@ def get_infrastructure_queryset_for_user(queryset, user):
         )
     else:
         incidents = get_incident_queryset(
-            Incident.objects.filter(loss__infrastructures__type__owner_organizations=user.profile.organization), user
+            Incident.objects.filter(
+                loss__infrastructures__type__owner_organizations=user.profile.organization
+            ), user
         )
     queryset = queryset.filter(loss__incident__in=incidents).distinct()
     return queryset
