@@ -2637,4 +2637,8 @@ body {
   font-size: 0.75rem;
   color: #3581bd;
 }
+
+.leftSidebar {
+  top: 70px !important;
+}
 /*# sourceMappingURL=style.css.map */

@@ -539,6 +539,7 @@
                           <label class="custom-control-label" for="{{resource.layer_tbl}}_id"
                             data-tab="capacity-popup">{{resource.layer_name}}</label>
                         </div>
+                        <span class="humanitarian-icon-{{resource.layer_tbl}}"></span>
                       </li>
                       {% endfor  %}
                       {% comment %} <li class="check-list">
@@ -963,9 +964,8 @@
                         <li class="active">
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input exposure_geo infan" data-parent="Land"
-                              data-layername="buildings" data-workspace="geonode:buildings"
-                              data-url="https://geonepal.info/geoserver/wms"
-                              data-center="[27.740139803000158,85.46312123537065]" id="build_1" name="build_1"
+                              data-layername="buildings" data-workspace="geonode"
+                              data-url="https://geonepal.info/geoserver/wms" data-center="" id="build_1" name="build_1"
                               value="customEx">
                             <label class="custom-control-label" for="build_1">Buildings </label>
                           </div>
@@ -2254,6 +2254,70 @@
       // fed_url_prov="https://bipad.nepware.com/api/v1/municipality/?format=geojson";
       // fed_url_district="https://bipad.nepware.com/api/v1/district/?format=geojson";
 
+
+
+      //getBounds of geoserver layers
+      function GetCapabilitiesGeoserver(layerName, geoserver_url, geoserver_workspace) {
+        var geoserver_layer_bbox = [];
+        $.ajax({
+          type: "GET",
+          async: false,
+          name: layerName,
+          url: geoserver_url + "/" + geoserver_workspace + "/wms?request=GetCapabilities&service=WMS&version=1.0.0",
+          beforeSend: function () {
+          },
+          complete: function () {
+          },
+          success: function (result) {
+            console.log(result);
+            var layerN = this.name;
+            data = $.parseXML(result);
+            var geoserver_all_layers = data.getElementsByTagName('Layer');
+            console.log(geoserver_all_layers);
+            for (var i = 0; i < geoserver_all_layers.length; i++) {
+
+              var geoserver_layername = geoserver_all_layers[i].getElementsByTagName('Name')[0].innerHTML;
+
+              if (i == 8 || i == 6) {
+                console.log(layerN);
+                console.log(geoserver_layername);
+              }
+              if (layerN == geoserver_layername) {
+                console.log(i);
+                var bboxText = geoserver_all_layers[i].getElementsByTagName('LatLonBoundingBox')[0].outerHTML;
+                console.log(bboxText.split('='));
+                var bboxTextArray = bboxText.split('=');
+
+                var a = bboxTextArray[1].split(",")[0].split(" ");
+                var minx = parseFloat(a[0].slice(1, -1));
+
+                var b = bboxTextArray[2].split(",")[0].split(" ");
+                var miny = parseFloat(b[0].slice(1, -1));
+
+                var c = bboxTextArray[3].split(",")[0].split(" ");
+                var maxx = parseFloat(c[0].slice(1, -1));
+
+                var d = bboxTextArray[4].split(",");
+                var maxy = parseFloat(d[0].slice(1, -1));
+
+                geoserver_layer_bbox = [[miny, minx], [maxy, maxx]];
+              }
+            }
+
+          }
+        });
+
+        return geoserver_layer_bbox;
+      }
+      //var link = "https://apps.naxa.com.np/geoserver";
+      //var workspace = "Naxa";
+      //var layer_bbox = GetCapabilitiesGeoserver('Health', link, workspace);
+      //console.log(layer_bbox);
+
+      //end get bounds of geoserver layers
+
+
+
       //removing all layers
       function removeAllLayers() {
         $('.custom-control .custom-radio').removeClass().addClass('custom-control custom-radio');
@@ -2274,6 +2338,10 @@
 
           }
         });
+
+        if (map.hasLayer(federal_boundary)) {
+          map.addLayer(label);
+        }
         // map.addLayer(province);
         $('.legend-list').html('');
       }
@@ -2486,20 +2554,42 @@
 
       // Creating the Leaflet vectorGrid object
       province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions).addTo(map);
+      var province_bbox = GetCapabilitiesGeoserver('Province', 'https://apps.naxa.com.np/geoserver', 'Naxa');
+      console.log(province_bbox);
+      map.fitBounds(province_bbox);
+
       district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions);
       municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions);
+
       district.on('click', function (e) {
         console.log("DISTRICT CLICKED TOOLTIP");
         console.log(e.layer.properties.DistLabel);
       });
       district.on('mouseover', function (e) {
         // console.log("DISTRICT CLICKED TOOLTIP");
-        console.log(e.layer.properties.DistLabel);
+        // console.log(e.layer.properties.DistLabel);
         var popup = L.popup()
           .setLatLng(e.latlng)
-          .setContent('<ul class="list-group list-group-unbordered"><li class="list-group-item popup-list"><b>District: </b> <a class="pull-right">' + e.layer.properties.DistLabel + '</a></li><li class="list-group-item popup-list"><b>Value:' + e.layer.options.value + '</a></li></ul>')
+          .setContent('<ul class="list-group list-group-unbordered"><li class="list-group-item popup-list"><b></b> <a class="pull-right">' + e.layer.properties.DistLabel + '</a></li><li class="list-group-item popup-list"><b>Value:' + e.layer.options.value + '</a></li></ul>')
           .openOn(map);
 
+      });
+      district.on('mouseout', function (e) {
+        // console.log('mouseout');
+        map.closePopup();
+      });
+      municipality.on('mouseover', function (e) {
+        // console.log("Munic CLICKED TOOLTIP");
+        // console.log(e.layer.properties);
+        var popup = L.popup()
+          .setLatLng(e.latlng)
+          .setContent('<ul class="list-group list-group-unbordered"><li class="list-group-item popup-list"><b></b> <a class="pull-right">' + e.layer.properties.Name + '</a></li><li class="list-group-item popup-list"><b>Value:' + e.layer.options.value + '</a></li></ul>')
+          .openOn(map);
+
+      });
+      municipality.on('mouseout', function (e) {
+        // console.log('mouseout');
+        map.closePopup();
       });
       //map.fitBounds(province.getBounds());
       function AdminLayerPopup(e, addPopup, name) {
@@ -2720,6 +2810,7 @@
       }
 
       function riskStyle(number) {   //creating style
+        console.log(number, "risk style number");
 
         return {
           fillColor: riskgetColor(number),
@@ -2774,7 +2865,8 @@
           color: 'white',
           dashArray: '3',
           fillOpacity: 0.7,
-          fill: true
+          fill: true,
+          value: number
 
         };
 
@@ -2806,6 +2898,10 @@
             //var features = municipality._layers;
             var visual_html = '';
             if ($('#' + socioid).hasClass('nt_loaded')) {
+              // map.addLayer(vt_label_district);
+              if (map.hasLayer(label)) {
+                map.removeLayer(label);
+              }
               for (var i = 0; i < result.data.length; i++) {
 
                 var val_now = result.data[i][socioid1];
@@ -2848,6 +2944,19 @@
               $('#' + socioid).removeClass('nt_loaded');
 
             } else {
+
+              // map.removeLayer(vt_label_district);
+              // if (!map.hasLayer(label) && label != undefined) {
+              //   map.addLayer(label);
+              // }
+              if (map.hasLayer(label)) {
+                console.log("IF LABEL")
+              }
+              else {
+                console.log("ELSE label");
+                map.addLayer(label);
+              }
+
               for (var j = 0; j < result.data.length; j++) {
                 municipality.setFeatureStyle(result.data[j]["municipalityId"], resetStyle());
               }
@@ -2863,10 +2972,11 @@
           }
 
         });
+
         //new ajax
         var legend_html = '<div class="legend-wrapper">' +
           '<div class="buffer-header">' +
-          '<h4>' + socioid + '</h4>' +
+          '<h4>' + socioid.replace("_", " ") + '</h4>' +
           '<span><i class="ion ion-md-close"></i></span>' +
           '</div>' +
           '<ul>' +
@@ -2991,6 +3101,11 @@
             var visual_html = '';
 
             if ($('#' + id).hasClass('nt_loaded')) {
+
+              //map.addLayer(vt_label_district);
+              if (map.hasLayer(label)) {
+                map.removeLayer(label);
+              }
               //  ////console.log('nt');
               //district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i]['hdi'])));
 
@@ -3063,7 +3178,7 @@
               ////console.log(risk_id);
               var legend_html = '<div class="legend-wrapper">' +
                 '<div class="buffer-header">' +
-                '<h4>' + name + '</h4>' +
+                '<h4>' + name.replace("_", " ") + '</h4>' +
                 '<span><i class="ion ion-md-close"></i></span>' +
                 '</div>' +
                 '<ul>';
@@ -3111,6 +3226,17 @@
 
             } else {
 
+              // map.removeLayer(vt_label_district);
+              filterapplied = CheckFilterApplied();
+              if (map.hasLayer(label) || filterapplied == true) {
+                map.addLayer(label);
+                console.log("IF LABEL")
+              }
+              else {
+                console.log("ELSE label");
+                // map.addLayer(vt_label_district);
+                // map.removeLayer(label);
+              }
 
               for (var i = 0; i < result.results.length; i++) {
                 district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
@@ -3534,7 +3660,8 @@
           //map.addLayer(label);
 
         } else {
-          map.flyTo([28.410728397237914, 84.4024658203125], 8)
+          // map.flyTo([28.410728397237914, 84.4024658203125], 8);
+          map.fitBounds(province_bbox);
         }
         var id = $(this).attr("id");
         $('.legend-list').html('');
@@ -3556,7 +3683,8 @@
           //map.addLayer(label);
 
         } else {
-          map.flyTo([28.410728397237914, 84.4024658203125], 8)
+          // map.flyTo([28.410728397237914, 84.4024658203125], 8)
+          map.fitBounds(province_bbox);
         }
         var id = $(this).attr("data-score");
         var id_input = $(this).attr("id");
@@ -3614,7 +3742,7 @@
         if (filterapplied == true) {
           map.addLayer(federal_boundary);
           map.addLayer(Mask);
-          //map.addLayer(label);
+          map.addLayer(label);
 
         }
         // else{
@@ -3627,6 +3755,9 @@
         var center = eval($(this).attr('data-center'));
         var layername = $(this).attr('data-layername');
         var current_layer = $(this).attr('data-layername');
+
+
+
         // var Earthquake_hazard =$("#Map00").parent()[0].className;
         //console.log(layername);
         //remove previous layer on radio change
@@ -3746,8 +3877,10 @@
               format: 'image/png',
               pane: "wmsPane"
             }).addTo(map);
-
-
+            console.log(window[layername]);
+            var flood_bbox = GetCapabilitiesGeoserver(layername, 'https://geoserver.naxa.com.np/geoserver', 'Bipad');
+            // console.log(flood_bbox);
+            map.fitBounds(flood_bbox);
 
             $('.hazard_list').attr('hasLayer', true);
             $('.hazard_list').attr('data-currentLayer', layername);
@@ -3778,14 +3911,20 @@
             //  ////console.log(id);
             // if(hazard_one_click==0){
             if (id == "Naxa:sankhu_drone") {
-              map.flyTo(center, 18);
+              // map.flyTo(center, 18);
+              // var sankhu_bbox = GetCapabilitiesGeoserver(layername, 'https://apps.naxa.com.np/geoserver', 'Naxa');
+              // // console.log(flood_bbox);
+              // map.fitBounds(sankhu_bbox);
+
             }
             else if (id == "Naxa:bancharedanda") {
 
             }
             else {
-
-              map.flyTo(center, 11);
+              // var flood_bbox = GetCapabilitiesGeoserver(layername, 'https://geoserver.naxa.com.np/geoserver', 'Bipad');
+              // // console.log(flood_bbox);
+              // map.fitBounds(flood_bbox);
+              // map.flyTo(center, 11);
             }
             hazard_one_click = 1;
             // }
@@ -3875,11 +4014,11 @@
 
             });
 
-            window[layername].on('data:loaded', function () {
-              map.addLayer(window[layername]);
-             
-              $('.loader').css('display', 'none');
-              console.log("earthquake_tile");
+          window[layername].on('data:loaded', function () {
+            map.addLayer(window[layername]);
+
+            $('.loader').css('display', 'none');
+            console.log("earthquake_tile");
 
           })
 
@@ -3898,15 +4037,30 @@
             format: 'image/png',
             pane: "wmsPane"
           }).addTo(map);
+          window[layername].on('load', function () {
+            $('.loader').css('display', 'none');
+          });
           console.log(window[layername], "Layenamewindow");
           // map.addLayer(window[layername]); 
-          setTimeout(function(){
-            map.flyTo(center,18)
-            map.addLayer(window[layername]); 
-            $('.loader').css('display', 'none');
+          setTimeout(function () {
+            // map.flyTo(center, 18)
+            console.log(geo_url.search("/wms"), "WMSSSS");
+            var geo_url1 = geo_url;
+            if (geo_url.search("/wms") != -1) {
+              geo_url1 = geo_url.replace("/wms", "");
+            }
+
+            console.log(geo_url1);
+            var infra_bbox = GetCapabilitiesGeoserver(layername, geo_url1, id);
+            console.log(province_bbox);
+            map.fitBounds(infra_bbox);
+
+            map.addLayer(window[layername]);
+            // $('.loader').css('display', 'none');
 
             console.log('done');
-           }, 4000);
+          }, 4000);
+          console.log("")
           // map.addLayer(window[layername]);
           // $('.loader').css('display', 'none');
           // window[layername].on('load', function () {
@@ -3922,7 +4076,7 @@
 
 
         }
-       
+
 
       }
       //});
@@ -3941,7 +4095,7 @@
         var id = $(this).attr('data-workspace');
         var main_id = $(this).attr('id')
         var geo_url = $(this).attr('data-url');
-        console.log(main_id , "main id on click");
+        console.log(main_id, "main id on click");
         console.log(previousExposureClick);
 
 
@@ -3991,9 +4145,10 @@
             $('#' + parent_id).attr('data-currentLayer', layername);
             if (exposureOneClickCount != 0) {
               map.addLayer(window[layername]);
+
             }
             //console.log("ADD");
-            map.flyTo([28.410728397237914,84.4024658203125],8)
+            // map.flyTo([28.410728397237914, 84.4024658203125], 8)
           }
 
 
@@ -4003,16 +4158,20 @@
           if (haslayer) {
             $('#' + parent_id).attr('data-currentLayer', '');
             map.removeLayer(window[layername]);
-            map.flyTo([28.410728397237914, 84.4024658203125], 8)
+            map.fitBounds(province_bbox);
+            // map.flyTo([28.410728397237914, 84.4024658203125], 8)
           } else {
             $('#' + parent_id).attr('data-currentLayer', layername);
             console.log(layername);
             if (exposureOneClickCount != 0) {
               map.addLayer(window[layername]);
             }
+            console.log($(this).attr('id'));
             if ($(this).attr('id') == 'build_1') {
-              map.flyTo([28.410728397237914, 84.4024658203125], 8);
+              map.fitBounds(province_bbox);
+              // map.flyTo([28.410728397237914, 84.4024658203125], 8);
             } else {
+
               map.flyTo(center, 18);
             }
 
@@ -4033,7 +4192,10 @@
         var contentString = '<div class="box box-primary" style="width:400px;">';
         // '<a href="#" style="background-color:  #337ab7; float:right; display: inline-block;" id="route" onclick="details('+feature.properties.id+')" class="btn btn-primary btn-xs"><b>View Details</b></a>'+
         //'<h6 class="profile-username text-center"></h6>';
-        if (feature.properties['name'] != undefined) {
+        if (feature.properties['title'] != undefined) {
+          contentString += '<h6><b>' + feature.properties.title + '</b></h6>';
+        }
+        else if (feature.properties['name'] != undefined) {
           contentString += '<h6><b>' + feature.properties.name + '</b></h6>';
         }
 
@@ -4046,11 +4208,17 @@
 
 
 
-          if (data != 'name' && data != 'pk') {
+          if (data != 'title' || data != 'name' && data != 'pk') {
             contentString += '<li class="list-group-item popup-list">';
 
             contentString += '<b>' + data + ': </b> <a class="pull-right"> ' + feature.properties[data] + '</a></li>';
           }
+          // else if(data != 'name' && data != 'pk' ){
+          //   contentString += '<li class="list-group-item popup-list">';
+
+          //   contentString += '<b>' + data + ': </b> <a class="pull-right"> ' + feature.properties[data] + '</a></li>';
+
+          // }
 
           // '<li class="list-group-item"><b>House Head Name</b> <a class="pull-right">'+feature.properties.Head_of_the_Household
           // +'</a></li>'+
@@ -4239,7 +4407,7 @@
 
       function getLayersInsidePolygon(coords, visible_layers) {
         //////console.log("visible layers  ",coords);
-        $('#filtered_layer_list').html('');
+        $('#filtered_layer_list_container').html('');
 
         $('#filtered_header').html('');
 
@@ -4247,7 +4415,7 @@
         for (var i = 0; i < visible_layers.length; i++) {
           //var layer_icon = "";
           //  var filter3 = new L.Filter.Within('location', L.polygon([L.latLng(27.459539332717906,86.66015625000001),L.latLng(26.78484736105119,87.78076171875001),L.latLng(27.039556602163195,88.60473632812501)]), L.CRS.EPSG4326);
-          var filter3 = new L.Filter.Within('location', L.polygon([coords]), L.CRS.EPSG4326);
+          var filter3 = new L.Filter.Within('point', L.polygon([coords]), L.CRS.EPSG4326);
           //var filter4 = new L.Filter.Within('location', L.polygon([L.latLng(27.68307, 85.4635),L.latLng(27.7213, 85.4914),L.latLng(27.72418, 85.44831)]), L.CRS.EPSG4326);
           //filter3.toGml();
 
@@ -4262,7 +4430,7 @@
               typeNS: visible_layers[i]["workspace"],
               typeName: visible_layers[i]['layerName'],
               crs: L.CRS.EPSG4326,
-              geometryField: 'location',
+              geometryField: 'point',
               filter: filter3,//new L.Filter.BBox('ogr_geometry', map.getBounds(), L.CRS.EPSG4326),
               style: {
                 color: 'blue',
@@ -4319,8 +4487,8 @@
 
           ).addTo(map).on('load', function (feature, layer) {
             // //console.log(feature);
-            ////console.log(visible_layers);
-            ////console.log( visible_layers[visible_layers_count]['layerName']);
+            console.log(visible_layers);
+            console.log(visible_layers_count);
             //////console.log(feature.target._layers[0].feature.properties);
             var filterhtml =
               '<i class="ion ion-md-arrow-dropdown filtered-list-dropdown"></i><li data-toggle="collapse"  href="#filtered_layer_list' + visible_layers_count + '">' + visible_layers[visible_layers_count]["layerName"] + '  (' + visible_layers[visible_layers_count]["count"] + ')</li>' +
@@ -4380,7 +4548,8 @@
 
               //if(visible_layers[visible_layers_count]['layerName']==feature.target._layers[i].feature.id.split('.')[0]){
               //console.log('matched');
-              var list_item = "<li class='list-group-item'><a class = 'filtered_list_items' data='" + JSON.stringify(feature.target._layers[i].feature.properties) + "' data-name='" + visible_layers[visible_layers_count]['layerName'] + "' center='" + JSON.stringify(feature.target._layers[i].feature.geometry.coordinates) + "' href='#' target=''>" + feature.target._layers[i].feature.properties.name + "</a></li>";
+              //console.log(feature.target._layers[i].feature.properties.name);
+              var list_item = "<li class='list-group-item'><a class = 'filtered_list_items' data='" + JSON.stringify(feature.target._layers[i].feature.properties) + "' data-name='" + visible_layers[visible_layers_count]['layerName'] + "' center='" + JSON.stringify(feature.target._layers[i].feature.geometry.coordinates) + "' href='#' target=''>" + feature.target._layers[i].feature.properties.title + "</a></li>";
               //layer);
               ////console.log(visible_layers[visible_layers_count]);
               ////console.log('#filtered_layer_list'+visible_layers_count);
@@ -4413,7 +4582,15 @@
 
             //map.fitBounds(window[visible_layers[i]['layerName']+"_filteredLayers"].getBounds());
           });
-          map.removeLayer(window[visible_layers[i]['layerName']]);
+
+          if (map.hasLayer(window[layerName + '_markers'])) {
+            map.removeLayer(window[layerName + '_markers']);
+          }
+          else if (map.hasLayer(window["filter_cluster"])) {
+            map.removeLayer(window["filter_cluster"]);
+          }
+
+          // map.removeLayer(window[visible_layers[i]['layerName']]);
           $('#capacity-popup').hide(300);
           $('.CheckBox').prop('checked', false);
           $("." + visible_layers[i]['layerName'] + "_activeclass").removeClass("active");
@@ -4503,13 +4680,17 @@
 
                   map.removeLayer(window[visible_layers[i]['layerName'] + "_filteredLayers"]);
 
+
                 }
 
               }
-
+              visible_layers_count = 0;
               visible_layers = [];
               $('#filtered_layer_list').html('');
-              $('#filtered_layer_list_container').css('display', 'none');
+              $('.leftsidebarwrapper').css('display', 'none');
+              $('.leaflet-draw').css('left', '5px');
+
+
             }
 
 
@@ -4518,7 +4699,7 @@
         });
 
 
-        // $('.leaflet-draw').css('left','266px');
+        $('.leaflet-draw').css('left', '266px');
 
 
         //  ////console.log(e.layer.editing.latlngs[0][0]);
@@ -4574,7 +4755,6 @@
           if (map.hasLayer(window[layerName + "_filteredLayers"])) {
             map.removeLayer(window[layerName + "_filteredLayers"]);
           }
-
           if (map.hasLayer(window["filter_cluster"])) {
             map.removeLayer(window["filter_cluster"]);
           }
@@ -4700,7 +4880,8 @@
         var current_layer = $(this).attr('data-currentLayer');
         if (current_layer != "") { //child layer off from parent
           map.removeLayer(window[current_layer]);
-          map.flyTo([28.410728397237914, 84.4024658203125], 7);
+          // map.flyTo([28.410728397237914, 84.4024658203125], 7);
+          map.fitBounds(province_bbox);
           $('.legend-list').html(" ");
 
         }
@@ -4779,7 +4960,8 @@
         if (current_layer != "") { //child layer off from parent
           console.log("DOSDSD");
           map.removeLayer(window[current_layer]);
-          map.flyTo([28.410728397237914, 84.4024658203125], 7);
+          // map.flyTo([28.410728397237914, 84.4024658203125], 7);
+          map.fitBounds(province_bbox);
           $('.legend-list').html(" ");
 
         }
@@ -4822,19 +5004,9 @@
                   '<h5>' +
                   '<a class="collapsed updown" role="button" data-toggle="collapse" href="#landslide_col_' + i + '" aria-expanded="' + aria_expand + '" aria-controls="landslide_col_' + i + '">' + hazardlayer[l].title.replace(/_/g, " ") + "</a>" +
                   '<div class="icon-list">' +
-                  '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="' + hazardlayer[l].title + '"></span>' +
+                  '<span class="ion ion-md-information-circle" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="' + hazardlayer[l].about + '"></span>' +
                   '<a href="http://bipad.togglecorp.com"><span class="ion ion-md-albums"></span></a>' +
                   '<span class="ion ion-md-contrast"></span>' +
-                  '<span class="ion more-metalist">' +
-                  '<small class="ion ion-md-more">' +
-                  '</small>' +
-                  '<div class="more-list">' +
-                  '<span class="ion ion-md-cloud-download"></span>' +
-                  '<span class="ion ion-md-eye"></span>' +
-                  '<span class="ion ion-md-remove-circle-outline"></span>' +
-                  '</div>' +
-
-                  '</span>' +
                   '</div>' +
 
                   '</h5>' +
@@ -5230,8 +5402,9 @@
           map.addLayer(window[admin_layer]);
           map.removeLayer(eval('municipality'));
           labelcount = 0;
-          vt_label_district.addTo(map);
-
+          if (zoom > 8) {
+            vt_label_district.addTo(map);
+          }
         }
 
 
@@ -5588,6 +5761,7 @@
       federal_boundary = null;
       federal_maskboundary = null;
       Mask = null;
+      var label = null;
 
       $('#federal_boundary').on('click', '.federal', function () {
         $('.loader').css('display', 'block');
@@ -5674,7 +5848,7 @@
             fed_marker.addTo(label);
 
           },
-          pane: "polygonsPane"
+          pane: "baseLayerPane"
 
         });
         $.ajax({
@@ -5789,8 +5963,14 @@
 
 
           map.removeLayer(vt_label_province);
-          map.removeLayer(vt_label_district);
-          map.removeLayer(vt_label_municipality);
+
+          if (map.hasLayer(district) || map.hasLayer(municipality)) {
+            map.removeLayer(label);
+          }
+
+          //map.removeLayer(vt_label_district);
+          // map.removeLayer(label);
+          //map.removeLayer(vt_label_municipality);
 
 
           $('.loader').css('display', 'none');
@@ -5847,11 +6027,13 @@
           $('.admin-level').html("National");
           // if (map.hasLayer(Mask)) {
           console.log("EMPTY");
-          // map.removeLayer(Mask);
-          // map.removeLayer(label);
-          // map.removeLayer(federal_boundary);
-          removeAllLayers();
-          map.addLayer(vt_label_province);
+          if (map.hasLayer(Mask)) {
+            map.removeLayer(Mask);
+            map.removeLayer(label);
+            map.removeLayer(federal_boundary);
+          }
+          // removeAllLayers();
+          // map.addLayer(vt_label_province);
           map.setView([28.410728397237914, 84.4024658203125], 7);
           // map.removeLayer(Mask);
           // }
