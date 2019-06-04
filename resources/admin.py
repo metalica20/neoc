@@ -1,6 +1,8 @@
 from django.contrib.gis import (
     admin,
 )
+from jet.filters import RelatedFieldAjaxListFilter
+from reversion.admin import VersionAdmin
 
 from bipad.admin import GeoPolymorphicParentModelAdmin
 from .models import (
@@ -15,16 +17,39 @@ from .models import (
     Cultural,
 )
 from .permissions import get_queryset_for_user
+from federal.models import (
+    Ward
+)
+from inventory.models import Inventory
+
+
+class InventoryInline(admin.StackedInline):
+    model = Inventory
+    extra = 1
 
 
 @admin.register(Resource)
-class ResourceAdmin(GeoPolymorphicParentModelAdmin):
+class ResourceAdmin(VersionAdmin, GeoPolymorphicParentModelAdmin):
     exclude = ('ward',)
     base_model = Resource
     child_models = (Education, Health, Finance, Tourism,
                     Communication, Governance, Industry, Cultural)
-    list_filter = ('ward__municipality__district',)
-    search_fields = Resource.autocomplete_search_fields()
+    search_fields = ('ward__municipality__title', 'title')
+    list_display = ('id', 'title', 'ward')
+    list_select_related = (
+        'ward__municipality',
+    )
+    list_filter = (
+        ('ward__municipality__district', RelatedFieldAjaxListFilter),
+        ('ward__municipality', RelatedFieldAjaxListFilter),
+    )
+    inlines = (InventoryInline,)
+
+    def save_model(self, request, obj, form, change):
+        if obj.point:
+            ward = Ward.objects.filter(boundary__contains=obj.point).first()
+            obj.ward = ward
+        super(ResourceAdmin, self).save_model(request, obj, form, change)
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
@@ -72,6 +97,9 @@ class GovernanceAdmin(ResourceAdmin):
 class IndustryAdmin(ResourceAdmin):
     base_model = Industry
     show_in_index = True
+
+    class Meta:
+        verbose_name_plural = 'Industries'
 
 
 @admin.register(Cultural)

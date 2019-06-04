@@ -20,11 +20,27 @@ class Category(models.Model):
 
 
 class Document(TimeStampedModal):
+    MUNICIPALITY = 'municipality'
+    DISTRICT = 'district'
+    PROVINCE = 'province'
+    NATIONAL = 'national'
+
+    REGIONS = (
+        (MUNICIPALITY, 'Municipality'),
+        (DISTRICT, 'District'),
+        (PROVINCE, 'Province'),
+        (NATIONAL, 'National'),
+    )
     title = models.CharField(max_length=255, null=True, blank=True, default=None)
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
         null=True, blank=True, default=None
+    )
+    region = models.CharField(
+        max_length=25,
+        blank=True, null=True, default='national',
+        choices=REGIONS
     )
     province = models.ForeignKey(
         Province,

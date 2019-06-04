@@ -79,6 +79,7 @@ class Hazard(views.APIView):
 
     # queryset=FloodBasin.objects.select_related('FloodPeriod').all()
 
+<<<<<<< HEAD
 class Exposure(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargslf):
@@ -92,6 +93,8 @@ class Exposure(views.APIView):
 
 
 
+=======
+>>>>>>> 2c974129632fef35a8bc5ee562383817077e9b6b
 
 class HydroGeojsonViewSet(views.APIView):
     permission_classes=[]

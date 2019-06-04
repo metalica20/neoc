@@ -16,6 +16,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from mptt.admin import MPTTModelAdmin
 from mptt.forms import TreeNodeChoiceField
+from reversion.admin import VersionAdmin
+
 from incident.utils import get_followup_fields
 from federal.models import (
     District,
@@ -215,7 +217,7 @@ class AgricultureInline(admin.StackedInline):
 
 
 @admin.register(Loss)
-class LossAdmin(admin.ModelAdmin):
+class LossAdmin(VersionAdmin, admin.ModelAdmin):
     search_fields = Loss.autocomplete_search_fields()
     exclude = ('detail',)
     inlines = (
@@ -282,10 +284,6 @@ class PeopleAdmin(BaseLossAdmin):
     list_filter = (
         ('loss__incident', RelatedFieldAjaxListFilter),
     )
-
-    def incident(self, obj):
-        if hasattr(obj.loss, 'incident'):
-            return obj.loss.incident
 
 
 @admin.register(Family)

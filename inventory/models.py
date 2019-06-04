@@ -50,6 +50,7 @@ class Inventory(TimeStampedModal):
         related_name='inventories',
         on_delete=models.CASCADE
     )
+    description = models.TextField(null=True, blank=True, default=None)
 
     def __str__(self):
         return str(self.item)

@@ -12,6 +12,7 @@ from federal.models import (
 from django import forms
 from django_select2.forms import ModelSelect2Widget
 from bipad.admin import GeoModelAdmin
+from user.models import Profile
 
 
 class AddressForm(forms.ModelForm):
@@ -50,6 +51,16 @@ class AddressForm(forms.ModelForm):
 @admin.register(Document)
 class DocumentAdmin(VersionAdmin, GeoModelAdmin):
     form = AddressForm
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        user = Profile.objects.filter(user=request.user).first()
+        form.base_fields['region'].initial = user.region
+        form.base_fields['district'].initial = user.district
+        form.base_fields['municipality'].initial = user.municipality
+        form.base_fields['province'].initial = user.province
+
+        return form
 
 
 admin.site.register(Category)

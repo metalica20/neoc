@@ -1,4 +1,9 @@
 from django.contrib import admin
+from django import forms
+from django_select2.forms import ModelSelect2Widget
+from django.utils.html import format_html
+from django.urls import reverse
+from reversion.admin import VersionAdmin
 
 from .permissions import get_queryset_for_user
 from .models import (
@@ -6,13 +11,11 @@ from .models import (
     Item,
     Category,
 )
-from django import forms
 from federal.models import (
     District,
     Municipality,
     Ward
 )
-from django_select2.forms import ModelSelect2Widget
 from resources.models import Resource
 
 
@@ -82,9 +85,19 @@ class InventoryForm(forms.ModelForm):
 
 
 @admin.register(Inventory)
-class InventoryAdmin(admin.ModelAdmin):
-    list_display = ['item', 'resource', 'quantity']
+class InventoryAdmin(VersionAdmin):
+    search_fields = ('item__category__title', 'item__title',)
+    list_display = ('resource_link', 'item', 'quantity')
+    list_filter = ('item__category',)
+    list_display_links = 'resource_link',
     form = InventoryForm
+
+    def resource_link(self, obj):
+        return format_html('<a href="{}#/tab/inline_0/">{}</a>'.format(
+            reverse('admin:resources_resource_change', args=[obj.resource.id]),
+            obj.resource,
+        ))
+    resource_link.short_description = 'Resource'
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)

@@ -7,6 +7,7 @@ from resources.models import Resource
 from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from federal.models import Ward
+from organization.models import Organization
 
 
 class StatManager(models.Manager):
@@ -16,6 +17,70 @@ class StatManager(models.Manager):
                 'peoples__count',
                 filter=Q(peoples__status='dead')
             ), 0),
+            people_death_male_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='dead') & Q(peoples__gender='male')
+            ), 0),
+            people_death_female_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='dead') & Q(peoples__gender='female')
+            ), 0),
+            people_death_unknown_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='dead') & Q(peoples__gender__isnull=True)
+            ), 0),
+            people_death_disabled_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='dead') & Q(peoples__gender='disabled')
+            ), 0),
+            people_injured_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='injured')
+            ), 0),
+            people_injured_male_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='injured') & Q(peoples__gender='male')
+            ), 0),
+            people_injured_female_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='injured') & Q(peoples__gender='female')
+            ), 0),
+            people_injured_unknown_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='injured') & Q(peoples__gender__isnull=True)
+            ), 0),
+            people_injured_disabled_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='injured') & Q(peoples__gender='disabled')
+            ), 0),
+            people_missing_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='missing')
+            ), 0),
+            people_missing_male_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='missing') & Q(peoples__gender='male')
+            ), 0),
+            people_missing_female_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='missing') & Q(peoples__gender='female')
+            ), 0),
+            people_missing_unknown_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='missing') & Q(peoples__gender__isnull=True)
+            ), 0),
+            people_missing_disabled_count=Coalesce(DistinctSum(
+                'peoples__count',
+                filter=Q(peoples__status='missing') & Q(peoples__gender='disabled')
+            ), 0),
+            family_affected_count=Coalesce(DistinctSum(
+                'families__count',
+                filter=Q(families__status='affected')
+            ), 0),
+            family_relocated_count=Coalesce(DistinctSum(
+                'families__count',
+                filter=Q(families__status='relocated')
+            ), 0),
             livestock_destroyed_count=Coalesce(DistinctSum(
                 'livestocks__count',
                 filter=Q(livestocks__status='destroyed')
@@ -23,6 +88,30 @@ class StatManager(models.Manager):
             infrastructure_destroyed_count=Coalesce(DistinctSum(
                 'infrastructures__count',
                 filter=Q(infrastructures__status='destroyed')
+            ), 0),
+            infrastructure_affected_count=Coalesce(DistinctSum(
+                'infrastructures__count',
+                filter=Q(infrastructures__status='affected')
+            ), 0),
+            infrastructure_destroyed_house_count=Coalesce(DistinctSum(
+                'infrastructures__count',
+                filter=Q(infrastructures__status='destroyed')
+                & Q(infrastructures__type__title__icontains='house')
+            ), 0),
+            infrastructure_affected_house_count=Coalesce(DistinctSum(
+                'infrastructures__count',
+                filter=Q(infrastructures__status='affected')
+                & Q(infrastructures__type__title__icontains='house')
+            ), 0),
+            infrastructure_economic_loss=Coalesce(DistinctSum(
+                'infrastructures__economic_loss',
+                filter=Q(infrastructures__status='affected')
+                & Q(infrastructures__type__title__icontains='house')
+            ), 0),
+            agriculture_economic_loss=Coalesce(DistinctSum(
+                'agricultures__economic_loss',
+                filter=Q(infrastructures__status='affected')
+                & Q(infrastructures__type__title__icontains='house')
             ), 0),
         )
 
@@ -202,6 +291,10 @@ class InfrastructureType(MPTTModel):
     description = models.CharField(
         max_length=255,
         null=True, blank=True, default=None
+    )
+    owner_organizations = models.ManyToManyField(
+        Organization,
+        related_name='organizations'
     )
     parent = TreeForeignKey(
         'self',

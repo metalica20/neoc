@@ -101,7 +101,7 @@ def infrastructure_loss_notification(loss_infrastructure, status):
                                    infrastructure.beneficiary_owner, infrastructure.economic_loss)
                                )
     for stat in status:
-        sms_message.append('\nNo of Livestock %s is %d' % (stat['status'], stat['total']))
+        sms_message.append('\nNo of Infrastructure %s is %d' % (stat['status'], stat['total']))
     email_message = """\
                <h3> Family </h3>
                 <table style="width:700px; border: 1px solid black;text-align: center; border-collapse: collapse;">
