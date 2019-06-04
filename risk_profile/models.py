@@ -436,6 +436,7 @@ class HazardSubLayer(models.Model):
     hazard_layer = models.ForeignKey(HazardLayer, on_delete=models.CASCADE, related_name='HazardSubLayer')
     hazard_subLayer = models.CharField(max_length=50, null=True, blank=True)
     workspace = models.CharField(max_length=50, null=True, blank=True)
+    url=models.CharField(max_length=250,null=True, blank=True, default=None)
     layername=models.CharField(max_length=50, null=True, blank=True)
     center = models.CharField(max_length=100, null=True, blank=True)
 
@@ -465,6 +466,7 @@ class ExposureLayer(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True)
     about = models.CharField(max_length=500, null=True, blank=True)
     workspace = models.CharField(max_length=50, null=True, blank=True)
+    url=models.CharField(max_length=250,null=True, blank=True, default=None)
     layername=models.CharField(max_length=50, null=True, blank=True)
     center = models.CharField(max_length=100, null=True, blank=True)
 
