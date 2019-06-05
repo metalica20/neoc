@@ -283,12 +283,13 @@
                   <div class="card-body">
                     <ul class="list-content hazard-list">
 
-                        {% for hazard in hazardtype %}
+                      {% for hazard in hazardtype %}
                       <li class="active">
                         <div class="custom-control custom-radio">
                           <input type="radio" class="custom-control-input hazard_list" hasLayer="false"
                             data-currentLayer="" id="{{ hazard.title }}" name="checks" value="customEx">
-                          <label class="custom-control-label" for="{{ hazard.title }}" data-tab="flood-1">{{ hazard.title }} </label>
+                          <label class="custom-control-label" for="{{ hazard.title }}"
+                            data-tab="flood-1">{{ hazard.title }} </label>
                         </div>
                         <span class="humanitarian-icon-Flood"></span>
                       </li>
@@ -302,9 +303,9 @@
                         <span class="humanitarian-icon-Earthquake"></span>
                       </li> -->
 
-                    
 
-                        <!-- <li>
+
+                      <!-- <li>
 
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="Landslide" name="example1" value="customEx">
@@ -396,7 +397,7 @@
                             data-result="" name="checks" value="customEx">
                           <label class="custom-control-label" for="HDI" data-tab="hdi_vul">HDI </label>
                         </div>
-                        <span class="humanitarian-icon-Helipad"></span>
+                        <span class="humanitarian-icon-Infant"></span>
                       </li>
 
                       <li class="active">
@@ -405,7 +406,7 @@
                             data-result="" name="checks" value="customEx">
                           <label class="custom-control-label" for="REMOTE" data-tab="remote_vul">Remoteness </label>
                         </div>
-                        <span class="humanitarian-icon-Helipad"></span>
+                        <span class="humanitarian-icon-Monitor"></span>
                       </li>
 
                       <li class="active">
@@ -414,7 +415,7 @@
                             data-result="" name="checks" value="customEx">
                           <label class="custom-control-label" for="PCI" data-tab="pci_vul">Per Capita Income </label>
                         </div>
-                        <span class="humanitarian-icon-Helipad"></span>
+                        <span class="humanitarian-icon-warehouse"></span>
                       </li>
 
 
@@ -2398,7 +2399,7 @@
       vt_label_province = L.layerGroup();
       vt_label_district = L.layerGroup();
       vt_label_municipality = L.layerGroup();
-
+      var label = null;
       function label_Vector_Tiles(feature) {
         var name = "";
         var lat = feature.properties.Centroid_Y;
@@ -2571,8 +2572,18 @@
       district.on('mouseover', function (e) {
         // console.log("DISTRICT CLICKED TOOLTIP");
         // console.log(e.layer.properties.DistLabel);
-        var popup = L.popup()
-          .setLatLng(e.latlng)
+        L.popup({
+                  //closeOnClick: true,
+                  //closeButton: true,
+                  keepInView: true,
+                  autoPan: true,
+                  maxHeight: 200,
+                  minWidth: 250,
+                  pane: "topPane"
+                })
+        var popup = L.popup({
+          pane: "topPane"
+        }).setLatLng(e.latlng)
           .setContent('<ul class="list-group list-group-unbordered"><li class="list-group-item popup-list"><b></b> <a class="pull-right">' + e.layer.properties.DistLabel + '</a></li><li class="list-group-item popup-list"><b>Value:' + e.layer.options.value + '</a></li></ul>')
           .openOn(map);
 
@@ -2584,8 +2595,9 @@
       municipality.on('mouseover', function (e) {
         // console.log("Munic CLICKED TOOLTIP");
         // console.log(e.layer.properties);
-        var popup = L.popup()
-          .setLatLng(e.latlng)
+        var popup = L.popup({
+          pane: "topPane"
+        }).setLatLng(e.latlng)
           .setContent('<ul class="list-group list-group-unbordered"><li class="list-group-item popup-list"><b></b> <a class="pull-right">' + e.layer.properties.Name + '</a></li><li class="list-group-item popup-list"><b>Value:' + e.layer.options.value + '</a></li></ul>')
           .openOn(map);
 
@@ -2901,6 +2913,7 @@
             //var features = municipality._layers;
             var visual_html = '';
             if ($('#' + socioid).hasClass('nt_loaded')) {
+              console.log("SOCIO data Ko IF ko First")
               // map.addLayer(vt_label_district);
               if (map.hasLayer(label)) {
                 map.removeLayer(label);
@@ -2952,11 +2965,13 @@
               // if (!map.hasLayer(label) && label != undefined) {
               //   map.addLayer(label);
               // }
+              console.log("SOCIO data Ko ELSE ko First")
               if (map.hasLayer(label)) {
                 console.log("IF LABEL")
               }
-              else {
+              else if(label != null) {
                 console.log("ELSE label");
+                console.log(label);
                 map.addLayer(label);
               }
 
@@ -2964,6 +2979,7 @@
                 municipality.setFeatureStyle(result.data[j]["municipalityId"], resetStyle());
               }
               map.removeLayer(vt_label_municipality);
+              map.removeLayer(municipality);
               $('.legend-list').html('');
               $('#' + parent_id).attr('data-currentLayer', '');
               $('#' + parent_id).attr('data-result', '');
@@ -3104,7 +3120,7 @@
             var visual_html = '';
 
             if ($('#' + id).hasClass('nt_loaded')) {
-
+              console.log("HDI data Ko IF ko First")
               //map.addLayer(vt_label_district);
               if (map.hasLayer(label)) {
                 map.removeLayer(label);
@@ -3228,23 +3244,24 @@
               $('#' + id).removeClass('nt_loaded');
 
             } else {
-
+              console.log("HDI data Ko ELSE ko First")
               // map.removeLayer(vt_label_district);
               filterapplied = CheckFilterApplied();
               if (map.hasLayer(label) || filterapplied == true) {
                 map.addLayer(label);
                 console.log("IF LABEL")
               }
-              else {
+             else if(label != null) {
                 console.log("ELSE label");
-                // map.addLayer(vt_label_district);
-                // map.removeLayer(label);
+                console.log(label);
+                map.addLayer(label);
               }
 
               for (var i = 0; i < result.results.length; i++) {
                 district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
               }
               map.removeLayer(vt_label_district);
+              map.removeLayer(district);
               //district.setFeatureStyle(result.results[i]["districtId"], resetStyle());
               $('.legend-list').html('');
               $('#' + parent_id).attr('data-currentLayer', '');
@@ -3626,11 +3643,12 @@
           ////console.log(geo_url);
           var url = geo_url + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER=' + legend_content + '&';
         }
-
+          var legend_name1 =legend_content.replace(/_/g," ");
+          var legend_name=legend_name1.charAt(0).toUpperCase()+ legend_name1.slice(1);
         var legend_html = '<div class="legend-wrapper">' +
           '<div class="buffer-header">' +
-          // '<h4>'+legend_content.replace(/_/g," ")+'</h4>'+
-          '<h4>Flood Depth</h4>' +
+          '<h4>'+legend_name+'</h4>'+
+          // '<h4>Flood Depth</h4>' +
           '<span><i class="ion ion-md-close"></i></span>' +
           '</div>' +
           '<ul>' +
@@ -5764,7 +5782,7 @@
       federal_boundary = null;
       federal_maskboundary = null;
       Mask = null;
-      var label = null;
+
 
       $('#federal_boundary').on('click', '.federal', function () {
         $('.loader').css('display', 'block');
@@ -6077,9 +6095,9 @@
 
       //VARUN END
 
-//VARUN START 
+      //VARUN START 
 
-            // $(".custom-control-input hazard_list").on('click',function(){
+      // $(".custom-control-input hazard_list").on('click',function(){
 
       $('#mapid').on('click', function () {
         $('.filter-listing').hide();
