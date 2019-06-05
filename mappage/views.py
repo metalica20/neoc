@@ -160,10 +160,10 @@ class HazardResourceViewSet(views.APIView):
 class MapPage(TemplateView):
     template_name= 'map.html'
     def get(self, request, *args, **kwargs):
-        hazard= LayerTable.objects.filter(layer_cat='hazard')
-        vul= LayerTable.objects.filter(layer_cat='vulnerability')
-        resource= LayerTable.objects.filter(layer_cat='resource')
-        exposure= LayerTable.objects.filter(layer_cat='exposure')
+        # hazard= LayerTable.objects.filter(layer_cat='hazard')
+        # vul= LayerTable.objects.filter(layer_cat='vulnerability')
+        resource= LayerTable.objects.filter(public='True')
+        # exposure= LayerTable.objects.filter(layer_cat='exposure')
         hazard_type= HazardType.objects.all()
         exposure_type=ExposureType.objects.all()
 
@@ -172,4 +172,4 @@ class MapPage(TemplateView):
 
 
 
-        return render(request, 'map.html', {'hazards': hazard,'resources':resource,'vulnerabilities':vul,'exposures':exposure,'hazardtype':hazard_type,'exposuretype':exposure_type})
+        return render(request, 'map.html', {'resources':resource,'hazardtype':hazard_type,'exposuretype':exposure_type})

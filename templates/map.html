@@ -535,15 +535,15 @@
                       <li>
                         <div class="custom-control custom-checkbox">
                           <input type="checkbox"
-                            class="custom-control-input custom-main-input CheckBox {{resource.layer_tbl}}_parent"
-                            value="{{resource.layer_tbl}}" data-subcat="{{resource.type}}"
+                            class="custom-control-input custom-main-input CheckBox {{resource.layername}}_parent"
+                            value="{{resource.layername}}" data-subcat="{{resource.type}}"
                             data-icon={{resource.layer_icon}} data-filter="{{resource.sub_category}}"
-                            data-count="{{resource.count_obj}}" id="{{resource.layer_tbl}}_id"
+                            data-count="{{resource.count_obj}}" id="{{resource.layername}}_id"
                             data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}">
-                          <label class="custom-control-label" for="{{resource.layer_tbl}}_id"
-                            data-tab="capacity-popup">{{resource.layer_name}}</label>
+                          <label class="custom-control-label" for="{{resource.layername}}_id"
+                            data-tab="capacity-popup">{{resource.title}}</label>
                         </div>
-                        <span class="humanitarian-icon-{{resource.layer_tbl}}"></span>
+                        <span class="humanitarian-icon-{{resource.layername}}"></span>
                       </li>
                       {% endfor  %}
                       {% comment %} <li class="check-list">
@@ -4271,7 +4271,7 @@
         //   ////console.log(data);
         var resources_loadCount = 1;
         for (var i = 0; i < data.results.length; i++) {
-          var url = base_url + "/risk_profile/Resources/" + data.results[i]['layerTbl'];
+          var url = base_url + "/risk_profile/Resources/" + data.results[i]['layername'];
           layer_icon = data.results[i]['layerIcon']
           type1 = data.results[i]['type'];
           var sub_array = data.results[i]['type'];
@@ -4309,7 +4309,7 @@
 
               var dataList = this.data1;
               ////console.log(dataList['layerTbl']);
-              var layername = this.data1['layerTbl'];
+              var layername = this.data1['layername'];
 
               //creating cluster names
               window[layername + '_markers'] = L.markerClusterGroup({
