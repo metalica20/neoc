@@ -34,7 +34,7 @@ class Testw(models.Model):
 
 #new model as in sheets
 
-class SocioEconomicGapanapa(models.Model):
+class MunicipalityLevelVulnerability(models.Model):
     slug_id=models.CharField(max_length=500,null=True, blank=True, default=None)
     province_id=models.CharField(max_length=500,null=True, blank=True, default=None)
     district_id=models.CharField(max_length=500,null=True, blank=True, default=None)
@@ -123,7 +123,7 @@ class Health(models.Model):
         return self.name
 
 
-class Risk(models.Model):
+class DistrictLevelVulnerability(models.Model):
     district_id=models.CharField(max_length=550,null=True, blank=True, default=None)
     province_id=models.CharField(max_length=550,null=True, blank=True, default=None)
     district=models.CharField(max_length=550,null=True, blank=True, default=None)
@@ -172,26 +172,26 @@ class LayerTable(models.Model):
 
 )
 
-    layer_name=models.CharField(max_length=250,null=True, blank=True, default=None)
-    layer_tbl=models.CharField(max_length=250,null=True, blank=True, default=None)
+    title=models.CharField(max_length=250,null=True, blank=True, default=None)
+    layername=models.CharField(max_length=250,null=True, blank=True, default=None)
     layer_icon=models.CharField(max_length=250,null=True, blank=True, default=None)
-    layer_cat=models.CharField(max_length=250,choices=Layercat,null=True, blank=True, default=None)
+    # layer_cat=models.CharField(max_length=250,choices=Layercat,null=True, blank=True, default=None)
     isGeoserver=models.BooleanField(null=True, blank=True, default=True)
     geoserver_url=models.CharField(max_length=250,null=True, blank=True, default=None)
     geoserver_workspace=models.CharField(max_length=250,null=True, blank=True, default=None)
     public=models.BooleanField(null=True, blank=True, default=True)
     visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
-    sub_category=models.CharField(max_length=500,null=True, blank=True, default=None)
-    upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
+    filter_options=models.CharField(max_length=500,null=True, blank=True, default=None)
+    # upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
 
 
     def __str__(self):
-        return self.layer_name
+        return self.title
 
     def list_string(self):
         try:
-            aa=  self.sub_category.split(',')
+            aa=  self.filter_options.split(',')
         except:
             aa=[]
         return aa
@@ -199,7 +199,7 @@ class LayerTable(models.Model):
         # layer_tbl = get_object_or_404(obj.layer_tbl)
         try:
             # print('hello')
-            return apps.get_model('resources', self.layer_tbl).objects.all().count()
+            return apps.get_model('resources', self.layername).objects.all().count()
 
             # return  model_name.objects.all().count()
             # return getattr(models, obj.layer_tbl).objects.all()
@@ -211,13 +211,13 @@ class LayerTable(models.Model):
         # layer_tbl = get_object_or_404(obj.layer_tbl)
         try:
             # print('hello')
-            return apps.get_model('resources', self.layer_tbl).objects.values('type').distinct()
+            return apps.get_model('resources', self.layername).objects.values('type').distinct()
 
             # return  model_name.objects.all().count()
             # return getattr(models, obj.layer_tbl).objects.all()
         except Exception as e:
             print('error',e)
-            return apps.get_model('resources', self.layer_tbl).objects.none()
+            return apps.get_model('resources', self.layername).objects.none()
 
 
 
@@ -417,9 +417,17 @@ def validate_file_extension(value):
     if not value.name.endswith('.geojson'):
         raise ValidationError('Error message')
 
+icon = (
+    ('hazard', 'Hazard'),
+    ('vulnerability', 'Vulnerability'),
+    ('resource', 'Capacity & Resources'),
+    ('exposure', 'Exposure'),
+    )
+
 class HazardType(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True)
     about = models.CharField(max_length=500, null=True, blank=True)
+    hazard_icon=models.CharField(max_length=250,choices=icon,null=True, blank=True, default=None)
 
     def __str__(self):
         return self.title
@@ -434,14 +442,14 @@ class HazardLayer(models.Model):
 
 class HazardSubLayer(models.Model):
     hazard_layer = models.ForeignKey(HazardLayer, on_delete=models.CASCADE, related_name='HazardSubLayer')
-    hazard_subLayer = models.CharField(max_length=50, null=True, blank=True)
-    workspace = models.CharField(max_length=50, null=True, blank=True)
-    url=models.CharField(max_length=250,null=True, blank=True, default=None)
+    title = models.CharField(max_length=50, null=True, blank=True)
+    geoserver_workspace = models.CharField(max_length=50, null=True, blank=True)
+    geoserver_url=models.CharField(max_length=250,null=True, blank=True, default=None)
     layername=models.CharField(max_length=50, null=True, blank=True)
-    center = models.CharField(max_length=100, null=True, blank=True)
+    # center = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return "{}-{}".format(self.hazard_layer,self.hazard_subLayer)
+        return "{}-{}".format(self.hazard_layer,self.title)
 
 # class HazardSubLayerDetail(models.Model):
 #     hazard_subLayer = models.ForeignKey(HazardSubLayer, on_delete=models.CASCADE,related_name='HazardSubLayerDetail')
@@ -464,11 +472,12 @@ class ExposureType(models.Model):
 class ExposureLayer(models.Model):
     exposure_type = models.ForeignKey(ExposureType, on_delete=models.CASCADE, related_name='ExposureLayer', null=True, blank=True)
     title = models.CharField(max_length=50, null=True, blank=True)
-    about = models.CharField(max_length=500, null=True, blank=True)
-    workspace = models.CharField(max_length=50, null=True, blank=True)
-    url=models.CharField(max_length=250,null=True, blank=True, default=None)
+    geoserver_workspace = models.CharField(max_length=50, null=True, blank=True)
+    geoserver_url=models.CharField(max_length=250,null=True, blank=True, default=None)
+    is_geoserver=models.BooleanField(null=True, blank=True, default=True)
     layername=models.CharField(max_length=50, null=True, blank=True)
-    center = models.CharField(max_length=100, null=True, blank=True)
+    about = models.CharField(max_length=500, null=True, blank=True)
+
 
         
     def __str__(self):

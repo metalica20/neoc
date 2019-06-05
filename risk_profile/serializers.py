@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,HazardLayer,HazardSubLayer,ExposureLayer,ExposureType
+from .models import Hospital,School,LayerTable,MunicipalityLevelVulnerability,DistrictLevelVulnerability,HazardType,HazardLayer,HazardSubLayer,ExposureLayer,ExposureType
 from incident.models import Incident
 from resources.models import Resource
 from hazard.models import Hazard, HazardResources
@@ -37,7 +37,7 @@ class HazardtypeSerializer(serializers.ModelSerializer):
     HazardLayer= HazardlayerSerializer(many=True, read_only=True)
     class Meta:
         model=HazardType
-        fields = ('id', 'title', 'about', 'HazardLayer')
+        fields = ('id', 'title', 'about','hazard_icon','HazardLayer')
 
 
 class ExposurelayerSerializer(serializers.ModelSerializer):
@@ -60,7 +60,7 @@ class ResourceSerializer(serializers.ModelSerializer):
 
 class SociocookSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SocioEconomicGapanapa
+        model = MunicipalityLevelVulnerability
         fields= '__all__'
 
 
@@ -72,7 +72,7 @@ class IncidentSerializer(serializers.ModelSerializer):
 
 class RiskSerializer(serializers.ModelSerializer):
     class Meta:
-        model= Risk
+        model= DistrictLevelVulnerability
         fields = ('__all__')
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -83,7 +83,7 @@ class SchoolSerializer(serializers.ModelSerializer):
 class LayerTableSerializer(serializers.ModelSerializer):
     class Meta:
         model=LayerTable
-        fields = ('layer_name', 'layer_tbl', 'layer_tbl_count','type','layer_icon','layer_cat','isGeoserver','geoserver_url','geoserver_workspace','public','visibility_level','layer_type','sub_category','upload_type')
+        fields = ('title','layername', 'layer_tbl_count','type','layer_icon','isGeoserver','geoserver_url','geoserver_workspace','public','visibility_level','layer_type','filter_options')
 
     layer_tbl_count = serializers.SerializerMethodField('get_layer_table_count')
     type = serializers.SerializerMethodField()
@@ -91,13 +91,13 @@ class LayerTableSerializer(serializers.ModelSerializer):
     def get_layer_table_count(self, obj):
         try:
             # print('hello')
-            return getattr(resources.models, obj.layer_tbl).objects.all().count()
+            return getattr(resources.models, obj.layername).objects.all().count()
         except Exception as e:
             print('error',e)
             return 0
     def get_type(self,obj):
         try:
-            return getattr(resources.models, obj.layer_tbl).objects.values('type').distinct()
+            return getattr(resources.models, obj.layername).objects.values('type').distinct()
         except Exception as e:
             print('error',e)
             return 0
