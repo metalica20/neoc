@@ -180,8 +180,8 @@ class LayerTable(models.Model):
     geoserver_url=models.CharField(max_length=250,null=True, blank=True, default=None)
     geoserver_workspace=models.CharField(max_length=250,null=True, blank=True, default=None)
     public=models.BooleanField(null=True, blank=True, default=True)
-    visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
-    layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
+    # visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
+    # layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
     filter_options=models.CharField(max_length=500,null=True, blank=True, default=None)
     # upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
 
@@ -424,6 +424,13 @@ icon = (
     ('exposure', 'Exposure'),
     )
 
+Visibility = (
+    ('national', 'National'),
+    ('local', 'Local Government'),
+
+)
+
+
 class HazardType(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True)
     about = models.CharField(max_length=500, null=True, blank=True)
@@ -446,6 +453,8 @@ class HazardSubLayer(models.Model):
     geoserver_workspace = models.CharField(max_length=50, null=True, blank=True)
     geoserver_url=models.CharField(max_length=250,null=True, blank=True, default=None)
     layername=models.CharField(max_length=50, null=True, blank=True)
+    public=models.BooleanField(null=True, blank=True, default=True)
+    # visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     # center = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -476,6 +485,8 @@ class ExposureLayer(models.Model):
     geoserver_url=models.CharField(max_length=250,null=True, blank=True, default=None)
     is_geoserver=models.BooleanField(null=True, blank=True, default=True)
     layername=models.CharField(max_length=50, null=True, blank=True)
+    public=models.BooleanField(null=True, blank=True, default=True)
+    # visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     about = models.CharField(max_length=500, null=True, blank=True)
 
 
