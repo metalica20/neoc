@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,LayerTable,SocioEconomicGapanapa,Risk,HazardType,Hydropower,ExposureType
+from .models import Hospital,School,LayerTable,MunicipalityLevelVulnerability,DistrictLevelVulnerability,HazardType,Hydropower,ExposureType
 from incident.models import Incident
 from resources.models import Resource,Education,Health
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer,ExposuretypeSerializer
@@ -28,7 +28,7 @@ class SociocookViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
         a=self.kwargs['field']
-        queryset=SocioEconomicGapanapa.objects.filter(name=a)
+        queryset=MunicipalityLevelVulnerability.objects.filter(name=a)
         serializer=SociocookSerializer(queryset,many=True)
         return Response(serializer.data)
 
@@ -213,7 +213,7 @@ class RiskApiView(views.APIView):
     def get(self,request,*args,**kwargs):
         a=self.kwargs['field']
         print(a);
-        risk = Risk.objects.all().order_by('-'+a)
+        risk = DistrictLevelVulnerability.objects.all().order_by('-'+a)
         serializer = RiskSerializer(risk ,many=True)
         sum = risk.aggregate(Sum(a))[a+'__sum']
         max = risk.aggregate(Max(a))[a+'__max']
@@ -229,9 +229,9 @@ class NewtestfileViewSet(views.APIView):
         a=self.kwargs['field']
 
         # print(type(obj.a))
-        jsonc=SocioEconomicGapanapa.objects.values(a,'name','municipality_id').order_by('-'+a)
-        avg=SocioEconomicGapanapa.objects.aggregate(Avg(a))
-        summ=SocioEconomicGapanapa.objects.aggregate(Max(a))
+        jsonc=MunicipalityLevelVulnerability.objects.values(a,'name','municipality_id').order_by('-'+a)
+        avg=MunicipalityLevelVulnerability.objects.aggregate(Avg(a))
+        summ=MunicipalityLevelVulnerability.objects.aggregate(Max(a))
         field_avg=a+"__avg"
         field_sum=a+"__max"
         listj={}
