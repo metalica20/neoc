@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import LayerTable,Health,MunicipalityLevelVulnerability,DistrictLevelVulnerability,Hydropower,HazardType,HazardLayer,HazardSubLayer,ExposureType,ExposureLayer
+from .models import CapacityResources,Health,MunicipalityLevelVulnerability,DistrictLevelVulnerability,Hydropower,HazardType,HazardLayer,HazardSubLayer,ExposureType,ExposureLayer
 # Register your models here.
 admin.site.register(Hydropower)
 admin.site.register(HazardType)
-admin.site.register(LayerTable)
+admin.site.register(CapacityResources)
 admin.site.register(HazardLayer)
 admin.site.register(HazardSubLayer)
 # admin.site.register(HazardSubLayerDetail)

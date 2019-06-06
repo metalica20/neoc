@@ -1,5 +1,5 @@
 from rest_framework import viewsets,views
-from .models import Hospital,School,LayerTable,MunicipalityLevelVulnerability,DistrictLevelVulnerability,HazardType,Hydropower,ExposureType
+from .models import Hospital,School,CapacityResources,MunicipalityLevelVulnerability,DistrictLevelVulnerability,HazardType,Hydropower,ExposureType
 from incident.models import Incident
 from resources.models import Resource,Education,Health
 from .serializers import HospitalSerializer,SchoolSerializer,LayerTableSerializer,IncidentSerializer,SociocookSerializer,RiskSerializer,HazardtypeSerializer,ExposuretypeSerializer
@@ -128,7 +128,7 @@ class HydroGeojsonViewSet(views.APIView):
 class LayerViewset(viewsets.ModelViewSet):
     permission_classes=[]
     serializer_class=LayerTableSerializer
-    queryset=LayerTable.objects.all()
+    queryset=CapacityResources.objects.all()
 
 
 # class BankGeojsonViewSet(views.APIView):
@@ -198,7 +198,7 @@ def Dashboard(request):
 def count_update(modelname):
 
     hospital_count = Hospital.objects.all().count()
-    LayerTable.objects.get(layer_tbl='Hospital').update(tbl_layer_count=hospital_count)
+    CapacityResources.objects.get(layer_tbl='Hospital').update(tbl_layer_count=hospital_count)
 
 
 

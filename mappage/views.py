@@ -18,7 +18,7 @@ import io
 from rest_framework.parsers import JSONParser
 from django.contrib.gis.measure import D
 from django.views.generic import TemplateView
-from risk_profile.models import LayerTable
+from risk_profile.models import CapacityResources
 from incident.models import Incident
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -162,7 +162,7 @@ class MapPage(TemplateView):
     def get(self, request, *args, **kwargs):
         # hazard= LayerTable.objects.filter(layer_cat='hazard')
         # vul= LayerTable.objects.filter(layer_cat='vulnerability')
-        resource= LayerTable.objects.filter(public='True')
+        resource= CapacityResources.objects.filter(public='True')
         # exposure= LayerTable.objects.filter(layer_cat='exposure')
         hazard_type= HazardType.objects.all()
         exposure_type=ExposureType.objects.all()
