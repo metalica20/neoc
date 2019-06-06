@@ -1954,7 +1954,7 @@ button {
   span.average-text {
   position: absolute;
   /* top: 50%; */
-  bottom: 84%;
+  bottom: 77%;
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -2640,5 +2640,8 @@ body {
 
 .leftSidebar {
   top: 70px !important;
+}
+.average-text{
+  /* top: 280px; */
 }
 /*# sourceMappingURL=style.css.map */

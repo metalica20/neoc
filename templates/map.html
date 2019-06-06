@@ -5012,6 +5012,7 @@
                 '<div id="accordion">';
               var i = 0;
               var hazardlayer = response[k].HazardLayer;
+              console.log(hazardlayer);
               // $.each( response.data, function( key, value ) {
               for (var l = 0; l < hazardlayer.length; l++) {
                 var aria_expand = 'false';
@@ -5052,8 +5053,8 @@
                   // ////console.log(dataaa[key].center);
                   hazard_pop_html += '<li>' +
                     '<div class="custom-control custom-radio">' +
-                    '  <input type="radio" class="custom-control-input hazard_geo" id="' + hazardsublayer[m].hazardSubLayer + i + j + '" data-layername="' + hazardsublayer[m].layername + '" data-workspace="' + hazardsublayer[m].workspace + '" data-center="' + hazardsublayer[m].center + '" name="year17" value="customEx">' +
-                    '<label class="custom-control-label" for="' + hazardsublayer[m].hazardSubLayer + i + j + '">' + hazardsublayer[m].hazardSubLayer + '</label>' +
+                    '  <input type="radio" class="custom-control-input hazard_geo" id="' + hazardsublayer[m].layername + i + j + '" data-layername="' + hazardsublayer[m].layername + '" data-workspace="' + hazardsublayer[m].workspace + '" data-center="' + hazardsublayer[m].center + '" name="year17" value="customEx">' +
+                    '<label class="custom-control-label" for="' + hazardsublayer[m].layername + i + j + '">' + hazardsublayer[m].layername + '</label>' +
                     '</div>' +
                     '</li>';
                   j++;
