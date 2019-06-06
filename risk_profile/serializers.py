@@ -83,7 +83,7 @@ class SchoolSerializer(serializers.ModelSerializer):
 class LayerTableSerializer(serializers.ModelSerializer):
     class Meta:
         model=LayerTable
-        fields = ('title','layername', 'layer_tbl_count','type','layer_icon','isGeoserver','geoserver_url','geoserver_workspace','public','visibility_level','layer_type','filter_options')
+        fields = ('title','layername', 'layer_tbl_count','type','layer_icon','isGeoserver','geoserver_url','geoserver_workspace','public','filter_options')
 
     layer_tbl_count = serializers.SerializerMethodField('get_layer_table_count')
     type = serializers.SerializerMethodField()
