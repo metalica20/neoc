@@ -537,7 +537,7 @@
                           <input type="checkbox"
                             class="custom-control-input custom-main-input CheckBox {{resource.layername}}_parent"
                             value="{{resource.layername}}" data-subcat="{{resource.type}}"
-                            data-icon={{resource.layer_icon}} data-filter="{{resource.sub_category}}"
+                            data-icon={{resource.layer_icon}} data-filter="{{resource.filter_options}}"
                             data-count="{{resource.count_obj}}" id="{{resource.layername}}_id"
                             data-url="{{resource.geoserver_url}}" data-workspace="{{resource.geoserver_workspace}}">
                           <label class="custom-control-label" for="{{resource.layername}}_id"
@@ -2573,14 +2573,14 @@
         // console.log("DISTRICT CLICKED TOOLTIP");
         // console.log(e.layer.properties.DistLabel);
         L.popup({
-                  //closeOnClick: true,
-                  //closeButton: true,
-                  keepInView: true,
-                  autoPan: true,
-                  maxHeight: 200,
-                  minWidth: 250,
-                  pane: "topPane"
-                })
+          //closeOnClick: true,
+          //closeButton: true,
+          keepInView: true,
+          autoPan: true,
+          maxHeight: 200,
+          minWidth: 250,
+          pane: "topPane"
+        })
         var popup = L.popup({
           pane: "topPane"
         }).setLatLng(e.latlng)
@@ -2969,7 +2969,7 @@
               if (map.hasLayer(label)) {
                 console.log("IF LABEL")
               }
-              else if(label != null) {
+              else if (label != null) {
                 console.log("ELSE label");
                 console.log(label);
                 map.addLayer(label);
@@ -3251,7 +3251,7 @@
                 map.addLayer(label);
                 console.log("IF LABEL")
               }
-             else if(label != null) {
+              else if (label != null) {
                 console.log("ELSE label");
                 console.log(label);
                 map.addLayer(label);
@@ -3323,15 +3323,16 @@
 
 
       function generateSubcategorySwitch(data, total_sum, layerName, filter_resources, layer_icon, level) {
-
+        console.log("VARIN");
         filter_arr = filter_resources.split(",");
         //  ////console.log(filter_arr);
         var html = '<h4>Filter</h4>';
         html += '<div class="filter-list">';
         html += '<ul>';
+        console.log(filter_arr);
         for (var i = 0; i < filter_arr.length; i++) {
           if (filter_arr[i].replace(/\s/g, "_") == 'number_of_Beds') {
-
+            console.log("BEDs");
             html += '<div id="slider' + i + '" class="slider filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"></div>'
             // html+='<div class="filter-list">'+
             //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
@@ -3384,6 +3385,7 @@
         // ////console.log(data);
         $('.progress-bar').css('background-color', '#1672c6');
         if (level == 'both') {
+          console.log("SWITCH SUB 1 IF");
           generateSubcategoryChart(data, total_sum, layerName, filter_resources, layer_icon, level);
           generateSubcategorySwitch(data, total_sum, layerName, filter_resources, layer_icon, level);
 
@@ -3393,6 +3395,8 @@
 
         }
         else {
+          console.log("SWITCH SUB 2 IF");
+
           generateSubcategorySwitch(data, total_sum, layerName, filter_resources, layer_icon, level);
         }
 
@@ -3643,11 +3647,11 @@
           ////console.log(geo_url);
           var url = geo_url + '?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=10&&crossOrigin=Anonymous&LAYER=' + legend_content + '&';
         }
-          var legend_name1 =legend_content.replace(/_/g," ");
-          var legend_name=legend_name1.charAt(0).toUpperCase()+ legend_name1.slice(1);
+        var legend_name1 = legend_content.replace(/_/g, " ");
+        var legend_name = legend_name1.charAt(0).toUpperCase() + legend_name1.slice(1);
         var legend_html = '<div class="legend-wrapper">' +
           '<div class="buffer-header">' +
-          '<h4>'+legend_name+'</h4>'+
+          '<h4>' + legend_name + '</h4>' +
           // '<h4>Flood Depth</h4>' +
           '<span><i class="ion ion-md-close"></i></span>' +
           '</div>' +
@@ -3867,7 +3871,10 @@
 
               }
               else {
-                map.flyTo(center, 7);
+                // map.flyTo(center, 7);
+                // var earth_bbox = GetCapabilitiesGeoserver(layername, 'https://maps.openquake.org/tiles/ghm/wmts/seismic-hazard-pga-g/webmercator/{z}/{x}/{y}.png', id);
+                // console.log(province_bbox);
+                map.fitBounds(province_bbox);
               }
 
 
@@ -3898,14 +3905,14 @@
               format: 'image/png',
               pane: "wmsPane"
             }).addTo(map);
-            console.log(window[layername]);
+            // console.log(window[layername]);
             var flood_bbox = GetCapabilitiesGeoserver(layername, 'https://geoserver.naxa.com.np/geoserver', 'Bipad');
             // console.log(flood_bbox);
             map.fitBounds(flood_bbox);
 
             $('.hazard_list').attr('hasLayer', true);
             $('.hazard_list').attr('data-currentLayer', layername);
-            console.log(previous_hazard_layer, "previouslayer");
+            // console.log(previous_hazard_layer, "previouslayer");
             if (previous_hazard_layer != null && previous_hazard_layer != window[layername]) {
               //////console.log("entered previous");
               // $('.hazard_list').attr('hasLayer',false);
@@ -3974,7 +3981,7 @@
       //$('#exposure_popup').one('click', '.exposure_geo', function () {
 
       function exposureOneClick(layername, parent_id, center, id, geo_url, main_id) {
-        console.log("ONE");
+        // console.log("ONE");
 
         $('.loader').css('display', 'block');
         filterapplied = CheckFilterApplied();
@@ -3990,7 +3997,7 @@
         }
         //var layername = $(this).attr('data-layername');
         //var layername = $(this).attr('data-layername');
-        console.log(main_id, "main id");
+        // console.log(main_id, "main id");
 
         if (main_id == 'hydro_1') {
           //  ////console.log('entered')
@@ -4073,7 +4080,7 @@
 
             console.log(geo_url1);
             var infra_bbox = GetCapabilitiesGeoserver(layername, geo_url1, id);
-            console.log(province_bbox);
+            // console.log(province_bbox);
             map.fitBounds(infra_bbox);
 
             map.addLayer(window[layername]);
@@ -4262,7 +4269,7 @@
       }
 
 
-
+      var sub_array = null;
       //start of resource layer
       $.get(base_url + '/risk_profile/Layer', function (data) {
 
@@ -4274,16 +4281,18 @@
           var url = base_url + "/risk_profile/Resources/" + data.results[i]['layername'];
           layer_icon = data.results[i]['layerIcon']
           type1 = data.results[i]['type'];
-          var sub_array = data.results[i]['type'];
+          sub_array = data.results[i]['type'];
+          // console.log(data.results[i]['type'], "sub-array");
 
-          //console.log(sub_array);
+          //console.log(sub_array.length, "MATHI");
 
-          for (let i = 0; i < sub_array.length; i++) {
-            window[sub_array[i]['type'].replace(' ', '_')] = L.layerGroup();
-            window[sub_array[i]['type'].replace(' ', '_') + '_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane', });
+          for (var j = 0; j < sub_array.length; j++) {
+            // console.log(sub_array[j]['type'], "type");
+            window[sub_array[j]['type'].replace(' ', '_')] = L.layerGroup();
+            window[sub_array[j]['type'].replace(' ', '_') + '_markers'] = L.markerClusterGroup({ disableClusteringAtZoom: 12, clusterPane: 'pointsPane', });
             //  console.log(sub_array[i]['type'].replace(' ','_'))
           }
-
+          console.log(data.results[i], "alladata");
           $.ajax({
             url: url,
             //data:{"layer_icon":layer_icon, "data":data,"i":i},
@@ -4310,7 +4319,7 @@
               var dataList = this.data1;
               ////console.log(dataList['layerTbl']);
               var layername = this.data1['layername'];
-
+              // console.log(type);
               //creating cluster names
               window[layername + '_markers'] = L.markerClusterGroup({
                 disableClusteringAtZoom: 12,
@@ -4366,12 +4375,13 @@
 
 
                     window[layername + '_markers'].addLayer(marker);
+                    // console.log(sub_array[0], "tysubarrayyyyypeee")
+                    for (var k = 0; k < type.length; k++) {
 
-                    for (let i = 0; i < type.length; i++) {
-                      //////console.log(sub_array[i]['type']);
 
-                      if (type[i]['type'] == feature.properties.type) {
-                        window[sub_array[i]['type'].replace(' ', '_') + '_markers'].addLayer(marker);
+                      if (type[k].type == feature.properties.type) {
+                        // window[sub_array[i]['type'].replace(' ', '_') + '_markers'].addLayer(marker);
+                        window[type[k].type.replace(' ', '_') + '_markers'].addLayer(marker);
 
 
                       }
@@ -4758,6 +4768,7 @@
         //console.log(subcat_array1);
         subcat_array = [];
         for (var i = 0; i < subcat_array1.length; i++) {
+          console.log("LOOP")
           subcat_array.push(subcat_array1[i]['type']);
 
         }
@@ -5053,8 +5064,8 @@
                   // ////console.log(dataaa[key].center);
                   hazard_pop_html += '<li>' +
                     '<div class="custom-control custom-radio">' +
-                    '  <input type="radio" class="custom-control-input hazard_geo" id="' + hazardsublayer[m].layername + i + j + '" data-layername="' + hazardsublayer[m].layername + '" data-workspace="' + hazardsublayer[m].workspace + '" data-center="' + hazardsublayer[m].center + '" name="year17" value="customEx">' +
-                    '<label class="custom-control-label" for="' + hazardsublayer[m].layername + i + j + '">' + hazardsublayer[m].layername + '</label>' +
+                    '  <input type="radio" class="custom-control-input hazard_geo" id="' + hazardsublayer[m].title + i + j + '" data-layername="' + hazardsublayer[m].layername + '" data-workspace="' + hazardsublayer[m].geoserverWorkspace + '" data-center="' + hazardsublayer[m].center + '" name="year17" value="customEx">' +
+                    '<label class="custom-control-label" for="' + hazardsublayer[m].title + i + j + '">' + hazardsublayer[m].title + '</label>' +
                     '</div>' +
                     '</li>';
                   j++;
@@ -5339,13 +5350,16 @@
           checkedList.push($(this).val());
         });
 
-        //////console.log(checkedList);
+        console.log(checkedList, "CHECKED");
 
-        //////console.log(layer_data.features.length);
+        console.log(layer_data.features.length);
+        console.log(layer_data);
+        console.log(checkedList);
+
         for (var k = layer_data.features.length - 1; k >= 0; k--) {
           var delete_count = 0;
           for (var i = 0; i < checkedList.length; i++) {
-            //////console.log(layer_data.features[k].properties[checkedList[i]]);
+            console.log(layer_data.features[k].properties[checkedList[i]], "CHECKED DOM");
 
             if (layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase() == "YES" && layer_data.features[k].properties[checkedList[i]].trim() != "") {
               //////console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
