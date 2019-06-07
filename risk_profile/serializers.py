@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hospital,School,LayerTable,MunicipalityLevelVulnerability,DistrictLevelVulnerability,HazardType,HazardLayer,HazardSubLayer,ExposureLayer,ExposureType
+from .models import Hospital,School,CapacityResources,MunicipalityLevelVulnerability,DistrictLevelVulnerability,HazardType,HazardLayer,HazardSubLayer,ExposureLayer,ExposureType
 from incident.models import Incident
 from resources.models import Resource
 from hazard.models import Hazard, HazardResources
@@ -82,7 +82,7 @@ class SchoolSerializer(serializers.ModelSerializer):
 
 class LayerTableSerializer(serializers.ModelSerializer):
     class Meta:
-        model=LayerTable
+        model=CapacityResources
         fields = ('title','layername', 'layer_tbl_count','type','layer_icon','isGeoserver','geoserver_url','geoserver_workspace','public','filter_options')
 
     layer_tbl_count = serializers.SerializerMethodField('get_layer_table_count')

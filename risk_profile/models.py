@@ -143,7 +143,7 @@ class DistrictLevelVulnerability(models.Model):
 
 #publish data model
 
-class LayerTable(models.Model):
+class CapacityResources(models.Model):
 
     Visibility = (
     ('national', 'National'),
