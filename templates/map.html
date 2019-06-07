@@ -5356,10 +5356,12 @@
         console.log(layer_data);
         console.log(checkedList);
 
+
         for (var k = layer_data.features.length - 1; k >= 0; k--) {
           var delete_count = 0;
           for (var i = 0; i < checkedList.length; i++) {
-            console.log(layer_data.features[k].properties[checkedList[i]], "CHECKED DOM");
+            console.log(checkedList[i].trim(), "VARUn");
+            console.log(layer_data.features[k].properties, "CHECKED DOM");
 
             if (layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase() == "YES" && layer_data.features[k].properties[checkedList[i]].trim() != "") {
               //////console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
