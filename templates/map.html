@@ -4779,11 +4779,12 @@
         ////console.log($('.'+layerName+'_parent').prop('checked'));
 
 
-        if (map.hasLayer(window[layerName]) || $('.' + layerName + '_parent').prop('checked') == false) {
-          //console.log('entered true');
+        if (map.hasLayer(window[layerName]) || map.hasLayer(window["filter_resource_marker_" + layerName]) || $('.' + layerName + '_parent').prop('checked') == false) {
+          console.log('entered true');
 
           map.removeLayer(window[layerName]);
           map.removeLayer(window[layerName + '_markers']);
+          map.removeLayer(window["filter_resource_marker_" + layerName]);
           if (map.hasLayer(window[layerName + "_filteredLayers"])) {
             map.removeLayer(window[layerName + "_filteredLayers"]);
           }
@@ -4853,11 +4854,15 @@
 
 
           if ($('.' + layerName + '_parent').prop('checked') == false) {
-            $('#capacity-popup').css('display', 'none')
+            $('#capacity-popup').css('display', 'none');
+            console.log("PARENT IF");
             map.removeLayer(window["filter_resource_" + layerName]);
+            map.removeLayer(window["filter_resource_marker_" + layerName]);
           } else {
+            console.log("PARENT Else");
             // map.addLayer(window[layerName]);
             map.addLayer(window[layerName + '_markers']);
+            
             visible_layers.push({ "layerName": layerName, "url": geo_url, "workspace": geo_workspace, "icon": layer_icon });
 
           }
@@ -5244,19 +5249,26 @@
       function filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon) {
 
 
-
+        window["filter_resource_marker_" + layerName] = L.markerClusterGroup({
+          disableClusteringAtZoom: 12,
+          clusterPane: 'pointsPane'
+        });
+        console.log(layer_icon, "layer_icon");
         //////console.log(window['clinic']._layers);
         window["filter_resource_" + layerName] = new L.geoJson(layer_data, {
 
           pointToLayer: function (feature, Latlng) {
 
             var divicon = L.divIcon({
-              className: layer_icon
+              className: 'humanitarian-icon-Hospital'
 
             });
             var marker = L.marker(Latlng, { icon: divicon });
 
+            window["filter_resource_marker_" + layerName].addLayer(marker);
             return marker;
+
+            // return marker;
           },
           onEachFeature: function (feature, layer) {
 
@@ -5271,15 +5283,28 @@
               minWidth: 250,
               pane: "topPane"
             }).setContent(contentString));
+
           }
 
-        }).addTo(map);
+        });
+        // map.removeLayer(window[layerName]);
+        map.removeLayer(window[layerName + '_markers']);
+        window["filter_resource_marker_" + layerName].addTo(map);
+        // map.removeLayer(window["filter_resource_marker" + layerName]);
+        // console.log(layerName,"MATHI KO LAYER");
+
         if (checkedList.length == 0) {
           data_geo = window[layerName].toGeoJSON()
           //map.addLayer(window[layerName]);
+          if (map.hasLayer(window["filter_resource_marker_" + layerName])) {
+            console.log("XA hai marker filter Layer");
+            // console.log(layerName);
+            map.removeLayer(window["filter_resource_marker_" + layerName]);
+            map.addLayer(window[layerName + '_markers']);
+          }
           CreateChartData(data_geo, sub_layer_name, 'charttype', 'subcategory', total_sum, layerName, [], layer_icon)
         } else {
-
+          console.log("ELSE MAH XIRYO LAU");
           map.removeLayer(window[layerName]);
           CreateChartData(layer_data, sub_layer_name, 'charttype', 'subcategory', total_sum, layerName, [], layer_icon)
 
@@ -5349,25 +5374,39 @@
 
           checkedList.push($(this).val());
         });
+        console.log(checkedList,"checkedList");
+        // if(checkedList==[]){
+        //   map.removeLayer(window["filter_resource_marker_" + layerName]);
+        //   map.removeLayer(window["filter_resource_" + layerName]);
+        // }
+        // console.log(checkedList, "CHECKED");
 
-        console.log(checkedList, "CHECKED");
-
-        console.log(layer_data.features.length);
-        console.log(layer_data);
-        console.log(checkedList);
-
+        // console.log(layer_data.features.length);
+        // console.log(layer_data);
+        // console.log(checkedList[0]);
+        // checkedList[i].toLowerCase();
 
         for (var k = layer_data.features.length - 1; k >= 0; k--) {
           var delete_count = 0;
           for (var i = 0; i < checkedList.length; i++) {
-            console.log(checkedList[i].trim(), "VARUn");
-            console.log(layer_data.features[k].properties, "CHECKED DOM");
+            // console.log(checkedList[i].trim(), "VARUn");
+            // console.log(i);
+            // console.log(typeof (checkedList[i].toLowerCase()), "TYPE OF CHECKEDLIST");
+            // console.log(checkedList[i].toLowerCase(), "LOWERCASE");
+            var filteropt = checkedList[i].toLowerCase();
+            console.log(filteropt, 'datacheck');
+            // console.log(layer_data.features[k].properties, "Without Checklist");
+            console.log(layer_data.features[k].properties[filteropt], "With Checklist");
+            // console.log(layer_data.features[k].properties, "CHECKED DOM");
+            // console.log(layer_data.features[k].properties.checkedList[0], "Bracket DOM");
 
-            if (layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase() == "YES" && layer_data.features[k].properties[checkedList[i]].trim() != "") {
+            if (layer_data.features[k].properties[filteropt] == true && layer_data.features[k].properties[filteropt] != "") {
+              // if (layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase() == "YES" && layer_data.features[k].properties[checkedList[i]].trim() != "") {
               //////console.log("abdcdfdf  ",layer_data.features[k].properties[checkedList[i]]);
               //////console.log("entered");
               delete_count++;
-              //////console.log(delete_count);
+              console.log(delete_count);
+              console.log("IF");
 
             }
 
@@ -5379,7 +5418,7 @@
             //////console.log("delete count 00");
             //////console.log(k);
             layer_data.features.splice(k, 1);
-
+            console.log(layer_data, "layer_data");
           }
 
 
