@@ -3329,9 +3329,9 @@
         var html = '<h4>Filter</h4>';
         html += '<div class="filter-list">';
         html += '<ul>';
-        console.log(filter_arr);
+        console.log(filter_arr, "FILTER ARR");
         for (var i = 0; i < filter_arr.length; i++) {
-          if (filter_arr[i].replace(/\s/g, "_") == 'number_of_Beds') {
+          if (filter_arr[i].replace(/\s/g, "_") == 'noOfStaffs') {
             console.log("BEDs");
             html += '<div id="slider' + i + '" class="slider filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"></div>'
             // html+='<div class="filter-list">'+
@@ -4797,6 +4797,10 @@
           if ($('.CheckBox:checked').length == 0) {
             $('.leaflet-draw').css('display', 'none');
             map.removeLayer(drawnItems);
+            var ml = 0;
+            if (ml == 0) {
+              map.removeLayer(window["filter_resource_marker_" + layerName]);
+            }
             drawnItems._layers = {};
             visible_layers_count = 0;
             for (var m = 0; m < visible_layers.length; m++) {
@@ -4851,6 +4855,9 @@
 
 
           }
+          if (map.hasLayer(window["filter_resource_marker_" + layerName])) {
+            map.removeLayer(window["filter_resource_marker_" + layerName]);
+          }
 
 
           if ($('.' + layerName + '_parent').prop('checked') == false) {
@@ -4862,7 +4869,7 @@
             console.log("PARENT Else");
             // map.addLayer(window[layerName]);
             map.addLayer(window[layerName + '_markers']);
-            
+
             visible_layers.push({ "layerName": layerName, "url": geo_url, "workspace": geo_workspace, "icon": layer_icon });
 
           }
@@ -5300,6 +5307,7 @@
             console.log("XA hai marker filter Layer");
             // console.log(layerName);
             map.removeLayer(window["filter_resource_marker_" + layerName]);
+            map.removeLayer(window["filter_resource_" + layerName]);
             map.addLayer(window[layerName + '_markers']);
           }
           CreateChartData(data_geo, sub_layer_name, 'charttype', 'subcategory', total_sum, layerName, [], layer_icon)
@@ -5330,14 +5338,14 @@
         var features_data = [];
         var sub_layer_name = [];
 
-        if (map.hasLayer(window["filter_resource_" + layerName])) {
+        // if (map.hasLayer(window["filter_resource_" + layerName])) {
 
-          //////console.log('aa');
+        //   //////console.log('aa');
 
 
-          map.removeLayer(window["filter_resource_" + layerName]);
+        //   map.removeLayer(window["filter_resource_" + layerName]);
 
-        }
+        // }
         $.each($('.sub_cat_ex:checked'), function () {
 
           var name_sub = $(this).attr('data-sub');
@@ -5374,11 +5382,15 @@
 
           checkedList.push($(this).val());
         });
-        console.log(checkedList,"checkedList");
-        // if(checkedList==[]){
-        //   map.removeLayer(window["filter_resource_marker_" + layerName]);
-        //   map.removeLayer(window["filter_resource_" + layerName]);
-        // }
+        console.log(checkedList, "checkedList");
+        if (checkedList == "") {
+          console.log("empty checked");
+          var ml = 0;
+          if (ml == 0) {
+            map.removeLayer(window["filter_resource_marker_" + layerName]);
+          }
+        }
+
         // console.log(checkedList, "CHECKED");
 
         // console.log(layer_data.features.length);
@@ -5426,6 +5438,10 @@
 
         filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon);
 
+        if (checkedList == []) {
+          map.removeLayer(window["filter_resource_marker_" + layerName]);
+          map.removeLayer(window["filter_resource_" + layerName]);
+        }
         // ////console.log('test');
         //////console.log($('.sub_cat_ex:checked').length);
         ////console.log($("input[class='test']:checked"));
