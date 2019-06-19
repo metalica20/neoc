@@ -15,7 +15,7 @@
     $(".hazard-details").on("click", ".hazardDetails-close", function() {
       // id=$('.hazard-details').attr('id');
       //
-      // console.log(id);
+      // //console.log(id);
       var id = $(this)
         .closest(".hazard-details")
         .attr("id");
@@ -30,6 +30,12 @@
 
       $("#" + id).hide(300);
       $(".average-section").hide(300);
+      if (map.hasLayer(eval("municipality"))) {
+        map.removeLayer(eval("municipality"));
+      }
+      if (map.hasLayer(window["district"])) {
+        map.removeLayer(window["district"]);
+      }
 
       //$(this).closest(".hazard-wrapper").addClass("collapse-leftSidebar");
     });
@@ -60,15 +66,15 @@
     });
 
     $(".trans_constrast").on("click", ".ion-md-contrast", function() {
-      console.log("enteddddd");
+      //console.log("enteddddd");
 
-      //console.log($(this).closest('.card').find('.range-box'));
+      ////console.log($(this).closest('.card').find('.range-box'));
       //$(this).closest('.card').find('.collapse ').addClass('show');
       $(this)
         .closest(".opacityParent")
         .find(".range-box")
         .toggle(300);
-      //console.log($(this).closest('.card').find('.range-box').css('display'));
+      ////console.log($(this).closest('.card').find('.range-box').css('display'));
 
       // setTimeout
       //     setTimeout(function(){
@@ -77,7 +83,7 @@
     });
 
     // $(".trans_constrast_expo").on("click",'.ion-md-contrast', function () {
-    //   console.log($(this).siblings('.opacityParent'));
+    //   //console.log($(this).siblings('.opacityParent'));
     //   $(this).siblings('.opacityParent').find('range-box');
     //
     // })
@@ -160,14 +166,14 @@
         .addClass("custom-control custom-radio");
       // ('#hazard_popup_html').removeClass('collapse-leftSidebar');
       // alert(targetId);
-      // console.log(this);
-      // console.log($(this).closest('.custom-radio')[0].attr("class"));
+      // //console.log(this);
+      // //console.log($(this).closest('.custom-radio')[0].attr("class"));
 
-      // console.log($(this).className));
-      console.log($(this).attr("class"));
+      // //console.log($(this).className));
+      //console.log($(this).attr("class"));
 
       var clickedparent = $(this).closest(".custom-radio")[0];
-      // console.log(clickedparent.className);
+      // //console.log(clickedparent.className);
       if (targetId == "flood-1") {
         if (clickedparent.className == "custom-control custom-radio") {
           $("#" + targetId).show(500);
@@ -452,25 +458,25 @@
     //
     // $('.exoposure_data_pop').on('click',function(){
     //   var targetId = $(this).attr('data-tab');
-    //   console.log(targetId);
+    //   //console.log(targetId);
     //     $('#exposure_popup').show(500);
     //
     // });
 
     // $('.hazardDetails-close_ex').on('click', function() {
-    //   console.log($(this).closest('.hazard-details').attr('id'));
+    //   //console.log($(this).closest('.hazard-details').attr('id'));
     //  id=$(this).attr('id');
     //$('#'+id).css('display','none');
 
     // setTimeout(function(){
     //     var width = $('.hazardDetails-close').closest('.hazard-details').find(".hazard-wrapper").css('width');
-    //     console.log($(".hazard-details"));
+    //     //console.log($(".hazard-details"));
     //
     //     for(var i=0;i<$(".hazard-wrapper").length;i++){
     //         for(var j=0; j<$(".hazard-wrapper")[i].classList.length;j++){
-    //             console.log($(".hazard-wrapper")[i].classList[j]);
+    //             //console.log($(".hazard-wrapper")[i].classList[j]);
     //             if ($(".hazard-wrapper")[i].classList[j] == "collapse-leftSidebar") {
-    //                 console.log("ebdsfasdfas");
+    //                 //console.log("ebdsfasdfas");
     //                 $('.expand-layer').css('right','325px');
     //             }
     //         }
@@ -484,7 +490,7 @@
     // });
 
     // $('#Flood').on('click',function(){
-    //   console.log('aaaa');
+    //   //console.log('aaaa');
     //   ('#hazard_popup_html').removeClass('collapse-leftSidebar');
     //
     // });
@@ -609,7 +615,7 @@
     }, 3000);
 
     $(".bipadContent").on("click ", ".custom-control-input", function() {
-      console.log("open");
+      //console.log("open");
       $(this)
         .closest(".custom-radio")
         .toggleClass("custom-check");
