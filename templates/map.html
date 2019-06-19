@@ -3432,7 +3432,7 @@
 
 
 
-            function generateSubcategoryChart(data, total_sum, layerName, filter_resources, layer_icon, level) {
+            function generateSubcategoryChart(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level) {
                 ////console.log(data);
                 var html = "";
                 // //console.log(data);
@@ -3470,45 +3470,72 @@
             }
 
 
-            function generateSubcategorySwitch(data, total_sum, layerName, filter_resources, layer_icon, level) {
+            function generateSubcategorySwitch(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level) {
                 //console.log("VARIN");
                 filter_arr = filter_resources.split(",");
+                filter_arr_range = filter_resources_range.split(",");
+                console.log(filter_arr, "askjdklasjdklasdklasd");
+                console.log(filter_arr_range, "askjdklasjdklasdklasd");
                 //  //////console.log(filter_arr);
                 var html = '<h4>Filter</h4>';
                 html += '<div class="filter-list">';
                 html += '<ul>';
                 //console.log(filter_arr, "FILTER ARR");
+
+
+                // for (var i = 0; i < filter_arr.length; i++) {
+                //     console.log(filter_arr[i].replace(/\s/g, "_"));
+                //     if (filter_arr[i].replace(/\s/g, "_") == 'noOfStaffs' || filter_arr[i].replace(/\s/g, "_") == 'bedCount') {
+                //         //console.log("BEDs");
+                //         html += '<div id="slider' + i + '" class="slider filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '" data-max="0" data-min="100"></div>'
+                //         // html+='<div class="filter-list">'+
+                //         //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
+                //         //   '<div class="slider filter_resource_btn">'+
+                //         //       '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
+                //         //       '<div class="slider-range filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'"></div>'+
+                //         //   '</div>'+
+                //         // '</div>';
+
+                //     } else {
+
+                //         html += '<li>' +
+                //             '<a href="#">' + filter_arr[i] + '</a>' +
+                //             // '<button type="button" class="btn btn-sm btn-toggle filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'" data-toggle="button" aria-pressed="false" autocomplete="off">'+
+                //             //     '<div class="handle"></div>'+
+                //             //  '</button>'+
+                //             '<label class="switch">' +
+                //             '<input type="checkbox" class="filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"> </input>' +
+                //             '<span class="slider-handle round"></span>' +
+                //             '</label>' +
+                //             // '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'"> </input>'+
+                //             '</li>';
+                //     }
+
+                // }
+
+
+                console.log(filter_arr, "FILTER ARR");
+                console.log(filter_arr_range, "RANGE");
+
                 for (var i = 0; i < filter_arr.length; i++) {
-                    console.log(filter_arr[i].replace(/\s/g, "_"));
-                    if (filter_arr[i].replace(/\s/g, "_") == 'noOfStaffs' || filter_arr[i].replace(/\s/g, "_") == 'bedCount') {
-                        //console.log("BEDs");
-                        html += '<div id="slider' + i + '" class="slider filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '" data-max="0" data-min="100"></div>'
-                        // html+='<div class="filter-list">'+
-                        //   '<h4 style="margin-top:1rem">Bed capacity</h4>'+
-                        //   '<div class="slider filter_resource_btn">'+
-                        //       '<input type="text" class="amount filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'" />'+
-                        //       '<div class="slider-range filter_resource_btn" value="'+filter_arr[i].replace(/\s/g,"_")+'" data-icon="'+layer_icon+'" name="'+layerName+'"></div>'+
-                        //   '</div>'+
-                        // '</div>';
-
-                    } else {
-
-                        html += '<li>' +
-                            '<a href="#">' + filter_arr[i] + '</a>' +
-                            // '<button type="button" class="btn btn-sm btn-toggle filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'" data-toggle="button" aria-pressed="false" autocomplete="off">'+
-                            //     '<div class="handle"></div>'+
-                            //  '</button>'+
-                            '<label class="switch">' +
-                            '<input type="checkbox" class="filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"> </input>' +
-                            '<span class="slider-handle round"></span>' +
-                            '</label>' +
-                            // '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'"> </input>'+
-                            '</li>';
-                    }
-
+                    html += '<li>' +
+                        '<a href="#">' + filter_arr[i] + '</a>' +
+                        // '<button type="button" class="btn btn-sm btn-toggle filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'" data-toggle="button" aria-pressed="false" autocomplete="off">'+
+                        //     '<div class="handle"></div>'+
+                        //  '</button>'+
+                        '<label class="switch">' +
+                        '<input type="checkbox" class="filter_resource_btn" value="' + filter_arr[i].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"> </input>' +
+                        '<span class="slider-handle round"></span>' +
+                        '</label>' +
+                        // '<input type="checkbox" class="filter_resource_btn" value="'+filter_arr[i]+'" name="'+layerName+'"> </input>'+
+                        '</li>';
                 }
 
+                for (var j = 0; j < filter_arr_range.length; j++) {
 
+                    html += '<label style="font-Weight: bolder">' + filter_arr_range[j].replace(/\s/g, "_") + '</label><div id="slider' + j + '" class="slider filter_resource_btn" value="' + filter_arr_range[j].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"></div>'
+
+                }
 
 
                 // html+='<div class="filter-list">'+
@@ -3529,23 +3556,23 @@
 
             }
 
-            function createSubcategoryChart(data, total_sum, layerName, filter_resources, layer_icon, level) {
+            function createSubcategoryChart(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level) {
 
                 // //////console.log(data);
                 $('.progress-bar').css('background-color', '#1672c6');
                 if (level == 'both') {
                     //console.log("SWITCH SUB 1 IF");
-                    generateSubcategoryChart(data, total_sum, layerName, filter_resources, layer_icon, level);
-                    generateSubcategorySwitch(data, total_sum, layerName, filter_resources, layer_icon, level);
+                    generateSubcategoryChart(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level);
+                    generateSubcategorySwitch(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level);
 
                 } else if (level == 'subcategory') {
 
-                    generateSubcategoryChart(data, total_sum, layerName, filter_resources, layer_icon, level);
+                    generateSubcategoryChart(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level);
 
                 } else {
                     //console.log("SWITCH SUB 2 IF");
 
-                    generateSubcategorySwitch(data, total_sum, layerName, filter_resources, layer_icon, level);
+                    generateSubcategorySwitch(data, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level);
                 }
 
 
@@ -3837,7 +3864,7 @@
 
 
             //function chart-bar
-            function CreateChartData(geojson, subcat, charttype, level, total_sum, layerName, filter_resources, layer_icon) {
+            function CreateChartData(geojson, subcat, charttype, level, total_sum, layerName, filter_resources, filter_resources_range, layer_icon) {
 
                 // //console.log(level);
                 //console.log("CREATE CHARt");
@@ -3889,7 +3916,7 @@
                 });
                 ////console.log(chartData);
 
-                createSubcategoryChart(chartData, total_sum, layerName, filter_resources, layer_icon, level);
+                createSubcategoryChart(chartData, total_sum, layerName, filter_resources, filter_resources_range, layer_icon, level);
                 // if(charttype=='pie'){
                 //
                 //   createChart(chartData);
@@ -5034,6 +5061,9 @@
                 var layer_icon = $(this).attr("data-icon");
                 //////console.log(layer_icon);
                 var filter_resources = $(this).attr("data-filter");
+                var filter_resources_range = $(this).attr("data-range");
+                // console.log(filter_resources, ":FILTER RESOURCE");
+                // console.log(filter_resources_range, ":FILTER RESOURCE_RANGE");
                 subcat_array1 = eval("[" + subcat.split("[")[1].split("]")[0] + "]");
                 ////console.log(subcat_array1);
                 subcat_array = [];
@@ -5067,6 +5097,10 @@
                     if ($('.CheckBox:checked').length == 0) {
                         $('.leaflet-draw').css('display', 'none');
                         map.removeLayer(drawnItems);
+                        if (map.hasLayer(window["filter_resource_" + layerName])) {
+                            console.log("HURAAAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                            map.removeLayer(window["filter_resource_" + layerName]);
+                        }
                         var ml = 0;
                         if (ml == 0) {
                             map.removeLayer(window["filter_resource_marker_" + layerName]);
@@ -5168,7 +5202,7 @@
 
                     response = window[layerName].toGeoJSON();
                     // //console.log(layerName);
-                    CreateChartData(response, subcat_array, null, 'both', total_sum, layerName, filter_resources, layer_icon);
+                    CreateChartData(response, subcat_array, null, 'both', total_sum, layerName, filter_resources, filter_resources_range, layer_icon);
 
                     //  //////console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
                     if ($('.' + layerName + '_parent').prop('checked') == false) {
@@ -5683,10 +5717,13 @@
                     var ml = 0;
                     if (ml == 0) {
                         map.removeLayer(window["filter_resource_marker_" + layerName]);
+                        map.addLayer(window[layerName + '_markers']);
                     }
                 }
                 if (checkedList != "") {
-                    map.removeLayer(window['filter_resource_' + layerName]);
+                    // map.removeLayer(window['filter_resource_' + layerName]);
+                    map.removeLayer(window[layerName + '_markers']);
+
                 }
                 // //console.log(checkedList, "CHECKED");
 
