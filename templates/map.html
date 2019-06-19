@@ -3533,7 +3533,7 @@
 
                 for (var j = 0; j < filter_arr_range.length; j++) {
 
-                    html += '<label style="font-Weight: bolder">' + filter_arr_range[j].replace(/\s/g, "_") + '</label><div id="slider' + j + '" class="slider filter_resource_btn" value="' + filter_arr_range[j].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"></div>'
+                    html += '<div id="slider' + j + '" class="slider filter_resource_btn" value="' + filter_arr_range[j].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '"></div>'
 
                 }
 
@@ -3744,16 +3744,22 @@
                         // maxRange(temp_array, totalrange);
                         //  ////////console.log(checkedList);
                         // ////////console.log(layer_data.features.length);
+                        console.log(checkedList, "HyaTErIIIIIIII CHEcKLIST");
+                        console.log(layer_data, "HyaTErIIIIIIII layer_data");
                         if (checkedList.length > 0) {
 
-
+                            console.log(layer_data, "SADJASJDJASD");
                             for (var k = layer_data.features.length - 1; k >= 0; k--) {
                                 var delete_count = 0;
                                 for (var i = 0; i < checkedList.length; i++) {
 
-
-                                    if (layer_data.features[k].properties[checkedList[i].trim()].trim().toUpperCase() == "YES" && layer_data.features[k].properties[checkedList[i]].trim() != "") {
-
+                                    console.log(layer_data.features[k].properties, "HyaTErIIIIIIII layer_data first");
+                                    console.log(checkedList[i].trim(), "HyaTErIIIIIIII checklist first");
+                                    console.log(layer_data.features[k].properties[checkedList[i].trim().toLowerCase()], "HyaTErIIIIIIII layer_data trimmed");
+                                    console.log(layer_data.features[k].properties[checkedList[i].trim().toLowerCase()] == "true");
+                                    console.log(layer_data.features[k].properties[checkedList[i].trim().toLowerCase()] != "false");
+                                    if (layer_data.features[k].properties[checkedList[i].trim().toLowerCase()] == true && layer_data.features[k].properties[checkedList[i].trim().toLowerCase()] != false) {
+                                        console.log("PASYO SLIDER KO FILTER BHITRA (DELETE COUNT HUNXa");
                                         // if(layer_data.features[k].properties[fieldname]>current_value_array[0] && layer_data.features[k].properties[fieldname]<current_value_array[1]){
                                         delete_count++;
                                         ////////console.log(delete_count);
@@ -5095,11 +5101,14 @@
                     $('#' + layerName + '_filterlist').html('');
 
                     if ($('.CheckBox:checked').length == 0) {
+                        console.log("checkbox 0 bhayo");
                         $('.leaflet-draw').css('display', 'none');
                         map.removeLayer(drawnItems);
+
                         if (map.hasLayer(window["filter_resource_" + layerName])) {
                             console.log("HURAAAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
                             map.removeLayer(window["filter_resource_" + layerName]);
+
                         }
                         var ml = 0;
                         if (ml == 0) {
@@ -5573,6 +5582,9 @@
 
             function filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon) {
                 console.log(layerName, "Chaiyeko Kura");
+                if (map.hasLayer(window["filter_resource_marker_" + layerName])) {
+                    map.removeLayer(window["filter_resource_marker_" + layerName]);
+                }
                 window["filter_resource_marker_" + layerName] = null;
 
                 window["filter_resource_marker_" + layerName] = L.markerClusterGroup({
@@ -5713,7 +5725,7 @@
                 });
                 //console.log(checkedList, "checkedList");
                 if (checkedList == "") {
-                    //console.log("empty checked");
+                    console.log(checkedList, "empty radio Check All");
                     var ml = 0;
                     if (ml == 0) {
                         map.removeLayer(window["filter_resource_marker_" + layerName]);
@@ -5769,7 +5781,9 @@
 
 
                 }
-
+                if (map.hasLayer(window["filter_resource_" + layerName])) {
+                    map.removeLayer(window["filter_resource_" + layerName]);
+                }
                 filtermap(layer_data, checkedList, sub_layer_name, total_sum, layerName, layer_icon);
 
                 if (checkedList == []) {
