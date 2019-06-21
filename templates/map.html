@@ -292,7 +292,7 @@
                                                     <label class="custom-control-label" for="{{ hazard.title }}"
                                                         data-tab="flood-1">{{ hazard.title }} </label>
                                                 </div>
-                                                <span class="humanitarian-icon-Flood"></span>
+                                                <span class={{hazard.hazardIcon}}></span>
                                             </li>
                                             {% endfor %}
                                             <!-- <li>
@@ -981,7 +981,7 @@
                                                             data-layername="sankhu_drone"
                                                             data-url="https://apps.naxa.com.np/geoserver/wms"
                                                             data-center="[27.740139803000158,85.46312123537065]"
-                                                            id="sankhu_1" name="sankhu_1" value="customEx">
+                                                            id="sankhu_1" name="test_1" value="customEx">
 
                                                         <label class="custom-control-label" for="sankhu_1">Sankhu
                                                         </label>
@@ -4028,7 +4028,24 @@
 
 
             $('.parent_vul').on('click', function () {
+                console.log($(this).attr('id'));
+                console.log($(this).parent(), "parent");
+                console.log($(this).siblings(), "siblings");
+                // var this_id = ($(this).find("input").prevObject[0]).prop('id');
+                var this_id = ($(this).attr('id'));
+                // $('.admin_bound[data-parent="' + this_id + '"]').parent().toggleClass('custom-check ');
+                $('.admin_bound[data-parent="' + this_id + '"]').parent().attr('class', 'custom-control custom-radio');
+                $('.admin_bound[data-parent="' + this_id + '"]').attr('class', 'custom-control-input admin_bound vul_hdi loaded_layer nt_loaded');
+                // $("#" + $(this).attr('id'));
+                // console.log(this_id, "thisid");
+                if ($(this).parent().prop('className') == 'custom-control custom-radio') {
 
+                }
+                else {
+                    console.log("false");
+                    map.removeLayer(district);
+                    map.removeLayer(vt_label_district);
+                }
                 var current_layer = $(this).attr('data-currentLayer');
                 var resultt = $(this).attr('data-result');
                 if (current_layer != "") {
@@ -4432,6 +4449,7 @@
 
                 if (exposureOneClickCount == 0) {
                     //console.log('function');
+                    $('.loader').css('display', 'none');
                     exposureOneClick(layername, parent_id, center, id, geo_url, main_id);
                 }
 
@@ -5240,8 +5258,21 @@
             $('.exoposure_data_pop').on('click', function () {
 
                 var id = $(this).attr('id');
+                // var this_id = ($(this).attr('id'));
+                // $('.admin_bound[data-parent="' + this_id + '"]').parent().toggleClass('custom-check ');
+                console.log($('.exposure_geo[data-parent="' + id + '"]').parent());
+                $('.exposure_geo[data-parent="' + id + '"]').parent().attr('class', 'custom-control custom-radio');
                 var data_pop = $(this).attr('data-pop');
+                console.log($(this).prop("checked"));
+                if ($(this).prop("checked") == 'true') {
 
+                }
+                else {
+                    // map.removeLayer(window["layername"]);
+                    removeAllLayers();
+                    map.fitBounds(province_bbox);
+                }
+                // if($(this).prop)
 
                 var current_layer = $(this).attr('data-currentLayer');
                 if (current_layer != "") { //child layer off from parent
@@ -5688,7 +5719,12 @@
 
                 // }
                 $.each($('.sub_cat_ex:checked'), function () {
-
+                    if (map.hasLayer(window["filter_resource_Health"])) {
+                        map.removeLayer(window["filter_resource_Health"]);
+                    }
+                    if (map.hasLayer(window["Health_markers"])) {
+                        map.removeLayer(window["Health_markers"]);
+                    }
                     var name_sub = $(this).attr('data-sub');
 
                     sub_layer_name.push($(this).attr('data-sub'));
@@ -5730,11 +5766,16 @@
                     if (ml == 0) {
                         map.removeLayer(window["filter_resource_marker_" + layerName]);
                         map.addLayer(window[layerName + '_markers']);
+
                     }
+
                 }
                 if (checkedList != "") {
                     // map.removeLayer(window['filter_resource_' + layerName]);
                     map.removeLayer(window[layerName + '_markers']);
+                    if (map.hasLayer(window[layerName])) {
+                        map.removeLayer(window[layerName]);
+                    }
 
                 }
                 // //console.log(checkedList, "CHECKED");
