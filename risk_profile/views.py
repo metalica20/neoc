@@ -246,10 +246,7 @@ class NewtestfileViewSet(views.APIView):
 class HazardfloodViewSet(views.APIView):
     permission_classes=[]
     def get(self,request,*args,**kwargs):
-        # flood={}
-        # basins={}
-        # basins['']
-        # flood['title']="Flood"
+        
         jsonc={"title":"Flood","about":"For example, the return period of a flood might be 100 years; ( alternatively expressed as its probability of ocurring being 1/100, or 1% in any one year). This does not mean that if a flood with such a return period occurs, then the next will occur in about one hundred years' time - instead, it means that, in any given year, there is a 1% chance that it will happen, regardless of when the last similar event was. Or, put differently, it is 10 times less likely to occur than a flood with a return period of 10 years (or a probability of 10%)",
         "data":{
         "karnali":{
