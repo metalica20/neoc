@@ -434,7 +434,7 @@ Visibility = (
 class HazardType(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True)
     about = models.CharField(max_length=500, null=True, blank=True)
-    hazard_icon=models.CharField(max_length=250,choices=icon,null=True, blank=True, default=None)
+    hazard_icon=models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
         return self.title
