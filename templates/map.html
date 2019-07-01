@@ -2684,14 +2684,14 @@
             };
 
             // Creating the full vectorTile url
-            var provinceUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-            var districtUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-            var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+            var provinceUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+            var districtUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+            var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
 
 
             // Creating the Leaflet vectorGrid object
             province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions).addTo(map);
-            var province_bbox = GetCapabilitiesGeoserver('Province', 'https://apps.naxa.com.np/geoserver', 'Naxa');
+            var province_bbox = GetCapabilitiesGeoserver('Province', 'https://geoserver.naxa.com.np/geoserver', 'Bipad');
             //console.log(province_bbox);
             map.fitBounds(province_bbox);
 
@@ -4224,7 +4224,7 @@
                         // //console.log(window[layername]);
                         var flood_bbox = GetCapabilitiesGeoserver(layername, 'https://geoserver.naxa.com.np/geoserver', 'Bipad');
                         // //console.log(flood_bbox);
-                        map.fitBounds(flood_bbox);
+                        // map.fitBounds(flood_bbox);
 
                         $('.hazard_list').attr('hasLayer', true);
                         $('.hazard_list').attr('data-currentLayer', layername);
