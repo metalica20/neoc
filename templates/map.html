@@ -3608,10 +3608,25 @@
 
                     var $this = $(this).parent().children();
                     var id = $(this).attr('id');
+                    var ranger=document.getElementById(id);
+                    var data_slider= $(this).attr('data-slider');
+                    console.log(data_slider,"data_slider");
                     // //console.log($this);
                     //nouislider
+                    console.log($(ranger).attr('value') );
+                    if($(ranger).attr('value') != 'None'){
+                        var ranges = document.getElementById(id);
+                        console.log("Not Equal to IsNAN");
+                       
+                       
+                    }
+                    else{
+                        var ranges= document.getElementById('slider0');
+                        console.log('else');
+                        return;
+                    }
 
-                    var ranges = document.getElementById(id);
+                    console.log(ranges,"");
                     ////console.log(range);
                     // var minVal = 0;
                     // var maxVal = 100;
@@ -3648,8 +3663,9 @@
                     });
                     // console.log(feature_data.length, "fea_data");
                     for (var i = 0; i < feature_data.length; i++) {
-                        layers_data.push(window[layer_name]._layers[feature_data[i]].feature.properties.noOfStaffs);
+                        layers_data.push(window[layer_name]._layers[feature_data[i]].feature.properties[data_slider]);
                     }
+                    console.log(layers_data);
                     // console.log(feature_data, 'layers_data');
                     var rangeVal = maxRange(layers_data, feature_data);
                     // console.log(arr);
@@ -3898,10 +3914,28 @@
             }
 
             //FILTERCHECK FUNCTION START
-            function filter_check(geojson, id_slider, fieldname, parsedMinValue, parsedMaxValue) {
-                // console.log(geojson);
-                console.log(id_slider, "IDSLIDer");
-                console.log(fieldname, "FIELDNAME");
+            function filter_check(geojsons, id_slider, fieldname, parsedMinValue, parsedMaxValue) {
+                //  console.log("fgeosjon",geojson);
+                 var geojson_array=[];
+                 var layersdata = window[layerName]._layers;
+                console.log(layersdata, "Layersdata");
+                //////console.log(window[name_sub]._layers);
+                // $.each(layersdata, function (feature) {
+
+                //     //  //console.log(layersdata[feature].feature);
+                //     geojson_array.push(layersdata[feature].feature);
+
+                // });
+
+
+                // var geojsons = {
+                //             "type": "FeatureCollection",
+                //             "features": geojson_array
+
+                //         };
+
+                console.log(geojsons, "geOJSON DATA");
+                 
                 var features_data = [];
                 var checkbox_list = [];
                 var radio_list = [];
@@ -3944,13 +3978,16 @@
                 var object = {};
                 var slider = document.getElementsByClassName('slider');
                 console.log(slider.length);
-                for (var i = 0; i < slider.length; i++) {
+                if($(slider).attr('value') != 'None'){
+                    for (var i = 0; i < slider.length; i++) {
                     var sliderOptions = slider[i].noUiSlider.get();
                     // console.log(slider[i].getAttribute('data-slider'), sliderOptions);
                     // slider_array.push(slider[i].getAttribute('data-slider'), sliderOptions,);
                     object[slider[i].getAttribute('data-slider')] = sliderOptions;
 
                 }
+                }
+                
                 slider_array.push(object);
                 // console.log(slider_array);
                 // $("#slider0").click(function () {
@@ -3959,7 +3996,7 @@
                 // console.log(features_data, "checkbox_features");
                 // console.log(checkbox_list, "checkbox_list");
                 // console.log(slider_array);
-                prepareData(geojson, checkbox_list, slider_array, radio_list, id_slider, fieldname, parsedMinValue, parsedMaxValue)
+                prepareData(checkbox_list, slider_array, radio_list, id_slider, fieldname, parsedMinValue, parsedMaxValue,geojsons)
             }
 
 
@@ -3982,8 +4019,8 @@
             // var layer_data = jQuery.extend(true, {}, layer_data1);
 
             // console.log(geojson, "layerdata");
-            function prepareData(geojson, checkbox_list, slider_array, radio_list, id_slider, fieldname, parsedMinValue, parsedMaxValue) {
-
+            function prepareData(checkbox_list, slider_array, radio_list, id_slider, fieldname, parsedMinValue, parsedMaxValue,geojsons) {
+                console.log(geojsons,"GREEN");
                 if (map.hasLayer(window["filter_resource_marker_" + layerName])) {
                     map.removeLayer(window["filter_resource_marker_" + layerName]);
                 }
@@ -3991,9 +4028,13 @@
                 console.log(slider_array, "2");
                 console.log(radio_list, "3");
                 filter_geojson = [];
-                // var clone_geojson = jQuery.extend(true, {}, geojson);
-                var clone_geojson = geojson;
-                console.log(geojson);
+                // var clones_geojsons= geojsons;
+                var clones_geojsons= jQuery.extend(true, {}, geojsons);
+                var clone_geojson= jQuery.extend(true, {}, geojsons);
+
+                console.log(clones_geojsons,"Yellow");
+                // var clone_geojson = geojsons;
+                // console.log(geojson);
 
                 console.log(clone_geojson, "clone");
 
@@ -4028,11 +4069,15 @@
 
                 if (checkbox_list.length > 0) {
 
-                    for (var k = clone_geojson.features.length - 1; k >= 0; k--) {
+                    for (var k = clones_geojsons.features.length - 1; k >= 0; k--) {
                         var delete_count = 0;
                         for (var i = 0; i < checkbox_list.length; i++) {
+                            // console.log(checkbox_list.length,"checkbox length");
+                            // console.log(clones_geojsons.features[k].properties.type.trim().toLowerCase().replace(' ',''),"layer type");
+                            // console.log(checkbox_list[i].trim().toLowerCase().replace('_',''),"checkbox");
 
-                            if (clone_geojson.features[k].properties.type == checkbox_list[i].trim().toLowerCase()) {
+
+                            if (clones_geojsons.features[k].properties.type.trim().toLowerCase().replace(' ','') == checkbox_list[i].trim().toLowerCase().replace('_','')) {
                                 console.log("PASYO SLIDER KO FILTER BHITRA (DELETE COUNT HUNXa");
                                 delete_count++;
 
@@ -4040,24 +4085,25 @@
                             }
                         }
                         if (delete_count == 0) {
-                            clone_geojson.features.splice(k, 1);
+                            console.log("DELETE GARDIRAXA");
+                            clones_geojsons.features.splice(k, 1);
 
                         }
 
 
                     }
-                    console.log(clone_geojson, "New Filtered");
+                    console.log(clones_geojsons, "New Filtered");
                 }
 
 
 
                 if (radio_list.length > 0) {
 
-                    for (var k = clone_geojson.features.length - 1; k >= 0; k--) {
+                    for (var k = clones_geojsons.features.length - 1; k >= 0; k--) {
                         var delete_count = 0;
                         for (var i = 0; i < radio_list.length; i++) {
 
-                            if (clone_geojson.features[k].properties[radio_list[i].trim().toLowerCase()] == true && clone_geojson.features[k].properties[radio_list[i].trim().toLowerCase()] != false) {
+                            if (clones_geojsons.features[k].properties[radio_list[i].trim().toLowerCase()] == true && clones_geojsons.features[k].properties[radio_list[i].trim().toLowerCase()] != false) {
                                 console.log("PASYO SLIDER KO FILTER BHITRA (DELETE COUNT HUNXa");
                                 delete_count++;
 
@@ -4065,25 +4111,29 @@
                             }
                         }
                         if (delete_count == 0) {
-                            clone_geojson.features.splice(k, 1);
+                            clones_geojsons.features.splice(k, 1);
 
                         }
 
 
                     }
-                    console.log(clone_geojson, "New Filtered");
+                    console.log(clones_geojsons, "New Filtered");
                 }
 
                 console.log(slider_array[0]);
                 // console.log(clone_geojson.features[0].properties[slider_array[0]]);
                 var delete_count_slider = 0;
                 if (id_slider != undefined) {
-                    for (var l = clone_geojson.features.length - 1; l >= 0; l--) {
+                    for (var l = clones_geojsons.features.length - 1; l >= 0; l--) {
 
                         delete_count_slider = 0;
+                        console.log(clones_geojsons.features[l].properties[fieldname],"SLIDER FIELDNAME");
+                        console.log(parsedMinValue,"SLIDER parsedMinValue");
+                        console.log(fieldname,"SLIDER parsedMinValue");
 
 
-                        if (clone_geojson.features[l].properties[fieldname] >= parsedMinValue && clone_geojson.features[l].properties[fieldname] <= parsedMaxValue) {
+                        
+                        if (clones_geojsons.features[l].properties[fieldname] >= parsedMinValue && clones_geojsons.features[l].properties[fieldname] <= parsedMaxValue) {
                             // console.log('not deleted' + layer_data.features[l].properties[fieldname])
                             delete_count_slider++;
                         }
@@ -4093,12 +4143,12 @@
 
                         if (delete_count_slider == 0) {
                             // console.log('deleted', layer_data.features[l].properties[fieldname])
-                            clone_geojson.features.splice(l, 1);
+                            clones_geojsons.features.splice(l, 1);
                         }
 
                     }
                 }
-                console.log(clone_geojson);
+                console.log(clones_geojsons);
 
 
 
@@ -4110,7 +4160,7 @@
 
 
 
-                var full_filter_data = clone_geojson;
+                var full_filter_data = clones_geojsons;
 
                 window["filter_resource_marker_" + layerName] = null;
 
@@ -4120,7 +4170,7 @@
                 });
 
                 ////////console.log(window['clinic']._layers);
-                window["filter_resource_" + layerName] = new L.geoJson(clone_geojson, {
+                window["filter_resource_" + layerName] = new L.geoJson(clones_geojsons, {
 
                     pointToLayer: function (feature, Latlng) {
 
@@ -5430,6 +5480,7 @@
                         console.log("checkbox 0 bhayo");
                         $('.leaflet-draw').css('display', 'none');
                         map.removeLayer(drawnItems);
+                        map.removeLayer(window["filter_resource_marker_" + layerName]);
 
                         if (map.hasLayer(window["filter_resource_" + layerName])) {
                             console.log("HURAAAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
@@ -5536,10 +5587,11 @@
 
 
                     response = window[layerName].toGeoJSON();
-                    // console.log(layerName,'wewewewe');
-                    CreateChartData(response, subcat_array, null, 'both', total_sum, layerName, filter_resources, filter_resources_range, layer_icon);
-
-                    filter_check(response)
+                    console.log("rgeosjon",response)
+                    console.log("wjson",window[layerName].toGeoJSON());
+                    CreateChartData(response,subcat_array, null, 'both', total_sum, layerName, filter_resources, filter_resources_range, layer_icon);
+                    
+                    filter_check(response,null,null,null,null); 
 
                     //  //////console.log("checkthis",$('.'+layerName+'_parent').prop('checked'));
                     if ($('.' + layerName + '_parent').prop('checked') == false) {
