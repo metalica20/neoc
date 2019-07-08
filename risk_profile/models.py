@@ -183,6 +183,7 @@ class CapacityResources(models.Model):
     # visibility_level=models.CharField(max_length=250,choices=Visibility,null=True, blank=True, default=None)
     # layer_type=models.CharField(max_length=250,choices=Layertype,null=True, blank=True, default=None)
     filter_options=models.CharField(max_length=500,null=True, blank=True, default=None)
+    filter_range=models.CharField(max_length=500,null=True, blank=True, default=None)
     # upload_type=models.CharField(max_length=50,choices=Uploadtype,null=True, blank=True, default=None)
 
 

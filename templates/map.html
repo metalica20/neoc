@@ -566,7 +566,7 @@
                                                         value="{{resource.layername}}" data-subcat="{{resource.type}}"
                                                         data-icon={{resource.layer_icon}}
                                                         data-filter="{{resource.filter_options}}"
-                                                        data-range="noOfStaffs,bedCount"
+                                                        data-range="{{resource.filter_range}}"
                                                         data-count="{{resource.count_obj}}"
                                                         id="{{resource.layername}}_id"
                                                         data-url="{{resource.geoserver_url}}"
@@ -3864,7 +3864,8 @@
                         console.log('layer_name', layer_name);
                         // console.log(window[name_sub].toGeoJSON());
                         geojson_data = window[layer_name].toGeoJSON();
-
+                            console.log(geojson_data,"ppopoppopop");
+                            
                         filter_check(geojson_data, id_slider, fieldname, parsedMinValue, parsedMaxValue)
 
 
@@ -4071,7 +4072,7 @@
                 }
 
                 console.log(slider_array[0]);
-                console.log(clone_geojson.features[0].properties[slider_array[0]]);
+                // console.log(clone_geojson.features[0].properties[slider_array[0]]);
                 var delete_count_slider = 0;
                 if (id_slider != undefined) {
                     for (var l = clone_geojson.features.length - 1; l >= 0; l--) {
@@ -5532,7 +5533,7 @@
 
 
                     response = window[layerName].toGeoJSON();
-                    // //console.log(layerName);
+                    // console.log(layerName,'wewewewe');
                     CreateChartData(response, subcat_array, null, 'both', total_sum, layerName, filter_resources, filter_resources_range, layer_icon);
 
                     filter_check(response)
