@@ -3036,8 +3036,8 @@
                 };
 
             }
-          
-           //neew changhes
+
+            //neew changhes
 
             function loadSocioData(socioid, parent_id) { //loding socia data in map layers
                 ////////console.log(feature);
@@ -3864,8 +3864,8 @@
                         console.log('layer_name', layer_name);
                         // console.log(window[name_sub].toGeoJSON());
                         geojson_data = window[layer_name].toGeoJSON();
-                            console.log(geojson_data,"ppopoppopop");
-                            
+                        console.log(geojson_data, "ppopoppopop");
+
                         filter_check(geojson_data, id_slider, fieldname, parsedMinValue, parsedMaxValue)
 
 
@@ -3991,7 +3991,10 @@
                 console.log(slider_array, "2");
                 console.log(radio_list, "3");
                 filter_geojson = [];
-                var clone_geojson = jQuery.extend(true, {}, geojson);
+                // var clone_geojson = jQuery.extend(true, {}, geojson);
+                var clone_geojson = geojson;
+                console.log(geojson);
+
                 console.log(clone_geojson, "clone");
 
                 console.log(checkbox_list, "checkbox_list");
