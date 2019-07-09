@@ -3550,7 +3550,7 @@
 
                 for (var j = 0; j < filter_arr_range.length; j++) {
 
-                    html += '<hr><label><b>' + filter_label[j] + '</b></label><div id="slider' + j + '" class="slider filter_resource_btn" value="' + filter_arr_range[j].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '" data-slider="' + filter_arr_range[j].replace(/\s/g, "_") + '"></div>'
+                    html += '<hr><label class="filter_label" style="text-transform: capitalize;"><b>' + filter_label[j] + '</b></label><div id="slider' + j + '" class="slider filter_resource_btn" value="' + filter_arr_range[j].replace(/\s/g, "_") + '" data-icon="' + layer_icon + '" data-sum="' + total_sum + '" name="' + layerName + '" data-slider="' + filter_arr_range[j].replace(/\s/g, "_") + '"></div>'
 
                 }
 
