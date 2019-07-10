@@ -5653,8 +5653,11 @@
                 var id = $(this).attr('id');
                 // var this_id = ($(this).attr('id'));
                 // $('.admin_bound[data-parent="' + this_id + '"]').parent().toggleClass('custom-check ');
+                // console.log(, "vaurnsdskdjalksjds");
+                if (!($('.exposure_geo[data-parent="' + id + '"]').parent().hasClass('custom-control custom-checkbox'))) {
+                    $('.exposure_geo[data-parent="' + id + '"]').parent().attr('class', 'custom-control custom-radio');
+                }
 
-                $('.exposure_geo[data-parent="' + id + '"]').parent().attr('class', 'custom-control custom-radio');
                 var data_pop = $(this).attr('data-pop');
 
                 if ($(this).prop("checked") == 'true') {
