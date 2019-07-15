@@ -5490,8 +5490,10 @@
                 // //
 
                 //////
-
-
+                if (map.hasLayer(window["filter_resource_marker_" + layerName])) {
+                    map.removeLayer(window["filter_resource_marker_" + layerName]);
+                }
+                console.log("eerere", layerName);
                 if (map.hasLayer(window[layerName]) || map.hasLayer(window["filter_resource_marker_" + layerName]) || $('.' + layerName + '_parent').prop('checked') == false) {
                     //
 
