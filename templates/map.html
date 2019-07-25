@@ -51,7 +51,13 @@
 
             <!-- logo start -->
             <div class="bipad-logo">
-                <h1 class="logo"><a href="index.html">Bipad</a></h1>
+                {% if request.get_host == 'localhost:8000' %}
+                <h1 class="logo"><a href="http://localhost:8000">Bipad</a></h1>
+                {% elif request.get_host == 'https://bipad.naxa.com.np' %}
+                <h1 class="logo"><a href="https://bipad.naxa.com.np">Bipad</a></h1>
+                {% else %}
+                <h1 class="logo"><a href="https://bipad.gov.np">Bipad</a></h1>
+                {% endif %}
                 <h3 class="admin-level">National</h3>
                 <span class="sub-logo">RiskInfo</span>
 
