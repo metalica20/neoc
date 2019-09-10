@@ -4342,21 +4342,40 @@
                 }
                 var legend_name1 = legend_content.replace(/_/g, " ");
                 var legend_name = legend_name1.charAt(0).toUpperCase() + legend_name1.slice(1);
-                var legend_html = '<div class="legend-wrapper">' +
-                    '<div class="buffer-header">' +
-                    '<h4>' + legend_name + '</h4>' +
-                    // '<h4>Flood Depth</h4>' +
-                    '<span><i class="ion ion-md-close"></i></span>' +
-                    '</div>' +
-                    '<ul>' +
-                    '<li class="satelite"></span><img src="' + url + '"></img></li>' +
+                console.log(legend_name);
+                console.log(legend_name.includes("Flood"));
+                if (legend_name.includes("Flood")) {
+                    var legend_html = '<div class="legend-wrapper">' +
+                        '<div class="buffer-header">' +
+                        '<h4>Flood Depth in Meter</h4>' +
+                        // '<h4>Flood Depth</h4>' +
+                        '<span><i class="ion ion-md-close"></i></span>' +
+                        '</div>' +
+                        '<ul>' +
+                        '<li class="satelite"></span><img src="' + url + '"></img></li>' +
 
 
-                    '</ul>' +
-                    '</div>';
+                        '</ul>' +
+                        '</div>';
 
-                $('.legend-list').html(legend_html);
+                    $('.legend-list').html(legend_html);
+                }
+                else {
+                    var legend_html = '<div class="legend-wrapper">' +
+                        '<div class="buffer-header">' +
+                        '<h4>' + legend_name + '</h4>' +
+                        // '<h4>Flood Depth</h4>' +
+                        '<span><i class="ion ion-md-close"></i></span>' +
+                        '</div>' +
+                        '<ul>' +
+                        '<li class="satelite"></span><img src="' + url + '"></img></li>' +
 
+
+                        '</ul>' +
+                        '</div>';
+
+                    $('.legend-list').html(legend_html);
+                }
             }
 
 
