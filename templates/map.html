@@ -526,7 +526,7 @@
                                     aria-labelledby="heading-4">
                                     <div class="card-body">
                                         <ul class="list-content hazard-list">
-                                            <li class="active" style="display:none;">
+                                            <li class="active" style="display:block;">
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input parent_vul"
                                                         id="earthquake_r" name="checks" value="customEx">
@@ -534,7 +534,7 @@
                                                         data-tab="earthquake_risk">Earthquake
                                                         Risk </label>
                                                 </div>
-                                                <span class="humanitarian-icon-Hospital"></span>
+                                                <!-- <span class="humanitarian-icon-Hospital"></span> -->
                                             </li>
                                             <!-- <li>
                                                 <div class="custom-control custom-checkbox">
@@ -5072,9 +5072,9 @@
 
                                     var marker = L.marker(
                                         Latlng, {
-                                            icon: divicon,
-                                            pane: "markerPane"
-                                        });
+                                        icon: divicon,
+                                        pane: "markerPane"
+                                    });
 
                                     var contentString = createPopup(feature, layername);
                                     marker.bindPopup(L.popup({
@@ -5208,9 +5208,9 @@
 
                                 var marker = L.marker(
                                     latlng, {
-                                        icon: divicon,
-                                        pane: "pointsPane"
-                                    });
+                                    icon: divicon,
+                                    pane: "pointsPane"
+                                });
 
 
 
@@ -5907,9 +5907,9 @@
 
                         var marker = L.marker(
                             Latlng, {
-                                icon: divicon,
-                                pane: "markerPane"
-                            });
+                            icon: divicon,
+                            pane: "markerPane"
+                        });
 
                         var contentString = createPopup(feature, layername);
                         marker.bindPopup(L.popup({
