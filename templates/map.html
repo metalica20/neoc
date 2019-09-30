@@ -2996,13 +2996,22 @@
 
             }
 
-            function earthRiskgetColor(d, maxvalue, minvalue) {
+            function earthRiskgetColor(d, maxvalue, minvalue, is_Eqrisk) {
                 //getting color according to data density
 
                 var intervals = range(minvalue, maxvalue, (maxvalue - minvalue) / 5); // gives min to max values
+                var intervals_eqrisk = ["0", "2.00", "2.25", "2.50", "2.75", "3.00", "3.25"]; // gives min to max values
+                // console.log(intervals, "colors intervals");
                 //
                 var color_range = ["#FED976", "#FD8D3C", "#E31A1C", "#BD0026", "#800026"]; //min to max (light to dark)
+                var color_range_eqrisk = ["#e1e1e1", "#47a3bc", "#53ab82", "#7ff200", "#fbf731", "#f6b633", "#e93f34"]; //min to max (light to dark)
+
                 var legend;
+                if (is_Eqrisk == 'riskScore') {
+                    color_range = color_range_eqrisk;
+                    intervals = intervals_eqrisk;
+
+                }
                 for (var i = intervals.length - 1; i >= 0; i--) {
 
                     if (d <= minvalue) {
@@ -3026,11 +3035,11 @@
 
             }
 
-            function earthRiskStyle(number, maxvalue, minvalue) { //creating style
+            function earthRiskStyle(number, maxvalue, minvalue, is_Eqrisk) { //creating style
                 // //
                 ////
                 return {
-                    fillColor: earthRiskgetColor(number, maxvalue, minvalue),
+                    fillColor: earthRiskgetColor(number, maxvalue, minvalue, is_Eqrisk),
                     weight: 2,
                     opacity: 1,
                     color: 'white',
@@ -3306,8 +3315,8 @@
                                     '<span class="skill">' + result.results[i]['district'] + ' :<i class="val">' + result.results[i][risk_id] + '</i></span>' +
                                     '</div>';
                                 if (risk_id != "hdi" && risk_id != "remoteness") {
-                                    // //
-                                    district.setFeatureStyle(result.results[i]["districtId"], earthRiskStyle(result.results[i][risk_id], result.max, result.min));
+                                    console.log(risk_id, "RISK ID");
+                                    district.setFeatureStyle(result.results[i]["districtId"], earthRiskStyle(result.results[i][risk_id], result.max, result.min, risk_id));
                                 } else {
                                     district.setFeatureStyle(result.results[i]["districtId"], riskStyle(parseFloat(result.results[i][risk_id])));
                                 }
@@ -3346,11 +3355,18 @@
 
                             //
                             var intervals = range(result.min, result.max, (result.max - result.min) / 5);
+
+                            var intervals_eqrisk = ["0.00", "2.00", "2.25", "2.50", "2.75", "3.00", "3.25", "5.00"]; // gives min to max values
+
                             var color_range = ["#FED976", "#FD8D3C", "#E31A1C", "#BD0026", "#800026"];
-                            // //
-                            ////
+                            var color_range_eqrisk = ["#e1e1e1", "#47a3bc", "#53ab82", "#7ff200", "#fbf731", "#f6b633", "#e93f34"];
 
 
+                            if (risk_id == 'riskScore') {
+                                color_range = color_range_eqrisk;
+                                intervals = intervals_eqrisk;
+
+                            }
                             //creating legend-list
                             //////
                             var legend_html = '<div class="legend-wrapper">' +
@@ -3364,7 +3380,10 @@
                                 for (var u = 0; u < intervals.length - 1; u++) {
                                     legend_html += '<li class="satelite"><span style="background-color:' + color_range[u] + ';"></span><a href="#">' + intervals[u] + ' - ' + intervals[u + 1] + '</a></li>';
                                     // //
-                                    if (u > 3) {
+                                    if (risk_id = "riskScore") {
+
+                                    }
+                                    else if (u > 3) {
                                         // //
                                         break;
                                     }
