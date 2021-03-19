@@ -10,7 +10,7 @@ django-jet==1.0.8
 django-polymorphic==2.0.3
 django-map-widgets==0.2.2
 django-silk==3.0.1
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 djangorestframework-camel-case==1.0.3
 djangorestframework-gis==0.14
 djangorestframework-simplejwt==3.3
